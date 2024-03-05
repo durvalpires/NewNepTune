@@ -1,0 +1,36 @@
+{
+  "project_info": {
+    "project_number": "611095624864",
+    "project_id": "neptuneapp-394fa",
+    "storage_bucket": "neptuneapp-394fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611095624864:ios:e2839b975d98048f671dc5",
+        "android_client_info": {
+          "package_name": "com.neptunecompany.neptune"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcoior9h7JQDzJFakaSXEihTYu0Cf9aG4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611095624864-90p77u7bm83as95bsd3re0rgso50e6qm.apps.googleusercontent.com"
+        }
+      ]
+    }
+  ],
+  "configuration_version": "1"
+}

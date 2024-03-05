@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: a655d579950784097839375744237ec3
+  - enabled: 1
+    path: Assets/Scenes/UserSelectionScene.unity
+    guid: ef0c5d5679787464d97bc8638ed2f852
+  - enabled: 1
+    path: Assets/Scenes/RegisterLoginScene.unity
+    guid: 31c23151c210744faacc7c47468f8249
+  - enabled: 1
+    path: Assets/Scenes/LevelSelectionSceneUpdated.unity
+    guid: 119df184556c3437d96060e9777246c6
+  - enabled: 1
+    path: Assets/Scenes/Profile.unity
+    guid: fb82ba7bee54c4296833cb520e41889e
+  - enabled: 1
+    path: Assets/Scenes/MainLevelSelect.unity
+    guid: 99b86bf6f518c4dd4a0740f1dc39a79e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: 243150a7ae2b040d4ba2faafffadbcbc
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1Game1.unity
+    guid: c263c4890c3c74b3db983bb3ab76738c
+  - enabled: 1
+    path: Assets/Scenes/KimMilyoner.unity
+    guid: 6711c8b4da62b469ebc436935fb57c0d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 12b65ea4a0b724b148efc49f0053e533
+  - enabled: 1
+    path: Assets/Scenes/MemoryCard.unity
+    guid: 30a883c88ccb74b8bb1814bc19bd987f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3.unity
+    guid: 6ae3c978dca8f45d397d10c56d5f3f58
+  - enabled: 1
+    path: Assets/Scenes/SoundQuizScene.unity
+    guid: f45ad76d79c1243aa914c2af4c02f37a
+  m_configObjects: {}
