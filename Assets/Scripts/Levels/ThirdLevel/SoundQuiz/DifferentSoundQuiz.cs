@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
+using Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,7 +28,6 @@ public class DifferentSoundQuiz : MonoBehaviour
             _currentLevel++;
             levels[_currentLevel].SetActive(true);
         }
-        
     }
 
     public void falseAnswer()

@@ -44,4 +44,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SoundQuizScene.unity
     guid: f45ad76d79c1243aa914c2af4c02f37a
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 763772a488ea8074f9e6db8180320d77,
+      type: 2}
