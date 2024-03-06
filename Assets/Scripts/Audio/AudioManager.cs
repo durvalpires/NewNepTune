@@ -97,7 +97,7 @@ namespace Audio
             string clipName = clipNameEnum.ToString();
             Sound sound = null;
 
-            foreach (var soundclip in musicSounds)
+            foreach (var soundclip in sfxSounds)
             {
                 if (clipName == soundclip.name)
                 {
