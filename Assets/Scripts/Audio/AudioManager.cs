@@ -10,10 +10,6 @@ namespace Audio
         public Sound[] musicSounds, sfxSounds;
         public AudioSource musicSource, sfxSource;
 
-        private void Start()
-        {
-            PlayMusic(null); //put music here
-        }
         
         public void PlayMusic(SoundList? clipNameEnum)
         {

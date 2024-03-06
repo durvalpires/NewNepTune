@@ -336,7 +336,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds: []
   sfxSounds:
-  - name: twoA
-    clip: {fileID: 8300000, guid: a1185d62f7069f64bbf853dc33cd0750, type: 3}
+  - name: note_A
+    clip: {fileID: 8300000, guid: 6a4eeca28beed463abf69bf2c42c82f3, type: 3}
+  - name: note_B
+    clip: {fileID: 8300000, guid: e0ec8a34b2b9f4d48875bd80504f062d, type: 3}
+  - name: note_C
+    clip: {fileID: 8300000, guid: f102475a224b943b0a4ae17c8cefebd0, type: 3}
+  - name: note_D
+    clip: {fileID: 8300000, guid: 8ff8a916530b44dbc8f1daeb9846de06, type: 3}
+  - name: note_E
+    clip: {fileID: 8300000, guid: b7112f5a13ee449baa166afd35c3501e, type: 3}
+  - name: note_F
+    clip: {fileID: 8300000, guid: 2c6666ea2e3ee42e08a9182ba3e485e9, type: 3}
+  - name: note_G
+    clip: {fileID: 8300000, guid: ef767252cccda49d9800b5276b1d1e83, type: 3}
   musicSource: {fileID: 268530942375546749}
   sfxSource: {fileID: 2416947129110500254}

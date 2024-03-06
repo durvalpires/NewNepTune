@@ -7,6 +7,12 @@ namespace Enums
         
         //SFX
         
-        twoA,
+        note_A,
+        note_B,
+        note_C,
+        note_D,
+        note_E,
+        note_F,
+        note_G
     }
 }
