@@ -7,5 +7,6 @@ namespace Enums
         
         //SFX
         
+        twoA,
     }
 }

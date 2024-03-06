@@ -52,7 +52,7 @@ public class TimeManager : MonoBehaviour
                 loadNextQuestion = true; //yeni soruyu yükle.
             }
         }
-        Debug.Log(isAnsweringQuestion + ": " + timerValue + " = " + fillFraction + "--" + loadNextQuestion);
+        //Debug.Log(isAnsweringQuestion + ": " + timerValue + " = " + fillFraction + "--" + loadNextQuestion);
     }
 
     public void CancelTimer()
