@@ -1,4 +1,7 @@
+using Audio;
+using Enums;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Levels.Level1Game1
 {
@@ -8,7 +11,10 @@ namespace Levels.Level1Game1
         [SerializeField] private bool shouldHold;
         private bool _havePressed = false;
         public float totalScore;
-        
+
+        public GameObject finalPanel;
+        public GameObject star1, star2, star3;
+        public ScoreBarSlider _scoreBarSlider;
 
         void Start()
         {
@@ -17,21 +23,46 @@ namespace Levels.Level1Game1
         
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (!AudioManager.Instance.CheckIfMusicIsPlaying())
+            {
+                AudioManager.Instance.PlayMusic(SoundList.middleCmusic);
+            }
+            
             if (other.gameObject.CompareTag("NoteColliderPress"))
             {
                 shouldPressed = true;
             }
-            else
+            else if (other.gameObject.CompareTag("NoteColliderHold"))
             {
-                shouldHold = false;
+                shouldHold = true;
             }
-            
-            Debug.Log("Girdi");
+            else if (other.gameObject.CompareTag("NoteMinigameFinish"))
+            {
+                finalPanel.SetActive(true);
+                star1.SetActive(true);
+                star2.SetActive(true);
+                star3.SetActive(true);
+
+                Debug.Log(_scoreBarSlider.slider.value);
+                float sliderValue = _scoreBarSlider.slider.value;
+
+                if (sliderValue >= 90)
+                {
+                    star3.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                }
+                if (sliderValue >= 60)
+                {
+                    star2.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                }
+                if (sliderValue >= 30)
+                {
+                    star1.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                }
+            }
         }
         
         private void OnTriggerExit2D(Collider2D other)
         {
-            Debug.Log("Çıktı");
             _havePressed = false;
             shouldPressed = false;
             shouldHold = false;

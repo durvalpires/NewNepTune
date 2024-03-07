@@ -62,6 +62,11 @@ namespace Audio
             }
         }
         
+        public bool CheckIfMusicIsPlaying()
+        {
+            return musicSource.isPlaying;
+        }
+
         public IEnumerator WaitForSeconds(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
