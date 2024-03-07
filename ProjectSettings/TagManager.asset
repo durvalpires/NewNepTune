@@ -6,7 +6,6 @@ TagManager:
   tags:
   - NoteColliderPress
   - NoteColliderHold
-  - NoteMinigameFinish
   layers:
   - Default
   - TransparentFX

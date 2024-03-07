@@ -5,8 +5,6 @@ namespace Enums
     {
         //Music
         
-        middleCmusic,
-        
         //SFX
         
         note_A,
