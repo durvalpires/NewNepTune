@@ -13,6 +13,8 @@ namespace Enums
         note_D,
         note_E,
         note_F,
-        note_G
+        note_G,
+        WinSound,
+        LoseSound
     }
 }
