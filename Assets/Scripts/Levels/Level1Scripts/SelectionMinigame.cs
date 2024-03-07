@@ -60,5 +60,7 @@ namespace Levels.Level1Selection
             losePanel.SetActive(false);
             gameLevels[_currentLevel].gameObject.SetActive(true);
         }
+        
+        
     }
 }
