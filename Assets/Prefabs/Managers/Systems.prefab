@@ -352,5 +352,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2c6666ea2e3ee42e08a9182ba3e485e9, type: 3}
   - name: note_G
     clip: {fileID: 8300000, guid: ef767252cccda49d9800b5276b1d1e83, type: 3}
+  - name: WinSound
+    clip: {fileID: 8300000, guid: 0b62fe35e7eca43ac84cd5755e3d5230, type: 3}
+  - name: LoseSound
+    clip: {fileID: 8300000, guid: 57d4b4933e13f4abb8ea7c0e0956ca06, type: 3}
   musicSource: {fileID: 268530942375546749}
   sfxSource: {fileID: 2416947129110500254}

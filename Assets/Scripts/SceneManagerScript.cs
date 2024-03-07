@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour
 {
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void MainMenu()
     {
         Debug.Log("ana ekrana gitme butonuna basıldı."); // Butona başarıyla basıldığını doğrula
