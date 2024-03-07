@@ -118,11 +118,10 @@ namespace Audio
         public IEnumerator SoundFadeOut(AudioSource audioSource, float fadeTime)
         {
             float startVolume = audioSource.volume;
-
+            
             while (audioSource.volume > 0)
             {
-                audioSource.volume -= .1f;
-                Debug.Log("Music volume: " + audioSource.volume);
+                audioSource.volume -= .2f; 
                 yield return new WaitForSeconds(fadeTime);
             }
             

@@ -1,43 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using TMPro;
 
-public class TriggerManagerG1L1 : MonoBehaviour
+namespace Levels.Level1Game1
 {
-    public bool notaBasilmalimi;
-    public TextMeshProUGUI debugText;
-    void Start()
+    public class TriggerManagerG1L1 : MonoBehaviour
     {
-        notaBasilmalimi = false;
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Girdi");
-        notaBasilmalimi = true;
-    }
+        [SerializeField] private bool shouldPressed;
+        [SerializeField] private bool shouldHold;
+        private bool _havePressed = false;
+        public float totalScore;
+        
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        Debug.Log("Çıktı");
-        notaBasilmalimi = false;
-    }
-    public void DoNotaKontrol()
-    {
-        if(notaBasilmalimi)
+        void Start()
         {
-            StartCoroutine(DebugTextString("dogru zamanda bastin")); 
+            shouldPressed = false;
         }
-        else
+        
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            StartCoroutine(DebugTextString("yanlis zamanda bastin"));
+            if (other.gameObject.CompareTag("NoteColliderPress"))
+            {
+                shouldPressed = true;
+            }
+            else
+            {
+                shouldHold = false;
+            }
+            
+            Debug.Log("Girdi");
         }
-    }
-    IEnumerator DebugTextString(string debugTextNumerator)
-    {
-        debugText.text = debugTextNumerator;
-        yield return new WaitForSeconds(0.7f);
-        debugText.text = " ";
+        
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            Debug.Log("Çıktı");
+            _havePressed = false;
+            shouldPressed = false;
+            shouldHold = false;
+        }
+        
+        public bool DoNotaControl()
+        {
+            if (_havePressed) return false;
+
+            if(shouldPressed || shouldHold)
+            {
+                Debug.Log("Pressed correctly");
+                _havePressed = true;
+                
+                return true;
+            }
+            else
+            {
+                Debug.Log("Pressed incorrectly");
+                return false;
+            }
+        }
     }
 }
