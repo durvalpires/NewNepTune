@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using Extensions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManagerScript : MonoBehaviour
+public class SceneManagerScript : MonoSingleton<SceneManagerScript>
 {
     public void ChangeScene(string sceneName)
     {
