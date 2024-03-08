@@ -17,6 +17,9 @@ namespace Enums
         note_F,
         note_G,
         WinSound,
-        LoseSound
+        LoseSound,
+        
+        //MinigameMusic
+        FirstSoundMG
     }
 }
