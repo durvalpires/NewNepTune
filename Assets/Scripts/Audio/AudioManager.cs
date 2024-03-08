@@ -8,7 +8,7 @@ namespace Audio
 {
     public class AudioManager : MonoSingleton<AudioManager>
     {
-        public Sound[] musicSounds, sfxSounds;
+        public Sound[] musicSounds, sfxSounds, miniGameSounds;
         public AudioSource musicSource, sfxSource;
 
         
@@ -35,6 +35,8 @@ namespace Audio
                 musicSource.Play();
             }
         }
+        
+        
         
         public IEnumerator PlayMusic(SoundList? clipNameEnum, float waitTime)
         {
@@ -132,6 +134,30 @@ namespace Audio
             
             audioSource.Stop();
             audioSource.volume = 1;
+        }
+        
+        public void PlayMinigameMusic(SoundList? clipNameEnum)
+        {
+            string clipName = clipNameEnum.ToString();
+            Sound sound = null;
+
+            foreach (var soundclip in miniGameSounds)
+            {
+                if (clipName == soundclip.name)
+                {
+                    sound = soundclip;
+                }
+            }
+            
+            if (sound == null)
+            {
+                Debug.Log("Minigame music not found.");
+            }
+            else
+            {
+                musicSource.clip = sound.clip;
+                musicSource.Play();
+            }
         }
     }
 }
