@@ -19,32 +19,30 @@ namespace Instruments
             _scoreBarSlider = FindObjectOfType<ScoreBarSlider>();
         }
 
-        public override void OnPointerClick(PointerEventData data) //Pressed once
+        public void PressPianoKey(string pressedNote)
         {
-        }
+            SoundList soundToPlay = 
+                (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
 
-        public override void OnPointerDown(PointerEventData data) //Started pressing down
-        {
-            if (_triggerManagerG1L1.DoNotaControl())
+            if (_triggerManagerG1L1.DoNotaControl()) //Runs if pressed correctly
             {
                 _scoreBarSlider.UpdateSliderBasedOnDivision();
+                //can add animations here
             }
             
-            AudioManager.Instance.sfxSource.Stop();
             AudioManager.Instance.sfxSource.volume = 1;
             
             if (_soundFadeOut != null) StopCoroutine(_soundFadeOut);
-            
-            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.sfxSounds[2].clip; 
-            //TODO : This above is hardcoded, it should be changed to a more dynamic way.
-            AudioManager.Instance.sfxSource.Play();
+
+            AudioManager.Instance.PlaySFX(soundToPlay);
+        }
+        
+        public void NotePressRemoved()
+        {
+            _soundFadeOut = StartCoroutine(AudioManager.Instance.SoundFadeOut
+                (AudioManager.Instance.sfxSource, .1f));
         }
 
         private Coroutine _soundFadeOut;
-        
-        public override void OnPointerUp(PointerEventData data) //Stopped pressing down
-        {
-            _soundFadeOut = StartCoroutine(AudioManager.Instance.SoundFadeOut(AudioManager.Instance.sfxSource, .1f));
-        }
     }
 }
