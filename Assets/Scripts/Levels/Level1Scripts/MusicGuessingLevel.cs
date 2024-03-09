@@ -24,8 +24,7 @@ public class MusicGuessingLevel : MonoBehaviour
                {
                    gameLevels[i].gameObject.SetActive(false);
                }
-
-               AudioManager.Instance.PlayMinigameMusic(SoundList.FirstSoundMG);
+               
                _audioSource = gameObject.GetComponent<AudioSource>();
                _audioSource.clip = audioClips[_currentLevel];
                

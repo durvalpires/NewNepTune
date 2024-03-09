@@ -361,5 +361,9 @@ MonoBehaviour:
   miniGameSounds:
   - name: FirstSoundMG
     clip: {fileID: 8300000, guid: ce4aff051f5114393b30038df52c830a, type: 3}
+  - name: SecondSoundMG
+    clip: {fileID: 8300000, guid: c29c774651e2f474b974b3489b924c53, type: 3}
+  - name: ThirdSoundMG
+    clip: {fileID: 8300000, guid: 3ca55edd974c44543b5be186c68d656e, type: 3}
   musicSource: {fileID: 268530942375546749}
   sfxSource: {fileID: 2416947129110500254}
