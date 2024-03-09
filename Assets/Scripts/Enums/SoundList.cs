@@ -20,6 +20,8 @@ namespace Enums
         LoseSound,
         
         //MinigameMusic
-        FirstSoundMG
+        FirstSoundMG,
+        SecondSoundMG,
+        ThirdSound
     }
 }
