@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/KimMilyoner.unity
     guid: 6711c8b4da62b469ebc436935fb57c0d
   - enabled: 1
-    path: Assets/Scenes/Levels/Level2.unity
+    path: Assets/Scenes/Levels/Level2/Level2.unity
     guid: 12b65ea4a0b724b148efc49f0053e533
   - enabled: 1
     path: Assets/Scenes/MemoryCard.unity
@@ -47,6 +47,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level1/SelectionMinigame.unity
     guid: 42e2889232cf14de5806ce42b916ba2c
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1/MusicGuess.unity
+    guid: 31d4ab1d7653247578ddc74fd69b808e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2/InstrumentGuess.unity
+    guid: 27ce3a132700743419f655e212963f49
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 763772a488ea8074f9e6db8180320d77,
       type: 2}
