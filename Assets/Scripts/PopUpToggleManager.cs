@@ -21,23 +21,27 @@ public class PopUpToggleManager : MonoBehaviour
                
     }
 
-    public void TogglePopup1()
+    public void TogglePopup1(string pressedNote)
     {
+        
+        SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
         // GameObject'in şu anki aktiflik durumunun tersini ayarlayın
         popUpCanvas.SetActive(true);
         popup1.SetActive(true);
-        StartCoroutine(AudioManager.Instance.PlaySFX(SoundList.note_C, 1f));
+        StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
         _popUpActive = true;
     }
-    public void TogglePopup2()
+    public void TogglePopup2(string pressedNote)
     {
+        SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
         popUpCanvas.SetActive(true);
         popup2.SetActive(true);
-        StartCoroutine(AudioManager.Instance.PlaySFX(SoundList.note_C, 1f));
+        StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
         _popUpActive = true;
     }
-    public void TogglePopup3()
+    public void TogglePopup3(string pressedNote)
     {
+        SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
         popUpCanvas.SetActive(true);
         popup3.SetActive(true);
         _popUpActive = true;
