@@ -43,6 +43,22 @@ namespace Audio
             PlayMusic(clipNameEnum);
         }
         
+        public void PauseMusic()
+        {
+            musicSource.Pause();
+        }
+        
+        public void UnPauseMusic()
+        {
+            musicSource.UnPause();
+        }
+        
+        public void StopMusic()
+        {
+            musicSource.clip = null;
+            musicSource.Stop();
+        }
+        
         public bool CheckIfMusicIsPlaying()
         {
             return musicSource.isPlaying;
@@ -63,7 +79,7 @@ namespace Audio
             yield return new WaitForSeconds(waitTime);
         }
         
-        public void PlaySFX(SoundList clipNameEnum)
+        public void PlaySFX(SoundList? clipNameEnum)
         {
             string clipName = clipNameEnum.ToString();
             Sound sound = null;
@@ -86,10 +102,8 @@ namespace Audio
             }
         }
         
-        public IEnumerator PlaySFX(SoundList? clipNameEnum, float waitTime)
+        public float CheckSoundLength(SoundList? clipNameEnum)
         {
-            yield return new WaitForSeconds(waitTime);
-            
             string clipName = clipNameEnum.ToString();
             Sound sound = null;
 
@@ -104,11 +118,19 @@ namespace Audio
             if (sound == null)
             {
                 Debug.Log("Sfx not found.");
+                return 0;
             }
             else
             {
-                sfxSource.PlayOneShot(sound.clip);
+                return sound.clip.length;
             }
+        }
+        
+        public IEnumerator PlaySFX(SoundList? clipNameEnum, float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            PlaySFX(clipNameEnum);
         }
         
         public IEnumerator SoundFadeOut(AudioSource audioSource, float fadeTime)

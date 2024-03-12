@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: a655d579950784097839375744237ec3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UserSelectionScene.unity
     guid: ef0c5d5679787464d97bc8638ed2f852
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RegisterLoginScene.unity
     guid: 31c23151c210744faacc7c47468f8249
   - enabled: 1
@@ -25,7 +25,7 @@ EditorBuildSettings:
     guid: 99b86bf6f518c4dd4a0740f1dc39a79e
   - enabled: 1
     path: Assets/Scenes/Levels/Level1/Level1.unity
-    guid: 243150a7ae2b040d4ba2faafffadbcbc
+    guid: 3faea87414c1f6242bbffff03937e92c
   - enabled: 1
     path: Assets/Scenes/Levels/Level1/Level1Game1.unity
     guid: c263c4890c3c74b3db983bb3ab76738c
