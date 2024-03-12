@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - NoteColliderPress
-  - NoteColliderHold
   - NoteMinigameFinish
+  - NoteColliderHold2
+  - NoteColliderHold4
   layers:
   - Default
   - TransparentFX

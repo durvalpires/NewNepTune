@@ -1,4 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Audio;
+using Enums;
 using UnityEngine;
 
 /*
@@ -10,56 +14,70 @@ using UnityEngine;
 
 public class CameraMovementG1L1 : MonoBehaviour
 {
-    public float songBPM; // Song BPM
+    [SerializeField] private float songBPM; // Song BPM
+    private float songBPS => songBPM / 60;
 
-    public float speed = 2f; // Camera speed
-    private float startX = -13f; // Start X position
-    private float endX = 30f; // End X position
-
-    public bool moveBasedOnBPM;
+    public GameObject notesParent;
+    private List<GameObject> notes = new List<GameObject>();
     
-    void Start()
-    {
-        transform.position = new Vector3(startX, transform.position.y, transform.position.z);
-        if (moveBasedOnBPM) StartCoroutine(MoveCamera());
-    }
+    [SerializeField] private float startX = -13f; // Start X position
+    [SerializeField] private float endX = 76.98f; // End X position
+    // set this positions based on first note and finishLineCollider
 
-    public float CalculateBPS() => songBPM / 60; // Convert BPM to Beats Per Second
-    
-    void Update()
+    private void Start()
     {
-        if (moveBasedOnBPM) return;
-        
-        // Move the camera to the right with the specified speed from its current position
-        transform.position += Vector3.right * speed * Time.deltaTime;
-        
-        // Stop the camera when it reaches the end X position
-        if (transform.position.x >= endX)
+        foreach (Transform child in notesParent.transform)
         {
-            // Reset the speed or do something else if you want
-            speed = 0;
+            notes.Add(child.gameObject);
         }
+
+        // Sort the notes based on their x position
+        notes.Sort((note1, note2) => note1.transform.position.x.CompareTo(note2.transform.position.x));
+
+        StartCoroutine(MoveCamera());
     }
-    
-    IEnumerator MoveCamera()
+
+    public IEnumerator MoveCamera()
     {
-        float speedPerSecond = speed * CalculateBPS(); // Calculate speed per second based on BPS
+        int currentNoteIndex = 0;
+        float beatDuration = 1 / songBPS; // Default beat duration
 
-        while (true)
+        while (currentNoteIndex < notes.Count)
         {
-            // Calculate the new position
-            var newPosition = transform.position + Vector3.right * speedPerSecond * Time.deltaTime;
+            GameObject currentNote = notes[currentNoteIndex];
 
-            // Move the camera to the new position
-            transform.position = newPosition;
+            // Calculate the start position and end position of the movement
+            Vector3 startPosition = transform.position;
+            Vector3 endPosition = new Vector3(currentNote.transform.position.x, transform.position.y, transform.position.z);
 
-            // Stop the camera when it reaches the end position
-            if (transform.position.x >= endX)
+            // Calculate the start time and end time of the movement
+            float startTime = Time.time;
+            float endTime = startTime + beatDuration;
+
+            // Move the camera to the current note's position over the duration of one beat
+            while (Time.time < endTime)
             {
-                yield break;
+                float t = (Time.time - startTime) / beatDuration;
+                transform.position = Vector3.Lerp(startPosition, endPosition, t);
+                yield return null;
             }
 
-            yield return null;
+            // Move on to the next note
+            currentNoteIndex++;
+
+            // Check the tag of the current note and adjust the beat duration for the next movement
+            switch (currentNote.tag)
+            {
+                case "NoteColliderHold2":
+                    beatDuration = 2 / songBPS;
+                    break;
+                case "NoteColliderHold4":
+                    beatDuration = 4 / songBPS;
+                    break;
+                default:
+                    beatDuration = 1 / songBPS;
+                    break;
+            }
         }
     }
 }

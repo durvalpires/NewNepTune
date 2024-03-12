@@ -27,21 +27,24 @@ namespace Levels.Level1Game1
             {
                 AudioManager.Instance.PlayMusic(SoundList.middleCmusic);
             }
-            
             if (other.gameObject.CompareTag("NoteColliderPress"))
             {
                 shouldPressed = true;
             }
-            else if (other.gameObject.CompareTag("NoteColliderHold"))
+            else if (other.gameObject.CompareTag("NoteColliderHold2"))
             {
                 shouldHold = true;
             }
+            else if (other.gameObject.CompareTag("NoteColliderHold4"))
+            {
+                shouldHold = true;    
+            }
+            
             else if (other.gameObject.CompareTag("NoteMinigameFinish"))
             {
                 finalPanel.SetActive(true);
-                star1.SetActive(true);
-                star2.SetActive(true);
-                star3.SetActive(true);
+                
+                AudioManager.Instance.StopMusic();
 
                 Debug.Log(_scoreBarSlider.slider.value);
                 float sliderValue = _scoreBarSlider.slider.value;
