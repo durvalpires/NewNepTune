@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Audio;
 using Enums;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PopUpToggleManager : MonoBehaviour
     public GameObject popup1; // Kontrol etmek istediğiniz GameObject
     public GameObject popup2;
     public GameObject popup3;
+
     public GameObject popUpCanvas;
     private bool _popUpActive;
     
@@ -18,12 +20,11 @@ public class PopUpToggleManager : MonoBehaviour
         {
           Back();
         }
-               
     }
-
+    
+    // TODO : Turn this into a single function with a parameter
     public void TogglePopup1(string pressedNote)
     {
-        
         SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
         // GameObject'in şu anki aktiflik durumunun tersini ayarlayın
         popUpCanvas.SetActive(true);
@@ -44,6 +45,7 @@ public class PopUpToggleManager : MonoBehaviour
         SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
         popUpCanvas.SetActive(true);
         popup3.SetActive(true);
+        StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
         _popUpActive = true;
     }
 

@@ -24,34 +24,37 @@ EditorBuildSettings:
     path: Assets/Scenes/MainLevelSelect.unity
     guid: 99b86bf6f518c4dd4a0740f1dc39a79e
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1/Level1.unity
+    path: Assets/Scenes/Levels/11 - DO/Level1.unity
     guid: 3faea87414c1f6242bbffff03937e92c
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1/Level1Game1.unity
+    path: Assets/Scenes/Levels/11 - DO/2 - Level1Game1.unity
     guid: c263c4890c3c74b3db983bb3ab76738c
   - enabled: 1
     path: Assets/Scenes/KimMilyoner.unity
     guid: 6711c8b4da62b469ebc436935fb57c0d
   - enabled: 1
-    path: Assets/Scenes/Levels/Level2/Level2.unity
+    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2.unity"
     guid: 12b65ea4a0b724b148efc49f0053e533
   - enabled: 1
-    path: Assets/Scenes/MemoryCard.unity
-    guid: 30a883c88ccb74b8bb1814bc19bd987f
+    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2InstrumentGuess.unity"
+    guid: 527758b65ea036440b454ba264e927bc
   - enabled: 1
-    path: Assets/Scenes/Levels/Level3.unity
+    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2MemoryCardGame.unity"
+    guid: af8908a9566ab014f9b738152b923dff
+  - enabled: 1
+    path: Assets/Scenes/Levels/13 - Final/Level3.unity
     guid: 6ae3c978dca8f45d397d10c56d5f3f58
   - enabled: 1
     path: Assets/Scenes/SoundQuizScene.unity
     guid: f45ad76d79c1243aa914c2af4c02f37a
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1/SelectionMinigame.unity
+    path: Assets/Scenes/Minigames/SelectionMinigame.unity
     guid: 42e2889232cf14de5806ce42b916ba2c
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1/MusicGuess.unity
+    path: Assets/Scenes/Minigames/MusicGuess.unity
     guid: 31d4ab1d7653247578ddc74fd69b808e
   - enabled: 1
-    path: Assets/Scenes/Levels/Level2/InstrumentGuess.unity
+    path: Assets/Scenes/Minigames/InstrumentGuess.unity
     guid: 27ce3a132700743419f655e212963f49
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 763772a488ea8074f9e6db8180320d77,
