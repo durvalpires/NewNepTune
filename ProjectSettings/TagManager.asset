@@ -8,6 +8,8 @@ TagManager:
   - NoteMinigameFinish
   - NoteColliderHold2
   - NoteColliderHold4
+  - Tag1
+  - Tag2
   layers:
   - Default
   - TransparentFX

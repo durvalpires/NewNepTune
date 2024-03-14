@@ -15,6 +15,8 @@ namespace Levels.Level1Game1
         public GameObject finalPanel;
         public GameObject star1, star2, star3;
         public ScoreBarSlider _scoreBarSlider;
+        
+        private PianoNoteGame _pianoNoteGame;
 
         void Start()
         {
