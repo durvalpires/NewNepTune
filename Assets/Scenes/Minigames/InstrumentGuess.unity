@@ -554,7 +554,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1922733322}
         m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: nextLevelButton
+        m_MethodName: NextLevelButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -683,19 +683,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 306270932}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &306270932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,19 +957,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 485978389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &485978389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,19 +1077,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 536253856}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &536253856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,7 +1098,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0fa00b65328c454586b0e7a3a5082ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7623348aac729fe45adf976dcd20c8b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1233,19 +1197,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 776031197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &776031197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,19 +1603,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 899589790}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &899589790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,19 +1723,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 997652175}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &997652175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2308,19 +2236,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1503490862}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1503490862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2341,7 +2257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0fa00b65328c454586b0e7a3a5082ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7623348aac729fe45adf976dcd20c8b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2508,19 +2424,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1599982437}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1599982437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2732,19 +2636,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1726752631}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1726752631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3271,19 +3163,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1946809867}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922733322}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1946809867
 MonoBehaviour:
   m_ObjectHideFlags: 0

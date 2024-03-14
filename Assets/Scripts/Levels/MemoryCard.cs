@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// TODO : Back button should be grayed out until player completes the level
+// TODO : When the game is completed, Finish panel should be shown
 
 public class MemoryCard : MonoBehaviour
 {
@@ -19,10 +20,7 @@ public class MemoryCard : MonoBehaviour
         _id = id;
         GetComponent<SpriteRenderer>().sprite = image;
     }
-
-    private void Start()
-    {
-    }
+    
     public void OnMouseDown()
     {
         if (cardBack.activeSelf && controller.canReveal)
