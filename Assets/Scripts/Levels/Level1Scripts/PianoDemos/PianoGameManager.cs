@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PianoGameManager : MonoBehaviour
+public partial class PianoGameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
     public GameObject noteSheetPrefab;

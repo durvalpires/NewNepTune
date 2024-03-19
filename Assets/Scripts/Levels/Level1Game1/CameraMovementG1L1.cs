@@ -68,10 +68,10 @@ public class CameraMovementG1L1 : MonoBehaviour
             // Check the tag of the current note and adjust the beat duration for the next movement
             switch (currentNote.tag)
             {
-                case "NoteColliderHold2":
+                    case "platform2":
                     beatDuration = 2 / songBPS;
                     break;
-                case "NoteColliderHold4":
+                case "platform4":
                     beatDuration = 4 / songBPS;
                     break;
                 default:
@@ -79,5 +79,9 @@ public class CameraMovementG1L1 : MonoBehaviour
                     break;
             }
         }
+    }
+    public float GetSongBPS()
+    {
+        return songBPS;
     }
 }

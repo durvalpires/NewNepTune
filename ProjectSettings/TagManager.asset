@@ -10,6 +10,9 @@ TagManager:
   - NoteColliderHold4
   - Tag1
   - Tag2
+  - platform1
+  - platform2
+  - platform4
   layers:
   - Default
   - TransparentFX
