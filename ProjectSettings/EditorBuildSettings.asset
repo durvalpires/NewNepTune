@@ -33,13 +33,13 @@ EditorBuildSettings:
     path: Assets/Scenes/KimMilyoner.unity
     guid: 6711c8b4da62b469ebc436935fb57c0d
   - enabled: 1
-    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2.unity"
+    path: "Assets/Scenes/Levels/12 - Enstru\u0308man/Level2.unity"
     guid: 12b65ea4a0b724b148efc49f0053e533
   - enabled: 1
-    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2InstrumentGuess.unity"
+    path: "Assets/Scenes/Levels/12 - Enstru\u0308man/Level2InstrumentGuess.unity"
     guid: 527758b65ea036440b454ba264e927bc
   - enabled: 1
-    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2MemoryCardGame.unity"
+    path: "Assets/Scenes/Levels/12 - Enstru\u0308man/Level2MemoryCardGame.unity"
     guid: af8908a9566ab014f9b738152b923dff
   - enabled: 1
     path: Assets/Scenes/Levels/13 - Final/Level3.unity

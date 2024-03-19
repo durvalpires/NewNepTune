@@ -25,22 +25,16 @@ namespace Levels.Level1Game1
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!AudioManager.Instance.CheckIfMusicIsPlaying())
-            {
-                AudioManager.Instance.PlayMusic(SoundList.middleCmusic);
-            }
-            if (other.gameObject.CompareTag("NoteColliderPress"))
+           
+            if (other.gameObject.CompareTag("platform1"))
             {
                 shouldPressed = true;
             }
-            else if (other.gameObject.CompareTag("NoteColliderHold2"))
+            else if (other.gameObject.CompareTag("platform2"))
             {
                 shouldHold = true;
             }
-            else if (other.gameObject.CompareTag("NoteColliderHold4"))
-            {
-                shouldHold = true;    
-            }
+           
             
             else if (other.gameObject.CompareTag("NoteMinigameFinish"))
             {
