@@ -207,7 +207,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: TrueAnswer
         m_Mode: 1
         m_Arguments:
@@ -441,7 +441,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: FalseAnswer
         m_Mode: 1
         m_Arguments:
@@ -1028,8 +1028,8 @@ Canvas:
   m_GameObject: {fileID: 553923309}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1351357871}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1097,8 +1097,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 230685910}
-  - {fileID: 629035249}
   - {fileID: 1992053014}
+  - {fileID: 629035249}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1155,8 +1155,8 @@ Canvas:
   m_GameObject: {fileID: 567765629}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1351357871}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1252,7 +1252,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: FalseAnswer
         m_Mode: 1
         m_Arguments:
@@ -1431,7 +1431,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: FalseAnswer
         m_Mode: 1
         m_Arguments:
@@ -2283,7 +2283,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: TrueAnswer
         m_Mode: 1
         m_Arguments:
@@ -2385,7 +2385,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: FalseAnswer
         m_Mode: 1
         m_Arguments:
@@ -3170,7 +3170,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: TrueAnswer
         m_Mode: 1
         m_Arguments:
@@ -3422,7 +3422,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: TrueAnswer
         m_Mode: 1
         m_Arguments:
@@ -3658,7 +3658,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1784737861}
-        m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: nextLevelButton
         m_Mode: 1
         m_Arguments:
@@ -3716,10 +3716,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1784737859}
-  - component: {fileID: 1784737861}
   - component: {fileID: 1784737860}
+  - component: {fileID: 1784737861}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3764,7 +3764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7344599faccc04278af406403602d537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenePanel: {fileID: 1320699152}
   winPanel: {fileID: 230685909}
   losePanel: {fileID: 1992053011}
   finishPanel: {fileID: 629035248}
