@@ -235,8 +235,8 @@ Canvas:
   m_GameObject: {fileID: 92117189}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 283657848}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 532763900}
   - component: {fileID: 532763899}
   m_Layer: 5
-  m_Name: quiz2 (1)
+  m_Name: 4Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,14 +757,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 26616746}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: KimMilyoner
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level34Quiz2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &532763900
@@ -965,14 +965,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 26616746}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: MemoryCard
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level3MemoryCard
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &776843254
@@ -1098,14 +1098,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 26616746}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: SoundQuiz
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level3MusicGuess
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &787253421
@@ -1294,7 +1294,7 @@ GameObject:
   - component: {fileID: 844083972}
   - component: {fileID: 844083971}
   m_Layer: 5
-  m_Name: quiz2
+  m_Name: 4Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1366,14 +1366,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 26616746}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: KimMilyoner
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level34Quiz1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &844083972
@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: muzik sesi sorulan quiz (daha yapilmadi, ses bekleniyor)
+  m_text: muzik sesi sorulan quiz
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ad2d11e58553470e915e39e3fdaf482, type: 2}
   m_sharedMaterial: {fileID: -6285626248432410251, guid: 0ad2d11e58553470e915e39e3fdaf482,
@@ -1846,10 +1846,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 38.55
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2099,8 +2099,8 @@ Canvas:
   m_GameObject: {fileID: 1402531030}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 283657848}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

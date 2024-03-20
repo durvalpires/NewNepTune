@@ -25,35 +25,45 @@ public class PopUpToggleManager : MonoBehaviour
     // TODO : Turn this into a single function with a parameter
     public void TogglePopup1(string pressedNote)
     {
-        SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+        if (pressedNote != "")
+        {
+            SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+            StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
+        }
         // GameObject'in şu anki aktiflik durumunun tersini ayarlayın
         popUpCanvas.SetActive(true);
         popup1.SetActive(true);
-        StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
         _popUpActive = true;
     }
     public void TogglePopup2(string pressedNote)
     {
-        SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+        if (pressedNote != "")
+        {
+            SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+            StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
+        }
         popUpCanvas.SetActive(true);
         popup2.SetActive(true);
-        StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
         _popUpActive = true;
     }
     public void TogglePopup3(string pressedNote)
     {
-        SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+        if (pressedNote != "")
+        {
+            SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+            StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
+        }
         popUpCanvas.SetActive(true);
         popup3.SetActive(true);
-        StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, 1f));
         _popUpActive = true;
     }
 
     private void Back()
     {
-        popup1.SetActive(false);
-        popup2.SetActive(false);
-        popUpCanvas.SetActive(!popUpCanvas.activeSelf);
+        if (popup1 != null ) popup1.SetActive(false);
+        if (popup2 != null ) popup2.SetActive(false);
+        if (popup3 != null ) popup3.SetActive(false);
+        popUpCanvas.SetActive(false);
         _popUpActive = false;
     }
 }

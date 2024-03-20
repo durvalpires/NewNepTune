@@ -5,14 +5,15 @@ public class CameraSwipeControl : MonoBehaviour
     private Vector2 lastMousePosition;
     private Vector2 currentMousePosition;
     private bool isDragging = false;
+    
+    [SerializeField] private float leftBound;
+    [SerializeField] private float rightBound;
+    [SerializeField] private float speed = 0.05f;
 
     void Update()
     {
-        #if UNITY_EDITOR
-        HandleMouseInput();
-        #else
+        HandleMouseInput(); //could be disabled unless unity editor is used
         HandleTouchInput();
-        #endif
     }
 
     void HandleMouseInput()
@@ -71,18 +72,17 @@ public class CameraSwipeControl : MonoBehaviour
 
     bool IsCameraInBounds()
     {
-        return transform.position.x >= -30f && transform.position.x <= 30f;
+        return transform.position.x >= leftBound && transform.position.x <= rightBound;
     }
 
     void MoveCamera(float distance)
     {
         // Kamera hareket hızını ayarlayabilirsiniz. 
         // 'speed' değeri, hareketin hızını kontrol eder.
-        float speed = 0.05f;
         Vector3 newPosition = transform.position + new Vector3(-distance * speed, 0, 0);
 
         // Kameranın yeni pozisyonunun sınırlar içinde olup olmadığını kontrol et
-        if (newPosition.x >= -30f && newPosition.x <= 30f)
+        if (newPosition.x >= leftBound && newPosition.x <= rightBound)
         {
             transform.position = newPosition;
         }
