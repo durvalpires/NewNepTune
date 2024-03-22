@@ -13,6 +13,7 @@ TagManager:
   - platform1
   - platform2
   - platform4
+  - platform05
   layers:
   - Default
   - TransparentFX

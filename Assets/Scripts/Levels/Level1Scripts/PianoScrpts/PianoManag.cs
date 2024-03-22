@@ -5,35 +5,36 @@ using UnityEngine;
 
 public  class PianoManag : MonoBehaviour
 {
-   public GameObject movingObject;
+    private AudioSource _audioSource;
+   
    private Collider2D _collider2D;
    private Renderer platformSprite;
+   public bool gameStarted;
    
    
    public GameObject finalPanel;
     void Start()
     {
         _collider2D = gameObject.GetComponent<Collider2D>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     
-   /*public void HighLightPlatform()
+  
+   
+  
+
+ /*  private void OnCollisionEnter2D(Collision2D other)
    {
-       if (followerScript.platforms.Count > 0 && followerScript.currentPlatformIndex < followerScript.platforms.Count)
-       { 
-           platformSprite = followerScript.platforms[followerScript.currentPlatformIndex].GetComponent<Renderer>();
-           platformSprite.material.color = Color.red;
+       
+       if (other.gameObject.CompareTag("Player"))
+       {
+           re
        }
    }*/
-   
-   private void OnTriggerEnter2D(Collider2D other)
-   {
-         if (other.gameObject.CompareTag("Player")) 
-         {
-              finalPanel.SetActive(true);
-         }
-   }
-  
- 
-   
+ private void OnTriggerEnter2D(Collider2D other)
+ {
+     _audioSource.Play();
+     gameStarted = true;
+ }
 }

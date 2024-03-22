@@ -74,6 +74,9 @@ public class CameraMovementG1L1 : MonoBehaviour
                 case "platform4":
                     beatDuration = 4 / songBPS;
                     break;
+                case "platform05":
+                    beatDuration = 1 / songBPS;
+                    break;
                 default:
                     beatDuration = 1 / songBPS;
                     break;
