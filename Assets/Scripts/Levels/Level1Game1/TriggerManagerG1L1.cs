@@ -11,6 +11,7 @@ namespace Levels.Level1Game1
         [SerializeField] private bool shouldHold;
         private bool _havePressed = false;
         public float totalScore;
+        
 
         public GameObject finalPanel;
         public GameObject star1, star2, star3;
@@ -30,11 +31,14 @@ namespace Levels.Level1Game1
             {
                 shouldPressed = true;
             }
-            else if (other.gameObject.CompareTag("platform2"))
+            else if (other.gameObject.CompareTag("platform2") || other.gameObject.CompareTag("platform4"))
             {
                 shouldHold = true;
             }
-           
+            else if (other.gameObject.CompareTag("platform05"))
+            {
+                shouldPressed = true;
+            }
             
             else if (other.gameObject.CompareTag("NoteMinigameFinish"))
             {
