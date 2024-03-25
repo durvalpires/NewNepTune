@@ -360,15 +360,15 @@ RectTransform:
   m_GameObject: {fileID: 213286991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.26, y: 3.26, z: 3.26}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 365817712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: 168}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 500, y: 250}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &213286993
 MonoBehaviour:
@@ -413,19 +413,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 213286994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 971912767}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &213286994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,15 +572,15 @@ RectTransform:
   m_GameObject: {fileID: 360445719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.26, y: 3.26, z: 3.26}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 118602605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: -113}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 500, y: -250}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &360445721
 MonoBehaviour:
@@ -637,19 +625,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 360445722}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 971912767}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &360445722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,15 +977,15 @@ RectTransform:
   m_GameObject: {fileID: 532399161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.26, y: 3.26, z: 3.26}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 118602605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: 168}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 500, y: 250}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &532399163
 MonoBehaviour:
@@ -1054,19 +1030,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 532399164}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 971912767}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &532399164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1195,7 +1159,7 @@ GameObject:
   - component: {fileID: 971912769}
   - component: {fileID: 971912770}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1213,6 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0b901ece0a74150a504e8af900ad83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNote: C
   winPanel: {fileID: 938869153}
   losePanel: {fileID: 1643147418}
   finishPanel: {fileID: 1724227227}
@@ -1221,9 +1186,13 @@ MonoBehaviour:
   - {fileID: 365817711}
   - {fileID: 118602602}
   audioClips:
-  - {fileID: 8300000, guid: ce4aff051f5114393b30038df52c830a, type: 3}
-  - {fileID: 8300000, guid: c29c774651e2f474b974b3489b924c53, type: 3}
-  - {fileID: 8300000, guid: 3ca55edd974c44543b5be186c68d656e, type: 3}
+  - {fileID: 8300000, guid: 47914a9e1ed96854b83eee51c5067501, type: 3}
+  - {fileID: 8300000, guid: a7376e92604f16a4cbb2fc179d024e9e, type: 3}
+  - {fileID: 8300000, guid: 4e46801c32df0114d98a08c4e95e6f4c, type: 3}
+  correctAnswerSprites:
+  - {fileID: 21300000, guid: 90b3096cc3bb14dccbd7dacb9fb22b05, type: 3}
+  - {fileID: 21300000, guid: ab88cc727dcfadd4295b36650b512fdb, type: 3}
+  - {fileID: 21300000, guid: ef0065fae3eb14fc6874e610da603808, type: 3}
 --- !u!4 &971912768
 Transform:
   m_ObjectHideFlags: 0
@@ -1520,15 +1489,15 @@ RectTransform:
   m_GameObject: {fileID: 1119370058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.26, y: 3.26, z: 3.26}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1049184699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: -113}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 500, y: -250}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1119370060
 MonoBehaviour:
@@ -1573,19 +1542,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1119370061}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 971912767}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: FalseAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1119370061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1787,15 +1744,15 @@ RectTransform:
   m_GameObject: {fileID: 1243895934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.26, y: 3.26, z: 3.26}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1049184699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: 168}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 500, y: 250}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1243895936
 MonoBehaviour:
@@ -1840,19 +1797,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1243895937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 971912767}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1243895937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2003,15 +1948,15 @@ RectTransform:
   m_GameObject: {fileID: 1360751845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.26, y: 3.26, z: 3.26}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 365817712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: -113}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 500, y: -250}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360751847
 MonoBehaviour:
@@ -2056,19 +2001,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1360751848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 971912767}
-        m_TargetAssemblyTypeName: MusicGuessingLevel, Assembly-CSharp
-        m_MethodName: TrueAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1360751848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2328,7 +2261,7 @@ GameObject:
   - component: {fileID: 1724227229}
   - component: {fileID: 1724227228}
   m_Layer: 5
-  m_Name: lose (1)
+  m_Name: finished
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
