@@ -652,7 +652,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec21d7eaaed8423894553fb973c35a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 160
+  _groundY: {fileID: 0}
+  _maxHeight: {fileID: 0}
+  notesParent: {fileID: 0}
   ball: {fileID: 103420536}
 --- !u!50 &103420540
 Rigidbody2D:
@@ -4378,7 +4380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5910d2bcf49e34227a61f8dc942e63d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingObject: {fileID: 1421792293}
+  gameStarted: 0
   finalPanel: {fileID: 1832774714}
 --- !u!4 &2142447628
 Transform:
@@ -5705,7 +5707,12 @@ PrefabInstance:
     - target: {fileID: 2969487064183523229, guid: 3e5d8704cf8636440aff3d8abd1f9951,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969487064183523229, guid: 3e5d8704cf8636440aff3d8abd1f9951,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.4392776
       objectReference: {fileID: 0}
     - target: {fileID: 4903155391981834135, guid: 3e5d8704cf8636440aff3d8abd1f9951,
         type: 3}
