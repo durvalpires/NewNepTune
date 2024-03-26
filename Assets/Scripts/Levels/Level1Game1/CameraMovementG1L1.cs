@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Audio;
 using Enums;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -18,6 +19,8 @@ public class CameraMovementG1L1 : MonoBehaviour
     private float songBPS => songBPM / 60;
 
     public GameObject notesParent;
+    public int notCount;
+
     private List<GameObject> notes = new List<GameObject>();
     
     [SerializeField] private float startX = -13f; // Start X position
@@ -45,7 +48,7 @@ public class CameraMovementG1L1 : MonoBehaviour
         while (currentNoteIndex < notes.Count)
         {
             GameObject currentNote = notes[currentNoteIndex];
-
+            notCount = currentNoteIndex;
             // Calculate the start position and end position of the movement
             Vector3 startPosition = transform.position;
             Vector3 endPosition = new Vector3(currentNote.transform.position.x, transform.position.y, transform.position.z);
@@ -75,6 +78,9 @@ public class CameraMovementG1L1 : MonoBehaviour
                     beatDuration = 4 / songBPS;
                     break;
                 case "platform05":
+                    beatDuration = 0.5f / songBPS;
+                    break;
+                case "shush":
                     beatDuration = 1 / songBPS;
                     break;
                 default:
@@ -87,4 +93,5 @@ public class CameraMovementG1L1 : MonoBehaviour
     {
         return songBPS;
     }
+    
 }

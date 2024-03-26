@@ -11,7 +11,7 @@ namespace Levels.Level1Game1
         [SerializeField] private bool shouldHold;
         private bool _havePressed = false;
         public float totalScore;
-        
+        private CameraMovementG1L1 _cameraMovementG1L1;
 
         public GameObject finalPanel;
         public GameObject star1, star2, star3;
@@ -22,11 +22,12 @@ namespace Levels.Level1Game1
         void Start()
         {
             shouldPressed = false;
+            _cameraMovementG1L1 = FindObjectOfType<CameraMovementG1L1>();
         }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-           
+            
             if (other.gameObject.CompareTag("platform1"))
             {
                 shouldPressed = true;
@@ -39,6 +40,7 @@ namespace Levels.Level1Game1
             {
                 shouldPressed = true;
             }
+            
             
             else if (other.gameObject.CompareTag("NoteMinigameFinish"))
             {
