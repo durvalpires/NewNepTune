@@ -14,6 +14,7 @@ TagManager:
   - platform2
   - platform4
   - platform05
+  - shush
   layers:
   - Default
   - TransparentFX
