@@ -16,6 +16,7 @@ public class LootlockerProfileManager : MonoBehaviour
     [Header("Leaderboard Texts")]
     public TextMeshProUGUI playername;
     public TextMeshProUGUI playerscore;
+    
     void Start()
     {
         StartCoroutine(FetchTopHighscoresRoutine());
@@ -32,6 +33,7 @@ public class LootlockerProfileManager : MonoBehaviour
             }
         });
     }
+    
     public IEnumerator FetchTopHighscoresRoutine()
     {
         bool done = false;

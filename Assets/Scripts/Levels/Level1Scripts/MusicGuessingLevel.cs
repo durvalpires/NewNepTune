@@ -25,7 +25,7 @@ namespace Levels.Level1Scripts
 
       private void Start()
       {
-         _sprites = Resources.LoadAll<Sprite>($"MusicGuessSprites/{levelNote}/");
+         _sprites = Resources.LoadAll<Sprite>("InstrumentPNGs");
          
          for (int i = 0; i < gameLevels.Length; i++)
          {
