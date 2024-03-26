@@ -9,6 +9,7 @@ namespace Levels.Level1Scripts
    public class MusicGuessingLevel : MonoBehaviour
    {
       public string levelNote;
+      public bool isInstrumentGuess;
       
       public GameObject winPanel;
       public GameObject losePanel;
@@ -25,8 +26,15 @@ namespace Levels.Level1Scripts
 
       private void Start()
       {
-         _sprites = Resources.LoadAll<Sprite>("InstrumentPNGs");
-         
+         if (isInstrumentGuess)
+         {
+            _sprites = Resources.LoadAll<Sprite>("InstrumentPNGs");  
+         }
+         else if (!isInstrumentGuess)
+         {
+            _sprites = Resources.LoadAll<Sprite>($"MusicGuessSprites/{levelNote}/");
+         }
+
          for (int i = 0; i < gameLevels.Length; i++)
          {
             SetUpLevel(i);

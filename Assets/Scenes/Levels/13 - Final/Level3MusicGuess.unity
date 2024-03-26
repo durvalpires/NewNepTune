@@ -1179,6 +1179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNote: C
+  isInstrumentGuess: 0
   winPanel: {fileID: 938869153}
   losePanel: {fileID: 1643147418}
   finishPanel: {fileID: 1724227227}
@@ -1192,7 +1193,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4e46801c32df0114d98a08c4e95e6f4c, type: 3}
   correctAnswerSprites:
   - {fileID: 21300000, guid: 90b3096cc3bb14dccbd7dacb9fb22b05, type: 3}
-  - {fileID: 21300000, guid: ab88cc727dcfadd4295b36650b512fdb, type: 3}
+  - {fileID: 21300000, guid: eee1103b323c18c40a17ed64ec7f7abd, type: 3}
   - {fileID: 21300000, guid: ef0065fae3eb14fc6874e610da603808, type: 3}
 --- !u!4 &971912768
 Transform:
@@ -2395,7 +2396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65.57768, y: -65.57764}
+  m_AnchoredPosition: {x: 65.57764, y: -65.57764}
   m_SizeDelta: {x: 262.75, y: 86.88}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1932201995
