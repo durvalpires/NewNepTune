@@ -3123,6 +3123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNote: D
+  isInstrumentGuess: 1
   winPanel: {fileID: 351114400}
   losePanel: {fileID: 859117774}
   finishPanel: {fileID: 2013482636}

@@ -1179,6 +1179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNote: C
+  isInstrumentGuess: 0
   winPanel: {fileID: 938869153}
   losePanel: {fileID: 1643147418}
   finishPanel: {fileID: 1724227227}

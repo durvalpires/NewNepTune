@@ -27,9 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/11 - DO/Level1.unity
     guid: 3faea87414c1f6242bbffff03937e92c
   - enabled: 1
-    path: Assets/Scenes/Levels/11 - DO/Virtual Piano broken.unity
-    guid: c263c4890c3c74b3db983bb3ab76738c
-  - enabled: 1
     path: Assets/Scenes/Levels/11 - DO/Level1MusicGuess.unity
     guid: 8cfb23b10e12a7841a11253935e16b18
   - enabled: 1
@@ -44,24 +41,24 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2.unity"
     guid: 12b65ea4a0b724b148efc49f0053e533
-  - enabled: 0
-    path: "Assets/Scenes/Levels/12 - Enstru\u0308man/Level2InstrumentGuess.unity"
-    guid: 527758b65ea036440b454ba264e927bc
+  - enabled: 1
+    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2InstrumentGuess.unity"
+    guid: 2f74c6d8a1e7f8c478185fd7b06f5e91
+  - enabled: 1
+    path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level24Quiz.unity"
+    guid: 4ec1abda2174f3c41a7cf803cf3268d7
   - enabled: 1
     path: "Assets/Scenes/Levels/12 - Enstr\xFCman/Level2MemoryCardGame.unity"
     guid: af8908a9566ab014f9b738152b923dff
-  - enabled: 0
-    path: "Assets/Scenes/Levels/12 - Enstru\u0308man/Level24Quiz.unity"
-    guid: 20ea5d0a6fed0074e85d839a34b0cbad
   - enabled: 1
     path: Assets/Scenes/Levels/13 - Final/Level3.unity
     guid: 6ae3c978dca8f45d397d10c56d5f3f58
   - enabled: 1
+    path: Assets/Scenes/Levels/13 - Final/Level3InstrumentGuess.unity
+    guid: 0a08ccd94f1291b46a5bc4aa21ea715a
+  - enabled: 1
     path: Assets/Scenes/Levels/13 - Final/Level3MemoryCard.unity
     guid: 8532b7fff2265da478a058256c0792e8
-  - enabled: 0
-    path: Assets/Scenes/Levels/13 - Final/Level34Quiz1.unity
-    guid: 4c02dc0a16adc7c4da4151c207b18b17
   - enabled: 1
     path: Assets/Scenes/Levels/13 - Final/Level3MusicGuess.unity
     guid: 9c7093d91d0576341a7791534f98f761
@@ -69,14 +66,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/13 - Final/Level34Quiz.unity
     guid: f82616f54c955b14aa94132995e3a218
   - enabled: 1
-    path: "Assets/Scenes/Levels/22 - Enstr\xFCman/Level5MemoryCard.unity"
-    guid: 065405fcde642c84a9315b7d2e72d630
-  - enabled: 0
-    path: "Assets/Scenes/Levels/22 - Enstr\xFCman/Level5FourAnswerQuiz.unity"
-    guid: e3a48737db7723f498543ea941dcf7a9
-  - enabled: 1
     path: "Assets/Scenes/Levels/22 - Enstr\xFCman/Level5.unity"
     guid: 0d4e4f8e8f3a806479b0474eea3e9b28
+  - enabled: 1
+    path: "Assets/Scenes/Levels/22 - Enstr\xFCman/Level5MemoryCard.unity"
+    guid: 065405fcde642c84a9315b7d2e72d630
+  - enabled: 1
+    path: "Assets/Scenes/Levels/22 - Enstr\xFCman/Level5InstrumentGuess.unity"
+    guid: 9784ef717fd55e64db5f753fefb11cec
   - enabled: 1
     path: Assets/Scenes/Levels/23 - RE/Level6.unity
     guid: 1fc88bf65b27520479930002aca29cd2
