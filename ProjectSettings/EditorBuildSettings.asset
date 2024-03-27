@@ -102,5 +102,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/OLDFilesDeleteSometime/InstrumentGuess.unity
     guid: 27ce3a132700743419f655e212963f49
   m_configObjects:
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 42490800d252b4376b2008c7f2b59d6f,
+      type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: 763772a488ea8074f9e6db8180320d77,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 712bb3af97a604422ba60c2b4ad50fbe,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1102b673800034a64b90a9559b5d6076,
       type: 2}
