@@ -161,7 +161,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.vuforia.engine.coresamples
     Standalone: com.neptuneforkids.neptune
-    iPhone: com.neptunecompany.neptune
+    iPhone: com.neptuneforkids.neptune
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -907,7 +907,7 @@ PlayerSettings:
     WebGL: UNITY_VISUAL_SCRIPTING
     Windows Store Apps: VUFORIA_WSA_SETTINGS;UNITY_VISUAL_SCRIPTING
     XboxOne: UNITY_VISUAL_SCRIPTING
-    iPhone: VUFORIA_IOS_SETTINGS;UNITY_VISUAL_SCRIPTING;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;CJM_YOLOX_UTILS;CJM_BARRACUDA_INFERENCE;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY
+    iPhone: VUFORIA_IOS_SETTINGS;UNITY_VISUAL_SCRIPTING;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;CJM_YOLOX_UTILS;CJM_BARRACUDA_INFERENCE;CJM_BBOX_2D_TOOLKIT;CJM_UNITY_MEDIA_DISPLAY;UNITY_XR_ARKIT_LOADER_ENABLED
     tvOS: UNITY_VISUAL_SCRIPTING
   additionalCompilerArguments: {}
   platformArchitecture:
