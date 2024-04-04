@@ -2,15 +2,20 @@ using System.Collections;
 using Audio;
 using Enums;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Levels.Level1Scripts
+namespace Minigames
 {
    public class MusicGuessingLevel : MonoBehaviour
    {
-      public string levelNote;
-      public bool isInstrumentGuess;
-      
+      [Header("References for Scene Set Up")]
+      [SerializeField] private string levelNote;
+      [SerializeField] private Button backButton;
+      [SerializeField] private Button finishedBackButton;
+      [SerializeField] private string levelToReturn;
+
+      [Header("References for Minigame Set Up")]
       public GameObject winPanel;
       public GameObject losePanel;
       public GameObject finishPanel;
@@ -19,33 +24,36 @@ namespace Levels.Level1Scripts
       [SerializeField] private AudioClip[] audioClips;
       [SerializeField] private Sprite[] correctAnswerSprites;
       private AudioSource _audioSource;
-    
+      
       private Sprite[] _sprites;
-    
+      
       private int _currentLevel;
-
+      
       private void Start()
       {
-         if (isInstrumentGuess)
-         {
-            _sprites = Resources.LoadAll<Sprite>("InstrumentPNGs");  
-         }
-         else if (!isInstrumentGuess)
-         {
-            _sprites = Resources.LoadAll<Sprite>($"MusicGuessSprites/{levelNote}/");
-         }
+         if (levelToReturn == "") Debug.LogError("Level to return is not set!");
 
+         backButton.GetComponent<Button>().onClick.AddListener(() =>
+         {
+            SceneManager.LoadScene(levelToReturn);
+         });
+         finishedBackButton.GetComponent<Button>().onClick.AddListener(() =>
+         {
+            SceneManager.LoadScene(levelToReturn);
+         });
+         
+         _sprites = Resources.LoadAll<Sprite>($"MusicGuessSprites/{levelNote}/");
+         
          for (int i = 0; i < gameLevels.Length; i++)
          {
             SetUpLevel(i);
             gameLevels[i].gameObject.SetActive(false);
          }
-         
          gameLevels[0].gameObject.SetActive(true);
 
          _audioSource = gameObject.GetComponent<AudioSource>();
          _audioSource.clip = audioClips[_currentLevel];
-
+         
          StartCoroutine(PlayAfterSeconds(.8f));
       }
 
@@ -58,8 +66,8 @@ namespace Levels.Level1Scripts
       public void TrueAnswer()
       {
          winPanel.SetActive(true);
-         AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
+         AudioManager.Instance.PlaySFX(SoundList.WinSound);
       }
 
       public void FalseAnswer()
@@ -75,10 +83,7 @@ namespace Levels.Level1Scripts
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
 
          bool isTopCorrect = System.Guid.NewGuid().GetHashCode() % 2 == 0;
-
-         //int randomIndex = Random.Range(0, _sprites.Length);
-         //Sprite randomSprite = _sprites[randomIndex];
-
+         
          Sprite randomSprite = correctAnswerSprites[levelToSet];
          while (randomSprite == correctAnswerSprites[levelToSet])
          {
@@ -89,7 +94,7 @@ namespace Levels.Level1Scripts
          // Set the sprite of the correct button
          if (isTopCorrect)
          {
-            Debug.Log($"Top is correct. {levelToSet + 1}");
+            //Debug.Log($"Top is correct. {levelToSet + 1}");
             
             topButton.GetComponent<Image>().sprite = correctAnswerSprites[levelToSet];
             topButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
@@ -99,7 +104,7 @@ namespace Levels.Level1Scripts
          }
          else
          {
-            Debug.Log($"Bottom is correct. {levelToSet + 1}");
+            //Debug.Log($"Bottom is correct. {levelToSet + 1}");
             
             bottomButton.GetComponent<Image>().sprite = correctAnswerSprites[levelToSet];
             bottomButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
@@ -109,6 +114,12 @@ namespace Levels.Level1Scripts
          }
       }
 
+      public void PlaySoundAgain()
+      {
+         _audioSource.Stop();
+         _audioSource.Play();
+      }
+      
       public void NextLevelButton()
       {
          if (_currentLevel + 1 < gameLevels.Length)
