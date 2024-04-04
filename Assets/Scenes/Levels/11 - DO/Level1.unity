@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 26616747}
   - component: {fileID: 26616746}
+  - component: {fileID: 26616748}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -167,6 +168,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &26616748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26616745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popup1: {fileID: 6397107921052144733}
+  popup2: {fileID: 1177766864674474165}
+  popup3: {fileID: 0}
+  popUpCanvas: {fileID: 4706376713810114067}
 --- !u!1 &283657846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1187,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5703023100698993591}
+      - m_Target: {fileID: 26616748}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
         m_MethodName: TogglePopup1
         m_Mode: 5
@@ -1777,7 +1794,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5703023100698993591}
+      - m_Target: {fileID: 26616748}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
         m_MethodName: TogglePopup2
         m_Mode: 5
@@ -1909,7 +1926,6 @@ GameObject:
   - component: {fileID: 875242565265450728}
   - component: {fileID: 3885424506357272816}
   - component: {fileID: 690286924983632345}
-  - component: {fileID: 5703023100698993591}
   m_Layer: 5
   m_Name: PopUpCanvas
   m_TagString: Untagged
@@ -2265,22 +2281,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &5703023100698993591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4706376713810114067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popup1: {fileID: 6397107921052144733}
-  popup2: {fileID: 1177766864674474165}
-  popup3: {fileID: 0}
-  popUpCanvas: {fileID: 4706376713810114067}
 --- !u!224 &5720493724614937736
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2458,11 +2458,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5703023100698993590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -685, y: 191}
-  m_SizeDelta: {x: 819.5924, y: 592.007}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 819.5924, y: 592.0071}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7163055871091922410
 CanvasRenderer:
   m_ObjectHideFlags: 0

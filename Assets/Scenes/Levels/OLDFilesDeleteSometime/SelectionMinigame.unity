@@ -3659,7 +3659,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1784737861}
         m_TargetAssemblyTypeName: Levels.Level1Selection.SelectionMinigame, Assembly-CSharp
-        m_MethodName: nextLevelButton
+        m_MethodName: NextLevelButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
