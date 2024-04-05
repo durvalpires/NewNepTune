@@ -18,6 +18,10 @@ namespace Levels.Level1Game1
         public ScoreBarSlider _scoreBarSlider;
         
         private PianoNoteGame _pianoNoteGame;
+        
+        public string _pressedNote;
+        private NoteData _noteData;
+        private string _noteTypeToPlay;
 
         void Start()
         {
@@ -27,41 +31,48 @@ namespace Levels.Level1Game1
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            
-            if (other.gameObject.CompareTag("platform1"))
+            _noteData = other.GetComponent<NoteData>();
+            if (_noteData != null)
             {
-                shouldPressed = true;
-            }
-            else if (other.gameObject.CompareTag("platform2") || other.gameObject.CompareTag("platform4"))
-            {
-                shouldHold = true;
-            }
-            else if (other.gameObject.CompareTag("platform05"))
-            {
-                shouldPressed = true;
-            }
-            
-            
-            else if (other.gameObject.CompareTag("NoteMinigameFinish"))
-            {
-                finalPanel.SetActive(true);
-                
-                AudioManager.Instance.StopMusic();
-
-                Debug.Log(_scoreBarSlider.slider.value);
-                float sliderValue = _scoreBarSlider.slider.value;
-
-                if (sliderValue >= 90)
+               SetNoteTypeToPlay(_noteData.NoteType);
+                Debug.Log("Note Type: " + _noteTypeToPlay);
+                if (other.gameObject.CompareTag("platform1"))
                 {
-                    star3.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                    shouldPressed = true;
                 }
-                if (sliderValue >= 60)
+                else if (other.gameObject.CompareTag("platform2") || other.gameObject.CompareTag("platform4"))
                 {
-                    star2.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                    shouldHold = true;
                 }
-                if (sliderValue >= 30)
+                else if (other.gameObject.CompareTag("platform05"))
                 {
-                    star1.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                    shouldPressed = true;
+                }
+
+
+                else if (other.gameObject.CompareTag("NoteMinigameFinish"))
+                {
+                    finalPanel.SetActive(true);
+
+                    AudioManager.Instance.StopMusic();
+
+                    Debug.Log(_scoreBarSlider.slider.value);
+                    float sliderValue = _scoreBarSlider.slider.value;
+
+                    if (sliderValue >= 90)
+                    {
+                        star3.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                    }
+
+                    if (sliderValue >= 60)
+                    {
+                        star2.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                    }
+
+                    if (sliderValue >= 30)
+                    {
+                        star1.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
+                    }
                 }
             }
         }
@@ -79,16 +90,32 @@ namespace Levels.Level1Game1
 
             if(shouldPressed || shouldHold)
             {
-                Debug.Log("Pressed correctly");
-                _havePressed = true;
-                
-                return true;
+                if (_pressedNote == _noteTypeToPlay)
+                {
+                    Debug.Log("Pressed correctly");
+                    _havePressed = true;  
+                    return true;
+                }
+                else
+                {
+                    _havePressed = true;
+                    return false;
+                }     
             }
             else
             {
                 Debug.Log("Pressed incorrectly");
+                _cameraMovementG1L1.ReturnToLastNote();
                 return false;
             }
+        }
+        public void SetPressedNote(string note)
+        {
+            _pressedNote = note;
+        }
+        public void SetNoteTypeToPlay(string noteType)
+        {
+            _noteTypeToPlay = noteType;
         }
     }
 }

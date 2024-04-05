@@ -24,7 +24,7 @@ namespace Instruments
         public void PressPianoKey(string pressedNote)
         {
             SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
-
+            _triggerManagerG1L1.SetPressedNote(pressedNote);
             if (_triggerManagerG1L1.DoNotaControl()) //Runs if pressed correctly
             {
                 _scoreBarSlider.UpdateSliderBasedOnDivision();
