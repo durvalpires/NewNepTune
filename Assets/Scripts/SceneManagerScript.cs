@@ -16,19 +16,9 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         
     }
 
-    public void Achievements()
-    {
-        SceneManager.LoadScene("Achievements");
-    }
-
     public void Profile()
     {
         SceneManager.LoadScene("Profile");
-    }
-
-    public void MiniGame1()
-    {
-        SceneManager.LoadScene("MiniGame1");
     }
 
     public void RegisterLoginScene()
@@ -45,33 +35,9 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
     {
         SceneManager.LoadScene("MainSelectionScene");
     }
-    public void Level1()
-    {
-        SceneManager.LoadScene("Level1");
-    }
-    public void Level2()
-    {
-        SceneManager.LoadScene("Level2");
-    }
-    public void Level3()
-    {
-        SceneManager.LoadScene("Level3");
-    }
+   
     public void Level1Game1()
     {
         SceneManager.LoadScene("Level1Game1");
-    }
-    public void KimMilyoner()
-    {
-        SceneManager.LoadScene("KimMilyoner");
-    }
-    public void MemoryCard()
-    {
-        SceneManager.LoadScene("MemoryCard");
-    }
-
-    public void SoundQuiz()
-    {
-        SceneManager.LoadScene("SoundQuizScene");
     }
 }

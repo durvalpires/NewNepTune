@@ -22,14 +22,16 @@ namespace Minigames
       [SerializeField] private GameObject[] gameLevels;
       [SerializeField] private AudioClip[] audioClips;
       [SerializeField] private Sprite[] correctAnswerSprites;
+      [SerializeField] private GameObject character;
+
       private AudioSource _audioSource;
-      
       private Sprite[] _sprites;
-      
       private int _currentLevel;
       
       private void Start()
       {
+         character.GetComponent<Animator>().Play($"BoyAst{correctAnswerSprites[_currentLevel].name}");
+         
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
             SceneManager.LoadScene(levelToReturn);
@@ -40,7 +42,7 @@ namespace Minigames
          });
          
          _sprites = Resources.LoadAll<Sprite>("InstrumentPNGs");
-         
+
          for (int i = 0; i < gameLevels.Length; i++)
          {
             SetUpLevel(i);
@@ -51,27 +53,44 @@ namespace Minigames
          _audioSource = gameObject.GetComponent<AudioSource>();
          _audioSource.clip = audioClips[_currentLevel];
          
-         StartCoroutine(PlayAfterSeconds(.8f));
+         StartCoroutine(PlayAfterSeconds());
       }
 
-      private IEnumerator PlayAfterSeconds(float seconds)
+      private IEnumerator PlayAfterSeconds()
       {
-         yield return new WaitForSeconds(seconds);
+         yield return new WaitForSeconds(.8f);
          _audioSource.Play();
       }
       
-      public void TrueAnswer()
+      private void TrueAnswer()
       {
+         StartCoroutine(TrueAnswerRoutine());
+      }
+      
+      private IEnumerator TrueAnswerRoutine()
+      {
+         InstrumentGuessClouds.Instance.DisperseClouds();
+         
+         yield return new WaitForSeconds(3f);
+
          winPanel.SetActive(true);
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
       }
 
-      public void FalseAnswer()
+      private IEnumerator FalseAnswerRoutine()
       {
+         InstrumentGuessClouds.Instance.DisperseClouds();
+         yield return new WaitForSeconds(3f);
+         
          losePanel.SetActive(true);
          gameLevels[_currentLevel].gameObject.SetActive(false);
          AudioManager.Instance.PlaySFX(SoundList.LoseSound);
+      }
+
+      private void FalseAnswer()
+      {
+         StartCoroutine(FalseAnswerRoutine());
       }
 
       private void SetUpLevel(int levelToSet)
@@ -113,8 +132,13 @@ namespace Minigames
             topButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
          }
       }
-      
+
       public void NextLevelButton()
+      {
+         StartCoroutine(NextLevelButtonRoutine());
+      }
+      
+      private IEnumerator NextLevelButtonRoutine()
       {
          if (_currentLevel + 1 < gameLevels.Length)
          {
@@ -122,6 +146,11 @@ namespace Minigames
             gameLevels[_currentLevel].gameObject.SetActive(true);
             _audioSource.clip = audioClips[_currentLevel];
             winPanel.SetActive(false);
+            
+            InstrumentGuessClouds.Instance.ClusterClouds();
+            yield return new WaitForSeconds(3f);
+            character.GetComponent<Animator>().Play($"BoyAst{correctAnswerSprites[_currentLevel].name}");
+
             _audioSource.Play();
          }
          else if (_currentLevel <= gameLevels.Length)

@@ -11,50 +11,50 @@ public class SceneController : MonoBehaviour
     public const float offsetX = 2f;
     public const float offsetY = 2.5f;
 
-    [SerializeField] MemoryCard originalCard;
-    [SerializeField] Sprite[] images;
-    [SerializeField] TMP_Text scoreLabel;
+    [SerializeField] private MemoryCard originalCard;
+    [SerializeField] private Sprite[] images;
+    [SerializeField] private TMP_Text scoreLabel;
 
-    private MemoryCard firstRevealed;
-    private MemoryCard secondRevealed;
+    private MemoryCard _firstRevealed;
+    private MemoryCard _secondRevealed;
 
-    private int score = 0;
-
-    public bool canReveal
+    private int _score = 0;
+    
+    public bool CanReveal
     {
-        get { return secondRevealed == null; }
+        get { return _secondRevealed == null; }
     }
 
     public void CardRevealed(MemoryCard card)
     {
-        if (firstRevealed == null)
+        if (_firstRevealed == null)
         {
-            firstRevealed = card;
+            _firstRevealed = card;
         }
         else
         {
-            secondRevealed = card;
+            _secondRevealed = card;
             StartCoroutine(CheckMatch());
         }
     }
+    
     private IEnumerator CheckMatch()
     {
-        if (firstRevealed.Id == secondRevealed.Id)
+        if (_firstRevealed.Id == _secondRevealed.Id)
         {
-            score++;
-            scoreLabel.text = $"Score: {score}";
+            _score++;
+            scoreLabel.text = $"Score: {_score}";
         }
         else
         {
             yield return new WaitForSeconds(.5f);
-            firstRevealed.Unreveal();
-            secondRevealed.Unreveal();
+            _firstRevealed.Unreveal();
+            _secondRevealed.Unreveal();
         }
-        firstRevealed = null;
-        secondRevealed = null;
+        _firstRevealed = null;
+        _secondRevealed = null;
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         Vector3 startPos = originalCard.transform.position;
@@ -98,14 +98,9 @@ public class SceneController : MonoBehaviour
         }
         return newArray;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    
     public void Restart()
     {
-        SceneManager.LoadScene("Scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
