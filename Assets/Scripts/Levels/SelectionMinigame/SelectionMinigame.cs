@@ -33,6 +33,10 @@ namespace Levels.SelectionMinigame
             {
                 SceneManager.LoadScene(levelToReturn);
             });
+            finishedBackButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                SceneManager.LoadScene(levelToReturn);
+            });
             
             levelText.text = $"Which one is {correctAnswerSprite.name}?";
             _sprites = Resources.LoadAll<Sprite>("SelectionMinigame/Empty/");

@@ -9,12 +9,6 @@ namespace Minigames
 {
    public class MusicGuessingLevel : MonoBehaviour
    {
-      [Header("References for Scene Set Up")]
-      [SerializeField] private string levelNote;
-      [SerializeField] private Button backButton;
-      [SerializeField] private Button finishedBackButton;
-      [SerializeField] private string levelToReturn;
-
       [Header("References for Minigame Set Up")]
       public GameObject winPanel;
       public GameObject losePanel;
@@ -23,12 +17,17 @@ namespace Minigames
       [SerializeField] private GameObject[] gameLevels;
       [SerializeField] private AudioClip[] audioClips;
       [SerializeField] private Sprite[] correctAnswerSprites;
+      
       private AudioSource _audioSource;
-      
       private Sprite[] _sprites;
-      
       private int _currentLevel;
       
+      [Header("References for Scene Set Up")]
+      [SerializeField] private string levelNote;
+      [SerializeField] private Button backButton;
+      [SerializeField] private Button finishedBackButton;
+      [SerializeField] private string levelToReturn;
+
       private void Start()
       {
          if (levelToReturn == "") Debug.LogError("Level to return is not set!");
