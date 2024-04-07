@@ -22,11 +22,13 @@ namespace Levels.Level1Game1
         public string _pressedNote;
         private NoteData _noteData;
         private string _noteTypeToPlay;
+        private PianoGameManagerFinal _pianoGameManagerFinal;
 
         void Start()
         {
             shouldPressed = false;
             _cameraMovementG1L1 = FindObjectOfType<CameraMovementG1L1>();
+            _pianoGameManagerFinal = FindObjectOfType<PianoGameManagerFinal>();
         }
         
         private void OnTriggerEnter2D(Collider2D other)
