@@ -349,11 +349,11 @@ MonoBehaviour:
   - name: note_D
     clip: {fileID: 8300000, guid: 78c35068261bc497ea7349a816d8a318, type: 3}
   - name: note_E
-    clip: {fileID: 8300000, guid: b7112f5a13ee449baa166afd35c3501e, type: 3}
+    clip: {fileID: 8300000, guid: ead66a1b7c1544ab7b7cbf017916308e, type: 3}
   - name: note_F
-    clip: {fileID: 8300000, guid: 2c6666ea2e3ee42e08a9182ba3e485e9, type: 3}
+    clip: {fileID: 8300000, guid: ea8ce4067749c458bb70b31efc58b6a0, type: 3}
   - name: note_G
-    clip: {fileID: 8300000, guid: ef767252cccda49d9800b5276b1d1e83, type: 3}
+    clip: {fileID: 8300000, guid: 75925e7ea720a495383cb52b19e3267b, type: 3}
   - name: WinSound
     clip: {fileID: 8300000, guid: 0b62fe35e7eca43ac84cd5755e3d5230, type: 3}
   - name: LoseSound
