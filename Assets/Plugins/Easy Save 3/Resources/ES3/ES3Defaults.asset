@@ -42,6 +42,8 @@ MonoBehaviour:
     - CJM.YOLOXUtils
     - lootlocker.lootlockersdk.runtime
     - LootLockerExamples
+    - Mediapipe.Runtime
+    - Mediapipe.Unity.Sample
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
