@@ -13,8 +13,8 @@ public class InferenceController : MonoBehaviour
     [Header("Components")]
     [SerializeField, Tooltip("Responsible for image preprocessing")]
     private ImageProcessor imageProcessor;
-    [SerializeField, Tooltip("Executes YOLOX model for object detection")]
-    private YOLOXObjectDetector modelRunner;
+    //[SerializeField, Tooltip("Executes YOLOX model for object detection")]
+    //private YOLOXObjectDetector modelRunner;
     [SerializeField, Tooltip("Manages user interface updates")]
     private UIController uiController;
     [SerializeField, Tooltip("Visualizes detected object bounding boxes")]
@@ -64,7 +64,7 @@ public class InferenceController : MonoBehaviour
 
         // Calculate source and input dimensions for model input
         var sourceDims = inputDims;
-        inputDims = modelRunner.CropInputDims(inputDims);
+        //inputDims = modelRunner.CropInputDims(inputDims);
 
         // Prepare and process the input texture
         RenderTexture inputTexture = PrepareInputTexture(inputDims);
@@ -72,7 +72,7 @@ public class InferenceController : MonoBehaviour
 
         // Get the model output and process the detected objects
         float[] outputArray = GetModelOutput(inputTexture, useAsyncGPUReadback);
-        bboxInfoArray = modelRunner.ProcessOutput(outputArray, confidenceThreshold, nmsThreshold);
+        //bboxInfoArray = modelRunner.ProcessOutput(outputArray, confidenceThreshold, nmsThreshold);
 
         // Update bounding boxes and user interface
         UpdateBoundingBoxes(inputDims);
@@ -90,11 +90,11 @@ public class InferenceController : MonoBehaviour
     /// <returns>True if all components are valid, false otherwise</returns>
     private bool AreComponentsValid()
     {
-        if (imageProcessor == null || modelRunner == null || uiController == null || boundingBoxVisualizer == null)
+        /*if (imageProcessor == null || modelRunner == null || uiController == null || boundingBoxVisualizer == null)
         {
             Debug.LogError("InferenceController requires ImageProcessor, ModelRunner, and InferenceUI components.");
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -170,18 +170,20 @@ public class InferenceController : MonoBehaviour
     private float[] GetModelOutput(RenderTexture inputTexture, bool useAsyncReadback)
     {
         // Run the model with the processed input texture
-        modelRunner.ExecuteModel(inputTexture);
+        //modelRunner.ExecuteModel(inputTexture);
         RenderTexture.ReleaseTemporary(inputTexture);
 
         // Get the model output using async GPU readback or by copying the output to an array
         if (useAsyncReadback)
         {
-            return modelRunner.CopyOutputWithAsyncReadback();
+            //return modelRunner.CopyOutputWithAsyncReadback();
         }
         else
         {
-            return modelRunner.CopyOutputToArray();
+            //return modelRunner.CopyOutputToArray();
         }
+
+        return new[] { .5f };
     }
 
     /// <summary>
