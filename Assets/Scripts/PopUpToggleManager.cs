@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
 using Audio;
 using Enums;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class PopUpToggleManager : MonoBehaviour
 {
-    public GameObject popup1; // Kontrol etmek istediğiniz GameObject
-    public GameObject popup2;
-    public GameObject popup3;
-
-    public GameObject popUpCanvas;
+    [SerializeField] private GameObject popUpCanvas;
+    [SerializeField] private GameObject popup1;
+    [SerializeField] private GameObject popup2;
+    [SerializeField] private GameObject popup3;
+    
     private bool _popUpActive;
     
     private void Update()
