@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 26616747}
   - component: {fileID: 26616746}
+  - component: {fileID: 26616748}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -167,6 +168,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &26616748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26616745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpCanvas: {fileID: 1215921332}
+  popup1: {fileID: 1835155374}
+  popup2: {fileID: 1110529976}
+  popup3: {fileID: 0}
 --- !u!1 &92117189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,7 +1852,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 26616748}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
         m_MethodName: TogglePopup1
         m_Mode: 5
@@ -1988,7 +2005,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 26616748}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
         m_MethodName: TogglePopup2
         m_Mode: 5

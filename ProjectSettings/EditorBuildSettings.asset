@@ -263,12 +263,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Part7/3 - Finale/Level21SelectionMinigame.unity
     guid: fcbad370559a05e4b83f706d9fde94cc
-  - enabled: 0
-    path: Assets/Scenes/SoundQuizScene.unity
-    guid: f45ad76d79c1243aa914c2af4c02f37a
-  - enabled: 0
-    path: Assets/Scenes/KimMilyoner.unity
-    guid: 6711c8b4da62b469ebc436935fb57c0d
   - enabled: 1
     path: Assets/Scenes/MotionDetectionTestScenes/Holistic/Holistic.unity
     guid: 530502d398830609297010a1521c815f
