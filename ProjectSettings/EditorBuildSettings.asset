@@ -49,19 +49,13 @@ EditorBuildSettings:
     guid: 41dcd5ac0c1404e4c9e26c091dd8397a
   - enabled: 1
     path: Assets/Scenes/Levels/Part1/3 - Final/Level3.unity
-    guid: 6ae3c978dca8f45d397d10c56d5f3f58
-  - enabled: 1
-    path: Assets/Scenes/Levels/Part1/3 - Final/Level3InstrumentGuess.unity
-    guid: e1ec627894f513c4daa973e80a724b3f
+    guid: 0e9ee065cc22b4f4984331cd9cda5c82
   - enabled: 1
     path: Assets/Scenes/Levels/Part1/3 - Final/Level3MemoryCard.unity
-    guid: 8532b7fff2265da478a058256c0792e8
+    guid: 2d3cc89a98798c542ab348ea1b183e8e
   - enabled: 1
     path: Assets/Scenes/Levels/Part1/3 - Final/Level3MusicGuess.unity
-    guid: 393db7669e75e1a4c84cf4b511cdee3e
-  - enabled: 1
-    path: Assets/Scenes/Levels/Part1/3 - Final/Level34Quiz.unity
-    guid: f82616f54c955b14aa94132995e3a218
+    guid: a4e992fbf3867c44899a6f0b26a00333
   - enabled: 1
     path: Assets/Scenes/Levels/Part2/1 - RE(D)/Level4.unity
     guid: ee42d0dcdb29a1849a1048af610d14cc
@@ -85,19 +79,16 @@ EditorBuildSettings:
     guid: 065405fcde642c84a9315b7d2e72d630
   - enabled: 1
     path: Assets/Scenes/Levels/Part2/3 - Final/Level6.unity
-    guid: 9a289a3ea86b5cc4cb07f9b3018c03c5
+    guid: 8b5fb0983acd3cb4d89b4e23df781792
   - enabled: 1
     path: Assets/Scenes/Levels/Part2/3 - Final/Level6MemoryCard.unity
-    guid: a60e9228a4bef344b9677dc159230a58
+    guid: 502f333b950006047b965460790edf0c
   - enabled: 1
     path: Assets/Scenes/Levels/Part2/3 - Final/Level6MusicGuess.unity
-    guid: 46f38b115394fb4428be0e8800bbdaf3
+    guid: 01bb10b0ceee7cf4b8f6f22fb470e7f3
   - enabled: 1
     path: Assets/Scenes/Levels/Part2/3 - Final/Level6SelectionMinigame.unity
-    guid: c433dbd76f859ac498e89251432df0ca
-  - enabled: 1
-    path: Assets/Scenes/Levels/Part2/3 - Final/Level6SelectionMinigame2.unity
-    guid: cbb1e35573a18bf4fb50d2ae3b348caa
+    guid: baf765a9d9bfc9c48846eaddf7c81ae3
   - enabled: 1
     path: Assets/Scenes/Levels/Part3/1 - Mi(E)/Level7.unity
     guid: 399f42f5b0bfcb04b9e9f95310702a48
@@ -121,16 +112,16 @@ EditorBuildSettings:
     guid: f594d7a20ec58f54b8a625286adda336
   - enabled: 1
     path: Assets/Scenes/Levels/Part3/3 - Finale/Level9.unity
-    guid: 5bf9597e249016b4c9ec769fa27ff37b
+    guid: 4b00e9ed6d88e854184641395c1f3727
   - enabled: 1
     path: Assets/Scenes/Levels/Part3/3 - Finale/Level9MemoryCard.unity
-    guid: 3758bdb3fba0d9345b0b260a18aea4af
+    guid: 9318a5371e7f7cd4291f29d611c5e33c
   - enabled: 1
     path: Assets/Scenes/Levels/Part3/3 - Finale/Level9MusicGuess.unity
-    guid: 3d12d97bc9df35e4d8b33cef2b0f030b
+    guid: 510d480088079b54ca9d13b1d5991d52
   - enabled: 1
     path: Assets/Scenes/Levels/Part3/3 - Finale/Level9SelectionMinigame.unity
-    guid: 7387975da52800c4f83099ade31d0d6d
+    guid: 53cc203d74eb7a345ad55032da989887
   - enabled: 1
     path: Assets/Scenes/Levels/Part4/1 - Fa(F)/Level10.unity
     guid: efb67824fb59b85429822c0df75bb429
@@ -154,16 +145,16 @@ EditorBuildSettings:
     guid: abf06d85e1866194f93544d05a94775e
   - enabled: 1
     path: Assets/Scenes/Levels/Part4/3 - Finale/Level12.unity
-    guid: a6cba79fca1381647be88c82769715da
+    guid: f27047d069e5ad14db369ea88bbb2d38
   - enabled: 1
     path: Assets/Scenes/Levels/Part4/3 - Finale/Level12MemoryCard.unity
-    guid: 248304fe83d07264e8ccc9ddbd24fc22
+    guid: 92c0e6ba758a5514795663ffe4b76e78
   - enabled: 1
     path: Assets/Scenes/Levels/Part4/3 - Finale/Level12MusicGuess.unity
-    guid: b3dce8cce4d66fd46b5d3d9d000dde26
+    guid: d3399e51573b61a4d9e838e427c06c52
   - enabled: 1
     path: Assets/Scenes/Levels/Part4/3 - Finale/Level12SelectionMinigame.unity
-    guid: 856cf5db321e2894b9474be685bcd73a
+    guid: 9e1625235b1ba7f4b902abffcb6bd45c
   - enabled: 1
     path: Assets/Scenes/Levels/Part5/1 - Sol(G)/Level13.unity
     guid: 4a65ce95626adae49ac618c8804987f2
@@ -187,16 +178,16 @@ EditorBuildSettings:
     guid: 1fed45ff0d144d447a03b28230ccd8f4
   - enabled: 1
     path: Assets/Scenes/Levels/Part5/3 - Finale/Level15.unity
-    guid: e61a66884f316ba4b98c1b60ada32944
+    guid: 9c1f7e8265e6b8c4599dfa81adf84a0b
   - enabled: 1
     path: Assets/Scenes/Levels/Part5/3 - Finale/Level15MemoryCard.unity
-    guid: d848837b84b720848a4e725e997d491f
+    guid: 14eb51549580f504ba2cc373523015f7
   - enabled: 1
     path: Assets/Scenes/Levels/Part5/3 - Finale/Level15MusicGuess.unity
-    guid: c0cf0cb331d540f458b0c8cfabfc9714
+    guid: 2888a34b533679f448ba70156193aeea
   - enabled: 1
     path: Assets/Scenes/Levels/Part5/3 - Finale/Level15SelectionMinigame.unity
-    guid: 0c2fa0d22e7da4a4581fe2a35670b69f
+    guid: 5b692974c6b7652438f463ea82af169c
   - enabled: 1
     path: Assets/Scenes/Levels/Part6/1 - La(A)/Level16.unity
     guid: 3970f019fea3f5045942a02166c8c63f
@@ -220,16 +211,16 @@ EditorBuildSettings:
     guid: 8ba8427b50d343f498a3af52b704126e
   - enabled: 1
     path: Assets/Scenes/Levels/Part6/3 - Finale/Level18.unity
-    guid: f859e3bc252d0b842b0f01dbda5e007d
+    guid: cce4468b495f8f3428a3095d21a9108c
   - enabled: 1
     path: Assets/Scenes/Levels/Part6/3 - Finale/Level18MemoryCard.unity
-    guid: fae9a526f687319499c0fff706d5b6be
+    guid: 998b8fab04534dd4795bf7e192be2005
   - enabled: 1
     path: Assets/Scenes/Levels/Part6/3 - Finale/Level18MusicGuess.unity
-    guid: 832199fa5f362ef4ebb5837f4f2ddebe
+    guid: 18543f5181484ba42a1b9453fbcea9c3
   - enabled: 1
     path: Assets/Scenes/Levels/Part6/3 - Finale/Level18SelectionMinigame.unity
-    guid: 8324209d79b57a841bfa5f3fe55fcac8
+    guid: 06a85bb46ea813148917c971ea0daec4
   - enabled: 1
     path: Assets/Scenes/Levels/Part7/1 - Si(B)/Level19.unity
     guid: 9a8a52ba8c456df4ca9e6d14106e97d6
