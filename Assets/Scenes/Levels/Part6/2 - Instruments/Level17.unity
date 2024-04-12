@@ -1053,7 +1053,7 @@ RectTransform:
   m_GameObject: {fileID: 804823843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.63, y: 1.1886792, z: 1.1886792}
+  m_LocalScale: {x: 1.18, y: 2.2264152, z: 2.2264152}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1423943092}
@@ -1061,7 +1061,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 600}
+  m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &804823845
 MonoBehaviour:
@@ -1570,7 +1570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1423943089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1669,10 +1669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpCanvas: {fileID: 2081786069}
   popup1: {fileID: 617814187}
   popup2: {fileID: 804823843}
   popup3: {fileID: 511587198}
-  popUpCanvas: {fileID: 2081786069}
 --- !u!1 &1439584450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,14 +1738,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1423943093}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
-        m_MethodName: TogglePopup1
+        m_MethodName: ToggleInstrument1
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: G
+          m_StringArgument: Trumpet
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1439584452
@@ -1889,14 +1889,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1423943093}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
-        m_MethodName: TogglePopup2
+        m_MethodName: ToggleInstrument2
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: G
+          m_StringArgument: Violin
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1590238593
@@ -2332,7 +2332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2081786070
 RectTransform:
   m_ObjectHideFlags: 0
