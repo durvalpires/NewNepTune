@@ -1,9 +1,11 @@
+using System;
 using Audio;
 using Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Levels.SelectionMinigame
 {
@@ -18,8 +20,9 @@ namespace Levels.SelectionMinigame
         [Header("References for Scene Set Up")]
         
         [SerializeField] private TMP_Text levelText;
-        [SerializeField] private Sprite correctAnswerSprite;
+        [SerializeField] private string correctAnswerSpriteName;
         private Sprite[] _sprites;
+        private Sprite _correctAnswerSprite;
         
         [SerializeField] private string levelToReturn;
         [SerializeField] private GameObject backButton;
@@ -29,6 +32,10 @@ namespace Levels.SelectionMinigame
 
         private void Start()
         {
+            Sprite[] answerSprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Empty/");
+            Sprite correctSprite = Array.Find(answerSprites, sprite => sprite.name == correctAnswerSpriteName.ToUpper());
+            _correctAnswerSprite = correctSprite;
+            
             backButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 SceneManager.LoadScene(levelToReturn);
@@ -38,8 +45,8 @@ namespace Levels.SelectionMinigame
                 SceneManager.LoadScene(levelToReturn);
             });
             
-            levelText.text = $"Which one is {correctAnswerSprite.name}?";
-            _sprites = Resources.LoadAll<Sprite>("SelectionMinigame/Empty/");
+            levelText.text = $"Which one is {_correctAnswerSprite.name}?";
+            _sprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Empty/");
             
             for (int i = 0; i < gameLevels.Length; i++)
             {
@@ -56,8 +63,8 @@ namespace Levels.SelectionMinigame
 
             bool isLeftCorrect = System.Guid.NewGuid().GetHashCode() % 2 == 0;
 
-            Sprite randomSprite = correctAnswerSprite;
-            while (randomSprite == correctAnswerSprite)
+            Sprite randomSprite = _correctAnswerSprite;
+            while (randomSprite == _correctAnswerSprite)
             {
                 int randomIndex = Random.Range(0, _sprites.Length);
                 randomSprite = _sprites[randomIndex];
@@ -68,7 +75,7 @@ namespace Levels.SelectionMinigame
             {
                 //Debug.Log($"Left is correct. {levelToSet + 1}");
             
-                leftButton.GetComponent<Image>().sprite = correctAnswerSprite;
+                leftButton.GetComponent<Image>().sprite = _correctAnswerSprite;
                 leftButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
 
                 rightButton.GetComponent<Image>().sprite = randomSprite;
@@ -78,7 +85,7 @@ namespace Levels.SelectionMinigame
             {
                 //Debug.Log($"Right is correct. {levelToSet + 1}");
             
-                rightButton.GetComponent<Image>().sprite = correctAnswerSprite;
+                rightButton.GetComponent<Image>().sprite = _correctAnswerSprite;
                 rightButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
 
                 leftButton.GetComponent<Image>().sprite = randomSprite;
