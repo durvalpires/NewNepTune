@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 26616747}
   - component: {fileID: 26616746}
+  - component: {fileID: 26616748}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -167,6 +168,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &26616748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26616745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpCanvas: {fileID: 2081786069}
+  popup1: {fileID: 617814187}
+  popup2: {fileID: 804823843}
+  popup3: {fileID: 511587198}
 --- !u!1 &92117189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,7 +1580,6 @@ GameObject:
   - component: {fileID: 1423943091}
   - component: {fileID: 1423943090}
   - component: {fileID: 1423943089}
-  - component: {fileID: 1423943093}
   m_Layer: 5
   m_Name: PopUpCanvas
   m_TagString: Untagged
@@ -1657,22 +1673,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1423943093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423943088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popUpCanvas: {fileID: 2081786069}
-  popup1: {fileID: 617814187}
-  popup2: {fileID: 804823843}
-  popup3: {fileID: 511587198}
 --- !u!1 &1439584450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1423943093}
+      - m_Target: {fileID: 26616748}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
         m_MethodName: ToggleInstrument1
         m_Mode: 5
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1423943093}
+      - m_Target: {fileID: 26616748}
         m_TargetAssemblyTypeName: PopUpToggleManager, Assembly-CSharp
         m_MethodName: ToggleInstrument2
         m_Mode: 5
@@ -2342,7 +2342,7 @@ RectTransform:
   m_GameObject: {fileID: 2081786069}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1423943092}
