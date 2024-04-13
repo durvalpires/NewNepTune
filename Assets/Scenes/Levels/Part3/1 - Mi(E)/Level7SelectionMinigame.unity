@@ -2903,9 +2903,8 @@ MonoBehaviour:
   - {fileID: 159128020}
   - {fileID: 2000824794}
   levelText: {fileID: 1319863668}
-  correctAnswerSprite: {fileID: 21300000, guid: 0e9ba0e1f7573fb41a6574fe70ef6324,
-    type: 3}
-  levelToReturn: Level8
+  correctAnswerSpriteName: E
+  levelToReturn: Level7
   backButton: {fileID: 1199337051}
   finishedBackButton: {fileID: 1652253522}
 --- !u!1 &1930889665
