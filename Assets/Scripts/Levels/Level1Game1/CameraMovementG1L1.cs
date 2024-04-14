@@ -94,25 +94,8 @@ public class CameraMovementG1L1 : MonoBehaviour
         return songBPS;
     }
     
-    public void ReturnToLastNote()
-    {
-        if (notCount > 0)
-        {
-            notCount--;
-
-            // Get the last note
-            GameObject lastNote = notes[notCount];
-
-            // Move the camera to the last note's position
-            transform.position = new Vector3(lastNote.transform.position.x, transform.position.y, transform.position.z);
-
-            // Calculate the time in the song that corresponds to the last note's position
-            float songTime = lastNote.transform.position.x / (endX - startX) * songBPM / 60;
-
-            // Restart the song from the calculated time
-            // Assuming you have a method in your AudioManager class to play a song from a specific time
-          
-        }
-    }
+    
+    
+    
     
 }

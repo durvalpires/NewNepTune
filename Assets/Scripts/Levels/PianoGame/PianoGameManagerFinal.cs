@@ -11,6 +11,7 @@ public class PianoGameManagerFinal : MonoBehaviour
     public GameObject countdownCanvas;
     public GameObject pianoGameCanvas;
     public Text countdownText;
+    public bool isGameStarted;
     //public ParticleSystem particalStar;
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class PianoGameManagerFinal : MonoBehaviour
         backGroundForCountdown.SetActive(false);
         countdownCanvas.SetActive(false);
         pianoGameCanvas.SetActive(true);
+        isGameStarted = true;
         
     }
     IEnumerator Countdown()
