@@ -795,7 +795,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level11SelectionMinigame
+          m_StringArgument: Level10SelectionMinigame
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &644250934
@@ -1002,7 +1002,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level11VirtualPiano
+          m_StringArgument: Level10VirtualPiano
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &787253421
@@ -2132,7 +2132,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level11MusicGuess
+          m_StringArgument: Level10MusicGuess
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1811282900

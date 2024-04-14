@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpCanvas: {fileID: 4706376713810114067}
   popup1: {fileID: 6397107921052144733}
   popup2: {fileID: 1177766864674474165}
   popup3: {fileID: 0}
-  popUpCanvas: {fileID: 4706376713810114067}
 --- !u!1 &283657846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2584,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 283657849}
-  - {fileID: 3006400521106088839}
   - {fileID: 26616747}
   - {fileID: 442878458}
+  - {fileID: 3006400521106088839}

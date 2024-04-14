@@ -57,6 +57,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Part1/3 - Final/Level3MusicGuess.unity
     guid: a4e992fbf3867c44899a6f0b26a00333
   - enabled: 1
+    path: Assets/Scenes/Levels/Part1/3 - Final/Level3SelectionMinigame.unity
+    guid: 6c89b4b4c138eba47acbdc193facf91f
+  - enabled: 1
     path: Assets/Scenes/Levels/Part2/1 - RE(D)/Level4.unity
     guid: ee42d0dcdb29a1849a1048af610d14cc
   - enabled: 1

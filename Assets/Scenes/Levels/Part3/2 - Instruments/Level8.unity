@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUpCanvas: {fileID: 2081786069}
+  popUpCanvas: {fileID: 1423943088}
   popup1: {fileID: 617814187}
   popup2: {fileID: 804823843}
   popup3: {fileID: 511587198}
