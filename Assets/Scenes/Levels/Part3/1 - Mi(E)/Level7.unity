@@ -645,7 +645,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level8SelectionMinigame
+          m_StringArgument: Level7SelectionMinigame
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &644250934
@@ -852,7 +852,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level8VirtualPiano
+          m_StringArgument: Level7VirtualPiano
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &787253421
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: fbfb31885187d844eb0488c5ccc585bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2057,7 +2057,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level8MusicGuess
+          m_StringArgument: Level7MusicGuess
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1811282900
