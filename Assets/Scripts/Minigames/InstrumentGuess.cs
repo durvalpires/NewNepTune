@@ -182,6 +182,8 @@ namespace Minigames
       {
          winPanel.SetActive(false);
          losePanel.SetActive(false);
+         SetUpLevel(_currentLevel);
+         InstrumentGuessClouds.Instance.ClusterClouds();
          gameLevels[_currentLevel].gameObject.SetActive(true);
          _audioSource.Play();
       }

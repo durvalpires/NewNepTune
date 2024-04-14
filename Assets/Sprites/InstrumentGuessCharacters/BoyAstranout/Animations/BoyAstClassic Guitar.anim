@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoyAstDoubleBass
+  m_Name: BoyAstClassic Guitar
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 591118c7f88bc1c49a14886bb2b861af, type: 3}
+      value: {fileID: 21300000, guid: 5f4501efa63f5e841979d2b21bec3ccd, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: f6705d2d05535da49a3c6a719b30845c, type: 3}
+      value: {fileID: 21300000, guid: 54cea853861e557438ae697156108bb7, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: 396d736a679f0c8439d103c8ec04a9d2, type: 3}
+      value: {fileID: 21300000, guid: 003e148cbe03fb547aa16772b6931442, type: 3}
     - time: 0.48333332
-      value: {fileID: 21300000, guid: 591118c7f88bc1c49a14886bb2b861af, type: 3}
+      value: {fileID: 21300000, guid: 5f4501efa63f5e841979d2b21bec3ccd, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 591118c7f88bc1c49a14886bb2b861af, type: 3}
-    - {fileID: 21300000, guid: f6705d2d05535da49a3c6a719b30845c, type: 3}
-    - {fileID: 21300000, guid: 396d736a679f0c8439d103c8ec04a9d2, type: 3}
-    - {fileID: 21300000, guid: 591118c7f88bc1c49a14886bb2b861af, type: 3}
+    - {fileID: 21300000, guid: 5f4501efa63f5e841979d2b21bec3ccd, type: 3}
+    - {fileID: 21300000, guid: 54cea853861e557438ae697156108bb7, type: 3}
+    - {fileID: 21300000, guid: 003e148cbe03fb547aa16772b6931442, type: 3}
+    - {fileID: 21300000, guid: 5f4501efa63f5e841979d2b21bec3ccd, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
