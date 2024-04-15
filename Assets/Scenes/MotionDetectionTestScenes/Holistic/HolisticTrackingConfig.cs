@@ -17,8 +17,8 @@ namespace Mediapipe.Unity.Sample.Holistic.UI
     private const string _ModelComplexityPath = "Scroll View/Viewport/Contents/Model Complexity/Dropdown";
     private const string _SmoothLandmarksPath = "Scroll View/Viewport/Contents/Smooth Landmarks/Toggle";
     private const string _RefineFaceLandmarksPath = "Scroll View/Viewport/Contents/Refine Face Landmarks/Toggle";
-    private const string _EnableSegmentationPath = "Scroll View/Viewport/Contents/Enable Segmentation/Toggle";
-    private const string _SmoothSegmentationPath = "Scroll View/Viewport/Contents/Smooth Segmentation/Toggle";
+    // private const string _EnableSegmentationPath = "Scroll View/Viewport/Contents/Enable Segmentation/Toggle";
+    // private const string _SmoothSegmentationPath = "Scroll View/Viewport/Contents/Smooth Segmentation/Toggle";
     private const string _MinDetectionConfidencePath = "Scroll View/Viewport/Contents/Min Detection Confidence/InputField";
     private const string _MinTrackingConfidencePath = "Scroll View/Viewport/Contents/Min Tracking Confidence/InputField";
     private const string _RunningModePath = "Scroll View/Viewport/Contents/Running Mode/Dropdown";
@@ -116,8 +116,8 @@ namespace Mediapipe.Unity.Sample.Holistic.UI
       InitializeModelComplexity();
       InitializeSmoothLandmarks();
       InitializeRefineFaceLandmarks();
-      InitializeEnableSegmentationInput();
-      InitializeSmoothSegmentationInput();
+      // InitializeEnableSegmentationInput();
+      // InitializeSmoothSegmentationInput();
       InitializeMinDetectionConfidence();
       InitializeMinTrackingConfidence();
       InitializeRunningMode();
@@ -159,16 +159,16 @@ namespace Mediapipe.Unity.Sample.Holistic.UI
 
     private void InitializeEnableSegmentationInput()
     {
-      _enableSegmentationInput = gameObject.transform.Find(_EnableSegmentationPath).gameObject.GetComponent<Toggle>();
-      _enableSegmentationInput.isOn = _solution.enableSegmentation;
-      _enableSegmentationInput.onValueChanged.AddListener(delegate { ToggleEnableSegmentation(); });
+      // _enableSegmentationInput = gameObject.transform.Find(_EnableSegmentationPath).gameObject.GetComponent<Toggle>();
+      // _enableSegmentationInput.isOn = _solution.enableSegmentation;
+      // _enableSegmentationInput.onValueChanged.AddListener(delegate { ToggleEnableSegmentation(); });
     }
 
     private void InitializeSmoothSegmentationInput()
     {
-      _smoothSegmentationInput = gameObject.transform.Find(_SmoothSegmentationPath).gameObject.GetComponent<Toggle>();
-      _smoothSegmentationInput.isOn = _solution.smoothSegmentation;
-      _smoothSegmentationInput.onValueChanged.AddListener(delegate { ToggleSmoothSegmentation(); });
+      // _smoothSegmentationInput = gameObject.transform.Find(_SmoothSegmentationPath).gameObject.GetComponent<Toggle>();
+      // _smoothSegmentationInput.isOn = _solution.smoothSegmentation;
+      // _smoothSegmentationInput.onValueChanged.AddListener(delegate { ToggleSmoothSegmentation(); });
     }
 
     private void InitializeMinDetectionConfidence()

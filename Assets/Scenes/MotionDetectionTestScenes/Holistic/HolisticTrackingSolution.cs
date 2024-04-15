@@ -15,7 +15,7 @@ namespace Mediapipe.Unity.Sample.Holistic
     [SerializeField] private DetectionAnnotationController _poseDetectionAnnotationController;
     [SerializeField] private HolisticLandmarkListAnnotationController _holisticAnnotationController;
     // [SerializeField] private PoseWorldLandmarkListAnnotationController _poseWorldLandmarksAnnotationController;
-    [SerializeField] private MaskAnnotationController _segmentationMaskAnnotationController;
+    // [SerializeField] private MaskAnnotationController _segmentationMaskAnnotationController;
     [SerializeField] private NormalizedRectAnnotationController _poseRoiAnnotationController;
 
     public HolisticTrackingGraph.ModelComplexity modelComplexity
@@ -76,7 +76,7 @@ namespace Mediapipe.Unity.Sample.Holistic
         graphRunner.OnLeftHandLandmarksOutput += OnLeftHandLandmarksOutput;
         graphRunner.OnRightHandLandmarksOutput += OnRightHandLandmarksOutput;
         // graphRunner.OnPoseWorldLandmarksOutput += OnPoseWorldLandmarksOutput;
-        graphRunner.OnSegmentationMaskOutput += OnSegmentationMaskOutput;
+        // graphRunner.OnSegmentationMaskOutput += OnSegmentationMaskOutput;
         graphRunner.OnPoseRoiOutput += OnPoseRoiOutput;
       }
 
@@ -84,8 +84,8 @@ namespace Mediapipe.Unity.Sample.Holistic
       SetupAnnotationController(_poseDetectionAnnotationController, imageSource);
       SetupAnnotationController(_holisticAnnotationController, imageSource);
       // SetupAnnotationController(_poseWorldLandmarksAnnotationController, imageSource);
-      SetupAnnotationController(_segmentationMaskAnnotationController, imageSource);
-      _segmentationMaskAnnotationController.InitScreen(imageSource.textureWidth, imageSource.textureHeight);
+      // SetupAnnotationController(_segmentationMaskAnnotationController, imageSource);
+      // _segmentationMaskAnnotationController.InitScreen(imageSource.textureWidth, imageSource.textureHeight);
       SetupAnnotationController(_poseRoiAnnotationController, imageSource);
     }
 
@@ -103,10 +103,10 @@ namespace Mediapipe.Unity.Sample.Holistic
       _poseDetectionAnnotationController.DrawNow(result.poseDetection);
       _holisticAnnotationController.DrawNow(result.faceLandmarks, result.poseLandmarks, result.leftHandLandmarks, result.rightHandLandmarks);
       // _poseWorldLandmarksAnnotationController.DrawNow(result.poseWorldLandmarks);
-      _segmentationMaskAnnotationController.DrawNow(result.segmentationMask);
+      // _segmentationMaskAnnotationController.DrawNow(result.segmentationMask);
       _poseRoiAnnotationController.DrawNow(result.poseRoi);
 
-      result.segmentationMask?.Dispose();
+      // result.segmentationMask?.Dispose();
     }
 
     private void OnPoseDetectionOutput(object stream, OutputStream<Detection>.OutputEventArgs eventArgs)
@@ -151,13 +151,13 @@ namespace Mediapipe.Unity.Sample.Holistic
     //   _poseWorldLandmarksAnnotationController.DrawLater(value);
     // }
 
-    private void OnSegmentationMaskOutput(object stream, OutputStream<ImageFrame>.OutputEventArgs eventArgs)
-    {
-      var packet = eventArgs.packet;
-      var value = packet == null ? default : packet.Get();
-      _segmentationMaskAnnotationController.DrawLater(value);
-      value?.Dispose();
-    }
+    // private void OnSegmentationMaskOutput(object stream, OutputStream<ImageFrame>.OutputEventArgs eventArgs)
+    // {
+    //   var packet = eventArgs.packet;
+    //   var value = packet == null ? default : packet.Get();
+    //   _segmentationMaskAnnotationController.DrawLater(value);
+    //   value?.Dispose();
+    // }
 
     private void OnPoseRoiOutput(object stream, OutputStream<NormalizedRect>.OutputEventArgs eventArgs)
     {
