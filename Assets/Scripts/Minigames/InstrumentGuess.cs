@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Linq;
 using Audio;
 using Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Minigames
@@ -20,8 +22,9 @@ namespace Minigames
       public GameObject finishPanel;
 
       [SerializeField] private GameObject[] gameLevels;
-      [SerializeField] private AudioClip[] audioClips;
-      [SerializeField] private Sprite[] correctAnswerSprites;
+      private Sprite[] _correctAnswerSprites;
+      private AudioClip[] _correctAudioClips;
+      
       [SerializeField] private GameObject character;
 
       private AudioSource _audioSource;
@@ -30,7 +33,21 @@ namespace Minigames
       
       private void Start()
       {
-         character.GetComponent<Animator>().Play($"BoyAst{correctAnswerSprites[_currentLevel].name}");
+         Sprite[] allSprites = Resources.LoadAll<Sprite>($"InstrumentPNGs/")
+            .OrderBy(x => UnityEngine.Random.value).ToArray();
+         _correctAnswerSprites = new Sprite[gameLevels.Length];
+         for (int i = 0; i < gameLevels.Length; i++)
+         {
+            _correctAnswerSprites[i] = allSprites[i];
+         }
+         
+         _correctAudioClips = new AudioClip[_correctAnswerSprites.Length];
+         for (int i = 0; i < _correctAnswerSprites.Length; i++)
+         {
+            _correctAudioClips[i] = Resources.Load<AudioClip>($"InstrumentSounds/{_correctAnswerSprites[i].name}");
+         }
+         
+         character.GetComponent<Animator>().Play($"BoyAst{_correctAnswerSprites[_currentLevel].name}");
          
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
@@ -41,7 +58,7 @@ namespace Minigames
             SceneManager.LoadScene(levelToReturn);
          });
          
-         _sprites = Resources.LoadAll<Sprite>("InstrumentPNGs");
+         _sprites = Resources.LoadAll<Sprite>($"InstrumentPNGs");
 
          for (int i = 0; i < gameLevels.Length; i++)
          {
@@ -51,7 +68,7 @@ namespace Minigames
          gameLevels[0].gameObject.SetActive(true);
          
          _audioSource = gameObject.GetComponent<AudioSource>();
-         _audioSource.clip = audioClips[_currentLevel];
+         _audioSource.clip = _correctAudioClips[_currentLevel];
          
          StartCoroutine(PlayAfterSeconds());
       }
@@ -78,6 +95,11 @@ namespace Minigames
          gameLevels[_currentLevel].gameObject.SetActive(false);
       }
 
+      private void FalseAnswer()
+      {
+         StartCoroutine(FalseAnswerRoutine());
+      }
+
       private IEnumerator FalseAnswerRoutine()
       {
          InstrumentGuessClouds.Instance.DisperseClouds();
@@ -88,11 +110,7 @@ namespace Minigames
          AudioManager.Instance.PlaySFX(SoundList.LoseSound);
       }
 
-      private void FalseAnswer()
-      {
-         StartCoroutine(FalseAnswerRoutine());
-      }
-
+      
       private void SetUpLevel(int levelToSet)
       {
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
@@ -103,8 +121,8 @@ namespace Minigames
          //int randomIndex = Random.Range(0, _sprites.Length);
          //Sprite randomSprite = _sprites[randomIndex];
       
-         Sprite randomSprite = correctAnswerSprites[levelToSet];
-         while (randomSprite == correctAnswerSprites[levelToSet])
+         Sprite randomSprite = _correctAnswerSprites[levelToSet];
+         while (randomSprite == _correctAnswerSprites[levelToSet])
          {
             int randomIndex = Random.Range(0, _sprites.Length);
             randomSprite = _sprites[randomIndex];
@@ -115,7 +133,7 @@ namespace Minigames
          {
             //Debug.Log($"Left is correct. {levelToSet + 1}");
             
-            topButton.GetComponent<Image>().sprite = correctAnswerSprites[levelToSet];
+            topButton.GetComponent<Image>().sprite = _correctAnswerSprites[levelToSet];
             topButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
       
             bottomButton.GetComponent<Image>().sprite = randomSprite;
@@ -125,7 +143,7 @@ namespace Minigames
          {
             //Debug.Log($"Right is correct. {levelToSet + 1}");
             
-            bottomButton.GetComponent<Image>().sprite = correctAnswerSprites[levelToSet];
+            bottomButton.GetComponent<Image>().sprite = _correctAnswerSprites[levelToSet];
             bottomButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
       
             topButton.GetComponent<Image>().sprite = randomSprite;
@@ -144,12 +162,12 @@ namespace Minigames
          {
             _currentLevel++;
             gameLevels[_currentLevel].gameObject.SetActive(true);
-            _audioSource.clip = audioClips[_currentLevel];
+            _audioSource.clip = _correctAudioClips[_currentLevel];
             winPanel.SetActive(false);
             
             InstrumentGuessClouds.Instance.ClusterClouds();
             yield return new WaitForSeconds(3f);
-            character.GetComponent<Animator>().Play($"BoyAst{correctAnswerSprites[_currentLevel].name}");
+            character.GetComponent<Animator>().Play($"BoyAst{_correctAnswerSprites[_currentLevel].name}");
 
             _audioSource.Play();
          }
@@ -164,6 +182,8 @@ namespace Minigames
       {
          winPanel.SetActive(false);
          losePanel.SetActive(false);
+         SetUpLevel(_currentLevel);
+         InstrumentGuessClouds.Instance.ClusterClouds();
          gameLevels[_currentLevel].gameObject.SetActive(true);
          _audioSource.Play();
       }

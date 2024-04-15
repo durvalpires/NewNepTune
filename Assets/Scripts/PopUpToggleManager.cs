@@ -1,17 +1,17 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using Audio;
 using Enums;
 using UnityEngine;
-using UnityEngine.Analytics;
+using UnityEngine.UI;
 
 public class PopUpToggleManager : MonoBehaviour
 {
-    public GameObject popup1; // Kontrol etmek istediğiniz GameObject
-    public GameObject popup2;
-    public GameObject popup3;
-
-    public GameObject popUpCanvas;
+    [SerializeField] private GameObject popUpCanvas;
+    [SerializeField] private GameObject popup1;
+    [SerializeField] private GameObject popup2;
+    [SerializeField] private GameObject popup3;
+    
     private bool _popUpActive;
     
     private void Update()
@@ -58,11 +58,80 @@ public class PopUpToggleManager : MonoBehaviour
         _popUpActive = true;
     }
 
+    public void ToggleInstrument1(string instrument)
+    {
+        GameObject tempGO = GameObject.Find("TempAudioSource");
+        if (tempGO != null)
+        {
+            Destroy(tempGO);
+        }
+
+        if (instrument == null) return;
+
+        AudioClip[] instrumentSounds = Resources.LoadAll<AudioClip>($"InstrumentSounds/");
+        AudioClip soundToPlay = Array.Find(instrumentSounds, clip => clip.name == instrument);
+        GameObject tempAudioSourceGO = new GameObject() {name = "TempAudioSource"};
+        AudioSource tempAudioSource = tempAudioSourceGO.AddComponent<AudioSource>();
+        tempAudioSource.PlayOneShot(soundToPlay);
+
+        popup1.GetComponent<Image>().sprite = Resources.Load<Sprite>($"InstrumentPNGs/{instrument}");
+        
+        popUpCanvas.SetActive(true);
+        popup1.SetActive(true);
+        _popUpActive = true;
+    }
+    
+    public void ToggleInstrument2(string instrument)
+    {
+        GameObject tempGO = GameObject.Find("TempAudioSource");
+        if (tempGO != null)
+        {
+            Destroy(tempGO);
+        }
+
+        if (instrument == null) return;
+
+        AudioClip[] instrumentSounds = Resources.LoadAll<AudioClip>($"InstrumentSounds/");
+        AudioClip soundToPlay = Array.Find(instrumentSounds, clip => clip.name == instrument);
+        GameObject tempAudioSourceGO = new GameObject() {name = "TempAudioSource"};
+        AudioSource tempAudioSource = tempAudioSourceGO.AddComponent<AudioSource>();
+        tempAudioSource.PlayOneShot(soundToPlay);
+
+        popup2.GetComponent<Image>().sprite = Resources.Load<Sprite>($"InstrumentPNGs/{instrument}");
+        
+        popUpCanvas.SetActive(true);
+        popup2.SetActive(true);
+        _popUpActive = true;
+    }
+    
+    private IEnumerator SlowlyDestroyAudio(GameObject audioSourceGO)
+    {
+        AudioSource audioSource = audioSourceGO.GetComponent<AudioSource>();
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= 0.1f;
+            yield return new WaitForSeconds(0.15f);
+        }
+        
+        Destroy(audioSourceGO);
+    }
+
     private void Back()
     {
         if (popup1 != null ) popup1.SetActive(false);
         if (popup2 != null ) popup2.SetActive(false);
         if (popup3 != null ) popup3.SetActive(false);
+
+        GameObject tempAudioSource = GameObject.Find("TempAudioSource");
+        if (tempAudioSource != null)
+        {
+            if (tempAudioSource.GetComponent<AudioSource>().isPlaying)
+            {
+                StartCoroutine(SlowlyDestroyAudio(tempAudioSource));   
+            }
+        }
+
         popUpCanvas.SetActive(false);
         _popUpActive = false;
     }

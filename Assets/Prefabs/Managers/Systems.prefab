@@ -341,7 +341,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8710d619cbc5dba489c162e248aeb860, type: 3}
   sfxSounds:
   - name: note_A
-    clip: {fileID: 8300000, guid: 6a4eeca28beed463abf69bf2c42c82f3, type: 3}
+    clip: {fileID: 8300000, guid: 53881dcbe6f224d889026c8d0093761a, type: 3}
   - name: note_B
     clip: {fileID: 8300000, guid: e0ec8a34b2b9f4d48875bd80504f062d, type: 3}
   - name: note_C

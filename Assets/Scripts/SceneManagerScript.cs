@@ -7,18 +7,12 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        Debug.Log($"Changed scene to {sceneName}");
     }
 
     public void MainMenu()
     {
-        Debug.Log("ana ekrana gitme butonuna basıldı."); // Butona başarıyla basıldığını doğrula
         SceneManager.LoadScene("MainLevelSelect");
-        
-    }
-
-    public void Profile()
-    {
-        SceneManager.LoadScene("Profile");
     }
 
     public void RegisterLoginScene()
