@@ -13,6 +13,7 @@ namespace Instruments
         private CameraMovementG1L1 _cameraMovementG1L1;
         TriggerManagerG1L1 _triggerManagerG1L1;
         ScoreBarSlider _scoreBarSlider;
+        public bool pressedTrue = false;
         
         private void Start()
         {
@@ -28,6 +29,7 @@ namespace Instruments
             if (_triggerManagerG1L1.DoNotaControl()) //Runs if pressed correctly
             {
                 _scoreBarSlider.UpdateSliderBasedOnDivision();
+                pressedTrue = true;
                 //can add animations here
             }
             
@@ -42,6 +44,7 @@ namespace Instruments
         {
             _soundFadeOut = StartCoroutine(AudioManager.Instance.SoundFadeOut
                 (AudioManager.Instance.sfxSource, .1f));
+            pressedTrue = false;
         }
 
         private Coroutine _soundFadeOut;
