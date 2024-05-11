@@ -1596,6 +1596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347251502}
   - component: {fileID: 347251503}
+  - component: {fileID: 347251504}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1628,6 +1629,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ba3c9a1376d740048ec3afbbc6d38e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &347251504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347251501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4621912c769274e4d9fbcc7c46eadcc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &438243819
@@ -3870,12 +3883,14 @@ MonoBehaviour:
   shouldPressed: 0
   shouldHold: 0
   totalScore: 0
+  shouldStopGame: 0
   finalPanel: {fileID: 1832774714}
   star1: {fileID: 954171710}
   star2: {fileID: 973628954}
   star3: {fileID: 1947811136}
   _scoreBarSlider: {fileID: 1970815916}
   _pressedNote: 
+  _audioSourceTime: 0
 --- !u!50 &1421792298
 Rigidbody2D:
   serializedVersion: 4
@@ -3920,6 +3935,7 @@ MonoBehaviour:
   notCount: 0
   startX: -66
   endX: 127
+  currentNoteIndex: 0
 --- !u!82 &1421792301
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8114,7 +8130,7 @@ Transform:
   m_GameObject: {fileID: 6481192762487360903}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.6308, y: 1.6923, z: 0}
+  m_LocalPosition: {x: -42.6308, y: -2.78, z: 0}
   m_LocalScale: {x: 0.51338696, y: 0.78069204, z: 0.23976824}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8204,8 +8220,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20067692, y: 6.1403294}
-  m_Size: {x: 10.668516, y: 16.280655}
+  m_Offset: {x: -0.68515086, y: 2.8482049}
+  m_Size: {x: 3.5628943, y: 5.660896}
   m_Direction: 0
 --- !u!114 &9168043055135581820
 MonoBehaviour:

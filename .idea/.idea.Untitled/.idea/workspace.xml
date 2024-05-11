@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90dcafd8-ff38-428f-ac83-937549f02d14" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Instruments/PianoButtons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Instruments/PianoButtons.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirtualPianoGameStateManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirtualPianoGameStateManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Untitled/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Untitled/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Part1/1 - DO(C)/Level1VirtualPiano1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Part1/1 - DO(C)/Level1VirtualPiano1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/CameraMovementG1L1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/CameraMovementG1L1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/TriggerManagerG1L1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/TriggerManagerG1L1.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +21,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PianoImageHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/pianoImage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/VirtualPianoGameStateManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -100,7 +104,7 @@
       <workItem from="1710116084907" duration="73000" />
       <workItem from="1714764139305" duration="4776000" />
       <workItem from="1715035901531" duration="293000" />
-      <workItem from="1715036344269" duration="1113000" />
+      <workItem from="1715036344269" duration="16215000" />
     </task>
     <servers />
   </component>

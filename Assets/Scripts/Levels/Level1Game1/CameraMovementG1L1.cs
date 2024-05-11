@@ -26,6 +26,10 @@ public class CameraMovementG1L1 : MonoBehaviour
     [SerializeField] private float startX = -13f; // Start X position
     [SerializeField] private float endX = 76.98f; // End X position
     // set this positions based on first note and finishLineCollider
+    private Vector3 _lastTriggerPosition;
+    
+    //note int
+    public int currentNoteIndex;
 
     private void Start()
     {
@@ -41,8 +45,8 @@ public class CameraMovementG1L1 : MonoBehaviour
     }
 
     public IEnumerator MoveCamera()
-    {
-        int currentNoteIndex = 0;
+    { 
+        currentNoteIndex = 0;
         float beatDuration = 1 / songBPS; // Default beat duration
 
         while (currentNoteIndex < notes.Count)
@@ -94,7 +98,14 @@ public class CameraMovementG1L1 : MonoBehaviour
         return songBPS;
     }
     
-    
+    public void UpdateLastTriggeredPosition()
+    {
+        _lastTriggerPosition = notCount < notes.Count ? notes[notCount].transform.position : notes[notes.Count - 1].transform.position;
+    }
+    public void ReturnToLastTriggeredPosition()
+    {
+       transform.position = new Vector3(_lastTriggerPosition.x, transform.position.y, transform.position.z);
+    }
     
     
     
