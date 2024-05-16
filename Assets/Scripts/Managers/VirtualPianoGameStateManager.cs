@@ -10,6 +10,7 @@ public class VirtualPianoGameStateManager : MonoBehaviour
     private AudioSource _audioSource;
     private PianoGameManagerFinal _pianoGameManagerFinal;
     
+    private PianoManag _pianoManager;
     private bool isGameStopped = false;
     
     
@@ -18,6 +19,7 @@ public class VirtualPianoGameStateManager : MonoBehaviour
         _audioSource = FindObjectOfType<AudioSource>();
         _cameraMovementG1L1 = FindObjectOfType<CameraMovementG1L1>();
         _triggerManagerG1L1 = FindObjectOfType<TriggerManagerG1L1>();
+        _pianoManager = FindObjectOfType<PianoManag>();
     }
 
     
@@ -31,13 +33,12 @@ public class VirtualPianoGameStateManager : MonoBehaviour
         {
             ResumeGame();
         }
-        
     }
 
     public void StartFalseAnswerSolution()
     {
             isGameStopped = true;
-            _audioSource.Stop();
+            _pianoManager.StopAudio();
             _cameraMovementG1L1.ReturnToLastTriggeredPosition();
             _cameraMovementG1L1.StopAllCoroutines();
             _audioSource.time = _triggerManagerG1L1._audioSourceTime;
@@ -46,7 +47,7 @@ public class VirtualPianoGameStateManager : MonoBehaviour
     public void ResumeGame()
     {
         isGameStopped = false;
-        _audioSource.Play();
+        _pianoManager.StartAudioByTime();
         _cameraMovementG1L1.StartCoroutine(_cameraMovementG1L1.MoveCamera());
     }
 }

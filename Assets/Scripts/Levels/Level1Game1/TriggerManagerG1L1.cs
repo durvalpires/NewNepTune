@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Audio;
 using Enums;
@@ -32,6 +33,7 @@ namespace Levels.Level1Game1
         public float _audioSourceTime;
 
         private Vector3 _lastNotePosition;
+        private PianoManag _pianoManager;
 
         void Start()
         {
@@ -41,6 +43,7 @@ namespace Levels.Level1Game1
             _playerSpriteREnderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
             _audioSource = FindObjectOfType<AudioSource>();
             _virtualPianoGameStateManager = FindObjectOfType<VirtualPianoGameStateManager>();
+            _pianoManager = FindObjectOfType<PianoManag>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -48,27 +51,27 @@ namespace Levels.Level1Game1
             _noteData = other.GetComponent<NoteData>();
             if (_noteData != null)
             {
+                
                 SetNoteTypeToPlay(_noteData.NoteType);
                 Debug.Log("Note Type: " + _noteTypeToPlay);
                 if (other.gameObject.CompareTag("platform1"))
                 {
                     _cameraMovementG1L1.UpdateLastTriggeredPosition();
-                    SaveSoundTime();
+                    _pianoManager.SaveAudioTime();
                     shouldPressed = true;
-                    _cameraMovementG1L1.UpdateLastTriggeredPosition();
                     _playerSpriteREnderer.color = new Color(1f, 0.92f, 0.016f, 0.5f);
                 }
                 else if (other.gameObject.CompareTag("platform2") || other.gameObject.CompareTag("platform4"))
                 {
                     _cameraMovementG1L1.UpdateLastTriggeredPosition();
-                    SaveSoundTime();
+                    _pianoManager.SaveAudioTime();
                     shouldHold = true;
                     _playerSpriteREnderer.color = new Color(1f, 0.92f, 0.016f, 0.5f);
                 }
                 else if (other.gameObject.CompareTag("platform05"))
                 {
                     _cameraMovementG1L1.UpdateLastTriggeredPosition();
-                    SaveSoundTime();
+                    _pianoManager.SaveAudioTime();
                     shouldPressed = true;
                     _playerSpriteREnderer.color = new Color(1f, 0.92f, 0.016f, 0.5f);
                 }
@@ -97,10 +100,16 @@ namespace Levels.Level1Game1
                     {
                         star1.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/star-fulled");
                     }
+                    else if (_havePressed)
+                    {
+                        shouldStopGame = true;
+                        _virtualPianoGameStateManager.StartFalseAnswerSolution();
+                    }
                 }
 
             }
         }
+        
 
         private void OnTriggerExit2D(Collider2D other)
         {
@@ -116,7 +125,14 @@ namespace Levels.Level1Game1
 
         public bool DoNotaControl()
         {
-            if (_havePressed) return false;
+            if (_havePressed)
+            {
+                
+                _havePressed = true;
+                shouldStopGame = true;
+                _virtualPianoGameStateManager.StartFalseAnswerSolution();
+                return false;
+            }
 
             if (shouldPressed || shouldHold)
             {
@@ -130,6 +146,11 @@ namespace Levels.Level1Game1
                 }
                 else
                 {
+                    if (shouldStopGame)
+                    {
+                        shouldStopGame = true;
+                        return false;
+                    }
                     _havePressed = true;
                     shouldStopGame = true;
                     _virtualPianoGameStateManager.StartFalseAnswerSolution();
@@ -146,8 +167,8 @@ namespace Levels.Level1Game1
             else
             {
                 _havePressed = true;
-                shouldStopGame = true;
-                _virtualPianoGameStateManager.StartFalseAnswerSolution();
+               // shouldStopGame = true;
+               // _virtualPianoGameStateManager.StartFalseAnswerSolution();
                 Debug.Log("Pressed incorrectly");
                 StartCoroutine(returnPlayerOriginalColorFalse());
                 return false;
@@ -186,26 +207,6 @@ namespace Levels.Level1Game1
             yield break;
         }
 
-         private void SaveSoundTime()
-        {
-
-            _audioSourceTime = _audioSource.time;
-        }
-
-        public bool CheckPlayerChoice()
-        {
-            return DoNotaControl();
-        }
-        public void ResetPlayerChoice()
-        {
-            _havePressed = false;
-            shouldPressed = false;
-            shouldHold = false;
-        }
-
-        private void ReturnToLastNote()
-        {
-            _audioSource.Pause();
-        }
+      
     }
 }

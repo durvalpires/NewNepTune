@@ -9,6 +9,8 @@ public class PianoManag : MonoBehaviour
 {
     public AudioSource audioSource;
     private TriggerManagerG1L1 triggerManager;
+    
+    private float lastSavedTime;
 
     private void Start()
     {
@@ -20,7 +22,23 @@ public class PianoManag : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            audioSource.Play();
+            lastSavedTime = audioSource.time;
+           audioSource.Play();
         }
+    }
+    
+    public void StartAudioByTime()
+    {
+        audioSource.UnPause();
+    }
+    
+    public void SaveAudioTime()
+    {
+        lastSavedTime = audioSource.time;
+    }
+    public void StopAudio()
+    {
+        audioSource.Pause();
+        audioSource.time = lastSavedTime;
     }
 }

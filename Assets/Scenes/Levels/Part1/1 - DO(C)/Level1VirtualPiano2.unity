@@ -1853,6 +1853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 213441911}
   - component: {fileID: 213441912}
+  - component: {fileID: 213441913}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1885,6 +1886,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ba3c9a1376d740048ec3afbbc6d38e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &213441913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213441910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4621912c769274e4d9fbcc7c46eadcc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &216827826
@@ -7177,12 +7190,14 @@ MonoBehaviour:
   shouldPressed: 0
   shouldHold: 0
   totalScore: 0
+  shouldStopGame: 0
   finalPanel: {fileID: 1832774714}
   star1: {fileID: 954171710}
   star2: {fileID: 973628954}
   star3: {fileID: 1947811136}
   _scoreBarSlider: {fileID: 1970815916}
   _pressedNote: 
+  _audioSourceTime: 0
 --- !u!50 &1421792298
 Rigidbody2D:
   serializedVersion: 4
@@ -7227,6 +7242,7 @@ MonoBehaviour:
   notCount: 0
   startX: -82
   endX: 135.2
+  currentNoteIndex: 0
 --- !u!1 &1430981309
 GameObject:
   m_ObjectHideFlags: 0

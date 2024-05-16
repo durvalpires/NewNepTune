@@ -835,7 +835,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &252147358
@@ -1136,7 +1136,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &284685223
@@ -1270,7 +1270,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &297449108
@@ -1404,7 +1404,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &321056741
@@ -1655,8 +1655,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20067692, y: 6.1403294}
-  m_Size: {x: 5.815397, y: 16.280655}
+  m_Offset: {x: 0.65075254, y: 6.1403303}
+  m_Size: {x: 8.653483, y: 16.280653}
   m_Direction: 0
 --- !u!212 &438479047
 SpriteRenderer:
@@ -1707,7 +1707,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &438479048
@@ -2009,7 +2009,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &513326899
@@ -2143,7 +2143,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &539577350
@@ -2495,7 +2495,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &836135323
@@ -2564,6 +2564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+  pressedTrue: 0
 --- !u!114 &845106989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3032,8 +3033,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20067692, y: 6.1403294}
-  m_Size: {x: 5.815397, y: 16.280655}
+  m_Offset: {x: -0.20067619, y: 6.1403303}
+  m_Size: {x: 9.2211075, y: 16.280653}
   m_Direction: 0
 --- !u!212 &904346315
 SpriteRenderer:
@@ -3084,7 +3085,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &904346316
@@ -3218,7 +3219,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &918169614
@@ -3477,8 +3478,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20067692, y: 6.1403294}
-  m_Size: {x: 5.815397, y: 16.280655}
+  m_Offset: {x: -0.6758814, y: 6.1403303}
+  m_Size: {x: 9.616992, y: 16.280653}
   m_Direction: 0
 --- !u!212 &961663855
 SpriteRenderer:
@@ -3529,7 +3530,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &961663856
@@ -4257,7 +4258,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1284736644
@@ -4474,8 +4475,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20067692, y: 6.1403294}
-  m_Size: {x: 5.815397, y: 16.280655}
+  m_Offset: {x: 0.45208722, y: 6.1403303}
+  m_Size: {x: 7.120925, y: 16.280653}
   m_Direction: 0
 --- !u!212 &1400036447
 SpriteRenderer:
@@ -4526,7 +4527,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1400036448
@@ -4660,7 +4661,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1421722006
@@ -4819,12 +4820,14 @@ MonoBehaviour:
   shouldPressed: 0
   shouldHold: 0
   totalScore: 0
+  shouldStopGame: 0
   finalPanel: {fileID: 1832774714}
   star1: {fileID: 954171710}
   star2: {fileID: 973628954}
   star3: {fileID: 1947811136}
   _scoreBarSlider: {fileID: 1970815916}
   _pressedNote: 
+  _audioSourceTime: 0
 --- !u!50 &1421792298
 Rigidbody2D:
   serializedVersion: 4
@@ -4869,6 +4872,7 @@ MonoBehaviour:
   notCount: 0
   startX: -149
   endX: 121
+  currentNoteIndex: 0
 --- !u!114 &1421792302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5689,6 +5693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1853239935}
   - component: {fileID: 1853239934}
+  - component: {fileID: 1853239936}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5723,6 +5728,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1738675549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1853239936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853239933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4621912c769274e4d9fbcc7c46eadcc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1883917885
 GameObject:
   m_ObjectHideFlags: 0
@@ -5827,6 +5844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+  pressedTrue: 0
 --- !u!1 &1885793069
 GameObject:
   m_ObjectHideFlags: 0
@@ -6440,7 +6458,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!70 &2037252328
@@ -6609,7 +6627,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2062342833
@@ -7189,7 +7207,7 @@ SpriteRenderer:
   m_Size: {x: 4.74, y: 4.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!70 &9168043055135581819

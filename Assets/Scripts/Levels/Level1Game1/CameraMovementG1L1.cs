@@ -20,6 +20,7 @@ public class CameraMovementG1L1 : MonoBehaviour
 
     public GameObject notesParent;
     public int notCount;
+    
 
     private List<GameObject> notes = new List<GameObject>();
     
@@ -40,13 +41,13 @@ public class CameraMovementG1L1 : MonoBehaviour
 
         // Sort the notes based on their x position
         notes.Sort((note1, note2) => note1.transform.position.x.CompareTo(note2.transform.position.x));
-
+        currentNoteIndex = 0;
         StartCoroutine(MoveCamera());
     }
 
     public IEnumerator MoveCamera()
     { 
-        currentNoteIndex = 0;
+        //currentNoteIndex = 0;
         float beatDuration = 1 / songBPS; // Default beat duration
 
         while (currentNoteIndex < notes.Count)
@@ -75,6 +76,7 @@ public class CameraMovementG1L1 : MonoBehaviour
             // Check the tag of the current note and adjust the beat duration for the next movement
             switch (currentNote.tag)
             {
+                
                     case "platform2":
                     beatDuration = 2 / songBPS;
                     break;

@@ -2003,6 +2003,7 @@ MonoBehaviour:
   notCount: 0
   startX: -17
   endX: 115
+  currentNoteIndex: 0
 --- !u!50 &784519851
 Rigidbody2D:
   serializedVersion: 4
@@ -2045,12 +2046,14 @@ MonoBehaviour:
   shouldPressed: 0
   shouldHold: 0
   totalScore: 0
+  shouldStopGame: 0
   finalPanel: {fileID: 261213117}
   star1: {fileID: 1283847380}
   star2: {fileID: 627263419}
   star3: {fileID: 2079770973}
   _scoreBarSlider: {fileID: 792393743}
   _pressedNote: 
+  _audioSourceTime: 0
 --- !u!70 &784519853
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2433,6 +2436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 918564123}
   - component: {fileID: 918564124}
+  - component: {fileID: 918564125}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2465,6 +2469,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ba3c9a1376d740048ec3afbbc6d38e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &918564125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918564122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4621912c769274e4d9fbcc7c46eadcc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &925699712

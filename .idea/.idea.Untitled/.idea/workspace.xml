@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90dcafd8-ff38-428f-ac83-937549f02d14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirtualPianoGameStateManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirtualPianoGameStateManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Untitled/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Untitled/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Part1/1 - DO(C)/Level1VirtualPiano1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Part1/1 - DO(C)/Level1VirtualPiano1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Part1/1 - DO(C)/Level1VirtualPiano2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Part1/1 - DO(C)/Level1VirtualPiano2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Part2/1 - RE(D)/Level4VirtualPiano.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Part2/1 - RE(D)/Level4VirtualPiano.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/CameraMovementG1L1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/CameraMovementG1L1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/TriggerManagerG1L1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Game1/TriggerManagerG1L1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Scripts/PianoScrpts/PianoManag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Levels/Level1Scripts/PianoScrpts/PianoManag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/VirtualPianoGameStateManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirtualPianoGameStateManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Sesler - Doğukan/yeni oyun ses efektleri/COMPOSER QUEST/100 bpm.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/Sesler - Doğukan/yeni oyun ses efektleri/COMPOSER QUEST/100 bpm.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Sesler - Doğukan/yeni oyun ses efektleri/COMPOSER QUEST/120 bpm.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/Sesler - Doğukan/yeni oyun ses efektleri/COMPOSER QUEST/120 bpm.wav" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +108,7 @@
       <workItem from="1714764139305" duration="4776000" />
       <workItem from="1715035901531" duration="293000" />
       <workItem from="1715036344269" duration="16215000" />
+      <workItem from="1715606711875" duration="15640000" />
     </task>
     <servers />
   </component>
