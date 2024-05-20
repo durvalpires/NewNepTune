@@ -28,8 +28,15 @@ namespace Minigames
       [SerializeField] private Button finishedBackButton;
       [SerializeField] private string levelToReturn;
 
+      //TODO : get rid of character var and first line of start method
+      private GameObject _character;
+      
       private void Start()
       {
+         _character = GameObject.Find("karakter");
+         _character.GetComponent<Animator>().Play("RedGirlPiano");
+         
+         
          if (levelToReturn == "") Debug.LogError("Level to return is not set!");
 
          backButton.GetComponent<Button>().onClick.AddListener(() =>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Audio;
 using Enums;
 using TMPro;
@@ -58,38 +59,102 @@ namespace Levels.SelectionMinigame
         
         private void SetUpLevel(int levelToSet)
         {
-            GameObject leftButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
-            GameObject rightButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
-
-            bool isLeftCorrect = System.Guid.NewGuid().GetHashCode() % 2 == 0;
-
+            GameObject firstButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
+            GameObject secondButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
+            GameObject thirdButton = null;
+            GameObject fourthButton = null;
+            
+            if (levelToSet > 1)
+            {
+                thirdButton = gameLevels[levelToSet].transform.GetChild(2).gameObject;
+                fourthButton = gameLevels[levelToSet].transform.GetChild(3).gameObject;  
+                Debug.Log("Bottom buttons are set.");
+            }
+            
+            List<GameObject> buttons = new List<GameObject>
+            {
+                firstButton,
+                secondButton,
+                thirdButton,
+                fourthButton
+            };
+            
+            int randomNumber = Math.Abs(Guid.NewGuid().GetHashCode()) % 4 + 1;
+            Debug.Log(randomNumber);
+            
             Sprite randomSprite = _correctAnswerSprite;
             while (randomSprite == _correctAnswerSprite)
             {
                 int randomIndex = Random.Range(0, _sprites.Length);
                 randomSprite = _sprites[randomIndex];
             }
-         
-            // Set the sprite of the correct button
-            if (isLeftCorrect)
-            {
-                //Debug.Log($"Left is correct. {levelToSet + 1}");
-            
-                leftButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                leftButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
 
-                rightButton.GetComponent<Image>().sprite = randomSprite;
-                rightButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);    
+            Debug.Log(levelToSet);
+            if (levelToSet < 2)
+            {
+                // Set the sprite of the correct button
+                if (randomNumber <= 2)
+                {
+                    firstButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                    firstButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+
+                    secondButton.GetComponent<Image>().sprite = randomSprite;
+                    secondButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                }
+                else
+                {
+                    secondButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                    secondButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+
+                    firstButton.GetComponent<Image>().sprite = randomSprite;
+                    firstButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                }
             }
             else
             {
-                //Debug.Log($"Right is correct. {levelToSet + 1}");
-            
-                rightButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                rightButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                List<Sprite> otherSprites = new List<Sprite>(_sprites);
+                otherSprites.Remove(_correctAnswerSprite);
+                
+                foreach (GameObject button in buttons)
+                {
+                    // Randomly select a sprite from the list
+                    int randomIndex = Random.Range(0, otherSprites.Count);
+                    randomSprite = otherSprites[randomIndex];
 
-                leftButton.GetComponent<Image>().sprite = randomSprite;
-                leftButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                    // Remove the selected sprite from the list
+                    otherSprites.RemoveAt(randomIndex);
+
+                    // Assign the sprite to the button
+                    button.GetComponent<Image>().sprite = randomSprite;
+                    button.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                }
+
+                switch (randomNumber)
+                {
+                    case 1:
+                        firstButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                        firstButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                        firstButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                        break;
+                    case 2:
+                        secondButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                        secondButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                        secondButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                        break;
+                    case 3:
+                        thirdButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                        thirdButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                        thirdButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                        break;
+                    case 4:
+                        fourthButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                        fourthButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                        fourthButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                        break;
+                    default:
+                        Debug.LogError("Random number is not between 1 and 4.");
+                        break;
+                }
             }
         }
 
