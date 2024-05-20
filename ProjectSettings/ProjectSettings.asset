@@ -136,11 +136,7 @@ PlayerSettings:
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
   bundleVersion: 3.0
-  preloadedAssets:
-  - {fileID: 4800000, guid: e7c77f6eaab324a819efdc13b8125a39, type: 3}
-  - {fileID: 4800000, guid: 6743a50a812740be8c0aa3fccc46fae9, type: 3}
-  - {fileID: -695665362044765861, guid: 1102b673800034a64b90a9559b5d6076, type: 2}
-  - {fileID: 11400000, guid: 712bb3af97a604422ba60c2b4ad50fbe, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -355,14 +351,12 @@ PlayerSettings:
       m_Height: 1024
       m_Kind: 4
       m_SubKind: App Store
-    - m_Textures:
-      - {fileID: 0}
+    - m_Textures: []
       m_Width: 180
       m_Height: 180
       m_Kind: 0
       m_SubKind: iPhone
-    - m_Textures:
-      - {fileID: 0}
+    - m_Textures: []
       m_Width: 120
       m_Height: 120
       m_Kind: 0

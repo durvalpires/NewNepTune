@@ -355,7 +355,7 @@ MonoBehaviour:
   - name: note_G
     clip: {fileID: 8300000, guid: 75925e7ea720a495383cb52b19e3267b, type: 3}
   - name: WinSound
-    clip: {fileID: 8300000, guid: 0b62fe35e7eca43ac84cd5755e3d5230, type: 3}
+    clip: {fileID: 8300000, guid: 738b6d82226c04da0bce352b8cebe879, type: 3}
   - name: LoseSound
     clip: {fileID: 8300000, guid: 57d4b4933e13f4abb8ea7c0e0956ca06, type: 3}
   miniGameSounds:
