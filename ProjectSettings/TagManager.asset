@@ -15,6 +15,7 @@ TagManager:
   - platform4
   - platform05
   - shush
+  - ManagersGameObject
   layers:
   - Default
   - TransparentFX

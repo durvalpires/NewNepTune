@@ -115,7 +115,10 @@ namespace Minigames
       {
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
-      
+         
+         topButton.GetComponent<Button>().onClick.RemoveAllListeners();
+         bottomButton.GetComponent<Button>().onClick.RemoveAllListeners();
+         
          bool isLeftCorrect = System.Guid.NewGuid().GetHashCode() % 2 == 0;
       
          //int randomIndex = Random.Range(0, _sprites.Length);

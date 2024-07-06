@@ -21,11 +21,12 @@ namespace Levels.SelectionMinigame
         [Header("References for Scene Set Up")]
         
         [SerializeField] private TMP_Text levelText;
-        [SerializeField] private string correctAnswerSpriteName;
         private Sprite[] _sprites;
         private Sprite _correctAnswerSprite;
         
-        [SerializeField] private string levelToReturn;
+        public string correctAnswerSpriteName;
+        public string levelToReturn;
+        
         [SerializeField] private GameObject backButton;
         [SerializeField] private GameObject finishedBackButton;
 
@@ -67,8 +68,7 @@ namespace Levels.SelectionMinigame
             if (levelToSet > 1)
             {
                 thirdButton = gameLevels[levelToSet].transform.GetChild(2).gameObject;
-                fourthButton = gameLevels[levelToSet].transform.GetChild(3).gameObject;  
-                Debug.Log("Bottom buttons are set.");
+                fourthButton = gameLevels[levelToSet].transform.GetChild(3).gameObject;
             }
             
             List<GameObject> buttons = new List<GameObject>
@@ -80,16 +80,14 @@ namespace Levels.SelectionMinigame
             };
             
             int randomNumber = Math.Abs(Guid.NewGuid().GetHashCode()) % 4 + 1;
-            Debug.Log(randomNumber);
-            
+
             Sprite randomSprite = _correctAnswerSprite;
             while (randomSprite == _correctAnswerSprite)
             {
                 int randomIndex = Random.Range(0, _sprites.Length);
                 randomSprite = _sprites[randomIndex];
             }
-
-            Debug.Log(levelToSet);
+            
             if (levelToSet < 2)
             {
                 // Set the sprite of the correct button

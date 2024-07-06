@@ -31,6 +31,7 @@
     "com.unity.inputsystem": "1.7.0",
     "com.unity.mobile.notifications": "2.2.2",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.project-auditor": "https://github.com/Unity-Technologies/ProjectAuditor.git",
     "com.unity.render-pipelines.universal": "14.0.8",
     "com.unity.services.analytics": "5.0.0",
     "com.unity.services.core": "1.12.0",
