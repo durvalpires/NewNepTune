@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f566bf193cb149ff9936f593ca1b1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpCanvas: {fileID: 795440114}
   popup1: {fileID: 591062393}
   popup2: {fileID: 1133220647}
   popup3: {fileID: 0}
-  popUpCanvas: {fileID: 795440114}
 --- !u!1 &92117189
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,14 +713,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 26616746}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: LoadSelectionMinigame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level16SelectionMinigame
+          m_StringArgument: A,Level16
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &644250934

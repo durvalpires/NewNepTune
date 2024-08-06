@@ -4261,28 +4261,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1922733324}
   - component: {fileID: 1922733323}
-  - component: {fileID: 1922733321}
   - component: {fileID: 1922733325}
   - component: {fileID: 1922733326}
   m_Layer: 0
   m_Name: Managers
-  m_TagString: Untagged
+  m_TagString: MinigameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1922733321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922733320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ba3c9a1376d740048ec3afbbc6d38e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1922733323
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4418,18 +4405,6 @@ MonoBehaviour:
   - {fileID: 1482093351}
   - {fileID: 362851410}
   - {fileID: 1500180872}
-  audioClips:
-  - {fileID: 8300000, guid: 8e563f875c71c654990a8657e0845ba4, type: 3}
-  - {fileID: 8300000, guid: a4bdce80c188be849b4bd57ea062b549, type: 3}
-  - {fileID: 8300000, guid: 0ee9d2ab125b64345b81e22c666a5ce7, type: 3}
-  - {fileID: 8300000, guid: ea93b829b5ee769499c3e86f4ce5095c, type: 3}
-  - {fileID: 8300000, guid: 06d1f44da8448634b8142d59ea61b223, type: 3}
-  correctAnswerSprites:
-  - {fileID: 21300000, guid: a8c56a2c01e1e3949a257a914cd450d6, type: 3}
-  - {fileID: 21300000, guid: 15f87b1aadb0c0a428c393b32c4d6398, type: 3}
-  - {fileID: 21300000, guid: ad18846fde2836a49ac2311258f060ef, type: 3}
-  - {fileID: 21300000, guid: 0a509986500bcbb479c6f60f14d72780, type: 3}
-  - {fileID: 21300000, guid: a656063d45d3a894aafde44a66d9a519, type: 3}
   character: {fileID: 2025005134}
 --- !u!114 &1922733326
 MonoBehaviour:
@@ -4445,7 +4420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cloudsParent: {fileID: 984370834}
   character: {fileID: 2025005134}
-  isClustered: 0
 --- !u!1 &2025005134
 GameObject:
   m_ObjectHideFlags: 0

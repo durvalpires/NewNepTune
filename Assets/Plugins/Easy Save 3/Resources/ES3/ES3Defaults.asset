@@ -44,6 +44,11 @@ MonoBehaviour:
     - LootLockerExamples
     - Mediapipe.Runtime
     - Mediapipe.Unity.Sample
+    - UniTask
+    - UniTask.Addressables
+    - UniTask.DOTween
+    - UniTask.Linq
+    - UniTask.TextMeshPro
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

@@ -14,7 +14,7 @@ namespace Minigames
       [Header("References for Scene Set Up")]
       [SerializeField] private Button backButton;
       [SerializeField] private Button finishedBackButton;
-      [SerializeField] private string levelToReturn;
+      [SerializeField] public string levelToReturn;
 
       [Header("References for Minigame Set Up")]
       public GameObject winPanel;
@@ -168,10 +168,20 @@ namespace Minigames
             _audioSource.clip = _correctAudioClips[_currentLevel];
             winPanel.SetActive(false);
             
+            GameObject topButton = gameLevels[_currentLevel].transform.GetChild(0).gameObject;
+            GameObject bottomButton = gameLevels[_currentLevel].transform.GetChild(1).gameObject;
+            
+            
+            topButton.GetComponent<Button>().interactable = false;
+            bottomButton.GetComponent<Button>().interactable = false;
+            
             InstrumentGuessClouds.Instance.ClusterClouds();
             yield return new WaitForSeconds(3f);
+            
+            topButton.GetComponent<Button>().interactable = true;
+            bottomButton.GetComponent<Button>().interactable = true;
+            
             character.GetComponent<Animator>().Play($"BoyAst{_correctAnswerSprites[_currentLevel].name}");
-
             _audioSource.Play();
          }
          else if (_currentLevel <= gameLevels.Length)

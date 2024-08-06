@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using Extensions;
 using Levels.SelectionMinigame;
+using Minigames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,50 +28,66 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
     {
         SceneManager.LoadScene("CharacterSelection");
     }
+
     public void MainSelection3DScene()
     {
         SceneManager.LoadScene("MainSelectionScene");
     }
-   
+
     public void Level1Game1()
     {
         SceneManager.LoadScene("Level1Game1");
     }
-    
-    // sceneName format: sceneToLoad,sceneNote,sceneToReturn
+
     public void LoadSelectionMinigame(string sceneName)
+    {
+        LoadSelectionMinigameAsync(sceneName);
+    }
+
+    public void LoadInstrumentGuessMinigame(string sceneName)
+    {
+        LoadMusicInstrumentGuessAsync(sceneName);
+    }
+
+    private static async UniTask LoadLevelAsync(string sceneName)
+    {
+        await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+    }
+
+    // sceneName format: sceneNote,sceneToReturn
+    private static async UniTask LoadSelectionMinigameAsync(string sceneName)
     {
         string[] sceneParts = sceneName.Split(',');
 
-        if (sceneParts.Length != 3)
+        if (sceneParts.Length != 2)
         {
-            Debug.LogError("Invalid sceneName format. Expected format: sceneToLoad,sceneNote,sceneToReturn");
+            Debug.LogError("Invalid sceneName format. Expected format: sceneNote,sceneToReturn");
             return;
         }
 
-        string sceneToLoad = sceneParts[0];
-        string sceneNote = sceneParts[1];
-        string sceneToReturn = sceneParts[2];
-        
-        SceneManager.LoadSceneAsync(sceneToLoad);
+        string sceneNote = sceneParts[0];
+        string sceneToReturn = sceneParts[1];
 
-        Scene scene = SceneManager.GetSceneByName(sceneToLoad);
-        Debug.Log(scene.isLoaded);
+        await LoadLevelAsync("SelectionMinigame");
 
-        while (!scene.isLoaded)
-        {
-            
-        }
-        
-        //Your code must also be tolerant of other objects not being immediately ready,
-        //as all scene loading completes at the end of the current frame.
-
-        GameObject managersGameObject = GameObject.FindWithTag("ManagersGameObject");
+        GameObject managersGameObject = GameObject.FindWithTag("MinigameManager");
         SelectionMinigame selectionMinigame = managersGameObject.GetComponent<SelectionMinigame>();
         selectionMinigame.levelToReturn = sceneToReturn;
         selectionMinigame.correctAnswerSpriteName = sceneNote;
 
-        //set up level
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+    }
+
+    private static async UniTask LoadMusicInstrumentGuessAsync(string levelToReturn)
+    {
+        string sceneToReturn = levelToReturn;
+
+        await LoadLevelAsync("InstrumentGuess");
+
+        GameObject managersGameObject = GameObject.FindWithTag("MinigameManager");
+        InstrumentGuess instrumentMinigame = managersGameObject.GetComponent<InstrumentGuess>();
+        instrumentMinigame.levelToReturn = sceneToReturn;
+
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }
 }

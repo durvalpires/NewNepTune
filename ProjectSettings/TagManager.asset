@@ -16,6 +16,8 @@ TagManager:
   - platform05
   - shush
   - ManagersGameObject
+  - Global Resource
+  - MinigameManager
   layers:
   - Default
   - TransparentFX
