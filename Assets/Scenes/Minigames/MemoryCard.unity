@@ -714,6 +714,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d3c5417e345c04de7823b4e9c6ee09bc, type: 3}
   - {fileID: 21300000, guid: 58dc20c45520e42cab2722018df9f844, type: 3}
   - {fileID: 21300000, guid: 56aa3442210734a9285209c83a3d1da0, type: 3}
+  - {fileID: 21300000, guid: 2c1a74b549d576d47849d9f61f7ab835, type: 3}
+  - {fileID: 21300000, guid: 953e4fc42126c4a47ac54d1b9680446a, type: 3}
+  - {fileID: 21300000, guid: b3191f523821a4340b22a8d437bd0787, type: 3}
+  - {fileID: 21300000, guid: 655d766dc9e74ed4d8a50a1609c131e0, type: 3}
   scoreLabel: {fileID: 278780448}
 --- !u!1 &1315405561
 GameObject:
