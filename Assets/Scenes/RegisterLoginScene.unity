@@ -6563,6 +6563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1640475749}
   - component: {fileID: 1640475750}
+  - component: {fileID: 1640475751}
   m_Layer: 0
   m_Name: AuthManager
   m_TagString: Untagged
@@ -6603,6 +6604,23 @@ MonoBehaviour:
   registerEmailField: {fileID: 1191373259}
   registerPassField: {fileID: 881555015}
   debugText: {fileID: 1504714141}
+--- !u!114 &1640475751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640475747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d165a20b31143a2a94c43a7c7459e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emailField: {fileID: 0}
+  passwordField: {fileID: 0}
+  registerEmailField: {fileID: 0}
+  registerPasswordField: {fileID: 0}
+  debugText: {fileID: 0}
 --- !u!1 &1643555436
 GameObject:
   m_ObjectHideFlags: 0

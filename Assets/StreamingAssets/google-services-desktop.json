@@ -1,0 +1,31 @@
+{
+  "project_info": {
+    "project_number": "638255034444",
+    "project_id": "neptune-fe02f",
+    "storage_bucket": "neptune-fe02f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638255034444:ios:0b97bc196f180d7a4044e9",
+        "android_client_info": {
+          "package_name": "com.neptune.neptuneforkids"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-NP7yAqmZD6BRCw5Q4YP7f_NFSPuoeQ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
