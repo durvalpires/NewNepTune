@@ -1,0 +1,11 @@
+using System;
+using UnityEngine;
+
+[Serializable]
+public struct NoteView
+{
+    public GameObject GameObject;
+    public float X;
+    public Pitch Pitch;
+}
+

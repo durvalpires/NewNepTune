@@ -44,6 +44,8 @@ MonoBehaviour:
     - LootLockerExamples
     - Mediapipe.Runtime
     - Mediapipe.Unity.Sample
+    - Minis
+    - RtMidi.Runtime
     - UniTask
     - UniTask.Addressables
     - UniTask.DOTween
