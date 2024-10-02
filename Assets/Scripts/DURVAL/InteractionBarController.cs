@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class InteractionBarController : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent<string, bool> onNoteTriggeredInteractionBar;
+    private UnityEvent<NoteController, bool> onNoteTriggeredInteractionBar;
 
     // Start is called before the first frame update
     void Start()
@@ -28,20 +28,18 @@ public class InteractionBarController : MonoBehaviour
             // Check if the note is interactable at this point
             // Allow player to hit the note
 
-            onNoteTriggeredInteractionBar?.Invoke(other.gameObject.GetComponent<NoteController>().Pitch.Step, true);
-            Debug.LogWarning("OnTriggerEnter2D: " + other.gameObject.GetComponent<NoteController>().Pitch.Step);
+            onNoteTriggeredInteractionBar?.Invoke(other.gameObject.GetComponent<NoteController>(), true);
         }
     }
 
-    void OnTrigger(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Note"))
         {
             // Check if the note is interactable at this point
             // Allow player to hit the note
 
-            onNoteTriggeredInteractionBar?.Invoke(other.gameObject.GetComponent<NoteController>().Pitch.Step, false);
-            Debug.LogWarning("OnTriggerExit2D: " + other.gameObject.GetComponent<NoteController>().Pitch.Step);
+            onNoteTriggeredInteractionBar?.Invoke(other.gameObject.GetComponent<NoteController>(), false);
         }
     }
 

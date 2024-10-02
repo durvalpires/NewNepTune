@@ -24,8 +24,72 @@ public class VirtualPianoController : MonoBehaviour
         }
     }
 
+    #region KeyboardInput
+#if UNITY_EDITOR || UNITY_STANDALONE
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnCKeyDown();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            OnDKeyDown();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            OnEKeyDown();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            OnFKeyDown();
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            OnGKeyDown();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            OnAKeyDown();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnBKeyDown();
+        }
 
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            OnCKeyUp();
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            OnDKeyUp();
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            OnEKeyUp();
+        }
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            OnFKeyUp();
+        }
+        if (Input.GetKeyUp(KeyCode.H))
+        {
+            OnGKeyUp();
+        }
+        if (Input.GetKeyUp(KeyCode.J))
+        {
+            OnAKeyUp();
+        }
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            OnBKeyUp();
+        }
+    }
+#endif
+    #endregion
 
+    #region Key Events
 
     public void OnCKeyDown()
     {
@@ -110,5 +174,5 @@ public class VirtualPianoController : MonoBehaviour
         Debug.Log("OnBKeyUp");
         onPianoKeyTriggered?.Invoke("B", false);
     }
-
+    #endregion
 }

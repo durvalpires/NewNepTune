@@ -13,19 +13,45 @@ MonoBehaviour:
   m_Name: RhythmGameSettings
   m_EditorClassIdentifier: 
   Bpm: 57
+  DurationOneX: 1
+  OnlyUseFirstStaff: 1
+  HitWindowsTimings: []
+  HitEvaluationSettings:
+    NonTimedSettings:
+    - HitType: 0
+      Value: 25
+    - HitType: 1
+      Value: 60
+    - HitType: 2
+      Value: 85
+    - HitType: 3
+      Value: 100
+    TimedSettings: []
   noteSpeed: 0
   accuracyThreshold: 0
   difficultyMultiplier: 0
-  delayBeforeFirstNote: 6
+  delayBeforeFirstNote: 0
   notePrefabs:
   - {fileID: 0}
   - {fileID: 0}
   holdNoteDurationMultiplier: 0
   comboBonusThreshold: 0
   baseScorePerNote: 0
-  comboMultiplier: 0
+  comboThreshold: 10
+  comboMultiplierStep: 0
   missPenalty: 0
   hitAccuracyBonus: 0
+  BaseScorePerAccuracy:
+  - HitType: 0
+    Value: 100
+  - HitType: 1
+    Value: 80
+  - HitType: 2
+    Value: 60
+  - HitType: 3
+    Value: 30
+  - HitType: 4
+    Value: 0
   correctNoteColor: {r: 0, g: 0, b: 0, a: 0}
   missNoteColor: {r: 0, g: 0, b: 0, a: 0}
   hitEffectPrefab: {fileID: 0}

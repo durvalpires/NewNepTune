@@ -43,15 +43,18 @@ public class NoteController : MonoBehaviour
         }
         else
         {
-            this.transform.localPosition = new Vector3(this.X /*+ (this.Width / 2)*/,
-                this.transform.localPosition.y,
-                this.transform.localPosition.z);
+            //this.transform.localPosition = new Vector3(this.X /*+ (this.Width / 2)*/,
+            //    this.transform.localPosition.y,
+            //    this.transform.localPosition.z);
 
             //this.tableObj.transform.localScale = new Vector3(this.Width,
             //    this.tableObj.transform.localScale.y,
             //    this.tableObj.transform.localScale.z);
 
-            this.playNoteObj.transform.localScale = new Vector3(this.Width,
+            Debug.Log("not 16th: " + this.Width + " - " + this.playNoteObj.transform.localScale.x);
+
+            this.playNoteObj.transform.localScale = new Vector3(this.Width * 
+                this.playNoteObj.transform.localScale.x,
                 this.playNoteObj.transform.localScale.y,
                 this.playNoteObj.transform.localScale.z);
         }

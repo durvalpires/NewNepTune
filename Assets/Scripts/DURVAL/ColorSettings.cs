@@ -12,7 +12,7 @@ public class ColorSettings
     public NoteColor A;
     public NoteColor B;
 
-    public Dictionary<string, NoteColor> NoteColorDic;
+    //public Dictionary<string, NoteColor> NoteColorDic;
 
     //public ColorSettings()
     //{

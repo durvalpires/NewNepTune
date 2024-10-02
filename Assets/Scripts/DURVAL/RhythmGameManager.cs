@@ -1,5 +1,8 @@
+using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Video;
 
@@ -17,8 +20,12 @@ public class RhythmGameManager : MonoBehaviour
     [SerializeField] private GameObject scoreBoard;
     [SerializeField] private TextAsset songXmlAsset;
     [SerializeField] private TextAsset songMidiAsset;
-    [SerializeField] private ScoreRender scoreRender;
+    [SerializeField] private MusicScoreRender scoreRender;
     [SerializeField] private Transform interactionArea;
+
+    [SerializeField] private UnityEvent<string> keyPressTxtFeedback;
+    [SerializeField] private UnityEvent<string> OnScoreUpdated;
+    [SerializeField] private UnityEvent<string> OnComboUpdated;
     
     [SerializeField] private RhythmGameSettings rhythmGameSettings;
 
@@ -26,23 +33,36 @@ public class RhythmGameManager : MonoBehaviour
 
     private SmfLite.MidiTrackSequencer midiTrackSequencer;
 
-    private Dictionary<string, bool> noteInteractableDic = new Dictionary<string, bool>()
+    private float noteMaxDistanceToInteractionBar = 0;
+
+    private RhythmGameScoreController scoreController;
+
+    private Dictionary<string, NoteController> noteInteractableDic = new Dictionary<string, NoteController>()
     {
-        {"C", false},
-        {"D", false},
-        {"E", false},
-        {"F", false},
-        {"G", false},
-        {"A", false},
-        {"B", false}
+        //{"C", false},
+        //{"D", false},
+        //{"E", false},
+        //{"F", false},
+        //{"G", false},
+        //{"A", false},
+        //{"B", false
+
+        {"C", null},
+        {"D", null},
+        {"E", null},
+        {"F", null},
+        {"G", null},
+        {"A", null},
+        {"B", null}
     };
 
     void Start()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
 
-        speedXPerSec = (rhythmGameSettings.DurationOneX * 4) * rhythmGameSettings.Bpm / 60;
+        scoreController = new RhythmGameScoreController(rhythmGameSettings);
 
+        speedXPerSec = (rhythmGameSettings.DurationOneX * 4) * rhythmGameSettings.Bpm / 60;
 
         scoreRender.Init(rhythmGameSettings, this.notePrefab, this.circleNotePrefab, speedXPerSec);
 
@@ -54,13 +74,13 @@ public class RhythmGameManager : MonoBehaviour
 
     void Update()
     {
-        if (this.midiTrackSequencer != null && !this.midiTrackSequencer.Playing)
-        {
-            // Adjusting the playback position of a MIDI file
-            this.DispatchEvents(this.midiTrackSequencer.Start(0.2f));
-        }
+        //if (this.midiTrackSequencer != null && !this.midiTrackSequencer.Playing)
+        //{
+        //    // Adjusting the playback position of a MIDI file
+        //    this.DispatchEvents(this.midiTrackSequencer.Start(0.2f));
+        //}
         MoveBoard();
-        this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
+        //this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
     }
 
     private void LoadMidiFile()
@@ -123,8 +143,67 @@ public class RhythmGameManager : MonoBehaviour
         this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, rhythmGameSettings.Bpm, speedXPerSec);
     }
 
-    public void OnNoteTriggeredInteractionBar(string note, bool entered)
+    private HitAccuracy EvaluateHit(float noteXPosition)
     {
-        noteInteractableDic["note"] = entered;
+        float currentDistance = Mathf.Abs(noteXPosition - 
+            interactionArea.transform.position.x);
+
+        float percentage = currentDistance * 100 / noteMaxDistanceToInteractionBar;
+        var result = HitAccuracy.Miss;
+
+        foreach(var hitType in rhythmGameSettings.HitEvaluationSettings.NonTimedSettings)
+        {
+            if (percentage <= hitType.Value)
+            {
+                result = hitType.HitType;
+                break;
+            }
+        }
+
+        keyPressTxtFeedback?.Invoke(result.ToString());
+
+        return result;
+    }
+
+    public void OnNoteTriggeredInteractionBar(NoteController note, bool entered)
+    {
+        Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + " = " + entered);
+        
+        noteInteractableDic[note.Pitch.Step] = entered ? note : null;
+        noteMaxDistanceToInteractionBar = Mathf.Abs(
+            note.transform.position.x -
+            interactionArea.transform.position.x);
+    }
+
+    public void OnPianoKeyStateChanged(string note, bool isPressed)
+    {
+        if (isPressed)
+        {
+            if (noteInteractableDic[note] != null)
+            {
+                //keyPressTxtFeedback?.Invoke("ACERTOU CARALHOOOOO");
+                //Debug.LogWarning("ACERTOU CARLHOOOOO");
+                var accuracy = EvaluateHit(noteInteractableDic[note].gameObject.transform.position.x);
+                scoreController.AwardScore(accuracy);
+                noteInteractableDic[note] = null;
+            }
+            else
+            {
+                keyPressTxtFeedback?.Invoke(HitAccuracy.Miss.ToString());
+                scoreController.AwardScore(HitAccuracy.Miss);
+                //keyPressTxtFeedback?.Invoke("BATEU NA ROCHA");
+                //Debug.LogWarning("BATEU NA ROCHA");
+            }
+        }
+    }
+
+    public void ProcessScore(HitAccuracy accuracy)
+    {
+        var results = scoreController.AwardScore(accuracy);
+        if (results != null)
+        {
+            OnScoreUpdated?.Invoke(results.Item1.ToString());
+            OnComboUpdated?.Invoke(results.Item2.ToString());
+        }
     }
 }

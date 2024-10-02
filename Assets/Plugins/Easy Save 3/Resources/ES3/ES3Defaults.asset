@@ -44,6 +44,9 @@ MonoBehaviour:
     - LootLockerExamples
     - Mediapipe.Runtime
     - Mediapipe.Unity.Sample
+    - MidiPlayer.Demo
+    - MidiPlayer.Editor
+    - MidiPlayer.Run
     - Minis
     - RtMidi.Runtime
     - UniTask
