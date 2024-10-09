@@ -169,9 +169,15 @@ namespace Audio
                 musicSource.Play();
             }
         }
+
         public float GetMusicTime()
         {
             return musicSource.time;
+        }
+
+        public float SetMusicTime(float time)
+        {
+            return musicSource.time = time;
         }
     }
 }

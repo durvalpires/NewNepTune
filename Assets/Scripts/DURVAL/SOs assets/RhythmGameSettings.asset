@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f03010d260eef4999e7c14d9d2bcca, type: 3}
   m_Name: RhythmGameSettings
   m_EditorClassIdentifier: 
-  Bpm: 57
+  Bpm: 120
   DurationOneX: 1
   OnlyUseFirstStaff: 1
   HitWindowsTimings: []

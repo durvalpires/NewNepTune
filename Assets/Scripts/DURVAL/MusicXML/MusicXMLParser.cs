@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.Linq;
+using UnityEngine;
 
 public static class MusicXMLParser
 {
@@ -32,15 +33,42 @@ public static class MusicXMLParser
 
     private static int GetScoreTempo(XmlDocument doc)
     {
-        //get first tempo
-        //not support multiple tempo
-        var soundElements = doc.SelectNodes("score-partwise/part/measure/direction/sound");
-        if (soundElements == null)
+        var directionElements = doc.SelectNodes("score-partwise/part/measure/direction");
+        if (directionElements == null || directionElements.Count == 0)
         {
-            throw new Exception("not found sound");
+            Debug.LogWarning("No direction elements found, defaulting to 120 BPM");
+            return 120;
         }
-        var tempo = ((IEnumerable)soundElements).Cast<XmlNode>().First().Attributes["tempo"].InnerText;
-        return Int32.Parse(tempo);
+
+        foreach (XmlNode directionNode in directionElements)
+        {
+            var soundNode = directionNode.SelectSingleNode("sound");
+            if (soundNode != null && soundNode.Attributes["tempo"] != null)
+            {
+                var tempo = soundNode.Attributes["tempo"].InnerText;
+                return int.Parse(tempo);
+            }
+            else{
+                XmlNode metronomeNode = directionNode.SelectSingleNode("direction-type/metronome");
+
+                if (metronomeNode != null)
+                {
+                    string beatUnit = metronomeNode.SelectSingleNode("beat-unit")?.InnerText;
+                    string perMinute = metronomeNode.SelectSingleNode("per-minute")?.InnerText;
+
+                    if (!string.IsNullOrEmpty(perMinute))
+                    {
+                        int bpm = int.Parse(perMinute);
+                        Debug.Log($"BPM: {bpm}, Beat Unit: {beatUnit}");
+                        return bpm; // Exit after finding the BPM
+                    }
+                }
+            }
+        }
+
+        // If no tempo is found in any direction
+        Debug.LogWarning("No tempo found in direction elements, defaulting to 120 BPM");
+        return 120;
     }
 
     private static IEnumerable<Measure> GetMeasures(string partId, XmlDocument doc)
@@ -87,16 +115,20 @@ public static class MusicXMLParser
         var scoreNote = new ScoreNote()
         {
             Pitch = GetPitch(noteNode.SelectSingleNode("pitch")),
-            Duration = Int32.Parse(noteNode.SelectSingleNode("duration").InnerText),
-            Type = noteNode.SelectSingleNode("type").InnerText,
-            Voice = Int32.Parse(noteNode.SelectSingleNode("voice").InnerText),
-            Staff = Int32.Parse(noteNode.SelectSingleNode("staff").InnerText),
-            IsRest = (noteNode.SelectSingleNode("rest") != null),
+            Duration = noteNode.SelectSingleNode("duration") != null ? 
+                    Int32.Parse(noteNode.SelectSingleNode("duration").InnerText) : 0,
+            Type = noteNode.SelectSingleNode("type") != null ? 
+                noteNode.SelectSingleNode("type").InnerText : "unknown",
+            Voice = noteNode.SelectSingleNode("voice") != null ? 
+                    Int32.Parse(noteNode.SelectSingleNode("voice").InnerText) : 1,
+            Staff = noteNode.SelectSingleNode("staff") != null ? 
+                    Int32.Parse(noteNode.SelectSingleNode("staff").InnerText) : 1,
+            IsRest = noteNode.SelectSingleNode("rest") != null,
             IsChord = noteNode.SelectSingleNode("chord") != null,
         };
 
         var tieNodes = noteNode.SelectNodes("tie");
-        if (tieNodes != null)
+        if (tieNodes != null && tieNodes.Count > 0)
         {
             scoreNote.TieList = new List<Tie>();
             foreach (XmlNode tieNode in tieNodes)
@@ -110,6 +142,23 @@ public static class MusicXMLParser
         }
 
         return scoreNote;
+    }
+
+    private static Pitch? GetPitch(XmlNode pitchNode)
+    {
+        if (pitchNode == null)
+        {
+            return null;
+        }
+
+        return new Pitch()
+        {
+            Step = pitchNode.SelectSingleNode("step")?.InnerText ?? "C",
+            Octave = pitchNode.SelectSingleNode("octave") != null ? 
+                    Int32.Parse(pitchNode.SelectSingleNode("octave").InnerText) : 4,
+            Alter = pitchNode.SelectSingleNode("alter") != null ? 
+                    (int?)Int32.Parse(pitchNode.SelectSingleNode("alter").InnerText) : null,
+        };
     }
 
     private static Tie? GetTie(XmlNode tieNode)
@@ -150,23 +199,24 @@ public static class MusicXMLParser
         };
     }
 
-    private static Pitch? GetPitch(XmlNode pitchNode)
-    {
-        if (pitchNode == null)
-        {
-            return null;
-        }
-        return new Pitch()
-        {
-            Step = pitchNode.SelectSingleNode("step").InnerText,
-            Octave = Int32.Parse(pitchNode.SelectSingleNode("octave").InnerText),
-            Alter = pitchNode.SelectSingleNode("alter") == null ? null : Int32.Parse(pitchNode.SelectSingleNode("alter").InnerText),
-        };
-    }
+    // private static Pitch? GetPitch(XmlNode pitchNode)
+    // {
+    //     if (pitchNode == null)
+    //     {
+    //         return null;
+    //     }
+    //     return new Pitch()
+    //     {
+    //         Step = pitchNode.SelectSingleNode("step").InnerText,
+    //         Octave = Int32.Parse(pitchNode.SelectSingleNode("octave").InnerText),
+    //         Alter = pitchNode.SelectSingleNode("alter") == null ? null : Int32.Parse(pitchNode.SelectSingleNode("alter").InnerText),
+    //     };
+    // }
 
     private static IEnumerable<string> GetScorePartIdList(XmlDocument doc)
     {
         var scorePartNodes = doc.SelectNodes("score-partwise/part-list/score-part");
+        //var scorePartNodes = doc.SelectNodes("score-partwise");
         foreach (XmlNode scorePartNode in scorePartNodes)
         {
             var partId = scorePartNode.Attributes["id"].InnerText;

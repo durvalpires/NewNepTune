@@ -62,11 +62,12 @@ public class RhythmGameManager : MonoBehaviour
 
         scoreController = new RhythmGameScoreController(rhythmGameSettings);
 
-        speedXPerSec = (rhythmGameSettings.DurationOneX * 4) * rhythmGameSettings.Bpm / 60;
+        speedXPerSec = (rhythmGameSettings.DurationOneX * rhythmGameSettings.MeasureDivision) * rhythmGameSettings.Bpm / 60;
 
-        scoreRender.Init(rhythmGameSettings, this.notePrefab, this.circleNotePrefab, speedXPerSec);
+        scoreRender.Init(rhythmGameSettings, this.notePrefab, this.circleNotePrefab, 
+        speedXPerSec, songXmlAsset.text);
 
-        var notesSortedByScore = scoreRender.Render(songXmlAsset.text);
+        var notesSortedByScore = scoreRender.Render();
         this.playRecorder = new PlayRecorder(notesSortedByScore);
 
         LoadMidiFile();
@@ -179,21 +180,26 @@ public class RhythmGameManager : MonoBehaviour
     {
         if (isPressed)
         {
+            var accuracy = HitAccuracy.Miss;
             if (noteInteractableDic[note] != null)
             {
                 //keyPressTxtFeedback?.Invoke("ACERTOU CARALHOOOOO");
                 //Debug.LogWarning("ACERTOU CARLHOOOOO");
-                var accuracy = EvaluateHit(noteInteractableDic[note].gameObject.transform.position.x);
-                scoreController.AwardScore(accuracy);
+                accuracy = EvaluateHit(noteInteractableDic[note].gameObject.transform.position.x);
+                //scoreController.AwardScore(accuracy);
                 noteInteractableDic[note] = null;
             }
             else
             {
-                keyPressTxtFeedback?.Invoke(HitAccuracy.Miss.ToString());
-                scoreController.AwardScore(HitAccuracy.Miss);
+
+                accuracy = HitAccuracy.Miss;
+                //scoreController.AwardScore(HitAccuracy.Miss);
+                
                 //keyPressTxtFeedback?.Invoke("BATEU NA ROCHA");
                 //Debug.LogWarning("BATEU NA ROCHA");
             }
+            ProcessScore(accuracy);
+            keyPressTxtFeedback?.Invoke(accuracy.ToString());
         }
     }
 

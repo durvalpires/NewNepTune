@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Levels.Level1Game1;
 using UnityEngine;
 
@@ -16,7 +17,8 @@ public class VirtualPianoGameStateManager : MonoBehaviour
     
     void Start()
     {
-        _audioSource = FindObjectOfType<AudioSource>();
+        // _audioSource = FindObjectOfType<AudioSource>();
+        //Debug.Log("AudioSource - " + _audioSource.gameObject.name);
         _cameraMovementG1L1 = FindObjectOfType<CameraMovementG1L1>();
         _triggerManagerG1L1 = FindObjectOfType<TriggerManagerG1L1>();
         _pianoManager = FindObjectOfType<PianoManag>();
@@ -41,7 +43,7 @@ public class VirtualPianoGameStateManager : MonoBehaviour
             _pianoManager.StopAudio();
             _cameraMovementG1L1.ReturnToLastTriggeredPosition();
             _cameraMovementG1L1.StopAllCoroutines();
-            _audioSource.time = _triggerManagerG1L1._audioSourceTime;
+            //AudioManager.Instance.SetMusicTime(_triggerManagerG1L1._audioSourceTime);
     }
 
     public void ResumeGame()

@@ -12,6 +12,7 @@ namespace Levels.Level1Game1
         [SerializeField] private bool shouldPressed;
         [SerializeField] private bool shouldHold;
         private bool _havePressed = false;
+        private bool _haveCleared = false;
         public float totalScore;
         private CameraMovementG1L1 _cameraMovementG1L1;
         private SpriteRenderer _playerSpriteREnderer;
@@ -117,6 +118,7 @@ namespace Levels.Level1Game1
             {
                 shouldStopGame = true;
             }
+            _haveCleared = false;
             _havePressed = false;
             shouldPressed = false;
             shouldHold = false;
@@ -125,6 +127,11 @@ namespace Levels.Level1Game1
 
         public bool DoNotaControl()
         {
+            if (_haveCleared)
+            {
+                return false;
+            }
+
             if (_havePressed)
             {
                 
@@ -139,6 +146,7 @@ namespace Levels.Level1Game1
                 if (_pressedNote == _noteTypeToPlay)
                 {
                     Debug.Log("Pressed correctly");
+                    _haveCleared = true;
                     _havePressed = true;
                     StartCoroutine(returnPlayerOriginalColorTrue());
                     shouldStopGame = false;

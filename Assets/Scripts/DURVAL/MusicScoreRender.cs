@@ -27,13 +27,16 @@ public class MusicScoreRender : MonoBehaviour {
     private GameObject _notePrefab;
     private GameObject _circleNotePrefab;
 
+    private Score musicScore;
+
+
     void Awake()
     {
         distanceBetweenScoreLines = scoreLines[1].position.y - scoreLines[0].position.y;
         OneNoteY = distanceBetweenScoreLines / 2;
         distanceBetweenOctave = OneNoteY * Pitch.NoteListMain.Count;
         notesContainer.transform.localPosition = new Vector3(notesContainer.transform.localPosition.x, 
-            notesContainer.transform.localPosition.y - distanceBetweenScoreLines*2, notesContainer.transform.localPosition.z);
+            notesContainer.transform.localPosition.y - distanceBetweenScoreLines, notesContainer.transform.localPosition.z);
         
         //YOfC4 = OneNoteY * Pitch.NoteList.Count * 5;
         YOfC4 = OneNoteY * Pitch.NoteListMain.Count * 5;
@@ -42,7 +45,7 @@ public class MusicScoreRender : MonoBehaviour {
     }
 
     public void Init(RhythmGameSettings gameSettings, GameObject notePrefab,
-        GameObject circleNotePrefab, float speedXPerSec)
+        GameObject circleNotePrefab, float speedXPerSec, string musicXMLText)
     {
         this._colorSettings = gameSettings.ColorSettings;
         this._notePrefab = notePrefab;
@@ -52,17 +55,20 @@ public class MusicScoreRender : MonoBehaviour {
 
         this.speedXPerSec = speedXPerSec;
         this.gameSettings = gameSettings;
+
+        this.musicScore = MusicXMLParser.GetScorePartwise(musicXMLText);
     }
 
-    public IList<NoteView> Render(string musicXMLText)
+    public IList<NoteView> Render()
     {
-        var score = MusicXMLParser.GetScorePartwise(musicXMLText);
+        // var score = MusicXMLParser.GetScorePartwise(musicXMLText);
         var notesSortedByScore = new List<NoteView>();
 
-        int currentDivisions = 4;
+        int currentDivisions = (int)gameSettings.MeasureDivision;
         bool noNeedToDisplayForTie = false;
-        float xCursor = initialNoteSpawningPoint.position.x + gameSettings.delayBeforeFirstNote * speedXPerSec + 1;
-        foreach (var part in score.ScoreParts)
+        //float xCursor = initialNoteSpawningPoint.position.x + gameSettings.delayBeforeFirstNote * speedXPerSec + 1;
+        float xCursor = 0 + gameSettings.delayBeforeFirstNote * speedXPerSec;
+        foreach (var part in musicScore.ScoreParts)
         {
             foreach (var measure in part.MeasureList)
             {
@@ -94,6 +100,7 @@ public class MusicScoreRender : MonoBehaviour {
 
                         // x
                         float willConsumedTimeUnit = note.Duration * this._durationOneX;
+                        Debug.Log("willConsumedTimeUnit: " + willConsumedTimeUnit);
 
                         if (note.IsChord)
                         {
@@ -153,11 +160,15 @@ public class MusicScoreRender : MonoBehaviour {
     {
         GameObject noteObj = Instantiate<GameObject>(
             this.GetPrafabByNote(note),
-            new Vector3(positionX, positionY, 0),
+            new Vector3(0, 0, 0),
             Quaternion.identity,
             notesContainer.transform);
+
+        noteObj.transform.localPosition = Vector3.zero; // Keeps it at the parent's exact position
+        //noteObj.transform.localRotation = Quaternion.identity; // Aligns rotation with the parent
+
         noteObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        noteObj.transform.position = new Vector3(positionX, positionY, 0);
+        noteObj.transform.localPosition =  new Vector3(positionX, positionY, 0);
         var noteController = noteObj.GetComponent<NoteController>();
         noteController.X = positionX;
         noteController.Width = willConsumedTimeUnit;

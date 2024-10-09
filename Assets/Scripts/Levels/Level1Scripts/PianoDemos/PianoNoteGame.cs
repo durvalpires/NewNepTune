@@ -21,7 +21,7 @@ public class PianoNoteGame : MonoBehaviour
     {
         beatTime = 60f / bpm;
         currentTargetIndex = 0;
-        StartCoroutine(PlayMusic());
+        //StartCoroutine(PlayMusic());
         _triggerManagerG1L1 = FindObjectOfType<TriggerManagerG1L1>();
     }
 

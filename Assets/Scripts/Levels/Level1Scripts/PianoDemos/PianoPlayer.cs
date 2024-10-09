@@ -26,7 +26,7 @@ public class PianoPlayer : MonoBehaviour
         transform.position = platforms[0].transform.position + Vector3.up *
             Vector3.Distance(transform.position,
                 platforms[_currentPlatformIndex].transform.position); // Start from above the first platform
-        _rigidbody.velocity = Vector3.down * 10; // Fall down
+        _rigidbody.linearVelocity = Vector3.down * 10; // Fall down
     }
 
    private void JumpToNextPlatform()
@@ -42,13 +42,13 @@ public class PianoPlayer : MonoBehaviour
             switch (platformType)
             {
                 case PlatformType.Normal:
-                    _rigidbody.velocity = direction * jumpSpeed;
+                    _rigidbody.linearVelocity = direction * jumpSpeed;
                     break;
                 case PlatformType.Slippery:
                     StartCoroutine(DelayJump(direction, jumpSpeed, 60f / bpm)); // Delay jump by one beat
                     break;
                 case PlatformType.Bouncy:
-                    _rigidbody.velocity = direction * jumpSpeed * 0.5f; // Decrease speed for bouncy platforms
+                    _rigidbody.linearVelocity = direction * jumpSpeed * 0.5f; // Decrease speed for bouncy platforms
                     break;
                 // Add more cases as needed
             }
@@ -59,7 +59,7 @@ public class PianoPlayer : MonoBehaviour
     IEnumerator DelayJump(Vector3 direction, float speed, float delay)
     {
         yield return new WaitForSeconds(delay);
-        _rigidbody.velocity = direction * speed;
+        _rigidbody.linearVelocity = direction * speed;
     }
 
    public void OnCollisionStay2D(Collision2D collider)
