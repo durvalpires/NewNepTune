@@ -7,5 +7,7 @@ public struct NoteView
     public GameObject GameObject;
     public float X;
     public Pitch Pitch;
+    public float beatNumber;
+    public float noteTimeInSeconds;
 }
 

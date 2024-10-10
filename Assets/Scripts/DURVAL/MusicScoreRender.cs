@@ -28,6 +28,10 @@ public class MusicScoreRender : MonoBehaviour {
     private GameObject _circleNotePrefab;
 
     private Score musicScore;
+    public float Bpm => musicScore.Tempo ?? 120;
+
+    private int _currentMeasureDivision = 4;
+    public int MeasureDivision => musicScore.CurrentDivisions.Value;
 
 
     void Awake()
@@ -45,7 +49,7 @@ public class MusicScoreRender : MonoBehaviour {
     }
 
     public void Init(RhythmGameSettings gameSettings, GameObject notePrefab,
-        GameObject circleNotePrefab, float speedXPerSec, string musicXMLText)
+        GameObject circleNotePrefab, string musicXMLText)
     {
         this._colorSettings = gameSettings.ColorSettings;
         this._notePrefab = notePrefab;
@@ -53,18 +57,29 @@ public class MusicScoreRender : MonoBehaviour {
         this._durationOneX = gameSettings.DurationOneX;
         this._onlyFirstStaff = gameSettings.OnlyUseFirstStaff;
 
-        this.speedXPerSec = speedXPerSec;
+        //this.speedXPerSec = speedXPerSec;
         this.gameSettings = gameSettings;
 
         this.musicScore = MusicXMLParser.GetScorePartwise(musicXMLText);
+        foreach (var part in musicScore.ScoreParts)
+        {
+            foreach (var measure in part.MeasureList)
+            {
+                if (measure.Attribute?.Divisions != null)
+                {
+                    musicScore.CurrentDivisions = measure.Attribute.Value.Divisions.Value;
+                }
+            }
+        }
     }
 
-    public IList<NoteView> Render()
+    public IList<NoteView> Render(float speedXPerSec)
     {
         // var score = MusicXMLParser.GetScorePartwise(musicXMLText);
         var notesSortedByScore = new List<NoteView>();
 
-        int currentDivisions = (int)gameSettings.MeasureDivision;
+        int currentDivisions = 4;
+        int currentBeat = 1;
         bool noNeedToDisplayForTie = false;
         //float xCursor = initialNoteSpawningPoint.position.x + gameSettings.delayBeforeFirstNote * speedXPerSec + 1;
         float xCursor = 0 + gameSettings.delayBeforeFirstNote * speedXPerSec;
@@ -99,7 +114,8 @@ public class MusicScoreRender : MonoBehaviour {
                         }
 
                         // x
-                        float willConsumedTimeUnit = note.Duration * this._durationOneX;
+                        
+                        float willConsumedTimeUnit = (float)note.Duration/*/currentDivisions*/ * this._durationOneX;
                         Debug.Log("willConsumedTimeUnit: " + willConsumedTimeUnit);
 
                         if (note.IsChord)
@@ -112,7 +128,8 @@ public class MusicScoreRender : MonoBehaviour {
                         if (note.Pitch != null && !noNeedToDisplayForTie)
                         {
                             var noteObj = InstantiateNote(xCursor, y, willConsumedTimeUnit, note);
-                            var noteView = new NoteView() { GameObject = noteObj, X = xCursor, Pitch = note.Pitch.Value };
+                            var noteView = new NoteView() { GameObject = noteObj, X = xCursor, Pitch = note.Pitch.Value,
+                                beatNumber = currentBeat, noteTimeInSeconds = currentBeat / Bpm * 60 };
                             notesSortedByScore.Add(noteView);
 
                             //if (note.Staff != 1 && _onlyFirstStaff)
@@ -127,6 +144,7 @@ public class MusicScoreRender : MonoBehaviour {
                             noteController.AddWidth(willConsumedTimeUnit);
                         }
 
+                        currentBeat = note.Duration / currentDivisions;
                         xCursor += willConsumedTimeUnit;
 
                         // If both start and stop are present, noNeedToDisplayForTie should be true.

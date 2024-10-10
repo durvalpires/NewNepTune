@@ -8,11 +8,6 @@ using UnityEngine.Video;
 
 public class RhythmGameManager : MonoBehaviour
 {
-    // duration 1（今は16分音符）あたりにおける x の値
-    //private const float durationOneX = 1;
-
-    //private const float bpm = 57;
-    // 1秒で進んで欲しいxの値
     private float speedXPerSec;
 
     [SerializeField] private GameObject notePrefab;
@@ -37,6 +32,10 @@ public class RhythmGameManager : MonoBehaviour
 
     private RhythmGameScoreController scoreController;
 
+    // Assuming you have tempo in BPM
+    float beatsPerSecond;
+    float secondsPerBeat;
+
     private Dictionary<string, NoteController> noteInteractableDic = new Dictionary<string, NoteController>()
     {
         //{"C", false},
@@ -59,15 +58,16 @@ public class RhythmGameManager : MonoBehaviour
     void Start()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
+        scoreRender.Init(rhythmGameSettings, this.notePrefab, this.circleNotePrefab, songXmlAsset.text);
+
+        beatsPerSecond = /*scoreRender.Bpm*/ 57f / 60;
+        secondsPerBeat = 1 / beatsPerSecond;
+        speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
 
         scoreController = new RhythmGameScoreController(rhythmGameSettings);
 
-        speedXPerSec = (rhythmGameSettings.DurationOneX * rhythmGameSettings.MeasureDivision) * rhythmGameSettings.Bpm / 60;
+        var notesSortedByScore = scoreRender.Render(speedXPerSec);
 
-        scoreRender.Init(rhythmGameSettings, this.notePrefab, this.circleNotePrefab, 
-        speedXPerSec, songXmlAsset.text);
-
-        var notesSortedByScore = scoreRender.Render();
         this.playRecorder = new PlayRecorder(notesSortedByScore);
 
         LoadMidiFile();
@@ -89,7 +89,7 @@ public class RhythmGameManager : MonoBehaviour
         //var smfAsset = Resources.Load<TextAsset>("BWV846P_MIDI.mid");
         var song = SmfLite.MidiFileLoader.Load(songMidiAsset.bytes);
         // The tempo of this MIDI file has doubled, so you should specify Bpm * 2.
-        this.midiTrackSequencer = new SmfLite.MidiTrackSequencer(song.tracks[0], song.division, rhythmGameSettings.Bpm * 2);
+        this.midiTrackSequencer = new SmfLite.MidiTrackSequencer(song.tracks[0], song.division, scoreRender.Bpm * 2);
     }
 
     void MoveBoard()
@@ -141,7 +141,7 @@ public class RhythmGameManager : MonoBehaviour
 
     void PlayNote(Pitch pitch)
     {
-        this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, rhythmGameSettings.Bpm, speedXPerSec);
+        this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
     }
 
     private HitAccuracy EvaluateHit(float noteXPosition)

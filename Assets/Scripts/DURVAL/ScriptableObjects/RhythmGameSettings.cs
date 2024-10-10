@@ -6,9 +6,7 @@ using UnityEngine;
 public class RhythmGameSettings : ScriptableObject
 {
     [Header("Note Placement Settings")]
-    public float Bpm = 72; // temp
     public float DurationOneX = 1;
-    public float MeasureDivision = 1;
     public bool OnlyUseFirstStaff = true;
     public Dictionary<HitAccuracy, float> HitWindowsPercentage; //Non timing based, it should add up to 100% all summed up
     public float[] HitWindowsTimings; //Non timing based, it should add up to 100% all summed up
