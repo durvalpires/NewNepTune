@@ -119,6 +119,8 @@ public static class MusicXMLParser
                     Int32.Parse(noteNode.SelectSingleNode("duration").InnerText) : 0,
             Type = noteNode.SelectSingleNode("type") != null ? 
                 noteNode.SelectSingleNode("type").InnerText : "unknown",
+            Stem = noteNode.SelectSingleNode("stem") != null ? 
+                noteNode.SelectSingleNode("stem").InnerText : "unknown",
             Voice = noteNode.SelectSingleNode("voice") != null ? 
                     Int32.Parse(noteNode.SelectSingleNode("voice").InnerText) : 1,
             Staff = noteNode.SelectSingleNode("staff") != null ? 
@@ -140,6 +142,20 @@ public static class MusicXMLParser
                 }
             }
         }
+
+        // var beamNodes = noteNode.SelectNodes("beam");
+        // if (beamNodes != null && beamNodes.Count > 0)
+        // {
+        //     scoreNote.BeamList = new List<Beam>();
+        //     foreach (XmlNode beamNode in beamNodes)
+        //     {
+        //         var beam = GetTie(beamNode);
+        //         if (beam != null)
+        //         {
+        //             scoreNote.TieList.Add(beam.Value);
+        //         }
+        //     }
+        // }
 
         return scoreNote;
     }

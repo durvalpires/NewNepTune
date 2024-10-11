@@ -8,8 +8,9 @@ public struct ScoreNote : IMeasureChild
     public int Duration { get; set; }
     public int Voice { get; set; }
     public string Type { get; set; }
+    public string Stem { get; set; }
     public int? Staff{ get; set; }
     public List<Tie> TieList { get; set; }
-
+    public List<Beam> BeamList { get; set; }
     public bool IsChord { get; set; }
 }

@@ -1028,12 +1028,12 @@ PrefabInstance:
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea,
         type: 3}
       propertyPath: midiNameToPlay
-      value: testing.mid
+      value: BWV846P_MIDI
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea,
         type: 3}
       propertyPath: midiIndexToPlay
-      value: 83
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea,
         type: 3}
@@ -2617,7 +2617,7 @@ MonoBehaviour:
   circleNotePrefab: {fileID: 3969139605018048098, guid: feb5ab79bd13260428e9c29a7d25bb8a,
     type: 3}
   scoreBoard: {fileID: 903766655}
-  songXmlAsset: {fileID: 4900000, guid: 22ff9115769dd4b7c9b768fbb3b0d5ec, type: 3}
+  songXmlAsset: {fileID: 4900000, guid: 54b141a4f4de27c4999a4eb903ad357f, type: 3}
   songMidiAsset: {fileID: 4900000, guid: 8f6a6a55c0ff649c688df4b399c9eecf, type: 3}
   scoreRender: {fileID: 1127685834}
   interactionArea: {fileID: 1110544051}
