@@ -8,6 +8,8 @@ using UnityEngine.Video;
 
 public class RhythmGameManager : MonoBehaviour
 {
+    public UnityEvent<float> OnTempoChanged;
+
     private float speedXPerSec;
 
     [SerializeField] private GameObject notePrefab;
@@ -59,8 +61,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         InputSystem.onDeviceChange += OnDeviceChange;
         scoreRender.Init(rhythmGameSettings, this.notePrefab, this.circleNotePrefab, songXmlAsset.text);
-
-        beatsPerSecond = /*scoreRender.Bpm*/ 57f / 60;
+        OnTempoChanged?.Invoke(scoreRender.Bpm);
+        beatsPerSecond = scoreRender.Bpm / 60;
         secondsPerBeat = 1 / beatsPerSecond;
         speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
 
@@ -70,7 +72,7 @@ public class RhythmGameManager : MonoBehaviour
 
         this.playRecorder = new PlayRecorder(notesSortedByScore);
 
-        LoadMidiFile();
+        //LoadMidiFile();
     }
 
     void Update()

@@ -41,6 +41,11 @@ namespace SimpleMetronome
                 bpm = result;
             }
         }
+
+        public void OnBPMChanged(float bpm)
+        {
+            this.bpm = bpm;
+        }
     }
 
 }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RhythmGameSettings", menuName = "ScriptableObjects/RhythmGameSettings", order = 1)]
+[CreateAssetMenu(fileName = "RhythmGameSettings", menuName = "Scriptable Objects/RhythmGameSettings", order = 1)]
 public class RhythmGameSettings : ScriptableObject
 {
     [Header("Note Placement Settings")]
@@ -32,6 +33,7 @@ public class RhythmGameSettings : ScriptableObject
     public HitEvaluationValue[] BaseScorePerAccuracy;
 
     [Header("Visual and UI Settings")]
+    public List<NotePrefabPair> NotePrefabs;
     public Color correctNoteColor;
     public Color missNoteColor;
     public GameObject hitEffectPrefab;
@@ -78,4 +80,11 @@ public class RhythmGameSettings : ScriptableObject
 
         return 0;
     }
+}
+
+[Serializable]
+public struct NotePrefabPair
+{
+    public string noteType;  // The note type
+    public GameObject prefab;         // The prefab associated with the note
 }

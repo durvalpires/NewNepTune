@@ -9,15 +9,25 @@ public class BouncingBall : MonoBehaviour
     private float timeSinceLastBeat;  // Time counter to track animation progress
     private Vector3 initialPosition;  // Starting position of the ball
 
+    private bool isInitialized = false;
+
     void Start()
     {
         if(ball == null) ball = this.transform;
-        secondsPerBeat = 60f / bpm;   // Calculate the time per beat
         initialPosition = ball.position;  // Save the ball's starting position
+    }
+
+    public void SetBpm(float bpm)
+    {
+        this.bpm = bpm;
+        secondsPerBeat = 60f / bpm;   // Calculate the time per beat
+        isInitialized = true;
     }
 
     void Update()
     {
+        if(!isInitialized) return;
+
         // Update the time since the last beat
         timeSinceLastBeat += Time.deltaTime;
 

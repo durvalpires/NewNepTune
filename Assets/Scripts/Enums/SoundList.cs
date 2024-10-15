@@ -22,6 +22,8 @@ namespace Enums
         //MinigameMusic
         FirstSoundMG,
         SecondSoundMG,
-        ThirdSound
+        ThirdSound,
+        SplashScreenFill,
+        SplashScreenUnfill
     }
 }

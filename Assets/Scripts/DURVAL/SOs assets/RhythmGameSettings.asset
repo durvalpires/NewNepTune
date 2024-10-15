@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f03010d260eef4999e7c14d9d2bcca, type: 3}
   m_Name: RhythmGameSettings
   m_EditorClassIdentifier: 
-  Bpm: 120
   DurationOneX: 1
   OnlyUseFirstStaff: 1
   HitWindowsTimings: []
@@ -34,6 +33,7 @@ MonoBehaviour:
   notePrefabs:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   holdNoteDurationMultiplier: 0
   comboBonusThreshold: 0
   baseScorePerNote: 0
@@ -52,6 +52,20 @@ MonoBehaviour:
     Value: 30
   - HitType: 4
     Value: 0
+  NotePrefabs:
+  - noteType: eigth
+    prefab: {fileID: 0}
+  - noteType: half
+    prefab: {fileID: 0}
+  - noteType: whole
+    prefab: {fileID: 0}
+  - noteType: quarter
+    prefab: {fileID: 0}
+  - noteType: 16th
+    prefab: {fileID: 6540069941908408666, guid: 9de27386d0126457f89d4d84de0dacc2,
+      type: 3}
+  - noteType: rest
+    prefab: {fileID: 0}
   correctNoteColor: {r: 0, g: 0, b: 0, a: 0}
   missNoteColor: {r: 0, g: 0, b: 0, a: 0}
   hitEffectPrefab: {fileID: 0}
