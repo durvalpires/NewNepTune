@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NepTune1024Icon_0: -491863735602578814
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

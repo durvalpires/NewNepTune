@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -12,11 +13,11 @@ public class RhythmGameManager : MonoBehaviour
 
     private float speedXPerSec;
 
-    [SerializeField] private GameObject notePrefab;
-    [SerializeField] private GameObject circleNotePrefab;
+    // [SerializeField] private GameObject notePrefab;
+    // [SerializeField] private GameObject circleNotePrefab;
     [SerializeField] private GameObject scoreBoard;
     [SerializeField] private TextAsset songXmlAsset;
-    [SerializeField] private TextAsset songMidiAsset;
+    //[SerializeField] private TextAsset songMidiAsset;
     [SerializeField] private MusicScoreRender scoreRender;
     [SerializeField] private Transform interactionArea;
 
@@ -28,15 +29,19 @@ public class RhythmGameManager : MonoBehaviour
 
     private PlayRecorder playRecorder;
 
-    private SmfLite.MidiTrackSequencer midiTrackSequencer;
+    //private SmfLite.MidiTrackSequencer midiTrackSequencer;
 
     private float noteMaxDistanceToInteractionBar = 0;
 
     private RhythmGameScoreController scoreController;
 
+    [SerializeField] private AudioSource trackAudioSource;
+
     // Assuming you have tempo in BPM
     float beatsPerSecond;
     float secondsPerBeat;
+
+    private bool isPlaying = false;
 
     private Dictionary<string, NoteController> noteInteractableDic = new Dictionary<string, NoteController>()
     {
@@ -60,8 +65,8 @@ public class RhythmGameManager : MonoBehaviour
     void Start()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
-        scoreRender.Init(rhythmGameSettings, this.notePrefab, this.circleNotePrefab, songXmlAsset.text);
-        OnTempoChanged?.Invoke(scoreRender.Bpm);
+        scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
+        
         beatsPerSecond = scoreRender.Bpm / 60;
         secondsPerBeat = 1 / beatsPerSecond;
         speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
@@ -73,6 +78,8 @@ public class RhythmGameManager : MonoBehaviour
         this.playRecorder = new PlayRecorder(notesSortedByScore);
 
         //LoadMidiFile();
+        OnTempoChanged?.Invoke(scoreRender.Bpm);
+        //MoveBoard();
     }
 
     void Update()
@@ -82,21 +89,38 @@ public class RhythmGameManager : MonoBehaviour
         //    // Adjusting the playback position of a MIDI file
         //    this.DispatchEvents(this.midiTrackSequencer.Start(0.2f));
         //}
-        MoveBoard();
+        //MoveBoard();
         //this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
     }
 
-    private void LoadMidiFile()
+    public void StartPlaying()
     {
-        //var smfAsset = Resources.Load<TextAsset>("BWV846P_MIDI.mid");
-        var song = SmfLite.MidiFileLoader.Load(songMidiAsset.bytes);
-        // The tempo of this MIDI file has doubled, so you should specify Bpm * 2.
-        this.midiTrackSequencer = new SmfLite.MidiTrackSequencer(song.tracks[0], song.division, scoreRender.Bpm * 2);
+        Debug.LogWarning("StartPlaying");
+        isPlaying = true;
+        trackAudioSource.Play();
     }
+
+    private void FixedUpdate()
+    {
+        if(isPlaying)
+        {
+            //TODO: Start playing the midi/mp3 file
+            //if(!trackAudioSource.isPlaying) trackAudioSource.Play();
+            MoveBoard();
+        }
+    }
+
+    // private void LoadMidiFile()
+    // {
+    //     //var smfAsset = Resources.Load<TextAsset>("BWV846P_MIDI.mid");
+    //     var song = SmfLite.MidiFileLoader.Load(songMidiAsset.bytes);
+    //     // The tempo of this MIDI file has doubled, so you should specify Bpm * 2.
+    //     this.midiTrackSequencer = new SmfLite.MidiTrackSequencer(song.tracks[0], song.division, scoreRender.Bpm * 2);
+    // }
 
     void MoveBoard()
     {
-        var addX = speedXPerSec * Time.deltaTime;
+        var addX = speedXPerSec * Time.fixedDeltaTime;
         var currentBoardPosition = this.scoreBoard.transform.position;
         this.scoreBoard.transform.position -= this.scoreBoard.transform.right * addX;
     }

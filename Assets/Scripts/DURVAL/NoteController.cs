@@ -36,28 +36,28 @@ public class NoteController : MonoBehaviour
         //this.playNoteObj = this.gameObject.transform.Find("PlayNotePrefab");
         this.playNoteObj = transform;
 
-        if (this.Note.Type == "16th")
-        {
-            //this.tableObj.transform.localScale = new Vector3(ScaleFor16th, ScaleFor16th, ScaleFor16th);
-            //this.playNoteObj.transform.localScale = new Vector3(ScaleFor16th, ScaleFor16th, ScaleFor16th);
-        }
-        else
-        {
-            //this.transform.localPosition = new Vector3(this.X /*+ (this.Width / 2)*/,
-            //    this.transform.localPosition.y,
-            //    this.transform.localPosition.z);
+        // if (this.Note.Type == "16th")
+        // {
+        //     //this.tableObj.transform.localScale = new Vector3(ScaleFor16th, ScaleFor16th, ScaleFor16th);
+        //     //this.playNoteObj.transform.localScale = new Vector3(ScaleFor16th, ScaleFor16th, ScaleFor16th);
+        // }
+        // else
+        // {
+        //     //this.transform.localPosition = new Vector3(this.X /*+ (this.Width / 2)*/,
+        //     //    this.transform.localPosition.y,
+        //     //    this.transform.localPosition.z);
 
-            //this.tableObj.transform.localScale = new Vector3(this.Width,
-            //    this.tableObj.transform.localScale.y,
-            //    this.tableObj.transform.localScale.z);
+        //     //this.tableObj.transform.localScale = new Vector3(this.Width,
+        //     //    this.tableObj.transform.localScale.y,
+        //     //    this.tableObj.transform.localScale.z);
 
-            Debug.Log("not 16th: " + this.Width + " - " + this.playNoteObj.transform.localScale.x);
+        //     Debug.Log("not 16th: " + this.Width + " - " + this.playNoteObj.transform.localScale.x);
 
-            this.playNoteObj.transform.localScale = new Vector3(this.Width * 
-                this.playNoteObj.transform.localScale.x,
-                this.playNoteObj.transform.localScale.y,
-                this.playNoteObj.transform.localScale.z);
-        }
+        //     this.playNoteObj.transform.localScale = new Vector3(this.Width * 
+        //         this.playNoteObj.transform.localScale.x,
+        //         this.playNoteObj.transform.localScale.y,
+        //         this.playNoteObj.transform.localScale.z);
+        // }
 
         this.SetColor();
     }

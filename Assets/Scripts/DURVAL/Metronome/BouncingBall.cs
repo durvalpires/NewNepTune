@@ -24,7 +24,7 @@ public class BouncingBall : MonoBehaviour
         isInitialized = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(!isInitialized) return;
 

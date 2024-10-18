@@ -24,8 +24,6 @@ public class MusicScoreRender : MonoBehaviour {
     private bool _onlyFirstStaff;
     private ColorSettings _colorSettings;
     private RhythmGameSettings gameSettings;
-    private GameObject _notePrefab;
-    private GameObject _circleNotePrefab;
 
     private Score musicScore;
     public float Bpm => musicScore.Tempo ?? 120;
@@ -48,12 +46,9 @@ public class MusicScoreRender : MonoBehaviour {
         Debug.Log("OneNoteY" + OneNoteY);
     }
 
-    public void Init(RhythmGameSettings gameSettings, GameObject notePrefab,
-        GameObject circleNotePrefab, string musicXMLText)
+    public void Init(RhythmGameSettings gameSettings, string musicXMLText)
     {
         this._colorSettings = gameSettings.ColorSettings;
-        this._notePrefab = notePrefab;
-        this._circleNotePrefab = circleNotePrefab;
         this._durationOneX = gameSettings.DurationOneX;
         this._onlyFirstStaff = gameSettings.OnlyUseFirstStaff;
 
@@ -176,6 +171,7 @@ public class MusicScoreRender : MonoBehaviour {
 
     GameObject InstantiateNote(float positionX, float positionY, float willConsumedTimeUnit, ScoreNote note)
     {
+        Debug.Log("InstantiateNote: " + note.Pitch?.Octave + " " + note.Pitch?.Step + " " + note.Type);
         GameObject noteObj = Instantiate<GameObject>(
             this.GetPrafabByNote(note),
             new Vector3(0, 0, 0),
@@ -199,11 +195,16 @@ public class MusicScoreRender : MonoBehaviour {
 
     GameObject GetPrafabByNote(ScoreNote note)
     {
-        if (note.Type == "16th")
-        {
-            return this._circleNotePrefab;
-        }
+        // if (note.Type == "16th")
+        // {
+        //     return this._circleNotePrefab;
+        // }
 
-        return this._notePrefab;
+        // return this._notePrefab;
+
+        if(note.IsRest)
+            return gameSettings.GetPrefabForNoteType("rest");
+        else
+            return gameSettings.GetPrefabForNoteType(note.Type);
     }
 }

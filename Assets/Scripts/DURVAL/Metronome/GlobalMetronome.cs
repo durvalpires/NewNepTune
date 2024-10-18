@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace QuantizedLoopStation
 {
@@ -11,7 +12,7 @@ namespace QuantizedLoopStation
         public static event GlobalMetronomeEvent subTic;
         public static GlobalMetronome instance;
 
-        [SerializeField] private float bpm = 100.0f;
+        private float bpm = 80.0f;
         private float beatInvertal;
         public float BeatInvertal => beatInvertal;
         private float beatTimer;
@@ -29,6 +30,13 @@ namespace QuantizedLoopStation
 
         private AudioSource audioSource;
         public AudioClip[] metronomeClip;
+
+        private bool isInitialized = false;
+
+        [SerializeField] private RhythmGameSettings rhythmGameSettings;
+        public UnityEvent OnPreCountdownDone;
+        private bool preCountdownDone = false;
+
 
         //[SerializeField] private LoopStation curLoopStation;
         private void Awake()
@@ -68,6 +76,7 @@ namespace QuantizedLoopStation
 
         private void FixedUpdate()
         {
+            if(!isInitialized) return;
             beatInvertal = 60f / bpm;
 
             // beatTimer += Time.fixedDeltaTime;
@@ -93,7 +102,11 @@ namespace QuantizedLoopStation
                 subTic(subBeatCount);
             }
 
-
+            if(!preCountdownDone && beatCount == rhythmGameSettings.beatsBeforeStart+1)
+            {
+                OnPreCountdownDone?.Invoke();
+                preCountdownDone = true;
+            }
         }
 
         // float deltaTime;
@@ -117,6 +130,12 @@ namespace QuantizedLoopStation
             }
         }
 
+        public void SetBPM(float bpm)
+        {
+            this.bpm = bpm;
+            isInitialized = true;
+        }
+
         // public void AddLoopNote(int _instrumentID, int _noteID)
         // {
         //     if (!curLoopStation.IsNoteAddable()) return;
@@ -125,6 +144,7 @@ namespace QuantizedLoopStation
 
         private void OnTic(int beat)
         {
+            Debug.Log("OnTic: " + beat);
             if (beat % quantizeDegree == 0)
             {
                 audioSource.PlayOneShot(metronomeClip[0], 1.0f);

@@ -26,6 +26,7 @@ MonoBehaviour:
     - HitType: 3
       Value: 100
     TimedSettings: []
+  beatsBeforeStart: 4
   noteSpeed: 0
   accuracyThreshold: 0
   difficultyMultiplier: 0
@@ -53,19 +54,24 @@ MonoBehaviour:
   - HitType: 4
     Value: 0
   NotePrefabs:
-  - noteType: eigth
-    prefab: {fileID: 0}
+  - noteType: eighth
+    prefab: {fileID: 6540069941908408666, guid: d17d1391e8e7f45308c4adf9e943af36,
+      type: 3}
   - noteType: half
-    prefab: {fileID: 0}
+    prefab: {fileID: 6540069941908408666, guid: 5d0e7b0834c39491ca97ccad86929c53,
+      type: 3}
   - noteType: whole
-    prefab: {fileID: 0}
+    prefab: {fileID: 6540069941908408666, guid: 21bf81f892c174d6bb8c3dcde933b540,
+      type: 3}
   - noteType: quarter
-    prefab: {fileID: 0}
-  - noteType: 16th
     prefab: {fileID: 6540069941908408666, guid: 9de27386d0126457f89d4d84de0dacc2,
       type: 3}
+  - noteType: 16th
+    prefab: {fileID: 6540069941908408666, guid: 052bccfcd14cf4c4dbc7dbcd941dac0d,
+      type: 3}
   - noteType: rest
-    prefab: {fileID: 0}
+    prefab: {fileID: 6540069941908408666, guid: dcd7d28d45f7e42e3b202f4bf808dcb1,
+      type: 3}
   correctNoteColor: {r: 0, g: 0, b: 0, a: 0}
   missNoteColor: {r: 0, g: 0, b: 0, a: 0}
   hitEffectPrefab: {fileID: 0}

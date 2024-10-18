@@ -14,6 +14,7 @@ public class RhythmGameSettings : ScriptableObject
     public HitAccuracySettings HitEvaluationSettings;
 
     [Header("Gameplay Settings")]
+    public int beatsBeforeStart = 4;
     public float noteSpeed;
     public float accuracyThreshold;
     public float difficultyMultiplier;
@@ -79,6 +80,20 @@ public class RhythmGameSettings : ScriptableObject
         }
 
         return 0;
+    }
+
+    public GameObject GetPrefabForNoteType(string noteType)
+    {
+        foreach (var pair in NotePrefabs)
+        {
+            if (pair.noteType.Equals(noteType, StringComparison.OrdinalIgnoreCase))
+            {
+                return pair.prefab;
+            }
+        }
+
+        Debug.LogWarning($"Prefab for note type '{noteType}' not found.");
+        return null;
     }
 }
 
