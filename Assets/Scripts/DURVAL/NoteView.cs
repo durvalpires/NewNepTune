@@ -9,5 +9,6 @@ public struct NoteView
     public Pitch Pitch;
     public float beatNumber;
     public float noteTimeInSeconds;
+    public bool lastNote;
 }
 

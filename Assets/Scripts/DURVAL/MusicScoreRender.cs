@@ -124,7 +124,7 @@ public class MusicScoreRender : MonoBehaviour {
                         {
                             var noteObj = InstantiateNote(xCursor, y, willConsumedTimeUnit, note);
                             var noteView = new NoteView() { GameObject = noteObj, X = xCursor, Pitch = note.Pitch.Value,
-                                beatNumber = currentBeat, noteTimeInSeconds = currentBeat / Bpm * 60 };
+                                beatNumber = currentBeat, noteTimeInSeconds = currentBeat / Bpm * 60, lastNote = false };
                             notesSortedByScore.Add(noteView);
 
                             //if (note.Staff != 1 && _onlyFirstStaff)

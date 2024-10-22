@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -119,6 +120,18 @@ public class RhythmGameManager : MonoBehaviour
         //}
         //MoveBoard();
         //this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
+        if(isPlaying){
+            if(!trackAudioSource.isPlaying){
+                StartCoroutine(CloseLevel());
+            }
+        }
+
+    }
+
+    private IEnumerator CloseLevel()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Debug.LogWarning("CloseLevelllllllllll");
     }
 
     public void StartPlaying()
@@ -199,8 +212,9 @@ public class RhythmGameManager : MonoBehaviour
         this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
     }
 
-    private HitAccuracy EvaluateHit(float noteXPosition)
+    private HitAccuracy EvaluateHit(GameObject noteObj)
     {
+        var noteXPosition = noteObj.transform.position.x;
         float currentDistance = Mathf.Abs(noteXPosition - 
             interactionArea.transform.position.x);
 
@@ -214,6 +228,10 @@ public class RhythmGameManager : MonoBehaviour
                 result = hitType.HitType;
                 break;
             }
+        }
+
+        if(result != HitAccuracy.Miss){
+            noteObj.GetComponent<NoteController>().SetState(NoteState.Hit);
         }
 
         keyPressTxtFeedback?.Invoke(result.ToString());
@@ -238,20 +256,13 @@ public class RhythmGameManager : MonoBehaviour
             var accuracy = HitAccuracy.Miss;
             if (noteInteractableDic[note] != null)
             {
-                //keyPressTxtFeedback?.Invoke("ACERTOU CARALHOOOOO");
-                //Debug.LogWarning("ACERTOU CARLHOOOOO");
-                accuracy = EvaluateHit(noteInteractableDic[note].gameObject.transform.position.x);
-                //scoreController.AwardScore(accuracy);
+                accuracy = EvaluateHit(noteInteractableDic[note].gameObject);
                 noteInteractableDic[note] = null;
             }
             else
             {
 
                 accuracy = HitAccuracy.Miss;
-                //scoreController.AwardScore(HitAccuracy.Miss);
-                
-                //keyPressTxtFeedback?.Invoke("BATEU NA ROCHA");
-                //Debug.LogWarning("BATEU NA ROCHA");
             }
             ProcessScore(accuracy);
             keyPressTxtFeedback?.Invoke(accuracy.ToString());
