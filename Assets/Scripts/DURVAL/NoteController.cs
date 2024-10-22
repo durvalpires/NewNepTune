@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum NoteState
+{
+    Normal,
+    Interactable,
+    Miss,
+    Hit
+}
+
 public class NoteController : MonoBehaviour
 {
     //Transform tableObj;
@@ -21,6 +29,8 @@ public class NoteController : MonoBehaviour
     public ColorSettings ColorSettings { get; set; }
 
     public static float ScaleFor16th = 1;
+
+    public NoteState State { get; set; } = NoteState.Normal;
 
     [SerializeField]
     private ScoreNote note;
@@ -59,10 +69,11 @@ public class NoteController : MonoBehaviour
         //         this.playNoteObj.transform.localScale.z);
         // }
 
-        this.SetColor();
+        //this.SetColorByPitch();
+        this.SetMusicSheetColor();
     }
 
-    void SetColor()
+    void SetColorByPitch()
     {
         switch (this.Note.Pitch?.Step)
         {
@@ -92,6 +103,29 @@ public class NoteController : MonoBehaviour
         }
     }
 
+    void SetColorByState(){
+        switch (this.State)
+        {
+            case NoteState.Normal:
+                this.SetColor(ColorSettings.NormalColor);
+                break;
+            case NoteState.Interactable:
+                this.SetColor(ColorSettings.InteractableColor);
+                break;
+            case NoteState.Miss:
+                this.SetColor(ColorSettings.MissColor);
+                break;
+            case NoteState.Hit:
+                this.SetColor(ColorSettings.HitColor);
+                break;
+        }
+    }
+
+    public void SetState(NoteState state){
+        this.State = state;
+        this.SetColorByState();
+    }
+
     private void SetColor(Color noteColor)
     {
         //var renderer = this.playNoteObj.GetComponent<Renderer>();
@@ -100,74 +134,96 @@ public class NoteController : MonoBehaviour
         //this.playNoteObj.GetComponent<Image>().color = noteColor;
     }
 
+    private void SetMusicSheetColor(){
+        this.playNoteObj.GetComponent<SpriteRenderer>().color = ColorSettings.NormalColor;
+    }
+
     public void AddWidth(float width)
     {
         this.Width += width;
     }
 
-    public void StartAnimation(float divisionOneX, float tempo, float speedXPerSec)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (Note.Type == "16th")
+        if (other.CompareTag("InteractionBar"))
         {
-            StartCoroutine(this.AnimatedBarFor16th(divisionOneX, tempo, speedXPerSec));
+            SetState(NoteState.Interactable);
         }
-        else
-        {
-            StartCoroutine(this.AnimatedBar(divisionOneX, tempo, speedXPerSec));
-        }
-        Debug.Log("2");
-
     }
 
-    float GetThisObjTime(float durationOneX, float bpm)
+    void OnTriggerExit2D(Collider2D other)
     {
-        //var objDuration = this.tableObj.transform.localScale.x / durationOneX;
-        var objDuration = this.playNoteObj.transform.localScale.x / durationOneX;
-        // The duration of this object is calculated by multiplying the time with 4 
-        // (assuming 16th note duration) and then multiplying it by the duration.
-        return 60 / bpm / 4 * objDuration;
-        Debug.Log("3");
-
-    }
-
-    IEnumerator AnimatedBar(float durationOneX, float bpm, float speedXPerSec)
-    {
-        var objTime = GetThisObjTime(durationOneX, bpm);
-        var restTime = objTime;
-        var originalWidth = this.playNoteObj.transform.localScale.x;
-        var originalHeight = this.playNoteObj.transform.localScale.y;
-
-        while (restTime > 0)
+        if (other.CompareTag("InteractionBar"))
         {
-            var width = restTime / objTime * originalWidth;
-
-            var currentScale = this.playNoteObj.transform.localScale;
-            this.playNoteObj.transform.localScale = new Vector3(width, originalHeight, currentScale.z);
-
-            restTime -= Time.deltaTime;
-            yield return null;
+            if(State == NoteState.Interactable){
+                SetState(NoteState.Miss);
+            }
         }
-        Debug.Log("4");
-
-        Destroy(this.playNoteObj.gameObject);
     }
 
-    IEnumerator AnimatedBarFor16th(float durationOneX, float bpm, float speedXPerSec)
-    {
-        var objTime = GetThisObjTime(durationOneX, bpm);
-        var restTime = objTime;
-        while (restTime > 0)
-        {
-            var size = restTime / objTime * ScaleFor16th;
+    // public void StartAnimation(float divisionOneX, float tempo, float speedXPerSec)
+    // {
+    //     if (Note.Type == "16th")
+    //     {
+    //         StartCoroutine(this.AnimatedBarFor16th(divisionOneX, tempo, speedXPerSec));
+    //     }
+    //     else
+    //     {
+    //         StartCoroutine(this.AnimatedBar(divisionOneX, tempo, speedXPerSec));
+    //     }
+    //     Debug.Log("2");
 
-            var currentScale = this.playNoteObj.transform.localScale;
-            this.playNoteObj.transform.localScale = new Vector3(size, size, size);
+    // }
 
-            restTime -= Time.deltaTime;
-            yield return null;
-        }
-        Destroy(this.playNoteObj.gameObject);
-        Debug.Log("5");
+    // float GetThisObjTime(float durationOneX, float bpm)
+    // {
+    //     //var objDuration = this.tableObj.transform.localScale.x / durationOneX;
+    //     var objDuration = this.playNoteObj.transform.localScale.x / durationOneX;
+    //     // The duration of this object is calculated by multiplying the time with 4 
+    //     // (assuming 16th note duration) and then multiplying it by the duration.
+    //     return 60 / bpm / 4 * objDuration;
+    //     Debug.Log("3");
 
-    }
+    // }
+
+    // IEnumerator AnimatedBar(float durationOneX, float bpm, float speedXPerSec)
+    // {
+    //     var objTime = GetThisObjTime(durationOneX, bpm);
+    //     var restTime = objTime;
+    //     var originalWidth = this.playNoteObj.transform.localScale.x;
+    //     var originalHeight = this.playNoteObj.transform.localScale.y;
+
+    //     while (restTime > 0)
+    //     {
+    //         var width = restTime / objTime * originalWidth;
+
+    //         var currentScale = this.playNoteObj.transform.localScale;
+    //         this.playNoteObj.transform.localScale = new Vector3(width, originalHeight, currentScale.z);
+
+    //         restTime -= Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     Debug.Log("4");
+
+    //     Destroy(this.playNoteObj.gameObject);
+    // }
+
+    // IEnumerator AnimatedBarFor16th(float durationOneX, float bpm, float speedXPerSec)
+    // {
+    //     var objTime = GetThisObjTime(durationOneX, bpm);
+    //     var restTime = objTime;
+    //     while (restTime > 0)
+    //     {
+    //         var size = restTime / objTime * ScaleFor16th;
+
+    //         var currentScale = this.playNoteObj.transform.localScale;
+    //         this.playNoteObj.transform.localScale = new Vector3(size, size, size);
+
+    //         restTime -= Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     Destroy(this.playNoteObj.gameObject);
+    //     Debug.Log("5");
+
+    // }
 }

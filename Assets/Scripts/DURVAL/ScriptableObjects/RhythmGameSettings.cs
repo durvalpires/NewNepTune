@@ -18,7 +18,7 @@ public class RhythmGameSettings : ScriptableObject
     public float noteSpeed;
     public float accuracyThreshold;
     public float difficultyMultiplier;
-    public float delayBeforeFirstNote = 3;
+    public float delayBeforeLevelStart = 3;
 
     [Header("Note Settings")]
     public List<GameObject> notePrefabs;
@@ -35,8 +35,10 @@ public class RhythmGameSettings : ScriptableObject
 
     [Header("Visual and UI Settings")]
     public List<NotePrefabPair> NotePrefabs;
-    public Color correctNoteColor;
-    public Color missNoteColor;
+    // public Color correctNoteColor;
+    // public Color missNoteColor;
+    // public Color interactableNoteColor;
+    // public Color normalNoteColor;
     public GameObject hitEffectPrefab;
     public float hitEffectDuration;
     public Sprite backgroundSprite;

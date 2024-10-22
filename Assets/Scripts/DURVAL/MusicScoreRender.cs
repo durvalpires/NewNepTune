@@ -77,7 +77,7 @@ public class MusicScoreRender : MonoBehaviour {
         int currentBeat = 1;
         bool noNeedToDisplayForTie = false;
         //float xCursor = initialNoteSpawningPoint.position.x + gameSettings.delayBeforeFirstNote * speedXPerSec + 1;
-        float xCursor = 0 + gameSettings.delayBeforeFirstNote * speedXPerSec;
+        float xCursor = -gameSettings.DurationOneX + gameSettings.beatsBeforeStart * speedXPerSec;
         foreach (var part in musicScore.ScoreParts)
         {
             foreach (var measure in part.MeasureList)

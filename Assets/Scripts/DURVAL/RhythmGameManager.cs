@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -42,6 +43,7 @@ public class RhythmGameManager : MonoBehaviour
     float secondsPerBeat;
 
     private bool isPlaying = false;
+    private bool isLevelStarted = false;
 
     private Dictionary<string, NoteController> noteInteractableDic = new Dictionary<string, NoteController>()
     {
@@ -64,7 +66,7 @@ public class RhythmGameManager : MonoBehaviour
 
     void Start()
     {
-        InputSystem.onDeviceChange += OnDeviceChange;
+        // InputSystem.onDeviceChange += OnDeviceChange;
         scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
         
         beatsPerSecond = scoreRender.Bpm / 60;
@@ -75,11 +77,37 @@ public class RhythmGameManager : MonoBehaviour
 
         var notesSortedByScore = scoreRender.Render(speedXPerSec);
 
-        this.playRecorder = new PlayRecorder(notesSortedByScore);
+        // this.playRecorder = new PlayRecorder(notesSortedByScore);
+
+        // //LoadMidiFile();
+        // OnTempoChanged?.Invoke(scoreRender.Bpm);
+        //MoveBoard();
+
+        StartCoroutine(DelayedStart());
+    }
+
+    private IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(rhythmGameSettings.delayBeforeLevelStart);
+
+        // InputSystem.onDeviceChange += OnDeviceChange;
+        // scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
+        
+        // beatsPerSecond = scoreRender.Bpm / 60;
+        // secondsPerBeat = 1 / beatsPerSecond;
+        // speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
+
+        // scoreController = new RhythmGameScoreController(rhythmGameSettings);
+
+        // var notesSortedByScore = scoreRender.Render(speedXPerSec);
+
+        // this.playRecorder = new PlayRecorder(notesSortedByScore);
 
         //LoadMidiFile();
         OnTempoChanged?.Invoke(scoreRender.Bpm);
+        isLevelStarted = true;
         //MoveBoard();
+        yield return null;
     }
 
     void Update()
@@ -102,12 +130,13 @@ public class RhythmGameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isPlaying)
+        if(isLevelStarted)
         {
             //TODO: Start playing the midi/mp3 file
             //if(!trackAudioSource.isPlaying) trackAudioSource.Play();
             MoveBoard();
         }
+        
     }
 
     // private void LoadMidiFile()

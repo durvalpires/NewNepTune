@@ -12,6 +12,11 @@ public class ColorSettings
     public NoteColor A;
     public NoteColor B;
 
+    public Color InteractableColor;
+    public Color NormalColor;
+    public Color MissColor;
+    public Color HitColor;
+
     //public Dictionary<string, NoteColor> NoteColorDic;
 
     //public ColorSettings()

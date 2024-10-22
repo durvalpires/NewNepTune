@@ -30,7 +30,7 @@ MonoBehaviour:
   noteSpeed: 0
   accuracyThreshold: 0
   difficultyMultiplier: 0
-  delayBeforeFirstNote: 0
+  delayBeforeLevelStart: 3
   notePrefabs:
   - {fileID: 0}
   - {fileID: 0}
@@ -38,8 +38,8 @@ MonoBehaviour:
   holdNoteDurationMultiplier: 0
   comboBonusThreshold: 0
   baseScorePerNote: 0
-  comboThreshold: 10
-  comboMultiplierStep: 0
+  comboThreshold: 2
+  comboMultiplierStep: 1
   missPenalty: 0
   hitAccuracyBonus: 0
   BaseScorePerAccuracy:
@@ -72,8 +72,10 @@ MonoBehaviour:
   - noteType: rest
     prefab: {fileID: 6540069941908408666, guid: dcd7d28d45f7e42e3b202f4bf808dcb1,
       type: 3}
-  correctNoteColor: {r: 0, g: 0, b: 0, a: 0}
-  missNoteColor: {r: 0, g: 0, b: 0, a: 0}
+  correctNoteColor: {r: 0.20392157, g: 0.83137256, b: 0.8392157, a: 1}
+  missNoteColor: {r: 0.7169812, g: 0.091313645, b: 0.091313645, a: 1}
+  interactableNoteColor: {r: 0.6792453, g: 0.2991621, b: 0, a: 1}
+  normalNoteColor: {r: 0, g: 0, b: 0, a: 1}
   hitEffectPrefab: {fileID: 0}
   hitEffectDuration: 0
   backgroundSprite: {fileID: 0}
@@ -92,6 +94,10 @@ MonoBehaviour:
       MainColor: {r: 0.8584906, g: 0.6216027, b: 0.15118067, a: 1}
     B:
       MainColor: {r: 0.47480527, g: 0.14951934, b: 0.8490566, a: 1}
+    InteractableColor: {r: 0.6784314, g: 0.29803923, b: 0, a: 1}
+    NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    MissColor: {r: 0.7176471, g: 0.09019608, b: 0.09019608, a: 1}
+    HitColor: {r: 0.20392157, g: 0.83137256, b: 0.8392157, a: 1}
   MusicalScoreLineDistance: 0.5
   backgroundMusic: {fileID: 0}
   hitSoundEffect: {fileID: 0}
