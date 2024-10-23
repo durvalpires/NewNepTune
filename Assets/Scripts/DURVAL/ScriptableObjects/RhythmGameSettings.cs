@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RhythmGameSettings", menuName = "Scriptable Objects/RhythmGameSettings", order = 1)]
