@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class LevelsInitController : MonoBehaviour
 {
     [SerializeField] private Image background;
+    
+    
+    [SerializeField] private WorldSectionsUnityEvent onInit;
     private void Start()
     {
         var data = TempDataStorage.GetData<AllWorldsSO.WorldSections>("Section");
@@ -14,5 +17,7 @@ public class LevelsInitController : MonoBehaviour
             background.sprite = sprite;
         else
             Debug.LogError("Sprite not found in Resources folder!");
+        
+        onInit.Invoke(data);
     }
 }
