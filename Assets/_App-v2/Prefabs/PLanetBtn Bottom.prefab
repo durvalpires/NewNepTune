@@ -12,7 +12,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9,
+      objectReference: {fileID: 21300000, guid: 07ef7a242585f451f9c9ab4384daad99,
         type: 3}
     - target: {fileID: 2458869688420117663, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
@@ -122,7 +122,7 @@ PrefabInstance:
     - target: {fileID: 8155012164354477193, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
       propertyPath: m_Name
-      value: PLanetBtn (1) Variant
+      value: PLanetBtn Bottom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

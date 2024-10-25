@@ -12,6 +12,181 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c25109e301e45eb8fc76f9c1640076, type: 3}
   m_Name: AllWorldsSO
   m_EditorClassIdentifier: 
-  worlds:
-  - {fileID: 11400000, guid: 8d8e45adee2674eecbf5c70c30d77eb5, type: 2}
-  - {fileID: 11400000, guid: 1a31b7251d9e84a7aad686391444af37, type: 2}
+  worldsData:
+  - title: World 1
+    id: 14446415-2998-4068-bc5b-1d9517bc76d1
+    worldSprite: {fileID: 21300000, guid: 220cbc0d177f947e1a7464461dba7a6b, type: 3}
+    sections:
+    - title: The Middle C
+      id: ec39204b-89e2-4de7-81df-76bf404ac2ab
+      image: {fileID: 21300000, guid: b108b2bb11d69914b8e506c47a98fa76, type: 3}
+      sectionBGImageName: SectionsBG/Neptune_background_1
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: eaae3dde-d1c8-4195-adfe-81345970290a
+      image: {fileID: 21300000, guid: 3c6e971da175424499c2d4885a8b7f05, type: 3}
+      sectionBGImageName: SectionsBG/Neptune_background_2
+      levels: []
+    - title: Finale
+      id: ce2a8a5c-648a-439a-b49f-d65848c4256a
+      image: {fileID: 21300000, guid: 64a6c1db07af5df4a8d9624a67318748, type: 3}
+      sectionBGImageName: SectionsBG/Neptune_background_3
+      levels: []
+  - title: World 2
+    id: bb33b06e-835e-40d5-b9c1-d9c666c7b410
+    worldSprite: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9, type: 3}
+    sections:
+    - title: The Middle D
+      id: 14ca8e47-54a9-4a1b-a1e8-5ff20484c541
+      image: {fileID: 21300000, guid: 60430a54cb799bb4a8ce1c871dffa88e, type: 3}
+      sectionBGImageName: 
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: 9e3bfba8-7c31-4905-b9d2-9b76fde79b39
+      image: {fileID: 21300000, guid: e9268e684950e8642b3a5a713ef152a9, type: 3}
+      sectionBGImageName: 
+      levels: []
+    - title: Finale
+      id: b541c60f-5f53-4aa0-9a71-9804abdb2ba0
+      image: {fileID: 21300000, guid: 65bebc8ccfe893847b0ffb2dfb698bc1, type: 3}
+      sectionBGImageName: 
+      levels: []
+  - title: World 2
+    id: 60c6969e-2704-420c-943f-22f603e3804b
+    worldSprite: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9, type: 3}
+    sections:
+    - title: The Middle D
+      id: 0be99162-1e43-46c1-8ae3-6062843c1429
+      image: {fileID: 21300000, guid: 60430a54cb799bb4a8ce1c871dffa88e, type: 3}
+      sectionBGImageName: 
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: bb284451-a0c8-46f2-882e-09bd07b4e2fd
+      image: {fileID: 21300000, guid: e9268e684950e8642b3a5a713ef152a9, type: 3}
+      sectionBGImageName: 
+      levels: []
+    - title: Finale
+      id: ab93cfb3-6a6c-4de8-96d7-c4ea7ff757e8
+      image: {fileID: 21300000, guid: 65bebc8ccfe893847b0ffb2dfb698bc1, type: 3}
+      sectionBGImageName: 
+      levels: []
+  - title: World 2
+    id: a60ba50f-9540-4929-b6dd-369f89779740
+    worldSprite: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9, type: 3}
+    sections:
+    - title: The Middle D
+      id: 0c282e81-9e11-45b8-a748-5965b04168cb
+      image: {fileID: 21300000, guid: 60430a54cb799bb4a8ce1c871dffa88e, type: 3}
+      sectionBGImageName: 
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: 7ed690c1-19a0-4753-bf10-41bc01fcb6c6
+      image: {fileID: 21300000, guid: e9268e684950e8642b3a5a713ef152a9, type: 3}
+      sectionBGImageName: 
+      levels: []
+    - title: Finale
+      id: 3f516c37-7a2a-4235-89cd-9e316b53b2bc
+      image: {fileID: 21300000, guid: 65bebc8ccfe893847b0ffb2dfb698bc1, type: 3}
+      sectionBGImageName: 
+      levels: []
+  - title: World 2
+    id: 4bae9659-e92f-4c15-8a00-ba5342374ef9
+    worldSprite: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9, type: 3}
+    sections:
+    - title: The Middle D
+      id: 07f45a0d-bfef-4035-b4c3-d33083361a3f
+      image: {fileID: 21300000, guid: 60430a54cb799bb4a8ce1c871dffa88e, type: 3}
+      sectionBGImageName: 
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: 307e7375-ff22-4102-9376-005a0c21be7f
+      image: {fileID: 21300000, guid: e9268e684950e8642b3a5a713ef152a9, type: 3}
+      sectionBGImageName: 
+      levels: []
+    - title: Finale
+      id: 91078ec8-40b4-41dd-bb0e-ddefb9bb60b3
+      image: {fileID: 21300000, guid: 65bebc8ccfe893847b0ffb2dfb698bc1, type: 3}
+      sectionBGImageName: 
+      levels: []
+  - title: World 2
+    id: e3b36895-919c-48ff-bffd-a45f8e43b76b
+    worldSprite: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9, type: 3}
+    sections:
+    - title: The Middle D
+      id: 62c83b4a-9d1a-4b12-9d37-87c028cc8b84
+      image: {fileID: 21300000, guid: 60430a54cb799bb4a8ce1c871dffa88e, type: 3}
+      sectionBGImageName: 
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: de9aad86-e354-4c93-acb0-cc74fdcf316f
+      image: {fileID: 21300000, guid: e9268e684950e8642b3a5a713ef152a9, type: 3}
+      sectionBGImageName: 
+      levels: []
+    - title: Finale
+      id: b5dd3f78-7991-48dc-9411-ce1ffbc5a833
+      image: {fileID: 21300000, guid: 65bebc8ccfe893847b0ffb2dfb698bc1, type: 3}
+      sectionBGImageName: 
+      levels: []
+  - title: World 2
+    id: 2faaedd0-4a5c-4c4d-8157-713b00b819e6
+    worldSprite: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9, type: 3}
+    sections:
+    - title: The Middle D
+      id: 18090136-9bdc-4729-a3c7-a4fb8cef2750
+      image: {fileID: 21300000, guid: 60430a54cb799bb4a8ce1c871dffa88e, type: 3}
+      sectionBGImageName: 
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: c79d80ce-aec9-4ff9-b9eb-bacd45630964
+      image: {fileID: 21300000, guid: e9268e684950e8642b3a5a713ef152a9, type: 3}
+      sectionBGImageName: 
+      levels: []
+    - title: Finale
+      id: 55047a70-b9e4-4d98-bdd0-939f9fc272a4
+      image: {fileID: 21300000, guid: 65bebc8ccfe893847b0ffb2dfb698bc1, type: 3}
+      sectionBGImageName: 
+      levels: []
+  - title: World 2
+    id: 3ba0c406-bbb0-4952-a25c-6aabcd5e84ad
+    worldSprite: {fileID: 21300000, guid: 3cde768247cfa42d88b1c82441515eb9, type: 3}
+    sections:
+    - title: The Middle D
+      id: 533ab281-6f8f-4dfd-b136-40c852f15983
+      image: {fileID: 21300000, guid: 60430a54cb799bb4a8ce1c871dffa88e, type: 3}
+      sectionBGImageName: 
+      levels:
+      - {fileID: 11400000, guid: db2ef18f3cb634ba6b1cfbdd2f288708, type: 2}
+      - {fileID: 11400000, guid: f6fae58490c884005a4f372d4facc442, type: 2}
+      - {fileID: 11400000, guid: bc218dd8e03364ace8204c950c4e2d80, type: 2}
+    - title: Instruments
+      id: 8cba51d4-4950-4c3f-b894-c39d5dd1d156
+      image: {fileID: 21300000, guid: e9268e684950e8642b3a5a713ef152a9, type: 3}
+      sectionBGImageName: 
+      levels: []
+    - title: Finale
+      id: 44bfd413-75af-41ef-adea-c5ab494b200f
+      image: {fileID: 21300000, guid: 65bebc8ccfe893847b0ffb2dfb698bc1, type: 3}
+      sectionBGImageName: 
+      levels: []
+  generateIds: 0
