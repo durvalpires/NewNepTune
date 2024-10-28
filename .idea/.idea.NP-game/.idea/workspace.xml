@@ -14,7 +14,7 @@
     <option name="autoShow" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/DataTransfer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_App-v2/Scripts/ScriptableObjects/StaredLevelSO.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -24,12 +24,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.0.22f1/Unity.app/Contents/MacOS/Unity" />
@@ -57,10 +57,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="28972">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="14941">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="28972" />
+      <option name="pid" value="14941" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -76,7 +76,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729754135809</updated>
-      <workItem from="1729754137663" duration="24923000" />
+      <workItem from="1729754137663" duration="28095000" />
+      <workItem from="1730131621844" duration="9319000" />
     </task>
     <servers />
   </component>
@@ -95,13 +96,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/Levels/LevelsInitController.cs</url>
-          <line>13</line>
+          <line>16</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/Levels/LevelsInitController.cs" containingFunctionPresentation="Method 'Start'">
             <startOffsets>
-              <option value="382" />
+              <option value="453" />
             </startOffsets>
             <endOffsets>
-              <option value="409" />
+              <option value="480" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />

@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59af1698de4b94fc9836a94e0199a5bb, type: 3}
-  m_Name: Level-1-1-2
+  m_Script: {fileID: 11500000, guid: 0020be1ff0b2542dd8a150665c591267, type: 3}
+  m_Name: 1-1-1-NoteLevelSO
   m_EditorClassIdentifier: 
-  id: a2763d6f-5ddf-4e59-bce6-0565db84fb7b
-  levelName: 1
-  scorePerStar: 5
+  id: b192f2e1-aa78-4d0a-97e3-4f66212bad9f
+  levelName: 
   levelType: 0
+  icon: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
   generateIds: 0
+  note: C
+  popupStyle: 0

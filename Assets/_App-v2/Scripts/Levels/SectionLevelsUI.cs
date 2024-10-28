@@ -11,15 +11,27 @@ public class SectionLevelsUI : MonoBehaviour
     
     public void Init(AllWorldsSO.WorldSections data)
     {
-        return;
+        // return;
         foreach (var level in data.levels)
         {
-            var item = Instantiate(prefab, container.transform);
-            // item.Init(level);
+            var itemGO = Instantiate(prefab, container.transform);
+            var item = itemGO.GetComponent<SectionLevelBtnUI>();
+            item.Init(level);
+            item.onClick = OnLevelBtnClicked;
         }
 
         StartCoroutine(RefreshCanvas());
     }
+
+    private void OnLevelBtnClicked(SectionLevelBtnUI obj)
+    {
+        switch (obj.LevelType)
+        {
+            case LevelSO.LevelType.LearningNote:
+                break;
+        }
+    }
+
     private IEnumerator RefreshCanvas()
     {
         container.enabled = false;

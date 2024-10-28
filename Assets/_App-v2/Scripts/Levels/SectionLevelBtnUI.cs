@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 
 public class SectionLevelBtnUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Action<SectionLevelBtnUI> onClick;
+
+    private LevelSO levelData;
+    public LevelSO.LevelType LevelType => levelData.levelType;
+    public void Init(LevelSO data)
     {
-        
+        levelData = data;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnCLick()
     {
-        
+        onClick?.Invoke(this);
     }
 }

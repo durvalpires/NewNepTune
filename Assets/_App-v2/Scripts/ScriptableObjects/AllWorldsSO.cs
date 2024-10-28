@@ -59,6 +59,25 @@ public class AllWorldsSO : ScriptableObject
                         idCounter++;
                     }
                     ids.Add(section.id);
+                    
+                    // foreach (var level in section.levels)
+                    // {
+                    //     if(level == null) continue;
+                    //     if (level.id == "")
+                    //     {
+                    //         level.id = Guid.NewGuid().ToString();
+                    //         idCounter++;
+                    //     }
+                    //
+                    //     if (!ids.Contains(level.id))
+                    //     {
+                    //         ids.Add(level.id);
+                    //     }
+                    //     else
+                    //     {
+                    //         Debug.LogAssertion($"Duplicate level id in world ({wordData.title} section {section.title}): {level.id}");//{level.name}
+                    //     }
+                    // }
                 }
             }
             Debug.Log("Generated " + idCounter + " ids");
