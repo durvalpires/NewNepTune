@@ -5,9 +5,8 @@ using UnityEngine;
 public class LevelSO : ScriptableObject
 {
     // public string id;
-    public string levelName;
+    public string levelTitle;
     public LevelType levelType;
-    public Sprite icon;
     
     public enum LevelType
     {
@@ -16,7 +15,8 @@ public class LevelSO : ScriptableObject
         MusicPieceGuess,
         ImageSelection,
         MemoryCards,
-        VirtualPiano
+        VirtualPiano,
+        LearningInstrument,
     }
     // #if UNITY_EDITOR 
     //     public bool generateIds;

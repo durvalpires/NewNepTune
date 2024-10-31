@@ -1,16 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "GeneralConfigSO", menuName = "Scriptable Objects/v2_GeneralConfigSO")]
 public class GeneralConfigSO : ScriptableObject
 {
-    public ScenesNames sectionSceneNight;
-    public ScenesNames sectionSceneDay;
-    public ScenesNames sectionSceneClouds;
-    [Serializable]
-    public struct ScenesNames
-    {
-        public string sceneName;
-    }
-    
+    public string levelsScene = "v2_Levels";
+    public string virtualPianoScene = "VirtualPiano";
+    public string musicGuessScene = "v2_LevelMusicGuess";
+    public string memoryCardScene = "v2_MemoryCard";
+    public string openedPlanetKey = "OpenedPlanet";
 }

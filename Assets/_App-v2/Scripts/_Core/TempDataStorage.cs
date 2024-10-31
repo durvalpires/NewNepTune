@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class TempDataStorage
 {
@@ -19,7 +20,20 @@ public static class TempDataStorage
         }
     }
 
+    public static bool ContainsKey(string key)
+    {
+        return _data.ContainsKey(key);
+    }
     // Method to get data
+    public static T GetSceneData<T>()
+    {
+        return GetData<T>("sceneData");
+    }
+
+    public static void SetSceneData<T>(T value)
+    {
+        SetData("sceneData", value);
+    }
     public static T GetData<T>(string key)
     {
         if (_data.TryGetValue(key, out object value))
@@ -30,12 +44,15 @@ public static class TempDataStorage
             }
             else
             {
-                throw new InvalidCastException($"Stored value is not of type {typeof(T)}.");
+                Debug.LogAssertion($"Stored value is not of type {typeof(T)}.");
+                return default;
             }
         }
         else
         {
-            throw new KeyNotFoundException($"Key '{key}' not found.");
+            //throw new KeyNotFoundException($"Key '{key}' not found.");
+            Debug.LogAssertion($"Key '{key}' not found.");
+            return default;
         }
     }
 

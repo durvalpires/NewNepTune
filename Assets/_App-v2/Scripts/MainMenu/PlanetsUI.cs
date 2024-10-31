@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlanetsUI : MonoBehaviour
@@ -9,7 +10,7 @@ public class PlanetsUI : MonoBehaviour
     [SerializeField] private Transform container;
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private ContentSizeFitter contentSizeFitter;
-    [SerializeField] private WorldSectionsPopup sectionsPanel;
+    [SerializeField] private GeneralConfigSO generalConfigData;
 
     private List<PlanetBtn> allPlanetBtns = new List<PlanetBtn>();
     public void Init()
@@ -27,8 +28,9 @@ public class PlanetsUI : MonoBehaviour
 
     private void OnClick(AllWorldsSO.WordData planetData)
     {
-        //open Sections
-        sectionsPanel.Show(planetData);
+        //open Levels
+        TempDataStorage.SetData(generalConfigData.openedPlanetKey, planetData);
+        SceneManager.LoadScene(generalConfigData.levelsScene); 
     }
 
     private IEnumerator RefreshCanvas()

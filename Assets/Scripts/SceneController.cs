@@ -12,7 +12,7 @@ public class SceneController : MonoBehaviour
     public const float offsetY = 2.5f;
 
     [SerializeField] private MemoryCard originalCard;
-    [SerializeField] private Sprite[] images;
+    [SerializeField] protected Sprite[] images;
     [SerializeField] private TMP_Text scoreLabel;
 
     private MemoryCard _firstRevealed;

@@ -108,7 +108,7 @@ public class PopUpToggleManager : MonoBehaviour
     {
         AudioSource audioSource = audioSourceGO.GetComponent<AudioSource>();
 
-        while (audioSource.volume > 0)
+        while (audioSource&& audioSource.volume > 0)
         {
             audioSource.volume -= 0.1f;
             yield return new WaitForSeconds(0.15f);

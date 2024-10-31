@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d2296db93bf4827a7864b74b8a592d, type: 3}
   m_Name: GeneralConfigSO
   m_EditorClassIdentifier: 
-  sectionSceneNight:
-    sceneName: v2_LevelsDay
-    sceneType: 1
-  sectionSceneDay:
-    sceneName: v2_LevelsNIght
-    sceneType: 2
-  sectionSceneClouds:
-    sceneName: v2_LevelsClouds
-    sceneType: 3
+  levelsScene: v2_Levels
+  virtualPianoScene: v2_VirtualPianotemp
+  musicGuessScene: v2_LevelMusicGuess
+  openedPlanetKey: OpenedPlanet
+  nextSceneDataKey: NextSceneData

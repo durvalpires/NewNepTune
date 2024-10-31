@@ -35,22 +35,22 @@ public class WorldSectionsPopup : MonoBehaviour
     }
     private void CreateItems()
     {
-        foreach (var sectionData in _data.sections)
-        {
-                var itemGO = Instantiate(prefab, container.transform);
-                var itemBtn = itemGO.GetComponent<WorldSectionUI>();
-                itemBtn.onClick = OnItemClicked;
-                allItems.Add(itemBtn);
-                itemBtn.Init(sectionData);
-        }
+        // foreach (var sectionData in _data.sections)
+        // {
+        //         var itemGO = Instantiate(prefab, container.transform);
+        //         var itemBtn = itemGO.GetComponent<WorldSectionUI>();
+        //         itemBtn.onClick = OnItemClicked;
+        //         allItems.Add(itemBtn);
+        //         itemBtn.Init(sectionData);
+        // }
     }
 
-    private void OnItemClicked(AllWorldsSO.WorldSections item)
-    {
-        //load scene with levels
-        TempDataStorage.SetData("Section", item);
-        SceneManager.LoadScene("v2_Section"); 
-    }
+    // private void OnItemClicked(AllWorldsSO.WorldSections item)
+    // {
+    //     //load scene with levels
+    //     // TempDataStorage.SetData(configData, item);
+    //     SceneManager.LoadScene(configData.levelsScene); 
+    // }
 
     
     private void Clean()

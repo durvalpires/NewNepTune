@@ -14,24 +14,14 @@ public class AllWorldsSO : ScriptableObject
         public string title;
         public string id;
         public Sprite worldSprite;
-        public WorldSections[] sections;
+        public LevelsData[] levels;
     }
     [Serializable]
-    public class WorldSections
+    public class LevelsData
     {
-        public string title;
-        public string id;
         public Sprite image;
-        public string sectionBGImageName;
-        public LevelSO[] levels;
-
-        public enum SceneType
-        {
-            None,
-            Day,
-            Night,
-            Clouds
-        }
+        public LevelSO level;
+    
     }
 #if UNITY_EDITOR 
     public bool generateIds;
@@ -51,14 +41,14 @@ public class AllWorldsSO : ScriptableObject
                 }
 
                 ids.Add(wordData.id);
-                foreach (var section in wordData.sections)
+                // foreach (var section in wordData.sections)
                 {
-                    if (section.id == "" || ids.Contains(section.id))
-                    {
-                        section.id = Guid.NewGuid().ToString();
-                        idCounter++;
-                    }
-                    ids.Add(section.id);
+                    // if (section.id == "" || ids.Contains(section.id))
+                    // {
+                    //     section.id = Guid.NewGuid().ToString();
+                    //     idCounter++;
+                    // }
+                    // ids.Add(section.id);
                     
                     // foreach (var level in section.levels)
                     // {
