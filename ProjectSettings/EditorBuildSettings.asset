@@ -11,18 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_App-v2/Scenes/v2_MainMenu.unity
     guid: 18d54bfc3e84c4c31b97a7bd45742e69
-  - enabled: 0
-    path: Assets/_App-v2/Scenes/v2_Section.unity
-    guid: 32998ac5d37764e55b30f2abe968b637
-  - enabled: 0
-    path: Assets/_App-v2/Scenes/v2_LevelsClouds.unity
-    guid: 3dba33951a9fb419daadfe812aab188a
-  - enabled: 0
-    path: Assets/_App-v2/Scenes/v2_LevelsDay.unity
-    guid: 551e78e0f7b4c43d28bfcde7d259b79b
   - enabled: 1
-    path: Assets/_App-v2/Scenes/v2_Section.unity
+    path: Assets/_App-v2/Scenes/v2_Levels.unity
     guid: 32998ac5d37764e55b30f2abe968b637
+  - enabled: 1
+    path: Assets/_App-v2/Scenes/v2_LevelMusicGuess.unity
+    guid: 28fbcb5d1f4cf4c18a016ac81de265ec
+  - enabled: 1
+    path: Assets/_App-v2/Scenes/v2_MemoryCard.unity
+    guid: 7745c84784c2e40f5a168ef947c8f84a
   - enabled: 1
     path: Assets/Scenes/_NewLevels/NeptuneSplashScreen.unity
     guid: 9b4b41c5663a44a27853d5b60e33b095
