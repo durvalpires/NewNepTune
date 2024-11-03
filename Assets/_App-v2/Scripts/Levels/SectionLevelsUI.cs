@@ -9,7 +9,7 @@ public class SectionLevelsUI : MonoBehaviour
     [SerializeField] private ContentSizeFitter container;
     [SerializeField] private GameObject prefab;
     [SerializeField] private ScrollRect scroll;
-    [SerializeField] private PopUpToggleManager popUpToggleManager;
+    [SerializeField] private LevelsPopUpToggleManager popUpToggleManager;
     [SerializeField] private Image popup1Image;
     [SerializeField] private SceneManagerScript sceneManagerScript;
     [SerializeField] private GeneralConfigSO generalConfig;
@@ -70,7 +70,7 @@ public class SectionLevelsUI : MonoBehaviour
                 break;
             case LevelSO.LevelType.LearningInstrument:
                 var learningInstrumentData = obj.LevelData.level as InstrumentLevelSO;
-                popUpToggleManager.ToggleInstrument1(learningInstrumentData.instrument);
+                popUpToggleManager.ToggleInstrument(learningInstrumentData.instrument);
                 break;
             case LevelSO.LevelType.InstrumentGuess:
                 //?? data ??

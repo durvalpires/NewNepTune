@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class PopUpToggleManager : MonoBehaviour
 {
-    [SerializeField] private GameObject popUpCanvas;
-    [SerializeField] private GameObject popup1;
+    [SerializeField] protected GameObject popUpCanvas;
+    [SerializeField] protected GameObject popup1;
     [SerializeField] private GameObject popup2;
     [SerializeField] private GameObject popup3;
     
-    private bool _popUpActive;
+    protected bool _popUpActive;
     
     private void Update()
     {

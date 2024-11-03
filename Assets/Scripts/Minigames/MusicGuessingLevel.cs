@@ -101,7 +101,6 @@ namespace Minigames
          if (isTopCorrect)
          {
             //Debug.Log($"Top is correct. {levelToSet + 1}");
-            
             topButton.GetComponent<Image>().sprite = correctAnswerSprites[levelToSet];
             topButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
 
@@ -111,7 +110,6 @@ namespace Minigames
          else
          {
             //Debug.Log($"Bottom is correct. {levelToSet + 1}");
-            
             bottomButton.GetComponent<Image>().sprite = correctAnswerSprites[levelToSet];
             bottomButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
 

@@ -142,10 +142,10 @@ TextureImporter:
       name: D_0
       rect:
         serializedVersion: 2
-        x: 828
-        y: 527
-        width: 2154
-        height: 2600
+        x: 0
+        y: 0
+        width: 2152
+        height: 2598
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
