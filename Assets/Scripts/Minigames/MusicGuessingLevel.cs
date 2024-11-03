@@ -14,24 +14,24 @@ namespace Minigames
       public GameObject losePanel;
       public GameObject finishPanel;
 
-      [SerializeField] private GameObject[] gameLevels;
-      [SerializeField] private AudioClip[] audioClips;
-      [SerializeField] private Sprite[] correctAnswerSprites;
+      [SerializeField] protected GameObject[] gameLevels;
+      [SerializeField] protected AudioClip[] audioClips;
+      [SerializeField] protected Sprite[] correctAnswerSprites;
       
-      private AudioSource _audioSource;
-      private Sprite[] _sprites;
-      private int _currentLevel;
+      protected AudioSource _audioSource;
+      protected Sprite[] _sprites;
+      protected int _currentLevel;
       
       [Header("References for Scene Set Up")]
-      [SerializeField] private string levelNote;
-      [SerializeField] private Button backButton;
-      [SerializeField] private Button finishedBackButton;
-      [SerializeField] private string levelToReturn;
+      [SerializeField] protected string levelNote;
+      [SerializeField] protected Button backButton;
+      [SerializeField] protected Button finishedBackButton;
+      [SerializeField] protected string levelToReturn;
 
       //TODO : get rid of character var and first line of start method
-      private GameObject _character;
+      protected GameObject _character;
       
-      private void Start()
+      protected virtual void Start()
       {
          _character = GameObject.Find("karakter");
          _character.GetComponent<Animator>().Play("RedGirlPiano");
@@ -63,7 +63,7 @@ namespace Minigames
          StartCoroutine(PlayAfterSeconds(.8f));
       }
 
-      private IEnumerator PlayAfterSeconds(float seconds)
+      protected IEnumerator PlayAfterSeconds(float seconds)
       {
          yield return new WaitForSeconds(seconds);
          _audioSource.Play();
@@ -83,7 +83,7 @@ namespace Minigames
          AudioManager.Instance.PlaySFX(SoundList.LoseSound);
       }
 
-      private void SetUpLevel(int levelToSet)
+      protected void SetUpLevel(int levelToSet)
       {
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;

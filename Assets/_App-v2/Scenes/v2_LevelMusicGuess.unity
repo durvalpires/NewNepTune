@@ -221,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef0065fae3eb14fc6874e610da603808, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -726,7 +726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef0065fae3eb14fc6874e610da603808, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -846,7 +846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef0065fae3eb14fc6874e610da603808, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 90b3096cc3bb14dccbd7dacb9fb22b05, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 971912766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0b901ece0a74150a504e8af900ad83, type: 3}
+  m_Script: {fileID: 11500000, guid: 662adb6baf49f488580099039e8e037f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   winPanel: {fileID: 678091690}
@@ -1400,15 +1400,9 @@ MonoBehaviour:
   - {fileID: 1344936976}
   - {fileID: 1703053614}
   - {fileID: 118602602}
-  audioClips:
-  - {fileID: 8300000, guid: 470c95260f98f27409e8b6904c68c7e5, type: 3}
-  - {fileID: 8300000, guid: 4c4f6037ca600754594d0d280bd62590, type: 3}
-  - {fileID: 8300000, guid: b03f52bee4ebb01479a47bd356d7f8cd, type: 3}
-  correctAnswerSprites:
-  - {fileID: 21300000, guid: 0be7798eb764b6b469362abdc38be30f, type: 3}
-  - {fileID: 21300000, guid: d58dff1f04129e14d8642830faff31a9, type: 3}
-  - {fileID: 21300000, guid: a409afebbd3c3944ea97d2f62db0163a, type: 3}
-  levelNote: C
+  audioClips: []
+  correctAnswerSprites: []
+  levelNote: D
   backButton: {fileID: 1625531984}
   finishedBackButton: {fileID: 511831487}
   levelToReturn: v2_Levels
@@ -1638,7 +1632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 90b3096cc3bb14dccbd7dacb9fb22b05, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2754,7 +2748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 90b3096cc3bb14dccbd7dacb9fb22b05, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

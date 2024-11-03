@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e3c2db72c774032ae9558d3ea7b57c, type: 3}
   m_Name: MusicGuess-1
   m_EditorClassIdentifier: 
+  levelTitle: 
   levelType: 2
+  levelNote: C
