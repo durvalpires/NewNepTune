@@ -13,6 +13,9 @@ public class MusicScoreRender : MonoBehaviour {
     [SerializeField]
     private GameObject notesContainer;
 
+    [SerializeField]
+    private GameObject beatMarkerPrefab;
+
     private float speedXPerSec;
 
     private float distanceBetweenScoreLines;
@@ -30,6 +33,8 @@ public class MusicScoreRender : MonoBehaviour {
 
     private int _currentMeasureDivision = 4;
     public int MeasureDivision => musicScore.CurrentDivisions.Value;
+
+    private int noteIndex = 1;
 
 
     void Awake()
@@ -66,6 +71,19 @@ public class MusicScoreRender : MonoBehaviour {
                 }
             }
         }
+
+
+        var beatsPerSecond = Bpm / 60;
+        var secondsPerBeat = 1 / beatsPerSecond;
+        var speedXPerSec = (_durationOneX * musicScore.CurrentDivisions) * beatsPerSecond;
+        int beatsPerBar = 4; // Adjust if you have a different time signature
+        float barLength = (float)(musicScore.CurrentDivisions * speedXPerSec * secondsPerBeat);
+
+        for (int i = 1; i <= 4 * gameSettings.numberBeatsToDrawLines ; i++)
+        {
+            var beatMarker = Instantiate(beatMarkerPrefab, gameObject.transform);
+            beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x + i * barLength, 1, 0);
+        }
     }
 
     public IList<NoteView> Render(float speedXPerSec)
@@ -73,11 +91,17 @@ public class MusicScoreRender : MonoBehaviour {
         // var score = MusicXMLParser.GetScorePartwise(musicXMLText);
         var notesSortedByScore = new List<NoteView>();
 
-        int currentDivisions = 4;
-        int currentBeat = 1;
+        int currentDivisions = musicScore.CurrentDivisions.Value;
+        float currentBeat = 1;
         bool noNeedToDisplayForTie = false;
-        //float xCursor = initialNoteSpawningPoint.position.x + gameSettings.delayBeforeFirstNote * speedXPerSec + 1;
-        float xCursor = -gameSettings.DurationOneX + gameSettings.beatsBeforeStart * speedXPerSec;
+
+        var secondsPerBeat = 1f / (Bpm / 60);
+        // float xCursor = /*-gameSettings.DurationOneX*/
+        // initialNoteSpawningPoint.position.x + gameSettings.beatsBeforeStart * secondsPerBeat * speedXPerSec;
+        
+        // no need fori nitial note spawning cause position is local for notes
+        float xCursor = (gameSettings.beatsBeforeStart+1) * currentDivisions * gameSettings.DurationOneX;
+        
         foreach (var part in musicScore.ScoreParts)
         {
             foreach (var measure in part.MeasureList)
@@ -139,7 +163,7 @@ public class MusicScoreRender : MonoBehaviour {
                             noteController.AddWidth(willConsumedTimeUnit);
                         }
 
-                        currentBeat = note.Duration / currentDivisions;
+                        currentBeat += note.Duration / (float)currentDivisions;
                         xCursor += willConsumedTimeUnit;
 
                         // If both start and stop are present, noNeedToDisplayForTie should be true.
@@ -184,12 +208,17 @@ public class MusicScoreRender : MonoBehaviour {
         noteObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
         noteObj.transform.localPosition =  new Vector3(positionX, positionY, 0);
         var noteController = noteObj.GetComponent<NoteController>();
+        
         noteController.X = positionX;
         noteController.Width = willConsumedTimeUnit;
-        noteController.Note = note;
+        //noteController.Note = note;
         noteController.ColorSettings = this._colorSettings;
+        noteController.Index = noteIndex++;
 
-        noteObj.name = $"{note.Pitch?.Octave}{note.Pitch?.Step}";
+        noteObj.name = $"{note.Pitch?.Octave}{note.Pitch?.Step}{note.Type}{noteController.Index}";
+
+        noteController.SetNote(note, gameSettings);
+
         return noteObj;
     }
 
@@ -201,6 +230,11 @@ public class MusicScoreRender : MonoBehaviour {
         // }
 
         // return this._notePrefab;
+
+        // if(note.Type == "whole")
+        //     return gameSettings.GetPrefabForNoteType(note.Type);
+        // else
+            return gameSettings.GetPrefabForNoteType("template");
 
         if(note.IsRest)
             return gameSettings.GetPrefabForNoteType("rest");

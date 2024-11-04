@@ -24,6 +24,11 @@ namespace Enums
         SecondSoundMG,
         ThirdSound,
         SplashScreenFill,
-        SplashScreenUnfill
+        SplashScreenUnfill,
+        Star1Achieved,
+        Star2Achieved,
+        Star3Achieved,
+        EndOfRhythmLevel,
+        ScoreCount
     }
 }

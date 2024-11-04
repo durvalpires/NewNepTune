@@ -20,6 +20,7 @@ TagManager:
   - MinigameManager
   - Note
   - InteractionBar
+  - NoteColliderHold
   layers:
   - Default
   - TransparentFX
@@ -27,8 +28,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - MusicNotes
+  - MusicNoteCenter
   - 
   - 
   - 

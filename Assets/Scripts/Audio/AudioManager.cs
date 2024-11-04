@@ -100,6 +100,28 @@ namespace Audio
                 sfxSource.PlayOneShot(sound.clip);
             }
         }
+
+        public void PlaySFX(SoundList sfxType)
+        {
+            Sound sound = null;
+
+            foreach (var soundclip in sfxSounds)
+            {
+                if (sfxType == soundclip.type)
+                {
+                    sound = soundclip;
+                }
+            }
+            
+            if (sound == null)
+            {
+                Debug.Log("Sfx not found.");
+            }
+            else
+            {
+                sfxSource.PlayOneShot(sound.clip);
+            }
+        }
         
         public float CheckSoundLength(SoundList? clipNameEnum)
         {

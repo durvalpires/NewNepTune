@@ -6,32 +6,81 @@ using UnityEngine;
 public class RhythmGameScoreController
 {
     private RhythmGameSettings gameSettings;
-    private int playerScore = 0;
-    private int currentCombo = 0;
-    private float currentMultiplier = 1.0f;
-    private Dictionary<HitAccuracy, int> accuracyBreakdown = new Dictionary<HitAccuracy, int>();
+    public int PlayerScore { get; private set; }
+    private int currentCombo;
+    private float currentMultiplier;
+    private readonly int noteCount;
+    public int NotesHit { get; private set; }
+    public Dictionary<HitAccuracy, int> AccuracyBreakdown { get; private set; }
 
-    public RhythmGameScoreController(RhythmGameSettings rhythmGameSettings)
+    private bool star1Active = false;
+    private bool star2Active = false;
+    private bool star3Active = false;
+    public int PlayerStars { get; private set; }
+    private float incrementPerNote;
+    public Action OnStarAchieved; 
+
+    public RhythmGameScoreController(RhythmGameSettings rhythmGameSettings, int noteCount = 0)
     {
+        this.PlayerScore = 0;
+        this.PlayerStars = 0;
+        this.currentCombo = 0;
+        this.currentMultiplier = 1.0f;
+        this.AccuracyBreakdown = new Dictionary<HitAccuracy, int>();
+        this.noteCount = noteCount;
         this.gameSettings = rhythmGameSettings;
+
+        incrementPerNote = 100f / noteCount;
     }
 
     public Tuple<int, int> AwardScore(HitAccuracy hitAccuracy)
     {
         int scoreToAdd = 0;
 
+        if (hitAccuracy != HitAccuracy.Miss)
+        {
+            NotesHit++;
+            VerifyIfStarAchieved();
+        }
+
         scoreToAdd = gameSettings.GetScoreForAccuracy(hitAccuracy);
 
         UpdateScore(scoreToAdd);
         AddCombo(hitAccuracy);
 
-        return Tuple.Create(playerScore, currentCombo);
+        return Tuple.Create(PlayerScore, currentCombo);
+    }
+
+    private void VerifyIfStarAchieved()
+    {
+        var percentageHit = (float)NotesHit / noteCount;
+
+        if(!star1Active && percentageHit >= 0.3)
+        {
+            OnStarAchieved?.Invoke();
+            star1Active = true;
+            ++PlayerStars;
+        }
+
+        if(!star2Active && percentageHit >= 0.6)
+        {
+            OnStarAchieved?.Invoke();
+            star2Active = true;
+            ++PlayerStars;
+        }
+
+        if(!star3Active && percentageHit >= 0.9)
+        {
+            OnStarAchieved?.Invoke();
+            star3Active = true;
+            ++PlayerStars;
+        }
     }
 
     private void UpdateScore(int points)
     {
         int pointsToAdd = Mathf.RoundToInt(points * currentMultiplier);
-        playerScore += pointsToAdd;
+        PlayerScore += pointsToAdd;
 
         // TODO: Update the score display in the UI
     }
@@ -51,13 +100,13 @@ public class RhythmGameScoreController
             }
         }
 
-        if (accuracyBreakdown.ContainsKey(hitAccuracy))
+        if (AccuracyBreakdown.ContainsKey(hitAccuracy))
         {
-            accuracyBreakdown[hitAccuracy]++;
+            AccuracyBreakdown[hitAccuracy]++;
         }
         else
         {
-            accuracyBreakdown.Add(hitAccuracy, 1);
+            AccuracyBreakdown.Add(hitAccuracy, 1);
         }
 
         //UpdateComboUI();
@@ -72,10 +121,10 @@ public class RhythmGameScoreController
 
     public void ResetScore()
     {
-        playerScore = 0;
-        foreach (var hit in accuracyBreakdown.Keys)
+        PlayerScore = 0;
+        foreach (var hit in AccuracyBreakdown.Keys)
         {
-            accuracyBreakdown[hit] = 0;
+            AccuracyBreakdown[hit] = 0;
         }
     }
 

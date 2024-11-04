@@ -19,6 +19,8 @@ public class RhythmGameSettings : ScriptableObject
     public float accuracyThreshold;
     public float difficultyMultiplier;
     public float delayBeforeLevelStart = 3;
+    public int numberBeatsToDrawLines = 3;
+    public Difficulty difficulty;
 
     [Header("Note Settings")]
     public List<GameObject> notePrefabs;
@@ -39,6 +41,11 @@ public class RhythmGameSettings : ScriptableObject
     // public Color missNoteColor;
     // public Color interactableNoteColor;
     // public Color normalNoteColor;
+
+    public List<NoteElementVariationSpritePair> noteCircleVariationsSprites;
+    public Sprite beamSprite;
+
+    public List<string> circleLineNotes;
     public GameObject hitEffectPrefab;
     public float hitEffectDuration;
     public Sprite backgroundSprite;
@@ -104,4 +111,18 @@ public struct NotePrefabPair
 {
     public string noteType;  // The note type
     public GameObject prefab;         // The prefab associated with the note
+}
+
+[Serializable]
+public struct NoteElementVariationSpritePair
+{
+    public string noteType;  // The note type
+    public Sprite sprite;         // The prefab associated with the note
+}
+
+public enum Difficulty
+{
+    EASY = 4,
+    MEDIUM = 3,
+    HARD = 1
 }
