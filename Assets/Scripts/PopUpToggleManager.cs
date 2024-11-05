@@ -117,7 +117,7 @@ public class PopUpToggleManager : MonoBehaviour
         Destroy(audioSourceGO);
     }
 
-    private void Back()
+    protected virtual void Back()
     {
         if (popup1 != null ) popup1.SetActive(false);
         if (popup2 != null ) popup2.SetActive(false);

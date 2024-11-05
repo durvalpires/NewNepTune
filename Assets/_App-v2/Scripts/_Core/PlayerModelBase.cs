@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Antari
-{
     public class PlayerModelBase
     {
         private static PlayerData _player;
@@ -75,9 +73,10 @@ namespace Antari
         }
         protected class PlayerData
         {
-            public int lastCompleteLevelIndex = 0;
-            public int lastStartedLevel = 1;
+            public string profileId = ""; // could use for switching profiles in future - creating of ProfileController is needed
+            public string playerName = "";
+            public bool IsSoundOn = true;
+            public bool IsMusicOn = true;
             public string customUserData = "";
         }
     }
-}

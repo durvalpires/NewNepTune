@@ -4,8 +4,19 @@ using UnityEngine.UI;
 
 public class LevelsPopUpToggleManager : PopUpToggleManager
 {
+    
+    private void Start()
+    {
+        
+    }
+    public void TogglePopup(string pressedNote)
+    {
+        
+        TogglePopup1(pressedNote);
+    }
     public void ToggleInstrument(string instrument)
     {
+        // LevelCompletObserver.LevelStart(levelIndex, _worldIndex);
         GameObject tempGO = GameObject.Find("TempAudioSource");
         if (tempGO != null)
         {
@@ -25,5 +36,11 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
         popUpCanvas.SetActive(true);
         popup1.SetActive(true);
         _popUpActive = true;
+    }
+
+    protected override void Back()
+    {
+        LevelCompletObserver.LevelComplete();
+        base.Back();
     }
 }

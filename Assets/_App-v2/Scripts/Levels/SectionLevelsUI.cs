@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Levels.SelectionMinigame;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SectionLevelsUI : MonoBehaviour
@@ -14,26 +17,91 @@ public class SectionLevelsUI : MonoBehaviour
     [SerializeField] private SceneManagerScript sceneManagerScript;
     [SerializeField] private GeneralConfigSO generalConfig;
 
+    private List<SectionLevelBtnUI> allItems = new List<SectionLevelBtnUI>();
     private static float lastScrollPos = 0;
-    
+    private int worldIndex = 0;
+    private string worldId = "";
+    private AllWorldsSO.WordData _data;
     public void Init(AllWorldsSO.WordData data)
     {
+        _data = data;
+        worldId = data.id;
+        if (TempDataStorage.ContainsKey("worldIndex"))
+        {
+            worldIndex = TempDataStorage.GetData<int>("worldIndex");
+        }
+        
         .1f.Delay(() =>
         {
-            foreach (var level in data.levels)
+            SectionLevelBtnUI openedLevel = null;
+            for (int i = 0; i <  data.levels.Length; i++)
             {
+                var level = data.levels[i];
                 var itemGO = Instantiate(prefab, container.transform);
                 var item = itemGO.GetComponent<SectionLevelBtnUI>();
-                item.Init(level);
+                allItems.Add(item);
+                item.Init(level, i);
                 item.onClick = OnLevelBtnClicked;
+                
+                if (PlayerModel.IsLevelCompleted(item.levelIndex, worldId))
+                {
+                    item.Done();
+                }
+                else
+                {
+                    if (openedLevel == null)
+                    {
+                        openedLevel = item;
+                        item.Unlock();
+                    }
+                    else 
+                        item.Lock();
+                }
             }
             StartCoroutine(RefreshCanvas());
         });
-        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))//complete All
+        {
+            for (int i = 0; i < _data.levels.Length; i++)
+            {
+                PlayerModel.CompleteLevel(i, worldId);
+            }
+
+            SceneManager.LoadScene(generalConfig.levelsScene);
+        }
+    }
+
+    public void RefreshLocks()
+    {
+        SectionLevelBtnUI openedLevel = null;
+        //refresh locks;
+        foreach (var item in allItems)
+        {
+            if (PlayerModel.IsLevelCompleted(item.levelIndex, worldId))
+            {
+                item.Done();
+            }
+            else
+            {
+                if (openedLevel == null)
+                {
+                    openedLevel = item;
+                    item.Unlock();
+                }
+                else 
+                    item.Lock();
+            }
+        }
     }
 
     private void OnLevelBtnClicked(SectionLevelBtnUI obj)
     {
+        LevelCompletObserver.LevelStart(obj.levelIndex, worldId);
+        
         switch (obj.LevelType)
         {
             case LevelSO.LevelType.LearningNote:
@@ -48,7 +116,7 @@ public class SectionLevelsUI : MonoBehaviour
                     {
                         popup1Image.sprite = Resources.Load<Sprite>("NotesOnPiano/" + noteDdata.note);
                     }
-                    popUpToggleManager.TogglePopup1(noteDdata.note);
+                    popUpToggleManager.TogglePopup(noteDdata.note);
                 }
                 break;
             case LevelSO.LevelType.ImageSelection:
@@ -78,10 +146,11 @@ public class SectionLevelsUI : MonoBehaviour
                 break;
             case LevelSO.LevelType.MemoryCards:
                 TempDataStorage.SetSceneData(obj.LevelData.level);
+                
                 sceneManagerScript.ChangeScene(generalConfig.memoryCardScene);
                 break;
-
         }
+        
     }
 
     private IEnumerator RefreshCanvas()
@@ -103,5 +172,14 @@ public class SectionLevelsUI : MonoBehaviour
     public void ScrollPosUpdate(Vector2 pos)
     {
         lastScrollPos = pos.x;
+    }
+
+    private void OnEnable()
+    {
+        LevelCompletObserver.onLevelComplete += RefreshLocks;
+    }
+    private void OnDisable()
+    {
+        LevelCompletObserver.onLevelComplete -= RefreshLocks;
     }
 }

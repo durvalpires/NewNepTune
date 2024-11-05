@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Antari
-{
     public class PlayerModel : PlayerModelBase
     {
         public static event Action onCurrencyChanged;
@@ -50,16 +48,35 @@ namespace Antari
             Data.levelProgress = "";
         }
         */
+       
+        // public static int CompletedWorldIndex
+        // {
+        //     get => Data.lastCompletedWorldIndex;
+        //     set => Data.lastCompletedWorldIndex = value;
+        // }
 
-        public static int LastStartedLevel
+        // public static int LastCompleteLevelIndex
+        // {
+        //     get => Data.lastCompleteLevelIndex;
+        //     set => Data.lastCompleteLevelIndex = value;
+        // }
+        public static void CompleteLevel(int levelIndex, string worldId)
         {
-            get => Data.lastStartedLevel;
-            set => Data.lastStartedLevel = value;
+            SetCustomData($"w_{worldId}:l_{levelIndex}", "done");
         }
-        public static int LastCompleteLevelIndex
+
+        public static bool IsLevelCompleted(int levelIndex, string worldId)
         {
-            get => Data.lastCompleteLevelIndex;
-            set => Data.lastCompleteLevelIndex = value;
+            return GetCustomData($"w_{worldId}:l_{levelIndex}") == "done";
+        }
+        public static void CompleteWorld(string worldId)
+        {
+            SetCustomData($"w_{worldId}", "done");
+        }
+
+        public static bool IsWorldCompleted(string worldId)
+        {
+            return GetCustomData($"w_{worldId}") == "done";
         }
       
         
@@ -73,4 +90,3 @@ namespace Antari
             }
         }
     }
-}

@@ -327,6 +327,8 @@ GameObject:
   - component: {fileID: 265097156}
   - component: {fileID: 265097158}
   - component: {fileID: 265097157}
+  - component: {fileID: 265097160}
+  - component: {fileID: 265097159}
   m_Layer: 5
   m_Name: finishPanel
   m_TagString: Untagged
@@ -393,6 +395,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265097155}
   m_CullTransparentMesh: 1
+--- !u!114 &265097159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265097155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bbc7e42e98454e0d80a645ad68057fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 265097160}
+        m_TargetAssemblyTypeName: LevelCompletObserver, Assembly-CSharp
+        m_MethodName: SetCurrentLevelComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  delay: 0
+  doOnStart: 0
+  doOnEnable: 1
+  doOnDisable: 0
+  comment: 
+--- !u!114 &265097160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265097155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e243023d69b04836963c860095d7428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &319394127
 GameObject:
   m_ObjectHideFlags: 0

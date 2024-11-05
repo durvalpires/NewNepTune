@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Antari
-{
     public class SavePlayerModelData : MonoBehaviour
     {
         public static SavePlayerModelData Instance { get; private set; }
@@ -18,4 +16,3 @@ namespace Antari
             PlayerModelBase.SaveData();
         }
     }
-}

@@ -39,7 +39,7 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         SceneManager.LoadScene("Level1Game1");
     }
 
-    public void LoadSelectionMinigame(string sceneName)
+    public virtual void LoadSelectionMinigame(string sceneName)
     {
         LoadSelectionMinigameAsync(sceneName);
     }
@@ -49,7 +49,7 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         LoadMusicInstrumentGuessAsync(sceneName);
     }
 
-    private static async UniTask LoadLevelAsync(string sceneName)
+    protected static async UniTask LoadLevelAsync(string sceneName)
     {
         await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }

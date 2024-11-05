@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/MainLevelSelect.unity
     guid: 99b86bf6f518c4dd4a0740f1dc39a79e
+  - enabled: 1
+    path: Assets/_App-v2/Scenes/v2_VirtualPianotemp.unity
+    guid: d40fca389dda04bb599ed5c313d813f4
+  - enabled: 1
+    path: Assets/_App-v2/Scenes/v2_SelectionMinigame.unity
+    guid: 421ca44611ca44792b052e237d886d68
   - enabled: 0
     path: Assets/Scenes/LoadingScene.unity
     guid: a655d579950784097839375744237ec3

@@ -1,21 +1,38 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlanetBtn : MonoBehaviour
 {
-    public Action<AllWorldsSO.WordData> onClickAction;
+    public Action<AllWorldsSO.WordData, int> onClickAction;
     [SerializeField] private Image image;
-    
+    [SerializeField] private BoolUnityEvent onLocked;
+    [SerializeField] private BoolUnityEvent onComplete;
+    private bool isLocked = false;
     private AllWorldsSO.WordData _data;
+    private int _index = -1;
     
-    public void Init(AllWorldsSO.WordData data)
+    public void Init(AllWorldsSO.WordData data, int index)
     {
+        _index = index;
         image.sprite = data.worldSprite;
         _data = data;
+        if (PlayerModel.IsWorldCompleted(data.id))
+        {
+            onComplete.Invoke(true);
+        }
+    }
+    
+    public void Lock()
+    {
+        isLocked = true;
+        onLocked.Invoke(true);
     }
     public void OnClick()
     {
-        onClickAction?.Invoke(_data);
+        if(isLocked) return;
+        
+        onClickAction?.Invoke(_data,_index);
     }
 }
