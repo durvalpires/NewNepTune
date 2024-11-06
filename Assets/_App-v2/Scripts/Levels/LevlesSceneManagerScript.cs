@@ -12,6 +12,12 @@ public class LevlesSceneManagerScript : SceneManagerScript
         LoadSelectionMinigameAsync2(_generalConfigSo.selectionMiniGameScene,sceneName);
         
     }
+
+    public override void MainMenu()
+    {
+        SceneManager.LoadScene(_generalConfigSo.planetsScene);
+    }
+
     private static async UniTask LoadSelectionMinigameAsync2(string miniGameScene,string sceneName)
     {
         string[] sceneParts = sceneName.Split(',');

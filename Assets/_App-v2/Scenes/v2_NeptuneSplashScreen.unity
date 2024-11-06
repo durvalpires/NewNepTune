@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -457,7 +458,7 @@ MonoBehaviour:
   fillDuration: 0.8
   displayDuration: 2
   unfillDuration: 0.2
-  nextSceneName: MainMenu
+  nextSceneName: v2_MainMenu
 --- !u!4 &1058172164
 Transform:
   m_ObjectHideFlags: 0

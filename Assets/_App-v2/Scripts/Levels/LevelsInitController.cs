@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class LevelsInitController : MonoBehaviour
     #endif
     
     [SerializeField] private WorldDataUnityEvent onInit;
+    [SerializeField] private UnityEvent onceAllLevelsDone;
     private AllWorldsSO.WordData data = null;
 
     private void Awake()
@@ -44,7 +46,8 @@ public class LevelsInitController : MonoBehaviour
             if (IsAllLevelsDone && !PlayerModel.IsWorldCompleted(data.id))
             {
                 PlayerModel.CompleteWorld(data.id);
-                SceneManager.LoadScene(generalConfig.planetsScene);
+                onceAllLevelsDone.Invoke();
+                //SceneManager.LoadScene(generalConfig.planetsScene);
                 return;
             }
             onInit.Invoke(data);

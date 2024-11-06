@@ -61,7 +61,7 @@ public class SectionLevelsUI : MonoBehaviour
             StartCoroutine(RefreshCanvas());
         });
     }
-
+#if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))//complete All
@@ -74,7 +74,7 @@ public class SectionLevelsUI : MonoBehaviour
             SceneManager.LoadScene(generalConfig.levelsScene);
         }
     }
-
+#endif
     public void RefreshLocks()
     {
         SectionLevelBtnUI openedLevel = null;

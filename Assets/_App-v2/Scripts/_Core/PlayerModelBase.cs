@@ -27,7 +27,6 @@ using UnityEngine.Networking;
                 }
                 return _player;
             }
-            
         }
 
         public static void SaveData()

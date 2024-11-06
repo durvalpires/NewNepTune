@@ -13,7 +13,7 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         Debug.Log($"Changed scene to {sceneName}");
     }
 
-    public void MainMenu()
+    public virtual void MainMenu()
     {
         SceneManager.LoadScene("MainLevelSelect");
     }
