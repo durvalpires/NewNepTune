@@ -10,6 +10,7 @@ public class RhythmGameUIController : MonoBehaviour
     [SerializeField] private GameObject InputBlocker;
     [SerializeField] private RectTransform getReadyPopup;
     [SerializeField] private RhythmGameSettings rhythmGameSettings;
+    [SerializeField] private EndOfLevelScreenController endOfLevelController;
 
     void Start()
     {
@@ -38,5 +39,9 @@ public class RhythmGameUIController : MonoBehaviour
     public void UpdateComboText(string newValue)
     {
         comboText.text = newValue;
+    }
+
+    public void OnLevelEnded(RhythmGameScoreController scoreController){
+        endOfLevelController.Activate(scoreController);
     }
 }

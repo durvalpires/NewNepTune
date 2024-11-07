@@ -1,6 +1,9 @@
+using Audio;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
@@ -11,6 +14,9 @@ using UnityEngine.Serialization;
 public class RhythmGameManager : MonoBehaviour
 {
     public UnityEvent<float> OnTempoChanged;
+    public UnityEvent<int> OnNotesAmountCalculated;
+    public UnityEvent<RhythmGameScoreController> OnLevelEnded;
+    public UnityEvent OnNoteHit;
 
     private float speedXPerSec;
 
@@ -35,37 +41,33 @@ public class RhythmGameManager : MonoBehaviour
     private float noteMaxDistanceToInteractionBar = 0;
 
     private RhythmGameScoreController scoreController;
-
-    [FormerlySerializedAs("trackAudioSource")] [SerializeField] private AudioSource songAudioSource;
+    
+    [SerializeField] private AudioSource challengeAudioSource;
     [SerializeField] private AudioSource backgroundAudioSource;
 
     // Assuming you have tempo in BPM
     float beatsPerSecond;
     float secondsPerBeat;
+    float beatsPerUnit;
 
     private bool isPlaying = false;
     private bool isLevelStarted = false;
 
-    private Dictionary<string, NoteController> noteInteractableDic = new Dictionary<string, NoteController>()
+    private int starsAchieved = 0;
+    
+    private IList<NoteView> noteViewList;
+    public IList<NoteView> NoteViewList
     {
-        //{"C", false},
-        //{"D", false},
-        //{"E", false},
-        //{"F", false},
-        //{"G", false},
-        //{"A", false},
-        //{"B", false
+        get => noteViewList;
+    }
 
-        {"C", null},
-        {"D", null},
-        {"E", null},
-        {"F", null},
-        {"G", null},
-        {"A", null},
-        {"B", null}
-    };
+    private int notesCrossed = 0;
+    public UnityEvent<NoteView, float, float, float> OnNextNoteUpdated;
 
-    private void Awake()
+    private List<NoteController> noteInteractableList = new List<NoteController>();
+
+    
+    void Awake()
     {
         var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
         LoadLevelAssets(data);
@@ -79,10 +81,14 @@ public class RhythmGameManager : MonoBehaviour
         beatsPerSecond = scoreRender.Bpm / 60;
         secondsPerBeat = 1 / beatsPerSecond;
         speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
+        beatsPerUnit = beatsPerSecond / speedXPerSec;
+        
+        noteViewList = scoreRender.Render(speedXPerSec);
+        var noteCount = noteViewList.Count;
 
-        scoreController = new RhythmGameScoreController(rhythmGameSettings);
-
-        var notesSortedByScore = scoreRender.Render(speedXPerSec);
+        scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
+        scoreController.OnStarAchieved += OnStarAchieved;
+        OnNotesAmountCalculated?.Invoke(noteCount);
 
         // this.playRecorder = new PlayRecorder(notesSortedByScore);
 
@@ -92,6 +98,32 @@ public class RhythmGameManager : MonoBehaviour
 
         StartCoroutine(DelayedStart());
     }
+
+    void OnDestroy()
+    {
+        scoreController.OnStarAchieved -= OnStarAchieved;
+        
+        var songClip = challengeAudioSource.clip;
+        var textAsset = songXmlAsset;
+        var backgroundClip = backgroundAudioSource.clip;
+
+        challengeAudioSource.clip = null;
+        backgroundAudioSource.clip = null;
+        
+        // Release loaded assets to free memory
+        Addressables.Release(songClip);
+        Addressables.Release(textAsset);
+        Addressables.Release(backgroundClip);
+    }
+
+    void OnStarAchieved()
+    {
+        starsAchieved++;
+        if (starsAchieved == 1) AudioManager.Instance.PlaySFX(Enums.SoundList.Star1Achieved);
+        else if (starsAchieved == 2) AudioManager.Instance.PlaySFX(Enums.SoundList.Star2Achieved);
+        else if (starsAchieved == 3) AudioManager.Instance.PlaySFX(Enums.SoundList.Star3Achieved);
+    }
+
 
     private IEnumerator DelayedStart()
     {
@@ -127,24 +159,30 @@ public class RhythmGameManager : MonoBehaviour
         //MoveBoard();
         //this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
         if(isPlaying){
-            if(!songAudioSource.isPlaying){
+            if(!challengeAudioSource.isPlaying){
                 StartCoroutine(CloseLevel());
             }
         }
 
     }
+    
 
     private IEnumerator CloseLevel()
     {
-        yield return new WaitForSeconds(1.5f);
+        isLevelStarted = false;
+        isPlaying = false;
+        yield return new WaitForSeconds(.5f);
         Debug.LogWarning("CloseLevelllllllllll");
+        OnLevelEnded?.Invoke(scoreController);
     }
 
     public void StartPlaying()
     {
         Debug.LogWarning("StartPlaying");
         isPlaying = true;
-        songAudioSource.Play();
+        backgroundAudioSource.Play();
+        //OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], 1,secondsPerBeat);
+        challengeAudioSource.Play();
     }
 
     private void FixedUpdate()
@@ -158,21 +196,6 @@ public class RhythmGameManager : MonoBehaviour
         
     }
     
-    private void OnDestroy()
-    {
-        var songClip = songAudioSource.clip;
-        var textAsset = songXmlAsset;
-        var backgroundClip = backgroundAudioSource.clip;
-
-        songAudioSource.clip = null;
-        backgroundAudioSource.clip = null;
-        
-        // Release loaded assets to free memory
-        Addressables.Release(songClip);
-        Addressables.Release(textAsset);
-        Addressables.Release(backgroundClip);
-    }
-    
     private void LoadLevelAssets(VirtualPianoLevelSO levelConfig)
     {
         // Load text asset
@@ -181,7 +204,7 @@ public class RhythmGameManager : MonoBehaviour
         // Load first audio clip
         levelConfig.songClip.LoadAssetAsync<AudioClip>().Completed += handle =>
         {
-            songAudioSource.clip = handle.Result;
+            challengeAudioSource.clip = handle.Result;
         };
 
         // Load second audio clip
@@ -260,6 +283,11 @@ public class RhythmGameManager : MonoBehaviour
     // {
     //     this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
     // }
+
+    // void PlayNote(Pitch pitch)
+    // {
+    //     this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
+    // }
     
     #endregion
 
@@ -292,12 +320,46 @@ public class RhythmGameManager : MonoBehaviour
 
     public void OnNoteTriggeredInteractionBar(NoteController note, bool entered)
     {
-        Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + " = " + entered);
+        Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + note.Index.ToString() + " = " + entered);
+
+        // if(entered && noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] == null){
+        //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] = new List<NoteController>();
+        // }
         
-        noteInteractableDic[note.Pitch.Step] = entered ? note : null;
+        // if(entered){
+        //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave].Add(note);
+        // }
+        // else{
+        //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave].Remove(note);
+        // }
+
+        if(entered){
+            noteInteractableList.Add(note);
+            
+        }
+        else{
+            if(noteInteractableList.Contains(note))
+                noteInteractableList.Remove(note);
+        }
+
+        Debug.Log("noteInteractableList: ");
+        foreach(var n in noteInteractableList){
+            Debug.Log(n.Pitch.Step + n.Index.ToString());
+        }
+        
+
+        //noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] = entered ? note : null;
         noteMaxDistanceToInteractionBar = Mathf.Abs(
             note.transform.position.x -
             interactionArea.transform.position.x);
+    }
+
+    public void OnTriggeredInteractionAreaCenter(NoteController note)
+    {
+        notesCrossed++;
+        if(notesCrossed<noteViewList.Count)
+            OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], noteViewList[notesCrossed-1].beatNumber, 
+                secondsPerBeat, beatsPerUnit);
     }
 
     public void OnPianoKeyStateChanged(string note, bool isPressed)
@@ -305,16 +367,32 @@ public class RhythmGameManager : MonoBehaviour
         if (isPressed)
         {
             var accuracy = HitAccuracy.Miss;
-            if (noteInteractableDic[note] != null)
-            {
-                accuracy = EvaluateHit(noteInteractableDic[note].gameObject);
-                noteInteractableDic[note] = null;
-            }
-            else
-            {
 
-                accuracy = HitAccuracy.Miss;
+            int indexToRemove = 0;
+            foreach(var noteObj in noteInteractableList){
+                if(noteObj.Pitch.Step == note){
+                    accuracy = EvaluateHit(noteObj.gameObject);
+                    OnNoteHit?.Invoke();
+                    break;
+                }
+                indexToRemove++;
             }
+
+            if(accuracy != HitAccuracy.Miss){
+                noteInteractableList.RemoveAt(indexToRemove);
+            }
+
+            // if (noteInteractableDic[note] != null)
+            // {
+            //     accuracy = EvaluateHit(noteInteractableDic[note].gameObject);
+            //     noteInteractableDic[note] = null;
+            //     OnNoteHit?.Invoke();
+            // }
+            // else
+            // {
+            //     accuracy = HitAccuracy.Miss;
+            // }
+
             ProcessScore(accuracy);
             keyPressTxtFeedback?.Invoke(accuracy.ToString());
         }

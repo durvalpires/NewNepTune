@@ -230,6 +230,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/PianoPlayMusic/JingleBellsVirtualPianoScene.unity
     guid: 4c917884faab947f79f5a96aa1e26ed9
+  - enabled: 1
+    path: Assets/Scenes/Levels/Part1/1 - DO(C)/MiddleCVP1.unity
+    guid: 2670f809fb2cc4b1aaddc9737e13300d
   m_configObjects:
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 42490800d252b4376b2008c7f2b59d6f,
       type: 2}

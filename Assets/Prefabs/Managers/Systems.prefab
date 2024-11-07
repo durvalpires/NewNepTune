@@ -338,38 +338,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: note_A
+    type: 0
     clip: {fileID: 8300000, guid: 6a4eeca28beed463abf69bf2c42c82f3, type: 3}
   - name: middleCmusic
+    type: 0
     clip: {fileID: 8300000, guid: 8710d619cbc5dba489c162e248aeb860, type: 3}
   sfxSounds:
   - name: note_A
+    type: 1
     clip: {fileID: 8300000, guid: 53881dcbe6f224d889026c8d0093761a, type: 3}
   - name: note_B
+    type: 2
     clip: {fileID: 8300000, guid: e0ec8a34b2b9f4d48875bd80504f062d, type: 3}
   - name: note_C
+    type: 3
     clip: {fileID: 8300000, guid: 3422927706a6d3040b07b9e10cee0083, type: 3}
   - name: note_D
+    type: 4
     clip: {fileID: 8300000, guid: 78c35068261bc497ea7349a816d8a318, type: 3}
   - name: note_E
+    type: 5
     clip: {fileID: 8300000, guid: ead66a1b7c1544ab7b7cbf017916308e, type: 3}
   - name: note_F
+    type: 6
     clip: {fileID: 8300000, guid: ea8ce4067749c458bb70b31efc58b6a0, type: 3}
   - name: note_G
+    type: 7
     clip: {fileID: 8300000, guid: 75925e7ea720a495383cb52b19e3267b, type: 3}
   - name: WinSound
+    type: 8
     clip: {fileID: 8300000, guid: 738b6d82226c04da0bce352b8cebe879, type: 3}
   - name: LoseSound
+    type: 9
     clip: {fileID: 8300000, guid: 57d4b4933e13f4abb8ea7c0e0956ca06, type: 3}
   - name: SplashScreenFill
+    type: 13
     clip: {fileID: 8300000, guid: e0c577b8a692442b2b202e718ea6bd5a, type: 3}
   - name: SplashScreenUnfill
+    type: 14
     clip: {fileID: 8300000, guid: 1765b96b46e70480f81ec340bbb824d3, type: 3}
+  - name: Star1Achieved
+    type: 15
+    clip: {fileID: 8300000, guid: ffb71dd8ef71d4974807c05fe0da38f9, type: 3}
+  - name: Star2Achieved
+    type: 16
+    clip: {fileID: 8300000, guid: ee53a4bea070c4f2f9a4ee021d50babc, type: 3}
+  - name: Star3Achieved
+    type: 17
+    clip: {fileID: 8300000, guid: 307833c54a3a54412984ca09b2f194c8, type: 3}
+  - name: ScoreCount
+    type: 19
+    clip: {fileID: 8300000, guid: fd1c369b67eca4f9d96e19b47317cb67, type: 3}
   miniGameSounds:
   - name: FirstSoundMG
+    type: 0
     clip: {fileID: 8300000, guid: ce4aff051f5114393b30038df52c830a, type: 3}
   - name: SecondSoundMG
+    type: 0
     clip: {fileID: 8300000, guid: c29c774651e2f474b974b3489b924c53, type: 3}
   - name: ThirdSoundMG
+    type: 0
     clip: {fileID: 8300000, guid: 3ca55edd974c44543b5be186c68d656e, type: 3}
   musicSource: {fileID: 268530942375546749}
   sfxSource: {fileID: 2416947129110500254}

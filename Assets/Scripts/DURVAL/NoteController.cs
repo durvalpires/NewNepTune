@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,10 +21,19 @@ public class NoteController : MonoBehaviour
 
     public float Width { get; set; } = 0;
 
-    public ScoreNote Note { get; set; }
+    // public ScoreNote Note { 
+    //     get{
+    //         return note;
+    //     } 
+    //     set{
+    //         note = value;
+    //         UpdateNoteAppearance();
+    //     } 
+    // }
+
     public Pitch Pitch { get
         {
-            return Note.Pitch.Value;
+            return note.Pitch.Value;
         } 
     }
     public ColorSettings ColorSettings { get; set; }
@@ -35,13 +45,26 @@ public class NoteController : MonoBehaviour
     [SerializeField]
     private ScoreNote note;
 
+    public int Index { get; set; }
+
+    public SpriteRenderer CircleSprite
+    {
+        get => circleSprite;
+    }
+
+    [SerializeField] private SpriteRenderer circleSprite;
+    [SerializeField] private SpriteRenderer stemSprite;
+    [SerializeField] private SpriteRenderer beamTopSprite;
+    [SerializeField] private SpriteRenderer beamBottomSprite;
+    [SerializeField] private SpriteRenderer circleLineSprite;
+
     //[SerializeField]
     //private RhythmGameSettings gameSettings;
 
 
-    void Start()
+    void Awake()
     {
-        this.note = Note;
+        //this.note = Note;
         //this.tableObj = this.gameObject.transform.Find("TablePrefab");
         //this.playNoteObj = this.gameObject.transform.Find("PlayNotePrefab");
         this.playNoteObj = transform;
@@ -70,12 +93,12 @@ public class NoteController : MonoBehaviour
         // }
 
         //this.SetColorByPitch();
-        this.SetMusicSheetColor();
+        //this.SetMusicSheetColor();
     }
 
     void SetColorByPitch()
     {
-        switch (this.Note.Pitch?.Step)
+        switch (this.note.Pitch?.Step)
         {
             case "C":
                 this.SetColor(ColorSettings.C.MainColor);
@@ -128,6 +151,9 @@ public class NoteController : MonoBehaviour
 
     private void SetColor(Color noteColor)
     {
+        foreach (var renderer in this.playNoteObj.GetComponentsInChildren<SpriteRenderer>(true)){
+            renderer.color = noteColor;
+        }
         //var renderer = this.playNoteObj.GetComponent<Renderer>();
         //renderer.material.SetColor("_Color", noteColor.MainColor);
         this.playNoteObj.GetComponent<SpriteRenderer>().color = noteColor;
@@ -135,7 +161,7 @@ public class NoteController : MonoBehaviour
     }
 
     private void SetMusicSheetColor(){
-        this.playNoteObj.GetComponent<SpriteRenderer>().color = ColorSettings.NormalColor;
+        SetColor(ColorSettings.NormalColor);
     }
 
     public void AddWidth(float width)
@@ -159,6 +185,87 @@ public class NoteController : MonoBehaviour
                 SetState(NoteState.Miss);
             }
         }
+    }
+
+    // private void UpdateNoteAppearance()
+    // {
+    //     // Stem Direction
+    //     if(note.Stem != "up"){
+    //         transform.eulerAngles = new Vector3(0, 0, 180);
+    //     }
+
+
+    // }
+
+    public void SetNote(ScoreNote scoreNote, RhythmGameSettings gameSettings)
+    {
+        this.note = scoreNote;
+
+        SetState(NoteState.Normal);
+
+        if(note.IsRest){
+            
+            
+            
+            return;
+        }
+
+
+
+        // Stem Direction
+        if(note.Type == "whole"){
+            stemSprite.gameObject.SetActive(false);
+        }
+        else if(note.Stem != "up"){
+            transform.eulerAngles = new Vector3(0, 0, 180);
+        }
+
+        if(!gameSettings.circleLineNotes.Contains(note.Pitch?.Step + note.Pitch?.Octave)){
+            circleLineSprite.gameObject.SetActive(false);
+        }
+
+        foreach(var variation in gameSettings.noteCircleVariationsSprites){
+            if(variation.noteType == note.Type){
+                circleSprite.sprite = variation.sprite;
+            }
+        }
+
+        if(note.BeamList != null && note.BeamList.Count > 0){
+            for(int i = 0; i < note.BeamList.Count; i++){
+                if(note.BeamList[i].Type != "begin"){
+                    if(i == 0){
+                        if(note.Type == "eighth"){
+                            beamTopSprite.transform.localScale = new Vector3(2, 
+                            transform.localScale.y, transform.localScale.z);
+                        }
+                        beamTopSprite.gameObject.SetActive(true);
+                        beamTopSprite.sprite = gameSettings.beamSprite;
+                    }
+                    else if(i == 1){
+                        if(note.Type == "eighth"){
+                            beamBottomSprite.transform.localScale = new Vector3(2, 
+                            transform.localScale.y, transform.localScale.z);
+                        }
+                        beamBottomSprite.gameObject.SetActive(true);
+                        beamBottomSprite.sprite = gameSettings.beamSprite;
+                    }
+                }
+            }
+        }
+        
+        
+
+    }
+    
+    private void AdjustColliderToSprite()
+    {
+        BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+
+        // Get the sprite's bounds
+        Vector2 spriteSize = circleSprite.sprite.bounds.size;
+
+        // Adjust the collider's size to match the sprite's width and height
+        boxCollider.size = new Vector2(spriteSize.x, boxCollider.size.y);
     }
 
     // public void StartAnimation(float divisionOneX, float tempo, float speedXPerSec)

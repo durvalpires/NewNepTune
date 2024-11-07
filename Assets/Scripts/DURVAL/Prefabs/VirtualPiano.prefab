@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7859968470934250682}
   - component: {fileID: 8614598443030748762}
   - component: {fileID: 9179849224843593285}
+  - component: {fileID: 5321907701501088597}
+  - component: {fileID: 1476649232158166105}
   m_Layer: 5
   m_Name: VirtualPiano
   m_TagString: Untagged
@@ -84,7 +86,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPianoKeyTriggered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RhythmGameManager, Assembly-CSharp
+        m_MethodName: OnPianoKeyStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mainPianoKeys:
   - {fileID: 616005519568694285}
   - {fileID: 6241994834959321065}
@@ -94,6 +108,44 @@ MonoBehaviour:
   - {fileID: 6010264653271625919}
   - {fileID: 7096343577925226428}
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
+--- !u!222 &5321907701501088597
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5571719298766204274}
+  m_CullTransparentMesh: 1
+--- !u!114 &1476649232158166105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5571719298766204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a6855fd46de9c445aa9415d122894bb2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &16399423524172586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +194,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1788103252385135861, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2782201574628569529, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
       propertyPath: m_Name
@@ -156,6 +213,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597399854938963974, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9181116330961711635, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
@@ -289,7 +351,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 16399423524172586}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2784947123004195475}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -412,6 +474,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1788103252385135861, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2782201574628569529, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
       propertyPath: m_Name
@@ -433,6 +500,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597399854938963974, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9181116330961711635, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
@@ -566,7 +638,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 98131723011896810}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2864570697828959315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -689,6 +761,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1788103252385135861, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2782201574628569529, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
       propertyPath: m_Name
@@ -708,6 +785,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597399854938963974, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9181116330961711635, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
@@ -841,7 +923,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 652293344014819577}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3427578791820415296}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -964,6 +1046,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1788103252385135861, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2782201574628569529, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
       propertyPath: m_Name
@@ -983,6 +1070,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597399854938963974, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9181116330961711635, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
@@ -1110,7 +1202,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6085930044220753993}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8280374472102607344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1239,6 +1331,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1788103252385135861, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2782201574628569529, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
       propertyPath: m_Name
@@ -1258,6 +1355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597399854938963974, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9181116330961711635, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
@@ -1385,7 +1487,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6619870519810912152}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9026019309342449185}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1514,6 +1616,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1788103252385135861, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2782201574628569529, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
       propertyPath: m_Name
@@ -1533,6 +1640,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597399854938963974, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9181116330961711635, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
@@ -1660,7 +1772,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6779672031373646030}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8685867384024197495}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1789,6 +1901,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1788103252385135861, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2782201574628569529, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
       propertyPath: m_Name
@@ -1808,6 +1925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597399854938963974, guid: d173854f7f36d994b97172c2954d883e,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9181116330961711635, guid: d173854f7f36d994b97172c2954d883e,
         type: 3}
@@ -2011,7 +2133,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 7695939361755631771}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499217870927733026}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

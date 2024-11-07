@@ -271,10 +271,18 @@ MonoBehaviour:
   onNoteTriggeredInteractionBarCenter:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 1782108897}, m_TargetAssemblyTypeName: RhythmGameManager, Assembly-CSharp, m_MethodName: OnTriggeredInteractionAreaCenter, m_Mode: 0, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
+      - m_Target: {fileID: 1782108897}
+        m_TargetAssemblyTypeName: RhythmGameManager, Assembly-CSharp
+        m_MethodName: OnTriggeredInteractionAreaCenter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &252092931
 Rigidbody2D:
   serializedVersion: 5
@@ -1399,13 +1407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa81e9f522e849a0b19465e50105b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelStarted: 0
-  targetY: 0
-  noteHitYOffset: 0.3
-  bounceDuration: 0
-  bounceOffset: 0.5
-  timeElapsedSinceBounce: 0
-  initialY: 0
 --- !u!1 &715063630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,17 +1969,17 @@ PrefabInstance:
     - target: {fileID: 2969487064183523229, guid: 3e5d8704cf8636440aff3d8abd1f9951,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2969487064183523229, guid: 3e5d8704cf8636440aff3d8abd1f9951,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -452.884
       objectReference: {fileID: 0}
     - target: {fileID: 2969487064183523229, guid: 3e5d8704cf8636440aff3d8abd1f9951,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.4392776
       objectReference: {fileID: 0}
     - target: {fileID: 4197370402517789262, guid: 3e5d8704cf8636440aff3d8abd1f9951,
         type: 3}
@@ -2141,6 +2142,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 908032463}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &908032465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 843636196440290992, guid: 3e5d8704cf8636440aff3d8abd1f9951,
+    type: 3}
+  m_PrefabInstance: {fileID: 908032463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae1fd13bdc43ad438e8d43787907bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &933422003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,6 +2700,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  settings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
+  mainCollider: {fileID: 1110544055}
 --- !u!1 &1127685832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2748,6 +2763,8 @@ MonoBehaviour:
   - {fileID: 523621293}
   initialNoteSpawningPoint: {fileID: 1254268592}
   notesContainer: {fileID: 903766655}
+  beatMarkerPrefab: {fileID: 3969139605018048098, guid: bba1f9e6518778f4b8c3deefa96288e3,
+    type: 3}
 --- !u!1 &1161842744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,6 +2984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9571431f2c43a4696b63d4fd139dc3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSubTic: 0
+  playTic: 0
   metronomeClip:
   - {fileID: 8300000, guid: 337cc9fb906904bd4ae36ec80b6025ee, type: 3}
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
@@ -3847,7 +3866,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8710d619cbc5dba489c162e248aeb860, type: 3}
   m_Resource: {fileID: 8300000, guid: 8710d619cbc5dba489c162e248aeb860, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4182,8 +4201,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2e4cd68e094a54a49a4db9456433067d, type: 3}
-  m_Resource: {fileID: 8300000, guid: 2e4cd68e094a54a49a4db9456433067d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e0fdd45b6aa8a4971a50d75166079079, type: 3}
+  m_Resource: {fileID: 8300000, guid: e0fdd45b6aa8a4971a50d75166079079, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4340,6 +4359,87 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNotesAmountCalculated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 908032465}
+        m_TargetAssemblyTypeName: Levels.ScoreBarSlider, Assembly-CSharp
+        m_MethodName: SetNotesAmount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLevelEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1899143680}
+        m_TargetAssemblyTypeName: RhythmGameUIController, Assembly-CSharp
+        m_MethodName: OnLevelEnded
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1228623091}
+        m_TargetAssemblyTypeName: QuantizedLoopStation.GlobalMetronome, Assembly-CSharp
+        m_MethodName: StopMetronome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1550666168}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 122204990}
+        m_TargetAssemblyTypeName: BouncingBall, Assembly-CSharp
+        m_MethodName: StopBall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNoteHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 908032465}
+        m_TargetAssemblyTypeName: Levels.ScoreBarSlider, Assembly-CSharp
+        m_MethodName: UpdateSliderBasedOnDivision
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   scoreBoard: {fileID: 903766655}
   songXmlAsset: {fileID: 4900000, guid: d6b9e828c2ebd4d9a8fb7aee70971900, type: 3}
   scoreRender: {fileID: 1127685834}
@@ -4391,6 +4491,22 @@ MonoBehaviour:
         m_CallState: 2
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
   trackAudioSource: {fileID: 1711215467}
+  backingTrackAudioSource: {fileID: 1550666168}
+  OnNextNoteUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 709976524}
+        m_TargetAssemblyTypeName: NoteBasedBouncingBall, Assembly-CSharp
+        m_MethodName: OnNextNoteUpdated
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1782108898
 Transform:
   m_ObjectHideFlags: 0
@@ -4646,6 +4762,7 @@ MonoBehaviour:
   InputBlocker: {fileID: 1279970086}
   getReadyPopup: {fileID: 348884751}
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
+  endOfLevelController: {fileID: 698941798}
 --- !u!224 &1899143683 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 198802161994696846, guid: aab1bc162f0564a7a9dc0200bd3c4e45,
@@ -4823,7 +4940,7 @@ PrefabInstance:
     - target: {fileID: 616005519568694285, guid: 59018a119fd60f049980091ff446097d,
         type: 3}
       propertyPath: m_Colors.m_PressedColor.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 616005519568694285, guid: 59018a119fd60f049980091ff446097d,
         type: 3}

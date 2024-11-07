@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,9 @@ namespace QuantizedLoopStation
         public static event GlobalMetronomeEvent tic;
         public static event GlobalMetronomeEvent subTic;
         public static GlobalMetronome instance;
+
+        [SerializeField] private bool playSubTic = false;
+        [SerializeField] private bool playTic = false;
 
         private float bpm = 80.0f;
         private float beatInvertal;
@@ -76,7 +80,7 @@ namespace QuantizedLoopStation
 
         private void FixedUpdate()
         {
-            if(!isInitialized) return;
+            if(!isInitialized || beatCount > 4/*!playTic*/) return;
             beatInvertal = 60f / bpm;
 
             // beatTimer += Time.fixedDeltaTime;
@@ -107,6 +111,11 @@ namespace QuantizedLoopStation
                 OnPreCountdownDone?.Invoke();
                 preCountdownDone = true;
             }
+        }
+
+        public void StopMetronome()
+        {
+            isInitialized = false;
         }
 
         // float deltaTime;
@@ -145,6 +154,7 @@ namespace QuantizedLoopStation
         private void OnTic(int beat)
         {
             Debug.Log("OnTic: " + beat);
+            //if(!playTic) return;
             if (beat % quantizeDegree == 0)
             {
                 audioSource.PlayOneShot(metronomeClip[0], 1.0f);
@@ -157,7 +167,8 @@ namespace QuantizedLoopStation
 
         private void OnSubTic(int subBeat)
         {
-            audioSource.PlayOneShot(metronomeClip[0], 0.1f);
+            if(playSubTic) 
+                audioSource.PlayOneShot(metronomeClip[0], 0.1f);
         }
     }
 }

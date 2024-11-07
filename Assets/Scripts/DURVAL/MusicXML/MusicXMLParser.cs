@@ -143,19 +143,19 @@ public static class MusicXMLParser
             }
         }
 
-        // var beamNodes = noteNode.SelectNodes("beam");
-        // if (beamNodes != null && beamNodes.Count > 0)
-        // {
-        //     scoreNote.BeamList = new List<Beam>();
-        //     foreach (XmlNode beamNode in beamNodes)
-        //     {
-        //         var beam = GetTie(beamNode);
-        //         if (beam != null)
-        //         {
-        //             scoreNote.TieList.Add(beam.Value);
-        //         }
-        //     }
-        // }
+        var beamNodes = noteNode.SelectNodes("beam");
+        if (beamNodes != null && beamNodes.Count > 0)
+        {
+            scoreNote.BeamList = new List<Beam>();
+            foreach (XmlNode beamNode in beamNodes)
+            {
+                var beam = GetBeam(beamNode);
+                if (beam != null)
+                {
+                    scoreNote.BeamList.Add(beam.Value);
+                }
+            }
+        }
 
         return scoreNote;
     }
@@ -187,6 +187,20 @@ public static class MusicXMLParser
         return new Tie()
         {
             Type = tieNode.Attributes["type"].InnerText,
+        };
+    }
+
+    private static Beam? GetBeam(XmlNode beamNode)
+    {
+        if (beamNode == null)
+        {
+            return null;
+        }
+
+        return new Beam()
+        {
+            Type = beamNode.InnerText,
+            Number = Int32.Parse(beamNode.Attributes["number"].InnerText),
         };
     }
 

@@ -42,7 +42,7 @@ public class VirtualPianoKeyController : MonoBehaviour, IPointerDownHandler, IPo
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        SetKeyColorActive();
+        //SetKeyColorActive();
     }
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
