@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Serialization;
 
 public class RhythmGameManager : MonoBehaviour
 {
@@ -32,7 +36,8 @@ public class RhythmGameManager : MonoBehaviour
 
     private RhythmGameScoreController scoreController;
 
-    [SerializeField] private AudioSource trackAudioSource;
+    [FormerlySerializedAs("trackAudioSource")] [SerializeField] private AudioSource songAudioSource;
+    [SerializeField] private AudioSource backgroundAudioSource;
 
     // Assuming you have tempo in BPM
     float beatsPerSecond;
@@ -59,6 +64,12 @@ public class RhythmGameManager : MonoBehaviour
         {"A", null},
         {"B", null}
     };
+
+    private void Awake()
+    {
+        var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
+        LoadLevelAssets(data);
+    }
 
     void Start()
     {
@@ -116,7 +127,7 @@ public class RhythmGameManager : MonoBehaviour
         //MoveBoard();
         //this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
         if(isPlaying){
-            if(!trackAudioSource.isPlaying){
+            if(!songAudioSource.isPlaying){
                 StartCoroutine(CloseLevel());
             }
         }
@@ -133,7 +144,7 @@ public class RhythmGameManager : MonoBehaviour
     {
         Debug.LogWarning("StartPlaying");
         isPlaying = true;
-        trackAudioSource.Play();
+        songAudioSource.Play();
     }
 
     private void FixedUpdate()
@@ -145,6 +156,47 @@ public class RhythmGameManager : MonoBehaviour
             MoveBoard();
         }
         
+    }
+    
+    private void OnDestroy()
+    {
+        var songClip = songAudioSource.clip;
+        var textAsset = songXmlAsset;
+        var backgroundClip = backgroundAudioSource.clip;
+
+        songAudioSource.clip = null;
+        backgroundAudioSource.clip = null;
+        
+        // Release loaded assets to free memory
+        Addressables.Release(songClip);
+        Addressables.Release(textAsset);
+        Addressables.Release(backgroundClip);
+    }
+    
+    private void LoadLevelAssets(VirtualPianoLevelSO levelConfig)
+    {
+        // Load text asset
+        levelConfig.songXml.LoadAssetAsync<TextAsset>().Completed += OnTextAssetLoaded;
+
+        // Load first audio clip
+        levelConfig.songClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+        {
+            songAudioSource.clip = handle.Result;
+        };
+
+        // Load second audio clip
+        levelConfig.backgroundClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+        {
+            backgroundAudioSource.clip = handle.Result;
+        };
+    }
+
+    private void OnTextAssetLoaded(AsyncOperationHandle<TextAsset> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            songXmlAsset = handle.Result;
+        }
     }
 
     // private void LoadMidiFile()
@@ -162,50 +214,54 @@ public class RhythmGameManager : MonoBehaviour
         this.scoreBoard.transform.position -= this.scoreBoard.transform.right * addX;
     }
 
-    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-        if (change != InputDeviceChange.Added)
-        {
-            return;
-        }
+    #region MIDI Controller
+    // private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    // {
+    //     if (change != InputDeviceChange.Added)
+    //     {
+    //         return;
+    //     }
+    //
+    //     var midiDevice = device as Minis.MidiDevice;
+    //     if (midiDevice == null) return;
+    //
+    //     midiDevice.onWillNoteOn += OnWillNoteOn;
+    // }
+    //
+    // private void OnWillNoteOn(Minis.MidiNoteControl note, float velocity)
+    // {
+    //     DispatchNoteOnEvent(note.noteNumber);
+    // }
+    //
+    // private void DispatchEvents(List<SmfLite.MidiEvent> events)
+    // {
+    //     if (events == null)
+    //     {
+    //         return;
+    //     }
+    //
+    //     foreach (var e in events)
+    //     {
+    //         if ((e.status & 0xf0) == 0x90)
+    //         {
+    //             this.DispatchNoteOnEvent(e.data1);
+    //         }
+    //     }
+    // }
+    //
+    // private void DispatchNoteOnEvent(int noteNumber)
+    // {
+    //     var pitch = Pitch.GetPitchByMidiNoteNumber(noteNumber);
+    //     this.PlayNote(pitch);
+    // }
 
-        var midiDevice = device as Minis.MidiDevice;
-        if (midiDevice == null) return;
 
-        midiDevice.onWillNoteOn += OnWillNoteOn;
-    }
-
-    private void OnWillNoteOn(Minis.MidiNoteControl note, float velocity)
-    {
-        DispatchNoteOnEvent(note.noteNumber);
-    }
-
-    private void DispatchEvents(List<SmfLite.MidiEvent> events)
-    {
-        if (events == null)
-        {
-            return;
-        }
-
-        foreach (var e in events)
-        {
-            if ((e.status & 0xf0) == 0x90)
-            {
-                this.DispatchNoteOnEvent(e.data1);
-            }
-        }
-    }
-
-    private void DispatchNoteOnEvent(int noteNumber)
-    {
-        var pitch = Pitch.GetPitchByMidiNoteNumber(noteNumber);
-        this.PlayNote(pitch);
-    }
-
-    void PlayNote(Pitch pitch)
-    {
-        this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
-    }
+    // void PlayNote(Pitch pitch)
+    // {
+    //     this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
+    // }
+    
+    #endregion
 
     private HitAccuracy EvaluateHit(GameObject noteObj)
     {
