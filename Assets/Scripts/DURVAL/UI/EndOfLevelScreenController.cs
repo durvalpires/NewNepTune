@@ -1,8 +1,6 @@
-using System;
 using Audio;
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,20 +26,29 @@ public class EndOfLevelScreenController : MonoBehaviour
         bool star2Awarded = false;
         bool star3Awarded = false;
 
+        if (scoreController.PlayerStars > 0)
+        {
+            GetComponent<LevelCompletObserver>().SetCurrentLevelComplete();
+            
+        }
+        
 
         DG.Tweening.Sequence sequence = DOTween.Sequence();
         sequence.Append(
             // Use DOTween to animate from the currentScore to targetScore
-            DOTween.To(() => currentScore, x => currentScore = x, scoreController.PlayerScore, scoreAnimationInSec)
+            DOTween.To(() => currentScore, x => currentScore = x, scoreController.PlayerScore, 
+                    scoreAnimationInSec)
             .OnStart(() => {
-                ScoreAmountText.rectTransform.DOShakePosition(scoreAnimationInSec, 0.5f, 10, 90, true);
+                ScoreAmountText.rectTransform.DOShakePosition(scoreAnimationInSec, 0.5f, 10, 90,
+                    true);
                 AudioManager.Instance.PlaySFX(Enums.SoundList.ScoreCount);
             })
             .OnUpdate(() => ScoreAmountText.text = currentScore.ToString())  // Update text every step
             .OnComplete(() => Debug.Log("Score animation complete!"))  // Optional: Action on completion
         );
         sequence.Append(
-            DOTween.To(() => starsAchieved, x => starsAchieved = x, scoreController.PlayerStars, scoreAnimationInSec)
+            DOTween.To(() => starsAchieved, x => starsAchieved = x, scoreController.PlayerStars, 
+                    scoreAnimationInSec)
             .OnUpdate(() => {
                 if (!star1Awarded &&starsAchieved == 1) {
                     star1Awarded = true;

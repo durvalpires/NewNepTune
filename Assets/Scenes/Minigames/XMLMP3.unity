@@ -1217,6 +1217,7 @@ GameObject:
   - component: {fileID: 698941797}
   - component: {fileID: 698941796}
   - component: {fileID: 698941798}
+  - component: {fileID: 698941799}
   m_Layer: 5
   m_Name: EndOfLevelPanel
   m_TagString: Untagged
@@ -1307,6 +1308,18 @@ MonoBehaviour:
   star3: {fileID: 790302267}
   starFilledSprite: {fileID: 21300000, guid: e98d243f45f48ee4c80c07aecf3a1d7b, type: 3}
   scoreAnimationInSec: 1
+--- !u!114 &698941799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698941794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e243023d69b04836963c860095d7428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &709976521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3863,10 +3876,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8710d619cbc5dba489c162e248aeb860, type: 3}
-  m_Resource: {fileID: 8300000, guid: 8710d619cbc5dba489c162e248aeb860, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4185,7 +4198,7 @@ GameObject:
   - component: {fileID: 1711215468}
   - component: {fileID: 1711215467}
   m_Layer: 0
-  m_Name: Mp3Player
+  m_Name: ChallengeTrack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4201,8 +4214,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e0fdd45b6aa8a4971a50d75166079079, type: 3}
-  m_Resource: {fileID: 8300000, guid: e0fdd45b6aa8a4971a50d75166079079, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4297,7 +4310,7 @@ Transform:
   m_GameObject: {fileID: 1711215466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4441,7 +4454,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   scoreBoard: {fileID: 903766655}
-  songXmlAsset: {fileID: 4900000, guid: d6b9e828c2ebd4d9a8fb7aee70971900, type: 3}
+  songXmlAsset: {fileID: 0}
   scoreRender: {fileID: 1127685834}
   interactionArea: {fileID: 1110544051}
   keyPressTxtFeedback:
@@ -4490,8 +4503,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
-  trackAudioSource: {fileID: 1711215467}
-  backingTrackAudioSource: {fileID: 1550666168}
+  challengeAudioSource: {fileID: 1711215467}
+  backgroundAudioSource: {fileID: 1550666168}
   OnNextNoteUpdated:
     m_PersistentCalls:
       m_Calls:

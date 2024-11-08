@@ -73,31 +73,31 @@ public class RhythmGameManager : MonoBehaviour
         LoadLevelAssets(data);
     }
 
-    void Start()
-    {
-        // InputSystem.onDeviceChange += OnDeviceChange;
-        scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
-        
-        beatsPerSecond = scoreRender.Bpm / 60;
-        secondsPerBeat = 1 / beatsPerSecond;
-        speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
-        beatsPerUnit = beatsPerSecond / speedXPerSec;
-        
-        noteViewList = scoreRender.Render(speedXPerSec);
-        var noteCount = noteViewList.Count;
-
-        scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
-        scoreController.OnStarAchieved += OnStarAchieved;
-        OnNotesAmountCalculated?.Invoke(noteCount);
-
-        // this.playRecorder = new PlayRecorder(notesSortedByScore);
-
-        // //LoadMidiFile();
-        // OnTempoChanged?.Invoke(scoreRender.Bpm);
-        //MoveBoard();
-
-        StartCoroutine(DelayedStart());
-    }
+    // void Start()
+    // {
+    //     // InputSystem.onDeviceChange += OnDeviceChange;
+    //     scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
+    //     
+    //     beatsPerSecond = scoreRender.Bpm / 60;
+    //     secondsPerBeat = 1 / beatsPerSecond;
+    //     speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
+    //     beatsPerUnit = beatsPerSecond / speedXPerSec;
+    //     
+    //     noteViewList = scoreRender.Render(speedXPerSec);
+    //     var noteCount = noteViewList.Count;
+    //
+    //     scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
+    //     scoreController.OnStarAchieved += OnStarAchieved;
+    //     OnNotesAmountCalculated?.Invoke(noteCount);
+    //
+    //     // this.playRecorder = new PlayRecorder(notesSortedByScore);
+    //
+    //     // //LoadMidiFile();
+    //     // OnTempoChanged?.Invoke(scoreRender.Bpm);
+    //     //MoveBoard();
+    //
+    //     StartCoroutine(DelayedStart());
+    // }
 
     void OnDestroy()
     {
@@ -128,42 +128,18 @@ public class RhythmGameManager : MonoBehaviour
     private IEnumerator DelayedStart()
     {
         yield return new WaitForSeconds(rhythmGameSettings.delayBeforeLevelStart);
-
-        // InputSystem.onDeviceChange += OnDeviceChange;
-        // scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
-        
-        // beatsPerSecond = scoreRender.Bpm / 60;
-        // secondsPerBeat = 1 / beatsPerSecond;
-        // speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
-
-        // scoreController = new RhythmGameScoreController(rhythmGameSettings);
-
-        // var notesSortedByScore = scoreRender.Render(speedXPerSec);
-
-        // this.playRecorder = new PlayRecorder(notesSortedByScore);
-
-        //LoadMidiFile();
         OnTempoChanged?.Invoke(scoreRender.Bpm);
         isLevelStarted = true;
-        //MoveBoard();
         yield return null;
     }
 
     void Update()
     {
-        //if (this.midiTrackSequencer != null && !this.midiTrackSequencer.Playing)
-        //{
-        //    // Adjusting the playback position of a MIDI file
-        //    this.DispatchEvents(this.midiTrackSequencer.Start(0.2f));
-        //}
-        //MoveBoard();
-        //this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
         if(isPlaying){
             if(!challengeAudioSource.isPlaying){
                 StartCoroutine(CloseLevel());
             }
         }
-
     }
     
 
@@ -175,6 +151,8 @@ public class RhythmGameManager : MonoBehaviour
         Debug.LogWarning("CloseLevelllllllllll");
         OnLevelEnded?.Invoke(scoreController);
     }
+    
+    
 
     public void StartPlaying()
     {
@@ -207,11 +185,14 @@ public class RhythmGameManager : MonoBehaviour
             challengeAudioSource.clip = handle.Result;
         };
 
-        // Load second audio clip
-        levelConfig.backgroundClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+        if (levelConfig.backgroundClip.AssetGUID != "")
         {
-            backgroundAudioSource.clip = handle.Result;
-        };
+            // Load second audio clip
+            levelConfig.backgroundClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+            {
+                backgroundAudioSource.clip = handle.Result;
+            };
+        }
     }
 
     private void OnTextAssetLoaded(AsyncOperationHandle<TextAsset> handle)
@@ -219,6 +200,32 @@ public class RhythmGameManager : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             songXmlAsset = handle.Result;
+            
+            scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
+        
+            beatsPerSecond = scoreRender.Bpm / 60;
+            secondsPerBeat = 1 / beatsPerSecond;
+            speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
+            beatsPerUnit = beatsPerSecond / speedXPerSec;
+        
+            noteViewList = scoreRender.Render(speedXPerSec);
+            var noteCount = noteViewList.Count;
+
+            scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
+            scoreController.OnStarAchieved += OnStarAchieved;
+            OnNotesAmountCalculated?.Invoke(noteCount);
+
+            // this.playRecorder = new PlayRecorder(notesSortedByScore);
+
+            // //LoadMidiFile();
+            // OnTempoChanged?.Invoke(scoreRender.Bpm);
+            //MoveBoard();
+
+            StartCoroutine(DelayedStart());
+        }
+        else
+        {
+            throw new Exception("Failed to load text asset.");
         }
     }
 

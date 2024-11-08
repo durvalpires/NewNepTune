@@ -14,3 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Middle G Piano 1
   levelType: 5
+  songXml:
+    m_AssetGUID: a351c4c1ef55f4e688f4899d92c3c156
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  songClip:
+    m_AssetGUID: a9f3b239250374072b9d68e09aa9b578
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  backgroundClip:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d2296db93bf4827a7864b74b8a592d, type: 3}
   m_Name: GeneralConfigSO
   m_EditorClassIdentifier: 
+  planetsScene: v2_MainMenu
   levelsScene: v2_Levels
-  virtualPianoScene: v2_VirtualPianotemp
+  virtualPianoScene: XMLMP3
   musicGuessScene: v2_LevelMusicGuess
+  memoryCardScene: v2_MemoryCard
+  selectionMiniGameScene: v2_SelectionMinigame
   openedPlanetKey: OpenedPlanet
-  nextSceneDataKey: NextSceneData
