@@ -6,16 +6,15 @@ using UnityEngine.Networking;
     public class PlayerModelBase
     {
         private static PlayerData _player;
-        private const string PlPrefsDataKey = "_pl_prefs_data_v0";
         protected static PlayerData Data
         {
             get
             {
                 if (_player == null)
                 {
-                    if(PlayerPrefs.HasKey(PlPrefsDataKey))
+                    if(PlayerPrefs.HasKey(ProfilesController.CurrentProfileKey))
                     {
-                        var userData= PlayerPrefs.GetString(PlPrefsDataKey, "");
+                        var userData= PlayerPrefs.GetString(ProfilesController.CurrentProfileKey, "");
                         if(!userData.Contains(":")) 
                             return _player = new PlayerData();
                         _player = JsonUtility.FromJson<PlayerData>(userData);
@@ -29,18 +28,22 @@ using UnityEngine.Networking;
             }
         }
 
+        public static void SwitchToCurrentProfile()
+        {
+            SaveData();
+            _player = null;
+        }
         public static void SaveData()
         {
             var data = Json.Serialize(Data);
             if(string.IsNullOrEmpty(data)) return;
-            Debug.Log("[SAVE] Data Saved:" + 
-                      data.Substring(0,Mathf.Min(data.Length,100)));
-            PlayerPrefs.SetString(PlPrefsDataKey, data);
+            Debug.Log("[SAVE] Data Saved:" + data.Substring(0,Mathf.Min(data.Length,100)));
+            PlayerPrefs.SetString(ProfilesController.CurrentProfileKey, data);
         }
         public static void ClearData()
         {
             _player = null;
-            PlayerPrefs.DeleteKey(PlPrefsDataKey);
+            PlayerPrefs.DeleteKey(ProfilesController.CurrentProfileKey);
         }
         
         public static string GetCustomData(string key, string defaultValue = "")
@@ -69,6 +72,7 @@ using UnityEngine.Networking;
             else
                 dataDict.Add(key, value);
             Data.customUserData = Json.Serialize(dataDict);
+            SaveData();
         }
         protected class PlayerData
         {
