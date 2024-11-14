@@ -22,6 +22,7 @@ public class SectionLevelsUI : MonoBehaviour
     private int worldIndex = 0;
     private string worldId = "";
     private AllWorldsSO.WordData _data;
+    private SectionLevelBtnUI lastOpenedLevel;
     public void Init(AllWorldsSO.WordData data)
     {
         _data = data;
@@ -33,7 +34,7 @@ public class SectionLevelsUI : MonoBehaviour
         
         .1f.Delay(() =>
         {
-            SectionLevelBtnUI openedLevel = null;
+            lastOpenedLevel = null;
             for (int i = 0; i <  data.levels.Length; i++)
             {
                 var level = data.levels[i];
@@ -49,9 +50,9 @@ public class SectionLevelsUI : MonoBehaviour
                 }
                 else
                 {
-                    if (openedLevel == null)
+                    if (lastOpenedLevel == null)
                     {
-                        openedLevel = item;
+                        lastOpenedLevel = item;
                         item.Unlock();
                     }
                     else 
@@ -73,11 +74,26 @@ public class SectionLevelsUI : MonoBehaviour
 
             SceneManager.LoadScene(generalConfig.levelsScene);
         }
+
+        if (!Input.GetKeyDown(KeyCode.N)) return; //complete Next
+        {
+            for (int i = 0; i < _data.levels.Length; i++)
+            {
+                if (!PlayerModel.IsLevelCompleted(i, worldId))
+                {
+                    PlayerModel.CompleteLevel(i, worldId);
+                    break;
+                }
+            }
+
+            SceneManager.LoadScene(generalConfig.levelsScene);
+        }
     }
 #endif
     public void RefreshLocks()
     {
-        SectionLevelBtnUI openedLevel = null;
+        lastOpenedLevel = null;
+        bool setNewCenter = false;
         //refresh locks;
         foreach (var item in allItems)
         {
@@ -87,10 +103,11 @@ public class SectionLevelsUI : MonoBehaviour
             }
             else
             {
-                if (openedLevel == null)
+                if (lastOpenedLevel == null)
                 {
-                    openedLevel = item;
+                    lastOpenedLevel = item;
                     item.Unlock();
+                    CenterOnElement(item.GetComponent<RectTransform>());
                 }
                 else 
                     item.Lock();
@@ -155,10 +172,15 @@ public class SectionLevelsUI : MonoBehaviour
 
     private IEnumerator RefreshCanvas()
     {
+        //Canvas.ForceUpdateCanvases();
+        yield return null;
+        
         container.enabled = false;
         yield return null;
         container.enabled = true;
         yield return null;
+        
+        CenterOnElement(lastOpenedLevel.GetComponent<RectTransform>());
         
         // scroll.normalizedPosition = new Vector2(0, 0);
         float currentX = scroll.normalizedPosition.x;
@@ -172,6 +194,40 @@ public class SectionLevelsUI : MonoBehaviour
     public void ScrollPosUpdate(Vector2 pos)
     {
         lastScrollPos = pos.x;
+    }
+    
+    public void CenterOnElement(RectTransform contentElement)
+    {
+        // Get the ScrollRect's viewport RectTransform
+        RectTransform viewport = scroll.viewport;
+
+        // Calculate the position of the target element relative to the content's anchor
+        Vector2 elementWorldPosition = contentElement.transform.TransformPoint(contentElement.rect.center);
+        Vector2 viewportWorldPosition = viewport.transform.TransformPoint(viewport.rect.center);
+
+        // Calculate the offset needed to move the content to center the element
+        Vector2 offset = (Vector2)scroll.content.InverseTransformPoint(viewportWorldPosition)
+                         - (Vector2)scroll.content.InverseTransformPoint(elementWorldPosition);
+
+        // Adjust the scroll position (vertical or horizontal as needed)
+        // if (scroll.horizontal)
+        // {
+            float newNormalizedPositionX  = Mathf.Clamp01(scroll.horizontalNormalizedPosition - offset.x / scroll.content.rect.width);
+            if(newNormalizedPositionX > 0.9)
+                newNormalizedPositionX = 1f;
+            else if(newNormalizedPositionX < 0.1)
+                newNormalizedPositionX = 0f;
+            lastScrollPos = newNormalizedPositionX; 
+            //scroll.horizontalNormalizedPosition = newNormalizedPositionX;
+        // }
+        //
+        // if (scroll.vertical)
+        // {
+        //     float newNormalizedPositionY = Mathf.Clamp01(scroll.verticalNormalizedPosition - offset.y / scroll.content.rect.height);
+        //     scroll.verticalNormalizedPosition = newNormalizedPositionY;
+        // }
+        
+        //lastScrollPos = newNormalizedPositionX;
     }
 
     private void OnEnable()

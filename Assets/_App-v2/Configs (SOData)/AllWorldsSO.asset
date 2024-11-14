@@ -37,10 +37,6 @@ MonoBehaviour:
       level: {fileID: 11400000, guid: 066e25b245c9c4c21b0f05a85335e1b6, type: 2}
     - image: {fileID: 21300000, guid: f12c86afde7bf41968f97a7c888beae9, type: 3}
       level: {fileID: 11400000, guid: 3a1b17de940d44043b9f1c642544fc2e, type: 2}
-    - image: {fileID: 21300000, guid: f12c86afde7bf41968f97a7c888beae9, type: 3}
-      level: {fileID: 11400000, guid: 3a1b17de940d44043b9f1c642544fc2e, type: 2}
-    - image: {fileID: 21300000, guid: f12c86afde7bf41968f97a7c888beae9, type: 3}
-      level: {fileID: 11400000, guid: 808f1a36a5a4d469f93c531946c706b8, type: 2}
     - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
       level: {fileID: 11400000, guid: 0629648d484ea496b8e8b2b95876cb26, type: 2}
   - title: World 2

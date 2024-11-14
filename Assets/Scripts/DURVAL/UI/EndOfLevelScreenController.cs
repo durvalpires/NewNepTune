@@ -14,6 +14,22 @@ public class EndOfLevelScreenController : MonoBehaviour
     [SerializeField] private Image star3;
     [SerializeField] private Sprite starFilledSprite;
     [SerializeField] private float scoreAnimationInSec = 1;
+    [SerializeField] private TextMeshProUGUI levelName;
+    [SerializeField] private TextMeshProUGUI levelResultText;
+
+    void Awake()
+    {
+        var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
+        if (data == null)
+        {
+            levelName.text = "Test Level";
+        }
+        else
+        {
+            levelName.text = data.levelTitle;
+        }
+    }
+
 
 
     public void Activate(RhythmGameScoreController scoreController){
@@ -29,7 +45,11 @@ public class EndOfLevelScreenController : MonoBehaviour
         if (scoreController.PlayerStars > 0)
         {
             GetComponent<LevelCompletObserver>().SetCurrentLevelComplete();
-            
+            levelResultText.text = "Level Complete!";
+        }
+        else
+        {
+            levelResultText.text = "Almost! Try again!";
         }
         
 

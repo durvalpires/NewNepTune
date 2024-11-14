@@ -66,54 +66,19 @@ public class RhythmGameManager : MonoBehaviour
 
     private List<NoteController> noteInteractableList = new List<NoteController>();
 
+    [SerializeField] private VirtualPianoLevelSO testingLevel;
+
     
     void Awake()
     {
         var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
+        if(data == null) data = testingLevel;
         LoadLevelAssets(data);
     }
 
-    // void Start()
-    // {
-    //     // InputSystem.onDeviceChange += OnDeviceChange;
-    //     scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
-    //     
-    //     beatsPerSecond = scoreRender.Bpm / 60;
-    //     secondsPerBeat = 1 / beatsPerSecond;
-    //     speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
-    //     beatsPerUnit = beatsPerSecond / speedXPerSec;
-    //     
-    //     noteViewList = scoreRender.Render(speedXPerSec);
-    //     var noteCount = noteViewList.Count;
-    //
-    //     scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
-    //     scoreController.OnStarAchieved += OnStarAchieved;
-    //     OnNotesAmountCalculated?.Invoke(noteCount);
-    //
-    //     // this.playRecorder = new PlayRecorder(notesSortedByScore);
-    //
-    //     // //LoadMidiFile();
-    //     // OnTempoChanged?.Invoke(scoreRender.Bpm);
-    //     //MoveBoard();
-    //
-    //     StartCoroutine(DelayedStart());
-    // }
-
     void OnDestroy()
     {
-        scoreController.OnStarAchieved -= OnStarAchieved;
         
-        var songClip = challengeAudioSource.clip;
-        var textAsset = songXmlAsset;
-        var backgroundClip = backgroundAudioSource.clip;
-
-        challengeAudioSource.clip = null;
-        backgroundAudioSource.clip = null;
-        
-        // Release loaded assets to free memory
-        Addressables.Release(songClip);
-        Addressables.Release(textAsset);
-        Addressables.Release(backgroundClip);
     }
 
     void OnStarAchieved()
@@ -150,6 +115,7 @@ public class RhythmGameManager : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         Debug.LogWarning("CloseLevelllllllllll");
         OnLevelEnded?.Invoke(scoreController);
+        UnloadLevelAssets();
     }
     
     
@@ -195,6 +161,23 @@ public class RhythmGameManager : MonoBehaviour
         }
     }
 
+    private void UnloadLevelAssets()
+    {
+        scoreController.OnStarAchieved -= OnStarAchieved;
+        
+        var songClip = challengeAudioSource.clip;
+        var textAsset = songXmlAsset;
+        var backgroundClip = backgroundAudioSource.clip;
+
+        challengeAudioSource.clip = null;
+        backgroundAudioSource.clip = null;
+        
+        // Release loaded assets to free memory
+        Addressables.Release(songClip);
+        Addressables.Release(textAsset);
+        Addressables.Release(backgroundClip);
+    }
+
     private void OnTextAssetLoaded(AsyncOperationHandle<TextAsset> handle)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -208,7 +191,7 @@ public class RhythmGameManager : MonoBehaviour
             speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
             beatsPerUnit = beatsPerSecond / speedXPerSec;
         
-            noteViewList = scoreRender.Render(speedXPerSec);
+            noteViewList = scoreRender.Render();
             var noteCount = noteViewList.Count;
 
             scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);

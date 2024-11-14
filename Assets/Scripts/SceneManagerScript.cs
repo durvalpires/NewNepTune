@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoSingleton<SceneManagerScript>
 {
+    [SerializeField] private GeneralConfigSO generalConfig;
+
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -89,5 +91,10 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         instrumentMinigame.levelToReturn = sceneToReturn;
 
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+    }
+
+    public void LoadLevelListScene()
+    {
+        SceneManager.LoadScene(generalConfig.levelsScene);
     }
 }

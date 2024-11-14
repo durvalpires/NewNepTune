@@ -70,6 +70,8 @@ public static class MusicXMLParser
         Debug.LogWarning("No tempo found in direction elements, defaulting to 120 BPM");
         return 120;
     }
+    
+
 
     private static IEnumerable<Measure> GetMeasures(string partId, XmlDocument doc)
     {
