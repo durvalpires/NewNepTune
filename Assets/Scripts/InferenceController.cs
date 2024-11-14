@@ -2,8 +2,6 @@ using System.Linq;
 using UnityEngine;
 using CJM.BBox2DToolkit;
 using CJM.DeepLearningImageProcessor;
-using System.Collections.Generic;
-using CJM.BarracudaInference.YOLOX;
 
 public class InferenceController : MonoBehaviour
 {

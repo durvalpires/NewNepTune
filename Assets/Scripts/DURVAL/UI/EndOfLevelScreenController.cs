@@ -1,8 +1,6 @@
-using System;
 using Audio;
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +14,22 @@ public class EndOfLevelScreenController : MonoBehaviour
     [SerializeField] private Image star3;
     [SerializeField] private Sprite starFilledSprite;
     [SerializeField] private float scoreAnimationInSec = 1;
+    [SerializeField] private TextMeshProUGUI levelName;
+    [SerializeField] private TextMeshProUGUI levelResultText;
+
+    void Awake()
+    {
+        var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
+        if (data == null)
+        {
+            levelName.text = "Test Level";
+        }
+        else
+        {
+            levelName.text = data.levelTitle;
+        }
+    }
+
 
 
     public void Activate(RhythmGameScoreController scoreController){
@@ -28,20 +42,33 @@ public class EndOfLevelScreenController : MonoBehaviour
         bool star2Awarded = false;
         bool star3Awarded = false;
 
+        if (scoreController.PlayerStars > 0)
+        {
+            GetComponent<LevelCompletObserver>().SetCurrentLevelComplete();
+            levelResultText.text = "Level Complete!";
+        }
+        else
+        {
+            levelResultText.text = "Almost! Try again!";
+        }
+        
 
         DG.Tweening.Sequence sequence = DOTween.Sequence();
         sequence.Append(
             // Use DOTween to animate from the currentScore to targetScore
-            DOTween.To(() => currentScore, x => currentScore = x, scoreController.PlayerScore, scoreAnimationInSec)
+            DOTween.To(() => currentScore, x => currentScore = x, scoreController.PlayerScore, 
+                    scoreAnimationInSec)
             .OnStart(() => {
-                ScoreAmountText.rectTransform.DOShakePosition(scoreAnimationInSec, 0.5f, 10, 90, true);
+                ScoreAmountText.rectTransform.DOShakePosition(scoreAnimationInSec, 0.5f, 10, 90,
+                    true);
                 AudioManager.Instance.PlaySFX(Enums.SoundList.ScoreCount);
             })
             .OnUpdate(() => ScoreAmountText.text = currentScore.ToString())  // Update text every step
             .OnComplete(() => Debug.Log("Score animation complete!"))  // Optional: Action on completion
         );
         sequence.Append(
-            DOTween.To(() => starsAchieved, x => starsAchieved = x, scoreController.PlayerStars, scoreAnimationInSec)
+            DOTween.To(() => starsAchieved, x => starsAchieved = x, scoreController.PlayerStars, 
+                    scoreAnimationInSec)
             .OnUpdate(() => {
                 if (!star1Awarded &&starsAchieved == 1) {
                     star1Awarded = true;

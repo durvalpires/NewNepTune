@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class PopUpToggleManager : MonoBehaviour
 {
-    [SerializeField] private GameObject popUpCanvas;
-    [SerializeField] private GameObject popup1;
+    [SerializeField] protected GameObject popUpCanvas;
+    [SerializeField] protected GameObject popup1;
     [SerializeField] private GameObject popup2;
     [SerializeField] private GameObject popup3;
     
-    private bool _popUpActive;
+    protected bool _popUpActive;
     
     private void Update()
     {
@@ -108,7 +108,7 @@ public class PopUpToggleManager : MonoBehaviour
     {
         AudioSource audioSource = audioSourceGO.GetComponent<AudioSource>();
 
-        while (audioSource.volume > 0)
+        while (audioSource&& audioSource.volume > 0)
         {
             audioSource.volume -= 0.1f;
             yield return new WaitForSeconds(0.15f);
@@ -117,7 +117,7 @@ public class PopUpToggleManager : MonoBehaviour
         Destroy(audioSourceGO);
     }
 
-    private void Back()
+    protected virtual void Back()
     {
         if (popup1 != null ) popup1.SetActive(false);
         if (popup2 != null ) popup2.SetActive(false);

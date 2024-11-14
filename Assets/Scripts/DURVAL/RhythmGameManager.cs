@@ -4,11 +4,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Video;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Serialization;
 
 public class RhythmGameManager : MonoBehaviour
 {
@@ -40,9 +41,10 @@ public class RhythmGameManager : MonoBehaviour
     private float noteMaxDistanceToInteractionBar = 0;
 
     private RhythmGameScoreController scoreController;
+    
+    [SerializeField] private AudioSource challengeAudioSource;
+    [SerializeField] private AudioSource backgroundAudioSource;
 
-    [SerializeField] private AudioSource trackAudioSource;
-    [SerializeField] private AudioSource backingTrackAudioSource;
     // Assuming you have tempo in BPM
     float beatsPerSecond;
     float secondsPerBeat;
@@ -62,57 +64,21 @@ public class RhythmGameManager : MonoBehaviour
     private int notesCrossed = 0;
     public UnityEvent<NoteView, float, float, float> OnNextNoteUpdated;
 
-    private Dictionary<string, List<NoteController>> noteInteractableDic = new Dictionary<string, List<NoteController>>()
-    {
-        //{"C", false},
-        //{"D", false},
-        //{"E", false},
-        //{"F", false},
-        //{"G", false},
-        //{"A", false},
-        //{"B", false
-
-        // {"C", null},
-        // {"D", null},
-        // {"E", null},
-        // {"F", null},
-        // {"G", null},
-        // {"A", null},
-        // {"B", null}
-    };
-
     private List<NoteController> noteInteractableList = new List<NoteController>();
 
+    [SerializeField] private VirtualPianoLevelSO testingLevel;
+
     
-
-    void Start()
+    void Awake()
     {
-        // InputSystem.onDeviceChange += OnDeviceChange;
-        scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
-        
-        beatsPerSecond = scoreRender.Bpm / 60;
-        secondsPerBeat = 1 / beatsPerSecond;
-        speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
-        beatsPerUnit = beatsPerSecond / speedXPerSec;
-        
-        noteViewList = scoreRender.Render(speedXPerSec);
-        var noteCount = noteViewList.Count;
-
-        scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
-        scoreController.OnStarAchieved += OnStarAchieved;
-        OnNotesAmountCalculated?.Invoke(noteCount);
-
-        // this.playRecorder = new PlayRecorder(notesSortedByScore);
-
-        // //LoadMidiFile();
-        // OnTempoChanged?.Invoke(scoreRender.Bpm);
-        //MoveBoard();
-
-        StartCoroutine(DelayedStart());
+        var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
+        if(data == null) data = testingLevel;
+        LoadLevelAssets(data);
     }
 
-    void OnDestroy(){
-        scoreController.OnStarAchieved -= OnStarAchieved;
+    void OnDestroy()
+    {
+        
     }
 
     void OnStarAchieved()
@@ -127,42 +93,18 @@ public class RhythmGameManager : MonoBehaviour
     private IEnumerator DelayedStart()
     {
         yield return new WaitForSeconds(rhythmGameSettings.delayBeforeLevelStart);
-
-        // InputSystem.onDeviceChange += OnDeviceChange;
-        // scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
-        
-        // beatsPerSecond = scoreRender.Bpm / 60;
-        // secondsPerBeat = 1 / beatsPerSecond;
-        // speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
-
-        // scoreController = new RhythmGameScoreController(rhythmGameSettings);
-
-        // var notesSortedByScore = scoreRender.Render(speedXPerSec);
-
-        // this.playRecorder = new PlayRecorder(notesSortedByScore);
-
-        //LoadMidiFile();
         OnTempoChanged?.Invoke(scoreRender.Bpm);
         isLevelStarted = true;
-        //MoveBoard();
         yield return null;
     }
 
     void Update()
     {
-        //if (this.midiTrackSequencer != null && !this.midiTrackSequencer.Playing)
-        //{
-        //    // Adjusting the playback position of a MIDI file
-        //    this.DispatchEvents(this.midiTrackSequencer.Start(0.2f));
-        //}
-        //MoveBoard();
-        //this.DispatchEvents(this.midiTrackSequencer.Advance(Time.deltaTime));
         if(isPlaying){
-            if(!trackAudioSource.isPlaying){
+            if(!challengeAudioSource.isPlaying){
                 StartCoroutine(CloseLevel());
             }
         }
-
     }
     
 
@@ -173,15 +115,18 @@ public class RhythmGameManager : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         Debug.LogWarning("CloseLevelllllllllll");
         OnLevelEnded?.Invoke(scoreController);
+        UnloadLevelAssets();
     }
+    
+    
 
     public void StartPlaying()
     {
         Debug.LogWarning("StartPlaying");
         isPlaying = true;
-        trackAudioSource.Play();
-        backingTrackAudioSource.Play();
+        backgroundAudioSource.Play();
         //OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], 1,secondsPerBeat);
+        challengeAudioSource.Play();
     }
 
     private void FixedUpdate()
@@ -193,6 +138,78 @@ public class RhythmGameManager : MonoBehaviour
             MoveBoard();
         }
         
+    }
+    
+    private void LoadLevelAssets(VirtualPianoLevelSO levelConfig)
+    {
+        // Load text asset
+        levelConfig.songXml.LoadAssetAsync<TextAsset>().Completed += OnTextAssetLoaded;
+
+        // Load first audio clip
+        levelConfig.songClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+        {
+            challengeAudioSource.clip = handle.Result;
+        };
+
+        if (levelConfig.backgroundClip.AssetGUID != "")
+        {
+            // Load second audio clip
+            levelConfig.backgroundClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+            {
+                backgroundAudioSource.clip = handle.Result;
+            };
+        }
+    }
+
+    private void UnloadLevelAssets()
+    {
+        scoreController.OnStarAchieved -= OnStarAchieved;
+        
+        var songClip = challengeAudioSource.clip;
+        var textAsset = songXmlAsset;
+        var backgroundClip = backgroundAudioSource.clip;
+
+        challengeAudioSource.clip = null;
+        backgroundAudioSource.clip = null;
+        
+        // Release loaded assets to free memory
+        Addressables.Release(songClip);
+        Addressables.Release(textAsset);
+        Addressables.Release(backgroundClip);
+    }
+
+    private void OnTextAssetLoaded(AsyncOperationHandle<TextAsset> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            songXmlAsset = handle.Result;
+            
+            scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
+        
+            beatsPerSecond = scoreRender.Bpm / 60;
+            secondsPerBeat = 1 / beatsPerSecond;
+            speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
+            beatsPerUnit = beatsPerSecond / speedXPerSec;
+        
+            noteViewList = scoreRender.Render();
+            var noteCount = noteViewList.Count;
+
+            scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
+            scoreController.OnStarAchieved += OnStarAchieved;
+            OnNotesAmountCalculated?.Invoke(noteCount);
+
+            // this.playRecorder = new PlayRecorder(notesSortedByScore);
+
+            // //LoadMidiFile();
+            // OnTempoChanged?.Invoke(scoreRender.Bpm);
+            //MoveBoard();
+
+            StartCoroutine(DelayedStart());
+        }
+        else
+        {
+            throw new Exception("Failed to load text asset.");
+        }
     }
 
     // private void LoadMidiFile()
@@ -210,50 +227,59 @@ public class RhythmGameManager : MonoBehaviour
         this.scoreBoard.transform.position -= this.scoreBoard.transform.right * addX;
     }
 
-    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-        if (change != InputDeviceChange.Added)
-        {
-            return;
-        }
+    #region MIDI Controller
+    // private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    // {
+    //     if (change != InputDeviceChange.Added)
+    //     {
+    //         return;
+    //     }
+    //
+    //     var midiDevice = device as Minis.MidiDevice;
+    //     if (midiDevice == null) return;
+    //
+    //     midiDevice.onWillNoteOn += OnWillNoteOn;
+    // }
+    //
+    // private void OnWillNoteOn(Minis.MidiNoteControl note, float velocity)
+    // {
+    //     DispatchNoteOnEvent(note.noteNumber);
+    // }
+    //
+    // private void DispatchEvents(List<SmfLite.MidiEvent> events)
+    // {
+    //     if (events == null)
+    //     {
+    //         return;
+    //     }
+    //
+    //     foreach (var e in events)
+    //     {
+    //         if ((e.status & 0xf0) == 0x90)
+    //         {
+    //             this.DispatchNoteOnEvent(e.data1);
+    //         }
+    //     }
+    // }
+    //
+    // private void DispatchNoteOnEvent(int noteNumber)
+    // {
+    //     var pitch = Pitch.GetPitchByMidiNoteNumber(noteNumber);
+    //     this.PlayNote(pitch);
+    // }
 
-        var midiDevice = device as Minis.MidiDevice;
-        if (midiDevice == null) return;
 
-        midiDevice.onWillNoteOn += OnWillNoteOn;
-    }
+    // void PlayNote(Pitch pitch)
+    // {
+    //     this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
+    // }
 
-    private void OnWillNoteOn(Minis.MidiNoteControl note, float velocity)
-    {
-        DispatchNoteOnEvent(note.noteNumber);
-    }
-
-    private void DispatchEvents(List<SmfLite.MidiEvent> events)
-    {
-        if (events == null)
-        {
-            return;
-        }
-
-        foreach (var e in events)
-        {
-            if ((e.status & 0xf0) == 0x90)
-            {
-                this.DispatchNoteOnEvent(e.data1);
-            }
-        }
-    }
-
-    private void DispatchNoteOnEvent(int noteNumber)
-    {
-        var pitch = Pitch.GetPitchByMidiNoteNumber(noteNumber);
-        this.PlayNote(pitch);
-    }
-
-    void PlayNote(Pitch pitch)
-    {
-        this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
-    }
+    // void PlayNote(Pitch pitch)
+    // {
+    //     this.playRecorder.Played(pitch, rhythmGameSettings.DurationOneX, scoreRender.Bpm, speedXPerSec);
+    // }
+    
+    #endregion
 
     private HitAccuracy EvaluateHit(GameObject noteObj)
     {

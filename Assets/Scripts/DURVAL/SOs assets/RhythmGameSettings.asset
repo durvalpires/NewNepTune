@@ -92,16 +92,26 @@ MonoBehaviour:
   ColorSettings:
     C:
       MainColor: {r: 0.20330477, g: 0.832995, b: 0.8396226, a: 1}
+    CSharp:
+      MainColor: {r: 0.14509805, g: 0.6, b: 0.6039216, a: 1}
     E:
       MainColor: {r: 0.8746547, g: 0.9245283, b: 0.075590305, a: 1}
     D:
       MainColor: {r: 0.8207547, g: 0.16776428, b: 0.6370956, a: 1}
+    DSharp:
+      MainColor: {r: 0.5188679, g: 0.10524208, b: 0.40175697, a: 1}
     F:
       MainColor: {r: 0.17162092, g: 0.25574768, b: 0.8396226, a: 1}
+    FSharp:
+      MainColor: {r: 0.09487361, g: 0.14375326, b: 0.49056602, a: 1}
     G:
       MainColor: {r: 0.19246662, g: 0.8396226, b: 0.16369992, a: 1}
+    GSharp:
+      MainColor: {r: 0.10431919, g: 0.4433962, b: 0.08993414, a: 1}
     A:
       MainColor: {r: 0.8584906, g: 0.6216027, b: 0.15118067, a: 1}
+    ASharp:
+      MainColor: {r: 0.41509432, g: 0.3008781, b: 0.072445706, a: 1}
     B:
       MainColor: {r: 0.47480527, g: 0.14951934, b: 0.8490566, a: 1}
     InteractableColor: {r: 0.6784314, g: 0.29803923, b: 0, a: 1}

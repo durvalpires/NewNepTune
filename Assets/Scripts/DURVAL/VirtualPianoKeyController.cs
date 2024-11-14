@@ -15,11 +15,14 @@ public class VirtualPianoKeyController : MonoBehaviour, IPointerDownHandler, IPo
     private Image backgroundImg;
 
     private Color myColor;
+    private Color myNormalColor;
 
     private void Awake()
     {
         noteTxt = GetComponentInChildren<TextMeshProUGUI>();
+        noteTxt.text = note;
         backgroundImg = GetComponent<Image>();
+        myNormalColor = backgroundImg.color;
     }
 
     public string GetNote() { return note; }
@@ -37,12 +40,12 @@ public class VirtualPianoKeyController : MonoBehaviour, IPointerDownHandler, IPo
 
     public void SetKeyColorNormal()
     {
-        backgroundImg.DOColor(Color.white, 0.5f);
+        backgroundImg.DOColor(myNormalColor, 0.5f);
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        //SetKeyColorActive();
+        SetKeyColorActive();
     }
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)

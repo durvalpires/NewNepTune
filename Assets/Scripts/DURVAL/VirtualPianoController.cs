@@ -10,13 +10,22 @@ public class VirtualPianoController : MonoBehaviour
 
     [SerializeField]
     private Button[] mainPianoKeys;
+    
+    [SerializeField]
+    private Button[] blackPianoKeys;
 
     [SerializeField]
     private RhythmGameSettings rhythmGameSettings;
 
     private void Start()
     {
-        foreach (Button button in mainPianoKeys)
+        foreach (var button in mainPianoKeys)
+        {
+            var pianoKeyController = button.GetComponent<VirtualPianoKeyController>();
+            pianoKeyController.SetKeyColor(rhythmGameSettings.ColorSettings.
+                GetNoteColor(pianoKeyController.GetNote())); // new Color(0.5f, 0.5f, 0.5f, 1.0f); // <>
+        }
+        foreach (var button in blackPianoKeys)
         {
             var pianoKeyController = button.GetComponent<VirtualPianoKeyController>();
             pianoKeyController.SetKeyColor(rhythmGameSettings.ColorSettings.
@@ -24,155 +33,218 @@ public class VirtualPianoController : MonoBehaviour
         }
     }
 
-    #region KeyboardInput
-#if UNITY_EDITOR || UNITY_STANDALONE
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            OnCKeyDown();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            OnDKeyDown();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            OnEKeyDown();
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            OnFKeyDown();
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            OnGKeyDown();
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            OnAKeyDown();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            OnBKeyDown();
-        }
-
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            OnCKeyUp();
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            OnDKeyUp();
-        }
-        if (Input.GetKeyUp(KeyCode.F))
-        {
-            OnEKeyUp();
-        }
-        if (Input.GetKeyUp(KeyCode.G))
-        {
-            OnFKeyUp();
-        }
-        if (Input.GetKeyUp(KeyCode.H))
-        {
-            OnGKeyUp();
-        }
-        if (Input.GetKeyUp(KeyCode.J))
-        {
-            OnAKeyUp();
-        }
-        if (Input.GetKeyUp(KeyCode.K))
-        {
-            OnBKeyUp();
-        }
-    }
-#endif
-    #endregion
+//     #region KeyboardInput
+// #if UNITY_EDITOR || UNITY_STANDALONE
+//     void Update()
+//     {
+//         if (Input.GetKeyDown(KeyCode.S))
+//         {
+//             OnCKeyDown();
+//         }
+//         if (Input.GetKeyDown(KeyCode.D))
+//         {
+//             OnDKeyDown();
+//         }
+//         if (Input.GetKeyDown(KeyCode.F))
+//         {
+//             OnEKeyDown();
+//         }
+//         if (Input.GetKeyDown(KeyCode.G))
+//         {
+//             OnFKeyDown();
+//         }
+//         if (Input.GetKeyDown(KeyCode.H))
+//         {
+//             OnGKeyDown();
+//         }
+//         if (Input.GetKeyDown(KeyCode.J))
+//         {
+//             OnAKeyDown();
+//         }
+//         if (Input.GetKeyDown(KeyCode.K))
+//         {
+//             OnBKeyDown();
+//         }
+//
+//         if (Input.GetKeyUp(KeyCode.S))
+//         {
+//             OnCKeyUp();
+//         }
+//         if (Input.GetKeyUp(KeyCode.D))
+//         {
+//             OnDKeyUp();
+//         }
+//         if (Input.GetKeyUp(KeyCode.F))
+//         {
+//             OnEKeyUp();
+//         }
+//         if (Input.GetKeyUp(KeyCode.G))
+//         {
+//             OnFKeyUp();
+//         }
+//         if (Input.GetKeyUp(KeyCode.H))
+//         {
+//             OnGKeyUp();
+//         }
+//         if (Input.GetKeyUp(KeyCode.J))
+//         {
+//             OnAKeyUp();
+//         }
+//         if (Input.GetKeyUp(KeyCode.K))
+//         {
+//             OnBKeyUp();
+//         }
+//     }
+//#endif
+    //#endregion
 
     #region Key Events
-
-    public void OnCKeyDown()
+    
+    public void OnKeyDown(BaseEventData eventData)
     {
-        Debug.Log("OnCKeyDown");
-        onPianoKeyTriggered?.Invoke("C", true);
+        var pianoKeyController = eventData.selectedObject.GetComponent<VirtualPianoKeyController>();
+        Debug.Log("KeyDown: " + pianoKeyController.GetNote());
+        onPianoKeyTriggered?.Invoke(pianoKeyController.GetNote(), true);
+    }
+    
+    public void OnKeyUp(BaseEventData eventData)
+    {
+        var pianoKeyController = eventData.selectedObject.GetComponent<VirtualPianoKeyController>();
+        Debug.Log("KeyUp: " + pianoKeyController.GetNote());
+        onPianoKeyTriggered?.Invoke(pianoKeyController.GetNote(), false);
     }
 
-    public void OnDKeyDown()
-    {
-        Debug.Log("OnDKeyDown");
-        onPianoKeyTriggered?.Invoke("D", true);
-    }
-
-    public void OnEKeyDown()
-    {
-        Debug.Log("OnEKeyDown");
-        onPianoKeyTriggered?.Invoke("E", true);
-    }
-
-    public void OnFKeyDown()
-    {
-        Debug.Log("OnFKeyDown");
-        onPianoKeyTriggered?.Invoke("F", true);
-    }
-
-    public void OnGKeyDown()
-    {
-        Debug.Log("OnGKeyDown");
-        onPianoKeyTriggered?.Invoke("G", true);
-    }
-
-    public void OnAKeyDown()
-    {
-        Debug.Log("OnAKeyDown");
-        onPianoKeyTriggered?.Invoke("A", true);
-    }
-
-    public void OnBKeyDown()
-    {
-        Debug.Log("OnBKeyDown");
-        onPianoKeyTriggered?.Invoke("B", true);
-    }
-
-    public void OnCKeyUp()
-    {
-        Debug.Log("OnCKeyUp");
-        onPianoKeyTriggered?.Invoke("C", false);
-    }
-
-    public void OnDKeyUp()
-    {
-        Debug.Log("OnDKeyUp");
-        onPianoKeyTriggered?.Invoke("D", false);
-    }
-
-    public void OnEKeyUp()
-    {
-        Debug.Log("OnEKeyUp");
-        onPianoKeyTriggered?.Invoke("E", false);
-    }
-
-    public void OnFKeyUp()
-    {
-        Debug.Log("OnFKeyUp");
-        onPianoKeyTriggered?.Invoke("F", false);
-    }
-
-    public void OnGKeyUp()
-    {
-        Debug.Log("OnGKeyUp");
-        onPianoKeyTriggered?.Invoke("G", false);
-    }
-
-    public void OnAKeyUp()
-    {
-        Debug.Log("OnAKeyUp");
-        onPianoKeyTriggered?.Invoke("A", false);
-    }
-
-    public void OnBKeyUp()
-    {
-        Debug.Log("OnBKeyUp");
-        onPianoKeyTriggered?.Invoke("B", false);
-    }
+    // public void OnCKeyDown()
+    // {
+    //     Debug.Log("OnCKeyDown");
+    //     onPianoKeyTriggered?.Invoke("C", true);
+    // }
+    //
+    // public void OnCSharpKeyDown()
+    // {
+    //     Debug.Log("OnCKeyDown");
+    //     onPianoKeyTriggered?.Invoke("C", true);
+    // }
+    //
+    // public void OnDKeyDown()
+    // {
+    //     Debug.Log("OnDKeyDown");
+    //     onPianoKeyTriggered?.Invoke("D", true);
+    // }
+    //
+    // public void OnDSharpKeyDown()
+    // {
+    //     Debug.Log("OnDKeyDown");
+    //     onPianoKeyTriggered?.Invoke("D", true);
+    // }
+    //
+    // public void OnEKeyDown()
+    // {
+    //     Debug.Log("OnEKeyDown");
+    //     onPianoKeyTriggered?.Invoke("E", true);
+    // }
+    //
+    // public void OnFKeyDown()
+    // {
+    //     Debug.Log("OnFKeyDown");
+    //     onPianoKeyTriggered?.Invoke("F", true);
+    // }
+    //
+    // public void OnFKeyDown(BaseEventData eventData)
+    // {
+    //     eventData.
+    //     Debug.Log("OnFKeyDown");
+    //     onPianoKeyTriggered?.Invoke("F", true);
+    // }
+    //
+    // public void OnGKeyDown()
+    // {
+    //     Debug.Log("OnGKeyDown");
+    //     onPianoKeyTriggered?.Invoke("G", true);
+    // }
+    //
+    // public void OnAKeyDown()
+    // {
+    //     Debug.Log("OnAKeyDown");
+    //     onPianoKeyTriggered?.Invoke("A", true);
+    // }
+    //
+    // public void OnBKeyDown()
+    // {
+    //     Debug.Log("OnBKeyDown");
+    //     onPianoKeyTriggered?.Invoke("B", true);
+    // }
+    //
+    // public void OnCKeyUp()
+    // {
+    //     Debug.Log("OnCKeyUp");
+    //     onPianoKeyTriggered?.Invoke("C", false);
+    // }
+    //
+    // public void OnCSharpKeyUp()
+    // {
+    //     Debug.Log("OnCKeyUp");
+    //     onPianoKeyTriggered?.Invoke("C", false);
+    // }
+    //
+    // public void OnDKeyUp()
+    // {
+    //     Debug.Log("OnDKeyUp");
+    //     onPianoKeyTriggered?.Invoke("D", false);
+    // }
+    //
+    // public void OnDSharpKeyUp()
+    // {
+    //     Debug.Log("OnDKeyUp");
+    //     onPianoKeyTriggered?.Invoke("D", false);
+    // }
+    //
+    // public void OnEKeyUp()
+    // {
+    //     Debug.Log("OnEKeyUp");
+    //     onPianoKeyTriggered?.Invoke("E", false);
+    // }
+    //
+    // public void OnFKeyUp()
+    // {
+    //     Debug.Log("OnFKeyUp");
+    //     onPianoKeyTriggered?.Invoke("F", false);
+    // }
+    //
+    // public void OnFSharpKeyUp()
+    // {
+    //     Debug.Log("OnFKeyUp");
+    //     onPianoKeyTriggered?.Invoke("F", false);
+    // }
+    //
+    // public void OnGKeyUp()
+    // {
+    //     Debug.Log("OnGKeyUp");
+    //     onPianoKeyTriggered?.Invoke("G", false);
+    // }
+    //
+    // public void OnGSharpKeyUp()
+    // {
+    //     Debug.Log("OnGKeyUp");
+    //     onPianoKeyTriggered?.Invoke("G", false);
+    // }
+    //
+    // public void OnAKeyUp()
+    // {
+    //     Debug.Log("OnAKeyUp");
+    //     onPianoKeyTriggered?.Invoke("A", false);
+    // }
+    //
+    // public void OnGSharpKeyUp()
+    // {
+    //     Debug.Log("OnAKeyUp");
+    //     onPianoKeyTriggered?.Invoke("A", false);
+    // }
+    //
+    // public void OnBKeyUp()
+    // {
+    //     Debug.Log("OnBKeyUp");
+    //     onPianoKeyTriggered?.Invoke("B", false);
+    // }
     #endregion
 }

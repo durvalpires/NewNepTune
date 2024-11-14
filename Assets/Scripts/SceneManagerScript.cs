@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoSingleton<SceneManagerScript>
 {
+    [SerializeField] private GeneralConfigSO generalConfig;
+
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
         Debug.Log($"Changed scene to {sceneName}");
     }
 
-    public void MainMenu()
+    public virtual void MainMenu()
     {
         SceneManager.LoadScene("MainLevelSelect");
     }
@@ -39,7 +41,7 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         SceneManager.LoadScene("Level1Game1");
     }
 
-    public void LoadSelectionMinigame(string sceneName)
+    public virtual void LoadSelectionMinigame(string sceneName)
     {
         LoadSelectionMinigameAsync(sceneName);
     }
@@ -49,7 +51,7 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         LoadMusicInstrumentGuessAsync(sceneName);
     }
 
-    private static async UniTask LoadLevelAsync(string sceneName)
+    protected static async UniTask LoadLevelAsync(string sceneName)
     {
         await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
@@ -89,5 +91,10 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         instrumentMinigame.levelToReturn = sceneToReturn;
 
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+    }
+
+    public void LoadLevelListScene()
+    {
+        SceneManager.LoadScene(generalConfig.levelsScene);
     }
 }
