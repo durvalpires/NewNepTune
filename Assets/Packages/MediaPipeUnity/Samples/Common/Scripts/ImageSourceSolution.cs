@@ -5,6 +5,7 @@
 // https://opensource.org/licenses/MIT.
 
 using System.Collections;
+using Mediapipe.Unity.Experimental;
 using UnityEngine;
 
 namespace Mediapipe.Unity.Sample
@@ -117,7 +118,7 @@ namespace Mediapipe.Unity.Sample
       screen.Initialize(imageSource);
     }
 
-    protected virtual void RenderCurrentFrame(TextureFrame textureFrame)
+    protected virtual void RenderCurrentFrame(Experimental.TextureFrame textureFrame)
     {
       screen.ReadSync(textureFrame);
     }

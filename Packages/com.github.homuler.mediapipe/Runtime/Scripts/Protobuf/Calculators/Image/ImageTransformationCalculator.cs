@@ -293,9 +293,10 @@ namespace Mediapipe {
 
     private bool constantPadding_;
     /// <summary>
-    /// Padding type. This option is only used when the scale mode is FIT.
-    /// Default is to use BORDER_CONSTANT. If set to false, it will use
-    /// BORDER_REPLICATE instead.
+    /// Padding type. This option is only used when the scale mode is FIT. If set
+    /// to true (default), a constant border is added with color specified by
+    /// padding_color. If set to false, a border is added by replicating edge
+    /// pixels (only supported for CPU).
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -324,7 +325,7 @@ namespace Mediapipe {
     private global::Mediapipe.ImageTransformationCalculatorOptions.Types.Color paddingColor_;
     /// <summary>
     /// The color for the padding. This option is only used when the scale mode is
-    /// FIT. Default is black. This is for CPU only.
+    /// FIT. Default is black.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

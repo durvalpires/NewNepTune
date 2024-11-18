@@ -15,9 +15,10 @@ namespace Mediapipe.Unity.Experimental
   {
     private const string _TAG = nameof(TextureFramePool);
 
-    public readonly int textureWidth;
-    public readonly int textureHeight;
-    public readonly TextureFormat textureFormat;
+    private readonly object _formatLock = new object();
+    public int textureWidth;
+    public int textureHeight;
+    public TextureFormat textureFormat;
     public int poolSize { get; private set; }
 
     /// <summary>
@@ -73,7 +74,21 @@ namespace Mediapipe.Unity.Experimental
         _textureFramesLock.ExitWriteLock();
       }
     }
-
+    
+    public void ResizeTexture(int textureWidth, int textureHeight, TextureFormat format)
+     {
+       lock (_formatLock)
+       {
+         this.textureWidth = textureWidth;
+         this.textureHeight = textureHeight;
+         textureFormat = format;
+       }
+     }
+    
+     public void ResizeTexture(int textureWidth, int textureHeight)
+     {
+       ResizeTexture(textureWidth, textureHeight, textureFormat);
+     }
     public bool TryGetTextureFrame(out TextureFrame outFrame)
     {
       TextureFrame nextFrame = null;

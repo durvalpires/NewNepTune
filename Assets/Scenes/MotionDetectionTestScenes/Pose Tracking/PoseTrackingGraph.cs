@@ -11,6 +11,7 @@ using UnityEngine;
 
 using Google.Protobuf;
 using System.Threading.Tasks;
+using Mediapipe.Unity.Experimental;
 
 namespace Mediapipe.Unity.Sample.PoseTracking
 {

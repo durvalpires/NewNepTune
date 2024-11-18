@@ -5,6 +5,7 @@
 // https://opensource.org/licenses/MIT.
 
 using System.Collections;
+using Mediapipe.Unity.Experimental;
 using UnityEngine;
 
 namespace Mediapipe.Unity.Sample
@@ -80,15 +81,15 @@ namespace Mediapipe.Unity.Sample
 
       if (textureType == typeof(WebCamTexture))
       {
-        textureFrame.ReadTextureFromOnCPU((WebCamTexture)sourceTexture);
+        textureFrame.ReadTextureAsync((WebCamTexture)sourceTexture);
       }
       else if (textureType == typeof(Texture2D))
       {
-        textureFrame.ReadTextureFromOnCPU((Texture2D)sourceTexture);
+        textureFrame.ReadTextureAsync((Texture2D)sourceTexture);
       }
       else
       {
-        textureFrame.ReadTextureFromOnCPU(sourceTexture);
+        textureFrame.ReadTextureAsync(sourceTexture);
       }
     }
 

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -328,7 +327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &173192578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -394,7 +393,6 @@ GameObject:
   - component: {fileID: 275874967}
   - component: {fileID: 275874969}
   - component: {fileID: 275874968}
-  - component: {fileID: 275874970}
   m_Layer: 0
   m_Name: Solution
   m_TagString: Untagged
@@ -454,25 +452,13 @@ MonoBehaviour:
     type: 3}
   screen: {fileID: 1375628860}
   graphRunner: {fileID: 275874968}
-  textureFramePool: {fileID: 275874970}
   runningMode: 0
+  _worldAnnotationArea: {fileID: 1936307554}
   _poseDetectionAnnotationController: {fileID: 1375628863}
   _holisticAnnotationController: {fileID: 1375628862}
+  _poseWorldLandmarksAnnotationController: {fileID: 1936307555}
   _segmentationMaskAnnotationController: {fileID: 1375628865}
   _poseRoiAnnotationController: {fileID: 1375628861}
---- !u!114 &275874970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275874966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5da564da19cb6b7d8e4f97f269edc5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poolSize: 10
 --- !u!1 &298505179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,23 +1165,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8571076843237194833, guid: 140d1d2c406167c50819d89f86d9092e,
         type: 3}
-      propertyPath: solution
-      value: 
-      objectReference: {fileID: 275874969}
-    - target: {fileID: 8571076843237194833, guid: 140d1d2c406167c50819d89f86d9092e,
-        type: 3}
-      propertyPath: _solution
+      propertyPath: _baseRunner
       value: 
       objectReference: {fileID: 275874969}
     - target: {fileID: 8571076843525237352, guid: 140d1d2c406167c50819d89f86d9092e,
         type: 3}
       propertyPath: m_Name
       value: Annotation Layer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8571076843876106078, guid: 140d1d2c406167c50819d89f86d9092e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8571076843980202029, guid: 140d1d2c406167c50819d89f86d9092e,
         type: 3}
@@ -2285,7 +2261,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375628859}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ece564ad16755f1ef94c4fe04bd7ce2e, type: 3}
   m_Name: 
@@ -2306,7 +2282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1625996803
 Transform:
   m_ObjectHideFlags: 0

@@ -26,19 +26,20 @@ namespace Mediapipe {
           string.Concat(
             "CihtZWRpYXBpcGUvZ3B1L2dsX3NjYWxlcl9jYWxjdWxhdG9yLnByb3RvEglt",
             "ZWRpYXBpcGUaJG1lZGlhcGlwZS9mcmFtZXdvcmsvY2FsY3VsYXRvci5wcm90",
-            "bxoebWVkaWFwaXBlL2dwdS9zY2FsZV9tb2RlLnByb3RvItkCChlHbFNjYWxl",
+            "bxoebWVkaWFwaXBlL2dwdS9zY2FsZV9tb2RlLnByb3RvIoUDChlHbFNjYWxl",
             "ckNhbGN1bGF0b3JPcHRpb25zEhQKDG91dHB1dF93aWR0aBgBIAEoBRIVCg1v",
             "dXRwdXRfaGVpZ2h0GAIgASgFEhcKDG91dHB1dF9zY2FsZRgHIAEoAjoBMRIQ",
             "Cghyb3RhdGlvbhgDIAEoBRIVCg1mbGlwX3ZlcnRpY2FsGAQgASgIEhcKD2Zs",
             "aXBfaG9yaXpvbnRhbBgFIAEoCBItCgpzY2FsZV9tb2RlGAYgASgOMhkubWVk",
             "aWFwaXBlLlNjYWxlTW9kZS5Nb2RlEjEKInVzZV9uZWFyZXN0X25laWdoYm9y",
-            "X2ludGVycG9sYXRpb24YCCABKAg6BWZhbHNlMlIKA2V4dBIcLm1lZGlhcGlw",
-            "ZS5DYWxjdWxhdG9yT3B0aW9ucxiWzapPIAEoCzIkLm1lZGlhcGlwZS5HbFNj",
-            "YWxlckNhbGN1bGF0b3JPcHRpb25z"));
+            "X2ludGVycG9sYXRpb24YCCABKAg6BWZhbHNlEioKG3VzZV9pbnB1dF9mb3Jt",
+            "YXRfZm9yX291dHB1dBgJIAEoCDoFZmFsc2UyUgoDZXh0EhwubWVkaWFwaXBl",
+            "LkNhbGN1bGF0b3JPcHRpb25zGJbNqk8gASgLMiQubWVkaWFwaXBlLkdsU2Nh",
+            "bGVyQ2FsY3VsYXRvck9wdGlvbnM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Mediapipe.CalculatorReflection.Descriptor, global::Mediapipe.ScaleModeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.GlScalerCalculatorOptions), global::Mediapipe.GlScalerCalculatorOptions.Parser, new[]{ "OutputWidth", "OutputHeight", "OutputScale", "Rotation", "FlipVertical", "FlipHorizontal", "ScaleMode", "UseNearestNeighborInterpolation" }, null, null, new pb::Extension[] { global::Mediapipe.GlScalerCalculatorOptions.Extensions.Ext }, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.GlScalerCalculatorOptions), global::Mediapipe.GlScalerCalculatorOptions.Parser, new[]{ "OutputWidth", "OutputHeight", "OutputScale", "Rotation", "FlipVertical", "FlipHorizontal", "ScaleMode", "UseNearestNeighborInterpolation", "UseInputFormatForOutput" }, null, null, new pb::Extension[] { global::Mediapipe.GlScalerCalculatorOptions.Extensions.Ext }, null)
           }));
     }
     #endregion
@@ -46,7 +47,7 @@ namespace Mediapipe {
   }
   #region Messages
   /// <summary>
-  /// Next id: 9.
+  /// Next id: 10.
   /// </summary>
   public sealed partial class GlScalerCalculatorOptions : pb::IMessage<GlScalerCalculatorOptions>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -92,6 +93,7 @@ namespace Mediapipe {
       flipHorizontal_ = other.flipHorizontal_;
       scaleMode_ = other.scaleMode_;
       useNearestNeighborInterpolation_ = other.useNearestNeighborInterpolation_;
+      useInputFormatForOutput_ = other.useInputFormatForOutput_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -338,6 +340,38 @@ namespace Mediapipe {
       _hasBits0 &= ~128;
     }
 
+    /// <summary>Field number for the "use_input_format_for_output" field.</summary>
+    public const int UseInputFormatForOutputFieldNumber = 9;
+    private readonly static bool UseInputFormatForOutputDefaultValue = false;
+
+    private bool useInputFormatForOutput_;
+    /// <summary>
+    /// Whether the output format should match the input format. If true, it is
+    /// your responsibility to ensure the output format is valid to render to given
+    /// the current OpenGL configuration.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool UseInputFormatForOutput {
+      get { if ((_hasBits0 & 256) != 0) { return useInputFormatForOutput_; } else { return UseInputFormatForOutputDefaultValue; } }
+      set {
+        _hasBits0 |= 256;
+        useInputFormatForOutput_ = value;
+      }
+    }
+    /// <summary>Gets whether the "use_input_format_for_output" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUseInputFormatForOutput {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "use_input_format_for_output" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUseInputFormatForOutput() {
+      _hasBits0 &= ~256;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -361,6 +395,7 @@ namespace Mediapipe {
       if (FlipHorizontal != other.FlipHorizontal) return false;
       if (ScaleMode != other.ScaleMode) return false;
       if (UseNearestNeighborInterpolation != other.UseNearestNeighborInterpolation) return false;
+      if (UseInputFormatForOutput != other.UseInputFormatForOutput) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -376,6 +411,7 @@ namespace Mediapipe {
       if (HasFlipHorizontal) hash ^= FlipHorizontal.GetHashCode();
       if (HasScaleMode) hash ^= ScaleMode.GetHashCode();
       if (HasUseNearestNeighborInterpolation) hash ^= UseNearestNeighborInterpolation.GetHashCode();
+      if (HasUseInputFormatForOutput) hash ^= UseInputFormatForOutput.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -426,6 +462,10 @@ namespace Mediapipe {
         output.WriteRawTag(64);
         output.WriteBool(UseNearestNeighborInterpolation);
       }
+      if (HasUseInputFormatForOutput) {
+        output.WriteRawTag(72);
+        output.WriteBool(UseInputFormatForOutput);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -468,6 +508,10 @@ namespace Mediapipe {
         output.WriteRawTag(64);
         output.WriteBool(UseNearestNeighborInterpolation);
       }
+      if (HasUseInputFormatForOutput) {
+        output.WriteRawTag(72);
+        output.WriteBool(UseInputFormatForOutput);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -500,6 +544,9 @@ namespace Mediapipe {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ScaleMode);
       }
       if (HasUseNearestNeighborInterpolation) {
+        size += 1 + 1;
+      }
+      if (HasUseInputFormatForOutput) {
         size += 1 + 1;
       }
       if (_unknownFields != null) {
@@ -537,6 +584,9 @@ namespace Mediapipe {
       }
       if (other.HasUseNearestNeighborInterpolation) {
         UseNearestNeighborInterpolation = other.UseNearestNeighborInterpolation;
+      }
+      if (other.HasUseInputFormatForOutput) {
+        UseInputFormatForOutput = other.UseInputFormatForOutput;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -585,6 +635,10 @@ namespace Mediapipe {
             UseNearestNeighborInterpolation = input.ReadBool();
             break;
           }
+          case 72: {
+            UseInputFormatForOutput = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -630,6 +684,10 @@ namespace Mediapipe {
           }
           case 64: {
             UseNearestNeighborInterpolation = input.ReadBool();
+            break;
+          }
+          case 72: {
+            UseInputFormatForOutput = input.ReadBool();
             break;
           }
         }

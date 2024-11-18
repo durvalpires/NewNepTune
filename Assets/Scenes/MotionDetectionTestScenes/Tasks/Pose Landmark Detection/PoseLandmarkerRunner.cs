@@ -5,9 +5,8 @@
 // https://opensource.org/licenses/MIT.
 
 using System.Collections;
-using UnityEngine;
-
 using Mediapipe.Tasks.Vision.PoseLandmarker;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
@@ -41,7 +40,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
       yield return AssetLoader.PrepareAssetAsync(config.ModelPath);
 
       var options = config.GetPoseLandmarkerOptions(config.RunningMode == Tasks.Vision.Core.RunningMode.LIVE_STREAM ? OnPoseLandmarkDetectionOutput : null);
-      taskApi = PoseLandmarker.CreateFromOptions(options);
+      taskApi = PoseLandmarker.CreateFromOptions(options, GpuManager.GpuResources);
       var imageSource = ImageSourceProvider.ImageSource;
 
       yield return imageSource.Play();
@@ -65,11 +64,20 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
       var transformationOptions = imageSource.GetTransformationOptions();
       var flipHorizontally = transformationOptions.flipHorizontally;
       var flipVertically = transformationOptions.flipVertically;
-      var imageProcessingOptions = new Tasks.Vision.Core.ImageProcessingOptions(rotationDegrees: (int)transformationOptions.rotationAngle);
+
+      // Always setting rotationDegrees to 0 to avoid the issue that the detection becomes unstable when the input image is rotated.
+      // https://github.com/homuler/MediaPipeUnityPlugin/issues/1196
+      var imageProcessingOptions = new Tasks.Vision.Core.ImageProcessingOptions(rotationDegrees: 0);
 
       AsyncGPUReadbackRequest req = default;
       var waitUntilReqDone = new WaitUntil(() => req.done);
       var result = PoseLandmarkerResult.Alloc(options.numPoses, options.outputSegmentationMasks);
+
+      // NOTE: we can share the GL context of the render thread with MediaPipe (for now, only on Android)
+      var canUseGpuImage = options.baseOptions.delegateCase == Tasks.Core.BaseOptions.Delegate.GPU &&
+        SystemInfo.graphicsDeviceType == GraphicsDeviceType.OpenGLES3 &&
+        GpuManager.GpuResources != null;
+      using var glContext = canUseGpuImage ? GpuManager.GetGlContext() : null;
 
       while (true)
       {
@@ -84,17 +92,28 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
           continue;
         }
 
-        // Copy current image to TextureFrame
-        req = textureFrame.ReadTextureAsync(imageSource.GetCurrentTexture(), flipHorizontally, flipVertically);
-        yield return waitUntilReqDone;
-
-        if (req.hasError)
+        // Build the input Image
+        Image image;
+        if (canUseGpuImage)
         {
-          Debug.LogError($"Failed to read texture from the image source, exiting...");
-          break;
+          yield return new WaitForEndOfFrame();
+          textureFrame.ReadTextureOnGPU(imageSource.GetCurrentTexture(), flipHorizontally, flipVertically);
+          image = textureFrame.BuildGpuImage(glContext);
+        }
+        else
+        {
+          req = textureFrame.ReadTextureAsync(imageSource.GetCurrentTexture(), flipHorizontally, flipVertically);
+          yield return waitUntilReqDone;
+
+          if (req.hasError)
+          {
+            Debug.LogError($"Failed to read texture from the image source, exiting...");
+            break;
+          }
+          image = textureFrame.BuildCPUImage();
+          textureFrame.Release();
         }
 
-        var image = textureFrame.BuildCPUImage();
         switch (taskApi.runningMode)
         {
           case Tasks.Vision.Core.RunningMode.IMAGE:
@@ -121,8 +140,6 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
             taskApi.DetectAsync(image, GetCurrentTimestampMillisec(), imageProcessingOptions);
             break;
         }
-
-        textureFrame.Release();
       }
     }
 

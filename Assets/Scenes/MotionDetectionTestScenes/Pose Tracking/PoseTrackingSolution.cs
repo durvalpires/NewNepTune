@@ -5,6 +5,7 @@
 // https://opensource.org/licenses/MIT.
 
 using System.Collections;
+using Mediapipe.Unity.Experimental;
 using UnityEngine;
 
 namespace Mediapipe.Unity.Sample.PoseTracking
