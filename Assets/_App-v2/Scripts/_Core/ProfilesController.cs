@@ -70,7 +70,7 @@ public class ProfilesController
         public string PasswordHash;
     }
 
-    public static string CurrentProfileKey => CurrentProfile.PasswordHash;
+    public static string CurrentProfileKey => CurrentProfile.NickName+CurrentProfile.PasswordHash;
 
     public static List<ProfileProps> GetAllProfiles()
     {
