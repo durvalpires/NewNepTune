@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoSingleton<SceneManagerScript>
 {
-    [SerializeField] private GeneralConfigSO generalConfig;
+    // [SerializeField] private GeneralConfigSO generalConfig;
 
     public void ChangeScene(string sceneName)
     {
@@ -95,6 +95,6 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
 
     public void LoadLevelListScene()
     {
-        SceneManager.LoadScene(generalConfig.levelsScene);
+        SceneManager.LoadScene(PlayerModel.GeneralConfig.levelsScene);
     }
 }

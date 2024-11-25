@@ -11,7 +11,7 @@ public class WorldSectionsPopup : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private ContentSizeFitter container;
     [SerializeField] private ScrollRect scroll;
-    [SerializeField] private GeneralConfigSO configData;
+    private GeneralConfigSO configData => PlayerModel.GeneralConfig;
     
     private AllWorldsSO.WordData _data;
     private List<WorldSectionUI> allItems = new List<WorldSectionUI>();

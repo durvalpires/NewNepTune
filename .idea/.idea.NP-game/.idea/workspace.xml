@@ -15,9 +15,12 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d2ff669393546729c3e3bdd6eccb6391dd800/53/67172761/UnityEvent`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/23/a90699de/Int32.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/4d/db2e5316/Action`2.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_App-v2/Scripts/ScriptableObjects/MemoryCardLevelSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_App-v2/Scripts/ScriptableObjects/MusicGuessLevelSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_App-v2/Scripts/ScriptableObjects/VirtualPianoLevelSO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.editorcoroutines@7d48783e7b8c/Editor/EditorCoroutineUtility.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -30,7 +33,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.4087838&quot;
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -60,10 +64,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="37839">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17268">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="37839" />
+      <option name="pid" value="17268" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -82,6 +86,14 @@
       <workItem from="1729754137663" duration="28095000" />
       <workItem from="1730131621844" duration="11136000" />
       <workItem from="1730305281719" duration="28716000" />
+      <workItem from="1730638116521" duration="24487000" />
+      <workItem from="1730805856656" duration="8355000" />
+      <workItem from="1730905430192" duration="4782000" />
+      <workItem from="1731059131958" duration="16597000" />
+      <workItem from="1731589910181" duration="11000" />
+      <workItem from="1731589930359" duration="3372000" />
+      <workItem from="1732104636133" duration="884000" />
+      <workItem from="1732559365980" duration="1377000" />
     </task>
     <servers />
   </component>
@@ -94,5 +106,141 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Minigames/MusicGuessingLevel.cs</url>
+          <line>50</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Minigames/MusicGuessingLevel.cs" containingFunctionPresentation="Method 'Start'">
+            <startOffsets>
+              <option value="1630" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1702" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Minigames/MusicGuessingLevel.cs</url>
+          <line>103</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Minigames/MusicGuessingLevel.cs" containingFunctionPresentation="Method 'SetUpLevel'">
+            <startOffsets>
+              <option value="3451" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3525" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Minigames/MusicGuessingLevel.cs</url>
+          <line>100</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Minigames/MusicGuessingLevel.cs" containingFunctionPresentation="Method 'SetUpLevel'">
+            <startOffsets>
+              <option value="3348" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3365" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/Levels/LevelsPopUpToggleManager.cs</url>
+          <line>42</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/Levels/LevelsPopUpToggleManager.cs" containingFunctionPresentation="Method 'Back'">
+            <startOffsets>
+              <option value="1260" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1297" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/Levels/LevelCompletObserver.cs</url>
+          <line>22</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/Levels/LevelCompletObserver.cs" containingFunctionPresentation="Method 'LevelComplete'">
+            <startOffsets>
+              <option value="523" />
+            </startOffsets>
+            <endOffsets>
+              <option value="584" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/ProfilesController.cs</url>
+          <line>161</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/ProfilesController.cs" containingFunctionPresentation="Method 'AddProfile'">
+            <startOffsets>
+              <option value="5026" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5074" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/PlayerModelBase.cs</url>
+          <line>14</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/PlayerModelBase.cs" containingFunctionPresentation="Property 'Data'">
+            <startOffsets>
+              <option value="336" />
+            </startOffsets>
+            <endOffsets>
+              <option value="396" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/PlayerModelBase.cs</url>
+          <line>12</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/PlayerModelBase.cs" containingFunctionPresentation="Property 'Data'">
+            <startOffsets>
+              <option value="277" />
+            </startOffsets>
+            <endOffsets>
+              <option value="297" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/ProfilesController.cs</url>
+          <line>101</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/ProfilesController.cs" containingFunctionPresentation="Property 'CurrentProfile'">
+            <startOffsets>
+              <option value="3180" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3226" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/PlayerModelBase.cs</url>
+          <line>50</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_App-v2/Scripts/_Core/PlayerModelBase.cs" containingFunctionPresentation="Method 'GetCustomData'">
+            <startOffsets>
+              <option value="1655" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1707" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

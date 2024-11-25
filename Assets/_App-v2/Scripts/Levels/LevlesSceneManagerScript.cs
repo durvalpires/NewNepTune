@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevlesSceneManagerScript : SceneManagerScript
 {
-    [SerializeField] private GeneralConfigSO _generalConfigSo;
+    private GeneralConfigSO _generalConfigSo => PlayerModel.GeneralConfig;
     
     public override void LoadSelectionMinigame(string sceneName)
     {

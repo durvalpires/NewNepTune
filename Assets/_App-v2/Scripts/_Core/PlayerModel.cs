@@ -74,6 +74,28 @@ using UnityEngine;
             SetCustomData($"w_{worldId}", "done");
         }
 
+        private static AllWorldsSO _allWorlds;
+        public static AllWorldsSO AllWorlds
+        {
+            get
+            {
+                if (_allWorlds == null)
+                    _allWorlds = Resources.Load<AllWorldsSO>("AllWorldsSO");
+
+                return _allWorlds;
+            }
+        }
+        private static GeneralConfigSO _generalConfig;
+        public static GeneralConfigSO GeneralConfig
+        {
+            get
+            {
+                if (_generalConfig == null)
+                    _generalConfig = Resources.Load<GeneralConfigSO>("GeneralConfigSO");
+
+                return _generalConfig;
+            }
+        }
         public static bool IsWorldCompleted(string worldId)
         {
             return GetCustomData($"w_{worldId}") == "done";
