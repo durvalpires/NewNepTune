@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class LevelsInitController : MonoBehaviour
 {
-    [SerializeField] private GeneralConfigSO generalConfig;
+    // [SerializeField] private GeneralConfigSO generalConfig;
     [SerializeField] private TMP_Text worldName;
-    #if UNITY_EDITOR
-    [SerializeField] private AllWorldsSO allLevelsConfig_Editor;
-    #endif
+    // #if UNITY_EDITOR
+    // [SerializeField] private AllWorldsSO allLevelsConfig_Editor;
+    // #endif
     
     [SerializeField] private WorldDataUnityEvent onInit;
     [SerializeField] private UnityEvent onceAllLevelsDone;
@@ -26,16 +26,16 @@ public class LevelsInitController : MonoBehaviour
     {
         int worldIndex = 0;
 
-        if (TempDataStorage.ContainsKey(generalConfig.openedPlanetKey))
+        if (TempDataStorage.ContainsKey(PlayerModel.GeneralConfig.openedPlanetKey))
         {
-            data = TempDataStorage.GetData<AllWorldsSO.WordData>(generalConfig.openedPlanetKey);
+            data = TempDataStorage.GetData<AllWorldsSO.WordData>(PlayerModel.GeneralConfig.openedPlanetKey);
             worldIndex = TempDataStorage.GetData<int>("worldIndex");
         }
         else
         {
-            Debug.Log("No data found for key " + generalConfig.openedPlanetKey);
+            Debug.Log("No data found for key " + PlayerModel.GeneralConfig.openedPlanetKey);
 #if UNITY_EDITOR
-            data = allLevelsConfig_Editor.worldsData[0];
+            data = PlayerModel.AllWorlds.worldsData[0];
 #endif
         }
 

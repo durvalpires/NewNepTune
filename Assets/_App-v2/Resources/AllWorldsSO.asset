@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c25109e301e45eb8fc76f9c1640076, type: 3}
+  m_Name: AllWorldsSO
+  m_EditorClassIdentifier: 
+  worldsData:
+  - title: World 1-1
+    id: 14446415-2998-4068-bc5b-1d9517bc76d1
+    worldSprite: {fileID: 21300000, guid: 220cbc0d177f947e1a7464461dba7a6b, type: 3}
+    levels:
+    - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+      level: {fileID: 11400000, guid: 6b33f411ff01745419a14dcecd78e0cf, type: 2}
+    - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+      level: {fileID: 11400000, guid: 704ccb8254ea34e6baec41f0aac331d2, type: 2}
+    - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+      level: {fileID: 11400000, guid: 1102b7913c0164f269130eba628ae393, type: 2}
+    - image: {fileID: 21300000, guid: b621b7a749f264265943dbc1eb9622f2, type: 3}
+      level: {fileID: 11400000, guid: 808f1a36a5a4d469f93c531946c706b8, type: 2}
+    - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+      level: {fileID: 11400000, guid: cc8296b96ad05404eae133d01e045f88, type: 2}
+    - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+      level: {fileID: 11400000, guid: 0629648d484ea496b8e8b2b95876cb26, type: 2}
+    - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+      level: {fileID: 11400000, guid: e7344ae9941f34a2394779a6d095410f, type: 2}
+    - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+      level: {fileID: 11400000, guid: e9428cefe5ae149489cb6a4bc4507f20, type: 2}
+    - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+      level: {fileID: 11400000, guid: 066e25b245c9c4c21b0f05a85335e1b6, type: 2}
+    - image: {fileID: 21300000, guid: f12c86afde7bf41968f97a7c888beae9, type: 3}
+      level: {fileID: 11400000, guid: 3a1b17de940d44043b9f1c642544fc2e, type: 2}
+    - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+      level: {fileID: 11400000, guid: 0629648d484ea496b8e8b2b95876cb26, type: 2}
+    - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+      level: {fileID: 11400000, guid: cc8296b96ad05404eae133d01e045f88, type: 2}
+  - title: World 1-2
+    id: ea4b6cec-b719-48a0-9b81-179f335f688c
+    worldSprite: {fileID: 21300000, guid: 220cbc0d177f947e1a7464461dba7a6b, type: 3}
+    levels:
+    - image: {fileID: 0}
+      level: {fileID: 0}
+  generateIds: 0

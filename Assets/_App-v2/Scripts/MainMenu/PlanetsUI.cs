@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 public class PlanetsUI : MonoBehaviour
 {
-    [SerializeField] private AllWorldsSO allWorldsSO;
+    // [SerializeField] private AllWorldsSO allWorldsSO;
     [SerializeField] private Transform container;
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private ContentSizeFitter contentSizeFitter;
-    [SerializeField] private GeneralConfigSO generalConfigData;
+    private GeneralConfigSO generalConfigData => PlayerModel.GeneralConfig;
 
     private List<PlanetBtn> allPlanetBtns = new List<PlanetBtn>();
     public void Init()
     {
         var openedPlanet = -1;
-        for (int i = 0; i < allWorldsSO.worldsData.Length; i++)
+        for (int i = 0; i < PlayerModel.AllWorlds.worldsData.Length; i++)
         {
-            var planetData = allWorldsSO.worldsData[i];
+            var planetData = PlayerModel.AllWorlds.worldsData[i];
             var planetGO = Instantiate(prefabs[allPlanetBtns.Count%prefabs.Length], container);
             var planetBtn = planetGO.GetComponent<PlanetBtn>();
             planetBtn.onClickAction = OnClick;

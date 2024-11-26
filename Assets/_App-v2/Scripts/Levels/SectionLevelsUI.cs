@@ -15,7 +15,7 @@ public class SectionLevelsUI : MonoBehaviour
     [SerializeField] private LevelsPopUpToggleManager popUpToggleManager;
     [SerializeField] private Image popup1Image;
     [SerializeField] private SceneManagerScript sceneManagerScript;
-    [SerializeField] private GeneralConfigSO generalConfig;
+    private GeneralConfigSO generalConfig => PlayerModel.GeneralConfig;
 
     private List<SectionLevelBtnUI> allItems = new List<SectionLevelBtnUI>();
     private static float lastScrollPos = 0;

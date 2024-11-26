@@ -6,15 +6,17 @@ using UnityEngine.Networking;
     public class PlayerModelBase
     {
         private static PlayerData _player;
+        private static string _currentProfileKey = "";
         protected static PlayerData Data
         {
             get
             {
                 if (_player == null)
                 {
-                    if(PlayerPrefs.HasKey(ProfilesController.CurrentProfileKey))
+                    _currentProfileKey = ProfilesController.CurrentProfileKey;
+                    if(PlayerPrefs.HasKey(_currentProfileKey))
                     {
-                        var userData= PlayerPrefs.GetString(ProfilesController.CurrentProfileKey, "");
+                        var userData= PlayerPrefs.GetString(_currentProfileKey, "");
                         if(!userData.Contains(":")) 
                             return _player = new PlayerData();
                         _player = JsonUtility.FromJson<PlayerData>(userData);
@@ -38,14 +40,14 @@ using UnityEngine.Networking;
             var data = Json.Serialize(Data);
             if(string.IsNullOrEmpty(data)) return;
             Debug.Log("[SAVE] Data Saved:" + data.Substring(0,Mathf.Min(data.Length,100)));
-            PlayerPrefs.SetString(ProfilesController.CurrentProfileKey, data);
+            PlayerPrefs.SetString(_currentProfileKey, data);
         }
         public static void ClearData()
         {
             _player = null;
-            PlayerPrefs.DeleteKey(ProfilesController.CurrentProfileKey);
+            PlayerPrefs.DeleteKey(_currentProfileKey);
         }
-        
+
         public static string GetCustomData(string key, string defaultValue = "")
         {
             Dictionary<string, object> dataDict = AllCustomData;
