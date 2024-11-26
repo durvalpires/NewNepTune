@@ -183,6 +183,8 @@ MonoBehaviour:
       level: {fileID: 11400000, guid: 3dcf4cf5e3e484557b09ac5d0edbfc60, type: 2}
     - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
       level: {fileID: 11400000, guid: 524f736353ebb46a1bf5d08420f3848c, type: 2}
+    - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+      level: {fileID: 11400000, guid: 524f736353ebb46a1bf5d08420f3848c, type: 2}
   - title: World 5
     id: 4bae9659-e92f-4c15-8a00-ba5342374ef9
     worldSprite: {fileID: 21300000, guid: 344dacdf96d2644089d1d585f689de2b, type: 3}

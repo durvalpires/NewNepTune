@@ -50,13 +50,16 @@ public class SectionLevelsUI : MonoBehaviour
                 }
                 else
                 {
-                    if (lastOpenedLevel == null)
-                    {
-                        lastOpenedLevel = item;
-                        item.Unlock();
-                    }
-                    else 
-                        item.Lock();
+                    // if (lastOpenedLevel == null)
+                    // {
+                    //     lastOpenedLevel = item;
+                    //     item.Unlock();
+                    // }
+                    // else 
+                    //     item.Lock();
+                    if(lastOpenedLevel == null) lastOpenedLevel = item;
+                    item.Unlock();
+                    CenterOnElement(item.GetComponent<RectTransform>());
                 }
             }
             StartCoroutine(RefreshCanvas());
@@ -103,14 +106,17 @@ public class SectionLevelsUI : MonoBehaviour
             }
             else
             {
-                if (lastOpenedLevel == null)
-                {
-                    lastOpenedLevel = item;
-                    item.Unlock();
-                    CenterOnElement(item.GetComponent<RectTransform>());
-                }
-                else 
-                    item.Lock();
+                //if (lastOpenedLevel == null)
+                // {
+                //     lastOpenedLevel = item;
+                //     item.Unlock();
+                //     CenterOnElement(item.GetComponent<RectTransform>());
+                // }
+                // else 
+                //     item.Lock();
+                if(lastOpenedLevel == null) lastOpenedLevel = item;
+                item.Unlock();
+                CenterOnElement(item.GetComponent<RectTransform>());
             }
         }
     }
@@ -180,7 +186,8 @@ public class SectionLevelsUI : MonoBehaviour
         container.enabled = true;
         yield return null;
         
-        CenterOnElement(lastOpenedLevel.GetComponent<RectTransform>());
+        CenterOnElement(lastOpenedLevel == null ? allItems[0].GetComponent<RectTransform>() : 
+            lastOpenedLevel.GetComponent<RectTransform>());
         
         // scroll.normalizedPosition = new Vector2(0, 0);
         float currentX = scroll.normalizedPosition.x;

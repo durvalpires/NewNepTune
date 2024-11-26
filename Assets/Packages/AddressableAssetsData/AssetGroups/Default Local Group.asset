@@ -20,6 +20,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0450120d572f8425c8467e36fdef5629
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 5.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 060fd91c241674a73859d9468f3b3162
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 3.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 069edbffefeab4c15aea7739de0ecb41
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 9 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06e34978296db47c6b102b61900728d6
+    m_Address: Assets/VPContent/Middle B/MIDDLE B - 2nd Exercise  (1).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 07305027195f444458bdefa77b191411
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 11.xml
     m_ReadOnly: 0
@@ -30,13 +50,53 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09355375144a34fd8959cee8db9e576a
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 4.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ab18f1bcb0d54ea78f66660f50553b2
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 11.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0adedb11752e94b09b288a57698190b2
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 7 .xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c5c4f1262fc54f688de8971325d1947
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 3.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10c8d86edc20044bbaeac31a7261927d
     m_Address: Assets/VPContent/Middle F/MIDDLE F- 1st exercise.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 116d8524b152a4e8297a1633dc1706b2
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 7 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 118014322ecd644aab3025fd12649036
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 10 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 127d8f541afbb4e20b41563a8a6dcaf4
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 12.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13c1627cd7d534ca199a3ed6581ef8ad
+    m_Address: Assets/VPContent/Middle B/MIddle B - 2nd Exercise  (1).xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1488cad3221804994910874ce25a4361
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 5.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -50,8 +110,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 179308371b57d473eb984ee6bf4ff85e
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 3.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 17aae3112e75545b0ab24bd2135d94ce
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 7 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 183ee408176d14324af734feb99d019f
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 9 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19192ca949f9349de8f8f3b562909d8b
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 10 .ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -75,6 +150,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f2e9520beb844b50b4e55418062d1ab
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 7.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 217138a547f9a4c05b1ed90b9844b01e
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 10.xml
     m_ReadOnly: 0
@@ -85,8 +165,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25a70b1ffbadf4454a5dba4136136ddb
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 8 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27abf425c7405489aa1b797f6197ee00
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 4.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 294ba045786474f6fa2d91477b32fa8d
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 8  (1).ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2add2f7769b1f4edf958c280c272460c
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 11.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -105,8 +200,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 315b610a8da3d4ea48518667cddee929
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 11.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3430dd1cca1f44c5eb96c4e83fb2ebf0
+    m_Address: Assets/VPContent/Middle F/MIDDLE F- 1st exercise. mp3.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 358710b98870d44df96e8183c4bb4d2d
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 9.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 361c6b2c0ae8f465e98bd519f2d54db0
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 6.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 378c846482105429cb11ff997a86142c
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 8 .xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -115,8 +230,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38f91aec5d4514a6f8a02798c7117127
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 4 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ee5778663e7f42a488c36c25771404c
     m_Address: Assets/VPContent/Middle C/MIDDLE C 10 EXERCISE.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ffddeb9606d746fea9ccf2680535e91
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 4.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -130,8 +255,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41eada7e3615a4cfab3624f623798e38
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 7.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 43c277ff4266044aa8bc714673bc9aeb
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 4.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45184a4a9091148f3a6157a5ef65f864
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 8 .ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -150,13 +285,38 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ac83a086c19f447c817c26f2702f439
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 3.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4de882e12156d4793a04b05eb295e7fe
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 10 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 50789f730be954be7acd9d2f3befccc3
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 6  (1).ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51bac7c8eed4745a5a4a0854ede20414
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 8 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5276698b9af6a475d88cc9cbb1d6e029
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 11.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 547c5091d1b5e4d49849f7dcf5f0f1e0
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 6 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 560e47f44dc034e49ac9d6ff7857a2a9
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 3.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -167,6 +327,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 575e26ca06347408f890b703acf81783
     m_Address: Assets/VPContent/Middle F/MIDDLE F - 1st exercise .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 576c6b9e5cd9b453eb4169937dda1bc6
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 8.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -185,8 +350,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ba13216005a04c9a858ea398e4a5b0f
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 4.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5da9384a038e6460e8c9177d599cd620
     m_Address: Assets/VPContent/Middle E/MIDDLE E exercise 2.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e1bebdc484804231a1608b3348b1d5b
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 8 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e825e206dcc3482a83219af0ca57f1c
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 6.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5eba0fcb0d8d342ee96cdb8b1aead15c
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 4.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5fb771ef40bda44c49205cc7f872cee4
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 11.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -197,6 +387,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61c334a27a1914258be460cf342fd7b0
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 9 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 629b8c9ff431b40b3aa787ce3be5f9e1
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 9.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -220,6 +415,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 694948649f35c4363bd79fe83a6f14bf
+    m_Address: Assets/VPContent/Middle A/MIDDLE A - 1st Exercise .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c16016ff48bd47aa9af44c5c3c13512
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 11.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e7a0f8dfda4e48d8abc8cea3209c430
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 10.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f22be7d7f50e424193abd51e1af8d20
     m_Address: Systems
     m_ReadOnly: 0
@@ -227,6 +437,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 703d64031400c42409d4d644ebb4efc4
     m_Address: Assets/VPContent/Middle F/MIDDLE F - 2ND EXERCISE .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 727b8bc5f09d44203b8191b30d34fb1d
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 9 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72e4ed65242284d0cab9224e2ab7f110
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 7 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73e92cb6156244e94bb46ebca0764faf
+    m_Address: Assets/VPContent/Middle B/MIDDLE B - 1st Exercise  (1).xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74e42e45c337845709ef35be54f85846
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 12.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -240,8 +470,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78061bc98b1a645e1a25045e17168858
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 12 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7886160a9b68d48588080f26c73c45a0
     m_Address: Assets/VPContent/Middle F/MIDDLE F - 2ND EXERCISE .mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78a2703be04504bdea02277b58020a2e
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 5.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -252,6 +492,21 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79a02f97bad0f413da05c57e5a2fcbc7
     m_Address: Assets/VPContent/Middle E/MIDDLE E exercise 2 .mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a2e9b672c47d4ee290f0e4072ecd544
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a8c6786366bb4c7bb6bf516ba39694e
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e0e057d17aef4292885e40e10b4ba1c
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 10 .xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -270,6 +525,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85136ff57bb914a8880b38d1fd7b7c1f
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 12 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 858444d7f764e470b905766085b91e87
     m_Address: Assets/VPContent/Middle C/MIDDLE C 10 EXERCISE.ogg
     m_ReadOnly: 0
@@ -285,6 +545,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 882348db0f64e4514ba9678546399648
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 12.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a56b6e1e8d5b4930b557acc8f0acbd4
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 6  (1).ogg
     m_ReadOnly: 0
@@ -295,8 +560,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8dbdde138534848cb954fb02f987b7a1
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 6.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98470c9d567cc4ad59257f439eff0d11
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 9 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99e464b0bdf5449ed8676fbb373b13ec
     m_Address: Assets/VPContent/Middle D/MIDDLE D - Exercise 2 musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c8fd5f2b139c4a5585b24146c9dd2c6
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 7.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -306,8 +586,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a20544e479b5d43c1b3c2b38108e8d72
+    m_Address: Assets/VPContent/Middle A/MIDDLE A - 2ND Exercise  (1).xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a351c4c1ef55f4e688f4899d92c3c156
     m_Address: Assets/VPContent/Middle G/MIDDLE G - 1st Exercise .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3f79b79989fb4776a7668726cda132d
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 11.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -316,8 +606,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a53909e1bfff340ecb691632d6754b52
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 12.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a6dde85dfaaf04adf8f13b18d2ef0f97
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 7 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7ae6d57daf904a73a85fc1c45adf0f2
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 12.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7f87753c4e644c5ea285121caa6afa7
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 6.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a854a66df0a5343c296fe324170c57a7
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 8 .ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -331,8 +641,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acfdc4cedbe194b928d7907612bf0855
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 7 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ae5035a1e92d744628dcbb159815f6a0
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 5 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: afcfd36719df2434b9b2ede247ef9255
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 5 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b097a4bff73014ac38a9ddd1727f5588
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 6.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b11972fb1f5b949a3a3100e7f74e408f
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 8 .xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -346,8 +676,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b484cc43b378a41c4bd77a6b08dde5a3
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 3.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4aca4a3eb30549418d0912b0c187289
     m_Address: Assets/VPContent/Middle D/MIDDLE D - Exercise 2.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b51c509104b574960a5997d30fced28c
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 4.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -361,6 +701,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd46cb4a335a54760a02c00a6f1f63d1
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 5 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd9dd618bc07d4fccbce022a4f80d32e
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 12  (1).ogg
     m_ReadOnly: 0
@@ -371,13 +716,48 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be2cb745c4441436392b33dbff0c4c03
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 10 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0006c415d3f341eba352de48aad329a
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 5  (1).ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c005e1d40ca1641fe9735277bac36b41
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 3.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c085f41dd62ac48fb9c86a1b9ccbcfa5
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 11.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0ae923de968c4cfb880ebbbb7f0336c
     m_Address: Assets/VPContent/Middle B/MIDDLE B - 1st Exercise .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c701f7b6674714df8a40200dc1bccd43
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 7 .ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c91eeb9fcd46a4d7b8cacbbbb9944b7d
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 12.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb2fc9377486d45728a0688d09969fd4
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 5.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb35b8dd3f4af49b285cbffa280c3ebf
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 5.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -406,6 +786,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d492eeec6bad84a3fa538ed3df09a63e
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 6.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5771b93133484fc48e1236b6149634d
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 9 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d58fda424513b44c3af6525a7c118612
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 10 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d5d123b21f2334120bf72e1c81d3725a
     m_Address: Assets/VPContent/Middle E/MIDDLE E - Exercise 1.mp3
     m_ReadOnly: 0
@@ -423,6 +818,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: daa52620e2f684241a574c6391e71ac0
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 10 (1).ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dba19c13d00f04ddd8891f4809bc5d0f
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 7.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -451,8 +851,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed7c8d365e71b4981a03b456f0aa4bc4
+    m_Address: Assets/VPContent/Middle F/MIDDLE F EXERISE 10.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f5860561249874fa7bfce1a58f244637
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 11 (1).ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f83abcf70b14d48d492d9dfff3b5afd0
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 9.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -468,6 +878,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8d87f16254ab4445bdea9d869b62e7e
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 12 .xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9f69aa894b7b4638aa265d5d41a9298
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 3.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffc21e33f812e4561945ec7f40b904c3
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 9 .ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

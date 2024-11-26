@@ -16,10 +16,10 @@ public class PopUpToggleManager : MonoBehaviour
     
     private void Update()
     {
-        if (_popUpActive && Input.GetMouseButtonDown(0))
-        {
-          Back();
-        }
+        // if (_popUpActive && Input.GetMouseButtonDown(0))
+        // {
+        //   Back();
+        // }
     }
     
     // TODO : Turn this into a single function with a parameter
@@ -117,7 +117,7 @@ public class PopUpToggleManager : MonoBehaviour
         Destroy(audioSourceGO);
     }
 
-    protected virtual void Back()
+    public virtual void Back()
     {
         if (popup1 != null ) popup1.SetActive(false);
         if (popup2 != null ) popup2.SetActive(false);

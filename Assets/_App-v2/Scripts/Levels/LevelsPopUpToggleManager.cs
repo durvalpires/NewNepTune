@@ -38,7 +38,7 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
         _popUpActive = true;
     }
 
-    protected override void Back()
+    public override void Back()
     {
         LevelCompletObserver.LevelComplete();
         base.Back();
