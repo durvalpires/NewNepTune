@@ -27,6 +27,7 @@ public class RhythmGameManager : MonoBehaviour
     //[SerializeField] private TextAsset songMidiAsset;
     [SerializeField] private MusicScoreRender scoreRender;
     [SerializeField] private Transform interactionArea;
+    [SerializeField] private VirtualPianoController virtualPianoController;
 
     [SerializeField] private UnityEvent<string> keyPressTxtFeedback;
     [SerializeField] private UnityEvent<string> OnScoreUpdated;
@@ -62,6 +63,7 @@ public class RhythmGameManager : MonoBehaviour
     }
 
     private int notesCrossed = 0;
+    private int notesCrossedInteractionArea = 0;
     public UnityEvent<NoteView, float, float, float> OnNextNoteUpdated;
 
     private List<NoteController> noteInteractableList = new List<NoteController>();
@@ -193,6 +195,16 @@ public class RhythmGameManager : MonoBehaviour
         
             noteViewList = scoreRender.Render();
             var noteCount = noteViewList.Count;
+            
+            List<string> keysUsed = new List<string>();
+            foreach (var note in noteViewList)
+            {
+                if (!keysUsed.Contains(note.Pitch.Step))
+                {
+                    keysUsed.Add(note.Pitch.Step);
+                }
+            }
+            virtualPianoController.EnableKeys(keysUsed);
 
             scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);
             scoreController.OnStarAchieved += OnStarAchieved;
@@ -308,9 +320,9 @@ public class RhythmGameManager : MonoBehaviour
         return result;
     }
 
-    public void OnNoteTriggeredInteractionBar(NoteController note, bool entered)
+    public void OnNoteTriggeredInteractionBar(NoteController note, bool isEntering)
     {
-        Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + note.Index.ToString() + " = " + entered);
+        Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + note.Index.ToString() + " = " + isEntering);
 
         // if(entered && noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] == null){
         //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] = new List<NoteController>();
@@ -323,7 +335,11 @@ public class RhythmGameManager : MonoBehaviour
         //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave].Remove(note);
         // }
 
-        if(entered){
+        if (!isEntering) notesCrossedInteractionArea++;
+
+        if (note.State == NoteState.Miss && isEntering) return;
+
+        if(isEntering){
             noteInteractableList.Add(note);
             
         }
@@ -370,6 +386,11 @@ public class RhythmGameManager : MonoBehaviour
 
             if(accuracy != HitAccuracy.Miss){
                 noteInteractableList.RemoveAt(indexToRemove);
+            }
+            else
+            {
+                if(notesCrossedInteractionArea < noteViewList.Count)
+                    noteViewList[notesCrossedInteractionArea].GameObject.GetComponent<NoteController>().SetState(NoteState.Miss);
             }
 
             // if (noteInteractableDic[note] != null)

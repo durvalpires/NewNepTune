@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -9,27 +10,44 @@ public class VirtualPianoController : MonoBehaviour
     private UnityEvent<string, bool> onPianoKeyTriggered;
 
     [SerializeField]
-    private Button[] mainPianoKeys;
+    private VirtualPianoKeyController[] mainPianoKeys;
     
     [SerializeField]
-    private Button[] blackPianoKeys;
+    private VirtualPianoKeyController[] blackPianoKeys;
 
     [SerializeField]
     private RhythmGameSettings rhythmGameSettings;
 
     private void Start()
     {
-        foreach (var button in mainPianoKeys)
+        foreach (var key in mainPianoKeys)
         {
-            var pianoKeyController = button.GetComponent<VirtualPianoKeyController>();
-            pianoKeyController.SetKeyColor(rhythmGameSettings.ColorSettings.
-                GetNoteColor(pianoKeyController.GetNote())); // new Color(0.5f, 0.5f, 0.5f, 1.0f); // <>
+            key.SetKeyColor(rhythmGameSettings.ColorSettings.
+                GetNoteColor(key.GetNote())); // new Color(0.5f, 0.5f, 0.5f, 1.0f); // <>
         }
-        foreach (var button in blackPianoKeys)
+        foreach (var blackKey in blackPianoKeys)
         {
-            var pianoKeyController = button.GetComponent<VirtualPianoKeyController>();
-            pianoKeyController.SetKeyColor(rhythmGameSettings.ColorSettings.
-                GetNoteColor(pianoKeyController.GetNote())); // new Color(0.5f, 0.5f, 0.5f, 1.0f); // <>
+            blackKey.SetKeyColor(rhythmGameSettings.ColorSettings.
+                GetNoteColor(blackKey.GetNote())); // new Color(0.5f, 0.5f, 0.5f, 1.0f); // <>
+        }
+    }
+
+    public void EnableKeys(List<string> keys)
+    {
+        foreach (var key in mainPianoKeys)
+        {
+            if (keys.Contains(key.GetNote()))
+            {
+                key.GetComponent<Button>().interactable = true;
+            }
+        }
+        
+        foreach (var blackKey in blackPianoKeys)
+        {
+            if (keys.Contains(blackKey.GetNote()))
+            {
+                blackKey.GetComponent<Button>().interactable = true;
+            }
         }
     }
 
@@ -102,6 +120,7 @@ public class VirtualPianoController : MonoBehaviour
     
     public void OnKeyDown(BaseEventData eventData)
     {
+        if (eventData.selectedObject == null) return;
         var pianoKeyController = eventData.selectedObject.GetComponent<VirtualPianoKeyController>();
         Debug.Log("KeyDown: " + pianoKeyController.GetNote());
         onPianoKeyTriggered?.Invoke(pianoKeyController.GetNote(), true);
@@ -109,6 +128,7 @@ public class VirtualPianoController : MonoBehaviour
     
     public void OnKeyUp(BaseEventData eventData)
     {
+        if (eventData.selectedObject == null) return;
         var pianoKeyController = eventData.selectedObject.GetComponent<VirtualPianoKeyController>();
         Debug.Log("KeyUp: " + pianoKeyController.GetNote());
         onPianoKeyTriggered?.Invoke(pianoKeyController.GetNote(), false);

@@ -2,14 +2,14 @@
   "project_info": {
     "project_number": "638255034444",
     "project_id": "neptune-fe02f",
-    "storage_bucket": "neptune-fe02f.appspot.com"
+    "storage_bucket": "neptune-fe02f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:638255034444:ios:0b97bc196f180d7a4044e9",
+        "mobilesdk_app_id": "1:638255034444:ios:deceb345d4fbc8044044e9",
         "android_client_info": {
-          "package_name": "com.neptune.neptuneforkids"
+          "package_name": "com.neptune.neptuneforkidsunit"
         }
       },
       "api_key": [

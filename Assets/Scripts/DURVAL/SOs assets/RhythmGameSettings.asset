@@ -114,7 +114,7 @@ MonoBehaviour:
       MainColor: {r: 0.41509432, g: 0.3008781, b: 0.072445706, a: 1}
     B:
       MainColor: {r: 0.47480527, g: 0.14951934, b: 0.8490566, a: 1}
-    InteractableColor: {r: 0.6784314, g: 0.29803923, b: 0, a: 1}
+    InteractableColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
     NormalColor: {r: 0, g: 0, b: 0, a: 1}
     MissColor: {r: 0.7176471, g: 0.09019608, b: 0.09019608, a: 1}
     HitColor: {r: 0.20392157, g: 0.83137256, b: 0.8392157, a: 1}

@@ -71,9 +71,17 @@ namespace Minigames
       
       public void TrueAnswer()
       {
-         winPanel.SetActive(true);
-         gameLevels[_currentLevel].gameObject.SetActive(false);
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
+         gameLevels[_currentLevel].gameObject.SetActive(false);
+
+         if (_currentLevel+1 == gameLevels.Length)
+         {
+            finishPanel.SetActive(true);
+         }
+         else
+         {
+            winPanel.SetActive(true);
+         }
       }
 
       public void FalseAnswer()

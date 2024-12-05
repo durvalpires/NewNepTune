@@ -149,8 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155313ff9408e45acbe1c89e759d774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalConfig: {fileID: 0}
-  _generalConfigSo: {fileID: 11400000, guid: fcf579429f1bd4da584db4045fa6be4e, type: 2}
 --- !u!4 &26616747
 Transform:
   m_ObjectHideFlags: 0
@@ -630,7 +628,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 938.6374, y: -206.85}
+  m_AnchoredPosition: {x: 938.63745, y: -206.85}
   m_SizeDelta: {x: 0, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &389593289
@@ -1959,10 +1957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09973105f1f124cab9f291d1862e8ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalConfig: {fileID: 11400000, guid: fcf579429f1bd4da584db4045fa6be4e, type: 2}
   worldName: {fileID: 1965731879}
-  allLevelsConfig_Editor: {fileID: 11400000, guid: 723de0ed14f1f4e4dafa14379a242bed,
-    type: 2}
   onInit:
     m_PersistentCalls:
       m_Calls:
@@ -2482,7 +2477,6 @@ MonoBehaviour:
   popUpToggleManager: {fileID: 26616748}
   popup1Image: {fileID: 617814189}
   sceneManagerScript: {fileID: 26616746}
-  generalConfig: {fileID: 11400000, guid: fcf579429f1bd4da584db4045fa6be4e, type: 2}
 --- !u!224 &1265226754
 RectTransform:
   m_ObjectHideFlags: 0

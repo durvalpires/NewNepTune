@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Levels.SelectionMinigame;
+using Minigames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -164,8 +165,8 @@ public class SectionLevelsUI : MonoBehaviour
                 popUpToggleManager.ToggleInstrument(learningInstrumentData.instrument);
                 break;
             case LevelSO.LevelType.InstrumentGuess:
-                //?? data ??
-                sceneManagerScript.LoadInstrumentGuessMinigame(generalConfig.levelsScene);
+                TempDataStorage.SetSceneData(obj.LevelData.level);
+                sceneManagerScript.ChangeScene(generalConfig.instrumentGuessScene);
                 break;
             case LevelSO.LevelType.MemoryCards:
                 TempDataStorage.SetSceneData(obj.LevelData.level);

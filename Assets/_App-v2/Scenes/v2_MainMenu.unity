@@ -776,6 +776,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baaeea72ad5754b069a585a4eed3bcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &854799982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854799983}
+  - component: {fileID: 854799984}
+  m_Layer: 0
+  m_Name: FirebaseInit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &854799983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854799982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.104088, y: 1.8675891, z: -0.008590049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &854799984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854799982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b650945f2bb64272a43580cfc5962e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1345354571
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,13 +924,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df7f050da0d54565bd4b4d4800340dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allWorldsSO: {fileID: 11400000, guid: 723de0ed14f1f4e4dafa14379a242bed, type: 2}
   container: {fileID: 204637449}
   prefabs:
   - {fileID: 8155012164354477193, guid: e4c42383a8a4e41c48bfa6327978238e, type: 3}
   - {fileID: 4639792851428951028, guid: 835bb0375e13d41548d2c98849ca3e88, type: 3}
   contentSizeFitter: {fileID: 204637454}
-  generalConfigData: {fileID: 11400000, guid: fcf579429f1bd4da584db4045fa6be4e, type: 2}
 --- !u!224 &1424821001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1247,3 +1289,4 @@ SceneRoots:
   - {fileID: 224038931}
   - {fileID: 252531164}
   - {fileID: 465516022}
+  - {fileID: 854799983}

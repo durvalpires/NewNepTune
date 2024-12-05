@@ -12,8 +12,9 @@ namespace Minigames
    public class InstrumentGuess : MonoBehaviour
    {
       [Header("References for Scene Set Up")]
-      [SerializeField] private Button backButton;
-      [SerializeField] private Button finishedBackButton;
+      [SerializeField] protected string levelInstrument;
+      [SerializeField] protected Button backButton;
+      [SerializeField] protected Button finishedBackButton;
       [SerializeField] public string levelToReturn;
 
       [Header("References for Minigame Set Up")]
@@ -21,34 +22,19 @@ namespace Minigames
       public GameObject losePanel;
       public GameObject finishPanel;
 
-      [SerializeField] private GameObject[] gameLevels;
-      private Sprite[] _correctAnswerSprites;
-      private AudioClip[] _correctAudioClips;
+      [SerializeField] protected GameObject[] gameLevels;
+      //protected Sprite[] _correctAnswerSprites;
+      protected Sprite[] _correctAnswerSprites;
+      protected AudioClip[] _correctAudioClips;
       
-      [SerializeField] private GameObject character;
+      [SerializeField] protected GameObject character;
 
-      private AudioSource _audioSource;
-      private Sprite[] _sprites;
-      private int _currentLevel;
+      protected AudioSource _audioSource;
+      protected Sprite[] _sprites;
+      protected int _currentLevel;
       
-      private void Start()
-      {
-         Sprite[] allSprites = Resources.LoadAll<Sprite>($"InstrumentPNGs/")
-            .OrderBy(x => UnityEngine.Random.value).ToArray();
-         _correctAnswerSprites = new Sprite[gameLevels.Length];
-         for (int i = 0; i < gameLevels.Length; i++)
-         {
-            _correctAnswerSprites[i] = allSprites[i];
-         }
-         
-         _correctAudioClips = new AudioClip[_correctAnswerSprites.Length];
-         for (int i = 0; i < _correctAnswerSprites.Length; i++)
-         {
-            _correctAudioClips[i] = Resources.Load<AudioClip>($"InstrumentSounds/{_correctAnswerSprites[i].name}");
-         }
-         
-         character.GetComponent<Animator>().Play($"BoyAst{_correctAnswerSprites[_currentLevel].name}");
-         
+      protected virtual void Start()
+      {  
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
             SceneManager.LoadScene(levelToReturn);
@@ -70,12 +56,12 @@ namespace Minigames
          _audioSource = gameObject.GetComponent<AudioSource>();
          _audioSource.clip = _correctAudioClips[_currentLevel];
          
-         StartCoroutine(PlayAfterSeconds());
+         StartCoroutine(PlayAfterSeconds(0.8f));
       }
 
-      private IEnumerator PlayAfterSeconds()
+      protected IEnumerator PlayAfterSeconds(float seconds)
       {
-         yield return new WaitForSeconds(.8f);
+         yield return new WaitForSeconds(seconds);
          _audioSource.Play();
       }
       
@@ -90,9 +76,21 @@ namespace Minigames
          
          yield return new WaitForSeconds(3f);
 
-         winPanel.SetActive(true);
+         //winPanel.SetActive(true);
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
+
+         AudioManager.Instance.PlaySFX(SoundList.WinSound);
+         gameLevels[_currentLevel].gameObject.SetActive(false);
+
+         if (_currentLevel+1 == gameLevels.Length)
+         {
+            finishPanel.SetActive(true);
+         }
+         else
+         {
+            winPanel.SetActive(true);
+         }
       }
 
       private void FalseAnswer()
@@ -102,8 +100,8 @@ namespace Minigames
 
       private IEnumerator FalseAnswerRoutine()
       {
-         InstrumentGuessClouds.Instance.DisperseClouds();
-         yield return new WaitForSeconds(3f);
+         //InstrumentGuessClouds.Instance.DisperseClouds();
+         yield return new WaitForSeconds(.25f);
          
          losePanel.SetActive(true);
          gameLevels[_currentLevel].gameObject.SetActive(false);
@@ -111,7 +109,7 @@ namespace Minigames
       }
 
       
-      private void SetUpLevel(int levelToSet)
+      protected void SetUpLevel(int levelToSet)
       {
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;

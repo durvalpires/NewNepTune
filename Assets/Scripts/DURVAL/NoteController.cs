@@ -14,6 +14,8 @@ public enum NoteState
 
 public class NoteController : MonoBehaviour
 {
+    private bool availableToInteract = true;
+    
     //Transform tableObj;
     Transform playNoteObj;
 
@@ -171,7 +173,7 @@ public class NoteController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("InteractionBar"))
+        if (other.CompareTag("InteractionBar") && State != NoteState.Miss)
         {
             SetState(NoteState.Interactable);
         }
@@ -185,6 +187,11 @@ public class NoteController : MonoBehaviour
                 SetState(NoteState.Miss);
             }
         }
+    }
+    
+    public void SetAsUninteractable(){
+        availableToInteract = false;
+        SetState(NoteState.Miss);
     }
 
     // private void UpdateNoteAppearance()
