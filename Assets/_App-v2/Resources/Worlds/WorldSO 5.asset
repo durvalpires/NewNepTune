@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a8d42aabbb7456e81c5b6b527951ba, type: 3}
+  m_Name: WorldSO 5
+  m_EditorClassIdentifier: 
+  title: World 5
+  id: 4bae9659-e92f-4c15-8a00-ba5342374ef9
+  worldSprite: {fileID: 21300000, guid: 344dacdf96d2644089d1d585f689de2b, type: 3}
+  levels:
+  - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+    level: {fileID: 11400000, guid: 23caf4cbc75174d4c9073b841e8de0f2, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 63156bf42920d41b3916a4417433d3cb, type: 2}
+  - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+    level: {fileID: 11400000, guid: 9d3d2d6cc51694d61919ed6f331aac70, type: 2}
+  - image: {fileID: 21300000, guid: b621b7a749f264265943dbc1eb9622f2, type: 3}
+    level: {fileID: 11400000, guid: 25a1bb86402b84d3db4d3145b288a812, type: 2}
+  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+    level: {fileID: 11400000, guid: fe1ca134bcc1c4713be923d7a7ca9626, type: 2}
+  - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+    level: {fileID: 11400000, guid: d5cb906dc7fa144f390edf77d51a69a3, type: 2}
+  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+    level: {fileID: 11400000, guid: fe1ca134bcc1c4713be923d7a7ca9626, type: 2}
+  - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
+    level: {fileID: 11400000, guid: e2d80428cab964139925d7a52c153494, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 1539753d55dfe4cf0bcb4a5cc176ec59, type: 2}
+  - image: {fileID: 21300000, guid: f12c86afde7bf41968f97a7c888beae9, type: 3}
+    level: {fileID: 11400000, guid: b1d4985a3afc247ec84fbc40219c3ce2, type: 2}
+  - image: {fileID: 21300000, guid: b621b7a749f264265943dbc1eb9622f2, type: 3}
+    level: {fileID: 11400000, guid: 25a1bb86402b84d3db4d3145b288a812, type: 2}
+  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+    level: {fileID: 11400000, guid: 4e160397141b84ae7aadd86666b4a15e, type: 2}
+  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+    level: {fileID: 11400000, guid: 4e160397141b84ae7aadd86666b4a15e, type: 2}
+  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+    level: {fileID: 11400000, guid: 4e160397141b84ae7aadd86666b4a15e, type: 2}
+  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
+    level: {fileID: 11400000, guid: 4e160397141b84ae7aadd86666b4a15e, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 4e160397141b84ae7aadd86666b4a15e, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 6bafd656da5934210889d5fb98133245, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: aed838cc8c2404da99550fde9147ed19, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 4e160397141b84ae7aadd86666b4a15e, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: a70b5583d84f14b449cf875884dad95e, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 171938fe3b2fd4795b794241dedcac2e, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 7bd995b7615d6419a9a35b84294b33d0, type: 2}

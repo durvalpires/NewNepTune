@@ -16,9 +16,9 @@ public class PlanetsUI : MonoBehaviour
     public void Init()
     {
         var openedPlanet = -1;
-        for (int i = 0; i < PlayerModel.AllWorlds.worldsData.Length; i++)
+        for (int i = 0; i < PlayerModel.AllWorlds.worldsConfigs.Length; i++)
         {
-            var planetData = PlayerModel.AllWorlds.worldsData[i];
+            var planetData = PlayerModel.AllWorlds.worldsConfigs[i];
             var planetGO = Instantiate(prefabs[allPlanetBtns.Count%prefabs.Length], container);
             var planetBtn = planetGO.GetComponent<PlanetBtn>();
             planetBtn.onClickAction = OnClick;
@@ -40,7 +40,7 @@ public class PlanetsUI : MonoBehaviour
         StartCoroutine(RefreshCanvas());
     }
 
-    private void OnClick(AllWorldsSO.WordData planetData, int index)
+    private void OnClick(WorldSO planetData, int index)
     {
         //open Levels
         TempDataStorage.SetData(generalConfigData.openedPlanetKey, planetData);

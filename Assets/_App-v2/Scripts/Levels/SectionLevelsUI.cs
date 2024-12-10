@@ -22,9 +22,9 @@ public class SectionLevelsUI : MonoBehaviour
     private static float lastScrollPos = 0;
     private int worldIndex = 0;
     private string worldId = "";
-    private AllWorldsSO.WordData _data;
+    private WorldSO _data;
     private SectionLevelBtnUI lastOpenedLevel;
-    public void Init(AllWorldsSO.WordData data)
+    public void Init(WorldSO data)
     {
         _data = data;
         worldId = data.id;

@@ -16,6 +16,6 @@ using UnityEngine.Events;
 [Serializable] public class Vector2UnityEvent : UnityEvent<Vector2> {}
 [Serializable] public class Vector3UnityEvent : UnityEvent<Vector3> {}
 [Serializable] public class TransformUnityEvent : UnityEvent<Transform> {}
-[Serializable] public class WorldDataUnityEvent : UnityEvent<AllWorldsSO.WordData> {}
+[Serializable] public class WorldDataUnityEvent : UnityEvent<WorldSO> {}
 
 

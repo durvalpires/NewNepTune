@@ -1,4 +1,7 @@
 using System;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelSO", menuName = "Scriptable Objects/v2_LevelSO")]
@@ -18,6 +21,16 @@ public class LevelSO : ScriptableObject
         VirtualPiano,
         LearningInstrument,
     }
+#if UNITY_EDITOR
+    [ContextMenu("SaveMe")]
+    public void SaveMe()
+    {
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        Debug.LogWarning(name + " saved!");
+    }
+#endif
+    
     // #if UNITY_EDITOR 
     //     public bool generateIds;
     //     private void OnValidate()

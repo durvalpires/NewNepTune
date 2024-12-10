@@ -13,9 +13,9 @@ public class WorldSectionsPopup : MonoBehaviour
     [SerializeField] private ScrollRect scroll;
     private GeneralConfigSO configData => PlayerModel.GeneralConfig;
     
-    private AllWorldsSO.WordData _data;
+    private WorldSO _data;
     private List<WorldSectionUI> allItems = new List<WorldSectionUI>();
-    public void Show(AllWorldsSO.WordData data)
+    public void Show(WorldSO data)
     {
         _data = data;
         Clean();

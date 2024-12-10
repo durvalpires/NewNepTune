@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class PlanetBtn : MonoBehaviour
 {
-    public Action<AllWorldsSO.WordData, int> onClickAction;
+    public Action<WorldSO, int> onClickAction;
     [SerializeField] private Image image;
     [SerializeField] private BoolUnityEvent onLocked;
     [SerializeField] private BoolUnityEvent onComplete;
     private bool isLocked = false;
-    private AllWorldsSO.WordData _data;
+    private WorldSO _data;
     private int _index = -1;
     
-    public void Init(AllWorldsSO.WordData data, int index)
+    public void Init(WorldSO data, int index)
     {
         _index = index;
         image.sprite = data.worldSprite;

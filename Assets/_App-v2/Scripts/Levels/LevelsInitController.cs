@@ -15,7 +15,7 @@ public class LevelsInitController : MonoBehaviour
     
     [SerializeField] private WorldDataUnityEvent onInit;
     [SerializeField] private UnityEvent onceAllLevelsDone;
-    private AllWorldsSO.WordData data = null;
+    private WorldSO data = null;
 
     private void Awake()
     {
@@ -28,14 +28,14 @@ public class LevelsInitController : MonoBehaviour
 
         if (TempDataStorage.ContainsKey(PlayerModel.GeneralConfig.openedPlanetKey))
         {
-            data = TempDataStorage.GetData<AllWorldsSO.WordData>(PlayerModel.GeneralConfig.openedPlanetKey);
+            data = TempDataStorage.GetData<WorldSO>(PlayerModel.GeneralConfig.openedPlanetKey);
             worldIndex = TempDataStorage.GetData<int>("worldIndex");
         }
         else
         {
             Debug.Log("No data found for key " + PlayerModel.GeneralConfig.openedPlanetKey);
 #if UNITY_EDITOR
-            data = PlayerModel.AllWorlds.worldsData[0];
+            data = PlayerModel.AllWorlds.worldsConfigs[0];
 #endif
         }
 
