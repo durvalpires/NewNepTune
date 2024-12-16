@@ -80,7 +80,7 @@ public class RhythmGameManager : MonoBehaviour
 
     void OnDestroy()
     {
-        
+        UnloadLevelAssets();
     }
 
     void OnStarAchieved()
@@ -126,9 +126,18 @@ public class RhythmGameManager : MonoBehaviour
     {
         Debug.LogWarning("StartPlaying");
         isPlaying = true;
-        backgroundAudioSource.Play();
+        //backgroundAudioSource.Play();
         //OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], 1,secondsPerBeat);
         challengeAudioSource.Play();
+    }
+    
+    public void StartBackTrack()
+    {
+        Debug.LogWarning("StartPlayingBackTrack");
+        //isPlaying = true;
+        backgroundAudioSource.Play();
+        //OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], 1,secondsPerBeat);
+        //challengeAudioSource.Play();
     }
 
     private void FixedUpdate()

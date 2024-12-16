@@ -204,7 +204,7 @@ public class NoteController : MonoBehaviour
 
     // }
 
-    public void SetNote(ScoreNote scoreNote, RhythmGameSettings gameSettings)
+    public void SetNote(ScoreNote scoreNote, RhythmGameSettings gameSettings, int currentDivisions)
     {
         this.note = scoreNote;
 
@@ -241,18 +241,24 @@ public class NoteController : MonoBehaviour
             for(int i = 0; i < note.BeamList.Count; i++){
                 if(note.BeamList[i].Type != "begin"){
                     if(i == 0){
-                        if(note.Type == "eighth"){
-                            beamTopSprite.transform.localScale = new Vector3(2, 
-                            transform.localScale.y, transform.localScale.z);
-                        }
+                        // if(note.Type == "eighth"){
+                        //     beamTopSprite.transform.localScale = new Vector3(0.5f, 
+                        //     transform.localScale.y, transform.localScale.z);
+                        // }
+                        beamTopSprite.transform.localScale = new Vector3((float)note.Duration * gameSettings.DurationOneX, 
+                        transform.localScale.y, transform.localScale.z);
+                        
                         beamTopSprite.gameObject.SetActive(true);
                         beamTopSprite.sprite = gameSettings.beamSprite;
                     }
                     else if(i == 1){
-                        if(note.Type == "eighth"){
-                            beamBottomSprite.transform.localScale = new Vector3(2, 
+                        // if(note.Type == "eighth"){
+                        //     beamBottomSprite.transform.localScale = new Vector3(0.5f, 
+                        //     transform.localScale.y, transform.localScale.z);
+                        // }
+                        beamBottomSprite.transform.localScale = new Vector3((float)note.Duration * gameSettings.DurationOneX, 
                             transform.localScale.y, transform.localScale.z);
-                        }
+                            
                         beamBottomSprite.gameObject.SetActive(true);
                         beamBottomSprite.sprite = gameSettings.beamSprite;
                     }

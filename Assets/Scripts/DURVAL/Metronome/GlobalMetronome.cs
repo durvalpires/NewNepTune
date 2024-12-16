@@ -40,6 +40,8 @@ namespace QuantizedLoopStation
         [SerializeField] private RhythmGameSettings rhythmGameSettings;
         public UnityEvent OnPreCountdownDone;
         private bool preCountdownDone = false;
+        public UnityEvent OnTwoBeatsLeft;
+        private bool twoBeatsLeftDone = false;
 
 
         //[SerializeField] private LoopStation curLoopStation;
@@ -104,6 +106,12 @@ namespace QuantizedLoopStation
                 }
 
                 subTic(subBeatCount);
+            }
+
+            if (!twoBeatsLeftDone && beatCount == rhythmGameSettings.beatsBeforeStart - 1)
+            {
+                OnTwoBeatsLeft.Invoke();
+                twoBeatsLeftDone = true;
             }
 
             if(!preCountdownDone && beatCount == rhythmGameSettings.beatsBeforeStart+1)

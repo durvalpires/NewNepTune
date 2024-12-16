@@ -3164,6 +3164,7 @@ MonoBehaviour:
     type: 3}
   beatsText: {fileID: 1709935112}
   beatTypeText: {fileID: 509455154}
+  currentDivisions: 0
 --- !u!1 &1161842744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,6 +3407,21 @@ MonoBehaviour:
       - m_Target: {fileID: 709976524}
         m_TargetAssemblyTypeName: NoteBasedBouncingBall, Assembly-CSharp
         m_MethodName: OnLevelStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTwoBeatsLeft:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1782108897}
+        m_TargetAssemblyTypeName: RhythmGameManager, Assembly-CSharp
+        m_MethodName: StartBackTrack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

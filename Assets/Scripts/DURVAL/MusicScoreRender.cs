@@ -40,6 +40,8 @@ public class MusicScoreRender : MonoBehaviour {
 
     private int noteIndex = 1;
 
+    public int currentDivisions;
+
 
     void Awake()
     {
@@ -91,7 +93,7 @@ public class MusicScoreRender : MonoBehaviour {
         // var score = MusicXMLParser.GetScorePartwise(musicXMLText);
         var notesSortedByScore = new List<NoteView>();
 
-        int currentDivisions = musicScore.CurrentDivisions.Value;
+        currentDivisions = musicScore.CurrentDivisions.Value;
         float currentBeat = 1;
         bool noNeedToDisplayForTie = false;
 
@@ -112,28 +114,33 @@ public class MusicScoreRender : MonoBehaviour {
         
         foreach (var part in musicScore.ScoreParts)
         {
+            // beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
+            // beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x + 
+            //                                             initialNoteSpawningOffsetX, 1, 0);
+            int beatsPerBar = 4;
             foreach (var measure in part.MeasureList)
             {
                 
                 if (measure.Attribute?.Divisions != null)
                 {
                     currentDivisions = measure.Attribute.Value.Divisions.Value;
+                    beatsPerBar = measure.Attribute.Value.Time.Value.Beats;
+                }
 
-                    var speedXPerSec = (_durationOneX * currentDivisions) * beatsPerSecond;
-                    int beatsPerBar = 4; // Adjust if you have a different time signature
-                    barLength = (float)(currentDivisions * speedXPerSec * secondsPerBeat * beatsPerBar);
+                var speedXPerSec = (_durationOneX * currentDivisions) * beatsPerSecond;
+                 // Adjust if you have a different time signature
+                barLength = (float)(/*currentDivisions */ speedXPerSec * secondsPerBeat * beatsPerBar);
 
-                    // for (int i = 1; i <= 4 ; i++)
-                    // {
-                         beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
-                         beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x +
-                                                                     initialNoteSpawningOffsetX - (currentDivisions 
-                                                                     * gameSettings.DurationOneX) +
-                                                                     barLinesToDraw++ * barLength +
-                                                                     (_durationOneX * currentDivisions) / 2, 1, 0);
+                // for (int i = 1; i <= 4 ; i++)
+                // {
+                     beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
+                     beatMarker.transform.position = 
+                         new Vector3(initialNoteSpawningPoint.position.x + initialNoteSpawningOffsetX - 
+                                     (gameSettings.DurationOneX/2) + barLinesToDraw++ * barLength 
+                                                                                                   /*-
+                                     (_durationOneX /* currentDivisions) / 2*/, 1, 0);
                     
                 // }
-                }
 
                 foreach (IMeasureChild child in measure.Children)
                 {
@@ -191,14 +198,14 @@ public class MusicScoreRender : MonoBehaviour {
                         xCursor += willConsumedTimeUnit;
 
                         Debug.LogWarning("Current beat: " + currentBeat);
-                        if (currentBeat % 5 == 0)
-                        {
-                            Debug.LogWarning("Bar: " + barLinesToDraw);
-                            beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
-                            beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x + 
-                                initialNoteSpawningOffsetX - (currentDivisions * gameSettings.DurationOneX) + 
-                                barLinesToDraw++ * barLength + (_durationOneX * currentDivisions)/2, 1, 0);
-                        }
+                        // if (currentBeat % 5 == 0)
+                        // {
+                        //     Debug.LogWarning("Bar: " + barLinesToDraw);
+                        //     beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
+                        //     beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x + 
+                        //         initialNoteSpawningOffsetX /*- (currentDivisions * gameSettings.DurationOneX)*/ + 
+                        //         barLinesToDraw++ * barLength /*+ (_durationOneX /** currentDivisions)/2*/, 1, 0);
+                        // }
 
                         // If both start and stop are present, noNeedToDisplayForTie should be true.
                         if (note.TieList != null && note.TieList.Exists(x => x.Type == "stop"))
@@ -223,10 +230,19 @@ public class MusicScoreRender : MonoBehaviour {
                 }
             }
             Debug.LogWarning("Bar: " + barLinesToDraw);
-            beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
-            beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x + 
-                                                        initialNoteSpawningOffsetX - (currentDivisions * gameSettings.DurationOneX) + 
-                                                        barLinesToDraw++ * barLength + (_durationOneX * currentDivisions)/2, 1, 0);
+//             if (currentBeat % beatsPerBar != 0)
+//                  {
+//                      beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
+//                      beatMarker.transform.position = 
+//                          new Vector3(initialNoteSpawningPoint.position.x + initialNoteSpawningOffsetX - 
+//                              (gameSettings.DurationOneX/2) + barLinesToDraw++ * barLength 
+//                              /*-
+// (_durationOneX /* currentDivisions) / 2*/, 1, 0);
+//                  }
+            // beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
+            // beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x + 
+            //                                             initialNoteSpawningOffsetX - (currentDivisions * gameSettings.DurationOneX) + 
+            //                                             barLinesToDraw++ * barLength + (_durationOneX * currentDivisions)/2, 1, 0);
         }
 
         return notesSortedByScore;
@@ -256,7 +272,7 @@ public class MusicScoreRender : MonoBehaviour {
 
         noteObj.name = $"{note.Pitch?.Octave}{note.Pitch?.Step}{note.Type}{noteController.Index}";
 
-        noteController.SetNote(note, gameSettings);
+        noteController.SetNote(note, gameSettings, currentDivisions);
 
         return noteObj;
     }

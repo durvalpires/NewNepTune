@@ -165,7 +165,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    iPhone: com.neptune.neptuneforkidsunit
+    iPhone: com.neptune.neptuneforkids
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -188,7 +188,7 @@ PlayerSettings:
   StripUnusedMeshComponents: 0
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
-  iPhoneSdkVersion: 989
+  iPhoneSdkVersion: 988
   iOSSimulatorArchitecture: 2
   iOSTargetOSVersionString: 13.0
   tvOSSdkVersion: 0
