@@ -51,24 +51,25 @@ public class SectionLevelsUI : MonoBehaviour
                 }
                 else
                 {
-                    // if (lastOpenedLevel == null)
-                    // {
-                    //     lastOpenedLevel = item;
-                    //     item.Unlock();
-                    // }
-                    // else 
-                    //     item.Lock();
-                    if(lastOpenedLevel == null) lastOpenedLevel = item;
-                    item.Unlock();
-                    CenterOnElement(item.GetComponent<RectTransform>());
+                    if (lastOpenedLevel == null)
+                    {
+                        lastOpenedLevel = item;
+                        item.Unlock();
+                    }
+                    else 
+                        item.Lock();
+                    // if(lastOpenedLevel == null) lastOpenedLevel = item;
+                    // item.Unlock();
+                    // CenterOnElement(item.GetComponent<RectTransform>());
                 }
             }
             StartCoroutine(RefreshCanvas());
         });
     }
-#if UNITY_EDITOR
+
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A))//complete All
         {
             for (int i = 0; i < _data.levels.Length; i++)
@@ -92,8 +93,47 @@ public class SectionLevelsUI : MonoBehaviour
 
             SceneManager.LoadScene(generalConfig.levelsScene);
         }
-    }
 #endif
+        
+#if UNITY_ANDROID || UNITY_IOS
+        var touches = new List<Touch>();
+        var started = false;
+        var timeCount = 0f;
+        if (Input.touchCount > 0)
+        {
+            touches.Clear();
+            foreach (var touch in Input.touches)
+            {
+                touches.Add(touch);
+
+                if (touches.Count >= 7)
+                {
+                    if (!started)
+                    {
+                        started = true;
+                        timeCount = 0f;
+                    }
+
+                    timeCount += Time.deltaTime;
+                    if (timeCount > 5f)
+                    {
+                        for (int i = 0; i < _data.levels.Length; i++)
+                        {
+                            PlayerModel.CompleteLevel(i, worldId);
+                        }
+                    }
+                }
+                else
+                {
+                    started = false;
+                    timeCount = 0f;
+                }
+            }
+        }
+#endif
+        
+    }
+
     public void RefreshLocks()
     {
         lastOpenedLevel = null;
@@ -107,17 +147,18 @@ public class SectionLevelsUI : MonoBehaviour
             }
             else
             {
-                //if (lastOpenedLevel == null)
-                // {
-                //     lastOpenedLevel = item;
-                //     item.Unlock();
-                //     CenterOnElement(item.GetComponent<RectTransform>());
-                // }
-                // else 
-                //     item.Lock();
-                if(lastOpenedLevel == null) lastOpenedLevel = item;
-                item.Unlock();
-                CenterOnElement(item.GetComponent<RectTransform>());
+                if (lastOpenedLevel == null)
+                 {
+                     lastOpenedLevel = item;
+                     item.Unlock();
+                     CenterOnElement(item.GetComponent<RectTransform>());
+                 }
+                 else 
+                     item.Lock();
+                
+                // if(lastOpenedLevel == null) lastOpenedLevel = item;
+                // item.Unlock();
+                // CenterOnElement(item.GetComponent<RectTransform>());
             }
         }
     }

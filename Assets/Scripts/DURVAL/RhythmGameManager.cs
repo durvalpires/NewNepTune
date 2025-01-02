@@ -172,16 +172,24 @@ public class RhythmGameManager : MonoBehaviour
         }
     }
 
-    private void UnloadLevelAssets()
+    public void UnloadLevelAssets()
     {
         scoreController.OnStarAchieved -= OnStarAchieved;
-        
-        var songClip = challengeAudioSource.clip;
-        var textAsset = songXmlAsset;
-        var backgroundClip = backgroundAudioSource.clip;
+        AudioClip songClip = null;
+        AudioClip backgroundClip = null;
 
-        challengeAudioSource.clip = null;
-        backgroundAudioSource.clip = null;
+        if (challengeAudioSource != null)
+        {
+            songClip = challengeAudioSource.clip;
+            challengeAudioSource.clip = null;
+        }
+        var textAsset = songXmlAsset;
+
+        if (backgroundAudioSource != null)
+        {
+            backgroundClip = backgroundAudioSource.clip;
+            backgroundAudioSource.clip = null;
+        }
         
         // Release loaded assets to free memory
         Addressables.Release(songClip);
@@ -196,10 +204,18 @@ public class RhythmGameManager : MonoBehaviour
             songXmlAsset = handle.Result;
             
             scoreRender.Init(rhythmGameSettings, songXmlAsset.text);
+
+            var durationOneX = rhythmGameSettings.DurationOneX - (scoreRender.MeasureDivision / 2) * 
+                rhythmGameSettings.DurationReductionPerDivision;
+            
+            // if(scoreRender.MeasureDivision == 4) 
+            //     durationOneX = 0.5f; 
+            // else 
+            //     durationOneX = 1;
         
             beatsPerSecond = scoreRender.Bpm / 60;
             secondsPerBeat = 1 / beatsPerSecond;
-            speedXPerSec = (rhythmGameSettings.DurationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
+            speedXPerSec = (durationOneX * scoreRender.MeasureDivision) * beatsPerSecond;
             beatsPerUnit = beatsPerSecond / speedXPerSec;
         
             noteViewList = scoreRender.Render();
@@ -331,7 +347,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void OnNoteTriggeredInteractionBar(NoteController note, bool isEntering)
     {
-        Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + note.Index.ToString() + " = " + isEntering);
+        //Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + note.Index.ToString() + " = " + isEntering);
 
         // if(entered && noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] == null){
         //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] = new List<NoteController>();
@@ -372,9 +388,21 @@ public class RhythmGameManager : MonoBehaviour
     public void OnTriggeredInteractionAreaCenter(NoteController note)
     {
         notesCrossed++;
-        if(notesCrossed<noteViewList.Count)
-            OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], noteViewList[notesCrossed-1].beatNumber, 
+        var nextNoteNotRest = notesCrossed;
+        while (nextNoteNotRest < noteViewList.Count && noteViewList[nextNoteNotRest].isRest)
+        {
+            Debug.LogWarning("Rest note");
+            nextNoteNotRest++;
+        }
+        
+        if (notesCrossed < noteViewList.Count)
+        {
+            Debug.LogWarning("New note to bounce to - " + nextNoteNotRest + " = " + noteViewList[nextNoteNotRest].beatNumber);
+            OnNextNoteUpdated?.Invoke(noteViewList[nextNoteNotRest], noteViewList[notesCrossed-1].beatNumber, 
                 secondsPerBeat, beatsPerUnit);
+        }
+        
+        notesCrossed =  nextNoteNotRest;
     }
 
     public void OnPianoKeyStateChanged(string note, bool isPressed)
@@ -398,20 +426,14 @@ public class RhythmGameManager : MonoBehaviour
             }
             else
             {
-                if(notesCrossedInteractionArea < noteViewList.Count)
-                    noteViewList[notesCrossedInteractionArea].GameObject.GetComponent<NoteController>().SetState(NoteState.Miss);
+                if (notesCrossedInteractionArea < noteViewList.Count)
+                {
+                  if(noteViewList[notesCrossedInteractionArea].GameObject.GetComponent<NoteController>().State != NoteState.Hit) 
+                      noteViewList[notesCrossedInteractionArea].GameObject.GetComponent<NoteController>().SetState(NoteState.Miss);
+                  else
+                      return;
+                }
             }
-
-            // if (noteInteractableDic[note] != null)
-            // {
-            //     accuracy = EvaluateHit(noteInteractableDic[note].gameObject);
-            //     noteInteractableDic[note] = null;
-            //     OnNoteHit?.Invoke();
-            // }
-            // else
-            // {
-            //     accuracy = HitAccuracy.Miss;
-            // }
 
             ProcessScore(accuracy);
             keyPressTxtFeedback?.Invoke(accuracy.ToString());

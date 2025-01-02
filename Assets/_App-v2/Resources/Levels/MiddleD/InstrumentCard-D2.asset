@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14f7ccbd9bf746b28343b8ee97ee809, type: 3}
   m_Name: InstrumentCard-D2
   m_EditorClassIdentifier: 
-  levelTitle: 'Instrument Card Double Bass '
+  levelTitle: Instrument Card
   levelType: 6
   instrument: Double Bass

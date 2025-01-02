@@ -18,30 +18,22 @@ MonoBehaviour:
   levels:
   - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
     level: {fileID: 11400000, guid: e25d36df9a75f4e57916457594921212, type: 2}
-  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
-    level: {fileID: 11400000, guid: bd4bbe9e02dee48d0b09d3e9c55f88ec, type: 2}
   - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
     level: {fileID: 11400000, guid: ef9e791078aab4a3eac06e594df0b2c1, type: 2}
   - image: {fileID: 21300000, guid: b621b7a749f264265943dbc1eb9622f2, type: 3}
     level: {fileID: 11400000, guid: 3dcf4cf5e3e484557b09ac5d0edbfc60, type: 2}
   - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
     level: {fileID: 11400000, guid: 524f736353ebb46a1bf5d08420f3848c, type: 2}
-  - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
-    level: {fileID: 11400000, guid: b3435fde9b19b4a39ae55e8e3a9b5c40, type: 2}
   - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
     level: {fileID: 11400000, guid: e36065271d718411f9e2dd401f48d4e1, type: 2}
   - image: {fileID: 21300000, guid: fc6b343bad5114335a7e935e41295bb8, type: 3}
     level: {fileID: 11400000, guid: 2476a0344c32c4a2581979b44cb59349, type: 2}
-  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
-    level: {fileID: 11400000, guid: 39fb37036f3a94c91bebdc9171fb096a, type: 2}
   - image: {fileID: 21300000, guid: f12c86afde7bf41968f97a7c888beae9, type: 3}
     level: {fileID: 11400000, guid: f079f8522e09541ac8010f04ee87d2c2, type: 2}
-  - image: {fileID: 21300000, guid: b621b7a749f264265943dbc1eb9622f2, type: 3}
-    level: {fileID: 11400000, guid: 3dcf4cf5e3e484557b09ac5d0edbfc60, type: 2}
-  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
-    level: {fileID: 11400000, guid: 524f736353ebb46a1bf5d08420f3848c, type: 2}
-  - image: {fileID: 21300000, guid: dc677bba444894c168cfccdc55707d7e, type: 3}
-    level: {fileID: 11400000, guid: 524f736353ebb46a1bf5d08420f3848c, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: bd4bbe9e02dee48d0b09d3e9c55f88ec, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 39fb37036f3a94c91bebdc9171fb096a, type: 2}
   - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: c640827ae96bb4e7883651968bfd483f, type: 2}
   - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f13b2502c2534cb198ca33735a7a662, type: 3}
   m_Name: VirtualPiano-E3
   m_EditorClassIdentifier: 
-  levelTitle: Middle E Piano 2
+  levelTitle: Middle E Piano 3
   levelType: 5
   songXml:
     m_AssetGUID: 58a8773db98b44a1786010bc456c7755

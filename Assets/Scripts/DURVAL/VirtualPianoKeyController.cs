@@ -38,11 +38,13 @@ public class VirtualPianoKeyController : MonoBehaviour, IPointerDownHandler, IPo
 
     public void SetKeyColorActive()
     {
+        backgroundImg.DOKill();
         backgroundImg.DOColor(myColor, 0.2f);
     }
 
     public void SetKeyColorNormal()
     {
+        backgroundImg.DOKill();
         backgroundImg.DOColor(myNormalColor, 0.5f);
     }
 

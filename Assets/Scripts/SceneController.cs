@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
+using Enums;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
@@ -14,6 +17,9 @@ public class SceneController : MonoBehaviour
     [SerializeField] private MemoryCard originalCard;
     [SerializeField] protected Sprite[] images;
     [SerializeField] private TMP_Text scoreLabel;
+    
+    public GameObject finishPanel;
+    [SerializeField] private Button backButton;
 
     private MemoryCard _firstRevealed;
     private MemoryCard _secondRevealed;
@@ -53,6 +59,20 @@ public class SceneController : MonoBehaviour
         }
         _firstRevealed = null;
         _secondRevealed = null;
+        
+        if(_score == images.Length)
+        {
+            backButton.interactable = false;
+            StartCoroutine("GameCompleted");
+        }
+    }
+    
+    private IEnumerator GameCompleted()
+    {
+        AudioManager.Instance.PlaySFX(SoundList.WinSound);
+        yield return new WaitForSeconds(1.5f);
+        
+        finishPanel.SetActive(true);
     }
     
     void Start()

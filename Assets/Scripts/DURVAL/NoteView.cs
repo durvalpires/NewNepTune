@@ -10,5 +10,6 @@ public struct NoteView
     public float beatNumber;
     public float noteTimeInSeconds;
     public bool lastNote;
+    public bool isRest;
 }
 

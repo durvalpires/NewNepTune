@@ -211,13 +211,21 @@ public class NoteController : MonoBehaviour
         SetState(NoteState.Normal);
 
         if(note.IsRest){
-            
-            
-            
             return;
         }
 
+        var durationX = gameSettings.DurationOneX - (currentDivisions / 2) * 
+            gameSettings.DurationReductionPerDivision;
 
+        // if(currentDivisions == 4) 
+        //     durationX = 0.5f; 
+        // else 
+        //     durationX = 1;
+        
+        if(note.Pitch?.Step == "D" && note.Pitch?.Octave == 4){
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.07f, 
+                transform.localPosition.z);
+        }
 
         // Stem Direction
         if(note.Type == "whole"){
@@ -245,7 +253,7 @@ public class NoteController : MonoBehaviour
                         //     beamTopSprite.transform.localScale = new Vector3(0.5f, 
                         //     transform.localScale.y, transform.localScale.z);
                         // }
-                        beamTopSprite.transform.localScale = new Vector3((float)note.Duration * gameSettings.DurationOneX, 
+                        beamTopSprite.transform.localScale = new Vector3((float)note.Duration * durationX, 
                         transform.localScale.y, transform.localScale.z);
                         
                         beamTopSprite.gameObject.SetActive(true);
@@ -256,7 +264,7 @@ public class NoteController : MonoBehaviour
                         //     beamBottomSprite.transform.localScale = new Vector3(0.5f, 
                         //     transform.localScale.y, transform.localScale.z);
                         // }
-                        beamBottomSprite.transform.localScale = new Vector3((float)note.Duration * gameSettings.DurationOneX, 
+                        beamBottomSprite.transform.localScale = new Vector3((float)note.Duration * durationX, 
                             transform.localScale.y, transform.localScale.z);
                             
                         beamBottomSprite.gameObject.SetActive(true);

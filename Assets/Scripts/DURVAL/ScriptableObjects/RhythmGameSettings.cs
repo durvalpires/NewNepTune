@@ -7,6 +7,7 @@ public class RhythmGameSettings : ScriptableObject
 {
     [Header("Note Placement Settings")]
     public float DurationOneX = 1;
+    public float DurationReductionPerDivision = 0.25f;
     public bool OnlyUseFirstStaff = true;
     public Dictionary<HitAccuracy, float> HitWindowsPercentage; //Non timing based, it should add up to 100% all summed up
     public float[] HitWindowsTimings; //Non timing based, it should add up to 100% all summed up
