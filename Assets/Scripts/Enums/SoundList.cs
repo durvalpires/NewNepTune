@@ -29,6 +29,7 @@ namespace Enums
         Star2Achieved,
         Star3Achieved,
         EndOfRhythmLevel,
-        ScoreCount
+        ScoreCount,
+        LevelMenu
     }
 }

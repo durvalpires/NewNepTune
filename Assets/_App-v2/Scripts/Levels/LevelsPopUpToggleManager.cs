@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,8 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
         GameObject tempAudioSourceGO = new GameObject() {name = "TempAudioSource"};
         AudioSource tempAudioSource = tempAudioSourceGO.AddComponent<AudioSource>();
         tempAudioSource.PlayOneShot(soundToPlay);
+        
+        AudioManager.Instance.PauseMusic();
 
         popup1.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Instruments/Sprites/{instrument}");
         
@@ -40,6 +43,7 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
 
     public override void Back()
     {
+        AudioManager.Instance.UnPauseMusic();
         LevelCompletObserver.LevelComplete();
         base.Back();
     }

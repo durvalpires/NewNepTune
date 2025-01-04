@@ -343,6 +343,9 @@ MonoBehaviour:
   - name: middleCmusic
     type: 0
     clip: {fileID: 8300000, guid: 8710d619cbc5dba489c162e248aeb860, type: 3}
+  - name: LevelMenu
+    type: 20
+    clip: {fileID: 8300000, guid: 830b0826dd3f741cf85039ee98a4cea3, type: 3}
   sfxSounds:
   - name: note_A
     type: 1
