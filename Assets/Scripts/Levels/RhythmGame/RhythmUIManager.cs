@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Text;
 using TMPro;
-using RtMidi;
 
 
 public class RhythmUIManager : MonoBehaviour
