@@ -12,9 +12,22 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
     }
     public void TogglePopup(string pressedNote)
     {
-        
         TogglePopup1(pressedNote);
     }
+
+    public void ToggleRhythmPopup(string rhythm)
+    {
+        // if (pressedNote != "")
+        // {
+        //     SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+        //     StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, .6f));
+        // }
+        // GameObject'in şu anki aktiflik durumunun tersini ayarlayın
+        popUpCanvas.SetActive(true);
+        popup1.SetActive(true);
+        _popUpActive = true;
+    }
+    
     public void ToggleInstrument(string instrument)
     {
         // LevelCompletObserver.LevelStart(levelIndex, _worldIndex);

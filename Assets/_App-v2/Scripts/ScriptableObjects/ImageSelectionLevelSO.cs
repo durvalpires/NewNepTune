@@ -4,4 +4,11 @@ using UnityEngine;
 public class ImageSelectionLevelSO : LevelSO
 {
     public string note;
+    public ImageSelectionType type = ImageSelectionType.Notes;
+}
+
+public enum ImageSelectionType
+{
+    Notes = 0,
+    Rhythms = 1
 }

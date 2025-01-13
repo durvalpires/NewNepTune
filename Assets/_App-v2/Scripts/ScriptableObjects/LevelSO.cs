@@ -20,6 +20,7 @@ public class LevelSO : ScriptableObject
         MemoryCards,
         VirtualPiano,
         LearningInstrument,
+        LearningRhythm
     }
 #if UNITY_EDITOR
     [ContextMenu("SaveMe")]

@@ -21,11 +21,12 @@ namespace Levels.SelectionMinigame
         [Header("References for Scene Set Up")]
         
         [SerializeField] private TMP_Text levelText;
-        private Sprite[] _sprites;
+        protected Sprite[] _sprites;
         private Sprite _correctAnswerSprite;
         
         public string correctAnswerSpriteName;
         public string levelToReturn;
+        protected string contentType;
         
         [SerializeField] private GameObject backButton;
         [SerializeField] private GameObject finishedBackButton;
@@ -34,8 +35,8 @@ namespace Levels.SelectionMinigame
 
         private void Start()
         {
-            Sprite[] answerSprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Empty/");
-            Sprite correctSprite = Array.Find(answerSprites, sprite => sprite.name == correctAnswerSpriteName.ToUpper());
+            //Sprite[] answerSprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Notes/");
+            Sprite correctSprite = Array.Find(_sprites, sprite => sprite.name == correctAnswerSpriteName.ToUpper());
             _correctAnswerSprite = correctSprite;
             
             backButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -48,7 +49,7 @@ namespace Levels.SelectionMinigame
             });
             
             levelText.text = $"Which one is {_correctAnswerSprite.name}?";
-            _sprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Empty/");
+            //_sprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Empty/");
             
             for (int i = 0; i < gameLevels.Length; i++)
             {

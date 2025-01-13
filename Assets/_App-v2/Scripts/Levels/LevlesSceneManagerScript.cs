@@ -10,7 +10,6 @@ public class LevlesSceneManagerScript : SceneManagerScript
     public override void LoadSelectionMinigame(string sceneName)
     {
         LoadSelectionMinigameAsync2(_generalConfigSo.selectionMiniGameScene,sceneName);
-        
     }
 
     public override void MainMenu()

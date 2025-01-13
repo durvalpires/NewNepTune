@@ -10,7 +10,8 @@ public class NoteLevelSO : LevelSO
     public enum PopupStyle
     {
         NoteOnCard,
-        NotesOnPiano
+        NotesOnPiano,
+        RhythmOnCard
     }
 
 }

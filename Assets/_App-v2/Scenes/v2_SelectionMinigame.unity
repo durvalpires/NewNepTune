@@ -398,7 +398,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1784737861}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Levels.Minigames.SelectionMinigame, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -2094,11 +2094,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 567765630}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1710, y: -795}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -50, y: -50}
   m_SizeDelta: {x: 262.75, y: 86.88}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1199337053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2143,10 +2143,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 1784737860}
+        m_TargetAssemblyTypeName: Levels.SelectionMinigame.SelectionMinigame, Assembly-CSharp
+        m_MethodName: NextLevelButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3061,7 +3061,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1784737861}
+      - m_Target: {fileID: 1784737860}
         m_TargetAssemblyTypeName: Levels.SelectionMinigame.SelectionMinigame, Assembly-CSharp
         m_MethodName: NextLevelButton
         m_Mode: 1
@@ -3070,7 +3070,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level1
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1481479589
@@ -3312,7 +3312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1652253525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1784737858}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1652253525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3360,7 +3372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1784737859}
-  - component: {fileID: 1784737861}
+  - component: {fileID: 1784737860}
   m_Layer: 0
   m_Name: Managers
   m_TagString: MinigameManager
@@ -3383,7 +3395,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1784737861
+--- !u!114 &1784737860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3392,7 +3404,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784737858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7344599faccc04278af406403602d537, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ea3b4fd9d73454d98b5051cdd4980bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   winPanel: {fileID: 230685909}
@@ -3404,8 +3416,8 @@ MonoBehaviour:
   - {fileID: 41390282}
   - {fileID: 2000824794}
   levelText: {fileID: 1319863668}
-  correctAnswerSpriteName: C
-  levelToReturn: Level1
+  correctAnswerSpriteName: 
+  levelToReturn: v2_Levels
   backButton: {fileID: 1199337051}
   finishedBackButton: {fileID: 1652253522}
 --- !u!1 &1793378906

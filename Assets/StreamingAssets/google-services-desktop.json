@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "638255034444",
+    "firebase_url": "https://neptune-fe02f-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "neptune-fe02f",
+    "storage_bucket": "neptune-fe02f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638255034444:android:46e70f0ddb6a7a754044e9",
+        "android_client_info": {
+          "package_name": "com.neptune.neptuneforkids"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtUkgXDnF6BDVGG2sWenh2SPJ1QcPVx-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

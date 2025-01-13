@@ -181,12 +181,27 @@ public class SectionLevelsUI : MonoBehaviour
                     {
                         popup1Image.sprite = Resources.Load<Sprite>("NotesOnPiano/" + noteDdata.note);
                     }
+
                     popUpToggleManager.TogglePopup(noteDdata.note);
                 }
                 break;
+            case LevelSO.LevelType.LearningRhythm:
+                var rhythmData = obj.LevelData.level as NoteLevelSO;
+                if (rhythmData != null)
+                {
+                    if (rhythmData.popupStyle == NoteLevelSO.PopupStyle.RhythmOnCard)
+                    {
+                        popup1Image.sprite = Resources.Load<Sprite>("RhythmCard/" + rhythmData.note);
+                    }
+                    
+                    popUpToggleManager.ToggleRhythmPopup(rhythmData.note);
+                }
+                break;
             case LevelSO.LevelType.ImageSelection:
-                var data = obj.LevelData.level as ImageSelectionLevelSO;
-                sceneManagerScript.LoadSelectionMinigame(data.note+","+generalConfig.levelsScene);
+                // var data = obj.LevelData.level as ImageSelectionLevelSO;
+                // sceneManagerScript.LoadSelectionMinigame(data.note+","+generalConfig.levelsScene);
+                TempDataStorage.SetSceneData(obj.LevelData.level);
+                sceneManagerScript.ChangeScene(generalConfig.selectionMiniGameScene);
                 break;
             case LevelSO.LevelType.VirtualPiano:
                 /*****/

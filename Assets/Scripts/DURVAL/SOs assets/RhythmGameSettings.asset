@@ -80,7 +80,7 @@ MonoBehaviour:
       type: 3}
   noteCircleVariationsSprites:
   - noteType: half
-    sprite: {fileID: 21300000, guid: 62701ff5a5cf0480a9c238e23d6ee44b, type: 3}
+    sprite: {fileID: 21300000, guid: fed2c76381a6e469981ca846ebb3df23, type: 3}
   - noteType: whole
     sprite: {fileID: 21300000, guid: ec31c99a231474943807d23064a65858, type: 3}
   beamSprite: {fileID: 21300000, guid: 6f293b2c1358343c98925aca16c6e14f, type: 3}
