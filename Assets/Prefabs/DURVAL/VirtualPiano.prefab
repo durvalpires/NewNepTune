@@ -1313,6 +1313,11 @@ PrefabInstance:
       propertyPath: note
       value: G#
       objectReference: {fileID: 0}
+    - target: {fileID: 6761593902252198379, guid: 1fe4db071707940e18c5c92e6b199523,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6914667827444847220, guid: 1fe4db071707940e18c5c92e6b199523,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1487,6 +1492,11 @@ PrefabInstance:
     - target: {fileID: 3649847509759820588, guid: 1fe4db071707940e18c5c92e6b199523,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761593902252198379, guid: 1fe4db071707940e18c5c92e6b199523,
+        type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6914667827444847220, guid: 1fe4db071707940e18c5c92e6b199523,
@@ -1675,6 +1685,11 @@ PrefabInstance:
       propertyPath: note
       value: F#
       objectReference: {fileID: 0}
+    - target: {fileID: 6761593902252198379, guid: 1fe4db071707940e18c5c92e6b199523,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6914667827444847220, guid: 1fe4db071707940e18c5c92e6b199523,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1861,6 +1876,11 @@ PrefabInstance:
       propertyPath: note
       value: D#
       objectReference: {fileID: 0}
+    - target: {fileID: 6761593902252198379, guid: 1fe4db071707940e18c5c92e6b199523,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6914667827444847220, guid: 1fe4db071707940e18c5c92e6b199523,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2046,6 +2066,11 @@ PrefabInstance:
         type: 3}
       propertyPath: note
       value: A#
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761593902252198379, guid: 1fe4db071707940e18c5c92e6b199523,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6914667827444847220, guid: 1fe4db071707940e18c5c92e6b199523,
         type: 3}
