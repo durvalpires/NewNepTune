@@ -59,6 +59,7 @@ public class NoteController : MonoBehaviour
     [SerializeField] private SpriteRenderer beamTopSprite;
     [SerializeField] private SpriteRenderer beamBottomSprite;
     [SerializeField] private SpriteRenderer circleLineSprite;
+    [SerializeField] private SpriteRenderer rightDotSprite;
 
     //[SerializeField]
     //private RhythmGameSettings gameSettings;
@@ -221,6 +222,9 @@ public class NoteController : MonoBehaviour
         //     durationX = 0.5f; 
         // else 
         //     durationX = 1;
+        
+        if(note.Type == "half" && note.Duration == 3)
+            rightDotSprite.gameObject.SetActive(true);
         
         if(note.Pitch?.Step == "D" && note.Pitch?.Octave == 4){
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.07f, 
