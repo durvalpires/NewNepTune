@@ -108,6 +108,7 @@ public class MusicScoreRender : MonoBehaviour {
         float xCursor = initialNoteSpawningOffsetX;
         float distanceBetweenBars = this._durationOneX * currentDivisions * (0.25f / 2);
         int barLinesToDraw = 1;
+        var lastLineXPosition = 0f;
         var beatsPerSecond = Bpm / 60;
         var secondsPerBeat = 1 / beatsPerSecond;
         float barLength = 4;
@@ -142,6 +143,8 @@ public class MusicScoreRender : MonoBehaviour {
                                      (this._durationOneX/2) + barLinesToDraw++ * barLength 
                                                                                                    /*-
                                      (_durationOneX /* currentDivisions) / 2*/, 1, 0);
+                     
+                     lastLineXPosition = beatMarker.transform.position.x; 
                     
                 // }
 
@@ -251,6 +254,13 @@ public class MusicScoreRender : MonoBehaviour {
             // beatMarker.transform.position = new Vector3(initialNoteSpawningPoint.position.x + 
             //                                             initialNoteSpawningOffsetX - (currentDivisions * gameSettings.DurationOneX) + 
             //                                             barLinesToDraw++ * barLength + (_durationOneX * currentDivisions)/2, 1, 0);
+            
+            beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
+            beatMarker.transform.position = new Vector3(lastLineXPosition + gameSettings.LastBarLineHorizontalDistance, 
+                1, 0);
+            beatMarker.transform.localScale = new Vector3(beatMarker.transform.localScale.x * 
+                                                          gameSettings.LastBarLineThickness,
+                beatMarker.transform.localScale.y, beatMarker.transform.localScale.z);
         }
 
         return notesSortedByScore;

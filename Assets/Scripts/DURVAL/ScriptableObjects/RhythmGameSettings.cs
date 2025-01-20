@@ -51,6 +51,8 @@ public class RhythmGameSettings : ScriptableObject
     public Sprite backgroundSprite;
     public ColorSettings ColorSettings;
     public float MusicalScoreLineDistance = 0.5f; //TODO
+    public float LastBarLineHorizontalDistance = 0.25f;
+    public float LastBarLineThickness = 5f; //multiplied to scale
 
 
     [Header("Audio Settings")]
