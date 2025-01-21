@@ -50,6 +50,9 @@ public class SceneController : MonoBehaviour
         {
             _score++;
             scoreLabel.text = $"Score: {_score}";
+            yield return new WaitForSeconds(1f);
+            _firstRevealed.gameObject.SetActive(false);
+            _secondRevealed.gameObject.SetActive(false);
         }
         else
         {

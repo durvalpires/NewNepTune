@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Rhythm Card
   levelType: 7
-  note: REST8
+  note: EIGHTH NOTE REST
   popupStyle: 2

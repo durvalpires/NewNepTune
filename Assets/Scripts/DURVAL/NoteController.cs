@@ -223,7 +223,7 @@ public class NoteController : MonoBehaviour
         // else 
         //     durationX = 1;
         
-        if(note.Type == "half" && note.Duration == 3)
+        if(note.Type == "half" && note.Duration == 3*currentDivisions)
             rightDotSprite.gameObject.SetActive(true);
         
         if(note.Pitch?.Step == "D" && note.Pitch?.Octave == 4){

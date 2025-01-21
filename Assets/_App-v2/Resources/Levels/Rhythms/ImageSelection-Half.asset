@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Guess Rhythm
   levelType: 3
-  note: Half
+  note: HALF NOTE
   type: 1
