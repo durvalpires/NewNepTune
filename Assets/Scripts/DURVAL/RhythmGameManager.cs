@@ -7,9 +7,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class RhythmGameManager : MonoBehaviour
 {
@@ -32,7 +35,7 @@ public class RhythmGameManager : MonoBehaviour
     [SerializeField] private UnityEvent<string> keyPressTxtFeedback;
     [SerializeField] private UnityEvent<string> OnScoreUpdated;
     [SerializeField] private UnityEvent<string> OnComboUpdated;
-    
+
     [SerializeField] private RhythmGameSettings rhythmGameSettings;
 
     private PlayRecorder playRecorder;
@@ -42,7 +45,7 @@ public class RhythmGameManager : MonoBehaviour
     private float noteMaxDistanceToInteractionBar = 0;
 
     private RhythmGameScoreController scoreController;
-    
+
     [SerializeField] private AudioSource challengeAudioSource;
     [SerializeField] private AudioSource backgroundAudioSource;
 
@@ -53,6 +56,12 @@ public class RhythmGameManager : MonoBehaviour
 
     private bool isPlaying = false;
     private bool isLevelStarted = false;
+
+    [HideInInspector] public bool isAutoPlayTutorial = false;
+
+    private VirtualPianoLevelSO currentLevel;
+
+    private const string autoPlayTutorialKey = "isAutoPlayTutorial";
 
     private int starsAchieved = 0;
     
@@ -74,7 +83,14 @@ public class RhythmGameManager : MonoBehaviour
     void Awake()
     {
         var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
-        if(data == null) data = testingLevel;
+
+        if(PlayerPrefs.GetInt(autoPlayTutorialKey) == 0) 
+        {
+            isAutoPlayTutorial = data.isTutorial;
+        }
+      
+        if (data == null) data = testingLevel;
+      
         LoadLevelAssets(data);
     }
 
@@ -94,7 +110,8 @@ public class RhythmGameManager : MonoBehaviour
 
     private IEnumerator DelayedStart()
     {
-        yield return new WaitForSeconds(rhythmGameSettings.delayBeforeLevelStart);
+        float delay = isAutoPlayTutorial ? rhythmGameSettings.delayBeforeTutorialStart : rhythmGameSettings.delayBeforeLevelStart;
+        yield return new WaitForSeconds(delay);
         OnTempoChanged?.Invoke(scoreRender.Bpm);
         isLevelStarted = true;
         yield return null;
@@ -108,19 +125,31 @@ public class RhythmGameManager : MonoBehaviour
             }
         }
     }
-    
+
 
     private IEnumerator CloseLevel()
     {
         isLevelStarted = false;
         isPlaying = false;
         yield return new WaitForSeconds(.5f);
+
+      
+        if (isAutoPlayTutorial)
+        {
+            isAutoPlayTutorial = false; 
+            SaveIsAutoPlayTutorial(isAutoPlayTutorial);
+            UnloadLevelAssets();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            yield break;
+        }
+       
         Debug.LogWarning("CloseLevelllllllllll");
         OnLevelEnded?.Invoke(scoreController);
         UnloadLevelAssets();
+
     }
-    
-    
+
+
 
     public void StartPlaying()
     {
@@ -387,6 +416,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void OnTriggeredInteractionAreaCenter(NoteController note)
     {
+       
         notesCrossed++;
         var nextNoteNotRest = notesCrossed;
         while (nextNoteNotRest < noteViewList.Count && noteViewList[nextNoteNotRest].isRest)
@@ -401,12 +431,51 @@ public class RhythmGameManager : MonoBehaviour
             OnNextNoteUpdated?.Invoke(noteViewList[nextNoteNotRest], noteViewList[notesCrossed-1].beatNumber, 
                 secondsPerBeat, beatsPerUnit);
         }
-        
-        notesCrossed =  nextNoteNotRest;
+
+        notesCrossed = nextNoteNotRest;
+       
+
+        if (isAutoPlayTutorial)
+        {
+            StartCoroutine(AutoPlayKeyPress("C", 0.2f)); //hardcoded for now 
+        }
     }
+    private IEnumerator AutoPlayKeyPress(string note, float pressDuration)
+    {
+     
+        OnPianoKeyStateChanged(note, true);
+        yield return new WaitForSeconds(pressDuration);    
+        OnPianoKeyStateChanged(note, false);
+    }
+
+    public void SaveIsAutoPlayTutorial(bool isTutorial)
+    {
+        PlayerPrefs.SetInt(autoPlayTutorialKey, isTutorial ? 0 : 1);
+        PlayerPrefs.Save();
+    }
+
+
 
     public void OnPianoKeyStateChanged(string note, bool isPressed)
     {
+        if (isAutoPlayTutorial)
+        {
+            
+            foreach (var key in virtualPianoController.GetMainPianoKeys())
+            {
+                if (key.GetNote() == note)
+                {
+                    var button = key.GetComponent<Button>();
+
+                    if (button != null)
+                    {
+                        var colors = button.colors;
+                        button.image.color = isPressed ? Color.green : colors.normalColor;
+                    }
+                }
+            }
+        }
+
         if (isPressed)
         {
             var accuracy = HitAccuracy.Miss;

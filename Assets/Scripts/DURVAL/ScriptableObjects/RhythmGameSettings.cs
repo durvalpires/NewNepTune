@@ -19,6 +19,7 @@ public class RhythmGameSettings : ScriptableObject
     public float accuracyThreshold;
     public float difficultyMultiplier;
     public float delayBeforeLevelStart = 3;
+    public float delayBeforeTutorialStart = 8;
     public int numberBeatsToDrawLines = 3;
     public Difficulty difficulty;
 

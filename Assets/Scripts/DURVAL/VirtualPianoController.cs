@@ -134,6 +134,18 @@ public class VirtualPianoController : MonoBehaviour
         onPianoKeyTriggered?.Invoke(pianoKeyController.GetNote(), false);
     }
 
+    public VirtualPianoKeyController[] GetMainPianoKeys()
+    {
+        return mainPianoKeys;
+    }
+
+    public VirtualPianoKeyController[] GetBlackPianoKeys()
+    {
+        return blackPianoKeys;
+    }
+
+
+
     // public void OnCKeyDown()
     // {
     //     Debug.Log("OnCKeyDown");

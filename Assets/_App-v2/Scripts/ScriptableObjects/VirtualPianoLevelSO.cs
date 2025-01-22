@@ -7,4 +7,5 @@ public class VirtualPianoLevelSO : LevelSO
     public AssetReference songXml;
     public AssetReference songClip;
     public AssetReference backgroundClip;
+    public bool isTutorial;
 }
