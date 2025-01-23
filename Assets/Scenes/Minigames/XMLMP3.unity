@@ -5084,6 +5084,7 @@ MonoBehaviour:
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
   challengeAudioSource: {fileID: 1711215467}
   backgroundAudioSource: {fileID: 1550666168}
+  isAutoPlayTutorial: 0
   OnNextNoteUpdated:
     m_PersistentCalls:
       m_Calls:
@@ -5363,8 +5364,10 @@ MonoBehaviour:
   comboText: {fileID: 1899143678}
   InputBlocker: {fileID: 1279970086}
   getReadyPopup: {fileID: 348884751}
+  getReadyPopupText: {fileID: 1507374784}
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
   endOfLevelController: {fileID: 698941798}
+  rhythmGameManager: {fileID: 1782108897}
 --- !u!224 &1899143683 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 198802161994696846, guid: aab1bc162f0564a7a9dc0200bd3c4e45,

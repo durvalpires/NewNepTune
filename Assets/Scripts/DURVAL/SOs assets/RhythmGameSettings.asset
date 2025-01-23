@@ -32,6 +32,7 @@ MonoBehaviour:
   accuracyThreshold: 0
   difficultyMultiplier: 0
   delayBeforeLevelStart: 1
+  delayBeforeTutorialStart: 9
   numberBeatsToDrawLines: 3
   difficulty: 1
   notePrefabs:
@@ -120,6 +121,8 @@ MonoBehaviour:
     MissColor: {r: 0.7176471, g: 0.09019608, b: 0.09019608, a: 1}
     HitColor: {r: 0.20392157, g: 0.83137256, b: 0.8392157, a: 1}
   MusicalScoreLineDistance: 0.5
+  LastBarLineHorizontalDistance: 0.25
+  LastBarLineThickness: 5
   backgroundMusic: {fileID: 0}
   hitSoundEffect: {fileID: 0}
   missSoundEffect: {fileID: 0}
