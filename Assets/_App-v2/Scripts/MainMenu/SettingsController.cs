@@ -10,7 +10,7 @@ public class SettingsController : MonoBehaviour
 
     public void OpenSettings()
     {
-        settingsPanel.SetActive(true);
+        settingsPanel.SetActive(!settingsPanel.activeSelf);
     }
     
     public void CloseSettings()
