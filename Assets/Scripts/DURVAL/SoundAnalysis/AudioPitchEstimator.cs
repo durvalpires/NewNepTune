@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 // Fundamental frequency estimation using Summation of Residual Harmonics (SRH)
@@ -34,20 +35,38 @@ public class AudioPitchEstimator : MonoBehaviour
     float[] srh = new float[outputResolution];
 
     public List<float> SRH => new List<float>(srh);
+    
+    [SerializeField]
+    private float EstimateRate = 30;
+    
+    [SerializeField]
+    private AudioSource targetSource;
+    
+    private void Start()
+    {
+        Debug.Log("STAAAART");
+        InvokeRepeating("Estimate", 0, 1.0f / EstimateRate);
+    }
 
     /// <summary>
     /// Estimates the fundamental frequency
     /// </summary>
     /// <param name="audioSource">Input audio source</param>
     /// <returns>Fundamental frequency [Hz] (float.NaN if it does not exist)</returns>
-    public float Estimate(AudioSource audioSource)
+    public float Estimate()
     {
         var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
 
-        // Get the audio spectrum
-        if (!audioSource.isPlaying) return float.NaN;
-        audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
+        Debug.Log("STAAAART2");
 
+        
+        // Get the audio spectrum
+        if (!targetSource.isPlaying) return float.NaN;
+        targetSource .GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
+
+        Debug.Log("STAAAART3");
+
+        
         // Calculate the logarithm of the amplitude spectrum
         // All subsequent spectra are processed as logarithmic amplitudes (different from the original paper)
         for (int i = 0; i < spectrumSize; i++)
@@ -103,6 +122,8 @@ public class AudioPitchEstimator : MonoBehaviour
                 bestSRH = currentSRH;
             }
         }
+        
+        Debug.LogWarning("note: " + GetNameFromFrequency(bestFreq));
 
         // If the SRH score does not meet the threshold → assume no clear fundamental frequency exists
         if (bestSRH < thresholdSRH) return float.NaN;
@@ -118,5 +139,15 @@ public class AudioPitchEstimator : MonoBehaviour
         var index1 = index0 + 1; // Boundary checks are omitted
         var delta = position - index0;
         return (1 - delta) * spec[index0] + delta * spec[index1];
+    }
+    
+    // frequency -> pitch name
+    string GetNameFromFrequency(float frequency)
+    {
+        var noteNumber = Mathf.RoundToInt(12 * Mathf.Log(frequency / 440) / Mathf.Log(2) + 69);
+        string[] names = {
+            "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
+        };
+        return names[noteNumber % 12];
     }
 }

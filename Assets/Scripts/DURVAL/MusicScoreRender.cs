@@ -103,7 +103,8 @@ public class MusicScoreRender : MonoBehaviour {
         // initialNoteSpawningPoint.position.x + gameSettings.beatsBeforeStart * secondsPerBeat * speedXPerSec;
         
         // no need fori nitial note spawning cause position is local for notes
-        float initialNoteSpawningOffsetX = (gameSettings.beatsBeforeStart+1) * currentDivisions 
+        //  MAGIC NUMBER I KNOW, SUPER UGLY I AM SORRY, THIS IS RELATED TO POSITION OF INTERACTION BAR
+        float initialNoteSpawningOffsetX = (gameSettings.beatsBeforeStart+2) * currentDivisions 
              * this._durationOneX;
         float xCursor = initialNoteSpawningOffsetX;
         float distanceBetweenBars = this._durationOneX * currentDivisions * (0.25f / 2);
@@ -202,6 +203,7 @@ public class MusicScoreRender : MonoBehaviour {
                         {
                             // 1つ前のNoteに長さを加える
                             var noteController = notesSortedByScore[notesSortedByScore.Count - 1].GameObject.GetComponent<NoteController>();
+                            Debug.Log("WillConsumedTimeUnit: " + willConsumedTimeUnit);
                             noteController.AddWidth(willConsumedTimeUnit);
                         }
 
@@ -291,7 +293,7 @@ public class MusicScoreRender : MonoBehaviour {
             var noteController = noteObj.GetComponent<NoteController>();
         
             noteController.X = positionX;
-            noteController.Width = willConsumedTimeUnit;
+            noteController.AddWidth(willConsumedTimeUnit);
             //noteController.Note = note;
             noteController.ColorSettings = this._colorSettings;
             noteController.Index = noteIndex++;

@@ -76,6 +76,7 @@ public class RhythmGameManager : MonoBehaviour
     public UnityEvent<NoteView, float, float, float> OnNextNoteUpdated;
 
     private List<NoteController> noteInteractableList = new List<NoteController>();
+    private List<NoteController> noteInteractingList = new List<NoteController>();
 
     [SerializeField] private VirtualPianoLevelSO testingLevel;
 
@@ -491,7 +492,10 @@ public class RhythmGameManager : MonoBehaviour
             }
 
             if(accuracy != HitAccuracy.Miss){
+                noteInteractableList[indexToRemove].StartAnimation(this.secondsPerBeat, this.speedXPerSec);
+                noteInteractingList.Add(noteInteractableList[indexToRemove]);
                 noteInteractableList.RemoveAt(indexToRemove);
+                
             }
             else
             {
@@ -506,6 +510,18 @@ public class RhythmGameManager : MonoBehaviour
 
             ProcessScore(accuracy);
             keyPressTxtFeedback?.Invoke(accuracy.ToString());
+        }
+        else
+        {
+            int indexToRemove = 0;
+            foreach(var noteObj in noteInteractingList){
+                if(noteObj.Pitch.Step == note && noteObj.IsFilling){
+                    noteObj.StopAnimation();
+                    break;
+                }
+                indexToRemove++;
+            }
+            if(indexToRemove < noteInteractingList.Count) noteInteractingList.RemoveAt(indexToRemove);
         }
     }
 

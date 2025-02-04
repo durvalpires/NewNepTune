@@ -39,6 +39,8 @@ public class NoteController : MonoBehaviour
         } 
     }
     public ColorSettings ColorSettings { get; set; }
+    
+    public bool IsFilling { get; private set; }
 
     public static float ScaleFor16th = 1;
 
@@ -60,6 +62,8 @@ public class NoteController : MonoBehaviour
     [SerializeField] private SpriteRenderer beamBottomSprite;
     [SerializeField] private SpriteRenderer circleLineSprite;
     [SerializeField] private SpriteRenderer rightDotSprite;
+    [SerializeField] private SpriteRenderer fadePatternSprite;
+    [SerializeField] private SpriteRenderer fadeFillingSprite;
 
     //[SerializeField]
     //private RhythmGameSettings gameSettings;
@@ -155,6 +159,7 @@ public class NoteController : MonoBehaviour
     private void SetColor(Color noteColor)
     {
         foreach (var renderer in this.playNoteObj.GetComponentsInChildren<SpriteRenderer>(true)){
+            if(renderer.gameObject.name == "FadePattern") continue;
             renderer.color = noteColor;
         }
         //var renderer = this.playNoteObj.GetComponent<Renderer>();
@@ -170,6 +175,10 @@ public class NoteController : MonoBehaviour
     public void AddWidth(float width)
     {
         this.Width += width;
+        Debug.LogWarning(this.Width);
+        if(this.fadePatternSprite != null)
+            this.fadePatternSprite.transform.localScale = new Vector3(this.fadePatternSprite.transform.localScale.x,
+                this.Width - this.circleSprite.size.x, this.fadePatternSprite.transform.localScale.z);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -215,7 +224,12 @@ public class NoteController : MonoBehaviour
             return;
         }
 
-        var durationX = gameSettings.DurationOneX - (currentDivisions / 2) * 
+        //  noteTrail
+        var showTrail = gameSettings.HaveDurationTrail && note.Duration < 2 * currentDivisions; 
+        fadePatternSprite.gameObject.SetActive(showTrail);
+        fadeFillingSprite.gameObject.SetActive(showTrail);
+
+        var durationX = gameSettings.DurationOneX - (currentDivisions / 2f) * 
             gameSettings.DurationReductionPerDivision;
 
         // if(currentDivisions == 4) 
@@ -304,8 +318,38 @@ public class NoteController : MonoBehaviour
     //         StartCoroutine(this.AnimatedBar(divisionOneX, tempo, speedXPerSec));
     //     }
     //     Debug.Log("2");
+    
+    public void StartAnimation(float secondsPerBeat, float speedXPerSec)
+    {
+        IsFilling = true;
+        StartCoroutine(this.AnimateBar(secondsPerBeat, speedXPerSec));
+    }
 
-    // }
+    IEnumerator AnimateBar(float secondsPerBeat, float speedXPerSec)
+    {
+        Debug.LogWarning("ANIMATE THAT SHIET");
+        var timeElapsed = 0f;
+        var noteDurationSeconds = secondsPerBeat * note.Duration;
+        
+        while (timeElapsed < noteDurationSeconds)
+        {
+            timeElapsed += Time.deltaTime;
+            var width = timeElapsed / noteDurationSeconds;
+            var currentScale = this.fadeFillingSprite.transform.localScale;
+            this.fadeFillingSprite.transform.localScale = new Vector3(currentScale.x, width, currentScale.z);
+            Debug.Log("SERA K DESLIGAAAAAAA");
+            yield return null;
+        }
+        
+        yield return null;
+    }
+    
+    public void StopAnimation()
+    {
+        IsFilling = false;
+        StopAllCoroutines();
+    }
+    
 
     // float GetThisObjTime(float durationOneX, float bpm)
     // {

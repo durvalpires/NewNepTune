@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: InstrumentGuess-A1
   m_EditorClassIdentifier: 
   levelTitle: Instrument Guess
-  levelType: 0
+  levelType: 1
   instrument: Harp

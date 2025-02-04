@@ -22,13 +22,15 @@
         "com.google.play.common",
         "com.google.play.core",
         "com.google.play.assetdelivery",
-        "com.google.android.appbundle"
+        "com.google.android.appbundle",
+        "com.github-glitchenzo.nugetforunity"
       ],
       "overrideBuiltIns": false
     }
   ],
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.github-glitchenzo.nugetforunity": "4.2.0",
     "com.google.android.appbundle": "1.9.0",
     "com.google.play.assetdelivery": "1.9.2",
     "com.unity.2d.sprite": "1.0.0",

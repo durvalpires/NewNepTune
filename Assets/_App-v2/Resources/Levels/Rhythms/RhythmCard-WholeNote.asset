@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Rhythm Card
   levelType: 7
-  note: WHOLE NOTE
+  note: SEMIBREVES
   popupStyle: 2

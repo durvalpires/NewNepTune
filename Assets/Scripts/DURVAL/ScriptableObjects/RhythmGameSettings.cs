@@ -22,6 +22,7 @@ public class RhythmGameSettings : ScriptableObject
     public float delayBeforeTutorialStart = 8;
     public int numberBeatsToDrawLines = 3;
     public Difficulty difficulty;
+    public bool HaveDurationTrail = false;
 
     [Header("Note Settings")]
     public List<GameObject> notePrefabs;
