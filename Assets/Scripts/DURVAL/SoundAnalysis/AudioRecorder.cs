@@ -9,8 +9,11 @@ public class AudioRecorder : MonoBehaviour
 
     void Start()
     {
+#if !UNITY_WEBGL
+
         audioSource.clip = Microphone.Start(string.Empty, audioSource.loop, duration, AudioSettings.outputSampleRate);
         audioSource.Play();
+#endif
     }
 
 }

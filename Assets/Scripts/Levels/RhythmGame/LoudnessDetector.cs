@@ -10,6 +10,7 @@ public class LoudnessDetector: MonoBehaviour
 
     private void Start()
     {
+#if !UNITY_WEBGL
         if (Microphone.devices.Length > 0)
         {
             microphoneName = Microphone.devices[0];
@@ -19,12 +20,16 @@ public class LoudnessDetector: MonoBehaviour
         {
             Debug.LogError("No microphone detected!");
         }
+#endif
     }
 
   
     public float GetLoudness()
     {
+#if !UNITY_WEBGL
         return GetLoudnessFromClip(Microphone.GetPosition(microphoneName), micClip);
+#endif
+        return -1f;
     }
 
     private float GetLoudnessFromClip(int clipPosition, AudioClip clip)

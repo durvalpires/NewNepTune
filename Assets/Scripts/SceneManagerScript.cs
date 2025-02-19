@@ -75,7 +75,7 @@ public class SceneManagerScript : MonoSingleton<SceneManagerScript>
         GameObject managersGameObject = GameObject.FindWithTag("MinigameManager");
         SelectionMinigame selectionMinigame = managersGameObject.GetComponent<SelectionMinigame>();
         selectionMinigame.levelToReturn = sceneToReturn;
-        selectionMinigame.correctAnswerSpriteName = sceneNote;
+        selectionMinigame.correctAnswerGOName = sceneNote;
 
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }

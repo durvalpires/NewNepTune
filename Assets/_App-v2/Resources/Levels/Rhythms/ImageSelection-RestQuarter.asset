@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Guess Rhythm
   levelType: 3
-  note: QUARTER NOTE REST
+  note: CROTCHET REST
   type: 1

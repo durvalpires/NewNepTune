@@ -11,6 +11,7 @@ public class PopUpToggleManager : MonoBehaviour
     [SerializeField] protected GameObject popup1;
     [SerializeField] private GameObject popup2;
     [SerializeField] private GameObject popup3;
+    [SerializeField] protected GameObject PopupGOContainer;
     
     protected bool _popUpActive;
     

@@ -6,6 +6,7 @@ using Levels.SelectionMinigame;
 using Minigames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SectionLevelsUI : MonoBehaviour
@@ -16,6 +17,7 @@ public class SectionLevelsUI : MonoBehaviour
     [SerializeField] private LevelsPopUpToggleManager popUpToggleManager;
     [SerializeField] private Image popup1Image;
     [SerializeField] private SceneManagerScript sceneManagerScript;
+    [FormerlySerializedAs("PopupCanvas")] [SerializeField] private GameObject PopupGOContainer;
     private GeneralConfigSO generalConfig => PlayerModel.GeneralConfig;
 
     private List<SectionLevelBtnUI> allItems = new List<SectionLevelBtnUI>();
@@ -175,11 +177,13 @@ public class SectionLevelsUI : MonoBehaviour
                 {
                     if (noteDdata.popupStyle == NoteLevelSO.PopupStyle.NoteOnCard)
                     {
-                        popup1Image.sprite = Resources.Load<Sprite>("NoteCard/" + noteDdata.note);
+                        Instantiate(Resources.Load<GameObject>("NoteCard/" + noteDdata.note), PopupGOContainer.transform);
+                        //popup1Image.sprite = Resources.Load<Sprite>("NoteCard/" + noteDdata.note);
                     }
                     else if (noteDdata.popupStyle == NoteLevelSO.PopupStyle.NotesOnPiano)
                     {
-                        popup1Image.sprite = Resources.Load<Sprite>("NotesOnPiano/" + noteDdata.note);
+                        Instantiate(Resources.Load<GameObject>("NotesOnPiano/" + noteDdata.note), PopupGOContainer.transform);
+                        //popup1Image.sprite = Resources.Load<Sprite>("NotesOnPiano/" + noteDdata.note);
                     }
 
                     popUpToggleManager.TogglePopup(noteDdata.note);
@@ -191,7 +195,8 @@ public class SectionLevelsUI : MonoBehaviour
                 {
                     if (rhythmData.popupStyle == NoteLevelSO.PopupStyle.RhythmOnCard)
                     {
-                        popup1Image.sprite = Resources.Load<Sprite>("RhythmCard/" + rhythmData.note);
+                        //popup1Image.sprite = Resources.Load<Sprite>("RhythmCard/" + rhythmData.note);
+                        Instantiate(Resources.Load<GameObject>("RhythmCard/" + rhythmData.note), PopupGOContainer.transform);
                     }
                     
                     popUpToggleManager.ToggleRhythmPopup(rhythmData.note);

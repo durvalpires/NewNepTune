@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class LevelsPopUpToggleManager : PopUpToggleManager
 {
+    [SerializeField] private AudioSource backgroundTrack;
     
-    private void Start()
-    {
-        
-    }
     public void TogglePopup(string pressedNote)
     {
-        TogglePopup1(pressedNote);
+        backgroundTrack.volume = .2f;
+        
+        // if (pressedNote != "")
+        // {
+        //     SoundList soundToPlay = (SoundList)Enum.Parse(typeof(SoundList), "note_" + pressedNote.ToUpper());
+        //     StartCoroutine(AudioManager.Instance.PlaySFX(soundToPlay, .6f));
+        // }
+        // GameObject'in şu anki aktiflik durumunun tersini ayarlayın
+        popUpCanvas.SetActive(true);
+        //popup1.SetActive(true);
+        _popUpActive = true;
     }
 
     public void ToggleRhythmPopup(string rhythm)
@@ -24,7 +31,7 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
         // }
         // GameObject'in şu anki aktiflik durumunun tersini ayarlayın
         popUpCanvas.SetActive(true);
-        popup1.SetActive(true);
+        //popup1.SetActive(true);
         _popUpActive = true;
     }
     
@@ -45,8 +52,11 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
         AudioSource tempAudioSource = tempAudioSourceGO.AddComponent<AudioSource>();
         tempAudioSource.PlayOneShot(soundToPlay);
         
-        AudioManager.Instance.PauseMusic();
+        //AudioManager.Instance.PauseMusic();
+        backgroundTrack.volume = .2f;
 
+
+        
         popup1.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Instruments/Sprites/{instrument}");
         
         popUpCanvas.SetActive(true);
@@ -56,7 +66,14 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
 
     public override void Back()
     {
-        AudioManager.Instance.UnPauseMusic();
+        //AudioManager.Instance.UnPauseMusic();
+        backgroundTrack.volume = 1f;
+
+        foreach (Transform child in PopupGOContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         LevelCompletObserver.LevelComplete();
         base.Back();
     }

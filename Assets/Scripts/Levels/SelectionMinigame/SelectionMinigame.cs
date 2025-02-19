@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Audio;
 using Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -21,10 +23,12 @@ namespace Levels.SelectionMinigame
         [Header("References for Scene Set Up")]
         
         [SerializeField] private TMP_Text levelText;
-        protected Sprite[] _sprites;
-        private Sprite _correctAnswerSprite;
+        //protected Sprite[] _sprites;
+        //private Sprite _correctAnswerSprite;
         
-        public string correctAnswerSpriteName;
+        protected GameObject[] _prefabs;
+        private GameObject _correctAnswerPrefab;
+        [FormerlySerializedAs("correctAnswerSpriteName")] public string correctAnswerGOName;
         public string levelToReturn;
         protected string contentType;
         
@@ -36,8 +40,7 @@ namespace Levels.SelectionMinigame
         private void Start()
         {
             //Sprite[] answerSprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Notes/");
-            Sprite correctSprite = Array.Find(_sprites, sprite => sprite.name == correctAnswerSpriteName.ToUpper());
-            _correctAnswerSprite = correctSprite;
+             _correctAnswerPrefab = Array.Find(_prefabs, go => go.name == correctAnswerGOName.ToUpper());
             
             backButton.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -48,7 +51,7 @@ namespace Levels.SelectionMinigame
                 SceneManager.LoadScene(levelToReturn);
             });
             
-            levelText.text = $"Which one is {_correctAnswerSprite.name}?";
+            levelText.text = $"Which one is {correctAnswerGOName}?";
             //_sprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Empty/");
             
             for (int i = 0; i < gameLevels.Length; i++)
@@ -79,81 +82,126 @@ namespace Levels.SelectionMinigame
                 thirdButton,
                 fourthButton
             };
-            
-            int randomNumber = Math.Abs(Guid.NewGuid().GetHashCode()) % 4 + 1;
 
-            Sprite randomSprite = _correctAnswerSprite;
-            while (randomSprite == _correctAnswerSprite)
+            List<GameObject> GOs = new List<GameObject>();
+            
+            int randomNumber = Math.Abs(Guid.NewGuid().GetHashCode()) % 4 ;
+
+            // Sprite randomSprite = _correctAnswerSprite;
+            // while (randomSprite == _correctAnswerSprite)
+            // {
+            //     int randomIndex = Random.Range(0, _sprites.Length);
+            //     randomSprite = _sprites[randomIndex];
+            // }
+            
+            GameObject randomPrefab = _correctAnswerPrefab;
+            while (randomPrefab == _correctAnswerPrefab)
             {
-                int randomIndex = Random.Range(0, _sprites.Length);
-                randomSprite = _sprites[randomIndex];
+                int randomIndex = Random.Range(0, _prefabs.Length);
+                randomPrefab = _prefabs[randomIndex];
             }
             
             if (levelToSet < 2)
             {
                 // Set the sprite of the correct button
-                if (randomNumber <= 2)
+                // if (randomNumber <= 2)
+                // {
+                //     firstButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                //     firstButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                //
+                //     secondButton.GetComponent<Image>().sprite = randomSprite;
+                //     secondButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                // }
+                // else
+                // {
+                //     secondButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                //     secondButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                //
+                //     firstButton.GetComponent<Image>().sprite = randomSprite;
+                //     firstButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                // }
+                // Set the prefab of the correct button
+                if (randomNumber < 2)
                 {
-                    firstButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                    firstButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                    var go = MakePrefabInteractable(firstButton, _correctAnswerPrefab);
+                    go.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                    
+                    GOs.Add(go);
 
-                    secondButton.GetComponent<Image>().sprite = randomSprite;
-                    secondButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                    go = MakePrefabInteractable(secondButton, randomPrefab);
+                    go.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                    
+                    GOs.Add(go);
                 }
                 else
                 {
-                    secondButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                    secondButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                    var go = MakePrefabInteractable(secondButton, _correctAnswerPrefab);
+                    go.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                    
+                    GOs.Add(go);
 
-                    firstButton.GetComponent<Image>().sprite = randomSprite;
-                    firstButton.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                    go =MakePrefabInteractable(firstButton, randomPrefab);
+                    go.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                    
+                    GOs.Add(go);
                 }
             }
             else
             {
-                List<Sprite> otherSprites = new List<Sprite>(_sprites);
-                otherSprites.Remove(_correctAnswerSprite);
+                List<GameObject> otherGOs = new List<GameObject>(_prefabs);
+                otherGOs.Remove(_correctAnswerPrefab);
                 
                 foreach (GameObject button in buttons)
                 {
                     // Randomly select a sprite from the list
-                    int randomIndex = Random.Range(0, otherSprites.Count);
-                    randomSprite = otherSprites[randomIndex];
+                    int randomIndex = Random.Range(0, otherGOs.Count);
+                    var randomGO = otherGOs[randomIndex];
 
                     // Remove the selected sprite from the list
-                    otherSprites.RemoveAt(randomIndex);
+                    otherGOs.RemoveAt(randomIndex);
+                    
+                    var go = MakePrefabInteractable(button, randomGO);
+                    go.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                    
+                    GOs.Add(go);
 
-                    // Assign the sprite to the button
-                    button.GetComponent<Image>().sprite = randomSprite;
-                    button.GetComponent<Button>().onClick.AddListener(FalseAnswer);
+                    // // Assign the sprite to the button
+                    // button.GetComponent<Image>().sprite = randomSprite;
+                    // button.GetComponent<Button>().onClick.AddListener(FalseAnswer);
                 }
 
-                switch (randomNumber)
-                {
-                    case 1:
-                        firstButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                        firstButton.GetComponent<Button>().onClick.RemoveAllListeners();
-                        firstButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
-                        break;
-                    case 2:
-                        secondButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                        secondButton.GetComponent<Button>().onClick.RemoveAllListeners();
-                        secondButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
-                        break;
-                    case 3:
-                        thirdButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                        thirdButton.GetComponent<Button>().onClick.RemoveAllListeners();
-                        thirdButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
-                        break;
-                    case 4:
-                        fourthButton.GetComponent<Image>().sprite = _correctAnswerSprite;
-                        fourthButton.GetComponent<Button>().onClick.RemoveAllListeners();
-                        fourthButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
-                        break;
-                    default:
-                        Debug.LogError("Random number is not between 1 and 4.");
-                        break;
-                }
+                GOs.RemoveAt(randomNumber);
+                var correctGO = MakePrefabInteractable(buttons[randomNumber], _correctAnswerPrefab);
+                correctGO.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                GOs.Insert(randomNumber, correctGO);
+
+                // switch (randomNumber)
+                // {
+                //     case 1:
+                //         GOs.RemoveAt(randomNumber);
+                //         firstButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                //         firstButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                //         firstButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                //         break;
+                //     case 2:
+                //         secondButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                //         secondButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                //         secondButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                //         break;
+                //     case 3:
+                //         thirdButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                //         thirdButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                //         thirdButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                //         break;
+                //     case 4:
+                //         fourthButton.GetComponent<Image>().sprite = _correctAnswerSprite;
+                //         fourthButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                //         fourthButton.GetComponent<Button>().onClick.AddListener(TrueAnswer);
+                //         break;
+                //     default:
+                //         Debug.LogError("Random number is not between 1 and 4.");
+                //         break;
+                // }
             }
         }
 
@@ -190,6 +238,31 @@ namespace Levels.SelectionMinigame
         {
             losePanel.SetActive(false);
             gameLevels[_currentLevel].gameObject.SetActive(true);
+        }
+        
+        // Helper method to instantiate a prefab and add a button component
+        private GameObject MakePrefabInteractable(GameObject button, GameObject prefab)
+        {
+            GameObject instantiatedPrefab = Instantiate(prefab, button.transform);
+            //button.GetComponent<Button>().targetGraphic = instantiatedPrefab.GetComponent<Image>();
+            var img = instantiatedPrefab.GetComponent<Image>();
+            img.raycastTarget = true;
+            instantiatedPrefab.AddComponent<Button>().targetGraphic = img;
+            
+            // Add a RectTransform component to the instantiated prefab
+            var rectTransform = instantiatedPrefab.GetComponent<RectTransform>();
+            if (rectTransform == null)
+            {
+                rectTransform = instantiatedPrefab.AddComponent<RectTransform>();
+            }
+
+            // Set the instantiated prefab to stretch to its parent's limits
+            rectTransform.anchorMin = new Vector2(0, 0);
+            rectTransform.anchorMax = new Vector2(1, 1);
+            rectTransform.offsetMin = new Vector2(0, 0);
+            rectTransform.offsetMax = new Vector2(0, 0);
+            
+            return instantiatedPrefab;
         }
     }
 }

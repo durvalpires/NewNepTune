@@ -13,11 +13,14 @@ namespace _App_v2.Scripts.Levels
                 Debug.LogError("No data found for current level");
 
             contentType = data.type.ToString();
-            correctAnswerSpriteName = data.note;
+            correctAnswerGOName = data.note;
             levelToReturn = PlayerModel.GeneralConfig.levelsScene;
-            var spritesList = Resources.LoadAll<Sprite>($"SelectionMinigame/{contentType}/").ToList();
-            spritesList.Shuffle();
-            _sprites = spritesList.ToArray();
+            // var spritesList = Resources.LoadAll<Sprite>($"SelectionMinigame/{contentType}/").ToList();
+            // spritesList.Shuffle();
+            // _sprites = spritesList.ToArray();
+            var prefabsList = Resources.LoadAll<GameObject>($"SelectionMinigame/{data.type}/");
+            prefabsList.Shuffle();
+            _prefabs = prefabsList.ToArray();
         }
     }
 }
