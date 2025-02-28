@@ -141,7 +141,7 @@ public class MusicScoreRender : MonoBehaviour {
                      beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
                      beatMarker.transform.position = 
                          new Vector3(initialNoteSpawningPoint.position.x + initialNoteSpawningOffsetX - 
-                                     (this._durationOneX/2) + barLinesToDraw++ * barLength 
+                                     (this._durationOneX/2) + barLinesToDraw++ * barLength + -1
                                                                                                    /*-
                                      (_durationOneX /* currentDivisions) / 2*/, 1, 0);
                      

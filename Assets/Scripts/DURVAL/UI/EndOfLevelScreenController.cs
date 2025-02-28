@@ -29,9 +29,7 @@ public class EndOfLevelScreenController : MonoBehaviour
             levelName.text = data.levelTitle;
         }
     }
-
-
-
+    
     public void Activate(RhythmGameScoreController scoreController){
         this.gameObject.SetActive(true);
         AudioManager.Instance.PlaySFX(Enums.SoundList.EndOfRhythmLevel);

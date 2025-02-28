@@ -111,8 +111,8 @@ namespace Minigames
       
       protected void SetUpLevel(int levelToSet)
       {
-         GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
-         GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
+         GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+         GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
          
          topButton.GetComponent<Button>().onClick.RemoveAllListeners();
          bottomButton.GetComponent<Button>().onClick.RemoveAllListeners();

@@ -222,8 +222,19 @@ public class SectionLevelsUI : MonoBehaviour
                 
                 break;
             case LevelSO.LevelType.LearningInstrument:
-                var learningInstrumentData = obj.LevelData.level as InstrumentLevelSO;
-                popUpToggleManager.ToggleInstrument(learningInstrumentData.instrument);
+                //     var learningInstrumentData = obj.LevelData.level as InstrumentLevelSO;
+                //     popUpToggleManager.ToggleInstrument(learningInstrumentData.instrument);
+                var instrumentData = obj.LevelData.level as InstrumentLevelSO;
+                if (instrumentData != null)
+                {
+                    if (instrumentData.levelType == InstrumentLevelSO.LevelType.LearningInstrument)
+                    {
+                        //popup1Image.sprite = Resources.Load<Sprite>("RhythmCard/" + rhythmData.note);
+                        Instantiate(Resources.Load<GameObject>("Instruments/Sprites/" + instrumentData.instrument), PopupGOContainer.transform);
+                    }
+                        
+                    popUpToggleManager.ToggleRhythmPopup(instrumentData.instrument);
+                }
                 break;
             case LevelSO.LevelType.InstrumentGuess:
                 TempDataStorage.SetSceneData(obj.LevelData.level);

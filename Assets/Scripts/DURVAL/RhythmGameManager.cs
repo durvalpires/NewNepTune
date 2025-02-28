@@ -184,8 +184,9 @@ public class RhythmGameManager : MonoBehaviour
     private void LoadLevelAssets(VirtualPianoLevelSO levelConfig)
     {
         // Load text asset
-        levelConfig.songXml.LoadAssetAsync<TextAsset>().Completed += OnTextAssetLoaded;
-
+        //levelConfig.songXml.LoadAssetAsync<TextAsset>().Completed += OnTextAssetLoaded;
+        Addressables.LoadAssetAsync<TextAsset>(levelConfig.songXml).Completed += OnTextAssetLoaded;
+        
         // Load first audio clip
         levelConfig.songClip.LoadAssetAsync<AudioClip>().Completed += handle =>
         {
