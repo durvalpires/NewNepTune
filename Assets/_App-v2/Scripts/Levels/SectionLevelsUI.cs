@@ -233,7 +233,7 @@ public class SectionLevelsUI : MonoBehaviour
                         Instantiate(Resources.Load<GameObject>("Instruments/Sprites/" + instrumentData.instrument), PopupGOContainer.transform);
                     }
                         
-                    popUpToggleManager.ToggleRhythmPopup(instrumentData.instrument);
+                    popUpToggleManager.ToggleInstrument(instrumentData.instrument);
                 }
                 break;
             case LevelSO.LevelType.InstrumentGuess:

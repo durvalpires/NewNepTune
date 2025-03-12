@@ -69,7 +69,7 @@ public class PopUpToggleManager : MonoBehaviour
 
         if (instrument == null) return;
 
-        AudioClip[] instrumentSounds = Resources.LoadAll<AudioClip>($"InstrumentSounds/");
+        AudioClip[] instrumentSounds = Resources.LoadAll<AudioClip>($"Instruments/Sounds/");
         AudioClip soundToPlay = Array.Find(instrumentSounds, clip => clip.name == instrument);
         GameObject tempAudioSourceGO = new GameObject() {name = "TempAudioSource"};
         AudioSource tempAudioSource = tempAudioSourceGO.AddComponent<AudioSource>();
@@ -92,7 +92,7 @@ public class PopUpToggleManager : MonoBehaviour
 
         if (instrument == null) return;
 
-        AudioClip[] instrumentSounds = Resources.LoadAll<AudioClip>($"InstrumentSounds/");
+        AudioClip[] instrumentSounds = Resources.LoadAll<AudioClip>($"Instruments/Sounds/");
         AudioClip soundToPlay = Array.Find(instrumentSounds, clip => clip.name == instrument);
         GameObject tempAudioSourceGO = new GameObject() {name = "TempAudioSource"};
         AudioSource tempAudioSource = tempAudioSourceGO.AddComponent<AudioSource>();

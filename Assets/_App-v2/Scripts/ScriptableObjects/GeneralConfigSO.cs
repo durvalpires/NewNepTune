@@ -13,4 +13,5 @@ public class GeneralConfigSO : ScriptableObject
     public string memoryCardScene = "v2_MemoryCard";
     public string selectionMiniGameScene = "v2_SelectionMinigame";
     public string openedPlanetKey = "OpenedPlanet";
+    public string autoPlayTutorialKey = "isAutoPlayTutorial";
 }

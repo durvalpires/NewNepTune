@@ -22,6 +22,10 @@ public class RhythmGameManager : MonoBehaviour
     public UnityEvent OnNoteHit;
 
     private float speedXPerSec;
+    
+    private AsyncOperationHandle<TextAsset> songXmlHandle;
+    private AsyncOperationHandle<AudioClip> songClipHandle;
+    private AsyncOperationHandle<AudioClip> backgroundClipHandle;
 
     // [SerializeField] private GameObject notePrefab;
     // [SerializeField] private GameObject circleNotePrefab;
@@ -61,7 +65,7 @@ public class RhythmGameManager : MonoBehaviour
 
     private VirtualPianoLevelSO currentLevel;
 
-    private const string autoPlayTutorialKey = "isAutoPlayTutorial";
+    //private const string autoPlayTutorialKey = "isAutoPlayTutorial";
 
     private int starsAchieved = 0;
     
@@ -85,7 +89,7 @@ public class RhythmGameManager : MonoBehaviour
     {
         var data = TempDataStorage.GetSceneData<VirtualPianoLevelSO>();
 
-        if(PlayerPrefs.GetInt(autoPlayTutorialKey) == 0) 
+        if(PlayerPrefs.GetInt(PlayerModel.GeneralConfig.autoPlayTutorialKey) == 0) 
         {
             isAutoPlayTutorial = data.isTutorial;
         }
@@ -185,47 +189,69 @@ public class RhythmGameManager : MonoBehaviour
     {
         // Load text asset
         //levelConfig.songXml.LoadAssetAsync<TextAsset>().Completed += OnTextAssetLoaded;
-        Addressables.LoadAssetAsync<TextAsset>(levelConfig.songXml).Completed += OnTextAssetLoaded;
+        songXmlHandle = Addressables.LoadAssetAsync<TextAsset>(levelConfig.songXml);
+        songXmlHandle.Completed += OnTextAssetLoaded;
         
         // Load first audio clip
-        levelConfig.songClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+        songClipHandle = Addressables.LoadAssetAsync<AudioClip>(levelConfig.songClip);
+        songClipHandle.Completed += handle =>
         {
             challengeAudioSource.clip = handle.Result;
         };
+        // levelConfig.songClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+        // {
+        //     challengeAudioSource.clip = handle.Result;
+        // };
 
-        if (levelConfig.backgroundClip.AssetGUID != "")
+        // if (levelConfig.backgroundClip.AssetGUID != "")
+        // {
+        if (!string.IsNullOrEmpty(levelConfig.backgroundClip.AssetGUID))
         {
             // Load second audio clip
-            levelConfig.backgroundClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+            backgroundClipHandle = Addressables.LoadAssetAsync<AudioClip>(levelConfig.backgroundClip);
+            backgroundClipHandle.Completed += handle =>
             {
                 backgroundAudioSource.clip = handle.Result;
             };
+            // levelConfig.backgroundClip.LoadAssetAsync<AudioClip>().Completed += handle =>
+            // {
+            //     backgroundAudioSource.clip = handle.Result;
+            // };
         }
     }
 
     public void UnloadLevelAssets()
     {
         scoreController.OnStarAchieved -= OnStarAchieved;
-        AudioClip songClip = null;
-        AudioClip backgroundClip = null;
+        //AudioClip songClip = null;
+        //AudioClip backgroundClip = null;
 
+        
         if (challengeAudioSource != null)
         {
-            songClip = challengeAudioSource.clip;
+            challengeAudioSource.Stop();
+            //songClip = challengeAudioSource.clip;
             challengeAudioSource.clip = null;
         }
         var textAsset = songXmlAsset;
 
+        
         if (backgroundAudioSource != null)
         {
-            backgroundClip = backgroundAudioSource.clip;
+            backgroundAudioSource.Stop();
+            //backgroundClip = backgroundAudioSource.clip;
             backgroundAudioSource.clip = null;
         }
         
         // Release loaded assets to free memory
-        Addressables.Release(songClip);
-        Addressables.Release(textAsset);
-        Addressables.Release(backgroundClip);
+        // Addressables.Release(songClip);
+        // Addressables.Release(textAsset);
+        // Addressables.Release(backgroundClip);
+        
+        
+        if (songXmlHandle.IsValid()) Addressables.Release(songXmlHandle);
+        if (songClipHandle.IsValid()) Addressables.Release(songClipHandle);
+        if (backgroundClipHandle.IsValid()) Addressables.Release(backgroundClipHandle);
     }
 
     private void OnTextAssetLoaded(AsyncOperationHandle<TextAsset> handle)
@@ -452,7 +478,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void SaveIsAutoPlayTutorial(bool isTutorial)
     {
-        PlayerPrefs.SetInt(autoPlayTutorialKey, isTutorial ? 0 : 1);
+        PlayerPrefs.SetInt(PlayerModel.GeneralConfig.autoPlayTutorialKey, isTutorial ? 0 : 1);
         PlayerPrefs.Save();
     }
 

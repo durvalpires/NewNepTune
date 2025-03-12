@@ -56,12 +56,10 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
         //AudioManager.Instance.PauseMusic();
         backgroundTrack.volume = .2f;
 
-
-        
-        popup1.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Instruments/Sprites/{instrument}");
+        //popup1.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Instruments/Sprites/{instrument}");
         
         popUpCanvas.SetActive(true);
-        popup1.SetActive(true);
+        //popup1.SetActive(true);
         _popUpActive = true;
     }
 

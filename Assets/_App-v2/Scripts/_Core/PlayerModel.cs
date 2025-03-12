@@ -60,6 +60,13 @@ using UnityEngine;
         //     get => Data.lastCompleteLevelIndex;
         //     set => Data.lastCompleteLevelIndex = value;
         // }
+        public static void ClearData()
+        {
+            _player = null;
+            PlayerPrefs.DeleteKey(_currentProfileKey);
+            PlayerPrefs.DeleteKey(GeneralConfig.autoPlayTutorialKey);
+        }
+        
         public static void CompleteLevel(int levelIndex, string worldId)
         {
             SetCustomData($"w_{worldId}:l_{levelIndex}", "done");

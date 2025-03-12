@@ -2,15 +2,42 @@ using System.Collections;
 using Enums;
 using Extensions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Audio
 {
     public class AudioManager : MonoSingleton<AudioManager>
     {
-        public Sound[] musicSounds, sfxSounds, miniGameSounds;
-        public AudioSource musicSource, sfxSource;
+        [SerializeField]
+        private Sound[] musicSounds, sfxSounds, miniGameSounds;
+        [SerializeField]
+        private AudioSource musicSource, sfxSource;
 
+        // void Start()
+        // {
+        //     SceneManager.sceneLoaded += OnSceneLoaded;
+        //     Debug.Log(AudioManager.Instance.sfxSounds.Length);
+        // }
+        //
+        // void Destroy()
+        // {
+        //     SceneManager.sceneLoaded -= OnSceneLoaded;
+        // }
         
+        // void Update()
+        // {
+        //     if (this.sfxSounds.Length == 0)
+        //     {
+        //         Debug.Log("SfxSounds is empty");
+        //         Destroy(gameObject);
+        //     }
+        // }
+        
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log($"Scene {scene.name} loaded. Array contents: {string.Join(", ", AudioManager.Instance.sfxSounds.Length)}");
+        }
+
         public void PlayMusic(SoundList? clipNameEnum)
         {
             string clipName = clipNameEnum.ToString();
@@ -80,11 +107,15 @@ namespace Audio
         
         public void PlaySFX(SoundList? clipNameEnum)
         {
+            Debug.LogWarning("PlaySFX: " + clipNameEnum);
             string clipName = clipNameEnum.ToString();
+            Debug.LogWarning("ClipName: " + clipName);
             Sound sound = null;
 
+            Debug.LogWarning("sfxSounds.Length: " + sfxSounds.Length);
             foreach (var soundclip in sfxSounds)
             {
+                Debug.LogWarning("soundclip.name: " + soundclip.name);
                 if (clipName == soundclip.name)
                 {
                     sound = soundclip;
@@ -201,5 +232,7 @@ namespace Audio
         {
             return musicSource.time = time;
         }
+        
+        
     }
 }
