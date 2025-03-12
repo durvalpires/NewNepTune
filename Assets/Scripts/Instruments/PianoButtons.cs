@@ -33,7 +33,7 @@ namespace Instruments
                 //can add animations here
             }
             
-            AudioManager.Instance.sfxSource.volume = 1;
+            //AudioManager.Instance.sfxSource.volume = 1;
             
             if (_soundFadeOut != null) StopCoroutine(_soundFadeOut);
 
@@ -42,8 +42,8 @@ namespace Instruments
         
         public void NotePressRemoved()
         {
-            _soundFadeOut = StartCoroutine(AudioManager.Instance.SoundFadeOut
-                (AudioManager.Instance.sfxSource, .1f));
+            // _soundFadeOut = StartCoroutine(AudioManager.Instance.SoundFadeOut
+            //     (AudioManager.Instance.sfxSource, .1f));
             pressedTrue = false;
         }
 
