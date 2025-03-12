@@ -8,58 +8,57 @@ namespace Audio
 {
     public class AudioManager : MonoSingleton<AudioManager>
     {
-        [SerializeField]
-        private Sound[] musicSounds, sfxSounds, miniGameSounds;
-        [SerializeField]
-        private AudioSource musicSource, sfxSource;
+        public Sound[] musicSounds, sfxSounds, miniGameSounds;
+        public AudioSource musicSource, sfxSource, BgMusicSource;
 
-        // void Start()
-        // {
-        //     SceneManager.sceneLoaded += OnSceneLoaded;
-        //     Debug.Log(AudioManager.Instance.sfxSounds.Length);
-        // }
-        //
-        // void Destroy()
-        // {
-        //     SceneManager.sceneLoaded -= OnSceneLoaded;
-        // }
-        
-        // void Update()
-        // {
-        //     if (this.sfxSounds.Length == 0)
-        //     {
-        //         Debug.Log("SfxSounds is empty");
-        //         Destroy(gameObject);
-        //     }
-        // }
-        
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+
+        private void Start()
         {
-            Debug.Log($"Scene {scene.name} loaded. Array contents: {string.Join(", ", AudioManager.Instance.sfxSounds.Length)}");
+            HandleSceneMusic(SceneManager.GetActiveScene().name);
+            SceneManager.activeSceneChanged += OnSceneChanged;
         }
 
-        public void PlayMusic(SoundList? clipNameEnum)
+        private void OnDestroy()
         {
-            string clipName = clipNameEnum.ToString();
-            Sound sound = null;
+            SceneManager.activeSceneChanged -= OnSceneChanged;
+        }
 
-            foreach (var soundclip in musicSounds)
+        private void OnSceneChanged(Scene current, Scene next)
+        {
+            HandleSceneMusic(next.name);
+        }
+
+        private void HandleSceneMusic(string sceneName)
+        {
+            if (sceneName == "v2_Levels" || sceneName == "v2_SelectionMinigame")
             {
-                if (clipName == soundclip.name)
-                {
-                    sound = soundclip;
-                }
-            }
-            
-            if (sound == null)
-            {
-                Debug.Log("Sfx not found.");
+                PlayMusic(SoundList.LevelMenu, true);
             }
             else
             {
-                musicSource.clip = sound.clip;
-                musicSource.Play();
+                StopMusic(true);
             }
+        }
+
+
+        public void PlayMusic(SoundList? clipNameEnum, bool isBackground = false)
+        {
+            if (clipNameEnum == null) return;
+
+            Sound sound = System.Array.Find(musicSounds, s => s.name == clipNameEnum.ToString());
+
+            if (sound == null)
+            {
+                Debug.LogWarning($"Music '{clipNameEnum}' not found.");
+                return;
+            }
+
+            AudioSource source = isBackground ? BgMusicSource : musicSource;
+
+            if (source.clip == sound.clip && source.isPlaying) return;
+
+            source.clip = sound.clip;
+            source.Play();
         }
 
         public virtual IEnumerator PlayMusic(SoundList? clipNameEnum, float waitTime)
@@ -68,23 +67,28 @@ namespace Audio
 
             PlayMusic(clipNameEnum);
         }
-        
+
         public void PauseMusic()
         {
             musicSource.Pause();
         }
-        
+
         public void UnPauseMusic()
         {
             musicSource.UnPause();
         }
-        
-        public void StopMusic()
+
+        public void StopMusic(bool isBackground = false)
         {
-            musicSource.clip = null;
-            musicSource.Stop();
+            AudioSource source = isBackground ? BgMusicSource : musicSource;
+
+            if (source.isPlaying)
+            {
+                source.Stop();
+                source.clip = null;
+            }
         }
-        
+
         public bool CheckIfMusicIsPlaying()
         {
             return musicSource.isPlaying;
@@ -94,34 +98,30 @@ namespace Audio
         {
             musicSource.volume = volume;
         }
-        
+
         public void ChangeSFXVolume(float volume)
         {
             sfxSource.volume = volume;
         }
-        
+
         public IEnumerator WaitForSeconds(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
         }
-        
+
         public void PlaySFX(SoundList? clipNameEnum)
         {
-            Debug.LogWarning("PlaySFX: " + clipNameEnum);
             string clipName = clipNameEnum.ToString();
-            Debug.LogWarning("ClipName: " + clipName);
             Sound sound = null;
 
-            Debug.LogWarning("sfxSounds.Length: " + sfxSounds.Length);
             foreach (var soundclip in sfxSounds)
             {
-                Debug.LogWarning("soundclip.name: " + soundclip.name);
                 if (clipName == soundclip.name)
                 {
                     sound = soundclip;
                 }
             }
-            
+
             if (sound == null)
             {
                 Debug.Log("Sfx not found.");
@@ -143,7 +143,7 @@ namespace Audio
                     sound = soundclip;
                 }
             }
-            
+
             if (sound == null)
             {
                 Debug.Log("Sfx not found.");
@@ -153,7 +153,7 @@ namespace Audio
                 sfxSource.PlayOneShot(sound.clip);
             }
         }
-        
+
         public float CheckSoundLength(SoundList? clipNameEnum)
         {
             string clipName = clipNameEnum.ToString();
@@ -166,7 +166,7 @@ namespace Audio
                     sound = soundclip;
                 }
             }
-            
+
             if (sound == null)
             {
                 Debug.Log("Sfx not found.");
@@ -177,28 +177,28 @@ namespace Audio
                 return sound.clip.length;
             }
         }
-        
+
         public IEnumerator PlaySFX(SoundList? clipNameEnum, float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
 
             PlaySFX(clipNameEnum);
         }
-        
+
         public IEnumerator SoundFadeOut(AudioSource audioSource, float fadeTime)
         {
             float startVolume = audioSource.volume;
-            
+
             while (audioSource.volume > 0)
             {
-                audioSource.volume -= .2f; 
+                audioSource.volume -= .2f;
                 yield return new WaitForSeconds(fadeTime);
             }
-            
+
             audioSource.Stop();
             audioSource.volume = 1;
         }
-        
+
         public void PlayMinigameMusic(SoundList? clipNameEnum)
         {
             string clipName = clipNameEnum.ToString();
@@ -211,7 +211,7 @@ namespace Audio
                     sound = soundclip;
                 }
             }
-            
+
             if (sound == null)
             {
                 Debug.Log("Minigame music not found.");
@@ -232,7 +232,5 @@ namespace Audio
         {
             return musicSource.time = time;
         }
-        
-        
     }
 }
