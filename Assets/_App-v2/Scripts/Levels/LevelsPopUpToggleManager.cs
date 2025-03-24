@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class LevelsPopUpToggleManager : PopUpToggleManager
 {
-    [SerializeField] private AudioSource backgroundTrack;
+    //[SerializeField] private AudioSource backgroundTrack;
     
     public void TogglePopup(string pressedNote)
     {
-        backgroundTrack.volume = .2f;
+        //backgroundTrack.volume = .2f;
         
         if (pressedNote != "")
         {
@@ -54,7 +54,7 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
         tempAudioSource.PlayOneShot(soundToPlay);
         
         //AudioManager.Instance.PauseMusic();
-        backgroundTrack.volume = .2f;
+        //backgroundTrack.volume = .2f;
 
         //popup1.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Instruments/Sprites/{instrument}");
         
@@ -66,7 +66,7 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
     public override void Back()
     {
         //AudioManager.Instance.UnPauseMusic();
-        backgroundTrack.volume = 1f;
+        //backgroundTrack.volume = 1f;
 
         foreach (Transform child in PopupGOContainer.transform)
         {
