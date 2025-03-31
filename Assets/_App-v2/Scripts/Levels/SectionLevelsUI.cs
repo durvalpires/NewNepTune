@@ -71,7 +71,7 @@ public class SectionLevelsUI : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
         if (Input.GetKeyDown(KeyCode.A))//complete All
         {
             for (int i = 0; i < _data.levels.Length; i++)
