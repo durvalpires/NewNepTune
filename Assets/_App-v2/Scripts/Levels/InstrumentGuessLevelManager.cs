@@ -9,7 +9,7 @@ public class InstrumentGuessLevelManager : InstrumentGuess
     private void Awake()
     {
         var data = TempDataStorage.GetSceneData<InstrumentGuessLevelSO>();
-        if(data)levelInstrument = data.instrument;
+        if (data) levelInstrument = data.instrument.ToLower();
         var spritesList = Resources.LoadAll<Sprite>($"InstrumentPNGs/").ToList();
         spritesList.Shuffle();
         _sprites = spritesList.ToArray();
@@ -25,9 +25,11 @@ public class InstrumentGuessLevelManager : InstrumentGuess
          for (int i = 0; i < _sprites.Length; i++)
          {
             Debug.LogWarning(_sprites[i].name);
-            if(_sprites[i].name == levelInstrument){
+            if (_sprites[i].name.ToLower() == levelInstrument)
+            {
                 Debug.Log("Found right answer");
-                _correctAnswerSprites[answerIndex++] = _sprites[i];
+                if (answerIndex < _correctAnswerSprites.Length)
+                    _correctAnswerSprites[answerIndex++] = _sprites[i];
             }
          }
 
