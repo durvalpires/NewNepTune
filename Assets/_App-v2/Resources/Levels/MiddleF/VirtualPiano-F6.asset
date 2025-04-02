@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VirtualPiano-F6
   m_EditorClassIdentifier: 
   levelTitle: Middle F Piano 6
-  levelType: 0
+  levelType: 5
   songXml:
     m_AssetGUID: b097a4bff73014ac38a9ddd1727f5588
     m_SubObjectName: 
@@ -32,3 +32,4 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  isTutorial: 0
