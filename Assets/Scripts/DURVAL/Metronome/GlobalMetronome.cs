@@ -147,9 +147,11 @@ namespace QuantizedLoopStation
             }
         }
 
-        public void SetBPM(float bpm)
+        public void SetupMetronome(float bpm, int beatPerBar)
         {
             this.bpm = bpm;
+            this.numberBeatInBar = beatPerBar;
+            Debug.Log(numberBeatInBar);
             isInitialized = true;
         }
 

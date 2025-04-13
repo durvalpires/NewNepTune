@@ -16,7 +16,7 @@ using UnityEngine.UI;
 
 public class RhythmGameManager : MonoBehaviour
 {
-    public UnityEvent<float> OnTempoChanged;
+    public UnityEvent<float, int> OnTempoChanged;
     public UnityEvent<int> OnNotesAmountCalculated;
     public UnityEvent<RhythmGameScoreController> OnLevelEnded;
     public UnityEvent OnNoteHit;
@@ -117,7 +117,7 @@ public class RhythmGameManager : MonoBehaviour
     {
         float delay = isAutoPlayTutorial ? rhythmGameSettings.delayBeforeTutorialStart : rhythmGameSettings.delayBeforeLevelStart;
         yield return new WaitForSeconds(delay);
-        OnTempoChanged?.Invoke(scoreRender.Bpm);
+        OnTempoChanged?.Invoke(scoreRender.Bpm, scoreRender.BeatsPerBar);
         isLevelStarted = true;
         yield return null;
     }
@@ -148,17 +148,14 @@ public class RhythmGameManager : MonoBehaviour
             yield break;
         }
        
-        Debug.LogWarning("CloseLevelllllllllll");
         OnLevelEnded?.Invoke(scoreController);
         UnloadLevelAssets();
-
     }
 
 
 
     public void StartPlaying()
     {
-        Debug.LogWarning("StartPlaying");
         isPlaying = true;
         //backgroundAudioSource.Play();
         //OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], 1,secondsPerBeat);
@@ -167,7 +164,6 @@ public class RhythmGameManager : MonoBehaviour
     
     public void StartBackTrack()
     {
-        Debug.LogWarning("StartPlayingBackTrack");
         //isPlaying = true;
         backgroundAudioSource.Play();
         //OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], 1,secondsPerBeat);
@@ -430,10 +426,10 @@ public class RhythmGameManager : MonoBehaviour
                 noteInteractableList.Remove(note);
         }
 
-        Debug.Log("noteInteractableList: ");
+        /*Debug.Log("noteInteractableList: ");
         foreach(var n in noteInteractableList){
             Debug.Log(n.Pitch.Step + n.Index.ToString());
-        }
+        }*/
         
 
         //noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] = entered ? note : null;
@@ -449,13 +445,13 @@ public class RhythmGameManager : MonoBehaviour
         var nextNoteNotRest = notesCrossed;
         while (nextNoteNotRest < noteViewList.Count && noteViewList[nextNoteNotRest].isRest)
         {
-            Debug.LogWarning("Rest note");
+            //Debug.LogWarning("Rest note");
             nextNoteNotRest++;
         }
         
         if (notesCrossed < noteViewList.Count)
         {
-            Debug.LogWarning("New note to bounce to - " + nextNoteNotRest + " = " + noteViewList[nextNoteNotRest].beatNumber);
+            //Debug.LogWarning("New note to bounce to - " + nextNoteNotRest + " = " + noteViewList[nextNoteNotRest].beatNumber);
             OnNextNoteUpdated?.Invoke(noteViewList[nextNoteNotRest], noteViewList[notesCrossed-1].beatNumber, 
                 secondsPerBeat, beatsPerUnit);
         }

@@ -2340,7 +2340,7 @@ Transform:
   m_GameObject: {fileID: 903766655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3187,6 +3187,7 @@ MonoBehaviour:
     type: 3}
   beatsText: {fileID: 1709935112}
   beatTypeText: {fileID: 509455154}
+  BeatsPerBar: 4
   currentDivisions: 0
 --- !u!1 &1161842744
 GameObject:
@@ -4940,7 +4941,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1228623091}
         m_TargetAssemblyTypeName: QuantizedLoopStation.GlobalMetronome, Assembly-CSharp
-        m_MethodName: SetBPM
+        m_MethodName: SetupMetronome
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

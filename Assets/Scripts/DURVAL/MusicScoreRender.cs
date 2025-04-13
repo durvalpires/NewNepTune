@@ -35,8 +35,9 @@ public class MusicScoreRender : MonoBehaviour {
 
     private Score musicScore;
     public float Bpm => musicScore.Tempo ?? 120;
+    public int BeatsPerBar = 4;
 
-    private int _currentMeasureDivision = 4;
+    //private int _currentMeasureDivision = 4;
     public int MeasureDivision => musicScore.CurrentDivisions.Value;
 
     private int noteIndex = 1;
@@ -54,8 +55,6 @@ public class MusicScoreRender : MonoBehaviour {
         
         //YOfC4 = OneNoteY * Pitch.NoteList.Count * 5;
         YOfC4 = OneNoteY * Pitch.NoteListMain.Count * 5;
-        Debug.Log("YOC4" + YOfC4);
-        Debug.Log("OneNoteY" + OneNoteY);
     }
 
     public void Init(RhythmGameSettings gameSettings, string musicXMLText)
@@ -78,6 +77,7 @@ public class MusicScoreRender : MonoBehaviour {
                 }
 
                 if (measure.Attribute?.Time == null) continue;
+                BeatsPerBar = measure.Attribute.Value.Time.Value.Beats;
                 beatsText.text = measure.Attribute.Value.Time.Value.Beats.ToString();
                 beatTypeText.text = measure.Attribute.Value.Time.Value.BeatType.ToString();
                 
@@ -85,7 +85,7 @@ public class MusicScoreRender : MonoBehaviour {
             }
         }
         
-        this._durationOneX = gameSettings.DurationOneX - (musicScore.CurrentDivisions.Value / 2) * 
+        this._durationOneX = gameSettings.DurationOneX - (Mathf.Log(musicScore.CurrentDivisions.Value) / 2) * 
                 gameSettings.DurationReductionPerDivision;
     }
 
@@ -104,16 +104,17 @@ public class MusicScoreRender : MonoBehaviour {
         
         // no need fori nitial note spawning cause position is local for notes
         //  MAGIC NUMBER I KNOW, SUPER UGLY I AM SORRY, THIS IS RELATED TO POSITION OF INTERACTION BAR
-        float initialNoteSpawningOffsetX = (gameSettings.beatsBeforeStart+2) * currentDivisions 
-             * this._durationOneX;
-        float xCursor = initialNoteSpawningOffsetX;
-        float distanceBetweenBars = this._durationOneX * currentDivisions * (0.25f / 2);
+        //float distanceBetweenBars = this._durationOneX * currentDivisions * (0.25f / 2);
         int barLinesToDraw = 1;
         var lastLineXPosition = 0f;
         var beatsPerSecond = Bpm / 60;
         var secondsPerBeat = 1 / beatsPerSecond;
         float barLength = 4;
         GameObject beatMarker;
+        
+        float initialNoteSpawningOffsetX = (gameSettings.delayBeforeLevelStart * beatsPerSecond + 
+                                           gameSettings.beatsBeforeStart) * this._durationOneX * currentDivisions;
+        float xCursor = initialNoteSpawningOffsetX;
         
         foreach (var part in musicScore.ScoreParts)
         {
@@ -127,7 +128,7 @@ public class MusicScoreRender : MonoBehaviour {
                 if (measure.Attribute?.Divisions != null)
                 {
                     currentDivisions = measure.Attribute.Value.Divisions.Value;
-                    this._durationOneX = gameSettings.DurationOneX - (currentDivisions / 2) * 
+                    this._durationOneX = gameSettings.DurationOneX - (Mathf.Log(currentDivisions) / 2) * 
                         gameSettings.DurationReductionPerDivision;
                     beatsPerBar = measure.Attribute.Value.Time.Value.Beats;
                 }
@@ -178,7 +179,7 @@ public class MusicScoreRender : MonoBehaviour {
                         // x
                         
                         float willConsumedTimeUnit = (float)note.Duration/*/currentDivisions*/ * this._durationOneX;
-                        Debug.Log("willConsumedTimeUnit: " + willConsumedTimeUnit);
+                        //Debug.Log("willConsumedTimeUnit: " + willConsumedTimeUnit);
 
                         if (note.IsChord)
                         {
@@ -203,14 +204,14 @@ public class MusicScoreRender : MonoBehaviour {
                         {
                             // 1つ前のNoteに長さを加える
                             var noteController = notesSortedByScore[notesSortedByScore.Count - 1].GameObject.GetComponent<NoteController>();
-                            Debug.Log("WillConsumedTimeUnit: " + willConsumedTimeUnit);
+                            //Debug.Log("WillConsumedTimeUnit: " + willConsumedTimeUnit);
                             noteController.AddWidth(willConsumedTimeUnit);
                         }
 
                         currentBeat += note.Duration / (float)currentDivisions;
                         xCursor += willConsumedTimeUnit;
 
-                        Debug.LogWarning("Current beat: " + currentBeat);
+                        //Debug.LogWarning("Current beat: " + currentBeat);
                         // if (currentBeat % 5 == 0)
                         // {
                         //     Debug.LogWarning("Bar: " + barLinesToDraw);
@@ -229,7 +230,7 @@ public class MusicScoreRender : MonoBehaviour {
                         {
                             noNeedToDisplayForTie = true;
                         }
-                        Debug.Log("xCursor depois de nota: " + xCursor);
+                        //Debug.Log("xCursor depois de nota: " + xCursor);
                     }
                     else if (child is Backup)
                     {
@@ -242,7 +243,7 @@ public class MusicScoreRender : MonoBehaviour {
                     }
                 }
             }
-            Debug.LogWarning("Bar: " + barLinesToDraw);
+            //Debug.LogWarning("Bar: " + barLinesToDraw);
 //             if (currentBeat % beatsPerBar != 0)
 //                  {
 //                      beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
@@ -270,7 +271,7 @@ public class MusicScoreRender : MonoBehaviour {
 
     GameObject InstantiateNote(float positionX, float positionY, float willConsumedTimeUnit, ScoreNote note)
     {
-        Debug.Log("InstantiateNote: " + note.Pitch?.Octave + " " + note.Pitch?.Step + " " + note.Type);
+        //Debug.Log("InstantiateNote: " + note.Pitch?.Octave + " " + note.Pitch?.Step + " " + note.Type);
         GameObject noteObj = Instantiate<GameObject>(
             this.GetPrafabByNote(note),
             new Vector3(0, 0, 0),
