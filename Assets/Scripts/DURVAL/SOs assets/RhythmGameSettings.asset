@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RhythmGameSettings
   m_EditorClassIdentifier: 
   DurationOneX: 1
-  DurationReductionPerDivision: 0
+  DurationReductionPerDivision: 0.25
   OnlyUseFirstStaff: 1
   HitWindowsTimings: []
   HitEvaluationSettings:

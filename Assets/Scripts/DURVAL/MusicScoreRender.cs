@@ -85,7 +85,7 @@ public class MusicScoreRender : MonoBehaviour {
             }
         }
         
-        this._durationOneX = gameSettings.DurationOneX - (Mathf.Log(musicScore.CurrentDivisions.Value) / 2) * 
+        this._durationOneX = gameSettings.DurationOneX - (musicScore.CurrentDivisions.Value / 2) * 
                 gameSettings.DurationReductionPerDivision;
     }
 
@@ -128,7 +128,7 @@ public class MusicScoreRender : MonoBehaviour {
                 if (measure.Attribute?.Divisions != null)
                 {
                     currentDivisions = measure.Attribute.Value.Divisions.Value;
-                    this._durationOneX = gameSettings.DurationOneX - (Mathf.Log(currentDivisions) / 2) * 
+                    this._durationOneX = gameSettings.DurationOneX - (currentDivisions / 2) * 
                         gameSettings.DurationReductionPerDivision;
                     beatsPerBar = measure.Attribute.Value.Time.Value.Beats;
                 }
@@ -142,7 +142,7 @@ public class MusicScoreRender : MonoBehaviour {
                      beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
                      beatMarker.transform.position = 
                          new Vector3(initialNoteSpawningPoint.position.x + initialNoteSpawningOffsetX - 
-                                     (this._durationOneX/2) + barLinesToDraw++ * barLength + -1
+                                     (this._durationOneX/2) + barLinesToDraw++ * barLength
                                                                                                    /*-
                                      (_durationOneX /* currentDivisions) / 2*/, 1, 0);
                      

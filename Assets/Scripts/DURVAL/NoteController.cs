@@ -229,7 +229,7 @@ public class NoteController : MonoBehaviour
         fadePatternSprite.gameObject.SetActive(showTrail);
         fadeFillingSprite.gameObject.SetActive(showTrail);
 
-        var durationX = gameSettings.DurationOneX - (currentDivisions / 2f) * 
+        var durationX = gameSettings.DurationOneX - (currentDivisions / 2) * 
             gameSettings.DurationReductionPerDivision;
 
         // if(currentDivisions == 4) 
