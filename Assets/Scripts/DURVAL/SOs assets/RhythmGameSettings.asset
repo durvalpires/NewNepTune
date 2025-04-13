@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RhythmGameSettings
   m_EditorClassIdentifier: 
   DurationOneX: 1
-  DurationReductionPerDivision: 0.25
+  DurationReductionPerDivision: 0
   OnlyUseFirstStaff: 1
   HitWindowsTimings: []
   HitEvaluationSettings:
@@ -35,6 +35,7 @@ MonoBehaviour:
   delayBeforeTutorialStart: 9
   numberBeatsToDrawLines: 3
   difficulty: 1
+  HaveDurationTrail: 0
   notePrefabs:
   - {fileID: 0}
   - {fileID: 0}

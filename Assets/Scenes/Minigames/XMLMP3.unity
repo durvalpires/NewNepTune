@@ -3423,7 +3423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playSubTic: 0
-  playTic: 0
+  playTic: 1
   metronomeClip:
   - {fileID: 8300000, guid: 337cc9fb906904bd4ae36ec80b6025ee, type: 3}
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
@@ -4929,7 +4929,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 122204990}
         m_TargetAssemblyTypeName: BouncingBall, Assembly-CSharp
-        m_MethodName: SetBpm
+        m_MethodName: SetupBall
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

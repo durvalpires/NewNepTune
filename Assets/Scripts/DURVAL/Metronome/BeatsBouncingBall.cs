@@ -17,7 +17,7 @@ public class BeatsBouncingBall : MonoBehaviour
         initialPosition = ball.position;  // Save the ball's starting position
     }
 
-    public void SetBpm(float bpm)
+    public void SetupBall(float bpm, float beatPerBar)
     {
         this.bpm = bpm;
         secondsPerBeat = 60f / bpm;   // Calculate the time per beat

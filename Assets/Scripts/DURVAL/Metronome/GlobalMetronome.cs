@@ -82,16 +82,9 @@ namespace QuantizedLoopStation
 
         private void FixedUpdate()
         {
-            if(!isInitialized || beatCount > 4/*!playTic*/) return;
+            if(!isInitialized) return;
+            
             beatInvertal = 60f / bpm;
-
-            // beatTimer += Time.fixedDeltaTime;
-            // if (beatTimer >= beatInvertal)
-            // {
-            //     beatTimer -= beatInvertal;
-            //     beatCount++;
-            //     tic(beatCount);
-            // }
 
             subBeatTimer += Time.fixedDeltaTime;
             if (subBeatTimer >= beatInvertal / quantizeDegree)
@@ -102,10 +95,13 @@ namespace QuantizedLoopStation
                 if (subBeatCount % quantizeDegree == 0)
                 {
                     beatCount++;
+                    if(beatCount <= rhythmGameSettings.beatsBeforeStart - this.numberBeatInBar || beatCount > 
+                        rhythmGameSettings.beatsBeforeStart) return;
+                    
                     tic(beatCount);
                 }
 
-                subTic(subBeatCount);
+                if (playSubTic) subTic(subBeatCount);
             }
 
             if (!twoBeatsLeftDone && beatCount == rhythmGameSettings.beatsBeforeStart - 1)
@@ -118,6 +114,7 @@ namespace QuantizedLoopStation
             {
                 OnPreCountdownDone?.Invoke();
                 preCountdownDone = true;
+                StopMetronome();
             }
         }
 
@@ -163,16 +160,7 @@ namespace QuantizedLoopStation
 
         private void OnTic(int beat)
         {
-            Debug.Log("OnTic: " + beat);
-            //if(!playTic) return;
-            if (beat % quantizeDegree == 0)
-            {
-                audioSource.PlayOneShot(metronomeClip[0], 1.0f);
-            }
-            else
-            {
-                audioSource.PlayOneShot(metronomeClip[0], 1.0f);
-            }
+            audioSource.PlayOneShot(metronomeClip[0], 1.0f);
         }
 
         private void OnSubTic(int subBeat)
