@@ -5716,7 +5716,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 122204990}
         m_TargetAssemblyTypeName: BouncingBall, Assembly-CSharp
-        m_MethodName: SetBpm
+        m_MethodName: SetupBall
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5728,7 +5728,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1228623091}
         m_TargetAssemblyTypeName: QuantizedLoopStation.GlobalMetronome, Assembly-CSharp
-        m_MethodName: SetBPM
+        m_MethodName: SetupMetronome
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
