@@ -181,7 +181,6 @@ MonoBehaviour:
   popup2: {fileID: 617814187}
   popup3: {fileID: 617814187}
   PopupGOContainer: {fileID: 200197905}
-  backgroundTrack: {fileID: 0}
 --- !u!1 &92117189
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 790.51575, y: -206.85}
+  m_AnchoredPosition: {x: 709.8994, y: -206.85}
   m_SizeDelta: {x: 0, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &389593289

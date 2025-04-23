@@ -3187,6 +3187,7 @@ MonoBehaviour:
     type: 3}
   beatsText: {fileID: 1709935112}
   beatTypeText: {fileID: 509455154}
+  clefImg: {fileID: 664843700}
   BeatsPerBar: 4
   currentDivisions: 0
 --- !u!1 &1161842744

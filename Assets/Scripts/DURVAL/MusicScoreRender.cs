@@ -20,6 +20,7 @@ public class MusicScoreRender : MonoBehaviour {
 
     [SerializeField] private TextMeshProUGUI beatsText;
     [SerializeField] private TextMeshProUGUI beatTypeText;
+    [SerializeField] private SpriteRenderer clefImg;
 
     private float speedXPerSec;
 
@@ -51,7 +52,7 @@ public class MusicScoreRender : MonoBehaviour {
         OneNoteY = distanceBetweenScoreLines / 2;
         distanceBetweenOctave = OneNoteY * Pitch.NoteListMain.Count;
         notesContainer.transform.localPosition = new Vector3(notesContainer.transform.localPosition.x, 
-            notesContainer.transform.localPosition.y - distanceBetweenScoreLines, notesContainer.transform.localPosition.z);
+            notesContainer.transform.localPosition.y - distanceBetweenScoreLines /*+ (4-3)*distanceBetweenOctave*/, notesContainer.transform.localPosition.z);
         
         //YOfC4 = OneNoteY * Pitch.NoteList.Count * 5;
         YOfC4 = OneNoteY * Pitch.NoteListMain.Count * 5;
@@ -74,6 +75,13 @@ public class MusicScoreRender : MonoBehaviour {
                 if (measure.Attribute?.Divisions != null)
                 {
                     musicScore.CurrentDivisions = measure.Attribute.Value.Divisions.Value;
+                }
+                
+                if(measure.Attribute.Value.Clef != null)
+                {
+                    clefImg.sprite = gameSettings.GetClefSprite(
+                        measure.Attribute.Value.Clef.Value.Sign);
+                    clefImg.color = Color.black;
                 }
 
                 if (measure.Attribute?.Time == null) continue;

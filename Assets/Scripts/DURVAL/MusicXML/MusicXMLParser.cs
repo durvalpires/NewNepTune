@@ -228,6 +228,11 @@ public static class MusicXMLParser
                 Beats = Int32.Parse(attributesNode.SelectSingleNode("time/beats").InnerText),
                 BeatType = Int32.Parse(attributesNode.SelectSingleNode("time/beat-type").InnerText),
             },
+            Clef = attributesNode.SelectSingleNode("clef") == null ? null : new Clef()
+            {
+                Sign = attributesNode.SelectSingleNode("clef/sign").InnerText,
+                Line = Int32.Parse(attributesNode.SelectSingleNode("clef/line").InnerText),
+            },
         };
     }
 

@@ -46,6 +46,9 @@ public class RhythmGameSettings : ScriptableObject
 
     public List<NoteElementVariationSpritePair> noteCircleVariationsSprites;
     public Sprite beamSprite;
+    public Sprite rightHandClefSprite;
+    public Sprite leftHandClefSprite;
+    public List<NoteElementVariationSpritePair> clefSprites;
 
     public List<string> circleLineNotes;
     public GameObject hitEffectPrefab;
@@ -106,6 +109,20 @@ public class RhythmGameSettings : ScriptableObject
         }
 
         Debug.LogWarning($"Prefab for note type '{noteType}' not found.");
+        return null;
+    }
+    
+    public Sprite GetClefSprite(string clefType)
+    {
+        foreach (var pair in clefSprites)
+        {
+            if (pair.noteType.Equals(clefType, StringComparison.OrdinalIgnoreCase))
+            {
+                return pair.sprite;
+            }
+        }
+
+        Debug.LogWarning($"Clef Sprite for note type '{clefType}' not found.");
         return null;
     }
 }
