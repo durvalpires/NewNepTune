@@ -12,14 +12,16 @@ public class LevelsInitController : MonoBehaviour
     // #if UNITY_EDITOR
     // [SerializeField] private AllWorldsSO allLevelsConfig_Editor;
     // #endif
-    
+    [SerializeField] private ParticleSystem winParticlesPrefab;
+    [SerializeField] private Transform winParticlesParent;
+
     [SerializeField] private WorldDataUnityEvent onInit;
     [SerializeField] private UnityEvent onceAllLevelsDone;
     private WorldSO data = null;
 
     private void Awake()
     {
-        
+        onceAllLevelsDone.AddListener(PlayWinEffects);
     }
 
     private void Start()
@@ -68,5 +70,12 @@ public class LevelsInitController : MonoBehaviour
             }
             return true;
         }
+    }
+
+    private void PlayWinEffects()
+    {
+        var fx = Instantiate(winParticlesPrefab, winParticlesParent);
+        fx.Play();
+        Destroy(fx.gameObject, fx.main.startLifetime.constantMax);
     }
 }
