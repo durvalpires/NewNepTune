@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44831d7b53a84c58a7a6da7c939da97, type: 3}
+  m_Name: CongratsConfigSO
+  m_EditorClassIdentifier: 
+  triggerPlanetIndex: 7
+  popupPrefab: {fileID: 388323020891653295, guid: 799f78c3524a14a76807071d7380ca68,
+    type: 3}
+  fireworksPrefab: {fileID: 7291838540196593265, guid: eebd4198cae929f4883e70594350f6af,
+    type: 3}
+  fireworksDuration: 4
+  messageFormat: 'Congratulations you unlock left hand world number '

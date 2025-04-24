@@ -1736,6 +1736,8 @@ MonoBehaviour:
   - {fileID: 8155012164354477193, guid: e4c42383a8a4e41c48bfa6327978238e, type: 3}
   - {fileID: 4639792851428951028, guid: 835bb0375e13d41548d2c98849ca3e88, type: 3}
   contentSizeFitter: {fileID: 204637454}
+  congratsConfig: {fileID: 11400000, guid: 96fcbdd623c8645c0b255ea6e5bbed70, type: 2}
+  uiCanvas: {fileID: 224038931}
 --- !u!224 &1424821001
 RectTransform:
   m_ObjectHideFlags: 0
