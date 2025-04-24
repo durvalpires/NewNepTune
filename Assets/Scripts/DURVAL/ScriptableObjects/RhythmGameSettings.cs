@@ -46,8 +46,6 @@ public class RhythmGameSettings : ScriptableObject
 
     public List<NoteElementVariationSpritePair> noteCircleVariationsSprites;
     public Sprite beamSprite;
-    public Sprite rightHandClefSprite;
-    public Sprite leftHandClefSprite;
     public List<NoteElementVariationSpritePair> clefSprites;
 
     public List<string> circleLineNotes;

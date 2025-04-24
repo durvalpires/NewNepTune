@@ -44,6 +44,9 @@ public class MusicScoreRender : MonoBehaviour {
     private int noteIndex = 1;
 
     public int currentDivisions;
+    
+    private bool isRightHand = true;
+    public bool IsRightHand => isRightHand;
 
 
     void Awake()
@@ -79,9 +82,12 @@ public class MusicScoreRender : MonoBehaviour {
                 
                 if(measure.Attribute.Value.Clef != null)
                 {
+                    isRightHand = measure.Attribute.Value.Clef.Value.Sign == "G";
                     clefImg.sprite = gameSettings.GetClefSprite(
                         measure.Attribute.Value.Clef.Value.Sign);
                     clefImg.color = Color.black;
+                    clefImg.transform.localPosition = new Vector3(clefImg.transform.localPosition.x, 
+                        clefImg.transform.localPosition.y + OneNoteY*2, clefImg.transform.localPosition.z);
                 }
 
                 if (measure.Attribute?.Time == null) continue;
@@ -177,7 +183,9 @@ public class MusicScoreRender : MonoBehaviour {
                             //Debug.Log("Midinotenumber: " + note.Pitch.Value.GetMidiNoteNumber());
                             //y = note.Pitch.Value.GetMidiNoteNumber() * OneNoteY - YOfC4;
                             y = Pitch.NoteListMain.IndexOf(note.Pitch.Value.Step) * OneNoteY +
-                                (note.Pitch.Value.Octave - 4) * distanceBetweenOctave;
+                                (note.Pitch.Value.Octave - (4 + (isRightHand ? 0 : -1))) * distanceBetweenOctave;
+                            
+                            if (!isRightHand) y += OneNoteY * 5f; //5 is the amount of notes that C go 'upwards' between G and F clef
 
                             if (note.Pitch.Value.Step == "C" && note.Pitch.Value.Octave == 4)
                             {

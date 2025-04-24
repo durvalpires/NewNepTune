@@ -86,12 +86,9 @@ MonoBehaviour:
   - noteType: whole
     sprite: {fileID: 21300000, guid: ec31c99a231474943807d23064a65858, type: 3}
   beamSprite: {fileID: 21300000, guid: 6f293b2c1358343c98925aca16c6e14f, type: 3}
-  rightHandClefSprite: {fileID: 21300000, guid: 877748961107d43e983ce1e9e33d5df3,
-    type: 3}
-  leftHandClefSprite: {fileID: 21300000, guid: d28ddb96ab466431b963380c55ab84dc, type: 3}
   clefSprites:
   - noteType: G
-    sprite: {fileID: 21300000, guid: 877748961107d43e983ce1e9e33d5df3, type: 3}
+    sprite: {fileID: 21300000, guid: e4a06dc55912b4fa7a71aff427bd7265, type: 3}
   - noteType: F
     sprite: {fileID: 21300000, guid: d28ddb96ab466431b963380c55ab84dc, type: 3}
   circleLineNotes:
