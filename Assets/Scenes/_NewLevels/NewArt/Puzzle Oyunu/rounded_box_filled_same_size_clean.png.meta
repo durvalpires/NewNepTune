@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d34ed4d5d935b4143b575e5284adcbb9
+guid: f622297b4bc1843f9a4879fe424caae3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2019593523723430925
-    second: '[CITYPNG.COM]HD White Neon Frame Transparent Background - 2500x2500_0'
+      213: 2870732029336141352
+    second: rounded_box_filled_same_size_clean_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: '[CITYPNG.COM]HD White Neon Frame Transparent Background - 2500x2500_0'
+      name: rounded_box_filled_same_size_clean_0
       rect:
         serializedVersion: 2
-        x: 118
-        y: 588
-        width: 2264
-        height: 1324
+        x: 175
+        y: 288
+        width: 673
+        height: 949
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d0ce63c0c99070c10800000000000000
-      internalID: 2019593523723430925
+      spriteID: 82ebae52293e6d720800000000000000
+      internalID: 2870732029336141352
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      '[CITYPNG.COM]HD White Neon Frame Transparent Background - 2500x2500_0': 2019593523723430925
+      rounded_box_filled_same_size_clean_0: 2870732029336141352
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

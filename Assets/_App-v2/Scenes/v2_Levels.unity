@@ -664,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 709.8994, y: -206.85}
+  m_AnchoredPosition: {x: 838.5151, y: -206.85}
   m_SizeDelta: {x: 0, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &389593289
@@ -1971,6 +1971,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldName: {fileID: 1965731879}
+  winParticlesPrefab: {fileID: 7291838540196593265, guid: eebd4198cae929f4883e70594350f6af,
+    type: 3}
+  winParticlesParent: {fileID: 1114070820}
   onInit:
     m_PersistentCalls:
       m_Calls:

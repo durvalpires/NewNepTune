@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Android.Gradle;
 using UnityEngine;
+using UnityEngine.LightTransport;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,8 +13,12 @@ public class PlanetsUI : MonoBehaviour
     [SerializeField] private Transform container;
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private ContentSizeFitter contentSizeFitter;
-    private GeneralConfigSO generalConfigData => PlayerModel.GeneralConfig;
 
+
+    [SerializeField] private CongratsConfigSO congratsConfig;
+    [SerializeField] private Transform uiCanvas;
+
+    private GeneralConfigSO generalConfigData => PlayerModel.GeneralConfig;
     private List<PlanetBtn> allPlanetBtns = new List<PlanetBtn>();
     public void Init()
     {
@@ -37,6 +44,12 @@ public class PlanetsUI : MonoBehaviour
                 }
             }
         }
+        
+        if (openedPlanet == congratsConfig.triggerPlanetIndex)
+        {
+            string worldName = PlayerModel.AllWorlds.worldsConfigs[openedPlanet].name;
+            congratsConfig.ShowCongrats(this, uiCanvas, worldName);
+        }
         StartCoroutine(RefreshCanvas());
     }
 
@@ -54,4 +67,5 @@ public class PlanetsUI : MonoBehaviour
         yield return null;
         contentSizeFitter.enabled = true;
     }
+
 }
