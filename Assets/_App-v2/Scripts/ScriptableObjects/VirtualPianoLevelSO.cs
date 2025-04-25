@@ -8,4 +8,5 @@ public class VirtualPianoLevelSO : LevelSO
     public AssetReference songClip;
     public AssetReference backgroundClip;
     public bool isTutorial;
+    public int introBeats = 2;
 }

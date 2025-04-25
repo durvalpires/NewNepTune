@@ -17,6 +17,7 @@ using UnityEngine.UI;
 public class RhythmGameManager : MonoBehaviour
 {
     public UnityEvent<float, int> OnTempoChanged;
+    public UnityEvent<float, int, int> OnMetronomeDataLoaded;
     public UnityEvent<int> OnNotesAmountCalculated;
     public UnityEvent<RhythmGameScoreController> OnLevelEnded;
     public UnityEvent OnNoteHit;
@@ -84,6 +85,7 @@ public class RhythmGameManager : MonoBehaviour
 
     [SerializeField] private VirtualPianoLevelSO testingLevel;
 
+    private int introBeats = 2;
     
     void Awake()
     {
@@ -95,6 +97,8 @@ public class RhythmGameManager : MonoBehaviour
         }
       
         if (data == null) data = testingLevel;
+        
+        introBeats = data.introBeats;
       
         LoadLevelAssets(data);
     }
@@ -117,7 +121,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         float delay = isAutoPlayTutorial ? rhythmGameSettings.delayBeforeTutorialStart : rhythmGameSettings.delayBeforeLevelStart;
         yield return new WaitForSeconds(delay);
-        OnTempoChanged?.Invoke(scoreRender.Bpm, scoreRender.BeatsPerBar);
+        //OnTempoChanged?.Invoke(scoreRender.Bpm, scoreRender.BeatsPerBar);
+        OnMetronomeDataLoaded?.Invoke(scoreRender.Bpm, scoreRender.BeatsPerBar, introBeats);
         isLevelStarted = true;
         yield return null;
     }

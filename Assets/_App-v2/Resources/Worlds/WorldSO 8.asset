@@ -16,23 +16,23 @@ MonoBehaviour:
   id: 8
   worldSprite: {fileID: 21300000, guid: 220cbc0d177f947e1a7464461dba7a6b, type: 3}
   levels:
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: b624e1af9775d41b197199f656649b65, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 34d64d84fe59546ad987aaf4c3245c0a, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 9d224975247044ede93ed7e23025ce35, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 8aef4a0b3e23c425a872b3bc629a1b12, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 90a9197cf599c46b2af9103a809ac416, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 16010db39beaa4003a041a3f33d146c5, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 549b6ed9cc5d14e5cae170fe15b49838, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: baf82c0877f984c9588c4f8e6243bd9f, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 38b35d75bdb26409eac6549025e7e1a8, type: 2}
-  - image: {fileID: 0}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: f0593cceef2814ea88a8cc72feac7361, type: 2}

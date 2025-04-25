@@ -42,6 +42,10 @@ namespace QuantizedLoopStation
         private bool preCountdownDone = false;
         public UnityEvent OnTwoBeatsLeft;
         private bool twoBeatsLeftDone = false;
+        public UnityEvent OnBeatTap;
+        public UnityEvent OnBackgroundTrackTrigger;
+
+        private int backgroundTrackIntroBeats = 2;
 
 
         //[SerializeField] private LoopStation curLoopStation;
@@ -103,6 +107,11 @@ namespace QuantizedLoopStation
 
                 if (playSubTic) subTic(subBeatCount);
             }
+            
+            if(this.numberBeatInBar - beatCount == this.backgroundTrackIntroBeats)
+            {
+                OnBackgroundTrackTrigger.Invoke();
+            }
 
             if (!twoBeatsLeftDone && beatCount == rhythmGameSettings.beatsBeforeStart - 1)
             {
@@ -144,11 +153,12 @@ namespace QuantizedLoopStation
             }
         }
 
-        public void SetupMetronome(float bpm, int beatPerBar)
+        // WHERE EVERYTHING IS KICKSTARTED
+        public void SetupMetronome(float bpm, int beatPerBar, int backTrackIntroBeats)
         {
             this.bpm = bpm;
             this.numberBeatInBar = beatPerBar;
-            Debug.Log(numberBeatInBar);
+            this.backgroundTrackIntroBeats = backTrackIntroBeats;
             isInitialized = true;
         }
 
