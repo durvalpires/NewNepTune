@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.Android.Gradle;
 using UnityEngine;
-using UnityEngine.LightTransport;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -48,7 +45,7 @@ public class PlanetsUI : MonoBehaviour
         if (openedPlanet == congratsConfig.triggerPlanetIndex)
         {
             string worldName = PlayerModel.AllWorlds.worldsConfigs[openedPlanet].name;
-            congratsConfig.ShowCongrats(this, uiCanvas, worldName);
+            congratsConfig.ShowCongrats(this, uiCanvas, worldName, openedPlanet);
         }
         StartCoroutine(RefreshCanvas());
     }

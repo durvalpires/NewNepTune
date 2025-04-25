@@ -19,2835 +19,3217 @@ MonoBehaviour:
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 017978f723a4b4f67950f0bed49a87d3
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 1.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 026dd736d10414d5384cb250dc6a204c
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       10 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0398cd7f4852547e8bdded785c250158
     m_Address: Assets/VPContent/Middle A/MIDDLE A - 1st Exercise.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0450120d572f8425c8467e36fdef5629
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 5.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 05bb330b50ed0434b9ebb4194b159d66
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 11.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 05c743c8d5d7548b9a6cf051969d32ef
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       1.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 060fd91c241674a73859d9468f3b3162
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 3.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 069edbffefeab4c15aea7739de0ecb41
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 9 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 06e34978296db47c6b102b61900728d6
     m_Address: Assets/VPContent/Middle B/MIDDLE B - 2nd Exercise  (1).mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 07305027195f444458bdefa77b191411
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 11.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 08969b216fe3246028d14879ac406a0f
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 08e7376024e0348deac757586f417525
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 3  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 09355375144a34fd8959cee8db9e576a
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 4.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 09b73fbb00cd54b9c93d0370480751e3
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0a69a206ef77b46149ff3da2f5f92779
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left Hand - exercise
       2 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0a9c1094473fa409da1e7178e24c6d84
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand exercise
       10 .musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0ab18f1bcb0d54ea78f66660f50553b2
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 11.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0adedb11752e94b09b288a57698190b2
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 7 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0b5be82ec0d1b4d55b8a77bf04ca9494
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0c4fde5670a8546ee8cd1195eb161d31
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0c5c4f1262fc54f688de8971325d1947
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 3.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0c81fe485a2f344febb0f7c625a6d51b
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0d7fb1ccefd0548e9bb31cf39e436b90
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left Hand exercise
       7.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0e372fe0f0a71480da495fda634a1754
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       Hand - exercise 2 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0eb29dcb21de348fea956deadbbba5a6
-    m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLEC Left hand - exercise
-      4.musicxml.xml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0f256322b0a344744b82deb7b0767a17
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1077a90fc6c2247f79749175aa15bc33
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10b2bb45b7a394d798e52be1fe3c7e63
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10c57e8ed03854a4d848aa2f5282cbc2
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10c8d86edc20044bbaeac31a7261927d
     m_Address: Assets/VPContent/Middle F/MIDDLE F- 1st exercise.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1148b9d0018ac48a79c9d586438d0bc9
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 116d8524b152a4e8297a1633dc1706b2
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 7 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 118014322ecd644aab3025fd12649036
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 10 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 12285ac87ff1c47219a531b7d8a63b8e
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 125a5ebad847a4cc59f35ea00571d73f
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 5.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 127d8f541afbb4e20b41563a8a6dcaf4
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 12.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 12925ae0eb5314e329673940fbb7992b
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1310ecc352b044dc7a82409438e3a125
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 13276716715304f15b1a6a50f04ffbdf
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/Middle A left hand  exercise
       1.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 13c1627cd7d534ca199a3ed6581ef8ad
     m_Address: Assets/VPContent/Middle B/MIddle B - 2nd Exercise  (1).xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1483ca15ef31d4bdbbdbbcfa1c180500
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      hand exercise 3.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1488cad3221804994910874ce25a4361
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 5.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 148becfe82ea944cc8e9dd1beb7f63cb
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 9.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 157d9d5b0e83b40e4b059e4cd7a164f5
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 159379172064849508948ffa19e54704
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 8.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16d3996559ce34c348d27eba6d343602
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 9.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 17638c7071813460695a29a14057da45
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand exercise
       6 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1767129c2deb54f0db2e50d1957a9244
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 179308371b57d473eb984ee6bf4ff85e
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 3.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 179aab9314a1244dd909c4e67b821a66
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 17aae3112e75545b0ab24bd2135d94ce
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 7 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 183ee408176d14324af734feb99d019f
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 9 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 18c64755c720b42379ccdefaf0e71a5a
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       8.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 190e8f799ef8f4307aaea0948d924c2c
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       4.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19192ca949f9349de8f8f3b562909d8b
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 10 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19d386cfa18de4b83b2038f83f2a1c1e
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1aacbb29bd1fe476ca072f37ab0e467f
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1b4a7b1eb9bd94986bb31ef49bc08f47
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 12.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1b6eee5db261f435482fc28f04a655ee
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1bf9f59046ed54c3eb824167abd66f3a
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left Hand exercise
       7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1cc60ff36b9ab419490c665f240c1cc2
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 3  .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1d50950bcfc69453f863f6d21669c2bb
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 9 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1d5e64e72ce23402fa1cdb9545e32723
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Note exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1d845400f29764bbea57b7646f458a48
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left Hand exercise
       5.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1e6ee193e204649d79ba46b1b4bc6e9f
     m_Address: Assets/VPContent/Middle E/MIDDLE E - Exersize 1.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ee8993c532264636b487ecdda37367f
     m_Address: Assets/VPContent/Middle B/MIDDLE B - 2nd Exercise .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ef7afa7a92714a418204cca2d8649c9
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand - exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f2e9520beb844b50b4e55418062d1ab
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 7.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f504adbecbc844c4bf05accf80edbe9
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1f8602093b7794dfb993e03197fb9c9a
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      Hand exercise 5.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1fab7de2b96354b72b67fc567718ec8f
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 8.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1fcd63add0b784fe79493def95472a14
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 20eed40842745457b836c7b44cf0d735
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand -
       exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2142622116a014353aa6345317512533
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 216e59b562acc460f82b6e620c518168
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 217138a547f9a4c05b1ed90b9844b01e
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 10.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2200498c70e12487389d6972d4dd0ccb
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2234f992ae1574a09bf0296e2e0fd1a4
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand -
       exercise 9 .musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 23a481193cdb54b90a910b1d5e6e35d7
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2458465ca87df4ee7963ab693a79c2c1
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 24fd29a3eeee842679955861ca95bfe8
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25480c80ddec04578a399bdf42a1ac60
     m_Address: Assets/VPContent/Middle B/MIddle B - 2nd Exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25a70b1ffbadf4454a5dba4136136ddb
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 8 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25f6b8943552c4bf4b0e6e4dd0846b8f
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 26d020974af1d4d54be0e9e33b57b495
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 27abf425c7405489aa1b797f6197ee00
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 4.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 27e860a816bcc4cfe95287525175d327
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       6 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 281a36092efb44a999eaaa7bb3e27728
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 294a1116d89b240bcb4439fff3d036c1
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 294ba045786474f6fa2d91477b32fa8d
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 8  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 295ad14c215fd42febc9b85fcc9fa8df
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 299fec02d66584c8894866b4667fb337
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand exercise
       6 .musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 29d8fce3116cd48a49154b1e0bf1eba4
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 9.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2add2f7769b1f4edf958c280c272460c
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 11.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b38a3034ca6644c693fe6af04de75dc
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2b50f2fb4c7a94255baa4b11136c1dd0
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/Middle E left
-      hand exercise 1.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2ccf108f3cdde41bfa5a264976e32e6c
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2db326d1a71d3400f9a3f152b7b65ff6
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e4cd68e094a54a49a4db9456433067d
     m_Address: Assets/VPContent/Middle C/MIDDLE C- EXERCISE 2 MP3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e6e0201a65a9471b9643c20f8065630
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERICISE 6.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2eaefba2eb9b047f0a0a0a3318806b69
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2ec298a2f0fb347059998c342cc6ce44
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 3.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2f9e2f6655f7b4fa2939ed97c9a36540
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 6.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2fcbcf467d8ea4f9eb9556572fc2440b
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      hand exercise 6 .musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 312b50942da5f4f31846aa0a07e3f389
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 315b610a8da3d4ea48518667cddee929
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 11.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3323a1b78a37f4e1c9c440e463abcd7f
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 337dcdf1c04044530bf983c3ac563269
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33a0a7bc766b14da4b41248fa1e44814
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       hand exercise 6 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3426d5f14555f4aca998bdf3a2bada10
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3430dd1cca1f44c5eb96c4e83fb2ebf0
     m_Address: Assets/VPContent/Middle F/MIDDLE F- 1st exercise. mp3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 358710b98870d44df96e8183c4bb4d2d
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 9.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 361c6b2c0ae8f465e98bd519f2d54db0
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 6.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3784b46ece59e4882840234d6b061129
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand exercise
       8.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 378c846482105429cb11ff997a86142c
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 8 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 382b4fe4ad4e448928c26b74b7bb0b75
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 7 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 38f91aec5d4514a6f8a02798c7117127
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 4 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 39384a139058f42928c17361ff6425f4
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/Middle D left
       hand - exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3950c338f96e843478db03f01ec7d308
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ab0f2c1f7b7043c6969abdf4b0d05e1
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ad735b8708354133991d57fdd9a5846
     m_Address: Assets/VPContent/Middle D/MIDDLE D - Exercise 2EDITED.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3af525f82fa7241098af946b8225b414
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand exercise
       8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3bb8ab30475f141498993c3438da1335
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3c989baed08aa48fc8748f576c9887df
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      Hand exercise 2 .musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3d6200d1567034b1f9100d6f7a635119
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ee5778663e7f42a488c36c25771404c
     m_Address: Assets/VPContent/Middle C/MIDDLE C 10 EXERCISE.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ffddeb9606d746fea9ccf2680535e91
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 4.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4019bcf786eab4c5ab2242da358b18d5
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 409f3289278754b62bf5087735d4e0be
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 7  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 411d58cb734084ba88a29d116ec98d1d
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 5.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4169fca88570342d6b26e9398c4c0309
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 7  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41a27dc85fd074bf297141808a968a6e
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41b3fc6de34fe4b1f98ec407b5d98969
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41eada7e3615a4cfab3624f623798e38
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 7.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 42429466361db4023868b8d6ce4c7858
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       4.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4282ce75f2c9f44ac828610a078f1b0b
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       hand exercise 10 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 432f751df64254a2b9ef7647d3d0dd6a
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 8.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 43c277ff4266044aa8bc714673bc9aeb
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 4.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 44521d7aee01c4144b1809f63c907c1f
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      Hand exercise 5.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 44c46c706b7f942ac9bc34688cf2f1be
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45184a4a9091148f3a6157a5ef65f864
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 8 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 455974bdf54c84daaa7c3608ff8f4eb8
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45aa9727088f14417be6630acd00902e
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 8 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45d8a77cfca8645e785d9f9ec61c8f10
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 467642123f10d4aa3a4bb827ae0106d2
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 470dd1f5d400949d8b1d0e1ed739cd90
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 472e1d064b8824dd3ad32212ef39bc6c
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 47ce73fb03aa6461aa9e95ae9411fc98
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       8.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 486b15166edc44637aed962d12d05e92
     m_Address: Assets/VPContent/Middle A/MIDDLE A - 1st Exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 492d5d975a4024963a87d367e1d21ca8
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4987172db5af04164958c7d75c9e171a
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXCERCISE 12.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 499bdaadb4c9047bc957e7be22ca1add
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4aa0b30c4818548ec8bbbd1fbbd6067c
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4ac83a086c19f447c817c26f2702f439
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 3.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b1dbcb231e144d49a531760f81e1ba6
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4c30d3dac9c4445c7876ad61208a4d7e
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4cade69ce29ce451d87084d8627ea8ae
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4cf853fc4aee04113b0cbecd52aa0101
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4de882e12156d4793a04b05eb295e7fe
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 10 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4df807fcdd5e44ddab052fe2737a5d0e
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4ede44ae9576342828309bf0fed883d0
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 50789f730be954be7acd9d2f3befccc3
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 6  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 50e7b9df825984a6cb457e7e510483ff
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5151f7bbecca74e9cac3cb58be519369
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 4.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 51732d1cf078740bfa941779a8a2a0f2
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 517e0a3b32c3049a28ce611ecc7bdcc6
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 51bac7c8eed4745a5a4a0854ede20414
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 8 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5276698b9af6a475d88cc9cbb1d6e029
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 11.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 529ab3cd9bef44491846e30a5079eb5f
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      hand exercise 9.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 529db64d3f124427a8e6343a3d8d4e70
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5302582deb77544e38e7cf40ef46e919
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left Hand exercise
       5.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 531b2ef08bfe145838d7fac600fbeed0
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 533cc805ee0494529b58f3b3dc477fae
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 547c5091d1b5e4d49849f7dcf5f0f1e0
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 6 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 560e47f44dc034e49ac9d6ff7857a2a9
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 3.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5651fe056a62a4e1dbf60baaa0c7bee4
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 3 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 57076007d4a374b5d8e775ca8a093ea0
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 575e26ca06347408f890b703acf81783
     m_Address: Assets/VPContent/Middle F/MIDDLE F - 1st exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 576c6b9e5cd9b453eb4169937dda1bc6
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 8.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 582131b8122af4636b1d0ea1a4f94154
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 58a8773db98b44a1786010bc456c7755
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 3 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5936ca7c2beb84b2e93f887ad0bc6ed0
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 595b12876ee724107be1eb7be5139af5
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 8 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 59a568b946b4f470e90b98372d63183e
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5a780991bae66460f9f846817234eaab
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 12 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5b8a00c8ec391466781ddf852874a9cf
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5ba13216005a04c9a858ea398e4a5b0f
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 4.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5bdbc3995f08e45c1996ac677d898ae0
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       7.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c9707ff40ad64e5e83bc2c4c5f5ae82
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d47f69dfd5e24c9ea1c8f2bd5c663e7
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       10.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5da9384a038e6460e8c9177d599cd620
     m_Address: Assets/VPContent/Middle E/MIDDLE E exercise 2.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5dd0343a48742467f9fa7f62cf986617
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5e1bebdc484804231a1608b3348b1d5b
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 8 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5e4a409e0b8db4a32962e4c441f9e50b
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       7.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5e52c8d4ba8164774b46fe96c8a76ed5
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5e825e206dcc3482a83219af0ca57f1c
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 6.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5eba0fcb0d8d342ee96cdb8b1aead15c
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 4.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f3179e087eac4f319672e8f9d4afe0c
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fb771ef40bda44c49205cc7f872cee4
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 11.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fd8f3eca4df6417a9fa721414e08165
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       Hand exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 604f0e3bcd5994f35a9c9b36dcb288ac
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 606e9bdfcb04745fdbe15fc344152f9c
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 60754f50bcce3458c993571ec900e9ae
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 613f2478eb3f0405ba7e113cb67a9730
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       Hand exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 619e920f89e5e41d0b2d17f21a13708f
     m_Address: Assets/VPContent/Middle G/MIDDLE G - 2nd Exercise .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61c334a27a1914258be460cf342fd7b0
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 9 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 629b8c9ff431b40b3aa787ce3be5f9e1
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 9.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 62ef5712823f44c6fb1aba36da2eb05e
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 63641a1474c2443e182e28c45b656c70
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 638737265c9c8493cbf2a5b6a9543630
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 3.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 63e19267d49ef460aa9c36e8325b6d35
     m_Address: Assets/VPContent/Middle D/MIDDLE D - EXERCISE 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 64014ac6e37a54ec0854cbdfe3e0fd87
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6413aee7363f74b21a9cb79b71afc86b
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 643be8dbe188b485bb8dbeee9a4c75eb
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 65a3624947a4f4429a0b315fb8f6f179
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 65c1d4ce136954862b62ec6a1d369b5a
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 4  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 663517bd1a4184e73b9c8e281f77863f
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 11.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 66e22fcfb82bf4cf483afbf5ad8b0825
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 11.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 67a93bb60bc57454192afd00ebebb7b6
     m_Address: Assets/VPContent/Middle B/MIDDLE B - 1ST EXERCISE .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6853c520b0aa34365ab67805263b3a34
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 4.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 694948649f35c4363bd79fe83a6f14bf
     m_Address: Assets/VPContent/Middle A/MIDDLE A - 1st Exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 69f2e54d4347f4e9288ecf2009eb386b
     m_Address: Assets/VPContent/Middle E/MIDDLE E - Exersize 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6a69b90b9df414e0abfccdba0c65bb4f
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left Hand exercise
       5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6ab501d959ed84782ad6e4e12d7d4100
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand - exercise
       9 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6b363c30b9fe444a39ca47481ffee23a
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6ba9d497b67c747e4933fb9c09c8a847
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6bb00582a674f4497a8c0c061af0f352
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c16016ff48bd47aa9af44c5c3c13512
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 11.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c764383c0da84562909244a744ca4ef
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand - exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c96cbc483ecc49ee93b5ac3d2e807dc
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6da78e43f5a9a4c52a97ea0d7586ecd0
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 12.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6dbf2ba0b378a4f41b07651b84b0115b
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6dea3000f1de44616a7f4328659be927
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6df6a3d77967b43dbaf0e7e3b33c6757
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6e7a0f8dfda4e48d8abc8cea3209c430
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 10.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f22be7d7f50e424193abd51e1af8d20
     m_Address: Systems
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7035ef06bbffe47db8e53f92a2bae01d
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 703d64031400c42409d4d644ebb4efc4
     m_Address: Assets/VPContent/Middle F/MIDDLE F - 2ND EXERCISE .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 70accbdf894ec4c95a328d64b90fd6fc
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71ce3596eca104642ad847df8c738f48
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 727b8bc5f09d44203b8191b30d34fb1d
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 9 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 72e4ed65242284d0cab9224e2ab7f110
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 7 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 739c63c8702784c7c9aa6fbedafb4205
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 73d11b507e88f452197799ef6b3dd9ca
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 73e92cb6156244e94bb46ebca0764faf
     m_Address: Assets/VPContent/Middle B/MIDDLE B - 1st Exercise  (1).xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7456bdf97a36c41e6b467e51d1a9b33e
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74d16abd0cb4c4bf580c40ca0747b266
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left Hand -
       Exercise 2 .musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74e1d248177334d6d9efc1989dcc1440
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74e42e45c337845709ef35be54f85846
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 12.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7557fd4a83f9f45ff8e9aefcaef6f8cf
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left Hand exercise
       5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75b9b6db077bf425781b189f15450f81
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 11 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75e7909c0ea3440acba80011eefbba7f
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7621c6a88228b4f54aef00af126af691
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 5.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 76be2a827a01f4309be1176131f9b680
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 10.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 77f12b33b27c14b1783d3174c04775a0
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 1.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78061bc98b1a645e1a25045e17168858
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 12 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7849f639ed7b64dcda8f2568e44e6cf0
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7886160a9b68d48588080f26c73c45a0
     m_Address: Assets/VPContent/Middle F/MIDDLE F - 2ND EXERCISE .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78a2703be04504bdea02277b58020a2e
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 5.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79290f10a43054045a39a98b8a865a41
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 793f7f2cb9e374a09bb3d0c5e730bb07
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       2.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7957d3ea8d09445328aa4fdae0160c24
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 8  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79a02f97bad0f413da05c57e5a2fcbc7
     m_Address: Assets/VPContent/Middle E/MIDDLE E exercise 2 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a2e9b672c47d4ee290f0e4072ecd544
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a7cb68c279564f5e97abff0475e461d
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       6.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a8c6786366bb4c7bb6bf516ba39694e
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7bcc670406c2544c099630ab0af0e810
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7c3b477ad0dfe43a8bc707262fc6b61b
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7cf1c4a2fbdd244ef89140e60284176b
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e0a8b1a6e43d4cacaae22045f683934
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e0e057d17aef4292885e40e10b4ba1c
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 10 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e19f805e6b3248fca39f031cbd36d62
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/Middle E left
       hand - exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e4ea17ce9edc49bc9217bba73d04aae
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 6.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7f7d2056f64a24b04934ed46a6da1e7c
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 11 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 802028bb626274f54ba24e791a4b8c4d
     m_Address: Assets/VPContent/Middle G/Middle G - 2nd exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8063931a6f47640e885cef10cbd3c75a
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       8.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 80e6c2abe480f4ac8836315ac30e453e
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 4 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 813ca5d7a03454489b453cf6e13b2f69
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand exercise
       10 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8169d0abdd1444fa385d2d462570c370
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       5.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 817e36655c35142d28d28335b6a4bdd1
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      hand exercise 4.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 819589ea8c3bb410c9e6b904678ab164
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8226fcbd24f404514a4e4739c864da2d
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 826a8bdc029de467cbeee3e4291fe55d
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8438db4a8567d4c4981bdc019b42e6fc
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 84bac827f828445e190caff750cc939d
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand - exercise
       3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 85087e681d98c49e8b6fdc7a726ccf59
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 85136ff57bb914a8880b38d1fd7b7c1f
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 12 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 855f45d57f0c5491bbd315544b983682
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 858444d7f764e470b905766085b91e87
     m_Address: Assets/VPContent/Middle C/MIDDLE C 10 EXERCISE.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 85b379e4291cc42e68480e49f1f268b1
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 86893f5758a124562b9dc8ddc7bcf163
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       10 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 86dba3f53b7f34e3b86b36dfe93a59cb
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8710d619cbc5dba489c162e248aeb860
     m_Address: Assets/VPContent/Middle C/Middle C exercise 1.wav
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 87dbdb042fae144a192f560cd7f47e91
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 4 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 882348db0f64e4514ba9678546399648
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 12.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a1a56cb673ee4d61b5a0a1a8cfd5876
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a56b6e1e8d5b4930b557acc8f0acbd4
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 6  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ac6dbe1f03684ed991d928e7f9a9bb9
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b28d8d05d94741b3944a2797f770961
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 5 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b31375f6943746978cbfe48dfffdfeb
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 11.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c109e7685eb44210932cffb36c760f4
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c6bbf147057b4a6faa47a78da889a2e
     m_Address: Assets/VPContent/Middle D/MIDDLE D - Exercise 2.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d2d14cf59b7749fd956db7e166e1155
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d73aa6c9ef6a4cd3a463375675b7e68
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8dbdde138534848cb954fb02f987b7a1
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 6.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ddbc6b362ff34e06aeee9141524aaec
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8df7a610ba33c4137bc72347bc3d9b18
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      Hand exercise 7.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8e77d2d4830cf458bb5242cc639b2e7b
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f80f5ca2538d424dba389a550d00422
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       3.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fce4ad9da4a24a77a3c42f26aac9d52
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 908bdbb71680544b6ae8e4dfd2b2fae2
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 90b4b99af6bcd49b2a60bbcaf5180126
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 12.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 90bfdad00314e440b94ef8cf1b3cbcd3
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 90e4083e695bb433a817008d93bd57dd
     m_Address: Assets/VPContent/MixedNotes/RightHand/Niki/Mixed Notes exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 91e1cf6a554d24046ae27d4a14e3138d
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 93d11b430e05d4c68939f13c7ffe1342
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       1.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9478a1799bf124f54bcac2276e7f1aa8
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9532a8ae0822441a0b3004aa5d73e7d9
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      Hand exercise 7.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 955c327027a914c45805f7e83675372c
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand - exercise 9 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 95f10e0967092458cb94570165798a54
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9640bd8736b104a68b39c44b072628ed
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96ae7e70b118e49c98fd09880ebea7f7
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96b24bc768cd34372a53e6cbea742c8f
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 97e4e5e7978f543968bb2d8e1c172539
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 7.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 98470c9d567cc4ad59257f439eff0d11
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 9 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99127f61de8654cd5bc6b21116eb4f63
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLEC Left hand - exercise
       4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9913e3f5dc57744e38f8a59a0e026b93
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99466406d647040d9995e6da2cdcf2d5
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99aca1c272006425f8cb506d9c2b037d
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99e464b0bdf5449ed8676fbb373b13ec
     m_Address: Assets/VPContent/Middle D/MIDDLE D - Exercise 2 musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9a67ed089ec014ff5b85652d139bf32d
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9a707b46e4eeb4098808f3379feff2b7
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c4b26ecc72df497ca42e6e33a48bea4
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 11.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c8fd5f2b139c4a5585b24146c9dd2c6
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 7.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9ca2a879cb42148c1a3e4fa6853c7107
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9cabc4491729b4014a7e83857f47edc3
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       9.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d32d8f26f2c24503a566ccb87cc454e
     m_Address: Assets/VPContent/Middle C/MIDDLE C - EXERCISE 1 corrected one 3rd
       option.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d7ef5e8d19e0417ea25236900f3ada2
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      hand exercise 8.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9dea98a79b3af490d9f7bd5a9494e6b1
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9e485d1d0629d453fbd95fb9c9d357c1
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a01bf60e49a004a59899fa3374415c5d
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a0267c7cea33e499bb199519c0acc8dc
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a20544e479b5d43c1b3c2b38108e8d72
     m_Address: Assets/VPContent/Middle A/MIDDLE A - 2ND Exercise  (1).xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a24f0071b494e42428574c68935c643c
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 12.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a254c9634774d440a9cee720ff9ee798
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a28a385dd3b304e72a4487e958b56610
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3039b9e84f354f71b2887bc9b8818d7
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a30c36f2eeaa14b9a9196c681c7c638a
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       10.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a351c4c1ef55f4e688f4899d92c3c156
     m_Address: Assets/VPContent/Middle G/MIDDLE G - 1st Exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3e180ff6f36c4c928a1245cd99c3c1a
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3f79b79989fb4776a7668726cda132d
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 11.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a47e357e8439349258ea906913d80ade
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       4.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a4a3e3a9d905f4493a24a03355ba0589
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 11.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a53909e1bfff340ecb691632d6754b52
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 12.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a565ff74a960f4204a1007578d65efc0
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5f6855d959ab49dca544643f48593b0
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 7.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a64e9c71c4e944ce3b6fa63de0cc47c9
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a6dde85dfaaf04adf8f13b18d2ef0f97
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 7 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7ae6d57daf904a73a85fc1c45adf0f2
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 12.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7f87753c4e644c5ea285121caa6afa7
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 6.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a854a66df0a5343c296fe324170c57a7
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 8 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9dcfadef66c34f249f4719beb44b50e
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 6  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9f3b239250374072b9d68e09aa9b578
     m_Address: Assets/VPContent/Middle G/MIDDLE G- 1st Exercise .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aac28f2c78aee43c3882ab3be9759b51
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 3.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aacd0182e5e7b4ddc8e4fac77770e776
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: abc723a76b5e340e69836d1a23c63c8e
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ac88ed54ab18d4f07aafdb40f94f7f0d
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: acfdc4cedbe194b928d7907612bf0855
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 7 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ae5035a1e92d744628dcbb159815f6a0
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 5 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af7172435ed1c44a391b47608157ccb2
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 2.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: afcb16298afac4e05840ebc30e8ae83e
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: afcfd36719df2434b9b2ede247ef9255
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 5 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b044b5766ec1e4f9b94c19bbf46e485b
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b097a4bff73014ac38a9ddd1727f5588
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 6.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b11972fb1f5b949a3a3100e7f74e408f
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 8 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b224d739a76f7427c91008f04a1fa118
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 9  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b2402eddc15c645a884a814573c28999
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b259cd0a0c08c44848fb26bcdd84770b
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b2d49605150394003a3fdb0ae198f00a
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 10  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3380b1d04b204185b931529cb538046
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left Hand -
       Exercise 2 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4337e01bed224d2da050b8ffdc11b4c
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b484cc43b378a41c4bd77a6b08dde5a3
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 3.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4aca4a3eb30549418d0912b0c187289
     m_Address: Assets/VPContent/Middle D/MIDDLE D - Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4bda004b14d046668b8bfbb9ffc90d4
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b51c509104b574960a5997d30fced28c
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 4.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b55036519a6ed4e15a852e165186e0f6
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 4.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b56d1ef56095a47d2ae1c56dd541e757
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       hand - exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b5fed3bf117bf4705aaab4385958eddc
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 10 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b6b738dc51eab442a87cf981827feeb4
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b6c88ee6b60964bcb8667aa6c77cf026
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 12.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b6d673b03737f4d3397b510cad97d985
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       5.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b7c4bb26e997a4e96b41599fbfdd6c8b
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand -
       exercise 9 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8626cc87c8454f33992e6cae814217b
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       8.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b86316599d3554fa0943241588309ecd
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b8bae4269860e4946aac3c716c189902
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      hand exercise 3.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8d1c9d9bc6d24e699e6f4d338dc67e2
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 9 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9254308ea18f40cf9a5d69ab2036550
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9302daa2bfaf4f48b0babd3ebc313c3
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bbbe2dd761c2f401bafab2e5147685c6
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/Middle D left
-      hand exercise 1.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bbe4afdc50622422e8003f6a6ca7b7fe
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bc4b4bd02418c461e99636482c82b717
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd030532dc8f647f9902ab4553ea711f
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd46cb4a335a54760a02c00a6f1f63d1
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 5 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd9dd618bc07d4fccbce022a4f80d32e
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 12  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bdd414b71695c4bb3a6dd7bbc641848b
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 8 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bddc7562867264b73b9b902884a17333
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: be1564f50c3814fe19596f9c4ca1aba6
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: be2cb745c4441436392b33dbff0c4c03
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 10 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: be4f228942cbb43dfa4e33abb5835451
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       hand - exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: be5aec3ffc617425aa0df4fdec6c00e7
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bea1d1faac7f243c0a3a33d03c198e3e
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       7.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bedbbe794625c4a0f89eff2fd87ab21c
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bee9a21c32474477f9e59ff7d49eb015
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf39942756c5a415482213f4610b6e15
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left Hand exercise
       7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0006c415d3f341eba352de48aad329a
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 5  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c005e1d40ca1641fe9735277bac36b41
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 3.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c085f41dd62ac48fb9c86a1b9ccbcfa5
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 11.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0ae923de968c4cfb880ebbbb7f0336c
     m_Address: Assets/VPContent/Middle B/MIDDLE B - 1st Exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c1b07d52865624a3e9b02ab47a952166
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       6.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c1b5a4e7b6c5f495fbedbbf86b729617
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      hand exercise 8.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c2c16cfab40dd4d178909401728cf6dd
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       hand exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c2fa5244a91d14fe4809519be9f95fd8
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left Hand exercise
       2 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3894f657432d441dbf414982fcc37ac
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand - exercise
       4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3d71b13e9a5e48e188192abf97caa59
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Yari/Mixed Notes Left Hand -
       Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3de2fa2483e34d9c9d43bb94d9c6fe7
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       1.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c4d3f4207a79a4b988a62c1aedf3c783
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       9.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c6149775965c1418188f52db01254ff7
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c6c0a73453b1242d1943916a13d8750e
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c6d254e7ac9da489bab79a82c7207252
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      hand exercise 10 .musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c701f7b6674714df8a40200dc1bccd43
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 7 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c72c082d91d834a449e7d9e8e94e1593
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c8805342f0cac42fbb67133f5e021a09
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c91eeb9fcd46a4d7b8cacbbbb9944b7d
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 12.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c9fa2f085bd904243acfb2d3eb727b31
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb1e2acc950a548c299d66057568894c
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G LEFT HAND - Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb2fc9377486d45728a0688d09969fd4
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 5.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb35b8dd3f4af49b285cbffa280c3ebf
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 5.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb86e9638324545cbb65556dcfd86ea0
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 6 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbc670c47ec734131b6fcc0355030a7a
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cc06b1539af064fc19df367e96ebb919
     m_Address: Assets/VPContent/Middle A/MIDDLE A - 2ND Exercise .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd0f9d0a354f54a5884bb5b8b1a671ab
     m_Address: Assets/VPContent/Middle D/MIDDLE D - Exercise 1.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf1d39c2354b24c42bf75ebe06f9e58a
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf426e0f7bd6e420981d801f5a13a4c4
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 5 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d02b80019cbcb4af5a07aef25f0ac488
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 3  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d13e65e8531c9429a880d46fcf1dc0ea
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       5.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d26cf52317e844826af39cd163e3209d
     m_Address: Assets/VPContent/LeftHand/MiddleD/Middle D Left hand exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d3c8ecf794c094f5fa2ff81548b8fd33
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/MIDDLE C Left hand -
       exercise 3.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d474c9a03f53244129071968852725b0
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 10.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d492eeec6bad84a3fa538ed3df09a63e
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 6.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d498ea11138ff4da8b4fff65727dde04
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 2.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d54f1437c1d4347d2b5b17935a92503a
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d5771b93133484fc48e1236b6149634d
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 9 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d58fda424513b44c3af6525a7c118612
     m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 10 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d607761d8887342e8872df9728ae6d65
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d619ea422b1c6494eb035c25f1aa69b1
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d635f0647b3a34c3685e8f2791bb144b
     m_Address: Assets/VPContent/Middle B/Middle B Export/Middle B Exercise 11.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d6b9e828c2ebd4d9a8fb7aee70971900
     m_Address: Assets/VPContent/Middle C/MIDDLE C- EXERCISE 2 3rd option .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d7c89f5f7b7b244a7be4687a969748d8
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       3.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d8c525ec0995a47719bdcbb44a5e3db6
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d97813c395e3040328bad95b6a5ce3d1
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da1a4d87a09db47c6aa4bc172faee84c
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da213a58a511c4da2841c2438683b6f3
     m_Address: Assets/VPContent/Middle A/MIDDLE A - 2nd Exercise .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: da5f23655001f4197988ed3d25d264bc
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      hand exercise 9.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: daa52620e2f684241a574c6391e71ac0
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 10 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dac336f9a7a9b4bc4800284d9e6af7df
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand exercise 10 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: db10b7a24beb34bde83bab8ca0044e82
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/Middle C left hand -
       exercise 1.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: db2f289dd049c4ac59094ac75d084127
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dba19c13d00f04ddd8891f4809bc5d0f
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 7.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dca80a05cc9624c6d83f276c4babce66
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 5  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dcab317a392954081a9300f9d4b42281
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dec30870bf99c44e680d98bffa21f83b
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: deef6467b5c7e49b0bc5b1de5e281c8c
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B LEFT HAND - Exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df03e12427a1b4528a47ff78e7d19a78
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df0ef93dccc174964a91651ddd0f0595
     m_Address: Assets/VPContent/LeftHand/MiddleE/Middle E Left hand exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df0fad260800a44888baad631e6b491e
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df2de8924fec84d519f69f57bbe38209
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 12.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df5319737f14a49b285a82ca258e3e81
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       Hand exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df6435c9e6a624a1d810db5d13497eec
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dfda7b2aac99a4beabdf228b225f3b40
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       3.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dfdab82937292427fac0ece543f794a6
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 11  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e0fdd45b6aa8a4971a50d75166079079
     m_Address: Assets/VPContent/Middle C/MIDDLE C-EXERCISE 1 MP3..mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e1eee04de08da42acb407666ae11a5a1
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e315f82e605534e2399cb2195684ab7d
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e3ea2d4ab868f4ac08298656a2abeb0b
     m_Address: Assets/VPContent/MixedNotes/LeftHand/Niki/Mixed Notes Left Hand exercise
       1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e47fe98214d6c4e97b21521a9a0cbd39
     m_Address: Assets/VPContent/Middle G/Middle G Export/Middle G Exercise 12.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e5f0c95e79e7a41f6948013789883931
     m_Address: Assets/VPContent/Middle A/Middle A Export/Middle A Exercise 6.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e67d1a1a6ffec4147bb829d78b6f49f0
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 12  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e6b5424566b2e4fada99ace729ecf964
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      hand exercise 4.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6de389f9d66a41048ee44ed3de11e9b
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e7aea8cac8a06481f88c685e795d2b1b
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left Hand exercise
       7.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e832513a9b78e46bd8fdf56279f6e0ff
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8952a51d51924f6ca1fa99f8d9a86ba
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8a340b0b01c844e0afb45a2b3a0edd1
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 12.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8ad946381afc46f0bcce93801874dfc
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       10.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ebdee785fd3f04c68a4700373701f49b
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       Hand - exercise 2 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed1a0b439d0e04fbba5bd6f142b5e15f
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       6.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed7c8d365e71b4981a03b456f0aa4bc4
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERISE 10.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: edcd7e80496d44050ac8df31359fad71
     m_Address: Assets/VPContent/LeftHand/MiddleC/Middle C Left hand exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee5ae0cd2070d485a9568257d5b8ec33
     m_Address: Assets/VPContent/Middle F/Middle F Export/Middle F Exercise 4.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eeb010aaa3bdb49f7891b77914b4e5f4
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f1ba52841b7254607934ad62719e4625
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      hand exercise 6 .musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3306254a0ce74ad3ae5542aa7ae8ffc
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       hand - exercise 9.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f45891615fa4745afb556406d24296e8
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4e145dca9cec4185a45bd834688b336
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 3.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f526de36cbf864aaa989f1f0db84bef5
     m_Address: Assets/VPContent/LeftHand/MiddleB/MIDDLE B /MIDDLE B LEFT HAND - Exercise
       4.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f54d8da7a1bfb45a8a75b511933eeb0d
     m_Address: Assets/VPContent/Middle C/Middle C Export/Middle C Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f5860561249874fa7bfce1a58f244637
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 11 (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f5c10e59a958b480cb099260595f7989
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       2.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f5ec431bd86e9459d8e231efb954449a
     m_Address: Assets/VPContent/Middle E/Middle E Export/Middle E Exercise 8.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f780f2535d0d34ddd9f5de84b8cc2684
-    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
-      Hand exercise 2 .musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7d4addd8f227473aa218361613cb74a
     m_Address: Assets/VPContent/LeftHand/MiddleC/CExercises/Middle C left hand -
       exercise 1.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f83abcf70b14d48d492d9dfff3b5afd0
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 9.ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8657c4c89bf0411687214f9b52e813a
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 12.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f89d472c51b61468caf2f3b14ebd7d78
     m_Address: Assets/VPContent/Middle D/MIDDLE D EXERCISE 4  (1).ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8d87f16254ab4445bdea9d869b62e7e
     m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 12 .xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f9f69aa894b7b4638aa265d5d41a9298
     m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 3.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fa0c080135f0742da81be3338178670c
     m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
       Hand exercise 5.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fa2676152a2a84efea148ea6bee44a98
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       9 .musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fa805814a61e147cab152a47415b2a87
-    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
-      hand exercise 10 .musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fb0b41493b2ed475dbbf2cb54e1d84f7
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A/MIDDLE A Left hand exercise
       6 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fb3419cfac8a341559be12dbd0ce82ec
     m_Address: Assets/VPContent/LeftHand/MiddleA/MIDDLE A LEFT HAND - Exercise 7.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ALabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc4c09929fff4415ebde4b3f5566fabe
     m_Address: Assets/VPContent/Middle D/Middle D Export/Middle D Exercise 11.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fdb96412d37154425a0ddfab301a5fce
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       3.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fdf55e516325d4a1eb1a7c2df9f6fedf
     m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
       - Exercise 10.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fdf96ac1dc4af41768099aa433d9a42d
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F LEFT HAND - Exercise 2.mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fe902cfc3e0534c4e9b0d6dacd9ef150
     m_Address: Assets/VPContent/LeftHand/MiddleG/MIDDLE G/MIDDLE G LEFT HAND - Exercise
       2.musicxml.xml
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ffa55c9a732724104b301bf8431391f8
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand exercise 6 .mp3
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ffc21e33f812e4561945ec7f40b904c3
     m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 9 .ogg
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 80b7c80ed552169479232e5555310256, type: 2}

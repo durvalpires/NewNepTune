@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 92db702610c312e4696b015cf01a62ee
   m_currentHash:
     serializedVersion: 2
-    Hash: 5eabef55c8ed1ed8ee81f91c665cae5c
+    Hash: 3f7ff6733e69f9fdaa93f10f471fdfcd
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -34,9 +34,9 @@ MonoBehaviour:
   m_EnableJsonCatalog: 0
   m_NonRecursiveBuilding: 1
   m_CCDEnabled: 0
-  m_maxConcurrentWebRequests: 3
-  m_UseUWRForLocalBundles: 0
-  m_BundleTimeout: 0
+  m_maxConcurrentWebRequests: 6
+  m_UseUWRForLocalBundles: 1
+  m_BundleTimeout: 10
   m_BundleRetryCount: 0
   m_BundleRedirectLimit: -1
   m_SharedBundleSettings: 0
@@ -71,11 +71,11 @@ MonoBehaviour:
       m_ProfileName: Default
       m_Values:
       - m_Id: 45b26dc38530c014d880109565dd7a3d
-        m_Value: 'ServerData/[BuildTarget]'
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 4e5b8e11885ae554295aa66285b91628
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 53f1ac27a151a124d81f6bf0670cacbd
-        m_Value: 'http://[PrivateIpAddress]:[HostingServicePort]'
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: d3cbae190205ad444b73a4ca2ca5b59e
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: dd8612e2463badd46b9a6c3254162978
@@ -100,6 +100,9 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - ALabel
+    - BLabel
+    - CLabel
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 39bf7c194e97ee04a9e96805a0702b3b, type: 2}

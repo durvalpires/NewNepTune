@@ -10,13 +10,14 @@ public class CongratsConfigSO : ScriptableObject
     public ParticleSystem fireworksPrefab;
     public float fireworksDuration = 3f;
     [TextArea] public string messageFormat = "";
-    private const string PrefsKey = "CongratsShown";
+    private string GetPrefsKey(int planetIndex) => $"CongratsShown_{planetIndex}";
 
 
-    public void ShowCongrats(MonoBehaviour host, Transform parent, string subject)
+    public void ShowCongrats(MonoBehaviour host, Transform parent, string subject, int planetIndex)
     {
-        if (PlayerPrefs.GetInt(PrefsKey, 0) == 1) return;
-        PlayerPrefs.SetInt(PrefsKey, 1);
+        string key = GetPrefsKey(planetIndex);
+        if (PlayerPrefs.GetInt(key, 0) == 1) return;
+        PlayerPrefs.SetInt(key, 1);
         PlayerPrefs.Save();
 
         var popup = Instantiate(popupPrefab, parent);
