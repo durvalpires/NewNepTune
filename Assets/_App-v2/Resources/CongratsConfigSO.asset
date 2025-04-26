@@ -18,4 +18,4 @@ MonoBehaviour:
   fireworksPrefab: {fileID: 7291838540196593265, guid: eebd4198cae929f4883e70594350f6af,
     type: 3}
   fireworksDuration: 4
-  messageFormat: 'Congratulations you unlock left hand world number '
+  messageFormat: Congratulations you unlocked left hand exercises !

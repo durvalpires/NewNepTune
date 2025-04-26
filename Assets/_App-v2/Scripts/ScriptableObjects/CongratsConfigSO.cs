@@ -22,7 +22,7 @@ public class CongratsConfigSO : ScriptableObject
 
         var popup = Instantiate(popupPrefab, parent);
         var label = popup.GetComponentInChildren<TextMeshProUGUI>();
-        label.text = string.Format(messageFormat + subject, subject);
+        label.text = /*string.Format(*/messageFormat /*+ subject, subject)*/;
 
         var fx = Instantiate(fireworksPrefab, parent);
         fx.Play();
