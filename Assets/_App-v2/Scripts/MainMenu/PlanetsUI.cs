@@ -16,6 +16,7 @@ public class PlanetsUI : MonoBehaviour
     [SerializeField] private Transform uiCanvas;
     [SerializeField] private ScrollRect scroll;
 
+    private Tween planetTween;
     private static float lastScrollPos = 0;
     private int lastUnlockedIndex = -1;
     private GeneralConfigSO generalConfigData => PlayerModel.GeneralConfig;
@@ -57,6 +58,8 @@ public class PlanetsUI : MonoBehaviour
             string worldName = PlayerModel.AllWorlds.worldsConfigs[openedPlanet].name;
             congratsConfig.ShowCongrats(this, uiCanvas, worldName, openedPlanet);
         }
+         HighlightLastUnlockedPlanet();
+
         scroll.onValueChanged.AddListener(ScrollPosUpdate);
         StartCoroutine(RefreshCanvas());
     }
@@ -119,5 +122,37 @@ public class PlanetsUI : MonoBehaviour
     {
         lastScrollPos = pos.x;
        
+    }
+
+    [SerializeField] private Sprite highlightRingSprite;
+    private GameObject highlightRing;
+
+    private void HighlightLastUnlockedPlanet()
+    {
+        if (lastUnlockedIndex < 0 || lastUnlockedIndex >= allPlanetBtns.Count)
+            return;
+
+        // find the planet image (skip lock/done overlays)
+        Image planetImg = null;
+        foreach (var img in allPlanetBtns[lastUnlockedIndex].GetComponentsInChildren<Image>(true))
+        {
+            var name = img.gameObject.name.ToLower();
+            if (name.Contains("lock") || name.Contains("done")) continue;
+            planetImg = img;
+            break;
+        }
+        if (planetImg == null) return;
+
+        var rt = planetImg.rectTransform;
+
+        // kill any existing scale tween
+        planetTween?.Kill();
+        rt.localScale = Vector3.one;
+
+        // pulse scale only
+        planetTween = rt
+            .DOScale(1.15f, 1f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutSine);
     }
 }
