@@ -460,7 +460,19 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1424821000}
+        m_TargetAssemblyTypeName: PlanetsUI, Assembly-CSharp
+        m_MethodName: ScrollPosUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &106829750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1750,7 @@ MonoBehaviour:
   contentSizeFitter: {fileID: 204637454}
   congratsConfig: {fileID: 11400000, guid: 96fcbdd623c8645c0b255ea6e5bbed70, type: 2}
   uiCanvas: {fileID: 224038931}
+  scroll: {fileID: 94181111}
 --- !u!224 &1424821001
 RectTransform:
   m_ObjectHideFlags: 0

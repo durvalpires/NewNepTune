@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,19 +12,22 @@ public class PlanetsUI : MonoBehaviour
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private ContentSizeFitter contentSizeFitter;
 
-
     [SerializeField] private CongratsConfigSO congratsConfig;
     [SerializeField] private Transform uiCanvas;
+    [SerializeField] private ScrollRect scroll;
 
+    private static float lastScrollPos = 0;
+    private int lastUnlockedIndex = -1;
     private GeneralConfigSO generalConfigData => PlayerModel.GeneralConfig;
     private List<PlanetBtn> allPlanetBtns = new List<PlanetBtn>();
     public void Init()
     {
         var openedPlanet = -1;
+        lastUnlockedIndex = -1;
         for (int i = 0; i < PlayerModel.AllWorlds.worldsConfigs.Length; i++)
         {
             var planetData = PlayerModel.AllWorlds.worldsConfigs[i];
-            var planetGO = Instantiate(prefabs[allPlanetBtns.Count%prefabs.Length], container);
+            var planetGO = Instantiate(prefabs[allPlanetBtns.Count % prefabs.Length], container);
             var planetBtn = planetGO.GetComponent<PlanetBtn>();
             planetBtn.onClickAction = OnClick;
             allPlanetBtns.Add(planetBtn);
@@ -34,6 +38,7 @@ public class PlanetsUI : MonoBehaviour
                 if (openedPlanet == -1)
                 {
                     openedPlanet = i;
+                    lastUnlockedIndex = i;
                 }
                 else
                 {
@@ -41,12 +46,18 @@ public class PlanetsUI : MonoBehaviour
                 }
             }
         }
-        
+        if (lastUnlockedIndex == congratsConfig.triggerPlanetIndex)
+        {
+            string worldName = PlayerModel.AllWorlds.worldsConfigs[lastUnlockedIndex].name;
+            congratsConfig.ShowCongrats(this, uiCanvas, worldName, lastUnlockedIndex);
+
+        }
         if (openedPlanet == congratsConfig.triggerPlanetIndex)
         {
             string worldName = PlayerModel.AllWorlds.worldsConfigs[openedPlanet].name;
             congratsConfig.ShowCongrats(this, uiCanvas, worldName, openedPlanet);
         }
+        scroll.onValueChanged.AddListener(ScrollPosUpdate);
         StartCoroutine(RefreshCanvas());
     }
 
@@ -55,7 +66,7 @@ public class PlanetsUI : MonoBehaviour
         //open Levels
         TempDataStorage.SetData(generalConfigData.openedPlanetKey, planetData);
         TempDataStorage.SetData("worldIndex", index);
-        SceneManager.LoadScene(generalConfigData.levelsScene); 
+        SceneManager.LoadScene(generalConfigData.levelsScene);
     }
 
     private IEnumerator RefreshCanvas()
@@ -63,6 +74,50 @@ public class PlanetsUI : MonoBehaviour
         contentSizeFitter.enabled = false;
         yield return null;
         contentSizeFitter.enabled = true;
+        yield return null; 
+
+        if (allPlanetBtns.Count > 0)
+          {
+            int idx = Mathf.Clamp(lastUnlockedIndex, 0, allPlanetBtns.Count - 1);
+            CenterOnElement(allPlanetBtns[idx].GetComponent<RectTransform>());
+          }
+
+        yield return null; 
+
+        scroll.horizontalNormalizedPosition = lastScrollPos;
     }
 
+    private void CenterOnElement(RectTransform contentElement)
+    {
+        RectTransform viewport = scroll.viewport;
+        RectTransform content = scroll.content;
+
+      
+        if (content.rect.width <= viewport.rect.width)
+        {
+          
+            scroll.horizontalNormalizedPosition = 0.5f; 
+            lastScrollPos = 0.5f;
+            return;
+        }
+
+        Vector2 elementWorldPosition = contentElement.transform.TransformPoint(contentElement.rect.center);
+        Vector2 viewportWorldPosition = viewport.transform.TransformPoint(viewport.rect.center);
+
+        Vector2 offset = (Vector2)content.InverseTransformPoint(viewportWorldPosition)
+                         - (Vector2)content.InverseTransformPoint(elementWorldPosition);
+
+        float newNormalizedPositionX = scroll.horizontalNormalizedPosition - offset.x / (content.rect.width - viewport.rect.width);
+
+        newNormalizedPositionX = Mathf.Clamp01(newNormalizedPositionX);
+
+        scroll.horizontalNormalizedPosition = newNormalizedPositionX;
+        lastScrollPos = newNormalizedPositionX;
+    }
+
+    public void ScrollPosUpdate(Vector2 pos)
+    {
+        lastScrollPos = pos.x;
+       
+    }
 }
