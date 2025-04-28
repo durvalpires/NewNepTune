@@ -134,6 +134,35 @@ MonoBehaviour:
   missSoundEffect: {fileID: 0}
   musicVolume: 0
   sfxVolume: 0
+  noteSounds:
+  - note: C4
+    audio: {fileID: 8300000, guid: 3422927706a6d3040b07b9e10cee0083, type: 3}
+  - note: D4
+    audio: {fileID: 8300000, guid: 8ff8a916530b44dbc8f1daeb9846de06, type: 3}
+  - note: E4
+    audio: {fileID: 8300000, guid: b7112f5a13ee449baa166afd35c3501e, type: 3}
+  - note: F4
+    audio: {fileID: 8300000, guid: 2c6666ea2e3ee42e08a9182ba3e485e9, type: 3}
+  - note: G4
+    audio: {fileID: 8300000, guid: ef767252cccda49d9800b5276b1d1e83, type: 3}
+  - note: A4
+    audio: {fileID: 8300000, guid: 6a4eeca28beed463abf69bf2c42c82f3, type: 3}
+  - note: B4
+    audio: {fileID: 8300000, guid: e0ec8a34b2b9f4d48875bd80504f062d, type: 3}
+  - note: C3
+    audio: {fileID: 8300000, guid: 3422927706a6d3040b07b9e10cee0083, type: 3}
+  - note: D3
+    audio: {fileID: 8300000, guid: 8ff8a916530b44dbc8f1daeb9846de06, type: 3}
+  - note: E3
+    audio: {fileID: 8300000, guid: b7112f5a13ee449baa166afd35c3501e, type: 3}
+  - note: F3
+    audio: {fileID: 8300000, guid: 2c6666ea2e3ee42e08a9182ba3e485e9, type: 3}
+  - note: G3
+    audio: {fileID: 8300000, guid: ef767252cccda49d9800b5276b1d1e83, type: 3}
+  - note: A3
+    audio: {fileID: 8300000, guid: 6a4eeca28beed463abf69bf2c42c82f3, type: 3}
+  - note: B3
+    audio: {fileID: 8300000, guid: e0ec8a34b2b9f4d48875bd80504f062d, type: 3}
   syncOffset: 0
   inputLatency: 0
   noteDensityByLevel: []

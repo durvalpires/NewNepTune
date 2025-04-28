@@ -64,6 +64,7 @@ public class RhythmGameSettings : ScriptableObject
     public AudioClip missSoundEffect;
     public float musicVolume;
     public float sfxVolume;
+    public List<NoteAudioPair> noteSounds;
 
     [Header("Sync Settings")]
     public float syncOffset;
@@ -123,6 +124,20 @@ public class RhythmGameSettings : ScriptableObject
         Debug.LogWarning($"Clef Sprite for note type '{clefType}' not found.");
         return null;
     }
+    
+    public AudioClip GetNoteAudio(string note)
+    {
+        foreach (var pair in noteSounds)
+        {
+            if (pair.note.Equals(note, StringComparison.OrdinalIgnoreCase))
+            {
+                return pair.audio;
+            }
+        }
+
+        Debug.LogWarning($"Audio for note type '{note}' not found.");
+        return null;
+    }
 }
 
 [Serializable]
@@ -137,6 +152,13 @@ public struct NoteElementVariationSpritePair
 {
     public string noteType;  // The note type
     public Sprite sprite;         // The prefab associated with the note
+}
+
+[Serializable]
+public struct NoteAudioPair
+{
+    public string note;  // The note type
+    public AudioClip audio;         // The audioclip associated with the note
 }
 
 public enum Difficulty

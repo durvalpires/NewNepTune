@@ -83,11 +83,14 @@ public class MusicScoreRender : MonoBehaviour {
                 if(measure.Attribute.Value.Clef != null)
                 {
                     isRightHand = measure.Attribute.Value.Clef.Value.Sign == "G";
+                    
                     clefImg.sprite = gameSettings.GetClefSprite(
                         measure.Attribute.Value.Clef.Value.Sign);
                     clefImg.color = Color.black;
-                    clefImg.transform.localPosition = new Vector3(clefImg.transform.localPosition.x, 
-                        clefImg.transform.localPosition.y + OneNoteY*2, clefImg.transform.localPosition.z);
+                    
+                    if(!isRightHand)
+                        clefImg.transform.localPosition = new Vector3(clefImg.transform.localPosition.x, 
+                            clefImg.transform.localPosition.y + OneNoteY*2, clefImg.transform.localPosition.z);
                 }
 
                 if (measure.Attribute?.Time == null) continue;
