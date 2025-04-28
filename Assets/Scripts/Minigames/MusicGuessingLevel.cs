@@ -24,6 +24,7 @@ namespace Minigames
       
       [Header("References for Scene Set Up")]
       [SerializeField] protected string levelNote;
+      [SerializeField] protected string galaxy;
       [SerializeField] protected Button backButton;
       [SerializeField] protected Button finishedBackButton;
       [SerializeField] protected string levelToReturn;

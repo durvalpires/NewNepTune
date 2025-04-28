@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Middle C Piano 3
   levelType: 5
+  galaxy: 1
   songXml:
     m_AssetGUID: d3c8ecf794c094f5fa2ff81548b8fd33
     m_SubObjectName: 
@@ -34,3 +35,4 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   isTutorial: 0
   introBeats: 4
+  handType: 1

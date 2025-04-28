@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: World9
+  m_EditorClassIdentifier: 
+  m_GroupName: World9
+  m_GUID: d8b13f74637a14edc947a0273924d3fb
+  m_SerializeEntries:
+  - m_GUID: 0bf763c1a9f11492088f84bdc73fa944
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      hand exercise 6 .musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2142622116a014353aa6345317512533
+    m_Address: Middle D Left hand exercise 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24fd29a3eeee842679955861ca95bfe8
+    m_Address: Middle D Left hand exercise 8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 281a36092efb44a999eaaa7bb3e27728
+    m_Address: Middle D Left hand exercise 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 293a1e58676d9477b884285e854ae346
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      Hand exercise 5.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33a0a7bc766b14da4b41248fa1e44814
+    m_Address: 'MIDDLE D Left hand exercise 6 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39384a139058f42928c17361ff6425f4
+    m_Address: Middle D left hand - exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4282ce75f2c9f44ac828610a078f1b0b
+    m_Address: 'MIDDLE D Left hand exercise 10 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 437a88c3c001b4b43b022f9df84b80d8
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      hand exercise 3.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46d977302fa78405c9158eb17b6b185c
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      Hand exercise 2 .musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f3179e087eac4f319672e8f9d4afe0c
+    m_Address: Middle D Left hand exercise 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64014ac6e37a54ec0854cbdfe3e0fd87
+    m_Address: Middle D Left hand exercise 10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6dbf2ba0b378a4f41b07651b84b0115b
+    m_Address: Middle D Left hand exercise 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cf1c4a2fbdd244ef89140e60284176b
+    m_Address: Middle D Left hand exercise 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86dba3f53b7f34e3b86b36dfe93a59cb
+    m_Address: Middle D Left hand exercise 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99031fbdaf4194616b4ccba3e44683fb
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      hand exercise 4.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad6603f4554de46d9ad2e3fe86102873
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/Middle D left
+      hand exercise 1.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b56d1ef56095a47d2ae1c56dd541e757
+    m_Address: MIDDLE D Left hand - exercise 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: baf00805132c74426b1d9682abebe775
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      hand exercise 10 .musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be1564f50c3814fe19596f9c4ca1aba6
+    m_Address: Middle D Left hand exercise 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be4f228942cbb43dfa4e33abb5835451
+    m_Address: MIDDLE D Left hand - exercise 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2c16cfab40dd4d178909401728cf6dd
+    m_Address: MIDDLE D Left hand exercise 8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1aab472e571d4b8383877af11174451
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      Hand exercise 7.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d26cf52317e844826af39cd163e3209d
+    m_Address: Middle D Left hand exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df5319737f14a49b285a82ca258e3e81
+    m_Address: MIDDLE D Left Hand exercise 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9e3799a890e343789d7f68c9fb7ba30
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      hand exercise 8.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebdee785fd3f04c68a4700373701f49b
+    m_Address: 'MIDDLE D Left Hand - exercise 2 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3306254a0ce74ad3ae5542aa7ae8ffc
+    m_Address: MIDDLE D Left hand - exercise 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa0c080135f0742da81be3338178670c
+    m_Address: MIDDLE D Left Hand exercise 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcfae10c2820843158653cc1956c2094
+    m_Address: Assets/VPContent/LeftHand/MiddleD/MIDDLE D Exercises/MIDDLE D Left
+      hand exercise 9.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 80b7c80ed552169479232e5555310256, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cda8bc884f8204eceafabbcbfb223ba7, type: 2}
+    - {fileID: 11400000, guid: 499e3b1bcfff1488a9722637b1dcaad4, type: 2}

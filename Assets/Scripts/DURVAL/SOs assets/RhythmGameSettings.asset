@@ -136,33 +136,33 @@ MonoBehaviour:
   sfxVolume: 0
   noteSounds:
   - note: C4
-    audio: {fileID: 8300000, guid: 3422927706a6d3040b07b9e10cee0083, type: 3}
+    audio: {fileID: 8300000, guid: c626af9912f2f4829a54ca61d9bef4e8, type: 3}
   - note: D4
-    audio: {fileID: 8300000, guid: 8ff8a916530b44dbc8f1daeb9846de06, type: 3}
+    audio: {fileID: 8300000, guid: 83c1b908011204628a18dd8042101358, type: 3}
   - note: E4
-    audio: {fileID: 8300000, guid: b7112f5a13ee449baa166afd35c3501e, type: 3}
+    audio: {fileID: 8300000, guid: d4910c6a9cb82437696636033686870d, type: 3}
   - note: F4
-    audio: {fileID: 8300000, guid: 2c6666ea2e3ee42e08a9182ba3e485e9, type: 3}
+    audio: {fileID: 8300000, guid: 05c02f21460284ac1a1ba2ff200a6074, type: 3}
   - note: G4
-    audio: {fileID: 8300000, guid: ef767252cccda49d9800b5276b1d1e83, type: 3}
+    audio: {fileID: 8300000, guid: a43500fff05e4456783795a4ea538ecf, type: 3}
   - note: A4
-    audio: {fileID: 8300000, guid: 6a4eeca28beed463abf69bf2c42c82f3, type: 3}
+    audio: {fileID: 8300000, guid: 13dd9137c42e44e28900e1015417ce98, type: 3}
   - note: B4
-    audio: {fileID: 8300000, guid: e0ec8a34b2b9f4d48875bd80504f062d, type: 3}
+    audio: {fileID: 8300000, guid: 69ff2eb8f665b456ab86654f0365ae6e, type: 3}
   - note: C3
-    audio: {fileID: 8300000, guid: 3422927706a6d3040b07b9e10cee0083, type: 3}
+    audio: {fileID: 8300000, guid: 3bd37ece35e3e48f78e2b0bcb0cca79e, type: 3}
   - note: D3
-    audio: {fileID: 8300000, guid: 8ff8a916530b44dbc8f1daeb9846de06, type: 3}
+    audio: {fileID: 8300000, guid: 3f3561fb0097f446c87b98507a35656b, type: 3}
   - note: E3
-    audio: {fileID: 8300000, guid: b7112f5a13ee449baa166afd35c3501e, type: 3}
+    audio: {fileID: 8300000, guid: ec71f23fe55754c54b605f85ed087e29, type: 3}
   - note: F3
-    audio: {fileID: 8300000, guid: 2c6666ea2e3ee42e08a9182ba3e485e9, type: 3}
+    audio: {fileID: 8300000, guid: 4ef68d024b1e540ad8a661c9b580cedb, type: 3}
   - note: G3
-    audio: {fileID: 8300000, guid: ef767252cccda49d9800b5276b1d1e83, type: 3}
+    audio: {fileID: 8300000, guid: b9a8d182ffef947428cfa04b4e04c34a, type: 3}
   - note: A3
-    audio: {fileID: 8300000, guid: 6a4eeca28beed463abf69bf2c42c82f3, type: 3}
+    audio: {fileID: 8300000, guid: a515a2d3424684720857b07260450909, type: 3}
   - note: B3
-    audio: {fileID: 8300000, guid: e0ec8a34b2b9f4d48875bd80504f062d, type: 3}
+    audio: {fileID: 8300000, guid: f24d22dd7ae5949748dbee50caf5f50d, type: 3}
   syncOffset: 0
   inputLatency: 0
   noteDensityByLevel: []

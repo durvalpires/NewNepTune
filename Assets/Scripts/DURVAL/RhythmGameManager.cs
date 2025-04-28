@@ -123,6 +123,8 @@ public class RhythmGameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         //OnTempoChanged?.Invoke(scoreRender.Bpm, scoreRender.BeatsPerBar);
         OnMetronomeDataLoaded?.Invoke(scoreRender.Bpm, scoreRender.BeatsPerBar, introBeats);
+        OnNextNoteUpdated?.Invoke(noteViewList[0], 0 - rhythmGameSettings.beatsBeforeStart,
+            secondsPerBeat, beatsPerUnit);
         isLevelStarted = true;
         yield return null;
     }

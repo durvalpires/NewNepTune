@@ -10,6 +10,7 @@ public class LevelSO : ScriptableObject
     // public string id;
     public string levelTitle;
     public LevelType levelType;
+    public Galaxies galaxy;
     
     public enum LevelType
     {
@@ -32,19 +33,10 @@ public class LevelSO : ScriptableObject
     }
 #endif
     
-    // #if UNITY_EDITOR 
-    //     public bool generateIds;
-    //     private void OnValidate()
-    //     {
-    //         var idCounter = 0;
-    //         if (generateIds)
-    //         {
-    //             generateIds = false;
-    //             if (id == "")
-    //             {
-    //                 id = Guid.NewGuid().ToString();
-    //             }
-    //         }
-    //     }
-    // #endif
+    //  SHOULD BE USED TO NAME FOLDER WITH CONTENT
+    public enum Galaxies
+    {
+        LeftHand = 1,
+        RightHand = 2,
+    }
 }

@@ -175,7 +175,7 @@ public class NoteController : MonoBehaviour
     public void AddWidth(float width)
     {
         this.Width += width;
-        Debug.LogWarning(this.Width);
+
         if(this.fadePatternSprite != null)
             this.fadePatternSprite.transform.localScale = new Vector3(this.fadePatternSprite.transform.localScale.x,
                 this.Width - this.circleSprite.size.x, this.fadePatternSprite.transform.localScale.z);

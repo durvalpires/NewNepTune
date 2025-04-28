@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: World1
+  m_EditorClassIdentifier: 
+  m_GroupName: World1
+  m_GUID: f21a80be5c8434b65a1b99a82f09a681
+  m_SerializeEntries:
+  - m_GUID: 05bb330b50ed0434b9ebb4194b159d66
+    m_Address: Middle C Exercise 11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07305027195f444458bdefa77b191411
+    m_Address: MIDDLE C EXERCISE 11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09b73fbb00cd54b9c93d0370480751e3
+    m_Address: Middle C Exercise 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 159379172064849508948ffa19e54704
+    m_Address: MIDDLE C EXERCISE 8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17aae3112e75545b0ab24bd2135d94ce
+    m_Address: 'MIDDLE C EXERCISE 7 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1cc60ff36b9ab419490c665f240c1cc2
+    m_Address: 'MIDDLE C EXERCISE 3  '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d50950bcfc69453f863f6d21669c2bb
+    m_Address: 'MIDDLE C EXERCISE 9 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b38a3034ca6644c693fe6af04de75dc
+    m_Address: Middle C Exercise 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e4cd68e094a54a49a4db9456433067d
+    m_Address: MIDDLE C- EXERCISE 2 MP3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ee5778663e7f42a488c36c25771404c
+    m_Address: MIDDLE C 10 EXERCISE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 409f3289278754b62bf5087735d4e0be
+    m_Address: MIDDLE C EXERCISE 7  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 499bdaadb4c9047bc957e7be22ca1add
+    m_Address: Middle C Exercise 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 547c5091d1b5e4d49849f7dcf5f0f1e0
+    m_Address: 'MIDDLE C EXERCISE 6 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5651fe056a62a4e1dbf60baaa0c7bee4
+    m_Address: 'MIDDLE C EXERCISE 3 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61c334a27a1914258be460cf342fd7b0
+    m_Address: 'MIDDLE C EXERCISE 9 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65c1d4ce136954862b62ec6a1d369b5a
+    m_Address: MIDDLE C EXERCISE 4  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 858444d7f764e470b905766085b91e87
+    m_Address: MIDDLE C 10 EXERCISE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8710d619cbc5dba489c162e248aeb860
+    m_Address: Middle C exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87dbdb042fae144a192f560cd7f47e91
+    m_Address: 'MIDDLE C EXERCISE 4 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a56b6e1e8d5b4930b557acc8f0acbd4
+    m_Address: MIDDLE C EXERCISE 6  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c109e7685eb44210932cffb36c760f4
+    m_Address: Middle C Exercise 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91e1cf6a554d24046ae27d4a14e3138d
+    m_Address: Middle C Exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d32d8f26f2c24503a566ccb87cc454e
+    m_Address: MIDDLE C - EXERCISE 1 corrected one 3rd option
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae5035a1e92d744628dcbb159815f6a0
+    m_Address: 'MIDDLE C EXERCISE 5 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd9dd618bc07d4fccbce022a4f80d32e
+    m_Address: MIDDLE C EXERCISE 12  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdd414b71695c4bb3a6dd7bbc641848b
+    m_Address: MIDDLE C EXERCISE 8 (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0006c415d3f341eba352de48aad329a
+    m_Address: MIDDLE C EXERCISE 5  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6c0a73453b1242d1943916a13d8750e
+    m_Address: Middle C Exercise 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d474c9a03f53244129071968852725b0
+    m_Address: Middle C Exercise 10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6b9e828c2ebd4d9a8fb7aee70971900
+    m_Address: 'MIDDLE C- EXERCISE 2 3rd option '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df2de8924fec84d519f69f57bbe38209
+    m_Address: Middle C Exercise 12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df6435c9e6a624a1d810db5d13497eec
+    m_Address: Middle C Exercise 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfdab82937292427fac0ece543f794a6
+    m_Address: MIDDLE C EXERCISE 11  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8952a51d51924f6ca1fa99f8d9a86ba
+    m_Address: Middle C Exercise 8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f54d8da7a1bfb45a8a75b511933eeb0d
+    m_Address: Middle C Exercise 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8d87f16254ab4445bdea9d869b62e7e
+    m_Address: 'MIDDLE C EXERCISE 12 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 80b7c80ed552169479232e5555310256, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7f19530cd8541453b8c3aa93a37d7588, type: 2}
+    - {fileID: 11400000, guid: 3349f0b133a8e4a63a92c4694ca4695c, type: 2}

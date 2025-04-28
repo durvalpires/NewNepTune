@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Guess Note G
   levelType: 3
+  galaxy: 1
   note: G
+  type: 0

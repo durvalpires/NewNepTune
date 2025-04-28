@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Instrument Guess
   levelType: 1
+  galaxy: 2
   instrument: Marimba

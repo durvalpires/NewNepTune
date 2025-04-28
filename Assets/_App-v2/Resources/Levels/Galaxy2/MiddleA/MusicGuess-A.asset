@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Music Piece Guess A
   levelType: 2
+  galaxy: 1
   levelNote: A

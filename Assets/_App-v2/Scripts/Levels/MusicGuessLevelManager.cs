@@ -11,7 +11,8 @@ public class MusicGuessLevelManager : MusicGuessingLevel
     {
         var data = TempDataStorage.GetSceneData<MusicGuessLevelSO>();
         if(data)levelNote = data.levelNote;
-        var spritesList = Resources.LoadAll<Sprite>($"MusicGuess/Sprites/{levelNote}/").ToList();
+        if(data) galaxy = data.galaxy.ToString();
+        var spritesList = Resources.LoadAll<Sprite>($"MusicGuess/Sprites/{galaxy}/{levelNote}/").ToList();
         spritesList.Shuffle();
         _sprites = spritesList.ToArray();
         InitCorrectAnswers();
@@ -25,9 +26,9 @@ public class MusicGuessLevelManager : MusicGuessingLevel
         correctAnswerSprites[1] = _sprites[1];
         correctAnswerSprites[2] = _sprites[2];
         audioClips = new AudioClip[3];
-        audioClips[0] = Resources.Load<AudioClip>($"MusicGuess/Sounds/{levelNote}/{correctAnswerSprites[0].name}");
-        audioClips[1] = Resources.Load<AudioClip>($"MusicGuess/Sounds/{levelNote}/{correctAnswerSprites[1].name}");
-        audioClips[2] = Resources.Load<AudioClip>($"MusicGuess/Sounds/{levelNote}/{correctAnswerSprites[2].name}");
+        audioClips[0] = Resources.Load<AudioClip>($"MusicGuess/Sounds/{galaxy}/{levelNote}/{correctAnswerSprites[0].name}");
+        audioClips[1] = Resources.Load<AudioClip>($"MusicGuess/Sounds/{galaxy}/{levelNote}/{correctAnswerSprites[1].name}");
+        audioClips[2] = Resources.Load<AudioClip>($"MusicGuess/Sounds/{galaxy}/{levelNote}/{correctAnswerSprites[2].name}");
     }
     protected override void Start()
     {

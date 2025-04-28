@@ -11,6 +11,6 @@ public class PianoAudio : MonoBehaviour
     {
         Debug.Log(note);
         if (!keyOn) return;
-        audioSource.PlayOneShot(settings.GetNoteAudio(note + octave), 0.5f);
+        audioSource.PlayOneShot(settings.GetNoteAudio(note + octave));
     }
 }

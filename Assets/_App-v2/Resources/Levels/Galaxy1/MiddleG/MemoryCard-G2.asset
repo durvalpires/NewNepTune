@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Memory Card G
   levelType: 4
+  galaxy: 1
   imagesNames:
   - "MemoryCardMinigame/Ads\u0131z_Resim (3)"
   - "MemoryCardMinigame/Ads\u0131z_Resim (4)"

@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteBasedBouncingBall : MonoBehaviour
 {
     private bool levelStarted;
-    private float targetY;
+    private float targetY = -100;
     private float noteHitYOffset = .3f;
     private float bounceDuration;
     private float bounceOffset = .5f;
@@ -26,7 +26,7 @@ public class NoteBasedBouncingBall : MonoBehaviour
     {
         while (true)
         {
-            if (levelStarted)
+            if (levelStarted || targetY != -100)
             {
                 // Increase the timer based on time passed since the last frame
                 timeElapsedSinceBounce += Time.deltaTime;
@@ -62,16 +62,9 @@ public class NoteBasedBouncingBall : MonoBehaviour
         var ballSpriteBounds = GetComponent<SpriteRenderer>().bounds;
         targetY = noteSpriteBounds.center.y + noteSpriteBounds.extents.y
             + ballSpriteBounds.extents.y / 2f;
-        //targetY = noteView.GameObject.transform.position.y;
-        bounceDuration = secPerBeat * ((noteView.beatNumber-currentBeat)) ;
+
+        bounceDuration = Mathf.Abs(secPerBeat * ((noteView.beatNumber-currentBeat)));
         timeElapsedSinceBounce = 0;
 
-        Debug.Log($"NoteView Information: Position = {noteView.GameObject.transform.position}, BeatNumber = {noteView.beatNumber}, TimeElapsedSinceBounce = {timeElapsedSinceBounce}");
-        Debug.Log("Current beat: " + currentBeat);
-        // this.transform.position = new Vector3(
-        //     this.transform.position.x,
-        //     noteView.GameObject.transform.position.y,
-        //     this.transform.position.z
-        // );
     }
 }

@@ -1,0 +1,257 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: World2
+  m_EditorClassIdentifier: 
+  m_GroupName: World2
+  m_GUID: c2f7bc52544164cdf9eb95eb71207782
+  m_SerializeEntries:
+  - m_GUID: 08e7376024e0348deac757586f417525
+    m_Address: MIDDLE D EXERCISE 3  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0adedb11752e94b09b288a57698190b2
+    m_Address: 'MIDDLE D EXERCISE 7 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b4a7b1eb9bd94986bb31ef49bc08f47
+    m_Address: Middle D Exercise 12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 217138a547f9a4c05b1ed90b9844b01e
+    m_Address: MIDDLE D EXERCISE 10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2200498c70e12487389d6972d4dd0ccb
+    m_Address: Middle D Exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 294ba045786474f6fa2d91477b32fa8d
+    m_Address: MIDDLE D EXERCISE 8  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ccf108f3cdde41bfa5a264976e32e6c
+    m_Address: Middle D Exercise 10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ec298a2f0fb347059998c342cc6ce44
+    m_Address: MIDDLE D EXERCISE 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 358710b98870d44df96e8183c4bb4d2d
+    m_Address: MIDDLE D EXERCISE 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ad735b8708354133991d57fdd9a5846
+    m_Address: MIDDLE D - Exercise 2EDITED
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4169fca88570342d6b26e9398c4c0309
+    m_Address: MIDDLE D EXERCISE 7  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45aa9727088f14417be6630acd00902e
+    m_Address: 'MIDDLE D EXERCISE 8 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4987172db5af04164958c7d75c9e171a
+    m_Address: MIDDLE D EXCERCISE 12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50789f730be954be7acd9d2f3befccc3
+    m_Address: MIDDLE D EXERCISE 6  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51732d1cf078740bfa941779a8a2a0f2
+    m_Address: Middle D Exercise 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b8a00c8ec391466781ddf852874a9cf
+    m_Address: Middle D Exercise 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63e19267d49ef460aa9c36e8325b6d35
+    m_Address: MIDDLE D - EXERCISE 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75b9b6db077bf425781b189f15450f81
+    m_Address: MIDDLE D EXERCISE 11 (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7621c6a88228b4f54aef00af126af691
+    m_Address: MIDDLE D EXERCISE 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bcc670406c2544c099630ab0af0e810
+    m_Address: Middle D Exercise 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e0a8b1a6e43d4cacaae22045f683934
+    m_Address: Middle D Exercise 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f7d2056f64a24b04934ed46a6da1e7c
+    m_Address: 'MIDDLE D EXERCISE 11 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80e6c2abe480f4ac8836315ac30e453e
+    m_Address: 'MIDDLE D EXERCISE 4 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b28d8d05d94741b3944a2797f770961
+    m_Address: MIDDLE D EXERCISE 5 (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c6bbf147057b4a6faa47a78da889a2e
+    m_Address: MIDDLE D - Exercise 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 908bdbb71680544b6ae8e4dfd2b2fae2
+    m_Address: Middle D Exercise 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99aca1c272006425f8cb506d9c2b037d
+    m_Address: Middle D Exercise 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99e464b0bdf5449ed8676fbb373b13ec
+    m_Address: MIDDLE D - Exercise 2 musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a64e9c71c4e944ce3b6fa63de0cc47c9
+    m_Address: Middle D Exercise 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b224d739a76f7427c91008f04a1fa118
+    m_Address: MIDDLE D EXERCISE 9  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4aca4a3eb30549418d0912b0c187289
+    m_Address: MIDDLE D - Exercise 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb86e9638324545cbb65556dcfd86ea0
+    m_Address: 'MIDDLE D EXERCISE 6 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd0f9d0a354f54a5884bb5b8b1a671ab
+    m_Address: MIDDLE D - Exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: daa52620e2f684241a574c6391e71ac0
+    m_Address: MIDDLE D EXERCISE 10 (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0fdd45b6aa8a4971a50d75166079079
+    m_Address: MIDDLE C-EXERCISE 1 MP3.
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6de389f9d66a41048ee44ed3de11e9b
+    m_Address: Middle D Exercise 8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8a340b0b01c844e0afb45a2b3a0edd1
+    m_Address: MIDDLE D EXERCISE 12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f89d472c51b61468caf2f3b14ebd7d78
+    m_Address: MIDDLE D EXERCISE 4  (1)
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc4c09929fff4415ebde4b3f5566fabe
+    m_Address: Middle D Exercise 11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 80b7c80ed552169479232e5555310256, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 19e87e3a4f5784e7390a9ecf927ce9c0, type: 2}
+    - {fileID: 11400000, guid: aab917715baf84844a47a2e385af5143, type: 2}
