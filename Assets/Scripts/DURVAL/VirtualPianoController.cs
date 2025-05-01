@@ -18,6 +18,8 @@ public class VirtualPianoController : MonoBehaviour
     [SerializeField]
     private RhythmGameSettings rhythmGameSettings;
 
+    [SerializeField] private PianoAudio pianoAudio;
+
     private void Start()
     {
         foreach (var key in mainPianoKeys)
@@ -279,4 +281,9 @@ public class VirtualPianoController : MonoBehaviour
     //     onPianoKeyTriggered?.Invoke("B", false);
     // }
     #endregion
+
+    public void SetMainOctave(int mostUsedOctave)
+    {
+        pianoAudio.SetMainOctave(mostUsedOctave);
+    }
 }

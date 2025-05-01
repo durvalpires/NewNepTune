@@ -1,17 +1,13 @@
 using Audio;
-using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class RhythmGameManager : MonoBehaviour
@@ -281,6 +277,8 @@ public class RhythmGameManager : MonoBehaviour
             noteViewList = scoreRender.Render();
             var noteCount = noteViewList.Count;
             
+            Dictionary<int, int> octaveUsage = new Dictionary<int, int>();
+            
             List<string> keysUsed = new List<string>();
             foreach (var note in noteViewList)
             {
@@ -288,7 +286,13 @@ public class RhythmGameManager : MonoBehaviour
                 {
                     keysUsed.Add(note.Pitch.Step);
                 }
+                int octave = note.Pitch.Octave;
+                if (!octaveUsage.ContainsKey(octave)) octaveUsage[octave] = 0;
+                octaveUsage[octave]++;
             }
+            int mostUsedOctave = octaveUsage.OrderByDescending(kvp => kvp.Value).First().Key;
+            virtualPianoController.SetMainOctave(mostUsedOctave);
+            
             virtualPianoController.EnableKeys(keysUsed);
 
             scoreController = new RhythmGameScoreController(rhythmGameSettings, noteCount);

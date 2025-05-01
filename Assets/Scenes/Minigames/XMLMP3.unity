@@ -5882,6 +5882,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9179849224843593285, guid: 59018a119fd60f049980091ff446097d,
         type: 3}
+      propertyPath: pianoAudio
+      value: 
+      objectReference: {fileID: 2071334914}
+    - target: {fileID: 9179849224843593285, guid: 59018a119fd60f049980091ff446097d,
+        type: 3}
       propertyPath: onPianoKeyTriggered.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}

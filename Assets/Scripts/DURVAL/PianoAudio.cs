@@ -11,6 +11,12 @@ public class PianoAudio : MonoBehaviour
     {
         Debug.Log(note);
         if (!keyOn) return;
+        Debug.Log(note + octave);
         audioSource.PlayOneShot(settings.GetNoteAudio(note + octave));
+    }
+
+    public void SetMainOctave(int mostUsedOctave)
+    {
+        this.octave = mostUsedOctave.ToString();
     }
 }
