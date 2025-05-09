@@ -2,86 +2,78 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
     public class PlayerModel : PlayerModelBase
     {
         public static event Action onCurrencyChanged;
         private static IResourceProvider _resourceProvider;
+#if UNITY_WEBGL && !UNITY_EDITOR
+    [DllImport("__Internal")]
+    private static extern void ClearAllFromLocalStorage();
+#endif
+    // public static float AudioVolume
+    // {
+    //     get => (float)Data.audioVolume;
+    //     set
+    //     {
+    //         Data.audioVolume = value;
+    //     }
+    // }
 
-        // public static float AudioVolume
-        // {
-        //     get => (float)Data.audioVolume;
-        //     set
-        //     {
-        //         Data.audioVolume = value;
-        //     }
-        // }
-
-        /*
-        private static List<string> _levelProgress;// = new List<string>();
-        public static List<string> LevelProgress
+    /*
+    private static List<string> _levelProgress;// = new List<string>();
+    public static List<string> LevelProgress
+    {
+        get
         {
-            get
+            if (Data.levelProgress != "")
             {
-                if (Data.levelProgress != "")
-                {
-                    _levelProgress = Data.levelProgress.Split(',').ToList();
-                }
-                else
-                {
-                    _levelProgress = new List<string>();
-                }
-                return _levelProgress;
+                _levelProgress = Data.levelProgress.Split(',').ToList();
             }
+            else
+            {
+                _levelProgress = new List<string>();
+            }
+            return _levelProgress;
         }
-        public static void AddItemLevelProgress(int index)
-        {
-            if(_levelProgress.Contains(index.ToString())) return;
-            
-            _levelProgress.Add(index.ToString());
-            Data.levelProgress = _levelProgress.Count > 0 ? string.Join(",", _levelProgress) : "";
-        }
+    }
+    public static void AddItemLevelProgress(int index)
+    {
+        if(_levelProgress.Contains(index.ToString())) return;
 
-        public static void ResetLevelProgress()
-        {
-            Data.levelProgress = "";
-        }
-        */
-       
-        // public static int CompletedWorldIndex
-        // {
-        //     get => Data.lastCompletedWorldIndex;
-        //     set => Data.lastCompletedWorldIndex = value;
-        // }
+        _levelProgress.Add(index.ToString());
+        Data.levelProgress = _levelProgress.Count > 0 ? string.Join(",", _levelProgress) : "";
+    }
 
-        // public static int LastCompleteLevelIndex
-        // {
-        //     get => Data.lastCompleteLevelIndex;
-        //     set => Data.lastCompleteLevelIndex = value;
-        // }
+    public static void ResetLevelProgress()
+    {
+        Data.levelProgress = "";
+    }
+    */
+
+    // public static int CompletedWorldIndex
+    // {
+    //     get => Data.lastCompletedWorldIndex;
+    //     set => Data.lastCompletedWorldIndex = value;
+    // }
+
+    // public static int LastCompleteLevelIndex
+    // {
+    //     get => Data.lastCompleteLevelIndex;
+    //     set => Data.lastCompleteLevelIndex = value;
+    // }
         public static void ClearData()
         {
             _player = null;
-            PlayerPrefs.DeleteKey(_currentProfileKey);
-            PlayerPrefs.DeleteKey(GeneralConfig.autoPlayTutorialKey);
-
-        foreach (var world in AllWorlds.worldsConfigs)
-        {
-            PlayerPrefs.DeleteKey($"w_{world.id}");
-
-            for (int i = 0; i < world.levels.Length; i++)
-            {
-                var level = world.levels[i];
-                if (level.level != null)
-                {
-                    PlayerPrefs.DeleteKey($"w_{world.id}:l_{i}");
-                }
-            }
+#if UNITY_WEBGL && !UNITY_EDITOR
+            ClearAllFromLocalStorage();
+#else
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+#endif
         }
-
-        PlayerPrefs.Save();
-    }
         
         public static void CompleteLevel(int levelIndex, string worldId)
         {
