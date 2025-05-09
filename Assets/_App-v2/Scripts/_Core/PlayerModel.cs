@@ -65,7 +65,23 @@ using UnityEngine;
             _player = null;
             PlayerPrefs.DeleteKey(_currentProfileKey);
             PlayerPrefs.DeleteKey(GeneralConfig.autoPlayTutorialKey);
+
+        foreach (var world in AllWorlds.worldsConfigs)
+        {
+            PlayerPrefs.DeleteKey($"w_{world.id}");
+
+            for (int i = 0; i < world.levels.Length; i++)
+            {
+                var level = world.levels[i];
+                if (level.level != null)
+                {
+                    PlayerPrefs.DeleteKey($"w_{world.id}:l_{i}");
+                }
+            }
         }
+
+        PlayerPrefs.Save();
+    }
         
         public static void CompleteLevel(int levelIndex, string worldId)
         {
