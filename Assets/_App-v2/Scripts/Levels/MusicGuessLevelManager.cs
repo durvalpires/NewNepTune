@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Minigames;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -37,6 +38,12 @@ public class MusicGuessLevelManager : MusicGuessingLevel
          
          
         if (levelToReturn == "") Debug.LogError("Level to return is not set!");
+
+        ReloadButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            _audioSource.Stop();
+            _audioSource.Play();
+        });
 
         backButton.GetComponent<Button>().onClick.AddListener(() =>
         {
