@@ -26,11 +26,12 @@ namespace Minigames
       [SerializeField] protected string levelNote;
       [SerializeField] protected string galaxy;
       [SerializeField] protected Button backButton;
+      [SerializeField] protected Button ReloadButton;
       [SerializeField] protected Button finishedBackButton;
       [SerializeField] protected string levelToReturn;
 
-      //TODO : get rid of character var and first line of start method
-      protected GameObject _character;
+        //TODO : get rid of character var and first line of start method
+        protected GameObject _character;
       
       protected virtual void Start()
       {
