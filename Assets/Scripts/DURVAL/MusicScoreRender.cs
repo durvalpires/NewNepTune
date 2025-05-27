@@ -130,8 +130,8 @@ public class MusicScoreRender : MonoBehaviour {
         GameObject beatMarker;
         
         float initialNoteSpawningOffsetX = (gameSettings.delayBeforeLevelStart * beatsPerSecond + 
-                                           gameSettings.beatsBeforeStart) * this._durationOneX * currentDivisions -
-                                           0.35f;
+                                           gameSettings.beatsBeforeStart) * this._durationOneX * currentDivisions /*-
+                                           0.35f*/;
         float xCursor = initialNoteSpawningOffsetX;
         
         foreach (var part in musicScore.ScoreParts)

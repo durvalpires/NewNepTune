@@ -98,29 +98,42 @@ namespace QuantizedLoopStation
 
                 if (subBeatCount % quantizeDegree == 0)
                 {
-                    beatCount++;
-                    if(beatCount <= rhythmGameSettings.beatsBeforeStart - this.numberBeatInBar || beatCount > 
-                        rhythmGameSettings.beatsBeforeStart) return;
-                    
-                    tic(beatCount);
+                    // beatCount++;
+                    // if(beatCount < rhythmGameSettings.beatsBeforeStart - this.numberBeatInBar + 1 
+                    //    || beatCount > rhythmGameSettings.beatsBeforeStart) 
+                    //     return;
+                    //
+                    // tic(beatCount);
+                    if (subBeatCount % quantizeDegree == 0)
+                    {
+                        beatCount++;
+
+                        int firstTicBeat = rhythmGameSettings.beatsBeforeStart - numberBeatInBar + 1;
+                        if (beatCount >= firstTicBeat && beatCount <= rhythmGameSettings.beatsBeforeStart)
+                        {
+                            tic?.Invoke(beatCount);
+                        }
+                    }
                 }
 
                 if (playSubTic) subTic(subBeatCount);
             }
             
-            if(this.numberBeatInBar - beatCount == this.backgroundTrackIntroBeats)
+            if (beatCount == rhythmGameSettings.beatsBeforeStart - backgroundTrackIntroBeats)
             {
-                OnBackgroundTrackTrigger.Invoke();
+                OnBackgroundTrackTrigger?.Invoke();
             }
 
             if (!twoBeatsLeftDone && beatCount == rhythmGameSettings.beatsBeforeStart - 1)
             {
+                Debug.Log("Two beats left " + beatCount);
                 OnTwoBeatsLeft.Invoke();
                 twoBeatsLeftDone = true;
             }
 
             if(!preCountdownDone && beatCount == rhythmGameSettings.beatsBeforeStart+1)
             {
+                Debug.Log("Pre countdown done " + beatCount);
                 OnPreCountdownDone?.Invoke();
                 preCountdownDone = true;
                 StopMetronome();
@@ -156,6 +169,10 @@ namespace QuantizedLoopStation
         // WHERE EVERYTHING IS KICKSTARTED
         public void SetupMetronome(float bpm, int beatPerBar, int backTrackIntroBeats)
         {
+            Debug.Log("Setting up metronome");
+            Debug.Log("BPM: " + bpm);
+            Debug.Log("Beat per bar: " + beatPerBar);
+            Debug.Log("Background track intro beats: " + backTrackIntroBeats);
             this.bpm = bpm;
             this.numberBeatInBar = beatPerBar;
             this.backgroundTrackIntroBeats = backTrackIntroBeats;
