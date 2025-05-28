@@ -56,6 +56,7 @@ public class RhythmGameSettings : ScriptableObject
     public float MusicalScoreLineDistance = 0.5f; //TODO
     public float LastBarLineHorizontalDistance = 0.25f;
     public float LastBarLineThickness = 5f; //multiplied to scale
+    public bool showLinePerBeat = false;
 
 
     [Header("Audio Settings")]
@@ -137,6 +138,29 @@ public class RhythmGameSettings : ScriptableObject
 
         Debug.LogWarning($"Audio for note type '{note}' not found.");
         return null;
+    }
+    
+    public float GetMainCircleWidth()
+    {
+        foreach (var pair in NotePrefabs)
+        {
+            if (pair.noteType.Equals("template", StringComparison.OrdinalIgnoreCase))
+            {
+                var noteTemplate = pair.prefab;
+                var mainCircle = noteTemplate.transform.Find("mainCircle");
+                if (mainCircle != null)
+                {
+                    var spriteRenderer = mainCircle.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null && spriteRenderer.sprite != null)
+                    {
+                        return spriteRenderer.sprite.bounds.size.x;
+                    }
+                }
+            }
+        }
+
+        Debug.LogWarning("mainCircle or noteTemplate not found in NotePrefabs.");
+        return 0f;
     }
 }
 

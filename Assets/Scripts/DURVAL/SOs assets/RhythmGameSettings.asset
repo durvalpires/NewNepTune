@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RhythmGameSettings
   m_EditorClassIdentifier: 
   DurationOneX: 1
-  DurationReductionPerDivision: 0.25
+  DurationReductionPerDivision: 0
   OnlyUseFirstStaff: 1
   HitWindowsTimings: []
   HitEvaluationSettings:
@@ -129,6 +129,7 @@ MonoBehaviour:
   MusicalScoreLineDistance: 0.5
   LastBarLineHorizontalDistance: 0.25
   LastBarLineThickness: 5
+  showLinePerBeat: 1
   backgroundMusic: {fileID: 0}
   hitSoundEffect: {fileID: 0}
   missSoundEffect: {fileID: 0}
