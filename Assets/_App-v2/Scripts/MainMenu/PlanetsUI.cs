@@ -16,6 +16,10 @@ public class PlanetsUI : MonoBehaviour
     [SerializeField] private Transform uiCanvas;
     [SerializeField] private ScrollRect scroll;
 
+    private float holdScrollSpeed = 0.1f;
+    private float scrollStep = 0.1f;
+    private bool holdingRight = false;
+    private bool holdingLeft = false;
     private Tween planetTween;
     private static float lastScrollPos = 0;
     private int lastUnlockedIndex = -1;
@@ -63,8 +67,50 @@ public class PlanetsUI : MonoBehaviour
         scroll.onValueChanged.AddListener(ScrollPosUpdate);
         StartCoroutine(RefreshCanvas());
     }
-
-    private void OnClick(WorldSO planetData, int index)
+    private void Update()
+    {
+#if UNITY_EDITOR || UNITY_WEBGL
+        float delta = holdScrollSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            holdingRight = true;
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition + delta);
+            scroll.horizontalNormalizedPosition = targetPos;
+            lastScrollPos = targetPos;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            holdingLeft = true;
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition - delta);
+            scroll.horizontalNormalizedPosition = targetPos;
+            lastScrollPos = targetPos;
+        }
+        else
+        {
+            holdingRight = false;
+            holdingLeft = false;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition + scrollStep);
+            DOTween.Kill(scroll);
+            DOTween.To(() => scroll.horizontalNormalizedPosition,
+                       x => scroll.horizontalNormalizedPosition = x,
+                       targetPos, 0.3f).SetTarget(scroll);
+            lastScrollPos = targetPos;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition - scrollStep);
+            DOTween.Kill(scroll);
+            DOTween.To(() => scroll.horizontalNormalizedPosition,
+                       x => scroll.horizontalNormalizedPosition = x,
+                       targetPos, 0.3f).SetTarget(scroll);
+            lastScrollPos = targetPos;
+        }
+#endif
+    }
+        private void OnClick(WorldSO planetData, int index)
     {
         //open Levels
         TempDataStorage.SetData(generalConfigData.openedPlanetKey, planetData);

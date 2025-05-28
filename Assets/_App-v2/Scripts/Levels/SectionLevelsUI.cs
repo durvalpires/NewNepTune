@@ -26,6 +26,11 @@ public class SectionLevelsUI : MonoBehaviour
     private string worldId = "";
     private WorldSO _data;
     private SectionLevelBtnUI lastOpenedLevel;
+    private float holdScrollSpeed = 0.1f;    
+    private float scrollStep = 0.1f;    
+    private bool holdingRight = false;
+    private bool holdingLeft = false;
+
     public void Init(WorldSO data)
     {
         _data = data;
@@ -72,6 +77,44 @@ public class SectionLevelsUI : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR || UNITY_WEBGL
+        float delta = holdScrollSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            holdingRight = true;
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition + delta);
+            scroll.horizontalNormalizedPosition = targetPos;
+            lastScrollPos = targetPos;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            holdingLeft = true;
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition - delta);
+            scroll.horizontalNormalizedPosition = targetPos;
+            lastScrollPos = targetPos;
+        }
+        else
+        {
+            holdingRight = false;
+            holdingLeft = false;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition + scrollStep);
+            DOTween.Kill(scroll);
+            DOTween.To(() => scroll.horizontalNormalizedPosition,
+                       x => scroll.horizontalNormalizedPosition = x,
+                       targetPos, 0.3f).SetTarget(scroll);
+            lastScrollPos = targetPos;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            float targetPos = Mathf.Clamp01(scroll.horizontalNormalizedPosition - scrollStep);
+            DOTween.Kill(scroll);
+            DOTween.To(() => scroll.horizontalNormalizedPosition,
+                       x => scroll.horizontalNormalizedPosition = x,
+                       targetPos, 0.3f).SetTarget(scroll);
+            lastScrollPos = targetPos;
+        }
         if (Input.GetKeyDown(KeyCode.A))//complete All
         {
             for (int i = 0; i < _data.levels.Length; i++)
@@ -82,6 +125,7 @@ public class SectionLevelsUI : MonoBehaviour
             SceneManager.LoadScene(generalConfig.levelsScene);
         }
 
+      
         if (!Input.GetKeyDown(KeyCode.N)) return; //complete Next
         {
             for (int i = 0; i < _data.levels.Length; i++)
@@ -95,8 +139,9 @@ public class SectionLevelsUI : MonoBehaviour
 
             SceneManager.LoadScene(generalConfig.levelsScene);
         }
+
 #endif
-        
+
 #if UNITY_ANDROID || UNITY_IOS
         var touches = new List<Touch>();
         var started = false;
@@ -133,7 +178,7 @@ public class SectionLevelsUI : MonoBehaviour
             }
         }
 #endif
-        
+
     }
 
     public void RefreshLocks()
