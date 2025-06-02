@@ -21,6 +21,7 @@ public class MusicScoreRender : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI beatsText;
     [SerializeField] private TextMeshProUGUI beatTypeText;
     [SerializeField] private SpriteRenderer clefImg;
+    [SerializeField] private SpriteRenderer handImg;
 
     private float speedXPerSec;
 
@@ -91,6 +92,21 @@ public class MusicScoreRender : MonoBehaviour {
                     if(!isRightHand)
                         clefImg.transform.localPosition = new Vector3(clefImg.transform.localPosition.x, 
                             clefImg.transform.localPosition.y + OneNoteY*2, clefImg.transform.localPosition.z);
+
+                    if (!isRightHand)
+                    {
+                        clefImg.transform.localPosition = new Vector3(
+                            clefImg.transform.localPosition.x,
+                            clefImg.transform.localPosition.y + OneNoteY * 2,
+                            clefImg.transform.localPosition.z);
+                    }
+                    string clefSign = measure.Attribute.Value.Clef.Value.Sign;
+                    HandType handType;
+                    if (clefSign == "G") handType = HandType.Right;
+                    else if (clefSign == "F") handType = HandType.Left;
+                    else handType = HandType.Both;
+
+                    UpdateHandImage(handType);
                 }
 
                 if (measure.Attribute?.Time == null) continue;
@@ -330,6 +346,16 @@ public class MusicScoreRender : MonoBehaviour {
         // if(note.Type == "whole")
         //     return gameSettings.GetPrefabForNoteType(note.Type);
         // else
+    }
+    private void UpdateHandImage(HandType handType)
+    {
+        handImg.sprite = gameSettings.GetHandSprite(handType);
+        handImg.color = Color.white;
+        Vector3 scale = handImg.transform.localScale;
+        if (handType == HandType.Right)
+            handImg.transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
+        else
+            handImg.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
     }
 
     private string GetRestType(ScoreNote note)
