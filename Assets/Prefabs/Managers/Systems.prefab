@@ -679,4 +679,4 @@ MonoBehaviour:
   sfxSource: {fileID: 2416947129110500254}
   BgMusicSource: {fileID: 1946654824076964440}
   RhythmMetronomeSource: {fileID: 7726927840559963762}
-  clickClip: {fileID: 8300000, guid: 337cc9fb906904bd4ae36ec80b6025ee, type: 3}
+  clickClip: {fileID: 8300000, guid: c626af9912f2f4829a54ca61d9bef4e8, type: 3}

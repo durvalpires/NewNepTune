@@ -5,17 +5,17 @@ using UnityEngine;
 public class RhythmMetronome : MonoBehaviour
 {
     Coroutine tick;
+    bool isRunning = false;
 
-    public static void CreateAndPlay(string noteKey, float bpm = 60f)
+    public static void CreateAndPlay(string noteKey, float bpm = 80f)
     {
-        var am = AudioManager.Instance;                             
+        var am = AudioManager.Instance;
         if (am.clickClip == null || am.RhythmMetronomeSource == null)
         {
             Debug.LogError("Assign clickClip and RhythmMetronomeSource on AudioManager.");
             return;
         }
 
-       
         var rm = am.GetComponent<RhythmMetronome>() ??
                  am.gameObject.AddComponent<RhythmMetronome>();
 
@@ -26,41 +26,63 @@ public class RhythmMetronome : MonoBehaviour
     {
         if (tick != null) StopCoroutine(tick);
 
-        int beats = BeatsPerBar(key);
-        float step = 60f / bpm;            
-        float length = step * beats;        
-        tick = StartCoroutine(Tick(src, click, step, beats, length));
+        float beats = BeatsPerBar(key);
+        float step = 60f / bpm;
+
+        isRunning = true;
+        tick = StartCoroutine(Tick(src, click, step, beats));
     }
 
-    static int BeatsPerBar(string k)
+    static float BeatsPerBar(string k)
     {
-        if (k.Contains("SEMIBREVE")) return 4;   
-        if (k.Contains("MINIM")) return 2;  
-        return 1;                               
+        if (k.Contains("SEMIBREVE")) return 4;
+        if (k.Contains("MINIM")) return 2;
+        if (k.Contains("QUAVERS")) return 0.5f;
+        if (k.Contains("CROTCHET")) return 1;
+        return 1;
     }
 
-    static IEnumerator Tick(AudioSource src, AudioClip click,
-                             float interval, int beats, float total)
+    IEnumerator Tick(AudioSource src, AudioClip click, float interval, float beats)
     {
-        float t = 0f; int count = 0;
-        while (t < total)
+        Debug.Log(interval);
+        int count = 1;
+        while (isRunning)
         {
-            src.PlayOneShot(click, count % beats == 0 ? 1f : 0.5f); 
-            yield return new WaitForSeconds(interval);
-            t += interval;
-            count++;
+            //float t = 0f;
+            //count = 0;
+            //while (count < beats && isRunning)
+            //{
+            //    src.PlayOneShot(click, count % beats == 0 ? 1f : 0.5f);
+            //    yield return new WaitForSeconds(interval);
+            //    count++;
+            //    t += interval;
+            //}
+
+            //count = 0;
+            //while (count < beats && isRunning)
+            //{
+                //src.PlayOneShot(click, count % beats == 0 ? 1f : 0.5f);
+                src.PlayOneShot(click, count % beats == 0 ? 1f : 0f);
+                yield return new WaitForSeconds(interval);
+                count++;
+                //t += interval;
+            //}
         }
     }
+
     public static void Stop()
     {
         var rm = AudioManager.Instance.GetComponent<RhythmMetronome>();
         if (rm == null) return;
+
+        rm.isRunning = false;
 
         if (rm.tick != null)
         {
             rm.StopCoroutine(rm.tick);
             rm.tick = null;
         }
+
         AudioManager.Instance.RhythmMetronomeSource.Stop();
     }
 }
