@@ -88,13 +88,13 @@ MonoBehaviour:
   beamSprite: {fileID: 21300000, guid: 6f293b2c1358343c98925aca16c6e14f, type: 3}
   handSprites:
   - handType: right
-    sprite: {fileID: 6042143133451924515, guid: f02906bf54e9e4610b6b48aa896eee11,
+    sprite: {fileID: -1949036058213953460, guid: b54aaf29c3e0c4beab9f7dee17ecc2bc,
       type: 3}
   - handType: left
-    sprite: {fileID: 6042143133451924515, guid: f02906bf54e9e4610b6b48aa896eee11,
+    sprite: {fileID: -1949036058213953460, guid: b54aaf29c3e0c4beab9f7dee17ecc2bc,
       type: 3}
   - handType: both
-    sprite: {fileID: -2495507230538228515, guid: f02906bf54e9e4610b6b48aa896eee11,
+    sprite: {fileID: 3863690082117490242, guid: b54aaf29c3e0c4beab9f7dee17ecc2bc,
       type: 3}
   clefSprites:
   - noteType: G
