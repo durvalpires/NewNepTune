@@ -54,7 +54,7 @@ public class NoteBasedBouncingBall : MonoBehaviour
         levelStarted = true;}
     
 
-    public void OnNextNoteUpdated(NoteView noteView, float currentBeat, float secPerBeat, float beatsPerUnit)
+    public void OnNextNoteUpdated(NoteView noteView, double currentBeat, double secPerBeat, double beatsPerUnit)
     {
         initialY = transform.position.y;
         var noteSpriteBounds = noteView.GameObject.GetComponent<NoteController>().CircleSprite.bounds;
@@ -63,7 +63,7 @@ public class NoteBasedBouncingBall : MonoBehaviour
         targetY = noteSpriteBounds.center.y + noteSpriteBounds.extents.y
             + ballSpriteBounds.extents.y / 2f;
 
-        bounceDuration = Mathf.Abs(secPerBeat * ((noteView.beatNumber-currentBeat)));
+        bounceDuration = Mathf.Abs((float)(secPerBeat * ((noteView.beatNumber-currentBeat))));
         timeElapsedSinceBounce = 0;
 
     }

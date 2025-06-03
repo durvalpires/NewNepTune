@@ -5,7 +5,7 @@ public struct ScoreNote : IMeasureChild
 {
     public bool IsRest { get; set; }
     public Pitch? Pitch { get; set; }
-    public int Duration { get; set; }
+    public float Duration { get; set; }
     public int Voice { get; set; }
     public string Type { get; set; }
     public string Stem { get; set; }

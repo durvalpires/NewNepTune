@@ -19,9 +19,9 @@ public class NoteController : MonoBehaviour
     //Transform tableObj;
     Transform playNoteObj;
 
-    public float X { get; set; } = 0;
+    public double X { get; set; } = 0;
 
-    public float Width { get; set; } = 0;
+    public double Width { get; set; } = 0;
 
     // public ScoreNote Note { 
     //     get{
@@ -172,13 +172,13 @@ public class NoteController : MonoBehaviour
         SetColor(ColorSettings.NormalColor);
     }
 
-    public void AddWidth(float width)
+    public void AddWidth(double width)
     {
         this.Width += width;
 
         if(this.fadePatternSprite != null)
             this.fadePatternSprite.transform.localScale = new Vector3(this.fadePatternSprite.transform.localScale.x,
-                this.Width - this.circleSprite.size.x, this.fadePatternSprite.transform.localScale.z);
+                (float)this.Width - this.circleSprite.size.x, this.fadePatternSprite.transform.localScale.z);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -319,13 +319,13 @@ public class NoteController : MonoBehaviour
     //     }
     //     Debug.Log("2");
     
-    public void StartAnimation(float secondsPerBeat, float speedXPerSec)
+    public void StartAnimation(double secondsPerBeat, double speedXPerSec)
     {
         IsFilling = true;
         StartCoroutine(this.AnimateBar(secondsPerBeat, speedXPerSec));
     }
 
-    IEnumerator AnimateBar(float secondsPerBeat, float speedXPerSec)
+    IEnumerator AnimateBar(double secondsPerBeat, double speedXPerSec)
     {
         Debug.LogWarning("ANIMATE THAT SHIET");
         var timeElapsed = 0f;
@@ -336,8 +336,7 @@ public class NoteController : MonoBehaviour
             timeElapsed += Time.deltaTime;
             var width = timeElapsed / noteDurationSeconds;
             var currentScale = this.fadeFillingSprite.transform.localScale;
-            this.fadeFillingSprite.transform.localScale = new Vector3(currentScale.x, width, currentScale.z);
-            Debug.Log("SERA K DESLIGAAAAAAA");
+            this.fadeFillingSprite.transform.localScale = new Vector3(currentScale.x, (float)width, currentScale.z);
             yield return null;
         }
         

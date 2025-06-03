@@ -118,7 +118,7 @@ public static class MusicXMLParser
         {
             Pitch = GetPitch(noteNode.SelectSingleNode("pitch")),
             Duration = noteNode.SelectSingleNode("duration") != null ? 
-                    Int32.Parse(noteNode.SelectSingleNode("duration").InnerText) : 0,
+                    float.Parse(noteNode.SelectSingleNode("duration").InnerText) : 0,
             Type = noteNode.SelectSingleNode("type") != null ? 
                 noteNode.SelectSingleNode("type").InnerText : "unknown",
             Stem = noteNode.SelectSingleNode("stem") != null ? 

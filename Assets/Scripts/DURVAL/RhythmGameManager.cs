@@ -12,13 +12,13 @@ using UnityEngine.UI;
 
 public class RhythmGameManager : MonoBehaviour
 {
-    public UnityEvent<float, int> OnTempoChanged;
+    public UnityEvent<double, int> OnTempoChanged;
     public UnityEvent<float, int, int> OnMetronomeDataLoaded;
     public UnityEvent<int> OnNotesAmountCalculated;
     public UnityEvent<RhythmGameScoreController> OnLevelEnded;
     public UnityEvent OnNoteHit;
 
-    private float speedXPerSec;
+    private double speedXPerSec;
     
     private AsyncOperationHandle<TextAsset> songXmlHandle;
     private AsyncOperationHandle<AudioClip> songClipHandle;
@@ -43,7 +43,7 @@ public class RhythmGameManager : MonoBehaviour
 
     //private SmfLite.MidiTrackSequencer midiTrackSequencer;
 
-    private float noteMaxDistanceToInteractionBar = 0;
+    private double noteMaxDistanceToInteractionBar = 0;
 
     private RhythmGameScoreController scoreController;
 
@@ -51,9 +51,9 @@ public class RhythmGameManager : MonoBehaviour
     [SerializeField] private AudioSource backgroundAudioSource;
 
     // Assuming you have tempo in BPM
-    float beatsPerSecond;
-    float secondsPerBeat;
-    float beatsPerUnit;
+    double beatsPerSecond;
+    double secondsPerBeat;
+    double beatsPerUnit;
 
     private bool isPlaying = false;
     private bool isLevelStarted = false;
@@ -74,7 +74,7 @@ public class RhythmGameManager : MonoBehaviour
 
     private int notesCrossed = 0;
     private int notesCrossedInteractionArea = 0;
-    public UnityEvent<NoteView, float, float, float> OnNextNoteUpdated;
+    public UnityEvent<NoteView, double, double, double> OnNextNoteUpdated;
 
     private List<NoteController> noteInteractableList = new List<NoteController>();
     private List<NoteController> noteInteractingList = new List<NoteController>();
@@ -325,7 +325,7 @@ public class RhythmGameManager : MonoBehaviour
     {
         var addX = speedXPerSec * Time.fixedDeltaTime;
         var currentBoardPosition = this.scoreBoard.transform.position;
-        this.scoreBoard.transform.position -= this.scoreBoard.transform.right * addX;
+        this.scoreBoard.transform.position -= this.scoreBoard.transform.right * (float)addX;
     }
 
     #region MIDI Controller
@@ -342,7 +342,7 @@ public class RhythmGameManager : MonoBehaviour
     //     midiDevice.onWillNoteOn += OnWillNoteOn;
     // }
     //
-    // private void OnWillNoteOn(Minis.MidiNoteControl note, float velocity)
+    // private void OnWillNoteOn(Minis.MidiNoteControl note, double velocity)
     // {
     //     DispatchNoteOnEvent(note.noteNumber);
     // }
@@ -385,10 +385,10 @@ public class RhythmGameManager : MonoBehaviour
     private HitAccuracy EvaluateHit(GameObject noteObj)
     {
         var noteXPosition = noteObj.transform.position.x;
-        float currentDistance = Mathf.Abs(noteXPosition - 
+        double currentDistance = Mathf.Abs(noteXPosition - 
             interactionArea.transform.position.x);
 
-        float percentage = currentDistance * 100 / noteMaxDistanceToInteractionBar;
+        double percentage = currentDistance * 100 / noteMaxDistanceToInteractionBar;
         var result = HitAccuracy.Miss;
 
         foreach(var hitType in rhythmGameSettings.HitEvaluationSettings.NonTimedSettings)
@@ -411,19 +411,6 @@ public class RhythmGameManager : MonoBehaviour
 
     public void OnNoteTriggeredInteractionBar(NoteController note, bool isEntering)
     {
-        //Debug.LogWarning("OnNoteTriggeredInteractionBar: " + note.Pitch.Step + note.Index.ToString() + " = " + isEntering);
-
-        // if(entered && noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] == null){
-        //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] = new List<NoteController>();
-        // }
-        
-        // if(entered){
-        //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave].Add(note);
-        // }
-        // else{
-        //     noteInteractableDic[note.Pitch.Step+note.Pitch.Octave].Remove(note);
-        // }
-
         if (!isEntering) notesCrossedInteractionArea++;
 
         if (note.State == NoteState.Miss && isEntering) return;
@@ -436,14 +423,8 @@ public class RhythmGameManager : MonoBehaviour
             if(noteInteractableList.Contains(note))
                 noteInteractableList.Remove(note);
         }
-
-        /*Debug.Log("noteInteractableList: ");
-        foreach(var n in noteInteractableList){
-            Debug.Log(n.Pitch.Step + n.Index.ToString());
-        }*/
         
-
-        //noteInteractableDic[note.Pitch.Step+note.Pitch.Octave] = entered ? note : null;
+        
         noteMaxDistanceToInteractionBar = Mathf.Abs(
             note.transform.position.x -
             interactionArea.transform.position.x);
@@ -456,13 +437,11 @@ public class RhythmGameManager : MonoBehaviour
         var nextNoteNotRest = notesCrossed;
         while (nextNoteNotRest < noteViewList.Count && noteViewList[nextNoteNotRest].isRest)
         {
-            //Debug.LogWarning("Rest note");
             nextNoteNotRest++;
         }
         
         if (notesCrossed < noteViewList.Count)
         {
-            //Debug.LogWarning("New note to bounce to - " + nextNoteNotRest + " = " + noteViewList[nextNoteNotRest].beatNumber);
             OnNextNoteUpdated?.Invoke(noteViewList[nextNoteNotRest], noteViewList[notesCrossed-1].beatNumber, 
                 secondsPerBeat, beatsPerUnit);
         }
@@ -495,7 +474,6 @@ public class RhythmGameManager : MonoBehaviour
     {
         if (isAutoPlayTutorial)
         {
-            
             foreach (var key in virtualPianoController.GetMainPianoKeys())
             {
                 if (key.GetNote() == note)
