@@ -349,6 +349,7 @@ public class MusicScoreRender : MonoBehaviour {
     }
     private void UpdateHandImage(HandType handType)
     {
+        PositionBottomLeft(handImg,80,-80);
         handImg.sprite = gameSettings.GetHandSprite(handType);
         handImg.color = Color.white;
         Vector3 scale = handImg.transform.localScale;
@@ -356,6 +357,25 @@ public class MusicScoreRender : MonoBehaviour {
             handImg.transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
         else
             handImg.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+    }
+    void PositionBottomLeft(SpriteRenderer sr, float paddingX, float paddingY)
+    {
+        if (sr == null) return;
+
+        Camera cam = Camera.main;
+        float orthoHeight = cam.orthographicSize * 2f;
+        float orthoWidth = orthoHeight * cam.aspect;
+
+        float paddingWorldX = (paddingX / Screen.width) * orthoWidth;
+        float paddingWorldY = (paddingY / Screen.height) * orthoHeight;
+
+        float halfWidth = sr.bounds.size.x / 2f;
+        float halfHeight = sr.bounds.size.y / 2f;
+
+        float x = cam.transform.position.x - (orthoWidth / 2f) + halfWidth + paddingWorldX;
+        float y = cam.transform.position.y - (orthoHeight / 2f) + halfHeight - paddingWorldY;
+
+        sr.transform.position = new Vector3(x, y, sr.transform.position.z);
     }
 
     private string GetRestType(ScoreNote note)
