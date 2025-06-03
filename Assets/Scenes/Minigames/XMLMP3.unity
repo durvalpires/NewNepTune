@@ -3218,6 +3218,7 @@ MonoBehaviour:
   beatsText: {fileID: 1709935112}
   beatTypeText: {fileID: 509455154}
   clefImg: {fileID: 101082306}
+  minDurationValue: 1
   BeatsPerBar: 4
   currentDivisions: 0
 --- !u!1 &1161842744
@@ -5688,7 +5689,7 @@ PrefabInstance:
     - target: {fileID: 6922894144133132666, guid: 59018a119fd60f049980091ff446097d,
         type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7859968470934250682, guid: 59018a119fd60f049980091ff446097d,
         type: 3}
