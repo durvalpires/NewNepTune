@@ -108,10 +108,90 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1823367546726619091, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005921936848074201, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005921936848074201, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005921936848074201, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005921936848074201, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3591544772537592415, guid: 0f856172f977e48a5817a712dbc4d8d8,
         type: 3}
       propertyPath: m_Name
-      value: UICanvas
+      value: RhythmGameUICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 180.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505938774479993569, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 180.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845686149090298789, guid: 0f856172f977e48a5817a712dbc4d8d8,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

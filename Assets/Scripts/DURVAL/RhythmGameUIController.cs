@@ -2,18 +2,20 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using System.Collections;
+using UnityEngine.UI;
 
 public class RhythmGameUIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI comboText;
+    [SerializeField] private Image HandImage;
     [SerializeField] private GameObject InputBlocker;
     [SerializeField] private RectTransform getReadyPopup;
     [SerializeField] private TextMeshProUGUI getReadyPopupText;
     [SerializeField] private RhythmGameSettings rhythmGameSettings;
     [SerializeField] private EndOfLevelScreenController endOfLevelController;
     [SerializeField] private RhythmGameManager rhythmGameManager;
-
+    [SerializeField] private MusicScoreRender musicScoreRender;
     void Start()
     {
         if (rhythmGameManager != null && rhythmGameManager.isAutoPlayTutorial)
@@ -25,7 +27,17 @@ public class RhythmGameUIController : MonoBehaviour
             ShowGetReadyPopup();
         }
     }
+    void OnEnable()
+    {
+        if (musicScoreRender != null)
+            musicScoreRender.OnClefChanged += HandleClefChange;
+    }
 
+    void OnDisable()
+    {
+        if (musicScoreRender != null)
+            musicScoreRender.OnClefChanged -= HandleClefChange;
+    }
     private void ShowGetReadyPopup()
     {
         getReadyPopup.gameObject.SetActive(true);
@@ -82,7 +94,7 @@ public class RhythmGameUIController : MonoBehaviour
         while (!isScaled)
             yield return null;
     }
-
+   
     private IEnumerator TransitionPopupOut(float duration)
     {
         bool isDone = false;
@@ -101,7 +113,15 @@ public class RhythmGameUIController : MonoBehaviour
     {
         comboText.text = newValue;
     }
-
+    private void HandleClefChange(HandType handType)
+    {
+        HandImage.sprite = rhythmGameSettings.GetHandSprite(handType);
+        HandImage.enabled = true;
+        Vector3 scale = HandImage.transform.localScale;
+        HandImage.transform.localScale = handType == HandType.Right
+            ? new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z)
+            : new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+    }
     public void OnLevelEnded(RhythmGameScoreController scoreController)
     {
         endOfLevelController.Activate(scoreController);

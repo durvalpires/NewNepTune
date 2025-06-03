@@ -21,7 +21,6 @@ public class MusicScoreRender : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI beatsText;
     [SerializeField] private TextMeshProUGUI beatTypeText;
     [SerializeField] private SpriteRenderer clefImg;
-    [SerializeField] private SpriteRenderer handImg;
 
     private double speedXPerSec;
 
@@ -50,6 +49,7 @@ public class MusicScoreRender : MonoBehaviour {
     private bool isRightHand = true;
     public bool IsRightHand => isRightHand;
 
+    public event Action<HandType> OnClefChanged;
 
     void Awake()
     {
@@ -107,7 +107,7 @@ public class MusicScoreRender : MonoBehaviour {
                     else if (clefSign == "F") handType = HandType.Left;
                     else handType = HandType.Both;
 
-                    UpdateHandImage(handType);
+                    OnClefChanged?.Invoke(handType);
                 }
 
                 if (measure.Attribute?.Time == null) continue;
@@ -355,36 +355,7 @@ public class MusicScoreRender : MonoBehaviour {
         //     return gameSettings.GetPrefabForNoteType(note.Type);
         // else
     }
-    private void UpdateHandImage(HandType handType)
-    {
-        PositionBottomLeft(handImg,80,-80);
-        handImg.sprite = gameSettings.GetHandSprite(handType);
-        handImg.color = Color.white;
-        Vector3 scale = handImg.transform.localScale;
-        if (handType == HandType.Right)
-            handImg.transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
-        else
-            handImg.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
-    }
-    void PositionBottomLeft(SpriteRenderer sr, float paddingX, float paddingY)
-    {
-        if (sr == null) return;
-
-        Camera cam = Camera.main;
-        float orthoHeight = cam.orthographicSize * 2f;
-        float orthoWidth = orthoHeight * cam.aspect;
-
-        float paddingWorldX = (paddingX / Screen.width) * orthoWidth;
-        float paddingWorldY = (paddingY / Screen.height) * orthoHeight;
-
-        float halfWidth = sr.bounds.size.x / 2f;
-        float halfHeight = sr.bounds.size.y / 2f;
-
-        float x = cam.transform.position.x - (orthoWidth / 2f) + halfWidth + paddingWorldX;
-        float y = cam.transform.position.y - (orthoHeight / 2f) + halfHeight - paddingWorldY;
-
-        sr.transform.position = new Vector3(x, y, sr.transform.position.z);
-    }
+   
 
     private string GetRestType(ScoreNote note)
     {

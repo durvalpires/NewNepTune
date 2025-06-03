@@ -5343,6 +5343,11 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7719910997774293997, guid: aab1bc162f0564a7a9dc0200bd3c4e45,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 27.170044
+      objectReference: {fileID: 0}
     - target: {fileID: 8073908086081272833, guid: aab1bc162f0564a7a9dc0200bd3c4e45,
         type: 3}
       propertyPath: m_IsActive
@@ -5426,12 +5431,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1899143679}
   comboText: {fileID: 1899143678}
+  HandImage: {fileID: 1899143681}
   InputBlocker: {fileID: 1279970086}
   getReadyPopup: {fileID: 348884751}
   getReadyPopupText: {fileID: 1507374784}
   rhythmGameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
   endOfLevelController: {fileID: 698941798}
   rhythmGameManager: {fileID: 1782108897}
+  musicScoreRender: {fileID: 1127685834}
+--- !u!114 &1899143681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1443115647871801005, guid: aab1bc162f0564a7a9dc0200bd3c4e45,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899143676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1899143683 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 198802161994696846, guid: aab1bc162f0564a7a9dc0200bd3c4e45,
