@@ -46,7 +46,9 @@ public class RhythmGameSettings : ScriptableObject
 
     public List<NoteElementVariationSpritePair> noteCircleVariationsSprites;
     public Sprite beamSprite;
+    public List<HandSpritePair> handSprites;
     public List<NoteElementVariationSpritePair> clefSprites;
+  
 
     public List<string> circleLineNotes;
     public GameObject hitEffectPrefab;
@@ -111,7 +113,19 @@ public class RhythmGameSettings : ScriptableObject
         Debug.LogWarning($"Prefab for note type '{noteType}' not found.");
         return null;
     }
-    
+
+    public Sprite GetHandSprite(HandType handType)
+    {
+        string key = handType.ToString();
+        foreach (var pair in handSprites)
+        {
+            if (pair.handType.Equals(key, StringComparison.OrdinalIgnoreCase))
+                return pair.sprite;
+        }
+        Debug.LogWarning($"Hand Sprite for '{key}' not found.");
+        return null;
+    }
+
     public Sprite GetClefSprite(string clefType)
     {
         foreach (var pair in clefSprites)
@@ -125,6 +139,7 @@ public class RhythmGameSettings : ScriptableObject
         Debug.LogWarning($"Clef Sprite for note type '{clefType}' not found.");
         return null;
     }
+
     
     public AudioClip GetNoteAudio(string note)
     {
@@ -176,6 +191,12 @@ public struct NoteElementVariationSpritePair
 {
     public string noteType;  // The note type
     public Sprite sprite;         // The prefab associated with the note
+}
+[Serializable]
+public struct HandSpritePair
+{
+    public string handType;
+    public Sprite sprite;
 }
 
 [Serializable]

@@ -9,9 +9,11 @@ namespace Audio
     public class AudioManager : MonoSingleton<AudioManager>
     {
         public Sound[] musicSounds, sfxSounds, miniGameSounds;
-        public AudioSource musicSource, sfxSource, BgMusicSource;
+        public AudioSource musicSource, sfxSource, BgMusicSource, RhythmMetronomeSource;
+        public AudioClip clickClip;
 
-
+        private float originalBgMusicVolume = 1.0f; 
+        public float reducedVolume = 0.5f;
         private void Start()
         {
             HandleSceneMusic(SceneManager.GetActiveScene().name);
@@ -40,6 +42,16 @@ namespace Audio
             }
         }
 
+        public void ReduceBgVolume()
+        {
+            originalBgMusicVolume = BgMusicSource.volume;
+            BgMusicSource.volume = reducedVolume;
+        }
+
+        public void RestoreBgVolume()
+        {
+            BgMusicSource.volume = originalBgMusicVolume;
+        }
 
         public void PlayMusic(SoundList? clipNameEnum, bool isBackground = false)
         {
@@ -233,4 +245,5 @@ namespace Audio
             return musicSource.time = time;
         }
     }
+
 }

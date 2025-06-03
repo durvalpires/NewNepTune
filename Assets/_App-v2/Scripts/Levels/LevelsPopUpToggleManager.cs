@@ -71,8 +71,9 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
     public override void Back()
     {
         //AudioManager.Instance.UnPauseMusic();
+        AudioManager.Instance.RestoreBgVolume();
         backgroundTrack.volume = 1f;
-
+        RhythmMetronome.Stop();
         foreach (Transform child in PopupGOContainer.transform)
         {
             Destroy(child.gameObject);

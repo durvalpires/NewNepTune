@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using DG.Tweening;
 using Levels.SelectionMinigame;
 using Minigames;
@@ -242,6 +243,8 @@ public class SectionLevelsUI : MonoBehaviour
                     {
                         //popup1Image.sprite = Resources.Load<Sprite>("RhythmCard/" + rhythmData.note);
                         Instantiate(Resources.Load<GameObject>("RhythmCard/" + rhythmData.note), PopupGOContainer.transform);
+                        AudioManager.Instance.ReduceBgVolume();
+                        RhythmMetronome.CreateAndPlay(rhythmData.note);
                     }
                     
                     popUpToggleManager.ToggleRhythmPopup(rhythmData.note);
