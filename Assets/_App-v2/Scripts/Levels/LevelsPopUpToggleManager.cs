@@ -72,7 +72,7 @@ public class LevelsPopUpToggleManager : PopUpToggleManager
     {
         //AudioManager.Instance.UnPauseMusic();
         backgroundTrack.volume = 1f;
-
+        RhythmMetronome.Stop();
         foreach (Transform child in PopupGOContainer.transform)
         {
             Destroy(child.gameObject);

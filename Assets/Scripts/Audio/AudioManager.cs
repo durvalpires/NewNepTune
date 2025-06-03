@@ -9,8 +9,8 @@ namespace Audio
     public class AudioManager : MonoSingleton<AudioManager>
     {
         public Sound[] musicSounds, sfxSounds, miniGameSounds;
-        public AudioSource musicSource, sfxSource, BgMusicSource;
-
+        public AudioSource musicSource, sfxSource, BgMusicSource, RhythmMetronomeSource;
+        public AudioClip clickClip;
 
         private void Start()
         {

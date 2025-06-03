@@ -242,6 +242,7 @@ public class SectionLevelsUI : MonoBehaviour
                     {
                         //popup1Image.sprite = Resources.Load<Sprite>("RhythmCard/" + rhythmData.note);
                         Instantiate(Resources.Load<GameObject>("RhythmCard/" + rhythmData.note), PopupGOContainer.transform);
+                        RhythmMetronome.CreateAndPlay(rhythmData.note);
                     }
                     
                     popUpToggleManager.ToggleRhythmPopup(rhythmData.note);
