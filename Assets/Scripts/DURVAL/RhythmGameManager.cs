@@ -432,26 +432,36 @@ public class RhythmGameManager : MonoBehaviour
 
     public void OnTriggeredInteractionAreaCenter(NoteController note)
     {
-       
         notesCrossed++;
+
+        var previousNoteIndex = notesCrossed - 1;
+        if (previousNoteIndex < 0 || previousNoteIndex >= noteViewList.Count)
+        {
+            Debug.LogWarning("Invalid previousNoteIndex: " + previousNoteIndex);
+            return;
+        }
+
         var nextNoteNotRest = notesCrossed;
         while (nextNoteNotRest < noteViewList.Count && noteViewList[nextNoteNotRest].isRest)
         {
             nextNoteNotRest++;
         }
-        
-        if (notesCrossed < noteViewList.Count)
-        {
-            OnNextNoteUpdated?.Invoke(noteViewList[nextNoteNotRest], noteViewList[notesCrossed-1].beatNumber, 
-                secondsPerBeat, beatsPerUnit);
-        }
 
-        notesCrossed = nextNoteNotRest;
-       
+        if (nextNoteNotRest < noteViewList.Count)
+        {
+            OnNextNoteUpdated?.Invoke(
+                noteViewList[nextNoteNotRest],
+                noteViewList[previousNoteIndex].beatNumber,
+                secondsPerBeat,
+                beatsPerUnit
+            );
+
+            notesCrossed = nextNoteNotRest;
+        }
 
         if (isAutoPlayTutorial)
         {
-            StartCoroutine(AutoPlayKeyPress("C", 0.2f)); //hardcoded for now 
+            StartCoroutine(AutoPlayKeyPress("C", 0.2f)); // hardcoded for now
         }
     }
     private IEnumerator AutoPlayKeyPress(string note, float pressDuration)
