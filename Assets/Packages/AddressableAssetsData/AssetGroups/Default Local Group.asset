@@ -21,12 +21,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 07305027195f444458bdefa77b191411
-    m_Address: MIDDLE C EXERCISE 11
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10b2bb45b7a394d798e52be1fe3c7e63
     m_Address: Mixed Notes Left Hand - Exercise 5
     m_ReadOnly: 0
@@ -63,23 +57,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 159379172064849508948ffa19e54704
-    m_Address: MIDDLE C EXERCISE 8
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16d3996559ce34c348d27eba6d343602
     m_Address: Mixed Notes Right Hand - Exercise 9.musicxml
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 17aae3112e75545b0ab24bd2135d94ce
-    m_Address: 'MIDDLE C EXERCISE 7 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1d5e64e72ce23402fa1cdb9545e32723
     m_Address: Mixed Note exercise 1
@@ -117,23 +99,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 37ae8d077ca864cbfbf8d0c472f325b2
-    m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 4 ALEYNA uncompressed
-      2..musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3d6200d1567034b1f9100d6f7a635119
     m_Address: Mixed Notes Left Hand - Exercise 1
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3ee5778663e7f42a488c36c25771404c
-    m_Address: MIDDLE C 10 EXERCISE
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4019bcf786eab4c5ab2242da358b18d5
     m_Address: Mixed Notes Left Hand exercise 10
@@ -201,18 +171,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 547c5091d1b5e4d49849f7dcf5f0f1e0
-    m_Address: 'MIDDLE C EXERCISE 6 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5651fe056a62a4e1dbf60baaa0c7bee4
-    m_Address: 'MIDDLE C EXERCISE 3 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 582131b8122af4636b1d0ea1a4f94154
     m_Address: Mixed Notes Right Hand - Exercise 3
     m_ReadOnly: 0
@@ -236,12 +194,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 61c334a27a1914258be460cf342fd7b0
-    m_Address: 'MIDDLE C EXERCISE 9 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 638737265c9c8493cbf2a5b6a9543630
     m_Address: Mixed Notes Left Hand - Exercise 3.musicxml
@@ -327,12 +279,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 87dbdb042fae144a192f560cd7f47e91
-    m_Address: 'MIDDLE C EXERCISE 4 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ac6dbe1f03684ed991d928e7f9a9bb9
     m_Address: Mixed Notes Right Hand - Exercise 10
     m_ReadOnly: 0
@@ -363,12 +309,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d32d8f26f2c24503a566ccb87cc454e
-    m_Address: MIDDLE C - EXERCISE 1 corrected one 3rd option
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5f6855d959ab49dca544643f48593b0
     m_Address: Mixed Notes Left Hand - Exercise 7.musicxml
     m_ReadOnly: 0
@@ -380,12 +320,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ae5035a1e92d744628dcbb159815f6a0
-    m_Address: 'MIDDLE C EXERCISE 5 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af7172435ed1c44a391b47608157ccb2
     m_Address: Mixed Notes Left Hand - Exercise 2.musicxml
@@ -405,21 +339,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b6d7224606b9c49e9b806b2925dfc612
-    m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 4 _DIV1.xml
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3d71b13e9a5e48e188192abf97caa59
     m_Address: Mixed Notes Left Hand - Exercise 2
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c93dfaeb1cb604c58b4ea2c8508fac41
-    m_Address: Assets/VPContent/Middle C/MIDDLE C EXERCISE 4 ALEYNA comparess 1.mxl
-    m_ReadOnly: 0
-    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbc670c47ec734131b6fcc0355030a7a
     m_Address: Mixed Notes Left Hand exercise 6
@@ -450,12 +374,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f8d87f16254ab4445bdea9d869b62e7e
-    m_Address: 'MIDDLE C EXERCISE 12 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - CLabel
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fdf55e516325d4a1eb1a7c2df9f6fedf
     m_Address: Mixed Notes Right Hand - Exercise 10.musicxml

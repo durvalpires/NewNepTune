@@ -52,6 +52,7 @@ using UnityEngine.Networking;
             SaveData();
             _player = null;
         }
+        
         public static void SaveData()
         {
             var data = Json.Serialize(Data);
@@ -65,7 +66,6 @@ using UnityEngine.Networking;
 #endif
             
         }
-        
 
         public static string GetCustomData(string key, string defaultValue = "")
         {
@@ -84,6 +84,7 @@ using UnityEngine.Networking;
                 return dataDictFromJson;
             }
         }
+        
         public static void SetCustomData(string key, string value)
         {
             Dictionary<string, object> dataDict = AllCustomData;
@@ -95,6 +96,9 @@ using UnityEngine.Networking;
             Data.customUserData = Json.Serialize(dataDict);
             SaveData();
         }
+        
+        
+        
         protected class PlayerData
         {
             public string profileId = ""; // could use for switching profiles in future - creating of ProfileController is needed

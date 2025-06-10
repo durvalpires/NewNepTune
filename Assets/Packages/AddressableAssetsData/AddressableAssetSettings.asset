@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 92db702610c312e4696b015cf01a62ee
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: c2872426b192c56fc85f4ffd6a466888
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -83,6 +83,20 @@ MonoBehaviour:
     - m_InheritedParent: 
       m_Id: 1efca86f0801ef1449faebc993073c74
       m_ProfileName: Default
+      m_Values:
+      - m_Id: 45b26dc38530c014d880109565dd7a3d
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 4e5b8e11885ae554295aa66285b91628
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: 53f1ac27a151a124d81f6bf0670cacbd
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: d3cbae190205ad444b73a4ca2ca5b59e
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: dd8612e2463badd46b9a6c3254162978
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+    - m_InheritedParent: 
+      m_Id: 8190d41ea5a1d49d5bc75804827ea27a
+      m_ProfileName: Debug
       m_Values:
       - m_Id: 45b26dc38530c014d880109565dd7a3d
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'

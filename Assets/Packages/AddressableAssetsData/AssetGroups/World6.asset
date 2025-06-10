@@ -39,6 +39,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - CLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 104ed921b05c74de1b3e0978d1d84f80
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 6_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1148b9d0018ac48a79c9d586438d0bc9
     m_Address: Middle A Exercise 8
     m_ReadOnly: 0
@@ -57,6 +62,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - CLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1da37478e2e5b4d2788dc35b95a18ccd
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 5_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2458465ca87df4ee7963ab693a79c2c1
     m_Address: Middle A Exercise 1
     m_ReadOnly: 0
@@ -68,6 +78,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40fa39068bb034718a362fb49b403f81
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 8 _DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 486b15166edc44637aed962d12d05e92
     m_Address: 'MIDDLE A - 1st Exercise '
@@ -117,6 +132,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - CLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c9fa230977ef4813b2b12644ef86966
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 10 _DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6da78e43f5a9a4c52a97ea0d7586ecd0
     m_Address: Middle A Exercise 12
     m_ReadOnly: 0
@@ -159,6 +179,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - CLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c72c04eac44a431684301346af08899
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 12_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a20544e479b5d43c1b3c2b38108e8d72
     m_Address: MIDDLE A - 2ND Exercise  (1)
     m_ReadOnly: 0
@@ -171,11 +196,21 @@ MonoBehaviour:
     m_SerializedLabels:
     - CLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6252d2c586b34289bd98223cbbb3019
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 11_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a854a66df0a5343c296fe324170c57a7
     m_Address: 'MIDDLE A EXERCISE 8 '
     m_ReadOnly: 0
     m_SerializedLabels:
     - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abb2140effd4c42c0a46f31fc1f6ed48
+    m_Address: Assets/VPContent/Middle A/MIDDLE A EXERCISE 4_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b11972fb1f5b949a3a3100e7f74e408f
     m_Address: 'MIDDLE A EXERCISE 8 '

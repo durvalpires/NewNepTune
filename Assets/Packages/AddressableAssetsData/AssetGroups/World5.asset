@@ -63,6 +63,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d154e81e492b4044952afd790c753ed
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 10 _DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ffddeb9606d746fea9ccf2680535e91
     m_Address: MIDDLE G EXERCISE 4
     m_ReadOnly: 0
@@ -135,17 +140,42 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81de75888c89e4e36b262ce67e353d0e
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 8 _DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 826a8bdc029de467cbeee3e4291fe55d
     m_Address: Middle G Exercise 7
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82b067c85faef4d6295c9d3a08bfaee3
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 6_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83cca95f132254f3da38611eb600dd63
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 4_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94c63c96250ce4dbda245d5f1d6c6ca2
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 12_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96ae7e70b118e49c98fd09880ebea7f7
     m_Address: Middle G Exercise 3
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99b3e4b320b1b41ceb801b118178399b
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 11_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c4b26ecc72df497ca42e6e33a48bea4
     m_Address: Middle G Exercise 11
@@ -230,6 +260,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e94da3fdab0c047d2a21281291912884
+    m_Address: Assets/VPContent/Middle G/MIDDLE G EXERCISE 5_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 80b7c80ed552169479232e5555310256, type: 2}

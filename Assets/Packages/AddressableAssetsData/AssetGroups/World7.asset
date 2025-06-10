@@ -33,6 +33,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - CLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1423c635b3ddc41f585b40e48744d6a3
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 8_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 179308371b57d473eb984ee6bf4ff85e
     m_Address: MIDDLE B EXERCISE 3
     m_ReadOnly: 0
@@ -44,6 +49,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f33bca4fb3f14a8da51f6fb7523e835
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 12 _DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25480c80ddec04578a399bdf42a1ac60
     m_Address: 'MIddle B - 2nd Exercise '
@@ -92,6 +102,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fbbb28d063fd4034989d50f0a1f7450
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 11_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71ce3596eca104642ad847df8c738f48
     m_Address: Middle B Exercise 4
@@ -213,11 +228,21 @@ MonoBehaviour:
     m_SerializedLabels:
     - CLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb1b6bbbbcd004ed59e94cca5a1d1da0
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 5_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb2fc9377486d45728a0688d09969fd4
     m_Address: MIDDLE B EXERCISE 5
     m_ReadOnly: 0
     m_SerializedLabels:
     - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d54d5c88c52b5402a9b48daf979b1343
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE 10 _DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d5771b93133484fc48e1236b6149634d
     m_Address: 'MIDDLE B EXERCISE 9 '
@@ -230,6 +255,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - CLabel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de73fcc2393a1412aa6ba6530a283c3e
+    m_Address: Assets/VPContent/Middle B/MIDDLE B EXERCISE_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ffc21e33f812e4561945ec7f40b904c3
     m_Address: 'MIDDLE B EXERCISE 9 '

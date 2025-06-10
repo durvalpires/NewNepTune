@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -14,6 +15,7 @@ public class SOAudioXmlLinker : EditorWindow
     string levelSOText = "VirtualPiano";
     private bool backgroundTrackFolder = true;
     DefaultAsset xmlFolder;
+    private bool onlyUseDIV1Xml = false;
     
     
     private string audioFolderPath;
@@ -39,8 +41,10 @@ public class SOAudioXmlLinker : EditorWindow
         audioFolder = (DefaultAsset)EditorGUILayout.ObjectField("Audio Folder", audioFolder, typeof(DefaultAsset), false);
         backgroundTrackFolder = EditorGUILayout.Toggle("Is Background Track Folder", backgroundTrackFolder);
         xmlFolder = (DefaultAsset)EditorGUILayout.ObjectField("XML Folder", xmlFolder, typeof(DefaultAsset), false);
+        onlyUseDIV1Xml = EditorGUILayout.Toggle("Only Use DIV 1 XML", onlyUseDIV1Xml);
 
-        GUI.enabled = /*targetSO != null &&*/ audioFolder && levelSOsFolder != null && xmlFolder != null;
+
+        GUI.enabled = /*targetSO != null &&*/  levelSOsFolder != null && xmlFolder != null || audioFolder != null;
 
         if (GUILayout.Button("Link Files"))
         {
@@ -62,18 +66,27 @@ public class SOAudioXmlLinker : EditorWindow
             string number = ExtractNumberFromFile(so);
             if (string.IsNullOrEmpty(number)) continue;
             
-            // // Find matching files
-            string[] mp3Path = FindFilesWithNumber(audioFolderPath, number, "", ".mp3", ".ogg");
-            string[] xmlPath = FindFilesWithNumber(xmlFolderPath, number,"", ".xml", ".musicxml");
+            if(!String.IsNullOrEmpty(audioFolderPath))
+            {
+                string[] mp3Path = FindFilesWithNumber(audioFolderPath, number, "", ".mp3", ".ogg");
+                
+                if (mp3Path.Length > 0)
+                    AssignAssetReference(so, backgroundTrackFolder ? "backgroundClip" : "songClip", mp3Path[0]);
+            }
             
+            if (!String.IsNullOrEmpty(xmlFolderPath))
+            {
+                string[] xmlPath = FindFilesWithNumber(xmlFolderPath, number, onlyUseDIV1Xml ? "DIV1" : "",
+                    ".xml", ".musicxml"
+                );
+                
+                if (xmlPath.Length > 0)
+                    AssignAssetReference(so, "songXml", xmlPath[0]);
+            }
             
             //SerializedObject soSerialized = new SerializedObject(so);
+            //soSerialized.Update();
             
-            if (xmlPath.Length > 0)
-                AssignAssetReference(so, "songXml", xmlPath[0]);
-            
-            if (mp3Path.Length > 0)
-                AssignAssetReference(so, backgroundTrackFolder ? "backgroundClip" : "songClip", mp3Path[0]);
             
             //soSerialized.ApplyModifiedProperties();
         }

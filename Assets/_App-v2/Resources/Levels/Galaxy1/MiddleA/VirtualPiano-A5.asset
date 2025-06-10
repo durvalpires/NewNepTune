@@ -16,11 +16,11 @@ MonoBehaviour:
   levelType: 5
   galaxy: 2
   songXml:
-    m_AssetGUID: 78a2703be04504bdea02277b58020a2e
+    m_AssetGUID: 1da37478e2e5b4d2788dc35b95a18ccd
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 1
+    m_EditorAssetChanged: 0
   songClip:
     m_AssetGUID: cb35b8dd3f4af49b285cbffa280c3ebf
     m_SubObjectName: 

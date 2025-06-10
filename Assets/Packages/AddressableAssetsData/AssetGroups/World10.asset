@@ -63,6 +63,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ddfcd3ae9b144464af7261b5f3f8ed4
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      hand exercise 9.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4840aa556e1db40df9ae0918ad95ff68
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      hand exercise 8.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4d3996b18fb7e4ab8a9cf8b6064dc242
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand exercise 10 .musicxml.xml
@@ -72,6 +84,12 @@ MonoBehaviour:
   - m_GUID: 4fcb38929317f491688473c391d0519a
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       hand exercise 3.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55eda3cd3c5af4c30a461805e3c1ffb0
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      hand exercise 6 .musicxml_DIV1.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -99,15 +117,33 @@ MonoBehaviour:
     m_SerializedLabels:
     - BLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7359adb28c9bc46138e854d1b6c7bae3
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      hand exercise 10 .musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e19f805e6b3248fca39f031cbd36d62
     m_Address: Middle E left hand - exercise 1
     m_ReadOnly: 0
     m_SerializedLabels:
     - BLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 864c3ce7a7c734500ab351443fffbf40
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      hand exercise 3.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a44c13f6cf8b49d6a7a1a10254393a2
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       Hand exercise 2 .musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a7ee81d5e3bd46ee9436b4619e35f4b
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      Hand exercise 5.musicxml_DIV1.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -123,6 +159,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - BLabel
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98a0b051837e54fa595b538d2c276c9c
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      hand exercise 4.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3039b9e84f354f71b2887bc9b8818d7
     m_Address: Middle E Left hand exercise 9
     m_ReadOnly: 0
@@ -132,6 +174,12 @@ MonoBehaviour:
   - m_GUID: b53e01c592615454cafc2cd4055fa3eb
     m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
       Hand exercise 7.musicxml.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6a9a7dd87ab14ffbb77fc9e4629c0e9
+    m_Address: Assets/VPContent/LeftHand/MiddleE/MIDDLE E Exercises/MIDDLE E Left
+      Hand exercise 7.musicxml_DIV1.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
