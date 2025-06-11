@@ -2,29 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
     public class PlayerModel : PlayerModelBase
     {
         public static event Action onCurrencyChanged;
         private static IResourceProvider _resourceProvider;
-#if UNITY_WEBGL && !UNITY_EDITOR
-    [DllImport("__Internal")]
-    private static extern void ClearAllFromLocalStorage();
-#endif
-    // public static float AudioVolume
-    // {
-    //     get => (float)Data.audioVolume;
-    //     set
-    //     {
-    //         Data.audioVolume = value;
-    //     }
-    // }
 
-    /*
-    private static List<string> _levelProgress;// = new List<string>();
-    public static List<string> LevelProgress
+        // public static float AudioVolume
+        // {
+        //     get => (float)Data.audioVolume;
+        //     set
+        //     {
+        //         Data.audioVolume = value;
+        //     }
+        // }
+
+        /*
+        private static List<string> _levelProgress;// = new List<string>();
+        public static List<string> LevelProgress
     {
         get
         {
@@ -64,20 +60,15 @@ using UnityEngine;
     //     get => Data.lastCompleteLevelIndex;
     //     set => Data.lastCompleteLevelIndex = value;
     // }
-        public static void ClearData()
+
+        private async void Awake()
         {
-            _player = null;
-#if UNITY_WEBGL && !UNITY_EDITOR
-            ClearAllFromLocalStorage();
-#else
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
-#endif
+            await PlayerModel.LoadData();
         }
-        
         public static void CompleteLevel(int levelIndex, string worldId)
         {
             SetCustomData($"w_{worldId}:l_{levelIndex}", "done");
+            SetLevelCompleted(levelIndex);
         }
 
         public static bool IsLevelCompleted(int levelIndex, string worldId)

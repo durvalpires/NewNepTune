@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 620b42bd996f246b9ac36a0be9094a88
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 272421
+  packageName: Firebase WebGL
+  packageVersion: 10.7.1
+  assetPath: Assets/MarksAssets/FirebaseWebGL/Examples/Scenes/Auth/AnonymousAuthenticationLinkingPersistence.unity
+  uploadId: 636675

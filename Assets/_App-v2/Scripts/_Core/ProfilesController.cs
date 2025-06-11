@@ -26,16 +26,6 @@ public class ProfilesController
         {
             if (_profiles == null)
             {
-#if UNITY_WEBGL && !UNITY_EDITOR
-                    var userData = LocalStorageManager.LoadData(PlPrefsDataKey);
-                    if(userData == null || !userData.Contains(":")) 
-                        {
-                            Debug.LogWarning("Creating new profile data although it has found currentProfileKey");
-                            return _profiles = new ProfilesData();
-                        }
-                        
-                    _profiles = JsonUtility.FromJson<ProfilesData>(userData);
-#else
                 if(PlayerPrefs.HasKey(PlPrefsDataKey))
                 {
                     var userData= PlayerPrefs.GetString(PlPrefsDataKey, "");
@@ -47,7 +37,6 @@ public class ProfilesController
                 {
                     _profiles = new ProfilesData();
                 }
-#endif
             }
             return _profiles;
         }
@@ -180,12 +169,7 @@ public class ProfilesController
         if(string.IsNullOrEmpty(data)) return;
         Debug.Log("[SAVE] Data Saved:" + 
                   data.Substring(0,Mathf.Min(data.Length,100)));
-#if UNITY_WEBGL && !UNITY_EDITOR
-            LocalStorageManager.SaveData(PlPrefsDataKey, data);
-#else
         PlayerPrefs.SetString(PlPrefsDataKey, data);
-        PlayerPrefs.Save();
-#endif
     }
     private class ProfilesData
     {

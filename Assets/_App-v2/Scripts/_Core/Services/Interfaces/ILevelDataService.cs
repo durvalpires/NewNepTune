@@ -1,0 +1,25 @@
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+
+public interface ILevelDataService
+{
+    PlayerLevelData LevelData { get; }
+
+    UniTask LoadLevelData(string subProfileName);
+    UniTask SaveLevelData();
+
+    int GetNumberOfLevel();
+    int GetNumberOfAttempts();
+    int GetAverageScore();
+    Dictionary<int, (int Score, int Repetition)> GetAllPlayerLevelData();
+    void PrintAllPlayerLevelData();
+
+    void SetLevelUnlock(int levelIndex);
+    void SetLevelCompleted(int levelIndex);
+    void UpdateCounter(int levelIndex, CounterType counterType);
+    void SetCustomScore(int customScore);
+
+    UniTask CreateSubProfile(string subProfileName);
+    UniTask<List<string>> GetAllSubProfiles();
+    UniTask SwitchSubProfileByName(string subProfileName);
+}
