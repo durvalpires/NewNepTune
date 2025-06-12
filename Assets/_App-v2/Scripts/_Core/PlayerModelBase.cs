@@ -155,8 +155,9 @@ public class PlayerModelBase
 
     public static string GetCustomData(string key, string defaultValue = "")
     {
-        if (_playerDataService == null)
-            LoadData().Forget();
+        if (_playerDataService == null || _playerDataService.PlayerData == null || 
+            String.IsNullOrEmpty(_playerDataService.PlayerData.customUserData))
+                LoadData().Forget();
 
         return _playerDataService?.GetCustomData(key, defaultValue) ?? defaultValue;
     }

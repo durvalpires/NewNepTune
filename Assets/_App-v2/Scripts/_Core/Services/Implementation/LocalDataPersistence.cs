@@ -32,7 +32,7 @@ public class LegacyLocalDataContainer
 
 public class LocalDataPersistence : IDataPersistence
 {
-    public bool IsConnected => false;
+    public bool IsConnected => true;
 
     private string GetProfileKey(string subProfileName)
     {
@@ -42,12 +42,16 @@ public class LocalDataPersistence : IDataPersistence
 
     public async UniTask<PlayerDataDB> LoadPlayerData()
     {
-        return new PlayerDataDB();
+        if (!PlayerPrefs.HasKey("PlayerData")) return new PlayerDataDB();
+        string json = PlayerPrefs.GetString("PlayerData");
+        return JsonUtility.FromJson<PlayerDataDB>(json);
     }
 
     public async UniTask SavePlayerData(PlayerDataDB playerData)
     {
-       
+        string json = JsonUtility.ToJson(playerData);
+        PlayerPrefs.SetString("PlayerData", json);
+        PlayerPrefs.Save();
     }
 
     public async UniTask<PlayerLevelData> LoadLevelData(string subProfileName)

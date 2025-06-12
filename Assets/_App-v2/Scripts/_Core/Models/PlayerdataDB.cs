@@ -10,4 +10,14 @@ public class PlayerDataDB : IDBData
     public bool IsMusicOn = true;
     public string customUserData = "";
     public float totalPlayTime = 0f;
+    
+    public PlayerDataDB()
+    {
+        profileId = "TestProfile";
+        playerName = "TestPlayer";
+        IsSoundOn = true;
+        IsMusicOn = true;
+        customUserData = "";
+        totalPlayTime = 0f;
+    }
 }
