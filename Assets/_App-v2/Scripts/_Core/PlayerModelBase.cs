@@ -15,7 +15,7 @@ public class PlayerModelBase
     private static IDataPersistence _dataPersistence;
     private static string _currentSubProfileName = "Default";
 
-    public static PlayerDataDB Data => _playerDataService?.PlayerData;
+    public static AccountDataDB Data => _playerDataService?.AccountData;
     public static PlayerLevelData LevelData => _levelDataService?.LevelData;
 
     static PlayerModelBase()
@@ -108,14 +108,14 @@ public class PlayerModelBase
     #region Player Data Methods
     public static string GetPlayerName()
     {
-        return _playerDataService?.PlayerData?.playerName;
+        return _playerDataService?.AccountData?.playerName;
     }
 
     public static void SetPlayerName(string name)
     {
-        if (_playerDataService?.PlayerData != null)
+        if (_playerDataService?.AccountData != null)
         {
-            _playerDataService.PlayerData.playerName = name;
+            _playerDataService.AccountData.playerName = name;
             UpdatePlayerNameInFirebase();
         }
     }
@@ -127,51 +127,51 @@ public class PlayerModelBase
 
     public static bool GetSoundState()
     {
-        return _playerDataService?.PlayerData?.IsSoundOn ?? true;
+        return _playerDataService?.AccountData?.IsSoundOn ?? true;
     }
 
     public static void SetSoundState(bool state)
     {
-        if (_playerDataService?.PlayerData != null)
+        if (_playerDataService?.AccountData != null)
         {
-            _playerDataService.PlayerData.IsSoundOn = state;
+            _playerDataService.AccountData.IsSoundOn = state;
             _playerDataService.SavePlayerData().Forget();
         }
     }
 
     public static bool GetMusicState()
     {
-        return _playerDataService?.PlayerData?.IsMusicOn ?? true;
+        return _playerDataService?.AccountData?.IsMusicOn ?? true;
     }
 
     public static void SetMusicState(bool state)
     {
-        if (_playerDataService?.PlayerData != null)
+        if (_playerDataService?.AccountData != null)
         {
-            _playerDataService.PlayerData.IsMusicOn = state;
+            _playerDataService.AccountData.IsMusicOn = state;
             _playerDataService.SavePlayerData().Forget();
         }
     }
 
     public static string GetCustomData(string key, string defaultValue = "")
     {
-        if (_playerDataService == null || _playerDataService.PlayerData == null || 
-            String.IsNullOrEmpty(_playerDataService.PlayerData.customUserData))
+        if (_levelDataService == null || _levelDataService.LevelData == null || 
+            String.IsNullOrEmpty(_levelDataService.LevelData.customLevelData))
                 LoadData().Forget();
 
-        return _playerDataService?.GetCustomData(key, defaultValue) ?? defaultValue;
+        return _levelDataService?.GetCustomData(key, defaultValue) ?? defaultValue;
     }
 
     public static void SetCustomData(string key, string value)
     {
-        _playerDataService?.SetCustomData(key, value);
-        if (_playerDataService != null)
-            _playerDataService.SavePlayerData().Forget();
+        _levelDataService?.SetCustomData(key, value);
+        if (_levelDataService != null)
+            _levelDataService.SaveLevelData().Forget();
     }
 
     public static Dictionary<string, object> GetAllCustomData()
     {
-        return _playerDataService?.GetAllCustomData() ?? new Dictionary<string, object>();
+        return _levelDataService?.GetAllCustomData() ?? new Dictionary<string, object>();
     }
     #endregion
 

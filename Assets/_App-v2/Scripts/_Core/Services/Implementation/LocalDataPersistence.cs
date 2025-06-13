@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class LocalDataContainer
 {
-    public PlayerDataDB playerData;
+    [FormerlySerializedAs("playerData")] public AccountDataDB accountData;
     public PlayerLevelData playerLevelData;
 }
 
@@ -40,16 +41,16 @@ public class LocalDataPersistence : IDataPersistence
         return $"{profileKey}_{subProfileName}_PlayerData";
     }
 
-    public async UniTask<PlayerDataDB> LoadPlayerData()
+    public async UniTask<AccountDataDB> LoadPlayerData()
     {
-        if (!PlayerPrefs.HasKey("PlayerData")) return new PlayerDataDB();
+        if (!PlayerPrefs.HasKey("PlayerData")) return new AccountDataDB();
         string json = PlayerPrefs.GetString("PlayerData");
-        return JsonUtility.FromJson<PlayerDataDB>(json);
+        return JsonUtility.FromJson<AccountDataDB>(json);
     }
 
-    public async UniTask SavePlayerData(PlayerDataDB playerData)
+    public async UniTask SavePlayerData(AccountDataDB accountData)
     {
-        string json = JsonUtility.ToJson(playerData);
+        string json = JsonUtility.ToJson(accountData);
         PlayerPrefs.SetString("PlayerData", json);
         PlayerPrefs.Save();
     }
@@ -86,7 +87,7 @@ public class LocalDataPersistence : IDataPersistence
                 {
                     LocalDataContainer newContainer = new LocalDataContainer
                     {
-                        playerData = ConvertLegacyPlayerData(legacyContainer.playerData),
+                        accountData = ConvertLegacyPlayerData(legacyContainer.playerData),
                         playerLevelData = legacyContainer.playerLevelData
                     };
 
@@ -110,19 +111,19 @@ public class LocalDataPersistence : IDataPersistence
         return new PlayerLevelData { SubProfilename = subProfileName };
     }
 
-    private PlayerDataDB ConvertLegacyPlayerData(LegacyLocalDataContainer.LegacyPlayerData legacyData)
+    private AccountDataDB ConvertLegacyPlayerData(LegacyLocalDataContainer.LegacyPlayerData legacyData)
     {
         if (legacyData == null)
-            return new PlayerDataDB();
+            return new AccountDataDB();
 
-        return new PlayerDataDB
+        return new AccountDataDB
         {
             profileId = legacyData.profileId,
             playerName = legacyData.playerName,
             IsSoundOn = legacyData.IsSoundOn,
             IsMusicOn = legacyData.IsMusicOn,
-            customUserData = legacyData.customUserData
-           
+            totalPlayTime = legacyData.totalPlayTime,
+            //customUserData = legacyData.customUserData
         };
     }
 
@@ -130,7 +131,7 @@ public class LocalDataPersistence : IDataPersistence
     {
         string key = GetProfileKey(subProfileName);
 
-        PlayerDataDB playerData = new PlayerDataDB();
+        AccountDataDB accountData = new AccountDataDB();
         if (PlayerPrefs.HasKey(key))
         {
             string existingData = PlayerPrefs.GetString(key, "");
@@ -141,7 +142,7 @@ public class LocalDataPersistence : IDataPersistence
                     LocalDataContainer existingContainer = JsonUtility.FromJson<LocalDataContainer>(existingData);
                     if (existingContainer != null)
                     {
-                        playerData = existingContainer.playerData ?? new PlayerDataDB();
+                        accountData = existingContainer.accountData ?? new AccountDataDB();
                     }
                 }
                 catch
@@ -152,7 +153,7 @@ public class LocalDataPersistence : IDataPersistence
                         LegacyLocalDataContainer legacyContainer = JsonUtility.FromJson<LegacyLocalDataContainer>(existingData);
                         if (legacyContainer != null)
                         {
-                            playerData = ConvertLegacyPlayerData(legacyContainer.playerData);
+                            accountData = ConvertLegacyPlayerData(legacyContainer.playerData);
                         }
                     }
                     catch
@@ -165,7 +166,7 @@ public class LocalDataPersistence : IDataPersistence
 
         LocalDataContainer container = new LocalDataContainer
         {
-            playerData = playerData,
+            accountData = accountData,
             playerLevelData = levelData
         };
 

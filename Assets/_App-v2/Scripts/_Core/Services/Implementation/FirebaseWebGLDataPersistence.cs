@@ -46,11 +46,11 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
         _isConnected = !string.IsNullOrEmpty(_userId);
     }
 
-    public async UniTask<PlayerDataDB> LoadPlayerData()
+    public async UniTask<AccountDataDB> LoadPlayerData()
     {
 #if UNITY_WEBGL
         if (!_isConnected || string.IsNullOrEmpty(_userId))
-            return new PlayerDataDB();
+            return new AccountDataDB();
 
         try
         {
@@ -62,7 +62,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
             if (snapshot.exists())
             {
                 string jsonData = snapshot.val().ToString();
-                return JsonUtility.FromJson<PlayerDataDB>(jsonData) ?? new PlayerDataDB();
+                return JsonUtility.FromJson<AccountDataDB>(jsonData) ?? new AccountDataDB();
             }
         }
         catch (Exception e)
@@ -70,10 +70,10 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
             Debug.LogError($"[WebGL] LoadPlayerData failed: {e.Message}\n{e.StackTrace}");
         }
 #endif
-        return new PlayerDataDB();
+        return new AccountDataDB();
     }
 
-    public async UniTask SavePlayerData(PlayerDataDB playerData)
+    public async UniTask SavePlayerData(AccountDataDB accountData)
     {
 #if UNITY_WEBGL 
         if (!_isConnected || string.IsNullOrEmpty(_userId))
@@ -87,12 +87,12 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
             
             var playerDataDict = new Dictionary<string, object>
             {
-                ["profileId"] = playerData.profileId,
-                ["playerName"] = playerData.playerName,
-                ["IsSoundOn"] = playerData.IsSoundOn,
-                ["IsMusicOn"] = playerData.IsMusicOn,
-                ["customUserData"] = playerData.customUserData,
-                ["totalPlayTime"] = playerData.totalPlayTime
+                ["profileId"] = accountData.profileId,
+                ["playerName"] = accountData.playerName,
+                ["IsSoundOn"] = accountData.IsSoundOn,
+                ["IsMusicOn"] = accountData.IsMusicOn,
+                //["customUserData"] = playerData.customUserData,
+                ["totalPlayTime"] = accountData.totalPlayTime
             };
             
             await Db.set(dbRef, playerDataDict);

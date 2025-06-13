@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class LevelDataService : ILevelDataService
 {
@@ -179,5 +180,34 @@ public class LevelDataService : ILevelDataService
     public async UniTask SwitchSubProfileByName(string subProfileName)
     {
         await LoadLevelData(subProfileName);
+    }
+    
+    public string GetCustomData(string key, string defaultValue = "")
+    {
+        var dataDict = GetAllCustomData();
+        if (dataDict.ContainsKey(key))
+            return dataDict[key].ToString();
+        return defaultValue;
+    }
+
+    public void SetCustomData(string key, string value)
+    {
+        var dataDict = GetAllCustomData();
+        if (dataDict.ContainsKey(key))
+            dataDict[key] = value;
+        else
+            dataDict.Add(key, value);
+
+        LevelData.customLevelData = Json.Serialize(dataDict);
+        SaveLevelData().Forget();
+    }
+
+    public Dictionary<string, object> GetAllCustomData()
+    {
+        if (string.IsNullOrEmpty(LevelData.customLevelData))
+            return new Dictionary<string, object>();
+
+        var dataDictFromJson = Json.Deserialize(LevelData.customLevelData) as Dictionary<string, object>;
+        return dataDictFromJson ?? new Dictionary<string, object>();
     }
 }

@@ -23,7 +23,7 @@ public class FirebaseDataPersistence : IDataPersistence
     }
 #endif
 
-    public async UniTask<PlayerDataDB> LoadPlayerData()
+    public async UniTask<AccountDataDB> LoadPlayerData()
     {
 #if !UNITY_WEBGL
         var userRef = GetUserDbRef();
@@ -37,10 +37,10 @@ public class FirebaseDataPersistence : IDataPersistence
             return JsonUtility.FromJson<PlayerDataDB>(json);
         }
 #endif
-        return new PlayerDataDB();
+        return new AccountDataDB();
     }
 
-    public async UniTask SavePlayerData(PlayerDataDB playerData)
+    public async UniTask SavePlayerData(AccountDataDB accountData)
     {
 #if !UNITY_WEBGL
         var dbRef = GetUserDbRef()?.Child("PlayerData");

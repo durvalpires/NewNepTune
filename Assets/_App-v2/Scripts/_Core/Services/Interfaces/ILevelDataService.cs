@@ -22,4 +22,8 @@ public interface ILevelDataService
     UniTask CreateSubProfile(string subProfileName);
     UniTask<List<string>> GetAllSubProfiles();
     UniTask SwitchSubProfileByName(string subProfileName);
+    
+    string GetCustomData(string key, string defaultValue = "");
+    void SetCustomData(string key, string value);
+    Dictionary<string, object> GetAllCustomData();
 }

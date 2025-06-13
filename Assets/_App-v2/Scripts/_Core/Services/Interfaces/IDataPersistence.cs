@@ -5,8 +5,8 @@ public interface IDataPersistence
 {
     bool IsConnected { get; }
 
-    UniTask<PlayerDataDB> LoadPlayerData();
-    UniTask SavePlayerData(PlayerDataDB playerData);
+    UniTask<AccountDataDB> LoadPlayerData();
+    UniTask SavePlayerData(AccountDataDB accountData);
 
     UniTask<PlayerLevelData> LoadLevelData(string subProfileName);
     UniTask SaveLevelData(PlayerLevelData levelData, string subProfileName);
