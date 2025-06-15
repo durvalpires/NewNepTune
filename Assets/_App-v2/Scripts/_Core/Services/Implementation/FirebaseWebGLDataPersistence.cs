@@ -145,7 +145,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                             var entry = new LevelFirebaseData();
 
                             if (levelSnapshot.hasChild("Score"))
-                                entry.Score = System.Convert.ToInt32(levelSnapshot.child("Score").val());
+                                entry.MaxScore = System.Convert.ToInt32(levelSnapshot.child("Score").val());
 
                             if (levelSnapshot.hasChild("Repetition"))
                                 entry.Repetition = System.Convert.ToInt32(levelSnapshot.child("Repetition").val());
@@ -157,7 +157,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                                 entry.Success = System.Convert.ToInt32(levelSnapshot.child("Success").val());
 
                             if (levelSnapshot.hasChild("Failure"))
-                                entry.Failure = System.Convert.ToInt32(levelSnapshot.child("Failure").val());
+                                entry.Fails = System.Convert.ToInt32(levelSnapshot.child("Failure").val());
 
                             if (levelSnapshot.hasChild("TimeSpent"))
                                 entry.TimeSpent = System.Convert.ToSingle(levelSnapshot.child("TimeSpent").val());
@@ -203,11 +203,11 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
             foreach (var entry in levelData.levels)
             {
                 var levelRef = Db.child(levelsRef, entry.Key.ToString());
-                await Db.set(Db.child(levelRef, "Score"), entry.Value.Score);
+                await Db.set(Db.child(levelRef, "Score"), entry.Value.MaxScore);
                 await Db.set(Db.child(levelRef, "Repetition"), entry.Value.Repetition);
                 await Db.set(Db.child(levelRef, "Attempts"), entry.Value.Attempts);
                 await Db.set(Db.child(levelRef, "Success"), entry.Value.Success);
-                await Db.set(Db.child(levelRef, "Failure"), entry.Value.Failure);
+                await Db.set(Db.child(levelRef, "Failure"), entry.Value.Fails);
                 await Db.set(Db.child(levelRef, "TimeSpent"), entry.Value.TimeSpent);
             }
         }
@@ -290,11 +290,11 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                     {
                         levelsDict[entry.Key.ToString()] = new Dictionary<string, object>
                         {
-                            ["Score"] = entry.Value.Score,
+                            ["Score"] = entry.Value.MaxScore,
                             ["Repetition"] = entry.Value.Repetition,
                             ["Attempts"] = entry.Value.Attempts,
                             ["Success"] = entry.Value.Success,
-                            ["Failure"] = entry.Value.Failure,
+                            ["Failure"] = entry.Value.Fails,
                             ["TimeSpent"] = entry.Value.TimeSpent
                         };
                     }

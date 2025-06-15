@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Newtonsoft.Json;
 
 [Serializable]
 public class LocalDataContainer
@@ -45,12 +46,12 @@ public class LocalDataPersistence : IDataPersistence
     {
         if (!PlayerPrefs.HasKey("PlayerData")) return new AccountDataDB();
         string json = PlayerPrefs.GetString("PlayerData");
-        return JsonUtility.FromJson<AccountDataDB>(json);
+        return JsonConvert.DeserializeObject<AccountDataDB>(json);
     }
 
     public async UniTask SavePlayerData(AccountDataDB accountData)
     {
-        string json = JsonUtility.ToJson(accountData);
+        string json = JsonConvert.SerializeObject(accountData);
         PlayerPrefs.SetString("PlayerData", json);
         PlayerPrefs.Save();
     }
@@ -72,7 +73,7 @@ public class LocalDataPersistence : IDataPersistence
 
         try
         {
-            LocalDataContainer container = JsonUtility.FromJson<LocalDataContainer>(userData);
+            LocalDataContainer container = JsonConvert.DeserializeObject<LocalDataContainer>(userData);
             if (container != null && container.playerLevelData != null)
             {
                 return container.playerLevelData;
@@ -82,7 +83,7 @@ public class LocalDataPersistence : IDataPersistence
         {
             try
             {
-                LegacyLocalDataContainer legacyContainer = JsonUtility.FromJson<LegacyLocalDataContainer>(userData);
+                LegacyLocalDataContainer legacyContainer = JsonConvert.DeserializeObject<LegacyLocalDataContainer>(userData);
                 if (legacyContainer != null && legacyContainer.playerLevelData != null)
                 {
                     LocalDataContainer newContainer = new LocalDataContainer
@@ -92,7 +93,7 @@ public class LocalDataPersistence : IDataPersistence
                     };
 
                    
-                    string newData = JsonUtility.ToJson(newContainer);
+                    string newData = JsonConvert.SerializeObject(newContainer);
                     if (!string.IsNullOrEmpty(newData))
                     {
                         PlayerPrefs.SetString(key, newData);
@@ -139,7 +140,7 @@ public class LocalDataPersistence : IDataPersistence
             {
                 try
                 {
-                    LocalDataContainer existingContainer = JsonUtility.FromJson<LocalDataContainer>(existingData);
+                    LocalDataContainer existingContainer = JsonConvert.DeserializeObject<LocalDataContainer>(existingData);
                     if (existingContainer != null)
                     {
                         accountData = existingContainer.accountData ?? new AccountDataDB();
@@ -150,7 +151,7 @@ public class LocalDataPersistence : IDataPersistence
                   
                     try
                     {
-                        LegacyLocalDataContainer legacyContainer = JsonUtility.FromJson<LegacyLocalDataContainer>(existingData);
+                        LegacyLocalDataContainer legacyContainer = JsonConvert.DeserializeObject<LegacyLocalDataContainer>(existingData);
                         if (legacyContainer != null)
                         {
                             accountData = ConvertLegacyPlayerData(legacyContainer.playerData);
@@ -169,8 +170,8 @@ public class LocalDataPersistence : IDataPersistence
             accountData = accountData,
             playerLevelData = levelData
         };
-
-        string data = JsonUtility.ToJson(container);
+        
+        string data = JsonConvert.SerializeObject(container);
         if (!string.IsNullOrEmpty(data))
         {
             PlayerPrefs.SetString(key, data);
@@ -200,7 +201,7 @@ public class LocalDataPersistence : IDataPersistence
                     level.Success = newValue;
                     break;
                 case CounterType.Failure:
-                    level.Failure = newValue;
+                    level.Fails = newValue;
                     break;
             }
 

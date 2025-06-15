@@ -50,7 +50,7 @@ public class LevelDataService : ILevelDataService
 
         var result = new Dictionary<int, (int, int)>();
         foreach (var kvp in LevelData.levels)
-            result[kvp.Key] = (kvp.Value.Score, kvp.Value.Repetition);
+            result[kvp.Key] = (kvp.Value.MaxScore, kvp.Value.Repetition);
 
         return result;
     }
@@ -74,11 +74,11 @@ public class LevelDataService : ILevelDataService
         {
             LevelData.levels[levelIndex] = new LevelFirebaseData
             {
-                Score = 0,
+                MaxScore = 0,
                 Repetition = 0,
                 Attempts = 0,
                 Success = 0,
-                Failure = 0,
+                Fails = 0,
                 TimeSpent = 0
             };
             LevelData.NumberOfLevel++;
@@ -100,14 +100,14 @@ public class LevelDataService : ILevelDataService
 
         if (!LevelData.levels.ContainsKey(levelIndex))
         {
-            LevelData.levels[levelIndex] = new LevelFirebaseData { Score = finalScore, Repetition = 1 };
+            LevelData.levels[levelIndex] = new LevelFirebaseData { MaxScore = finalScore, Repetition = 1 };
             LevelData.NumberOfLevel++;
         }
         else
         {
             var levelData = LevelData.levels[levelIndex];
             int completions = levelData.Repetition;
-            levelData.Score = (levelData.Score * completions + finalScore) / (completions + 1);
+            levelData.MaxScore = (levelData.MaxScore * completions + finalScore) / (completions + 1);
             levelData.Repetition++;
         }
 
@@ -115,7 +115,7 @@ public class LevelDataService : ILevelDataService
         int totalRepetition = 0;
         foreach (var level in LevelData.levels.Values)
         {
-            totalScore += level.Score;
+            totalScore += level.MaxScore;
             totalRepetition += level.Repetition;
         }
 
@@ -144,8 +144,8 @@ public class LevelDataService : ILevelDataService
                 newValue = levelData.Success;
                 break;
             case CounterType.Failure:
-                levelData.Failure++;
-                newValue = levelData.Failure;
+                levelData.Fails++;
+                newValue = levelData.Fails;
                 break;
         }
 

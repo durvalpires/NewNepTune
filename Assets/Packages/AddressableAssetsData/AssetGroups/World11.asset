@@ -15,12 +15,6 @@ MonoBehaviour:
   m_GroupName: World11
   m_GUID: 8b46ea12153a147b88f89818fe6af19e
   m_SerializeEntries:
-  - m_GUID: 00b12f56928dd4acda948f33f6f1172c
-    m_Address: MIDDLE F LEFT HAND - Exercise 3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 054e33a222c324b1cbabbd988f581a8d
     m_Address: Assets/VPContent/LeftHand/MiddleF/MIDDLE F /MIDDLE F LEFT HAND - Exercise
       7.musicxml_DIV1.xml
@@ -39,12 +33,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - BLabel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 337dcdf1c04044530bf983c3ac563269
-    m_Address: MIDDLE F LEFT HAND - Exercise 5
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3426d5f14555f4aca998bdf3a2bada10
     m_Address: MIDDLE F LEFT HAND - Exercise 1
     m_ReadOnly: 0
@@ -59,12 +47,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3950c338f96e843478db03f01ec7d308
     m_Address: MIDDLE F LEFT HAND - Exercise 7
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 41a27dc85fd074bf297141808a968a6e
-    m_Address: MIDDLE F LEFT HAND - Exercise 9
     m_ReadOnly: 0
     m_SerializedLabels:
     - BLabel
@@ -105,32 +87,14 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7456bdf97a36c41e6b467e51d1a9b33e
-    m_Address: MIDDLE F LEFT HAND - Exercise 2
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 85b379e4291cc42e68480e49f1f268b1
     m_Address: MIDDLE F LEFT HAND - Exercise 4
     m_ReadOnly: 0
     m_SerializedLabels:
     - BLabel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8a1a56cb673ee4d61b5a0a1a8cfd5876
-    m_Address: MIDDLE F LEFT HAND - Exercise 10
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 93d11b430e05d4c68939f13c7ffe1342
     m_Address: MIDDLE F LEFT HAND - Exercise 1.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 99466406d647040d9995e6da2cdcf2d5
-    m_Address: MIDDLE F LEFT HAND - Exercise 6
     m_ReadOnly: 0
     m_SerializedLabels:
     - BLabel
@@ -143,12 +107,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ac88ed54ab18d4f07aafdb40f94f7f0d
     m_Address: MIDDLE F LEFT HAND - Exercise 6
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: afcb16298afac4e05840ebc30e8ae83e
-    m_Address: MIDDLE F LEFT HAND - Exercise 4
     m_ReadOnly: 0
     m_SerializedLabels:
     - BLabel
@@ -171,20 +129,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - BLabel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bc4b4bd02418c461e99636482c82b717
-    m_Address: MIDDLE F LEFT HAND - Exercise 1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bea1d1faac7f243c0a3a33d03c198e3e
     m_Address: MIDDLE F LEFT HAND - Exercise 7.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bedbbe794625c4a0f89eff2fd87ab21c
-    m_Address: MIDDLE F LEFT HAND - Exercise 7
     m_ReadOnly: 0
     m_SerializedLabels:
     - BLabel
@@ -197,12 +143,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed1a0b439d0e04fbba5bd6f142b5e15f
     m_Address: MIDDLE F LEFT HAND - Exercise 6.musicxml
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BLabel
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: eeb010aaa3bdb49f7891b77914b4e5f4
-    m_Address: MIDDLE F LEFT HAND - Exercise 8
     m_ReadOnly: 0
     m_SerializedLabels:
     - BLabel

@@ -114,7 +114,7 @@ public class RhythmGameSettings : ScriptableObject
         return null;
     }
 
-    public Sprite GetHandSprite(HandType handType)
+    public Sprite GetHandSprite(LevelHandType handType)
     {
         string key = handType.ToString();
         foreach (var pair in handSprites)

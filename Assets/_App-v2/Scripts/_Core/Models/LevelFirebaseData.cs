@@ -1,12 +1,13 @@
 using System;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class LevelFirebaseData
 {
-    public int Score;
+    [FormerlySerializedAs("Score")] public int MaxScore;
     public int Repetition;
     public int Attempts;
     public int Success;
-    public int Failure;
+    [FormerlySerializedAs("Failure")] public int Fails;
     public float TimeSpent;
 }
