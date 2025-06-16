@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _App_v2.Scripts.Levels.Score;
 using UnityEngine;
 
-public class RhythmGameScoreController
+public class RhythmGameScoreController : ILevelScore
 {
     private RhythmGameSettings gameSettings;
     public int PlayerScore { get; private set; }
