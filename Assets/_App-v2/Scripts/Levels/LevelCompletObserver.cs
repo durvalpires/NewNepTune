@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using _App_v2.Scripts.Levels.Score;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -113,6 +114,9 @@ public class LevelCompletObserver : MonoBehaviour
             
             // Detaylı level bilgilerini hazırla - LevelDataService'den al
             List<StudentUpdateEndpoint.DetailedLevelInfo> detailedLevelInfo = new List<StudentUpdateEndpoint.DetailedLevelInfo>();
+            
+            // Dictionary<int, LevelFirebaseData> levelsDic = LevelDataService.LevelData.levels;
+            // detailedLevelInfo = levelsDic.ToList();
             
             var levelData = LevelDataService.LevelData;
             if (levelData?.levels != null && levelData.levels.ContainsKey(levelIndex))
