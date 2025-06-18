@@ -18,6 +18,7 @@ public interface ILevelDataService
     void SetLevelCompleted(int levelIndex);
     void UpdateCounter(int levelIndex, CounterType counterType);
     void SetCustomScore(int customScore);
+    void SetCustomStarRating(int starRating);
 
     UniTask CreateSubProfile(string subProfileName);
     UniTask<List<string>> GetAllSubProfiles();

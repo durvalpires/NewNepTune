@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
+using static AllWorldsSO;
 
 public class LevelDataService : ILevelDataService
 {
     private readonly IDataPersistence _dataPersistence;
     private int _customScoreOverride = -1;
+    private int _customStarRatingOverride = -1;
     private string _currentSubProfileName = "Default";
 
     public PlayerLevelData LevelData { get; private set; }
@@ -79,7 +81,8 @@ public class LevelDataService : ILevelDataService
                 Attempts = 0,
                 Success = 0,
                 Fails = 0,
-                TimeSpent = 0
+                TimeSpent = 0,
+                StarRating = 3
             };
             LevelData.NumberOfLevel++;
         }
@@ -89,8 +92,11 @@ public class LevelDataService : ILevelDataService
 
     public void SetLevelCompleted(int levelIndex)
     {
-        int finalScore = (_customScoreOverride != -1) ? _customScoreOverride : 100;
+        int finalScore = _customScoreOverride != -1 ? _customScoreOverride : 100;
         _customScoreOverride = -1;
+
+        int starRating = _customStarRatingOverride != -1 ? _customStarRatingOverride : 3;
+        _customStarRatingOverride = -1;
 
         if (LevelData == null)
             return;
@@ -100,7 +106,12 @@ public class LevelDataService : ILevelDataService
 
         if (!LevelData.levels.ContainsKey(levelIndex))
         {
-            LevelData.levels[levelIndex] = new LevelFirebaseData { MaxScore = finalScore, Repetition = 1 };
+            LevelData.levels[levelIndex] = new LevelFirebaseData
+            {
+                MaxScore = finalScore,
+                Repetition = 1,
+                StarRating = starRating
+            };
             LevelData.NumberOfLevel++;
         }
         else
@@ -109,6 +120,7 @@ public class LevelDataService : ILevelDataService
             int completions = levelData.Repetition;
             levelData.MaxScore = (levelData.MaxScore * completions + finalScore) / (completions + 1);
             levelData.Repetition++;
+            levelData.StarRating = starRating;
         }
 
         int totalScore = 0;
@@ -119,7 +131,9 @@ public class LevelDataService : ILevelDataService
             totalRepetition += level.Repetition;
         }
 
-        LevelData.AverageScore = LevelData.NumberOfLevel > 0 ? totalScore / LevelData.NumberOfLevel : 0;
+        LevelData.AverageScore = LevelData.NumberOfLevel > 0
+            ? totalScore / LevelData.NumberOfLevel
+            : 0;
         LevelData.Repetition = totalRepetition;
 
         SaveLevelData().Forget();
@@ -157,6 +171,10 @@ public class LevelDataService : ILevelDataService
     {
         _customScoreOverride = customScore;
     }
+    public void SetCustomStarRating(int starRating)
+    {
+       _customStarRatingOverride = starRating;
+    }
 
     public async UniTask CreateSubProfile(string subProfileName)
     {
@@ -166,6 +184,7 @@ public class LevelDataService : ILevelDataService
             AverageScore = 0,
             NumberOfLevel = 0,
             Repetition = 0,
+            StarRating = 3,
             levels = new Dictionary<int, LevelFirebaseData>()
         };
 

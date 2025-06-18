@@ -11,4 +11,7 @@ public class PlayerLevelData
 
     public Dictionary<int, LevelFirebaseData> levels = new Dictionary<int, LevelFirebaseData>();
     public string customLevelData = "";
+    public float? RawScore;       
+    public int? StarRating;
+    public float? HitAccuracy;
 }
