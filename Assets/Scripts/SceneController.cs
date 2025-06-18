@@ -24,8 +24,14 @@ public class SceneController : MonoBehaviour
     private MemoryCard _firstRevealed;
     private MemoryCard _secondRevealed;
 
+    [SerializeField] private AllGameScoringConfig gameScoringConfig;
+    [SerializeField] private ILevelDataService levelDataService;
+  
+
     private int _score = 0;
-    
+    private int _totalPairs;
+    private int _pointsPerMatch;
+
     public bool CanReveal
     {
         get { return _secondRevealed == null; }
@@ -42,39 +48,59 @@ public class SceneController : MonoBehaviour
             _secondRevealed = card;
             StartCoroutine(CheckMatch());
         }
+        
     }
-    
+
     private IEnumerator CheckMatch()
     {
+        var memConfig = gameScoringConfig.memoryScoring;
+
         if (_firstRevealed.Id == _secondRevealed.Id)
         {
-            _score++;
-            scoreLabel.text = $"Score: {_score}";
+            _score += _pointsPerMatch;
             yield return new WaitForSeconds(1f);
             _firstRevealed.gameObject.SetActive(false);
             _secondRevealed.gameObject.SetActive(false);
         }
         else
         {
-            yield return new WaitForSeconds(.5f);
+            _score = Mathf.Max(0, _score - memConfig.mismatchPenalty);
             _firstRevealed.Unreveal();
             _secondRevealed.Unreveal();
+            yield return new WaitForSeconds(.5f);
         }
+
+        scoreLabel.text = $"Score: {_score}";
         _firstRevealed = null;
         _secondRevealed = null;
-        
-        if(_score == images.Length)
+
+        if (_score > memConfig.maxScore) 
+            _score = memConfig.maxScore;
+
+        if (_score == memConfig.maxScore)
         {
             backButton.interactable = false;
-            StartCoroutine("GameCompleted");
+            StartCoroutine(GameCompleted());
         }
     }
-    
+
     private IEnumerator GameCompleted()
     {
         AudioManager.Instance.PlaySFX(SoundList.WinSound);
         yield return new WaitForSeconds(1.5f);
-        
+
+        var memConfig = gameScoringConfig.memoryScoring;
+        float normalized = (float)_score / memConfig.maxScore;
+        int stars = 0;
+        if (normalized >= memConfig.threeStarThreshold) stars = 3;
+        else if (normalized >= memConfig.twoStarThreshold) stars = 2;
+        else if (normalized >= memConfig.oneStarThreshold) stars = 1;
+
+       
+        levelDataService.SetCustomScore(_score);
+        levelDataService.SetCustomStarRating(stars);
+        //levelDataService.SetLevelCompleted(_currentLevelIndex);
+
         finishPanel.SetActive(true);
     }
     
@@ -107,6 +133,10 @@ public class SceneController : MonoBehaviour
                 card.transform.position = new Vector3(posX, posY, startPos.z);
             }
         }
+        _totalPairs = images.Length;  
+        var memConfig = gameScoringConfig.memoryScoring;
+        _pointsPerMatch = memConfig.maxScore / _totalPairs;
+
     }
 
     private int[] ShuffleArray(int[] numbers)
