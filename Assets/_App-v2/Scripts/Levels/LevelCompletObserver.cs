@@ -32,6 +32,11 @@ public class LevelCompletObserver : MonoBehaviour
         _openedLevelworldId = worldId;
     }
 
+    public void SetCurrentLevelComplete()
+    {
+        LevelComplete();
+    }
+    
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
         LevelComplete();
@@ -68,13 +73,13 @@ public class LevelCompletObserver : MonoBehaviour
         PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId); 
         
         // LevelDataService'e level complete bilgisini kaydet
-        if (_openedLevel != -1)
-        {
-            LevelDataService.SetLevelCompleted(_openedLevel);
-            
-            // Student endpoint'e veri gönder
-            SendStudentUpdate(_openedLevel, _openedLevelworldId, levelscore = null);
-        }
+        // if (_openedLevel != -1)
+        // {
+        //     LevelDataService.SetLevelCompleted(_openedLevel);
+        //     
+        //     // Student endpoint'e veri gönder
+        //     SendStudentUpdate(_openedLevel, _openedLevelworldId, levelscore = null);
+        // }
         
         onLevelComplete?.Invoke();
     }
