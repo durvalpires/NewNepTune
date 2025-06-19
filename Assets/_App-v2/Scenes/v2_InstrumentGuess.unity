@@ -5284,6 +5284,7 @@ MonoBehaviour:
   gameLevels:
   - {fileID: 1150879241}
   character: {fileID: 2025005134}
+  gameScoringConfig: {fileID: 11400000, guid: 22821607c4c6640bba1e81d5bf66e61f, type: 2}
 --- !u!1 &2025005134
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class InstrumentGuessLevelManager : InstrumentGuess
 {
-    
-    
     private void Awake()
     {
         var data = TempDataStorage.GetSceneData<InstrumentGuessLevelSO>();
@@ -47,7 +45,7 @@ public class InstrumentGuessLevelManager : InstrumentGuess
     protected override void Start()
     {
         InitCorrectAnswers();
-
+        base.Start();
         character.GetComponent<Animator>().Play($"BoyAst{_correctAnswerSprites[_currentLevel].name}");
           
         if (levelToReturn == "") Debug.LogError("Level to return is not set!");

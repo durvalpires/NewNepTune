@@ -33,15 +33,16 @@ namespace Minigames
       protected Sprite[] _sprites;
       protected int _currentLevel;
       
-      private GuessScoringSettings _guessScoringSettings;
-      [SerializeField] private AllGameScoringConfig gameScoringConfig;
-
-      private int score;
       
+      [SerializeField] private AllGameScoringConfig gameScoringConfig;
+      private GuessScoringSettings _guessScoringSettings;
+      private int score;
+
+       
       protected virtual void Start()
-      {  
+      {
          _guessScoringSettings = gameScoringConfig.guessScoring;
-         score = _guessScoringSettings.maxScore;
+         score = 0;
 
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
@@ -83,7 +84,8 @@ namespace Minigames
          InstrumentGuessClouds.Instance.DisperseClouds();
          
          yield return new WaitForSeconds(3f);
-
+         score += _guessScoringSettings.maxScore;
+            Debug.Log(score);
          //winPanel.SetActive(true);
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
@@ -110,8 +112,10 @@ namespace Minigames
       {
          //InstrumentGuessClouds.Instance.DisperseClouds();
          yield return new WaitForSeconds(.25f);
-         
-         losePanel.SetActive(true);
+
+         score -= _guessScoringSettings.wrongAnswerPenalty;
+            Debug.Log(score);
+            losePanel.SetActive(true);
          gameLevels[_currentLevel].gameObject.SetActive(false);
          AudioManager.Instance.PlaySFX(SoundList.LoseSound);
       }
@@ -166,7 +170,7 @@ namespace Minigames
       }
       
       private IEnumerator NextLevelButtonRoutine()
-      {
+      {  
          if (_currentLevel + 1 < gameLevels.Length)
          {
             _currentLevel++;
@@ -193,12 +197,25 @@ namespace Minigames
          else if (_currentLevel <= gameLevels.Length)
          {
             winPanel.SetActive(false);
+            float normalized = (float)score / _guessScoringSettings.maxScore;
+            int stars = 0;
+            if (normalized >= _guessScoringSettings.threeStarThreshold) stars = 3;
+            else if (normalized >= _guessScoringSettings.twoStarThreshold) stars = 2;
+            else if (normalized >= _guessScoringSettings.oneStarThreshold) stars = 1;
+
+            int finalScore = Mathf.Max(0, score);
+            PlayerModelBase.SetCustomScore(finalScore);
+            Debug.Log(finalScore);
+            PlayerModelBase.LevelDataService.SetCustomScore(score);
+            PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
+
             finishPanel.SetActive(true);
          }
       }
       
       public void Restart()
       {
+            
          winPanel.SetActive(false);
          losePanel.SetActive(false);
          SetUpLevel(_currentLevel);
