@@ -30,7 +30,7 @@ public class SceneController : MonoBehaviour
     private int _score = 0;
     private int _totalPairs;
     private int _pointsPerMatch;
-
+    private int _matchesFound = 0;
 
     void Start()
     {
@@ -93,6 +93,7 @@ public class SceneController : MonoBehaviour
         if (_firstRevealed.Id == _secondRevealed.Id)
         {
             _score += _pointsPerMatch;
+            _matchesFound++;
             yield return new WaitForSeconds(1f);
             _firstRevealed.gameObject.SetActive(false);
             _secondRevealed.gameObject.SetActive(false);
@@ -104,15 +105,13 @@ public class SceneController : MonoBehaviour
             _firstRevealed.Unreveal();
             _secondRevealed.Unreveal();
         }
-
-        scoreLabel.text = $"Score: {_score}";
+       
         _firstRevealed = null;
         _secondRevealed = null;
-
+       
         if (_score > _memoryScoringSettings.maxScore) 
             _score = _memoryScoringSettings.maxScore;
-
-        if (_score == _memoryScoringSettings.maxScore)
+        if (_matchesFound == _totalPairs)
         {
             backButton.interactable = false;
             StartCoroutine(GameCompleted());
@@ -131,10 +130,8 @@ public class SceneController : MonoBehaviour
         else if (normalized >= memConfig.twoStarThreshold) stars = 2;
         else if (normalized >= memConfig.oneStarThreshold) stars = 1;
 
-       
         PlayerModelBase.LevelDataService.SetCustomScore(_score);
         PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
-        //levelDataService.SetLevelCompleted(_currentLevelIndex);
 
         finishPanel.SetActive(true);
     }
