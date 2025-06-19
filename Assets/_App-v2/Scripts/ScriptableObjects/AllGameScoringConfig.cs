@@ -7,7 +7,7 @@ public class AllGameScoringConfig : ScriptableObject
     public MemoryScoringSettings memoryScoring;
     
     [Header("Selection Game Scoring")]
-    public MemoryScoringSettings selectionScoring;
+    public SelectionScoringSettings selectionScoring;
     
     [Header("Music & Instrument Guess Game Scoring")]
     public GuessScoringSettings guessScoring;

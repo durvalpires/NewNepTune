@@ -35,12 +35,27 @@ namespace Levels.SelectionMinigame
         [SerializeField] private GameObject backButton;
         [SerializeField] private GameObject finishedBackButton;
 
+
+       
+        [SerializeField] private AllGameScoringConfig gameScoringConfig;
+
+        private SelectionScoringSettings _selectionSettings;
+        private int _score;
+        private int _questionsAnswered;
+        private int _pointsPerQuestion;
+
+
         private int _currentLevel;
 
         private void Start()
         {
+            _selectionSettings = gameScoringConfig.selectionScoring;
+            _pointsPerQuestion = _selectionSettings.maxScore / gameLevels.Length;
+            _score = 0;
+            _questionsAnswered = 0;
+
             //Sprite[] answerSprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Notes/");
-             _correctAnswerPrefab = Array.Find(_prefabs, go => go.name == correctAnswerGOName.ToUpper());
+            _correctAnswerPrefab = Array.Find(_prefabs, go => go.name == correctAnswerGOName.ToUpper());
             
             backButton.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -207,6 +222,8 @@ namespace Levels.SelectionMinigame
 
         public void TrueAnswer()
         {
+            _score += _pointsPerQuestion;
+            _questionsAnswered++;
             winPanel.SetActive(true);
             AudioManager.Instance.PlaySFX(SoundList.WinSound);
             gameLevels[_currentLevel].gameObject.SetActive(false);
@@ -214,6 +231,8 @@ namespace Levels.SelectionMinigame
 
         public void FalseAnswer()
         {
+            _score = Mathf.Max(0, _score - _selectionSettings.wrongAnswerPenalty);
+            _questionsAnswered++;
             losePanel.SetActive(true);
             gameLevels[_currentLevel].gameObject.SetActive(false);
             AudioManager.Instance.PlaySFX(SoundList.LoseSound);
@@ -230,12 +249,24 @@ namespace Levels.SelectionMinigame
             else if (_currentLevel <= gameLevels.Length)
             {
                 winPanel.SetActive(false);
+
+                float normalized = (float)_score / _selectionSettings.maxScore;
+                int stars = 0;
+                if (normalized >= _selectionSettings.threeStarThreshold) stars = 3;
+                else if (normalized >= _selectionSettings.twoStarThreshold) stars = 2;
+                else if (normalized >= _selectionSettings.oneStarThreshold) stars = 1;
+
+                PlayerModelBase.LevelDataService.SetCustomScore(_score);
+                PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
+
                 finishPanel.SetActive(true);
             }
         }
         
         public void Restart()
         {
+            _score = 0;
+            _questionsAnswered = 0;
             losePanel.SetActive(false);
             gameLevels[_currentLevel].gameObject.SetActive(true);
         }
