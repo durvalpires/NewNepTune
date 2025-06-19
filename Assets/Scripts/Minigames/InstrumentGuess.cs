@@ -33,8 +33,16 @@ namespace Minigames
       protected Sprite[] _sprites;
       protected int _currentLevel;
       
+      private GuessScoringSettings _guessScoringSettings;
+      [SerializeField] private AllGameScoringConfig gameScoringConfig;
+
+      private int score;
+      
       protected virtual void Start()
       {  
+         _guessScoringSettings = gameScoringConfig.guessScoring;
+         score = _guessScoringSettings.maxScore;
+
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
             SceneManager.LoadScene(levelToReturn);

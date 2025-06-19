@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class InstrumentGuessLevelManager : InstrumentGuess
 {
+    
+    
     private void Awake()
     {
         var data = TempDataStorage.GetSceneData<InstrumentGuessLevelSO>();

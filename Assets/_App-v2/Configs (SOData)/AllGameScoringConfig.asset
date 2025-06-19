@@ -9,12 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9924afd16db264a58a645a583b9d923b, type: 3}
+  m_Script: {fileID: 11500000, guid: 13844449550a149b58b1ccdd8d761190, type: 3}
   m_Name: AllGameScoringConfig
   m_EditorClassIdentifier: 
   memoryScoring:
     maxScore: 100
     mismatchPenalty: 5
+    threeStarThreshold: 0.8
+    twoStarThreshold: 0.5
+    oneStarThreshold: 0.2
+  selectionScoring:
+    maxScore: 100
+    mismatchPenalty: 5
+    threeStarThreshold: 0.8
+    twoStarThreshold: 0.5
+    oneStarThreshold: 0.2
+  guessScoring:
+    maxScore: 100
+    wrongAnswerPenalty: 35
     threeStarThreshold: 0.8
     twoStarThreshold: 0.5
     oneStarThreshold: 0.2

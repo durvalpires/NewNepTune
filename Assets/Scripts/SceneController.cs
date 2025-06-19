@@ -25,87 +25,16 @@ public class SceneController : MonoBehaviour
     private MemoryCard _secondRevealed;
 
     [SerializeField] private AllGameScoringConfig gameScoringConfig;
-    [SerializeField] private ILevelDataService levelDataService;
-  
-
+    private MemoryScoringSettings _memoryScoringSettings;
+    
     private int _score = 0;
     private int _totalPairs;
     private int _pointsPerMatch;
 
-    public bool CanReveal
-    {
-        get { return _secondRevealed == null; }
-    }
 
-    public void CardRevealed(MemoryCard card)
-    {
-        if (_firstRevealed == null)
-        {
-            _firstRevealed = card;
-        }
-        else
-        {
-            _secondRevealed = card;
-            StartCoroutine(CheckMatch());
-        }
-        
-    }
-
-    private IEnumerator CheckMatch()
-    {
-        var memConfig = gameScoringConfig.memoryScoring;
-
-        if (_firstRevealed.Id == _secondRevealed.Id)
-        {
-            _score += _pointsPerMatch;
-            yield return new WaitForSeconds(1f);
-            _firstRevealed.gameObject.SetActive(false);
-            _secondRevealed.gameObject.SetActive(false);
-        }
-        else
-        {
-            _score = Mathf.Max(0, _score - memConfig.mismatchPenalty);
-            _firstRevealed.Unreveal();
-            _secondRevealed.Unreveal();
-            yield return new WaitForSeconds(.5f);
-        }
-
-        scoreLabel.text = $"Score: {_score}";
-        _firstRevealed = null;
-        _secondRevealed = null;
-
-        if (_score > memConfig.maxScore) 
-            _score = memConfig.maxScore;
-
-        if (_score == memConfig.maxScore)
-        {
-            backButton.interactable = false;
-            StartCoroutine(GameCompleted());
-        }
-    }
-
-    private IEnumerator GameCompleted()
-    {
-        AudioManager.Instance.PlaySFX(SoundList.WinSound);
-        yield return new WaitForSeconds(1.5f);
-
-        var memConfig = gameScoringConfig.memoryScoring;
-        float normalized = (float)_score / memConfig.maxScore;
-        int stars = 0;
-        if (normalized >= memConfig.threeStarThreshold) stars = 3;
-        else if (normalized >= memConfig.twoStarThreshold) stars = 2;
-        else if (normalized >= memConfig.oneStarThreshold) stars = 1;
-
-       
-        levelDataService.SetCustomScore(_score);
-        levelDataService.SetCustomStarRating(stars);
-        //levelDataService.SetLevelCompleted(_currentLevelIndex);
-
-        finishPanel.SetActive(true);
-    }
-    
     void Start()
     {
+        _memoryScoringSettings = gameScoringConfig.memoryScoring;
         Vector3 startPos = originalCard.transform.position;
 
         int[] numbers = { 0, 0, 1, 1, 2, 2, 3, 3 };
@@ -137,6 +66,77 @@ public class SceneController : MonoBehaviour
         var memConfig = gameScoringConfig.memoryScoring;
         _pointsPerMatch = memConfig.maxScore / _totalPairs;
 
+    }
+    
+
+    public bool CanReveal
+    {
+        get { return _secondRevealed == null; }
+    }
+
+    public void CardRevealed(MemoryCard card)
+    {
+        if (_firstRevealed == null)
+        {
+            _firstRevealed = card;
+        }
+        else
+        {
+            _secondRevealed = card;
+            StartCoroutine(CheckMatch());
+        }
+        
+    }
+
+    private IEnumerator CheckMatch()
+    {
+        if (_firstRevealed.Id == _secondRevealed.Id)
+        {
+            _score += _pointsPerMatch;
+            yield return new WaitForSeconds(1f);
+            _firstRevealed.gameObject.SetActive(false);
+            _secondRevealed.gameObject.SetActive(false);
+        }
+        else
+        {
+            _score = Mathf.Max(0, _score - _memoryScoringSettings.mismatchPenalty);
+            yield return new WaitForSeconds(.5f);
+            _firstRevealed.Unreveal();
+            _secondRevealed.Unreveal();
+        }
+
+        scoreLabel.text = $"Score: {_score}";
+        _firstRevealed = null;
+        _secondRevealed = null;
+
+        if (_score > _memoryScoringSettings.maxScore) 
+            _score = _memoryScoringSettings.maxScore;
+
+        if (_score == _memoryScoringSettings.maxScore)
+        {
+            backButton.interactable = false;
+            StartCoroutine(GameCompleted());
+        }
+    }
+
+    private IEnumerator GameCompleted()
+    {
+        AudioManager.Instance.PlaySFX(SoundList.WinSound);
+        yield return new WaitForSeconds(1.5f);
+
+        var memConfig = gameScoringConfig.memoryScoring;
+        float normalized = (float)_score / memConfig.maxScore;
+        int stars = 0;
+        if (normalized >= memConfig.threeStarThreshold) stars = 3;
+        else if (normalized >= memConfig.twoStarThreshold) stars = 2;
+        else if (normalized >= memConfig.oneStarThreshold) stars = 1;
+
+       
+        PlayerModelBase.LevelDataService.SetCustomScore(_score);
+        PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
+        //levelDataService.SetLevelCompleted(_currentLevelIndex);
+
+        finishPanel.SetActive(true);
     }
 
     private int[] ShuffleArray(int[] numbers)

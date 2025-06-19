@@ -87,6 +87,9 @@ public class RhythmGameSettings : ScriptableObject
     public bool enableVibrationOnHit;
     public float feedbackIntensity;
     
+    [Header("Tutorial Settings")]
+    public List<TutorialPopup> tutorialPopups;
+    
     public int GetScoreForAccuracy(HitAccuracy accuracy)
     {
         foreach(var score in BaseScorePerAccuracy)
@@ -211,4 +214,11 @@ public enum Difficulty
     EASY = 4,
     MEDIUM = 3,
     HARD = 1
+}
+
+[Serializable]
+public struct TutorialPopup
+{
+    [TextArea(3, 10)]
+    public string message;
 }

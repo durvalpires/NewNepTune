@@ -17,6 +17,7 @@ public class PlayerModelBase
 
     public static AccountDataDB Data => _playerDataService?.AccountData;
     public static PlayerLevelData LevelData => _levelDataService?.LevelData;
+    public static ILevelDataService LevelDataService => _levelDataService;
 
     static PlayerModelBase()
     {
@@ -219,6 +220,7 @@ public class PlayerModelBase
         if (_levelDataService != null)
             _levelDataService.SaveLevelData().Forget();
     }
+    
 
     public static void UpdateCounter(int levelIndex, CounterType counterType)
     {
