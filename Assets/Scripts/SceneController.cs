@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private MemoryCard originalCard;
     [SerializeField] protected Sprite[] images;
     [SerializeField] private TMP_Text scoreLabel;
-    
+
     public GameObject finishPanel;
     [SerializeField] private Button backButton;
 
@@ -26,10 +26,9 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] private AllGameScoringConfig gameScoringConfig;
     private MemoryScoringSettings _memoryScoringSettings;
-    
+
     private int _score = 0;
     private int _totalPairs;
-    private int _pointsPerMatch;
     private int _matchesFound = 0;
 
     void Start()
@@ -62,12 +61,12 @@ public class SceneController : MonoBehaviour
                 card.transform.position = new Vector3(posX, posY, startPos.z);
             }
         }
-        _totalPairs = images.Length;  
+        _totalPairs = images.Length;
         var memConfig = gameScoringConfig.memoryScoring;
-        _pointsPerMatch = memConfig.maxScore / _totalPairs;
+        _score = memConfig.maxScore;
 
     }
-    
+
 
     public bool CanReveal
     {
@@ -85,14 +84,14 @@ public class SceneController : MonoBehaviour
             _secondRevealed = card;
             StartCoroutine(CheckMatch());
         }
-        
+
     }
 
     private IEnumerator CheckMatch()
     {
         if (_firstRevealed.Id == _secondRevealed.Id)
         {
-            _score += _pointsPerMatch;
+           
             _matchesFound++;
             yield return new WaitForSeconds(1f);
             _firstRevealed.gameObject.SetActive(false);
@@ -100,16 +99,18 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            _score = Mathf.Max(0, _score - _memoryScoringSettings.mismatchPenalty);
+            _score -= _memoryScoringSettings.mismatchPenalty;
             yield return new WaitForSeconds(.5f);
             _firstRevealed.Unreveal();
             _secondRevealed.Unreveal();
         }
-       
+
+        scoreLabel.text = $"Score: {_score}";
+
         _firstRevealed = null;
         _secondRevealed = null;
-       
-        if (_score > _memoryScoringSettings.maxScore) 
+
+        if (_score > _memoryScoringSettings.maxScore)
             _score = _memoryScoringSettings.maxScore;
         if (_matchesFound == _totalPairs)
         {
@@ -130,7 +131,10 @@ public class SceneController : MonoBehaviour
         else if (normalized >= memConfig.twoStarThreshold) stars = 2;
         else if (normalized >= memConfig.oneStarThreshold) stars = 1;
 
-        PlayerModelBase.LevelDataService.SetCustomScore(_score);
+        int safeScore = _score < 0 ? 0 : _score;
+        PlayerModelBase.SetCustomScore(safeScore);
+        Debug.Log(safeScore);
+        PlayerModelBase.LevelDataService.SetCustomScore(safeScore);
         PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
 
         finishPanel.SetActive(true);
@@ -148,7 +152,7 @@ public class SceneController : MonoBehaviour
         }
         return newArray;
     }
-    
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
