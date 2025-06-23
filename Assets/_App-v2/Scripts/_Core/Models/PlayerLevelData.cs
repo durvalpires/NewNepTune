@@ -9,7 +9,7 @@ public class PlayerLevelData
     public int NumberOfLevel = 0;
     public int Repetition = 0;
 
-    public Dictionary<int, LevelFirebaseData> levels = new Dictionary<int, LevelFirebaseData>();
+    public Dictionary<string, LevelFirebaseData> levels = new Dictionary<string, LevelFirebaseData>();
     public string customLevelData = "";
     public float? RawScore;       
     public int? StarRating;

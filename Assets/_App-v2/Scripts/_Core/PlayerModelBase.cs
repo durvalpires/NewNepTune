@@ -18,6 +18,7 @@ public class PlayerModelBase
     public static AccountDataDB Data => _playerDataService?.AccountData;
     public static PlayerLevelData LevelData => _levelDataService?.LevelData;
     public static ILevelDataService LevelDataService => _levelDataService;
+    private static int _currentWorldIndex = 1;
 
     static PlayerModelBase()
     {
@@ -112,6 +113,11 @@ public class PlayerModelBase
         return _playerDataService?.AccountData?.playerName;
     }
 
+    public static void SetCurrentWorld(int worldIndex)
+    {
+        _currentWorldIndex = Mathf.Max(1, worldIndex);   
+    }
+
     public static void SetPlayerName(string name)
     {
         if (_playerDataService?.AccountData != null)
@@ -204,7 +210,7 @@ public class PlayerModelBase
 
     public static void SetLevelUnlocked(int levelIndex)
     {
-        _levelDataService?.SetLevelUnlock(levelIndex);
+        _levelDataService?.SetLevelUnlock(_currentWorldIndex, levelIndex);
         if (_levelDataService != null)
             _levelDataService.SaveLevelData().Forget();
     }
@@ -216,7 +222,7 @@ public class PlayerModelBase
 
     public static void SetLevelCompleted(int levelIndex)
     {
-        _levelDataService?.SetLevelCompleted(levelIndex);
+        _levelDataService?.SetLevelCompleted(_currentWorldIndex, levelIndex);
         if (_levelDataService != null)
             _levelDataService.SaveLevelData().Forget();
     }
@@ -224,7 +230,7 @@ public class PlayerModelBase
 
     public static void UpdateCounter(int levelIndex, CounterType counterType)
     {
-        _levelDataService?.UpdateCounter(levelIndex, counterType);
+        _levelDataService?.UpdateCounter(_currentWorldIndex, levelIndex, counterType);
         if (_levelDataService != null)
             _levelDataService.SaveLevelData().Forget();
     }

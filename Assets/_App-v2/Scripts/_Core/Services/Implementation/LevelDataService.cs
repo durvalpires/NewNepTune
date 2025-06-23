@@ -66,17 +66,19 @@ public class LevelDataService : ILevelDataService
             Debug.Log("Level " + kvp.Key + " => Score: " + kvp.Value.Score + ", Repetition: " + kvp.Value.Repetition);
     }
 
-    public void SetLevelUnlock(int levelIndex)
+    public void SetLevelUnlock(int worldIndex, int levelIndex)
     {
         if (LevelData == null)
             return;
 
         if (LevelData.levels == null)
-            LevelData.levels = new Dictionary<int, LevelFirebaseData>();
+            LevelData.levels = new Dictionary<string, LevelFirebaseData>();
 
-        if (!LevelData.levels.ContainsKey(levelIndex))
+        string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
+        if (!LevelData.levels.ContainsKey(key))
         {
-            LevelData.levels[levelIndex] = new LevelFirebaseData
+           
+            LevelData.levels[key] = new LevelFirebaseData
             {
                 MaxScore = 0,
                 //Repetition = 0,
@@ -92,7 +94,7 @@ public class LevelDataService : ILevelDataService
         SaveLevelData().Forget();
     }
 
-    public void SetLevelCompleted(int levelIndex)
+    public void SetLevelCompleted(int worldIndex, int levelIndex)
     {
         int finalScore = _customScoreOverride != -1 ? _customScoreOverride : 100;
         _customScoreOverride = -1;
@@ -104,11 +106,13 @@ public class LevelDataService : ILevelDataService
             return;
 
         if (LevelData.levels == null)
-            LevelData.levels = new Dictionary<int, LevelFirebaseData>();
+            LevelData.levels = new Dictionary<string, LevelFirebaseData>();
 
-        if (!LevelData.levels.ContainsKey(levelIndex))
+        string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
+        if (!LevelData.levels.ContainsKey(key))
         {
-            LevelData.levels[levelIndex] = new LevelFirebaseData
+
+            LevelData.levels[key] = new LevelFirebaseData
             {
                 Attempts = 1,
                 MaxScore = finalScore,
@@ -120,7 +124,7 @@ public class LevelDataService : ILevelDataService
         }
         else
         {
-            var levelData = LevelData.levels[levelIndex];
+            var levelData = LevelData.levels[key];
             int completions = levelData.Success; //THIS WAAS REPETITION BEFORE, NOT SURE IF SHOULD BE ATTEMPTS OR SUCCESS
             levelData.MaxScore = finalScore > levelData.MaxScore ? finalScore : levelData.MaxScore;  
             //levelData.Repetition++;
@@ -144,17 +148,18 @@ public class LevelDataService : ILevelDataService
         SaveLevelData().Forget();
     }
 
-    public void UpdateCounter(int levelIndex, CounterType counterType)
+    public void UpdateCounter(int worldIndex, int levelIndex, CounterType counterType)
     {
         if (LevelData == null || LevelData.levels == null)
             return;
 
-        if (!LevelData.levels.ContainsKey(levelIndex))
+        string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
+        if (!LevelData.levels.ContainsKey(key))
         {
-            SetLevelUnlock(levelIndex);
+            SetLevelUnlock(worldIndex , levelIndex);
         }
-        
-        var levelData = LevelData.levels[levelIndex];
+
+        var levelData = LevelData.levels[key];
         int newValue = 0;
 
         switch (counterType)
@@ -174,7 +179,7 @@ public class LevelDataService : ILevelDataService
         }
 
         SaveLevelData().Forget();
-        _dataPersistence.UpdateLevelCounter(levelIndex, counterType, newValue, _currentSubProfileName).Forget();
+        _dataPersistence.UpdateLevelCounter(worldIndex, levelIndex, counterType, newValue, _currentSubProfileName).Forget();
     }
 
     public void SetCustomScore(int customScore)
@@ -195,7 +200,7 @@ public class LevelDataService : ILevelDataService
             NumberOfLevel = 0,
             Repetition = 0,
             StarRating = 3,
-            levels = new Dictionary<int, LevelFirebaseData>()
+            levels = new Dictionary<string, LevelFirebaseData>()
         };
 
         await _dataPersistence.CreateSubProfile(subProfileName, newProfile);

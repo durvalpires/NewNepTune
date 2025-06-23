@@ -15,6 +15,7 @@ using MarksAssets.FirebaseWebGL.Database;
 using Db = MarksAssets.FirebaseWebGL.Database.Database;
 using _App_v2.Scripts._Core.Firebase.Databases;
 using _App_v2.Scripts._Core.Firebase.Databases.Interfaces;
+using UnityEngine.InputSystem;
 
 
 public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
@@ -139,31 +140,20 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                     var levelsSnapshot = snapshot.child("levels");
                     foreach (DataSnapshot levelSnapshot in levelsSnapshot)
                     {
-                        string levelKey = levelSnapshot.key;
-                        if (int.TryParse(levelKey, out int levelIndex))
-                        {
-                            var entry = new LevelFirebaseData();
-
+                        string levelKey = levelSnapshot.key;           
+                        var entry = new LevelFirebaseData();
                             if (levelSnapshot.hasChild("Score"))
-                                entry.MaxScore = System.Convert.ToInt32(levelSnapshot.child("Score").val());
-
-                            // if (levelSnapshot.hasChild("Repetition"))
-                            //     entry.Repetition = System.Convert.ToInt32(levelSnapshot.child("Repetition").val());
-
+                            entry.MaxScore = Convert.ToInt32(levelSnapshot.child("Score").val());
                             if (levelSnapshot.hasChild("Attempts"))
-                                entry.Attempts = System.Convert.ToInt32(levelSnapshot.child("Attempts").val());
-
+                            entry.Attempts = Convert.ToInt32(levelSnapshot.child("Attempts").val());
                             if (levelSnapshot.hasChild("Success"))
-                                entry.Success = System.Convert.ToInt32(levelSnapshot.child("Success").val());
-
+                            entry.Success = Convert.ToInt32(levelSnapshot.child("Success").val());
                             if (levelSnapshot.hasChild("Failure"))
-                                entry.Fails = System.Convert.ToInt32(levelSnapshot.child("Failure").val());
-
+                            entry.Fails = Convert.ToInt32(levelSnapshot.child("Failure").val());
                             if (levelSnapshot.hasChild("TimeSpent"))
-                                entry.TimeSpent = System.Convert.ToSingle(levelSnapshot.child("TimeSpent").val());
-
-                            result.levels[levelIndex] = entry;
-                        }
+                            entry.TimeSpent = Convert.ToSingle(levelSnapshot.child("TimeSpent").val());
+                        
+                        result.levels[levelKey] = entry;               
                     }
                 }
 
@@ -237,7 +227,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
 #endif
     }
 
-    public async UniTask UpdateLevelCounter(int levelIndex, CounterType counterType, int newValue, string subProfileName)
+    public async UniTask UpdateLevelCounter(int worldIndex, int levelIndex,CounterType counterType, int newValue,string subProfileName)
     {
 #if UNITY_WEBGL 
         if (!_isConnected || string.IsNullOrEmpty(_userId))
@@ -246,7 +236,9 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
         try
         {
             await EnsureDatabaseInitialized();
-            var dbRef = Db.Ref(_dbInstance, $"users/{_userId}/SubProfile/{subProfileName}/playerLeveldata/levels/{levelIndex}/{counterType}");
+            string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
+            
+            var dbRef = Db.Ref(_dbInstance,$"users/{_userId}/SubProfile/{subProfileName}/playerLeveldata/levels/{key}/{counterType}");
             await Db.set(dbRef, newValue);
         }
         catch (System.Exception e)
@@ -288,7 +280,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                     var levelsDict = new Dictionary<string, object>();
                     foreach (var entry in initialData.levels)
                     {
-                        levelsDict[entry.Key.ToString()] = new Dictionary<string, object>
+                        levelsDict[entry.Key] = new Dictionary<string, object>
                         {
                             ["Score"] = entry.Value.MaxScore,
                             //["Repetition"] = entry.Value.Repetition,

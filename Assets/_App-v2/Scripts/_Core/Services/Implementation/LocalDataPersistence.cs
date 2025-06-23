@@ -183,14 +183,14 @@ public class LocalDataPersistence : IDataPersistence
        
     }
 
-    public async UniTask UpdateLevelCounter(int levelIndex, CounterType counterType, int newValue, string subProfileName)
+    public async UniTask UpdateLevelCounter(int worldIndex, int levelIndex,CounterType counterType, int newValue,string subProfileName)
     {
       
         var levelData = await LoadLevelData(subProfileName);
-
-        if (levelData.levels != null && levelData.levels.ContainsKey(levelIndex))
+        string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
+        if (levelData.levels != null && levelData.levels.ContainsKey(key))
         {
-            var level = levelData.levels[levelIndex];
+            var level = levelData.levels[key];
 
             switch (counterType)
             {
