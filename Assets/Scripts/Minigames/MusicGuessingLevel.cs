@@ -29,6 +29,10 @@ namespace Minigames
       [SerializeField] protected Button ReloadButton;
       [SerializeField] protected Button finishedBackButton;
       [SerializeField] protected string levelToReturn;
+      
+      [SerializeField] protected AllGameScoringConfig gameScoringConfig;
+      protected GuessScoringSettings _guessScoringSettings;
+      protected int score;
 
         //TODO : get rid of character var and first line of start method
         protected GameObject _character;
@@ -73,6 +77,9 @@ namespace Minigames
       
       public void TrueAnswer()
       {
+         score += _guessScoringSettings.maxScore;
+         Debug.Log("Score: " + score);
+         
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
 
@@ -88,6 +95,9 @@ namespace Minigames
 
       public void FalseAnswer()
       {
+         score -= _guessScoringSettings.wrongAnswerPenalty;
+         Debug.Log("Score: " + score);
+         
          losePanel.SetActive(true);
          gameLevels[_currentLevel].gameObject.SetActive(false);
          AudioManager.Instance.PlaySFX(SoundList.LoseSound);
@@ -95,6 +105,8 @@ namespace Minigames
 
       protected void SetUpLevel(int levelToSet)
       {
+         score = 0;
+         
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
 
@@ -147,6 +159,17 @@ namespace Minigames
          else if (_currentLevel <= gameLevels.Length)
          {
             winPanel.SetActive(false);
+            float normalized = (float)score / _guessScoringSettings.maxScore;
+            int stars = 0;
+            if (normalized >= _guessScoringSettings.threeStarThreshold) stars = 3;
+            else if (normalized >= _guessScoringSettings.twoStarThreshold) stars = 2;
+            else if (normalized >= _guessScoringSettings.oneStarThreshold) stars = 1;
+
+            int finalScore = Mathf.Max(0, score);
+            PlayerModelBase.SetCustomScore(finalScore);
+            Debug.Log(finalScore);
+            PlayerModelBase.LevelDataService.SetCustomScore(score);
+            PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
             finishPanel.SetActive(true);
          }
       }

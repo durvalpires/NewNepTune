@@ -33,6 +33,8 @@ public class MusicGuessLevelManager : MusicGuessingLevel
     }
     protected override void Start()
     {
+        _guessScoringSettings = gameScoringConfig.guessScoring;
+        
         _character = GameObject.Find("karakter");
         _character.GetComponent<Animator>().Play("RedGirlPiano");
          

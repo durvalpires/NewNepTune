@@ -50,9 +50,11 @@ public class LevelDataService : ILevelDataService
         if (LevelData == null || LevelData.levels == null)
             return new Dictionary<int, (int, int)>();
 
+        // I Dont understand this logic
         var result = new Dictionary<int, (int, int)>();
-        foreach (var kvp in LevelData.levels)
-            result[kvp.Key] = (kvp.Value.MaxScore, kvp.Value.Repetition);
+        //TODO FIX THIS
+        // foreach (var kvp in LevelData.levels)
+        //     result[kvp.Key] = (kvp.Value.MaxScore, kvp.Value.Repetition);
 
         return result;
     }
@@ -77,12 +79,12 @@ public class LevelDataService : ILevelDataService
             LevelData.levels[levelIndex] = new LevelFirebaseData
             {
                 MaxScore = 0,
-                Repetition = 0,
+                //Repetition = 0,
                 Attempts = 0,
                 Success = 0,
                 Fails = 0,
                 TimeSpent = 0,
-                StarRating = 3
+                StarRating = 0
             };
             LevelData.NumberOfLevel++;
         }
@@ -108,42 +110,50 @@ public class LevelDataService : ILevelDataService
         {
             LevelData.levels[levelIndex] = new LevelFirebaseData
             {
+                Attempts = 1,
                 MaxScore = finalScore,
-                Repetition = 1,
-                StarRating = starRating
+                //Repetition = 1,
+                StarRating = starRating,
+                Success = 1
             };
             LevelData.NumberOfLevel++;
         }
         else
         {
             var levelData = LevelData.levels[levelIndex];
-            int completions = levelData.Repetition;
-            levelData.MaxScore = (levelData.MaxScore * completions + finalScore) / (completions + 1);
-            levelData.Repetition++;
-            levelData.StarRating = starRating;
+            int completions = levelData.Success; //THIS WAAS REPETITION BEFORE, NOT SURE IF SHOULD BE ATTEMPTS OR SUCCESS
+            levelData.MaxScore = finalScore > levelData.MaxScore ? finalScore : levelData.MaxScore;  
+            //levelData.Repetition++;
+            levelData.StarRating = starRating > levelData.StarRating ? starRating : levelData.StarRating; //THIS WAS ATTEMPTS BEFORE, NOT SURE IF SHOULD BE ATTEMPTS OR SUCCESSa
+            levelData.Success++;
         }
 
         int totalScore = 0;
-        int totalRepetition = 0;
+        //int totalRepetition = 0;
         foreach (var level in LevelData.levels.Values)
         {
             totalScore += level.MaxScore;
-            totalRepetition += level.Repetition;
+            //totalRepetition += level.Repetition;
         }
 
         LevelData.AverageScore = LevelData.NumberOfLevel > 0
             ? totalScore / LevelData.NumberOfLevel
             : 0;
-        LevelData.Repetition = totalRepetition;
+        //LevelData.Repetition = totalRepetition;
 
         SaveLevelData().Forget();
     }
 
     public void UpdateCounter(int levelIndex, CounterType counterType)
     {
-        if (LevelData == null || LevelData.levels == null || !LevelData.levels.ContainsKey(levelIndex))
+        if (LevelData == null || LevelData.levels == null)
             return;
 
+        if (!LevelData.levels.ContainsKey(levelIndex))
+        {
+            SetLevelUnlock(levelIndex);
+        }
+        
         var levelData = LevelData.levels[levelIndex];
         int newValue = 0;
 

@@ -30,15 +30,18 @@ public class LevelCompletObserver : MonoBehaviour
     {
         _openedLevel = levelIndex;
         _openedLevelworldId = worldId;
+        PlayerModelBase.LevelDataService.UpdateCounter(levelIndex, CounterType.Attempts);
     }
 
     public void SetCurrentLevelComplete()
     {
+        //PlayerModelBase.LevelDataService.UpdateCounter(_openedLevel, CounterType.Success);
         LevelComplete();
     }
     
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
+        //PlayerModelBase.LevelDataService.UpdateCounter(_openedLevel, CounterType.Success);
         LevelComplete();
     }
     
@@ -175,7 +178,7 @@ public class LevelCompletObserver : MonoBehaviour
                 var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
                     world: currentWorld,
                     level: currentLevel,
-                    attempts: level.Attempts > 0 ? level.Attempts : level.Repetition, // Attempts varsa onu, yoksa Repetition
+                    attempts: level.Attempts, // > 0 ? level.Attempts : level.Repetition, // Attempts varsa onu, yoksa Repetition
                     fails: level.Fails,
                     maxScore: level.MaxScore,
                     isCorrect: level.Success > 0 || level.MaxScore > 0, // Success varsa veya Score varsa başarılı

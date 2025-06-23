@@ -147,8 +147,8 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                             if (levelSnapshot.hasChild("Score"))
                                 entry.MaxScore = System.Convert.ToInt32(levelSnapshot.child("Score").val());
 
-                            if (levelSnapshot.hasChild("Repetition"))
-                                entry.Repetition = System.Convert.ToInt32(levelSnapshot.child("Repetition").val());
+                            // if (levelSnapshot.hasChild("Repetition"))
+                            //     entry.Repetition = System.Convert.ToInt32(levelSnapshot.child("Repetition").val());
 
                             if (levelSnapshot.hasChild("Attempts"))
                                 entry.Attempts = System.Convert.ToInt32(levelSnapshot.child("Attempts").val());
@@ -204,7 +204,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
             {
                 var levelRef = Db.child(levelsRef, entry.Key.ToString());
                 await Db.set(Db.child(levelRef, "Score"), entry.Value.MaxScore);
-                await Db.set(Db.child(levelRef, "Repetition"), entry.Value.Repetition);
+                //await Db.set(Db.child(levelRef, "Repetition"), entry.Value.Repetition);
                 await Db.set(Db.child(levelRef, "Attempts"), entry.Value.Attempts);
                 await Db.set(Db.child(levelRef, "Success"), entry.Value.Success);
                 await Db.set(Db.child(levelRef, "Failure"), entry.Value.Fails);
@@ -291,7 +291,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                         levelsDict[entry.Key.ToString()] = new Dictionary<string, object>
                         {
                             ["Score"] = entry.Value.MaxScore,
-                            ["Repetition"] = entry.Value.Repetition,
+                            //["Repetition"] = entry.Value.Repetition,
                             ["Attempts"] = entry.Value.Attempts,
                             ["Success"] = entry.Value.Success,
                             ["Failure"] = entry.Value.Fails,

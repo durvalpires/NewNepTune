@@ -42,7 +42,6 @@ namespace Minigames
       protected virtual void Start()
       {
          _guessScoringSettings = gameScoringConfig.guessScoring;
-         score = 0;
 
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
@@ -123,6 +122,8 @@ namespace Minigames
       
       protected void SetUpLevel(int levelToSet)
       {
+         score = 0;
+         
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
          
@@ -215,7 +216,7 @@ namespace Minigames
       
       public void Restart()
       {
-            
+         
          winPanel.SetActive(false);
          losePanel.SetActive(false);
          SetUpLevel(_currentLevel);

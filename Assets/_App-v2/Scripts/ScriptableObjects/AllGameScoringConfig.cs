@@ -11,6 +11,9 @@ public class AllGameScoringConfig : ScriptableObject
     
     [Header("Music & Instrument Guess Game Scoring")]
     public GuessScoringSettings guessScoring;
+    
+    [Header("Info Cards Scoring")]
+    public InfoCardsScoringSettings infoCardsScoring;
 
     // [Header("Rhythm Game Scoring")]
     // public RhythmScoringSettings rhythmScoring;
@@ -44,6 +47,12 @@ public class GuessScoringSettings
     [Range(0, 1)] public float threeStarThreshold = 0.8f;
     [Range(0, 1)] public float twoStarThreshold = 0.5f;
     [Range(0, 1)] public float oneStarThreshold = 0.2f;
+}
+
+[System.Serializable]
+public class InfoCardsScoringSettings
+{
+    public int maxScore = 100;
 }
 
 // [System.Serializable]
