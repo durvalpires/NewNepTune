@@ -42,6 +42,7 @@ namespace Minigames
       protected virtual void Start()
       {
          _guessScoringSettings = gameScoringConfig.guessScoring;
+         score = 0;
 
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
@@ -84,7 +85,6 @@ namespace Minigames
          
          yield return new WaitForSeconds(3f);
          score += _guessScoringSettings.maxScore;
-            Debug.Log(score);
          //winPanel.SetActive(true);
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
@@ -94,7 +94,8 @@ namespace Minigames
 
          if (_currentLevel+1 == gameLevels.Length)
          {
-            finishPanel.SetActive(true);
+                StartCoroutine(NextLevelButtonRoutine());
+                finishPanel.SetActive(true);
          }
          else
          {
@@ -122,8 +123,6 @@ namespace Minigames
       
       protected void SetUpLevel(int levelToSet)
       {
-         score = 0;
-         
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
          
@@ -206,7 +205,6 @@ namespace Minigames
 
             int finalScore = Mathf.Max(0, score);
             PlayerModelBase.SetCustomScore(finalScore);
-            Debug.Log(finalScore);
             PlayerModelBase.LevelDataService.SetCustomScore(score);
             PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
 
@@ -216,7 +214,6 @@ namespace Minigames
       
       public void Restart()
       {
-         
          winPanel.SetActive(false);
          losePanel.SetActive(false);
          SetUpLevel(_currentLevel);
