@@ -3,6 +3,7 @@ using Audio;
 using Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 namespace Minigames
@@ -41,9 +42,10 @@ namespace Minigames
       {
          _character = GameObject.Find("karakter");
          _character.GetComponent<Animator>().Play("RedGirlPiano");
-         
-         
-         if (levelToReturn == "") Debug.LogError("Level to return is not set!");
+
+        
+
+            if (levelToReturn == "") Debug.LogError("Level to return is not set!");
 
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
@@ -77,7 +79,7 @@ namespace Minigames
       
       public void TrueAnswer()
       {
-         score += _guessScoringSettings.maxScore;
+        
          Debug.Log("Score: " + score);
          
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
@@ -86,6 +88,8 @@ namespace Minigames
          if (_currentLevel+1 == gameLevels.Length)
          {
             finishPanel.SetActive(true);
+            score = score + _guessScoringSettings.maxScore;
+            NextLevelButton();
          }
          else
          {
@@ -105,8 +109,9 @@ namespace Minigames
 
       protected void SetUpLevel(int levelToSet)
       {
+
          score = 0;
-         
+
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
 
@@ -165,14 +170,14 @@ namespace Minigames
             else if (normalized >= _guessScoringSettings.twoStarThreshold) stars = 2;
             else if (normalized >= _guessScoringSettings.oneStarThreshold) stars = 1;
 
-            int finalScore = Mathf.Max(0, score);
-            PlayerModelBase.SetCustomScore(finalScore);
-            Debug.Log(finalScore);
-            PlayerModelBase.LevelDataService.SetCustomScore(score);
+            int safeScore = score < 0 ? 0 : score;
+            PlayerModelBase.SetCustomScore(safeScore);
+            Debug.Log(safeScore);
+            PlayerModelBase.LevelDataService.SetCustomScore(safeScore);
             PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
             finishPanel.SetActive(true);
          }
-      }
+        }
 
       public void Restart()
       {

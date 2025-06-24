@@ -15,9 +15,9 @@ public interface ILevelDataService
     Dictionary<int, (int Score, int Repetition)> GetAllPlayerLevelData();
     void PrintAllPlayerLevelData();
 
-    void SetLevelUnlock(int levelIndex);
-    void SetLevelCompleted(int levelIndex);
-    void UpdateCounter(int levelIndex, CounterType counterType);
+    void SetLevelUnlock(int worldIndex, int levelIndex);
+    void SetLevelCompleted(int worldIndex, int levelIndex);
+    void UpdateCounter(int worldIndex, int levelIndex, CounterType counterType);
     void SetCustomScore(int customScore);
     void SetCustomStarRating(int starRating);
 

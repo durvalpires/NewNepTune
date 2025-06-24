@@ -12,7 +12,9 @@ public interface IDataPersistence
     UniTask SaveLevelData(PlayerLevelData levelData, string subProfileName);
 
     UniTask UpdatePlayerName(string playerName);
-    UniTask UpdateLevelCounter(int levelIndex, CounterType counterType, int newValue, string subProfileName);
+
+    UniTask UpdateLevelCounter(int worldIndex, int levelIndex,CounterType counterType, int newValue,string subProfileName);
+
     UniTask CreateSubProfile(string subProfileName, PlayerLevelData initialData);
     UniTask<List<string>> GetAllSubProfiles();
 }

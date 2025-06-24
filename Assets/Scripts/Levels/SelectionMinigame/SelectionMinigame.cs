@@ -41,7 +41,6 @@ namespace Levels.SelectionMinigame
 
         private SelectionScoringSettings _selectionSettings;
         private int _score;
-        private int _questionsAnswered;
         private int _pointsPerQuestion;
 
 
@@ -50,9 +49,8 @@ namespace Levels.SelectionMinigame
         private void Start()
         {
             _selectionSettings = gameScoringConfig.selectionScoring;
-            _pointsPerQuestion = _selectionSettings.maxScore / gameLevels.Length;
+            _pointsPerQuestion = _selectionSettings.maxScore;
             _score = 0;
-            _questionsAnswered = 0;
 
             //Sprite[] answerSprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Notes/");
             _correctAnswerPrefab = Array.Find(_prefabs, go => go.name == correctAnswerGOName.ToUpper());
@@ -222,8 +220,7 @@ namespace Levels.SelectionMinigame
 
         public void TrueAnswer()
         {
-            _score += _pointsPerQuestion;
-            _questionsAnswered++;
+            Debug.Log(_score);
             winPanel.SetActive(true);
             AudioManager.Instance.PlaySFX(SoundList.WinSound);
             gameLevels[_currentLevel].gameObject.SetActive(false);
@@ -231,8 +228,7 @@ namespace Levels.SelectionMinigame
 
         public void FalseAnswer()
         {
-            _score = Mathf.Max(0, _score - _selectionSettings.wrongAnswerPenalty);
-            _questionsAnswered++;
+            _score -= _selectionSettings.wrongAnswerPenalty;
             losePanel.SetActive(true);
             gameLevels[_currentLevel].gameObject.SetActive(false);
             AudioManager.Instance.PlaySFX(SoundList.LoseSound);
@@ -255,8 +251,11 @@ namespace Levels.SelectionMinigame
                 if (normalized >= _selectionSettings.threeStarThreshold) stars = 3;
                 else if (normalized >= _selectionSettings.twoStarThreshold) stars = 2;
                 else if (normalized >= _selectionSettings.oneStarThreshold) stars = 1;
-
-                PlayerModelBase.LevelDataService.SetCustomScore(_score);
+                _score = _score + _pointsPerQuestion;
+                int safeScore = _score < 0 ? 0 : _score;
+                PlayerModelBase.SetCustomScore(safeScore);
+                Debug.Log(safeScore);
+                PlayerModelBase.LevelDataService.SetCustomScore(safeScore);
                 PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
 
                 finishPanel.SetActive(true);
@@ -265,8 +264,6 @@ namespace Levels.SelectionMinigame
         
         public void Restart()
         {
-            _score = 0;
-            _questionsAnswered = 0;
             losePanel.SetActive(false);
             gameLevels[_currentLevel].gameObject.SetActive(true);
         }

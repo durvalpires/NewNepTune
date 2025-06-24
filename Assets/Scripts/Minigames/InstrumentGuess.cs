@@ -84,7 +84,7 @@ namespace Minigames
          InstrumentGuessClouds.Instance.DisperseClouds();
          
          yield return new WaitForSeconds(3f);
-         score += _guessScoringSettings.maxScore;
+       
          //winPanel.SetActive(true);
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
@@ -94,6 +94,7 @@ namespace Minigames
 
          if (_currentLevel+1 == gameLevels.Length)
          {
+                score = score + _guessScoringSettings.maxScore;
                 StartCoroutine(NextLevelButtonRoutine());
                 finishPanel.SetActive(true);
          }
@@ -203,12 +204,13 @@ namespace Minigames
             else if (normalized >= _guessScoringSettings.twoStarThreshold) stars = 2;
             else if (normalized >= _guessScoringSettings.oneStarThreshold) stars = 1;
 
-            int finalScore = Mathf.Max(0, score);
-            PlayerModelBase.SetCustomScore(finalScore);
-            PlayerModelBase.LevelDataService.SetCustomScore(score);
-            PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
+                int safeScore = score < 0 ? 0 : score;
+                PlayerModelBase.SetCustomScore(safeScore);
+                Debug.Log(safeScore);
+                PlayerModelBase.LevelDataService.SetCustomScore(safeScore);
+                PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
 
-            finishPanel.SetActive(true);
+                finishPanel.SetActive(true);
          }
       }
       

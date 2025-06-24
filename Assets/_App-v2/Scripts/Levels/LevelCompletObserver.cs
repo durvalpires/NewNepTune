@@ -9,8 +9,8 @@ public class LevelCompletObserver : MonoBehaviour
 {
     public static event Action onLevelComplete;
     private static int _openedLevel = -1;
-    private static string _openedLevelworldId = "";
-    
+    private static int _openedWorldIndex = 1;
+
     // LevelDataService reference
     private static ILevelDataService _levelDataService;
     private static ILevelDataService LevelDataService
@@ -29,8 +29,8 @@ public class LevelCompletObserver : MonoBehaviour
     public static void LevelStart(int levelIndex, string worldId)
     {
         _openedLevel = levelIndex;
-        _openedLevelworldId = worldId;
-        PlayerModelBase.LevelDataService.UpdateCounter(levelIndex, CounterType.Attempts);
+        _openedWorldIndex = int.TryParse(worldId, out var w) ? w : 1;
+        PlayerModelBase.LevelDataService.UpdateCounter(_openedWorldIndex, levelIndex, CounterType.Attempts);
     }
 
     public void SetCurrentLevelComplete()
@@ -71,9 +71,10 @@ public class LevelCompletObserver : MonoBehaviour
     {
         // PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId); 
         // onLevelComplete?.Invoke();
-        
+
         // Mevcut PlayerModel sistemini koru
-        PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId);
+
+        PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
         
         if(levelscore != null)
             PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedLevelworldId);
@@ -86,7 +87,7 @@ public class LevelCompletObserver : MonoBehaviour
         //     // Student endpoint'e veri gönder
         //     SendStudentUpdate(_openedLevel, _openedLevelworldId, levelscore = null);
         // }
-        
+
         onLevelComplete?.Invoke();
     }
 
@@ -130,9 +131,10 @@ public class LevelCompletObserver : MonoBehaviour
             // detailedLevelInfo = levelsDic.ToList();
             
             var levelData = LevelDataService.LevelData;
-            if (levelData?.levels != null && levelData.levels.ContainsKey(levelIndex))
-            {
-                var level = levelData.levels[levelIndex];
+            string key = LevelKeyUtil.LevelKey(_openedWorldIndex, levelIndex);
+          if (levelData?.levels != null && levelData.levels.ContainsKey(key))
+          {
+                var level = levelData.levels[key];
 
                 string currentScene = SceneManager.GetActiveScene().name;
 
