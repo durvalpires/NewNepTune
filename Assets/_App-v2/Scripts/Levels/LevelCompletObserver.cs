@@ -77,7 +77,7 @@ public class LevelCompletObserver : MonoBehaviour
         PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
         
         if(levelscore != null)
-            PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedLevelworldId);
+            PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedWorldIndex.ToString());
         
         // LevelDataService'e level complete bilgisini kaydet
         // if (_openedLevel != -1)

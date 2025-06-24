@@ -256,13 +256,15 @@ public class LevelDataService : ILevelDataService
 
         if (LevelData.levels == null)
             throw new Exception("Level data is null");
+        
+        string levelKey = LevelKeyUtil.LevelKey(worldId, levelIndex);
 
-        if (!LevelData.levels.ContainsKey(levelIndex))
+        if (!LevelData.levels.ContainsKey(levelKey))
             throw new Exception($"Level {levelIndex} does not exist in level data");
         
 
-        var averagePercentages = LevelData.levels[levelIndex].HitAccuracy;
-        var attemptCount = LevelData.levels[levelIndex].Attempts;
+        var averagePercentages = LevelData.levels[levelKey].HitAccuracy;
+        var attemptCount = LevelData.levels[levelKey].Attempts;
         
         foreach (var kvp in levelScore.GetAccuracyPercentage())
         {
