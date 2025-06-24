@@ -25,6 +25,10 @@ public class LevelCompletObserver : MonoBehaviour
             return _levelDataService;
         }
     }
+    public static string LevelKey(int worldIndex, int levelIndex)
+    {
+        return $"W{worldIndex}_L{levelIndex}";
+    }
 
     public static void LevelStart(int levelIndex, string worldId)
     {
@@ -35,50 +39,59 @@ public class LevelCompletObserver : MonoBehaviour
 
     public void SetCurrentLevelComplete()
     {
-        //PlayerModelBase.LevelDataService.UpdateCounter(_openedLevel, CounterType.Success);
+        //PlayerModelBase.LevelDataService.UpdateCounter(_openedWorldIndex, _openedLevel, CounterType.Success);
         LevelComplete();
     }
-    
+
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
-        //PlayerModelBase.LevelDataService.UpdateCounter(_openedLevel, CounterType.Success);
-        LevelComplete();
+        LevelComplete(levelscore);
     }
-    
+
     // EndOfLevelScreenController'dan gerçek score controller'ı almak için
     public void SetCurrentLevelCompleteWithScore(RhythmGameScoreController scoreController)
     {
-        // RhythmGame için özel score override
         if (scoreController != null && scoreController.PlayerScore > 0)
         {
-            // LevelDataService'e custom score gönder
-            var levelDataServiceImpl = LevelDataService as LevelDataService;
-            if (levelDataServiceImpl != null)
-            {
-                // Reflection ile _customScoreOverride field'ını set et
-                var field = levelDataServiceImpl.GetType().GetField("_customScoreOverride", 
-                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                if (field != null)
-                {
-                    field.SetValue(levelDataServiceImpl, scoreController.PlayerScore);
-                }
-            }
+            PlayerModelBase.SetCustomScore(scoreController.PlayerScore);
         }
         LevelComplete();
+        //// RhythmGame için özel score override
+        //if (scoreController != null && scoreController.PlayerScore > 0)
+        //{
+        //    // LevelDataService'e custom score gönder
+        //    var levelDataServiceImpl = LevelDataService as LevelDataService;
+        //    if (levelDataServiceImpl != null)
+        //    {
+        //        // Reflection ile _customScoreOverride field'ını set et
+        //        var field = levelDataServiceImpl.GetType().GetField("_customScoreOverride", 
+        //            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        //        if (field != null)
+        //        {
+        //            field.SetValue(levelDataServiceImpl, scoreController.PlayerScore);
+        //        }
+        //    }
+        //}
+        //LevelComplete();
     }
     
     public static void LevelComplete(ILevelScore levelscore = null)
     {
+        PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
+       
+        if (_openedLevel != -1)
+        {
+            SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+        }
+
+        onLevelComplete?.Invoke();
+
         // PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId); 
         // onLevelComplete?.Invoke();
 
         // Mevcut PlayerModel sistemini koru
+        //PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
 
-        PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
-        
-        if(levelscore != null)
-            PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedWorldIndex.ToString());
-        
         // LevelDataService'e level complete bilgisini kaydet
         // if (_openedLevel != -1)
         // {
@@ -88,7 +101,7 @@ public class LevelCompletObserver : MonoBehaviour
         //     SendStudentUpdate(_openedLevel, _openedLevelworldId, levelscore = null);
         // }
 
-        onLevelComplete?.Invoke();
+        //onLevelComplete?.Invoke();
     }
 
     public static void SendStudentUpdate(int levelIndex, string worldId, ILevelScore levelscore)
@@ -96,8 +109,7 @@ public class LevelCompletObserver : MonoBehaviour
         bool star2 = false;
         bool star1 = false;
         bool star3 = false;
-        
-        // StudentUpdateEndpoint instance'ını kontrol et ve gerekirse oluştur
+
         if (StudentUpdateEndpoint.Instance == null)
         {
             Debug.Log("StudentUpdateEndpoint instance oluşturuluyor...");
@@ -105,122 +117,94 @@ public class LevelCompletObserver : MonoBehaviour
             endpointGO.AddComponent<StudentUpdateEndpoint>();
             UnityEngine.Object.DontDestroyOnLoad(endpointGO);
         }
-        
+
         if (StudentUpdateEndpoint.Instance == null)
         {
             Debug.LogError("StudentUpdateEndpoint instance oluşturulamadı!");
             return;
         }
-        
+
         try
         {
-            // Şu anki level ve world bilgilerini hesapla
             int currentLevel = levelIndex;
             int currentWorld = int.TryParse(worldId, out int world) ? world : 1;
-            
-            // Şu anki zamanı al
+
             string lastTimePlayed = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            
-            // Toplam oyun süresini al (PlayerModel'den - şimdilik mock değer)
-            int totalTime = 300; // Mock değer - 5 dakika
-            
-            // Detaylı level bilgilerini hazırla - LevelDataService'den al
+
+            int totalTime = 300;
+
             List<StudentUpdateEndpoint.DetailedLevelInfo> detailedLevelInfo = new List<StudentUpdateEndpoint.DetailedLevelInfo>();
-            
-            // Dictionary<int, LevelFirebaseData> levelsDic = LevelDataService.LevelData.levels;
-            // detailedLevelInfo = levelsDic.ToList();
-            
-            var levelData = LevelDataService.LevelData;
-            string key = LevelKeyUtil.LevelKey(_openedWorldIndex, levelIndex);
-          if (levelData?.levels != null && levelData.levels.ContainsKey(key))
-          {
-                var level = levelData.levels[key];
 
-                string currentScene = SceneManager.GetActiveScene().name;
+            var levelData = PlayerModelBase.LevelData;
 
-                if (currentScene == "XMLMP3")
-                {
-                    var rhythmScore = levelscore as RhythmGameScoreController;
-                    
-                    if (rhythmScore.PlayerStars == 1)
-                    {
-                        star1 = true;
-                    }
-                    else if (rhythmScore.PlayerStars == 2)
-                    {
-                        star1 = true;
-                        star2 = true;
-                    }
-                    else if(rhythmScore.PlayerStars == 3)
-                    {
-                        star1 = true;
-                        star2 = true;
-                        star3 = true;
-                    }
-                }
-                else
-                {
-                    var result = levelscore as LevelScore;
-                    
-                    if (result.totalPoints >= 30 && result.totalPoints < 60)
-                    {
-                        star1 = true;
-                    }
-                    else if (result.totalPoints >= 60 && result.totalPoints < 90)
-                    {
-                        star1 = true;
-                        star2 = true;
-                    }
-                    else if (result.totalPoints >= 90)
-                    {
-                        star1 = true;
-                        star2 = true;
-                        star3 = true;
-                    }
-                }
-                
-                // LevelDataService'den gelen gerçek veriler
+            string levelKey = LevelKeyUtil.LevelKey(currentWorld, currentLevel);
+         
+            foreach (var key in levelData.levels.Keys)
+            {
+                Debug.Log($"[DEBUG] Mevcut level key: {key}");
+            }
+
+            if (levelData?.levels != null && levelData.levels.ContainsKey(levelKey))
+            {
+                var level = levelData.levels[levelKey];
+                //if (levelData?.levels != null && levelData.levels.ContainsKey(levelIndex.ToString()))
+                //{
+                //var level = levelData.levels[levelIndex.ToString()];
+                //string currentScene = SceneManager.GetActiveScene().name;
+                int starRating = level.StarRating ?? 0;
+                star1 = level.StarRating >= 1;
+                star2 = level.StarRating >= 2;
+                star3 = level.StarRating >= 3;
+                //CalculateStarRating(levelscore, currentScene, out star1, out star2, out star3);
+
                 var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
                     world: currentWorld,
                     level: currentLevel,
-                    attempts: level.Attempts, // > 0 ? level.Attempts : level.Repetition, // Attempts varsa onu, yoksa Repetition
+                    attempts: level.Attempts,
                     fails: level.Fails,
                     maxScore: level.MaxScore,
-                    isCorrect: level.Success > 0 || level.MaxScore > 0, // Success varsa veya Score varsa başarılı
-                    averageAccuracy: level.Attempts > 0 ?
-                                   (float)level.Success / level.Attempts :
-                                   (level.Success + level.Fails > 0 ? (float)level.Success / (level.Success + level.Fails) : 1.0f),
+                    isCorrect: level.Success > 0 || level.MaxScore > 0,
+                    averageAccuracy: CalculateAverageAccuracy(level),
                     star1: star1,
                     star2: star2,
                     star3: star3
                 );
-                
+
                 detailedLevelInfo.Add(detailedInfo);
-                Debug.Log($"LevelDataService verisi kullanıldı - Level: {currentLevel}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Success}, Failure: {level.Fails}");
+                Debug.Log($"PlayerModelBase verisi kullanıldı - Level: {currentLevel}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Success}, Failure: {level.Fails},Stars: {level.StarRating}");
             }
             else
             {
-                // Fallback - minimal veri (level henüz LevelDataService'e kaydedilmemişse)
-                var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
-                    world: currentWorld,
-                    level: currentLevel,
-                    attempts: 1,
-                    fails: 0,
-                    maxScore: 100,
-                    isCorrect: true,
-                    averageAccuracy: 1.0f,
-                    star1: true,
-                    star2: true,
-                    star3: true
-                );
-                
-                detailedLevelInfo.Add(detailedInfo);
-                Debug.LogWarning("LevelDataService'de veri bulunamadı, fallback kullanıldı - Level: " + currentLevel);
+                Debug.LogError($"[ERROR] Level key not found in LevelData.levels: {levelKey}");
             }
-            
-            // Endpoint'i çağır
+            //else
+            //{
+            //    var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
+            //        world: currentWorld,
+            //        level: currentLevel,
+            //        attempts: 1,
+            //        fails: 0,
+            //        maxScore: 100,
+            //        isCorrect: true,
+            //        averageAccuracy: 1.0f,
+            //        star1: true,
+            //        star2: true,
+            //        star3: true
+            //    );
+
+            //    detailedLevelInfo.Add(detailedInfo);
+            //    Debug.LogWarning("PlayerModelBase'de veri bulunamadı, fallback kullanıldı - Level: " + currentLevel);
+            //}
+
+            string studentId = FirebaseProxyService.Instance.privateCode;
+            if (string.IsNullOrEmpty(studentId))
+            {
+                Debug.LogError("Student ID bulunamadı! Önce öğrenci girişi yapınız");
+                return;
+            }
+
             StudentUpdateEndpoint.Instance.UpdateStudentInfo(
-                studentId: "STU-8031", // Mock student ID
+                studentId: studentId,
                 currentLevel: currentLevel,
                 currentWorld: currentWorld,
                 lastTimePlayed: lastTimePlayed,
@@ -228,7 +212,7 @@ public class LevelCompletObserver : MonoBehaviour
                 detailedLevelInfo: detailedLevelInfo,
                 callback: OnStudentUpdateCallback
             );
-            
+
             Debug.Log($"Student update gönderildi - Level: {currentLevel}, World: {currentWorld}");
         }
         catch (System.Exception e)
@@ -236,7 +220,19 @@ public class LevelCompletObserver : MonoBehaviour
             Debug.LogError($"Student update gönderilirken hata: {e.Message}");
         }
     }
-    
+
+    private static float CalculateAverageAccuracy(LevelFirebaseData level)
+    {
+        if (level.Attempts > 0)
+        {
+            return (float)level.Success / level.Attempts;
+        }
+        else if (level.Success + level.Fails > 0)
+        {
+            return (float)level.Success / (level.Success + level.Fails);
+        }
+        return 1.0f;
+    }
     private static void OnStudentUpdateCallback(bool success, string message)
     {
         if (success)
