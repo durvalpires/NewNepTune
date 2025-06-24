@@ -128,8 +128,8 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                 if (snapshot.hasChild("NumberOfLevel"))
                     result.NumberOfLevel = System.Convert.ToInt32(snapshot.child("NumberOfLevel").val());
 
-                if (snapshot.hasChild("Repetition"))
-                    result.Repetition = System.Convert.ToInt32(snapshot.child("Repetition").val());
+                // if (snapshot.hasChild("Repetition"))
+                //     result.Repetition = System.Convert.ToInt32(snapshot.child("Repetition").val());
 
                 if (snapshot.hasChild("customLevelData"))
                     result.customLevelData = snapshot.child("customLevelData").val().ToString();
@@ -195,7 +195,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
             await Db.set(Db.child(dbRef, "SubProfilename"), levelData.SubProfilename);
             await Db.set(Db.child(dbRef, "AverageScore"), levelData.AverageScore);
             await Db.set(Db.child(dbRef, "NumberOfLevel"), levelData.NumberOfLevel);
-            await Db.set(Db.child(dbRef, "Repetition"), levelData.Repetition);
+            //await Db.set(Db.child(dbRef, "Repetition"), levelData.Repetition);
             await Db.set(Db.child(dbRef, "customLevelData"), levelData.customLevelData);
             
           
@@ -278,7 +278,7 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                     ["SubProfilename"] = initialData.SubProfilename,
                     ["AverageScore"] = initialData.AverageScore,
                     ["NumberOfLevel"] = initialData.NumberOfLevel,
-                    ["Repetition"] = initialData.Repetition,
+                    //["Repetition"] = initialData.Repetition,
                     ["customLevelData"] = initialData.customLevelData
                 };
                 

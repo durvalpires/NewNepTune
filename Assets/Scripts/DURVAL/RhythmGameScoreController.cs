@@ -133,4 +133,14 @@ public class RhythmGameScoreController : ILevelScore
     {
         throw new NotImplementedException();
     }
+    
+    public Dictionary<HitAccuracy, float> GetAccuracyPercentage()
+    {
+        var accuracyPercentage = new Dictionary<HitAccuracy, float>();
+        foreach (var hit in AccuracyBreakdown.Keys)
+        {
+            accuracyPercentage[hit] = (float)AccuracyBreakdown[hit] / noteCount * 100;
+        }
+        return accuracyPercentage;
+    }
 }

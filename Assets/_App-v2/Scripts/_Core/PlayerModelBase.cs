@@ -10,10 +10,10 @@ using UnityEngine.Networking;
 
 public class PlayerModelBase
 {
-    private static IPlayerDataService _playerDataService;
-    private static ILevelDataService _levelDataService;
-    private static IDataPersistence _dataPersistence;
-    private static string _currentSubProfileName = "Default";
+    protected static IPlayerDataService _playerDataService;
+    protected static ILevelDataService _levelDataService;
+    protected static IDataPersistence _dataPersistence;
+    protected static string _currentSubProfileName = "Default";
 
     public static AccountDataDB Data => _playerDataService?.AccountData;
     public static PlayerLevelData LevelData => _levelDataService?.LevelData;

@@ -47,6 +47,8 @@ public class EndOfLevelScreenController : MonoBehaviour
         }
         else
         {
+            // MAYBE WE NEED AN EQUIVALENT FOR WHEN THE PLAYER LOSES
+            
             levelResultText.text = "Almost! Try again!";
         }
         

@@ -73,7 +73,10 @@ public class LevelCompletObserver : MonoBehaviour
         // onLevelComplete?.Invoke();
         
         // Mevcut PlayerModel sistemini koru
-        PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId); 
+        PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId);
+        
+        if(levelscore != null)
+            PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedLevelworldId);
         
         // LevelDataService'e level complete bilgisini kaydet
         // if (_openedLevel != -1)

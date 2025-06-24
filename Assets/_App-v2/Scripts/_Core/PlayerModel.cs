@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _App_v2.Scripts.Levels.Score;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
     public class PlayerModel : PlayerModelBase
@@ -69,6 +71,13 @@ using UnityEngine;
         {
             SetCustomData($"w_{worldId}:l_{levelIndex}", "done");
             SetLevelCompleted(levelIndex);
+        }
+
+        public static void SetLevelScoreData(int levelIndex, ILevelScore levelScore, string worldId = "-1")
+        {
+            _levelDataService?.SetLevelScoreData(levelIndex, levelScore, worldId);
+            if (_levelDataService != null)
+                _levelDataService.SaveLevelData().Forget();
         }
 
         public static bool IsLevelCompleted(int levelIndex, string worldId)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _App_v2.Scripts.Levels.Score;
 using Cysharp.Threading.Tasks;
 
 public interface ILevelDataService
@@ -27,4 +28,5 @@ public interface ILevelDataService
     string GetCustomData(string key, string defaultValue = "");
     void SetCustomData(string key, string value);
     Dictionary<string, object> GetAllCustomData();
+    void SetLevelScoreData(int levelIndex, ILevelScore levelScore, string worldId);
 }

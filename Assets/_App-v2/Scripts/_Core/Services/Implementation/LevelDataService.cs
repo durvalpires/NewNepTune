@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using _App_v2.Scripts.Levels.Score;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -37,7 +39,8 @@ public class LevelDataService : ILevelDataService
 
     public int GetNumberOfAttempts()
     {
-        return LevelData?.Repetition ?? 0;
+        //return LevelData?.Repetition ?? 0;
+        throw new System.NotImplementedException();
     }
 
     public int GetAverageScore()
@@ -114,7 +117,8 @@ public class LevelDataService : ILevelDataService
                 MaxScore = finalScore,
                 //Repetition = 1,
                 StarRating = starRating,
-                Success = 1
+                Success = 1,
+                HitAccuracy = new Dictionary<HitAccuracy, float>()
             };
             LevelData.NumberOfLevel++;
         }
@@ -193,7 +197,7 @@ public class LevelDataService : ILevelDataService
             SubProfilename = subProfileName,
             AverageScore = 0,
             NumberOfLevel = 0,
-            Repetition = 0,
+            //Repetition = 0,
             StarRating = 3,
             levels = new Dictionary<int, LevelFirebaseData>()
         };
@@ -238,5 +242,33 @@ public class LevelDataService : ILevelDataService
 
         var dataDictFromJson = Json.Deserialize(LevelData.customLevelData) as Dictionary<string, object>;
         return dataDictFromJson ?? new Dictionary<string, object>();
+    }
+
+    public void SetLevelScoreData(int levelIndex, ILevelScore levelScore, string worldId)
+    {
+        if (LevelData == null)
+            throw new Exception("Level data is null");
+
+        if (LevelData.levels == null)
+            throw new Exception("Level data is null");
+
+        if (!LevelData.levels.ContainsKey(levelIndex))
+            throw new Exception($"Level {levelIndex} does not exist in level data");
+        
+
+        var averagePercentages = LevelData.levels[levelIndex].HitAccuracy;
+        var attemptCount = LevelData.levels[levelIndex].Attempts;
+        
+        foreach (var kvp in levelScore.GetAccuracyPercentage())
+        {
+            if (!averagePercentages.ContainsKey(kvp.Key))
+                averagePercentages[kvp.Key] = kvp.Value;
+            else
+            {
+                float currentAvg = averagePercentages[kvp.Key];
+                //THIS ASSUMES UPDATE COUNT ALREADY IS UPDATED WITH THIS PLAY SESSION
+                averagePercentages[kvp.Key] = ((currentAvg * attemptCount-1) + kvp.Value) / (attemptCount); 
+            }
+        }
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace _App_v2.Scripts.Levels.Score
 {
     public class LevelScore : ILevelScore
@@ -11,6 +13,11 @@ namespace _App_v2.Scripts.Levels.Score
         public RhythmStats rhythmStats;
         public QuizStats quizStats;
         public CardMatchStats cardStats;
+        
+        public Dictionary<HitAccuracy, float> GetAccuracyPercentage()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
     [System.Serializable]
