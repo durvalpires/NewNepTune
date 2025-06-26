@@ -10,7 +10,7 @@ public class SplashScreenController : MonoBehaviour
     [SerializeField] private float fillDuration = 1f;
     [SerializeField] private float displayDuration = 2f;
     [SerializeField] private float unfillDuration = 1f;
-    [SerializeField] private string nextSceneName = "MainMenu";
+    [SerializeField] private string nextSceneName = "NeptuneApp";
 
     private void Start()
     {
@@ -38,5 +38,6 @@ public class SplashScreenController : MonoBehaviour
     private void LoadNextScene()
     {
         SceneManager.LoadScene(nextSceneName);
+        Debug.Log(nextSceneName);
     }
 }
