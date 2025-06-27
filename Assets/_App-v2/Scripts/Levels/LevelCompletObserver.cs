@@ -45,6 +45,8 @@ public class LevelCompletObserver : MonoBehaviour
 
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
+        //PlayerModelBase.LevelDataService.UpdateCounter(_openedLevel, CounterType.Success);
+
         LevelComplete(levelscore);
     }
 
@@ -90,8 +92,12 @@ public class LevelCompletObserver : MonoBehaviour
         // onLevelComplete?.Invoke();
 
         // Mevcut PlayerModel sistemini koru
-        //PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
-
+        
+        PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
+        
+        if(levelscore != null)
+            PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedWorldIndex.ToString());
+        
         // LevelDataService'e level complete bilgisini kaydet
         // if (_openedLevel != -1)
         // {

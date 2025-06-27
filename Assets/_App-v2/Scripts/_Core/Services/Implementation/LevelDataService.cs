@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using _App_v2.Scripts.Levels.Score;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -262,20 +263,67 @@ public class LevelDataService : ILevelDataService
         if (!LevelData.levels.ContainsKey(levelKey))
             throw new Exception($"Level {levelIndex} does not exist in level data");
         
+        if(LevelData.levels[levelKey].HitAccuracy == null)
+            LevelData.levels[levelKey].HitAccuracy = new Dictionary<HitAccuracy, float>();
+        
 
         var averagePercentages = LevelData.levels[levelKey].HitAccuracy;
+        var lastSessionPercentages = levelScore.GetAccuracyPercentage();
         var attemptCount = LevelData.levels[levelKey].Attempts;
         
-        foreach (var kvp in levelScore.GetAccuracyPercentage())
+        var allAccuracyValues = System.Enum.GetValues(typeof(HitAccuracy)).Cast<HitAccuracy>().ToList();
+        foreach (var accuracy in allAccuracyValues)
         {
-            if (!averagePercentages.ContainsKey(kvp.Key))
-                averagePercentages[kvp.Key] = kvp.Value;
+            if (lastSessionPercentages.ContainsKey(accuracy))
+            {
+                var value = lastSessionPercentages[accuracy];
+                
+                if (!averagePercentages.ContainsKey(accuracy))
+                    averagePercentages[accuracy] = value / attemptCount;
+                else
+                {
+                    Debug.LogWarning($"Level {levelIndex} has existing accuracy data");
+                    Debug.LogWarning($"Current attempt count is {attemptCount}");
+                    Debug.LogWarning($"Current accuracy for {accuracy} is {averagePercentages[accuracy]}");
+                    Debug.LogWarning($"Attempting to update accuracy with {value}");
+                    float currentAvg = averagePercentages[accuracy];
+                    Debug.LogWarning(currentAvg * (attemptCount-1));
+                    Debug.LogWarning(currentAvg * (attemptCount-1) + value);
+                    //THIS ASSUMES UPDATE COUNT ALREADY IS UPDATED WITH THIS PLAY SESSION
+                    averagePercentages[accuracy] = (currentAvg * (attemptCount-1) + value) / (attemptCount);
+                    Debug.LogWarning($"New accuracy for {accuracy} is {averagePercentages[accuracy]}");
+                }
+            }
             else
             {
-                float currentAvg = averagePercentages[kvp.Key];
-                //THIS ASSUMES UPDATE COUNT ALREADY IS UPDATED WITH THIS PLAY SESSION
-                averagePercentages[kvp.Key] = ((currentAvg * attemptCount-1) + kvp.Value) / (attemptCount); 
+                if (!averagePercentages.ContainsKey(accuracy))
+                    averagePercentages[accuracy] = 0;
+                else
+                {
+                    averagePercentages[accuracy] = averagePercentages[accuracy] * (attemptCount-1) / attemptCount;
+                }
             }
         }
+
+        // foreach (var kvp in levelScore.GetAccuracyPercentage())
+        // {
+        //     if (!averagePercentages.ContainsKey(kvp.Key))
+        //         averagePercentages[kvp.Key] = kvp.Value / attemptCount;
+        //     else
+        //     {
+        //         Debug.LogWarning($"Level {levelIndex} has existing accuracy data");
+        //         Debug.LogWarning($"Current attempt count is {attemptCount}");
+        //         Debug.LogWarning($"Current accuracy for {kvp.Key} is {averagePercentages[kvp.Key]}");
+        //         Debug.LogWarning($"Attempting to update accuracy with {kvp.Value}");
+        //         float currentAvg = averagePercentages[kvp.Key];
+        //         Debug.LogWarning(currentAvg * (attemptCount-1));
+        //         Debug.LogWarning(currentAvg * (attemptCount-1) + kvp.Value);
+        //         //THIS ASSUMES UPDATE COUNT ALREADY IS UPDATED WITH THIS PLAY SESSION
+        //         averagePercentages[kvp.Key] = (currentAvg * (attemptCount-1) + kvp.Value) / (attemptCount);
+        //         Debug.LogWarning($"New accuracy for {kvp.Key} is {averagePercentages[kvp.Key]}");
+        //     }
+        // }
+        
+        SaveLevelData().Forget();
     }
 }
