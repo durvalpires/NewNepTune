@@ -136,6 +136,24 @@ public class RhythmGameScoreController : ILevelScore
     
     public Dictionary<HitAccuracy, float> GetAccuracyPercentage()
     {
+        // UPDATE HIT ACCURACY WITH MISSING NOTES
+        var registeredNotes = 0;
+        var missingHitNotes = 0;
+        foreach (var hit in AccuracyBreakdown.Keys)
+        {
+            registeredNotes += AccuracyBreakdown[hit];
+        }
+        missingHitNotes = noteCount - registeredNotes;
+        
+        if (missingHitNotes > 0)
+        {
+            if (!AccuracyBreakdown.ContainsKey(HitAccuracy.Miss))
+                AccuracyBreakdown.Add(HitAccuracy.Miss, missingHitNotes);
+            else
+                AccuracyBreakdown[HitAccuracy.Miss] += missingHitNotes;
+        }
+        
+        
         var accuracyPercentage = new Dictionary<HitAccuracy, float>();
         foreach (var hit in AccuracyBreakdown.Keys)
         {

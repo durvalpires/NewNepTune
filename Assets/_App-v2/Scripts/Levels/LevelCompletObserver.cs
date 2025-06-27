@@ -42,7 +42,7 @@ public class LevelCompletObserver : MonoBehaviour
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
         //PlayerModelBase.LevelDataService.UpdateCounter(_openedLevel, CounterType.Success);
-        LevelComplete();
+        LevelComplete(levelscore);
     }
     
     // EndOfLevelScreenController'dan gerçek score controller'ı almak için
@@ -73,7 +73,7 @@ public class LevelCompletObserver : MonoBehaviour
         // onLevelComplete?.Invoke();
 
         // Mevcut PlayerModel sistemini koru
-
+        
         PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
         
         if(levelscore != null)
