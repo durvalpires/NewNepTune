@@ -80,23 +80,16 @@ public class LevelCompletObserver : MonoBehaviour
     public static void LevelComplete(ILevelScore levelscore = null)
     {
         PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
-       
+        
+        if(levelscore != null)
+            PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedWorldIndex.ToString());
+        
         if (_openedLevel != -1)
         {
             SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
         }
 
         onLevelComplete?.Invoke();
-
-        // PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId); 
-        // onLevelComplete?.Invoke();
-
-        // Mevcut PlayerModel sistemini koru
-        
-        PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
-        
-        if(levelscore != null)
-            PlayerModel.SetLevelScoreData(_openedLevel, levelscore, _openedWorldIndex.ToString());
         
         // LevelDataService'e level complete bilgisini kaydet
         // if (_openedLevel != -1)
@@ -106,8 +99,6 @@ public class LevelCompletObserver : MonoBehaviour
         //     // Student endpoint'e veri gönder
         //     SendStudentUpdate(_openedLevel, _openedLevelworldId, levelscore = null);
         // }
-
-        //onLevelComplete?.Invoke();
     }
 
     public static void SendStudentUpdate(int levelIndex, string worldId, ILevelScore levelscore)

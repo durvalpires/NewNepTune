@@ -6,7 +6,7 @@ public class SessionTimeTracker : MonoBehaviour
     private DateTime sessionStartTime;
     private TimeSpan sessionDuration;
 
-    public static double TotalSecondsPlayed { get; private set; }
+    public static double TotalMinutesPlayed { get; private set; }
     
 
     private void OnEnable()
@@ -35,21 +35,21 @@ public class SessionTimeTracker : MonoBehaviour
     private void UpdateSessionDuration()
     {
         sessionDuration = DateTime.UtcNow - sessionStartTime;
-        TotalSecondsPlayed += sessionDuration.TotalSeconds;
+        TotalMinutesPlayed += Math.Round(sessionDuration.TotalMinutes, 1);
         SaveTotalPlayTime();
     }
 
     private void SaveTotalPlayTime()
     {
-        PlayerPrefs.SetFloat("TotalSecondsPlayed", (float)TotalSecondsPlayed);
+        PlayerPrefs.SetFloat("TotalMinutesPlayed", (float)TotalMinutesPlayed);
         PlayerPrefs.Save();
     }
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        TotalSecondsPlayed = PlayerPrefs.GetFloat("TotalSecondsPlayed", 0f);
-        Debug.Log("TotalSecondsPlayed: " + TotalSecondsPlayed);
+        TotalMinutesPlayed = PlayerPrefs.GetFloat("TotalMinutesPlayed", 0f);
+        Debug.Log("TotalMinutesPlayed: " + TotalMinutesPlayed);
     }
     
     /// <summary>
@@ -58,9 +58,9 @@ public class SessionTimeTracker : MonoBehaviour
     /// <returns>Formatted time string in HH:MM:SS format</returns>
     public static string GetFormattedTimePlayed()
     {
-        TimeSpan timePlayed = TimeSpan.FromSeconds(TotalSecondsPlayed);
+        TimeSpan timePlayed = TimeSpan.FromMinutes(TotalMinutesPlayed);
         return string.Format("{0:D2}:{1:D2}:{2:D2}", 
-            timePlayed.Hours + (timePlayed.Days * 24), 
+            timePlayed.Days * 24 + timePlayed.Hours, 
             timePlayed.Minutes, 
             timePlayed.Seconds);
     }
@@ -69,11 +69,11 @@ public class SessionTimeTracker : MonoBehaviour
     /// Gets the total time played formatted as HH:MM:SS
     /// </summary>
     /// <returns>Formatted time string in HH:MM:SS format</returns>
-    public static string GetFormattedTimePlayed(double totalSecondsPlayed)
+    public static string GetFormattedTimePlayed(double totalMinutesPlayed)
     {
-        TimeSpan timePlayed = TimeSpan.FromSeconds(totalSecondsPlayed);
+        TimeSpan timePlayed = TimeSpan.FromMinutes(totalMinutesPlayed);
         return string.Format("{0:D2}:{1:D2}:{2:D2}", 
-            timePlayed.Hours + (timePlayed.Days * 24), 
+            timePlayed.Days * 24 + timePlayed.Hours, 
             timePlayed.Minutes, 
             timePlayed.Seconds);
     }
