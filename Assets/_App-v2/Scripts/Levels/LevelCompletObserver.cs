@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using _App_v2.Scripts.Levels.Score;
+using DetailedLevelInfo = StudentUpdateEndpoint.DetailedLevelInfo;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -86,7 +87,7 @@ public class LevelCompletObserver : MonoBehaviour
         
         if (_openedLevel != -1)
         {
-            SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+            SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString());
         }
 
         onLevelComplete?.Invoke();
@@ -101,11 +102,11 @@ public class LevelCompletObserver : MonoBehaviour
         // }
     }
 
-    public static void SendStudentUpdate(int levelIndex, string worldId, ILevelScore levelscore)
+    public static void SendStudentUpdate(int levelIndex, string worldId)
     {
-        bool star2 = false;
-        bool star1 = false;
-        bool star3 = false;
+        // bool star2 = false;
+        // bool star1 = false;
+        // bool star3 = false;
 
         if (StudentUpdateEndpoint.Instance == null)
         {
@@ -123,18 +124,19 @@ public class LevelCompletObserver : MonoBehaviour
 
         try
         {
-            int currentLevel = levelIndex;
-            int currentWorld = int.TryParse(worldId, out int world) ? world : 1;
+            int levelPlayed = levelIndex;
+            int worldPlayed = int.TryParse(worldId, out int world) ? world : 1;
 
-            string lastTimePlayed = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string lastTimePlayed = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            int totalTime = 300;
+            //TODO WE NEED TO CALCULATE THIS BETTER
+            int totalTime = -1;
 
-            List<StudentUpdateEndpoint.DetailedLevelInfo> detailedLevelInfo = new List<StudentUpdateEndpoint.DetailedLevelInfo>();
+            List<DetailedLevelInfo> detailedLevelInfo = new List<DetailedLevelInfo>();
 
             var levelData = PlayerModelBase.LevelData;
 
-            string levelKey = LevelKeyUtil.LevelKey(currentWorld, currentLevel);
+            string levelKey = LevelKeyUtil.LevelKey(worldPlayed, levelPlayed);
          
             foreach (var key in levelData.levels.Keys)
             {
@@ -148,27 +150,21 @@ public class LevelCompletObserver : MonoBehaviour
                 //{
                 //var level = levelData.levels[levelIndex.ToString()];
                 //string currentScene = SceneManager.GetActiveScene().name;
-                int starRating = level.StarRating ?? 0;
-                star1 = level.StarRating >= 1;
-                star2 = level.StarRating >= 2;
-                star3 = level.StarRating >= 3;
+                //int starRating = level.StarRating ?? 0;
+                // star1 = level.StarRating >= 1;
+                // star2 = level.StarRating >= 2;
+                // star3 = level.StarRating >= 3;
                 //CalculateStarRating(levelscore, currentScene, out star1, out star2, out star3);
 
-                var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
-                    world: currentWorld,
-                    level: currentLevel,
-                    attempts: level.Attempts,
-                    fails: level.Fails,
-                    maxScore: level.MaxScore,
-                    isCorrect: level.Success > 0 || level.MaxScore > 0,
-                    averageAccuracy: CalculateAverageAccuracy(level),
-                    star1: star1,
-                    star2: star2,
-                    star3: star3
+                var detailedInfo = new DetailedLevelInfo(
+                    world: worldPlayed,
+                    level: levelPlayed,
+                    levelData: level
                 );
 
                 detailedLevelInfo.Add(detailedInfo);
-                Debug.Log($"PlayerModelBase verisi kullanıldı - Level: {currentLevel}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Success}, Failure: {level.Fails},Stars: {level.StarRating}");
+                Debug.Log($"Detailed Level Info - World: {detailedInfo.world}, Level: {detailedInfo.level}, Level Data: {detailedInfo.levelData}");
+                //Debug.Log($"PlayerModelBase verisi kullanıldı - Level: {levelPlayed}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Success}, Failure: {level.Fails},Stars: {level.StarRating}");
             }
             else
             {
@@ -202,15 +198,15 @@ public class LevelCompletObserver : MonoBehaviour
 
             StudentUpdateEndpoint.Instance.UpdateStudentInfo(
                 studentId: studentId,
-                currentLevel: currentLevel,
-                currentWorld: currentWorld,
+                levelPlayed: levelPlayed,
+                worldPlayed: worldPlayed,
                 lastTimePlayed: lastTimePlayed,
                 totalTime: totalTime,
                 detailedLevelInfo: detailedLevelInfo,
                 callback: OnStudentUpdateCallback
             );
 
-            Debug.Log($"Student update gönderildi - Level: {currentLevel}, World: {currentWorld}");
+            Debug.Log($"Student update gönderildi - Level: {levelPlayed}, World: {worldPlayed}");
         }
         catch (System.Exception e)
         {
@@ -222,12 +218,13 @@ public class LevelCompletObserver : MonoBehaviour
     {
         if (level.Attempts > 0)
         {
-            return (float)level.Success / level.Attempts;
+            return (float)level.Successes / level.Attempts;
         }
-        else if (level.Success + level.Fails > 0)
-        {
-            return (float)level.Success / (level.Success + level.Fails);
-        }
+        //I think this is wrong
+        // else if (level.Success + level.Fails > 0)
+        // {
+        //     return (float)level.Success / (level.Success + level.Fails);
+        // }
         return 1.0f;
     }
     private static void OnStudentUpdateCallback(bool success, string message)

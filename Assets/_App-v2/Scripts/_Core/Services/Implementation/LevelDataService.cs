@@ -87,7 +87,7 @@ public class LevelDataService : ILevelDataService
                 MaxScore = 0,
                 //Repetition = 0,
                 Attempts = 0,
-                Success = 0,
+                Successes = 0,
                 Fails = 0,
                 TimeSpent = 0,
                 StarRating = 0
@@ -122,7 +122,7 @@ public class LevelDataService : ILevelDataService
                 MaxScore = finalScore,
                 //Repetition = 1,
                 StarRating = starRating,
-                Success = 1,
+                Successes = 1,
                 HitAccuracy = new Dictionary<HitAccuracy, float>()
             };
             LevelData.NumberOfLevel++;
@@ -130,11 +130,11 @@ public class LevelDataService : ILevelDataService
         else
         {
             var levelData = LevelData.levels[key];
-            int completions = levelData.Success; //THIS WAAS REPETITION BEFORE, NOT SURE IF SHOULD BE ATTEMPTS OR SUCCESS
+            int completions = levelData.Successes; //THIS WAAS REPETITION BEFORE, NOT SURE IF SHOULD BE ATTEMPTS OR SUCCESS
             levelData.MaxScore = finalScore > levelData.MaxScore ? finalScore : levelData.MaxScore;  
             //levelData.Repetition++;
             levelData.StarRating = starRating > levelData.StarRating ? starRating : levelData.StarRating; //THIS WAS ATTEMPTS BEFORE, NOT SURE IF SHOULD BE ATTEMPTS OR SUCCESSa
-            levelData.Success++;
+            levelData.Successes++;
         }
 
         int totalScore = 0;
@@ -174,8 +174,8 @@ public class LevelDataService : ILevelDataService
                 newValue = levelData.Attempts;
                 break;
             case CounterType.Success:
-                levelData.Success++;
-                newValue = levelData.Success;
+                levelData.Successes++;
+                newValue = levelData.Successes;
                 break;
             case CounterType.Failure:
                 levelData.Fails++;

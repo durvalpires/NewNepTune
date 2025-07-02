@@ -147,9 +147,9 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                             if (levelSnapshot.hasChild("Attempts"))
                             entry.Attempts = Convert.ToInt32(levelSnapshot.child("Attempts").val());
                             if (levelSnapshot.hasChild("Success"))
-                            entry.Success = Convert.ToInt32(levelSnapshot.child("Success").val());
-                            if (levelSnapshot.hasChild("Failure"))
-                            entry.Fails = Convert.ToInt32(levelSnapshot.child("Failure").val());
+                            entry.Successes = Convert.ToInt32(levelSnapshot.child("Success").val());
+                            // if (levelSnapshot.hasChild("Failure"))
+                            // entry.Fails = Convert.ToInt32(levelSnapshot.child("Failure").val());
                             if (levelSnapshot.hasChild("TimeSpent"))
                             entry.TimeSpent = Convert.ToSingle(levelSnapshot.child("TimeSpent").val());
                         
@@ -196,8 +196,8 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                 await Db.set(Db.child(levelRef, "Score"), entry.Value.MaxScore);
                 //await Db.set(Db.child(levelRef, "Repetition"), entry.Value.Repetition);
                 await Db.set(Db.child(levelRef, "Attempts"), entry.Value.Attempts);
-                await Db.set(Db.child(levelRef, "Success"), entry.Value.Success);
-                await Db.set(Db.child(levelRef, "Failure"), entry.Value.Fails);
+                await Db.set(Db.child(levelRef, "Success"), entry.Value.Successes);
+                //await Db.set(Db.child(levelRef, "Failure"), entry.Value.Fails);
                 await Db.set(Db.child(levelRef, "TimeSpent"), entry.Value.TimeSpent);
             }
         }
@@ -285,8 +285,8 @@ public class FirebaseWebGLDataPersistence : IDataPersistence , IDBService
                             ["Score"] = entry.Value.MaxScore,
                             //["Repetition"] = entry.Value.Repetition,
                             ["Attempts"] = entry.Value.Attempts,
-                            ["Success"] = entry.Value.Success,
-                            ["Failure"] = entry.Value.Fails,
+                            ["Success"] = entry.Value.Successes,
+                            //["Failure"] = entry.Value.Fails,
                             ["TimeSpent"] = entry.Value.TimeSpent
                         };
                     }

@@ -198,7 +198,7 @@ public class LocalDataPersistence : IDataPersistence
                     level.Attempts = newValue;
                     break;
                 case CounterType.Success:
-                    level.Success = newValue;
+                    level.Successes = newValue;
                     break;
                 case CounterType.Failure:
                     level.Fails = newValue;
