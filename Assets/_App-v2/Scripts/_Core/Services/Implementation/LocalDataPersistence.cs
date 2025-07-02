@@ -200,9 +200,9 @@ public class LocalDataPersistence : IDataPersistence
                 case CounterType.Success:
                     level.Successes = newValue;
                     break;
-                case CounterType.Failure:
-                    level.Fails = newValue;
-                    break;
+                // case CounterType.Failure:
+                //     level.Fails = newValue;
+                //     break;
             }
 
             await SaveLevelData(levelData, subProfileName);

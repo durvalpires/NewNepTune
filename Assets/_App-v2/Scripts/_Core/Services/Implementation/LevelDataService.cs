@@ -88,9 +88,10 @@ public class LevelDataService : ILevelDataService
                 //Repetition = 0,
                 Attempts = 0,
                 Successes = 0,
-                Fails = 0,
+                //Fails = 0,
                 TimeSpent = 0,
-                StarRating = 0
+                StarRating = 0,
+                HitAccuracy = null
             };
             LevelData.NumberOfLevel++;
         }
@@ -177,10 +178,10 @@ public class LevelDataService : ILevelDataService
                 levelData.Successes++;
                 newValue = levelData.Successes;
                 break;
-            case CounterType.Failure:
-                levelData.Fails++;
-                newValue = levelData.Fails;
-                break;
+            // case CounterType.Failure:
+            //     levelData.Fails++;
+            //     newValue = levelData.Fails;
+            //     break;
         }
 
         SaveLevelData().Forget();

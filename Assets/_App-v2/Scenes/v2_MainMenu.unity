@@ -1374,7 +1374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.0000076293945}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1227092464
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 1336610147}
   - component: {fileID: 1336610146}
   m_Layer: 5
-  m_Name: Title
+  m_Name: ResetTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1536,7 +1536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1336610146
@@ -1751,6 +1751,7 @@ MonoBehaviour:
   congratsConfig: {fileID: 11400000, guid: 96fcbdd623c8645c0b255ea6e5bbed70, type: 2}
   uiCanvas: {fileID: 224038931}
   scroll: {fileID: 94181111}
+  highlightRingSprite: {fileID: 0}
 --- !u!224 &1424821001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1878,11 +1879,11 @@ RectTransform:
   - {fileID: 162804634}
   m_Father: {fileID: 817688779}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -190}
   m_SizeDelta: {x: 250, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &1810842403
 PrefabInstance:
   m_ObjectHideFlags: 0
