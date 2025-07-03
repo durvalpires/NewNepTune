@@ -23,6 +23,9 @@ public class SettingsController : MonoBehaviour
         PlayerModel.ClearData();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
     
+    public void Signout()
+    {
+        SceneManager.LoadScene("NeptuneApp");
+    }
 }
