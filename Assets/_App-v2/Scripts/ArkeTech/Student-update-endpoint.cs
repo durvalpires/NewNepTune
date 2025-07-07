@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.Serialization;
 
 public class StudentUpdateEndpoint : MonoBehaviour
 {
     public static StudentUpdateEndpoint Instance { get; private set; }
     
-    private const string PROXY_BASE_URL = "https://neptuneserver.vercel.app";
+    private const string PROXY_BASE_URL = "https://np-proxy-utkulondons-projects.vercel.app";
     private const string UPDATE_STUDENT_INFO_ENDPOINT = "/student/updateInfo";
     
     void Awake()
@@ -25,7 +24,7 @@ public class StudentUpdateEndpoint : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
-    public void UpdateStudentInfo(string studentId, int levelPlayed, int worldPlayed, 
+    public void UpdateStudentInfo(string studentId, int currentLevel, int currentWorld, 
                                  string lastTimePlayed, int totalTime, 
                                  List<DetailedLevelInfo> detailedLevelInfo = null, 
                                  Action<bool, string> callback = null)
@@ -37,11 +36,11 @@ public class StudentUpdateEndpoint : MonoBehaviour
             return;
         }
         
-        StartCoroutine(UpdateStudentInfoCoroutine(studentId, levelPlayed, worldPlayed, 
+        StartCoroutine(UpdateStudentInfoCoroutine(studentId, currentLevel, currentWorld, 
                                                  lastTimePlayed, totalTime, detailedLevelInfo, callback));
     }
     
-    private IEnumerator UpdateStudentInfoCoroutine(string studentId, int levelPlayed, int worldPlayed, 
+    private IEnumerator UpdateStudentInfoCoroutine(string studentId, int currentLevel, int currentWorld, 
                                                   string lastTimePlayed, int totalTime, 
                                                   List<DetailedLevelInfo> detailedLevelInfo, 
                                                   Action<bool, string> callback)
@@ -53,50 +52,30 @@ public class StudentUpdateEndpoint : MonoBehaviour
             for (int i = 0; i < detailedLevelInfo.Count; i++)
             {
                 var levelInfo = detailedLevelInfo[i];
-                var levelData = levelInfo.levelData;
-
+                
                 detailedInfoJson += "{"
-                                    + "\"world\":" + levelInfo.world + ","
-                                    + "\"level\":" + levelInfo.level + ","
-                                    + "\"attempts\":" + levelData.Attempts + ","
-                                    + "\"successes\":" + levelData.Successes + ","
-                                    + "\"maxScore\":" + levelData.MaxScore + ","
-                                    + "\"successRate\":" + (levelData.Attempts != 0 ? (float)levelData.Successes / levelData.Attempts : 0f) + ","
-                                    + "\"stars\":" + (levelData.StarRating.HasValue ? levelData.StarRating.Value.ToString() : "null");
-
-                // Append HitAccuracy if not null
-                if (levelData.HitAccuracy != null)
-                {
-                    detailedInfoJson += ",\"hitAccuracy\":{";
-
-                    int hitCount = 0;
-                    foreach (var hit in levelData.HitAccuracy)
-                    {
-                        detailedInfoJson += "\"" + hit.Key.ToString() + "\":" + hit.Value;
-                        hitCount++;
-                        if (hitCount < levelData.HitAccuracy.Count)
-                        {
-                            detailedInfoJson += ",";
-                        }
-                    }
-
-                    detailedInfoJson += "}";
-                }
-
-                detailedInfoJson += "}";
-
+                    + "\"world\":" + levelInfo.world + ","
+                    + "\"level\":" + levelInfo.level + ","
+                    + "\"attempts\":" + levelInfo.attempts + ","
+                    + "\"successes\":" + levelInfo.successes + ","
+                    //+ "\"fails\":" + levelInfo.fails + ","
+                    + "\"maxScore\":" + levelInfo.maxScore + ","
+                    + "\"isCorrect\":" + levelInfo.isCorrect.ToString().ToLower() + ","
+                    //+ "\"averageAccuracy\":" + levelInfo.averageAccuracy.ToString(System.Globalization.CultureInfo.InvariantCulture) + ","
+                    + "\"accuracyBreakdown\":" + ConvertAccuracyBreakdownToJson(levelInfo.accuracyBreakdown) + ","
+                    + "\"starRating\":" + levelInfo.starRating
+                    + "}";
+                
                 if (i < detailedLevelInfo.Count - 1)
-                {
                     detailedInfoJson += ",";
-                }
             }
             detailedInfoJson += "]";
         }
         
         string updateStudentJson = "{"
             + "\"studentId\":\"" + studentId + "\","
-            + "\"currentLevel\":" + levelPlayed + ","
-            + "\"currentWorld\":" + worldPlayed + ","
+            + "\"currentLevel\":" + currentLevel + ","
+            + "\"currentWorld\":" + currentWorld + ","
             + "\"lastTimePlayed\":\"" + lastTimePlayed + "\","
             + "\"totalTime\":" + totalTime + ","
             + "\"detailedLevelInfo\":" + detailedInfoJson
@@ -151,33 +130,53 @@ public class StudentUpdateEndpoint : MonoBehaviour
         }
     }
     
+    private string ConvertAccuracyBreakdownToJson(Dictionary<string, float> accuracyBreakdown)
+    {
+        if (accuracyBreakdown == null || accuracyBreakdown.Count == 0)
+            return "{}";
+
+        StringBuilder jsonBuilder = new StringBuilder("{");
+        foreach (var kvp in accuracyBreakdown)
+        {
+            jsonBuilder.Append("\"");
+            jsonBuilder.Append(kvp.Key);
+            jsonBuilder.Append("\":");
+            jsonBuilder.Append(kvp.Value.ToString("F2", System.Globalization.CultureInfo.InvariantCulture));
+            jsonBuilder.Append(",");
+        }
+        jsonBuilder.Length--; // Remove the last comma
+        jsonBuilder.Append("}");
+        return jsonBuilder.ToString();
+    }
+    
     [System.Serializable]
     public class DetailedLevelInfo
     {
         public int world;
         public int level;
-        public LevelFirebaseData levelData;
-        // public int attempts;
-        // public int successes;
-        // //public int fails;
-        // public int maxScore;
-        // //public bool isCorrect;
-        // [FormerlySerializedAs("averageAccuracy")] public float successRate;
-        // public int stars;
+        public int attempts;
+        public int successes;
+        //public int fails;
+        public int maxScore;
+        public bool isCorrect;
+        //public float averageAccuracy;
+        public Dictionary<string, float> accuracyBreakdown;
+        public int starRating;
         
-        public DetailedLevelInfo(int world, int level, LevelFirebaseData levelData/*, int attempts, int successes, int maxScore, 
-            float successRate, int starAmount*/)
+        public DetailedLevelInfo(int world, int level, int attempts, int successes, int maxScore, 
+                               bool isCorrect, int starRating,
+                               Dictionary<string, float> accuracyBreakdown = null)
         {
             this.world = world;
             this.level = level;
-            this.levelData = levelData;
-            // this.attempts = attempts;
-            // this.successes = successes;
-            // //this.fails = fails;
-            // this.maxScore = maxScore;
-            // //this.isCorrect = isCorrect;
-            // this.successRate = successRate;
-            // this.stars = starAmount;
+            this.attempts = attempts;
+            this.successes = successes;
+            //this.fails = fails;
+            this.maxScore = maxScore;
+            this.isCorrect = isCorrect;
+            //this.averageAccuracy = averageAccuracy;
+            this.accuracyBreakdown = accuracyBreakdown;
+            this.starRating = starRating;
         }
     }
     
