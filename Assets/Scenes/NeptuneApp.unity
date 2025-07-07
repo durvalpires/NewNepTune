@@ -1319,7 +1319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &55762986
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2206,7 +2206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &96677689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4344,12 +4344,12 @@ RectTransform:
   m_Children:
   - {fileID: 1214329623}
   - {fileID: 1670278100}
-  m_Father: {fileID: 521908823}
+  m_Father: {fileID: 758193167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -9.4427, y: -66.13257}
-  m_SizeDelta: {x: 300, y: 105.265}
+  m_AnchoredPosition: {x: 0, y: 1081}
+  m_SizeDelta: {x: 500.04, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &180185333
 MonoBehaviour:
@@ -4409,19 +4409,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 180185335}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 850434023}
-        m_TargetAssemblyTypeName: NeptuneApp, Assembly-CSharp
-        m_MethodName: HandleTeacherSignUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &180185335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4442,7 +4430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: efb6c9334e498404883cd7150d537d74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 675c35953fb7d41c89144b9219f6ac1b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5213,31 +5201,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 193783647}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 193449317}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 850434023}
-        m_TargetAssemblyTypeName: NeptuneApp, Assembly-CSharp
-        m_MethodName: ShowTeacherUserInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &198497134
 GameObject:
   m_ObjectHideFlags: 0
@@ -6323,8 +6287,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 161, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 146, y: 0}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239541440
 MonoBehaviour:
@@ -6809,7 +6773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &267442120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9511,7 +9475,7 @@ GameObject:
   - component: {fileID: 408729614}
   - component: {fileID: 408729613}
   m_Layer: 0
-  m_Name: Teacher_Button_SignUp
+  m_Name: Student_Button_SignUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10232,7 +10196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &440232938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11697,7 +11661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.49792, y: 255.2}
+  m_AnchoredPosition: {x: 0.49792, y: 191}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513548042
@@ -12237,7 +12201,6 @@ RectTransform:
   - {fileID: 1180704903}
   - {fileID: 193783646}
   - {fileID: 79742929}
-  - {fileID: 180185332}
   m_Father: {fileID: 310942299}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -14851,7 +14814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &645488336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16040,7 +16003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 503.53766, y: -40}
+  m_AnchoredPosition: {x: 268.52765, y: -40}
   m_SizeDelta: {x: 347.0553, y: 72.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675744227
@@ -16741,17 +16704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
 --- !u!1 &706277573
 GameObject:
   m_ObjectHideFlags: 0
@@ -16979,7 +16931,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 1015.7605, y: 1049.258}
+  m_SizeDelta: {x: 1015.7605, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &711147240
 MonoBehaviour:
@@ -17061,19 +17013,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717967069}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1825126812}
   - {fileID: 239541439}
-  m_Father: {fileID: 1104978627}
+  m_Father: {fileID: 758193167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 571.7732, y: 88.585}
-  m_SizeDelta: {x: 416.537, y: 80.002}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -541}
+  m_SizeDelta: {x: 495.17004, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717967071
 MonoBehaviour:
@@ -17134,18 +17086,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 850434023}
-        m_TargetAssemblyTypeName: NeptuneApp, Assembly-CSharp
-        m_MethodName: HandleTeacherSignUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 193449317}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -17204,13 +17144,13 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: efb6c9334e498404883cd7150d537d74, type: 3}
   m_Type: 1
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &717967074
 CanvasRenderer:
@@ -18544,7 +18484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &758193167
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18558,6 +18498,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 761639949}
+  - {fileID: 1647822562}
+  - {fileID: 717967070}
+  - {fileID: 180185332}
   m_Father: {fileID: 310942299}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -18664,7 +18607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &761639949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21484,6 +21427,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89baed0a2f732844ae6bd1698d9ae6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  togglePairs:
+  - inputField: {fileID: 1277091351}
+    toggleButton: {fileID: 478628764}
+    isVisible: 0
+  - inputField: {fileID: 1296414699}
+    toggleButton: {fileID: 510065447}
+    isVisible: 0
   SelectPanel: {fileID: 1160988724}
   TeacherPanel: {fileID: 891880348}
   StudentPanel: {fileID: 2003846771}
@@ -21518,6 +21468,9 @@ MonoBehaviour:
   LoginSuccessObject: {fileID: 1283175902}
   StudentIDPrivateCode: {fileID: 1413274234}
   TeacherIDPrivateCode: {fileID: 1957408277}
+  TeacherUserNameText: {fileID: 79742930}
+  TeacherLogoutButton: {fileID: 717967072}
+  StudentLogoutButton: {fileID: 0}
 --- !u!4 &850434024
 Transform:
   m_ObjectHideFlags: 0
@@ -21850,7 +21803,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 1015.7605, y: 1049.258}
+  m_SizeDelta: {x: 1015.7605, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &862771896
 MonoBehaviour:
@@ -21923,7 +21876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &866296905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24664,7 +24617,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 1015.7605, y: 1049.258}
+  m_SizeDelta: {x: 1015.7605, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &957229339
 MonoBehaviour:
@@ -24973,38 +24926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &963574836
 GameObject:
   m_ObjectHideFlags: 0
@@ -28314,10 +28235,8 @@ RectTransform:
   - {fileID: 2082423216}
   - {fileID: 121155588}
   - {fileID: 727188366}
-  - {fileID: 1647822562}
   - {fileID: 426343984}
   - {fileID: 947975435}
-  - {fileID: 717967070}
   m_Father: {fileID: 193449318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -30290,7 +30209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.49792, y: 255.2}
+  m_AnchoredPosition: {x: 0.49792, y: 187}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1175634438
@@ -30908,7 +30827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1193050076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31845,7 +31764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 7.5, y: -15}
+  m_AnchoredPosition: {x: 20, y: 0}
   m_SizeDelta: {x: -15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214329624
@@ -33115,7 +33034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.9104e-11, y: -64.999985}
+  m_AnchoredPosition: {x: 2.9104e-11, y: 21.000023}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277091351
@@ -33691,7 +33610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.9104e-11, y: -64.999985}
+  m_AnchoredPosition: {x: 2.9104e-11, y: 27}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1296414699
@@ -33984,7 +33903,7 @@ GameObject:
   - component: {fileID: 1304788765}
   - component: {fileID: 1304788764}
   m_Layer: 0
-  m_Name: Button_Sign in
+  m_Name: Student_Button_Sign in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39878,7 +39797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.9104e-11, y: 95}
+  m_AnchoredPosition: {x: 2.9104e-11, y: 26.799965}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1522636479
@@ -40469,7 +40388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1551298121
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42611,12 +42530,12 @@ RectTransform:
   - {fileID: 939100916}
   - {fileID: 675744226}
   - {fileID: 1687204497}
-  m_Father: {fileID: 1104978627}
+  m_Father: {fileID: 758193167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -362, y: -96.512}
-  m_SizeDelta: {x: 763.0653, y: 80}
+  m_AnchoredPosition: {x: 0, y: 543}
+  m_SizeDelta: {x: 528.0553, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647822563
 MonoBehaviour:
@@ -43063,7 +42982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 197, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1670278101
@@ -43410,7 +43329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 723.0653, y: -40}
+  m_AnchoredPosition: {x: 488.0553, y: -40}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687204498
@@ -44965,7 +44884,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 1015.7605, y: 1049.258}
+  m_SizeDelta: {x: 1015.7605, y: 841.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1731860248
 MonoBehaviour:
@@ -47341,10 +47260,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 717967070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -30.3, y: 4}
-  m_SizeDelta: {x: -95.28882, y: 63.713608}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 74, y: -46}
+  m_SizeDelta: {x: 538.7, y: 63.713608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1825126813
 MonoBehaviour:
@@ -47432,7 +47351,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 243.79684, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -48841,7 +48760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.49792, y: 255.2}
+  m_AnchoredPosition: {x: 0.49792, y: 189}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897372024
@@ -51004,7 +50923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.9104e-11, y: 95}
+  m_AnchoredPosition: {x: 2.9104e-11, y: 21.800003}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980253271
@@ -51813,7 +51732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.49792, y: 255.2}
+  m_AnchoredPosition: {x: 0.49792, y: 182}
   m_SizeDelta: {x: 856, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001568150
@@ -55458,6 +55377,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 185
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690225068700408358, guid: dfa97059b1ee7a442b367e6c6b19b1f8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690225068700408358, guid: dfa97059b1ee7a442b367e6c6b19b1f8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690225068700408358, guid: dfa97059b1ee7a442b367e6c6b19b1f8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690225068700408358, guid: dfa97059b1ee7a442b367e6c6b19b1f8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690225068700408358, guid: dfa97059b1ee7a442b367e6c6b19b1f8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 184.30945
       objectReference: {fileID: 0}
     - target: {fileID: 5753205862896968151, guid: dfa97059b1ee7a442b367e6c6b19b1f8,
         type: 3}
