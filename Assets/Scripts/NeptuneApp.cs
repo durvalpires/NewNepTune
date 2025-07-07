@@ -8,6 +8,17 @@ using UnityEngine.SceneManagement;
 
 public class NeptuneApp : MonoBehaviour
 {
+    [System.Serializable]
+    public class PasswordTogglePair
+    {
+        public TMP_InputField inputField;
+        public Button toggleButton;
+
+        [HideInInspector] public bool isVisible = false;
+    }
+
+    public List<PasswordTogglePair> togglePairs;
+
     [Header("UI Panels")]
     public GameObject SelectPanel;
     public GameObject TeacherPanel;
@@ -58,6 +69,13 @@ public class NeptuneApp : MonoBehaviour
 
     public TMP_Text StudentIDPrivateCode;
     public TMP_Text TeacherIDPrivateCode;
+
+    [Header("Teacher Lobby - Öğretmen Kullanıcı Adı Gösterimi")]
+    public TMP_Text TeacherUserNameText;
+
+    [Header("Logout Buttons")]
+    public Button TeacherLogoutButton;  // Teacher panel'deki logout butonu
+    public Button StudentLogoutButton;  // Student panel'deki logout butonu
 
     private FirebaseProxyService firebaseProxyService;
 
@@ -119,6 +137,14 @@ public class NeptuneApp : MonoBehaviour
 
     private void Start()
     {
+        foreach (var pair in togglePairs)
+        {
+            if (pair.toggleButton != null)
+            {
+                pair.toggleButton.onClick.AddListener(() => ToggleVisibility(pair));
+            }
+        }
+
         firebaseProxyService = FirebaseProxyService.Instance;
         if (firebaseProxyService == null)
         {
@@ -201,6 +227,29 @@ public class NeptuneApp : MonoBehaviour
             UpdateStudentInfoButton.onClick.RemoveAllListeners();
             UpdateStudentInfoButton.onClick.AddListener(HandleUpdateAllStudentInfo);
             Debug.Log("UpdateStudentInfoButton listener eklendi.");
+        }
+        
+        // Logout Button Listeners
+        if (TeacherLogoutButton != null)
+        {
+            TeacherLogoutButton.onClick.RemoveAllListeners();
+            TeacherLogoutButton.onClick.AddListener(HandleLogout);
+            Debug.Log("TeacherLogoutButton listener eklendi.");
+        }
+        else
+        {
+            Debug.LogWarning("TeacherLogoutButton referansı atanmamış!");
+        }
+        
+        if (StudentLogoutButton != null)
+        {
+            StudentLogoutButton.onClick.RemoveAllListeners();
+            StudentLogoutButton.onClick.AddListener(HandleLogout);
+            Debug.Log("StudentLogoutButton listener eklendi.");
+        }
+        else
+        {
+            Debug.LogWarning("StudentLogoutButton referansı atanmamış!");
         }
     }
 
@@ -391,6 +440,17 @@ public class NeptuneApp : MonoBehaviour
             // Kullanıcı tipine göre işlem yap
             if (firebaseProxyService.UserType == "teacher")
             {
+                // Öğretmen kullanıcı adını Teacher Lobby'de göster
+                if (TeacherUserNameText != null && firebaseProxyService != null)
+                {
+                    TeacherUserNameText.text = firebaseProxyService.teacherPrivateCode;
+                    Debug.Log("Öğretmen kullanıcı adı TeacherUserNameText'e atandı: " + firebaseProxyService.teacherPrivateCode);
+                }
+                else
+                {
+                    Debug.LogWarning("TeacherUserNameText referansı atanmamış veya firebaseProxyService bulunamadı!");
+                }
+                
                 // Kısa bir süre sonra öğretmen paneline yönlendir
                 StartCoroutine(ShowTeacherLobbyAfterDelay(2.0f));
             }
@@ -458,6 +518,13 @@ public class NeptuneApp : MonoBehaviour
         {
             TeacherLobbyPanel.SetActive(true);
             Debug.Log("Öğretmen lobisi gösteriliyor.");
+            
+            // Öğretmen kullanıcı adını bir kez daha kontrol et (backup)
+            if (TeacherUserNameText != null && firebaseProxyService != null && !string.IsNullOrEmpty(firebaseProxyService.teacherPrivateCode))
+            {
+                TeacherUserNameText.text = firebaseProxyService.teacherPrivateCode;
+                Debug.Log("Öğretmen kullanıcı adı backup kontrolü: " + firebaseProxyService.teacherPrivateCode);
+            }
             
             // Öğrenci listesini yükle
             LoadStudentList();
@@ -880,7 +947,7 @@ public class NeptuneApp : MonoBehaviour
         if (student.worldsData == null || student.worldsData.worlds == null || student.worldsData.worlds.Count == 0)
         {
             Debug.Log($"Öğrenci {student.studentId} için detaylı bilgi yok, varsayılan veri oluşturuluyor.");
-            
+
             // Varsayılan veri oluştur ( burası işte neyi nasıl döndürdüğümüzle alakalı firebase'i de buna göre yapcam mapi falan )
             student.worldsData = new WorldsData
             {
@@ -893,9 +960,16 @@ public class NeptuneApp : MonoBehaviour
                         {
                             new LevelInfo
                             {
-                                levelNumber = 1
-                                // Sadece zorunlu alanları bırakıyoruz (level ve world)
-                                // Diğer alanlar (attempts, fails, maxScore falan filan) dinamik olarak eklenecek
+                                levelNumber = 1,
+                                attempts = 0,
+                                successes = 0,
+                                fails = 0,
+                                maxScore = 0,
+                                isCorrect = false,
+                                averageAccuracy = 0.0f,
+                                starRating = 0,
+                                accuracyBreakdown = new List<AccuracyBreakdownItem>()
+                                // Diğer alanlar (varsayılan değerlerle oluşturuluyor)
                             }
                         }
                     }
@@ -916,19 +990,26 @@ public class NeptuneApp : MonoBehaviour
                 var worldText = detailItem.transform.Find("World")?.GetComponent<TMP_Text>();
                 var levelText = detailItem.transform.Find("Level")?.GetComponent<TMP_Text>();
                 var attemptsText = detailItem.transform.Find("Attempts")?.GetComponent<TMP_Text>();
+                var successesText = detailItem.transform.Find("Successes")?.GetComponent<TMP_Text>();
                 var failsText = detailItem.transform.Find("Fails")?.GetComponent<TMP_Text>();
                 var maxScoreText = detailItem.transform.Find("MaxScore")?.GetComponent<TMP_Text>();
                 var averageAccuracyText = detailItem.transform.Find("Average-accuracy")?.GetComponent<TMP_Text>();
-                
-                
+                //var accuracyBreakdownText = detailItem.transform.Find("AccuracyBreakdown")?.GetComponent<TMP_Text>();
+                var goodText = detailItem.transform.Find("Good")?.GetComponent<TMP_Text>();
+                var greatText = detailItem.transform.Find("Great")?.GetComponent<TMP_Text>();
+                var missText = detailItem.transform.Find("Miss")?.GetComponent<TMP_Text>();
+                var okText = detailItem.transform.Find("OK")?.GetComponent<TMP_Text>();
+                var perfectText = detailItem.transform.Find("Perfect")?.GetComponent<TMP_Text>();
+
                 var checkObj = detailItem.transform.Find("Check")?.gameObject;
                 var falseObj = detailItem.transform.Find("False")?.gameObject;
-                
-                
-                var star1Obj = detailItem.transform.Find("Star1")?.gameObject;
-                var star2Obj = detailItem.transform.Find("Star2")?.gameObject;
-                var star3Obj = detailItem.transform.Find("Star3")?.gameObject;
-                
+
+                //var starPrefab = detailItem.transform.Find("Star")?.gameObject;
+                //var starParent = starPrefab?.transform.parent;
+
+                var starsContainer = detailItem.transform.Find("Stars");
+                var starTemplate = starsContainer?.Find("Star");
+
                 // Zorunlu alanlar (her halükarda gösterdiğimiz yer burası)
                 if (worldText != null) worldText.text = "W: " + world.worldNumber;
                 if (levelText != null) levelText.text = "LV: " + level.levelNumber;
@@ -940,6 +1021,15 @@ public class NeptuneApp : MonoBehaviour
                         attemptsText.gameObject.SetActive(true);
                     } else {
                         attemptsText.gameObject.SetActive(false);
+                    }
+                }
+                
+                if (successesText != null) {
+                    if (level.successes > 0) {
+                        successesText.text = "" + level.successes.ToString();
+                        successesText.gameObject.SetActive(true);
+                    } else {
+                        successesText.gameObject.SetActive(false);
                     }
                 }
                 
@@ -969,19 +1059,245 @@ public class NeptuneApp : MonoBehaviour
                         averageAccuracyText.gameObject.SetActive(false);
                     }
                 }
-                
+
+                if (goodText != null) goodText.gameObject.SetActive(false);
+                if (greatText != null) greatText.gameObject.SetActive(false);
+                if (missText != null) missText.gameObject.SetActive(false);
+                if (okText != null) okText.gameObject.SetActive(false);
+                if (perfectText != null) perfectText.gameObject.SetActive(false);
+
+                if (level.accuracyBreakdown != null && level.accuracyBreakdown.Count > 0)
+                {
+
+                    foreach (var breakdown in level.accuracyBreakdown)
+                    {
+                        switch (breakdown.noteName)
+                        {
+                            case "Good":
+                                if (goodText != null)
+                                {
+                                    goodText.text = "%" + breakdown.percentage.ToString("F1");
+                                    goodText.gameObject.SetActive(true);
+                                }
+                                break;
+                            case "Great":
+                                if (greatText != null)
+                                {
+                                    greatText.text = "%" + breakdown.percentage.ToString("F1");
+                                    greatText.gameObject.SetActive(true);
+                                }
+                                break;
+                            case "Miss":
+                                if (missText != null)
+                                {
+                                    missText.text = "%" + breakdown.percentage.ToString("F1");
+                                    missText.gameObject.SetActive(true);
+                                }
+                                break;
+                            case "OK":
+                                if (okText != null)
+                                {
+                                    okText.text = "%" + breakdown.percentage.ToString("F1");
+                                    okText.gameObject.SetActive(true);
+                                }
+                                break;
+                            case "Perfect":
+                                if (perfectText != null)
+                                {
+                                    perfectText.text = "%" + breakdown.percentage.ToString("F1");
+                                    perfectText.gameObject.SetActive(true);
+                                }
+                                break;
+                        }
+                    }
+                    Debug.Log($"AccuracyBreakdown ayrı TextMeshPro'lara yazdırdık - Count: {level.accuracyBreakdown.Count}");
+                }
+                else
+                {
+                    Debug.Log($"AccuracyBreakdown verisi yok - W:{world.worldNumber} LV:{level.levelNumber}");
+                }
+
+                //if (accuracyBreakdownText != null)
+                //{
+                //    if (level.accuracyBreakdown != null && level.accuracyBreakdown.Count > 0)
+                //    {
+                //        string breakdownText = "Piano: ";
+                //        for (int i = 0; i < level.accuracyBreakdown.Count; i++)
+                //        {
+                //            var breakdown = level.accuracyBreakdown[i];
+                //            breakdownText += breakdown.noteName + " %" + breakdown.percentage.ToString("F1");
+                //            if (i < level.accuracyBreakdown.Count - 1)
+                //            {
+                //                breakdownText += ", ";
+                //            }
+                //        }
+                //        accuracyBreakdownText.text = breakdownText;
+                //        accuracyBreakdownText.gameObject.SetActive(true);
+                //        Debug.Log($"AccuracyBreakdown gösterildi: {breakdownText}");
+                //    }
+                //    else
+                //    {
+                //        accuracyBreakdownText.gameObject.SetActive(false);
+                //        Debug.Log($"AccuracyBreakdown verisi yok - W:{world.worldNumber} LV:{level.levelNumber}");
+                //    }
+                //}
+
                 // Check/False için özel mantık (isCorrect alanı mevcut mu kontrol et)
                 // Not: Unity'de bool alanları varsayılan değer kontrol etmek zor, bu yüzden her ikisini de gizleriz eğer gerekirse
                 if (checkObj != null) checkObj.SetActive(level.isCorrect);
                 if (falseObj != null) falseObj.SetActive(!level.isCorrect);
-                
-                
-                if (star1Obj != null) star1Obj.SetActive(level.star1);
-                if (star2Obj != null) star2Obj.SetActive(level.star2);
-                if (star3Obj != null) star3Obj.SetActive(level.star3);
-                
+
+
+                // Dinamik star oluşturma
+                if (starsContainer != null && starTemplate != null)
+                {
+
+                    int starCount = level.starRating;
+
+
+                    for (int i = starsContainer.childCount - 1; i >= 0; i--)
+                    {
+                        var child = starsContainer.GetChild(i);
+                        if (child.name.Contains("DynamicStar"))
+                        {
+                            DestroyImmediate(child.gameObject);
+                        }
+                    }
+
+
+                    starTemplate.gameObject.SetActive(false);
+
+
+                    for (int i = 0; i < starCount; i++)
+                    {
+                        GameObject newStar = Instantiate(starTemplate.gameObject, starsContainer);
+                        newStar.name = $"DynamicStar_{i}";
+                        newStar.SetActive(true);
+
+                        Debug.Log($"Star {i + 1}/{starCount} oluşturuldu (Stars container içinde) - Level: W{level.levelNumber}");
+                    }
+
+                    Debug.Log($"Toplam {starCount} star oluşturuldu (Stars container içinde) - Level: W{level.levelNumber}");
+                }
+                else
+                {
+                    Debug.LogWarning($"Stars container veya Star template bulunamadı - Level: W{level.levelNumber}");
+                }
+
                 Debug.Log($"Level detayı eklendi: W:{world.worldNumber} LV:{level.levelNumber} Attempts:{level.attempts}");
             }
         }
+    }
+
+    // Logout işlemi - hem teacher hem student için
+    public void HandleLogout()
+    {
+        Debug.Log("Logout işlemi başlatılıyor...");
+        
+        if (firebaseProxyService == null)
+        {
+            Debug.LogError("FirebaseProxyService kullanılamıyor!");
+            // Fallback: sadece UI'ı giriş ekranına çevir
+            GoToSelectPanel();
+            return;
+        }
+
+        // Backend'e logout isteği gönder
+        firebaseProxyService.LogoutWithBackend((success, message) => {
+            if (success)
+            {
+                Debug.Log("Logout başarılı: " + message);
+                ShowLogoutSuccess();
+            }
+            else
+            {
+                Debug.LogWarning("Logout kısmen başarısız: " + message);
+                // Kısmen başarısız olsa bile UI'ı giriş ekranına çevir
+                ShowLogoutSuccess();
+            }
+        });
+    }
+
+    // Logout sonrası giriş ekranını göster
+    private void ShowLogoutSuccess()
+    {
+        Debug.Log("Logout tamamlandı, giriş ekranına dönülüyor...");
+        
+        // Tüm panelleri kapat
+        TeacherPanel.SetActive(false);
+        StudentPanel.SetActive(false);
+        if (TeacherLobbyPanel != null)
+        {
+            TeacherLobbyPanel.SetActive(false);
+        }
+        PopUpPanel.SetActive(false);
+        
+        // Form alanlarını temizle (güvenlik için)
+        ClearAllLoginFields();
+        
+        // Giriş ekranını aç
+        SelectPanel.SetActive(true);
+        
+        Debug.Log("Giriş ekranı gösteriliyor.");
+    }
+
+    // Tüm login form alanlarını temizle
+    private void ClearAllLoginFields()
+    {
+        // Teacher Login alanlarını temizle
+        if (TeacherLoginEmailInput != null)
+        {
+            TeacherLoginEmailInput.text = "";
+            Debug.Log("Teacher login email alanı temizlendi.");
+        }
+        
+        if (TeacherLoginPasswordInput != null)
+        {
+            TeacherLoginPasswordInput.text = "";
+            Debug.Log("Teacher login password alanı temizlendi.");
+        }
+        
+        // Student Login alanlarını temizle
+        if (StudentSigninUsername != null)
+        {
+            StudentSigninUsername.text = "";
+            Debug.Log("Student login username alanı temizlendi.");
+        }
+        
+        if (StudentSigninPassword != null)
+        {
+            StudentSigninPassword.text = "";
+            Debug.Log("Student login password alanı temizlendi.");
+        }
+        
+        // SignUp alanlarını da temizle (bonus güvenlik)
+        if (TeacherMailInput != null)
+        {
+            TeacherMailInput.text = "";
+        }
+        
+        if (TeacherPassInput != null)
+        {
+            TeacherPassInput.text = "";
+        }
+        
+        if (StudentMailInput != null)
+        {
+            StudentMailInput.text = "";
+        }
+        
+        if (StudentPassInput != null)
+        {
+            StudentPassInput.text = "";
+        }
+        
+        Debug.Log("Tüm form alanları güvenlik için temizlendi.");
+    }
+
+    void ToggleVisibility(PasswordTogglePair pair)
+    {
+        pair.isVisible = !pair.isVisible;
+        pair.inputField.contentType = pair.isVisible ? TMP_InputField.ContentType.Standard : TMP_InputField.ContentType.Password;
+        pair.inputField.ForceLabelUpdate();
     }
 }
