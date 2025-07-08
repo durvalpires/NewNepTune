@@ -9,7 +9,7 @@ public class FirebaseProxyService : MonoBehaviour
 {
     public static FirebaseProxyService Instance { get; private set; }
 
-    private const string PROXY_BASE_URL = "https://np-proxy-utkulondons-projects.vercel.app";
+    private const string PROXY_BASE_URL = "https://neptuneserver.vercel.app";
     private const string REGISTER_ENDPOINT = "/auth/register";
     private const string LOGIN_ENDPOINT = "/auth/login";
     private const string LOGOUT_ENDPOINT = "/auth/logout";

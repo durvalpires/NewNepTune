@@ -9,7 +9,7 @@ public class StudentUpdateEndpoint : MonoBehaviour
 {
     public static StudentUpdateEndpoint Instance { get; private set; }
     
-    private const string PROXY_BASE_URL = "https://np-proxy-utkulondons-projects.vercel.app";
+    private const string PROXY_BASE_URL = "https://neptuneserver.vercel.app";
     private const string UPDATE_STUDENT_INFO_ENDPOINT = "/student/updateInfo";
     
     void Awake()
