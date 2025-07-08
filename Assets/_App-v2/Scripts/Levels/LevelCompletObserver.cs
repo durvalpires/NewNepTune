@@ -19,7 +19,7 @@ public class LevelCompletObserver : MonoBehaviour
         {
             if (_levelDataService == null)
             {
-                // LocalDataPersistence kullanarak LevelDataService oluştur
+                // Create LevelDataService using LocalDataPersistence
                 _levelDataService = new LevelDataService(new LocalDataPersistence());
             }
             return _levelDataService;
@@ -45,37 +45,48 @@ public class LevelCompletObserver : MonoBehaviour
 
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
+        //  Check if this is a RhythmGameScoreController and handle AccuracyBreakdown
+        if (levelscore is RhythmGameScoreController rhythmController)
+        {
+            if (rhythmController.PlayerScore > 0)
+            {
+                PlayerModelBase.SetCustomScore(rhythmController.PlayerScore);
+                PlayerModelBase.LevelDataService.SetCustomStarRating(rhythmController.PlayerStars);
+                
+                //  Ensure level exists before saving accuracy data
+                PlayerModelBase.LevelDataService.SetLevelUnlock(_openedWorldIndex, _openedLevel);
+                
+                //  Apply the custom score and star rating to actual data
+                PlayerModelBase.LevelDataService.SetLevelCompleted(_openedWorldIndex, _openedLevel);
+                
+                //  Save accuracy data to PlayerModelBase.LevelData
+                PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, rhythmController, _openedWorldIndex.ToString());
+                
+                Debug.Log($"Piano game completed - Score: {rhythmController.PlayerScore}, Stars: {rhythmController.PlayerStars}");
+                Debug.Log($"AccuracyBreakdown count: {rhythmController.AccuracyBreakdown?.Count ?? 0}");
+            }
+        }
+        
         LevelComplete(levelscore);
     }
 
-    // EndOfLevelScreenController'dan gerçek score controller'ı almak için
+    // To get the real score controller from EndOfLevelScreenController
     public void SetCurrentLevelCompleteWithScore(RhythmGameScoreController scoreController)
     {
         if (scoreController != null && scoreController.PlayerScore > 0)
         {
             PlayerModelBase.SetCustomScore(scoreController.PlayerScore);
             
-            // ✅ Accuracy verilerini PlayerModelBase.LevelData'ya kaydet
-            //LevelDataService.SetLevelScoreData(_openedLevel, scoreController, _openedWorldIndex.ToString());
+            // ✅ Ensure level exists before saving accuracy data
+            PlayerModelBase.LevelDataService.SetLevelUnlock(_openedWorldIndex, _openedLevel);
+            
+            // ✅ Save accuracy data to PlayerModelBase.LevelData
+            PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, scoreController, _openedWorldIndex.ToString());
+            
+            Debug.Log($"Piano game completed - Score: {scoreController.PlayerScore}, Stars: {scoreController.PlayerStars}");
+            Debug.Log($"AccuracyBreakdown count: {scoreController.AccuracyBreakdown?.Count ?? 0}");
         }
         LevelComplete();
-        //// RhythmGame için özel score override
-        //if (scoreController != null && scoreController.PlayerScore > 0)
-        //{
-        //    // LevelDataService'e custom score gönder
-        //    var levelDataServiceImpl = LevelDataService as LevelDataService;
-        //    if (levelDataServiceImpl != null)
-        //    {
-        //        // Reflection ile _customScoreOverride field'ını set et
-        //        var field = levelDataServiceImpl.GetType().GetField("_customScoreOverride", 
-        //            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        //        if (field != null)
-        //        {
-        //            field.SetValue(levelDataServiceImpl, scoreController.PlayerScore);
-        //        }
-        //    }
-        //}
-        //LevelComplete();
     }
 
     public static void LevelComplete(ILevelScore levelscore = null)
@@ -92,15 +103,15 @@ public class LevelCompletObserver : MonoBehaviour
         // PlayerModel.CompleteLevel(_openedLevel, _openedLevelworldId); 
         // onLevelComplete?.Invoke();
 
-        // Mevcut PlayerModel sistemini koru
+        // Keep the current PlayerModel system
         //PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
 
-        // LevelDataService'e level complete bilgisini kaydet
+        // Save level complete information to LevelDataService
         // if (_openedLevel != -1)
         // {
         //     LevelDataService.SetLevelCompleted(_openedLevel);
         //     
-        //     // Student endpoint'e veri gönder
+        //     // Send data to Student endpoint
         //     SendStudentUpdate(_openedLevel, _openedLevelworldId, levelscore = null);
         // }
 
@@ -120,7 +131,7 @@ public class LevelCompletObserver : MonoBehaviour
 
         if (StudentUpdateEndpoint.Instance == null)
         {
-            Debug.Log("StudentUpdateEndpoint instance oluşturuluyor...");
+            Debug.Log("Creating StudentUpdateEndpoint instance...");
             GameObject endpointGO = new GameObject("StudentUpdateEndpoint");
             endpointGO.AddComponent<StudentUpdateEndpoint>();
             UnityEngine.Object.DontDestroyOnLoad(endpointGO);
@@ -128,7 +139,7 @@ public class LevelCompletObserver : MonoBehaviour
 
         if (StudentUpdateEndpoint.Instance == null)
         {
-            Debug.LogError("StudentUpdateEndpoint instance oluşturulamadı!");
+            Debug.LogError("Failed to create StudentUpdateEndpoint instance!");
             return;
         }
 
@@ -137,35 +148,38 @@ public class LevelCompletObserver : MonoBehaviour
             int currentLevel = levelIndex;
             int currentWorld = int.TryParse(worldId, out int world) ? world : 1;
 
-            // Başlangıç logu
-            Debug.Log($"DENEME[CHECK] current: W{currentWorld} L{currentLevel} | last: W{lastWorld} L{lastLevel}");
+            // Initial log
+            Debug.Log($"TEST[CHECK] current: W{currentWorld} L{currentLevel} | last: W{lastWorld} L{lastLevel}");
 
             if (currentWorld > lastWorld)
             {
-                // Daha büyük world → kesin ilerleme var
+                // Bigger world → definite progress
                 sendWorld = currentWorld;
                 sendLevel = currentLevel;
 
                 lastWorld = currentWorld;
                 lastLevel = currentLevel;
 
-                Debug.Log($"DENEME[NEW WORLD] İlerleme var. Yeni kayıt: World {sendWorld}, Level {sendLevel}");
+                Debug.Log($"TEST[NEW WORLD] Progress detected. New record: World {sendWorld}, Level {sendLevel}");
             }
             else if (currentWorld == lastWorld && currentLevel > lastLevel)
             {
-                // Aynı world ama daha yüksek level → ilerleme var
+                // Same world but higher level → progress
                 sendWorld = currentWorld;
                 sendLevel = currentLevel;
 
                 lastWorld = currentWorld;
                 lastLevel = currentLevel;
 
-                Debug.Log($"DENEME[NEW LEVEL] Aynı world. Yeni kayıt: World {sendWorld}, Level {sendLevel}");
+                Debug.Log($"TEST[NEW LEVEL] Same world. New record: World {sendWorld}, Level {sendLevel}");
             }
             else
             {
-                // Daha düşük world veya level → ilerleme yok, kayıt güncellenmez
-                Debug.Log($"DENEME[NO PROGRESS] Geriye gidildi ya da aynı seviye. Kayıtlı kalan: World {lastWorld}, Level {lastLevel}");
+                // Lower world or level → no progress, but keep current position
+                sendWorld = currentWorld;
+                sendLevel = currentLevel;
+                
+                Debug.Log($"TEST[NO PROGRESS] Same level played again. Current position maintained: World {sendWorld}, Level {sendLevel}");
             }
 
 
@@ -181,7 +195,7 @@ public class LevelCompletObserver : MonoBehaviour
 
             foreach (var key in levelData.levels.Keys)
             {
-                Debug.Log($"[DEBUG] Mevcut level key: {key}");
+                Debug.Log($"[DEBUG] Current level key: {key}");
             }
 
             if (levelData?.levels != null && levelData.levels.ContainsKey(levelKey))
@@ -194,7 +208,7 @@ public class LevelCompletObserver : MonoBehaviour
 
                 //CalculateStarRating(levelscore, currentScene, out star1, out star2, out star3);
 
-                // ✅ Accuracy breakdown verilerini çek ve string key'lere çevir
+                //  Get accuracy breakdown data and convert to string keys
                 Dictionary<string, float> accuracyBreakdownForJson = null;
                 if (level.HitAccuracy != null && level.HitAccuracy.Count > 0)
                 {
@@ -203,6 +217,19 @@ public class LevelCompletObserver : MonoBehaviour
                     {
                         accuracyBreakdownForJson[kvp.Key.ToString()] = kvp.Value;
                     }
+                }
+
+                //  Get the actual star rating from the score controller if available
+                int actualStarRating = 0;
+                if (levelscore is RhythmGameScoreController rhythmScore)
+                {
+                    actualStarRating = rhythmScore.PlayerStars;
+                    Debug.Log($"Using actual star rating from score controller: {actualStarRating}");
+                }
+                else
+                {
+                    actualStarRating = level.StarRating ?? 0;
+                    Debug.Log($"Using star rating from level data: {actualStarRating}");
                 }
 
                 var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
@@ -214,12 +241,12 @@ public class LevelCompletObserver : MonoBehaviour
                     maxScore: level.MaxScore,
                     isCorrect: level.Successes > 0 || level.MaxScore > 0,
                     //averageAccuracy: CalculateAverageAccuracy(level),
-                    starRating: level.StarRating ?? 0,
+                    starRating: actualStarRating,
                     accuracyBreakdown: accuracyBreakdownForJson
                 );
 
                 detailedLevelInfo.Add(detailedInfo);
-                Debug.Log($"PlayerModelBase verisi kullanıldı - Level: {currentLevel}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Successes},Stars: {level.StarRating}");
+                Debug.Log($"PlayerModelBase data used - Level: {currentLevel}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Successes}, Stars: {level.StarRating}");
             }
             else
             {
@@ -241,13 +268,13 @@ public class LevelCompletObserver : MonoBehaviour
             //    );
 
             //    detailedLevelInfo.Add(detailedInfo);
-            //    Debug.LogWarning("PlayerModelBase'de veri bulunamadı, fallback kullanıldı - Level: " + currentLevel);
+            //    Debug.LogWarning("Data not found in PlayerModelBase, using fallback - Level: " + currentLevel);
             //}
 
             string studentId = FirebaseProxyService.Instance.privateCode;
             if (string.IsNullOrEmpty(studentId))
             {
-                Debug.LogError("Student ID bulunamadı! Önce öğrenci girişi yapınız");
+                Debug.LogError("Student ID not found! Please login as a student first");
                 return;
             }
 
@@ -263,17 +290,17 @@ public class LevelCompletObserver : MonoBehaviour
             //    OnStudentUpdateCallback(success, message);
             //    if (success && isHigherProgress)
             //    {
-            //        // Başarılıysa lastProgress'i güncelleyirouz buradan
+            //        // Update lastProgress here if successful
             //        FirebaseProxyService.Instance.UpdateLastProgress(currentWorld, currentLevel);
             //    }
             //}
             );
 
-            Debug.Log($"Student update gönderildi - Level: {currentLevel}, World: {currentWorld}");
+            Debug.Log($"Student update sent - Level: {currentLevel}, World: {currentWorld}");
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"Student update gönderilirken hata: {e.Message}");
+            Debug.LogError($"Error sending student update: {e.Message}");
         }
     }
 
@@ -293,21 +320,21 @@ public class LevelCompletObserver : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log($"Student update başarılı: {message}");
+            Debug.Log($"Student update successful: {message}");
         }
         else
         {
-            Debug.LogError($"Student update başarısız: {message}");
+            Debug.LogError($"Student update failed: {message}");
         }
     }
 
     //private static bool IsHigherProgress(int newWorld, int newLevel, int lastWorld, int lastLevel)
     //{
-    //    // Önce world karşılaştır
+    //    // Compare world first
     //    if (newWorld > lastWorld) return true;
     //    if (newWorld < lastWorld) return false;
 
-    //    // Eğerki worlder eşitse de levellerı karşılaştırıyorum , öncelik worldde sonra levelda 
+    //    // If worlds are equal, compare levels - priority is world first, then level
     //    return newLevel > lastLevel;
     //}
 }
