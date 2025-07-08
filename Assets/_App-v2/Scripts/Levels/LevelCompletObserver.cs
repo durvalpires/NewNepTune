@@ -45,6 +45,28 @@ public class LevelCompletObserver : MonoBehaviour
 
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
+        //  Check if this is a RhythmGameScoreController and handle AccuracyBreakdown
+        if (levelscore is RhythmGameScoreController rhythmController)
+        {
+            if (rhythmController.PlayerScore > 0)
+            {
+                PlayerModelBase.SetCustomScore(rhythmController.PlayerScore);
+                PlayerModelBase.LevelDataService.SetCustomStarRating(rhythmController.PlayerStars);
+                
+                //  Ensure level exists before saving accuracy data
+                PlayerModelBase.LevelDataService.SetLevelUnlock(_openedWorldIndex, _openedLevel);
+                
+                //  Apply the custom score and star rating to actual data
+                PlayerModelBase.LevelDataService.SetLevelCompleted(_openedWorldIndex, _openedLevel);
+                
+                //  Save accuracy data to PlayerModelBase.LevelData
+                PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, rhythmController, _openedWorldIndex.ToString());
+                
+                Debug.Log($"Piano game completed - Score: {rhythmController.PlayerScore}, Stars: {rhythmController.PlayerStars}");
+                Debug.Log($"AccuracyBreakdown count: {rhythmController.AccuracyBreakdown?.Count ?? 0}");
+            }
+        }
+        
         LevelComplete(levelscore);
     }
 
@@ -55,27 +77,16 @@ public class LevelCompletObserver : MonoBehaviour
         {
             PlayerModelBase.SetCustomScore(scoreController.PlayerScore);
             
+            // ✅ Ensure level exists before saving accuracy data
+            PlayerModelBase.LevelDataService.SetLevelUnlock(_openedWorldIndex, _openedLevel);
+            
             // ✅ Save accuracy data to PlayerModelBase.LevelData
-            //LevelDataService.SetLevelScoreData(_openedLevel, scoreController, _openedWorldIndex.ToString());
+            PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, scoreController, _openedWorldIndex.ToString());
+            
+            Debug.Log($"Piano game completed - Score: {scoreController.PlayerScore}, Stars: {scoreController.PlayerStars}");
+            Debug.Log($"AccuracyBreakdown count: {scoreController.AccuracyBreakdown?.Count ?? 0}");
         }
         LevelComplete();
-        //// Special score override for RhythmGame
-        //if (scoreController != null && scoreController.PlayerScore > 0)
-        //{
-        //    // Send custom score to LevelDataService
-        //    var levelDataServiceImpl = LevelDataService as LevelDataService;
-        //    if (levelDataServiceImpl != null)
-        //    {
-        //        // Set _customScoreOverride field using reflection
-        //        var field = levelDataServiceImpl.GetType().GetField("_customScoreOverride", 
-        //            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        //        if (field != null)
-        //        {
-        //            field.SetValue(levelDataServiceImpl, scoreController.PlayerScore);
-        //        }
-        //    }
-        //}
-        //LevelComplete();
     }
 
     public static void LevelComplete(ILevelScore levelscore = null)
@@ -197,7 +208,7 @@ public class LevelCompletObserver : MonoBehaviour
 
                 //CalculateStarRating(levelscore, currentScene, out star1, out star2, out star3);
 
-                // ✅ Get accuracy breakdown data and convert to string keys
+                //  Get accuracy breakdown data and convert to string keys
                 Dictionary<string, float> accuracyBreakdownForJson = null;
                 if (level.HitAccuracy != null && level.HitAccuracy.Count > 0)
                 {
@@ -206,6 +217,19 @@ public class LevelCompletObserver : MonoBehaviour
                     {
                         accuracyBreakdownForJson[kvp.Key.ToString()] = kvp.Value;
                     }
+                }
+
+                //  Get the actual star rating from the score controller if available
+                int actualStarRating = 0;
+                if (levelscore is RhythmGameScoreController rhythmScore)
+                {
+                    actualStarRating = rhythmScore.PlayerStars;
+                    Debug.Log($"Using actual star rating from score controller: {actualStarRating}");
+                }
+                else
+                {
+                    actualStarRating = level.StarRating ?? 0;
+                    Debug.Log($"Using star rating from level data: {actualStarRating}");
                 }
 
                 var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
@@ -217,7 +241,7 @@ public class LevelCompletObserver : MonoBehaviour
                     maxScore: level.MaxScore,
                     isCorrect: level.Successes > 0 || level.MaxScore > 0,
                     //averageAccuracy: CalculateAverageAccuracy(level),
-                    starRating: level.StarRating ?? 0,
+                    starRating: actualStarRating,
                     accuracyBreakdown: accuracyBreakdownForJson
                 );
 
