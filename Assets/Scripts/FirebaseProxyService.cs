@@ -72,17 +72,17 @@ public class FirebaseProxyService : MonoBehaviour
         _currentLevel = 0;
         _currentWorld = 0;
 
-        Debug.Log("Kullanıcı çıkış yaptı.");
+        Debug.Log("User logged out.");
     }
 
     public void LogoutWithBackend(Action<bool, string> callback = null)
     {
         if (string.IsNullOrEmpty(_userId) && string.IsNullOrEmpty(_authToken))
         {
-            Debug.LogWarning("Zaten çıkış yapmış kullanıcı için logout çağrıldı.");
-            // Local temizlik yap
+            Debug.LogWarning("Logout called for already logged out user.");
+            // Local cleanup
             ClearLocalData();
-            callback?.Invoke(true, "Zaten çıkış yapmış");
+            callback?.Invoke(true, "Already logged out");
             return;
         }
 
@@ -99,15 +99,15 @@ public class FirebaseProxyService : MonoBehaviour
         _currentLevel = 0;
         _currentWorld = 0;
 
-        Debug.Log("Kullanıcı verileri temizlendi.");
+        Debug.Log("User data cleared.");
     }
 
     public void AddStudentToTeacher(string studentId, Action<bool, string> callback = null)
     {
         if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
         {
-            Debug.LogError("Öğrenci eklemek için öğretmen olarak giriş yapmanız gerekir.");
-            callback?.Invoke(false, "Öğrenci eklemek için öğretmen olarak giriş yapmanız gerekir.");
+            Debug.LogError("You must be logged in as a teacher to add a student.");
+            callback?.Invoke(false, "You must be logged in as a teacher to add a student.");
             return;
         }
 
@@ -118,7 +118,7 @@ public class FirebaseProxyService : MonoBehaviour
     {
         if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
         {
-            Debug.LogError("Öğrenci listesini almak için öğretmen olarak giriş yapmanız gerekir.");
+            Debug.LogError("You must be logged in as a teacher to get the student list.");
             callback?.Invoke(false, null);
             return;
         }
@@ -130,8 +130,8 @@ public class FirebaseProxyService : MonoBehaviour
     {
         if (string.IsNullOrEmpty(_authToken) || _userType != "teacher")
         {
-            Debug.LogError("Öğrenci bilgilerini güncellemek için öğretmen olarak giriş yapmanız gerekir.");
-            callback?.Invoke(false, "Öğrenci bilgilerini güncellemek için öğretmen olarak giriş yapmanız gerekir.");
+            Debug.LogError("You must be logged in as a teacher to update student information.");
+            callback?.Invoke(false, "You must be logged in as a teacher to update student information.");
             return;
         }
 
@@ -143,7 +143,7 @@ public class FirebaseProxyService : MonoBehaviour
         string authJson = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
         string proxyUrl = PROXY_BASE_URL + REGISTER_ENDPOINT;
 
-        Debug.Log("Proxy sunucusuna bağlanılıyor: " + proxyUrl);
+        Debug.Log("Connecting to proxy server: " + proxyUrl);
 
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -156,14 +156,14 @@ public class FirebaseProxyService : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Proxy Authentication hatası: " + www.error);
+                Debug.LogError("Proxy Authentication error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "Kayıt sırasında bir hata oluştu: " + www.error);
+                callback?.Invoke(false, "An error occurred during registration: " + www.error);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Proxy yanıtı: " + responseJson);
+                Debug.Log("Proxy response: " + responseJson);
 
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
                 _userId = response.userId;
@@ -171,14 +171,14 @@ public class FirebaseProxyService : MonoBehaviour
                 _privateCode = response.privateCode;
                 _teacherPrivateCode = response.teacherPrivateCode;
 
-                Debug.Log("Kullanıcı başarıyla kaydedildi! User ID: " + _userId + ", User Type: " + _userType);
+                Debug.Log("User successfully registered! User ID: " + _userId + ", User Type: " + _userType);
                 if (!string.IsNullOrEmpty(_privateCode))
                 {
-                    Debug.Log("Öğrenci Özel Kodu: " + _privateCode);
+                    Debug.Log("Student Private Code: " + _privateCode);
                 }
                 if (!string.IsNullOrEmpty(_teacherPrivateCode))
                 {
-                    Debug.Log("Öğretmen Özel Kodu: " + _teacherPrivateCode);
+                    Debug.Log("Teacher Private Code: " + _teacherPrivateCode);
                 }
                 callback?.Invoke(true, _userId);
             }
@@ -195,7 +195,7 @@ public class FirebaseProxyService : MonoBehaviour
 
         string proxyUrl = PROXY_BASE_URL + REGISTER_ENDPOINT;
 
-        Debug.Log("Proxy sunucusuna profil verileriyle bağlanılıyor: " + proxyUrl);
+        Debug.Log("Connecting to proxy server with profile data: " + proxyUrl);
 
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -208,14 +208,14 @@ public class FirebaseProxyService : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Proxy Authentication hatası: " + www.error);
+                Debug.LogError("Proxy Authentication error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "Kayıt sırasında bir hata oluştu: " + www.error);
+                callback?.Invoke(false, "An error occurred during registration: " + www.error);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Proxy yanıtı: " + responseJson);
+                Debug.Log("Proxy response: " + responseJson);
 
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
                 _userId = response.userId;
@@ -223,14 +223,14 @@ public class FirebaseProxyService : MonoBehaviour
                 _privateCode = response.privateCode;
                 _teacherPrivateCode = response.teacherPrivateCode;
 
-                Debug.Log("Kullanıcı profil verileriyle başarıyla kaydedildi! User ID: " + _userId + ", User Type: " + _userType);
+                Debug.Log("User successfully registered with profile data! User ID: " + _userId + ", User Type: " + _userType);
                 if (!string.IsNullOrEmpty(_privateCode))
                 {
-                    Debug.Log("Öğrenci Özel Kodu: " + _privateCode);
+                    Debug.Log("Student Private Code: " + _privateCode);
                 }
                 if (!string.IsNullOrEmpty(_teacherPrivateCode))
                 {
-                    Debug.Log("Öğretmen Özel Kodu: " + _teacherPrivateCode);
+                    Debug.Log("Teacher Private Code: " + _teacherPrivateCode);
                 }
                 callback?.Invoke(true, _userId);
             }
@@ -242,7 +242,7 @@ public class FirebaseProxyService : MonoBehaviour
         string authJson = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
         string proxyUrl = PROXY_BASE_URL + LOGIN_ENDPOINT;
 
-        Debug.Log("Proxy sunucusuna giriş için bağlanılıyor: " + proxyUrl);
+        Debug.Log("Connecting to proxy server for login: " + proxyUrl);
 
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -255,14 +255,14 @@ public class FirebaseProxyService : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Proxy Giriş hatası: " + www.error);
+                Debug.LogError("Proxy Login error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "Giriş sırasında bir hata oluştu: " + www.error);
+                callback?.Invoke(false, "An error occurred during login: " + www.error);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Proxy giriş yanıtı: " + responseJson);
+                Debug.Log("Proxy login response: " + responseJson);
 
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
                 _userId = response.userId;
@@ -276,13 +276,13 @@ public class FirebaseProxyService : MonoBehaviour
                 LevelCompletObserver.lastLevel = response.currentLevel;
                 LevelCompletObserver.lastWorld = response.currentWorld;
 
-                Debug.Log("Kullanıcı başarıyla giriş yaptı! User ID: " + _userId + ", User Type: " + _userType);
+                Debug.Log("User successfully logged in! User ID: " + _userId + ", User Type: " + _userType);
                 if (!string.IsNullOrEmpty(_privateCode))
                 {
-                    Debug.Log("Öğrenci Özel Kodu: " + _privateCode);
+                    Debug.Log("Student Private Code: " + _privateCode);
                     Debug.Log("Current Level: " + _currentLevel + ", Current World: " + _currentWorld);
 
-                    //DENEME
+                    //TEST
                     PlayerModel.ClearData();
 
                     for (int i = 0; i <= _currentWorld; i++)
@@ -308,11 +308,11 @@ public class FirebaseProxyService : MonoBehaviour
                         }
                     }
 
-                    //DENEME
+                    //TEST
                 }
                 if (!string.IsNullOrEmpty(_teacherPrivateCode))
                 {
-                    Debug.Log("Öğretmen Özel Kodu: " + _teacherPrivateCode);
+                    Debug.Log("Teacher Private Code: " + _teacherPrivateCode);
                 }
                 callback?.Invoke(true, _userId);
             }
@@ -328,8 +328,8 @@ public class FirebaseProxyService : MonoBehaviour
 
         string proxyUrl = PROXY_BASE_URL + ADD_STUDENT_ENDPOINT;
 
-        Debug.Log("Proxy sunucusuna öğrenci ekleme isteği gönderiliyor: " + proxyUrl);
-        Debug.Log("İstek içeriği: " + addStudentJson);
+        Debug.Log("Sending student addition request to proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + addStudentJson);
 
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -343,25 +343,25 @@ public class FirebaseProxyService : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Öğrenci ekleme hatası: " + www.error);
+                Debug.LogError("Student addition error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "Öğrenci ekleme sırasında bir hata oluştu: " + www.error);
+                callback?.Invoke(false, "An error occurred while adding student: " + www.error);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Proxy yanıtı: " + responseJson);
+                Debug.Log("Proxy response: " + responseJson);
 
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
 
                 if (!string.IsNullOrEmpty(response.error))
                 {
-                    Debug.LogError("Öğrenci ekleme hatası: " + response.error);
+                    Debug.LogError("Student addition error: " + response.error);
                     callback?.Invoke(false, response.error);
                 }
                 else
                 {
-                    Debug.Log("Öğrenci başarıyla eklendi! Mesaj: " + response.message);
+                    Debug.Log("Student successfully added! Message: " + response.message);
                     callback?.Invoke(true, response.message);
                 }
             }
@@ -376,8 +376,8 @@ public class FirebaseProxyService : MonoBehaviour
 
         string proxyUrl = PROXY_BASE_URL + GET_TEACHER_STUDENTS_ENDPOINT;
 
-        Debug.Log("Proxy sunucusundan öğrenci listesi alınıyor: " + proxyUrl);
-        Debug.Log("İstek içeriği: " + getStudentsJson);
+        Debug.Log("Getting student list from proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + getStudentsJson);
 
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -391,25 +391,25 @@ public class FirebaseProxyService : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Öğrenci listesi alınırken hata: " + www.error);
+                Debug.LogError("Error getting student list: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
                 callback?.Invoke(false, null);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Proxy yanıtı: " + responseJson);
+                Debug.Log("Proxy response: " + responseJson);
 
                 TeacherStudentsResponse response = JsonUtility.FromJson<TeacherStudentsResponse>(responseJson);
 
                 if (!string.IsNullOrEmpty(response.error))
                 {
-                    Debug.LogError("Öğrenci listesi alınırken hata: " + response.error);
+                    Debug.LogError("Error getting student list: " + response.error);
                     callback?.Invoke(false, null);
                 }
                 else
                 {
-                    Debug.Log("Öğrenci listesi başarıyla alındı! Öğrenci sayısı: " + response.students.Count);
+                    Debug.Log("Student list successfully retrieved! Number of students: " + response.students.Count);
                     callback?.Invoke(true, response.students);
                 }
             }
@@ -424,7 +424,7 @@ public class FirebaseProxyService : MonoBehaviour
             detailedInfoJson = "[";
             bool first = true;
 
-            // Hiyerarşik yapıdan düz array formatına dönüştür (Firebase'de hala eski format) BU BÖLÜM KULLANILMIYOR, ANCAK KALDIRILMAYACAK ŞİMDİLİK, ilerde game trackerden buraya gönderebiliriz belki datayı veya sıfırdan bir endpoint dosyası da oluşturabilirim o zaman bu kısımı kaldırabilirz.
+            // Convert hierarchical structure to flat array format (still using old format in Firebase) THIS SECTION IS NOT USED, BUT WILL NOT BE REMOVED FOR NOW, maybe we can send data from game tracker here in the future or create a new endpoint file from scratch, then we can remove this part.
             foreach (var world in worldsData.worlds)
             {
                 foreach (var level in world.levels)
@@ -459,8 +459,8 @@ public class FirebaseProxyService : MonoBehaviour
 
         string proxyUrl = PROXY_BASE_URL + UPDATE_STUDENT_INFO_ENDPOINT;
 
-        Debug.Log("Proxy sunucusuna öğrenci bilgileri güncelleme isteği gönderiliyor: " + proxyUrl);
-        Debug.Log("İstek içeriği: " + updateStudentJson);
+        Debug.Log("Sending student information update request to proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + updateStudentJson);
 
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -474,25 +474,25 @@ public class FirebaseProxyService : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Öğrenci bilgileri güncellenirken hata: " + www.error);
+                Debug.LogError("Error updating student information: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "Öğrenci bilgileri güncellenirken bir hata oluştu: " + www.error);
+                callback?.Invoke(false, "An error occurred while updating student information: " + www.error);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Proxy yanıtı: " + responseJson);
+                Debug.Log("Proxy response: " + responseJson);
 
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
 
                 if (!string.IsNullOrEmpty(response.error))
                 {
-                    Debug.LogError("Öğrenci bilgileri güncellenirken hata: " + response.error);
+                    Debug.LogError("Error updating student information: " + response.error);
                     callback?.Invoke(false, response.error);
                 }
                 else
                 {
-                    Debug.Log("Öğrenci bilgileri başarıyla güncellendi! Mesaj: " + response.message);
+                    Debug.Log("Student information successfully updated! Message: " + response.message);
                     callback?.Invoke(true, response.message);
                 }
             }
@@ -508,8 +508,8 @@ public class FirebaseProxyService : MonoBehaviour
 
         string proxyUrl = PROXY_BASE_URL + LOGOUT_ENDPOINT;
 
-        Debug.Log("Proxy sunucusuna logout isteği gönderiliyor: " + proxyUrl);
-        Debug.Log("İstek içeriği: " + logoutJson);
+        Debug.Log("Sending logout request to proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + logoutJson);
 
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -526,17 +526,17 @@ public class FirebaseProxyService : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Logout isteği başarısız: " + www.error);
+                Debug.LogError("Logout request failed: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
                 
-                // Backend'e erişim başarısız olsa bile local temizlik yap
+                // Perform local cleanup even if backend access fails
                 ClearLocalData();
-                callback?.Invoke(false, "Logout isteği başarısız ama local temizlik yapıldı: " + www.error);
+                callback?.Invoke(false, "Logout request failed but local cleanup performed: " + www.error);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Logout yanıtı: " + responseJson);
+                Debug.Log("Logout response: " + responseJson);
 
                 try
                 {
@@ -544,25 +544,25 @@ public class FirebaseProxyService : MonoBehaviour
 
                     if (!string.IsNullOrEmpty(response.error))
                     {
-                        Debug.LogError("Logout backend hatası: " + response.error);
-                        // Backend'de hata olsa bile local temizlik yap
+                        Debug.LogError("Logout backend error: " + response.error);
+                        // Perform local cleanup even if there's a backend error
                         ClearLocalData();
                         callback?.Invoke(false, response.error);
                     }
                     else
                     {
-                        Debug.Log("Logout başarılı! Mesaj: " + response.message);
-                        // Başarılı logout sonrası local temizlik yap
+                        Debug.Log("Logout successful! Message: " + response.message);
+                        // Perform local cleanup after successful logout
                         ClearLocalData();
                         callback?.Invoke(true, response.message);
                     }
                 }
                 catch (System.Exception e)
                 {
-                    Debug.LogError("Logout response parse hatası: " + e.Message);
-                    // Parse hatası olsa bile local temizlik yap
+                    Debug.LogError("Logout response parse error: " + e.Message);
+                    // Perform local cleanup even if there's a parse error
                     ClearLocalData();
-                    callback?.Invoke(false, "Response parse hatası ama local temizlik yapıldı");
+                    callback?.Invoke(false, "Response parse error but local cleanup performed");
                 }
             }
         }
@@ -669,7 +669,7 @@ public class LevelInfo
     public int successes;
     public int fails;
     public int maxScore;
-    public bool isCorrect; // true = Check göster, false = False göster
+    public bool isCorrect; // true = Show Check, false = Show False
     public float averageAccuracy;
     public int starRating;
     public List<AccuracyBreakdownItem> accuracyBreakdown;
@@ -678,6 +678,6 @@ public class LevelInfo
 [System.Serializable]
 public class AccuracyBreakdownItem
 {
-    public string noteName;   // Perfect,great vs buradan gelecek
-    public float percentage;  // Yüzde değeri buradan geliyor
+    public string noteName;   // Perfect, great etc. will come from here
+    public float percentage;  // Percentage value comes from here
 }

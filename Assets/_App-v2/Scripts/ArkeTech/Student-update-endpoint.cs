@@ -31,8 +31,8 @@ public class StudentUpdateEndpoint : MonoBehaviour
     {
         if (string.IsNullOrEmpty(studentId))
         {
-            Debug.LogError("Öğrenci ID boş olamaz!");
-            callback?.Invoke(false, "Öğrenci ID boş olamaz!");
+            Debug.LogError("Student ID cannot be empty!");
+            callback?.Invoke(false, "Student ID cannot be empty!");
             return;
         }
         
@@ -83,8 +83,8 @@ public class StudentUpdateEndpoint : MonoBehaviour
             
         string proxyUrl = PROXY_BASE_URL + UPDATE_STUDENT_INFO_ENDPOINT;
         
-        Debug.Log("Öğrenci bilgileri güncelleniyor: " + proxyUrl);
-        Debug.Log("İstek içeriği: " + updateStudentJson);
+        Debug.Log("Updating student information: " + proxyUrl);
+        Debug.Log("Request content: " + updateStudentJson);
         
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
@@ -97,14 +97,14 @@ public class StudentUpdateEndpoint : MonoBehaviour
             
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Öğrenci bilgileri güncellenirken hata: " + www.error);
+                Debug.LogError("Error updating student information: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "Öğrenci bilgileri güncellenirken bir hata oluştu: " + www.error);
+                callback?.Invoke(false, "An error occurred while updating student information: " + www.error);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
-                Debug.Log("Sunucu yanıtı: " + responseJson);
+                Debug.Log("Server response: " + responseJson);
                 
                 try
                 {
@@ -112,19 +112,19 @@ public class StudentUpdateEndpoint : MonoBehaviour
                     
                     if (!string.IsNullOrEmpty(response.error))
                     {
-                        Debug.LogError("Öğrenci bilgileri güncellenirken hata: " + response.error);
+                        Debug.LogError("Error updating student information: " + response.error);
                         callback?.Invoke(false, response.error);
                     }
                     else
                     {
-                        Debug.Log("Öğrenci bilgileri başarıyla güncellendi! Mesaj: " + response.message);
+                        Debug.Log("Student information successfully updated! Message: " + response.message);
                         callback?.Invoke(true, response.message);
                     }
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError("JSON parse hatası: " + e.Message);
-                    callback?.Invoke(false, "Sunucu yanıtı işlenirken hata oluştu");
+                    Debug.LogError("JSON parse error: " + e.Message);
+                    callback?.Invoke(false, "Error processing server response");
                 }
             }
         }
