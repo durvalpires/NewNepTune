@@ -434,6 +434,14 @@ public class NeptuneApp : MonoBehaviour
         {
             Debug.Log($"Login successful! UserID: {message}");
             
+            // Check if user type is teacher (since this is teacher login)
+            if (firebaseProxyService.UserType != "teacher")
+            {
+                Debug.LogError("Student account cannot login from teacher panel!");
+                PopUpError(0); // Show error popup
+                return; // Early return to prevent further processing
+            }
+            
             // Show Login Success popup
             ShowLoginSuccess();
             
@@ -454,11 +462,6 @@ public class NeptuneApp : MonoBehaviour
                 // Redirect to teacher panel after a short delay
                 StartCoroutine(ShowTeacherLobbyAfterDelay(2.0f));
             }
-            else if (firebaseProxyService.UserType == "student")
-            {
-                // Student panel redirection can be added in the future
-                Debug.Log("Student login performed, student panel redirection will be added.");
-            }
         }
         else
         {
@@ -474,6 +477,14 @@ public class NeptuneApp : MonoBehaviour
         {
             Debug.Log($"Student login successful! UserID: {message}");
             
+            // Check if user type is student (since this is student login)
+            if (firebaseProxyService.UserType != "student")
+            {
+                Debug.LogError("Teacher account cannot login from student panel!");
+                PopUpError(0); // Show error popup
+                return; // Early return to prevent further processing
+            }
+            
             // Show Login Success popup
             ShowLoginSuccess();
             StartCoroutine(ShowStudentLobbyAfterDelay(2.0f));
@@ -488,11 +499,6 @@ public class NeptuneApp : MonoBehaviour
                 
                 // Student dashboard/panel redirection can be added in the future
                 // StartCoroutine(ShowStudentDashboardAfterDelay(2.0f));
-            }
-            else
-            {
-                Debug.LogWarning("User type is not student, unexpected situation!");
-                PopUpError(0); // Show error popup
             }
         }
         else
