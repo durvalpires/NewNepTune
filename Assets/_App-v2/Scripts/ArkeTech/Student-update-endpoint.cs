@@ -61,7 +61,7 @@ public class StudentUpdateEndpoint : MonoBehaviour
                     //+ "\"fails\":" + levelInfo.fails + ","
                     + "\"maxScore\":" + levelInfo.maxScore + ","
                     + "\"isCorrect\":" + levelInfo.isCorrect.ToString().ToLower() + ","
-                    //+ "\"averageAccuracy\":" + levelInfo.averageAccuracy.ToString(System.Globalization.CultureInfo.InvariantCulture) + ","
+                    + "\"successRate\":" + levelInfo.successRate.ToString(System.Globalization.CultureInfo.InvariantCulture) + ","
                     + "\"accuracyBreakdown\":" + ConvertAccuracyBreakdownToJson(levelInfo.accuracyBreakdown) + ","
                     + "\"starRating\":" + levelInfo.starRating
                     + "}";
@@ -159,12 +159,12 @@ public class StudentUpdateEndpoint : MonoBehaviour
         //public int fails;
         public int maxScore;
         public bool isCorrect;
-        //public float averageAccuracy;
+        public float successRate;
         public Dictionary<string, float> accuracyBreakdown;
         public int starRating;
         
         public DetailedLevelInfo(int world, int level, int attempts, int successes, int maxScore, 
-                               bool isCorrect, int starRating,
+                               bool isCorrect, float successRate, int starRating,
                                Dictionary<string, float> accuracyBreakdown = null)
         {
             this.world = world;
@@ -174,7 +174,7 @@ public class StudentUpdateEndpoint : MonoBehaviour
             //this.fails = fails;
             this.maxScore = maxScore;
             this.isCorrect = isCorrect;
-            //this.averageAccuracy = averageAccuracy;
+            this.successRate = successRate;
             this.accuracyBreakdown = accuracyBreakdown;
             this.starRating = starRating;
         }

@@ -126,9 +126,6 @@ public class LevelCompletObserver : MonoBehaviour
 
     public static void SendStudentUpdate(int levelIndex, string worldId, ILevelScore levelscore)
     {
-
-
-
         if (StudentUpdateEndpoint.Instance == null)
         {
             Debug.Log("Creating StudentUpdateEndpoint instance...");
@@ -239,8 +236,8 @@ public class LevelCompletObserver : MonoBehaviour
                     successes: level.Successes,
                     //fails: level.Fails,
                     maxScore: level.MaxScore,
-                    isCorrect: level.Successes > 0 || level.MaxScore > 0,
-                    //averageAccuracy: CalculateAverageAccuracy(level),
+                    isCorrect: level.Successes > 0,
+                    successRate: (float)level.Successes / level.Attempts,
                     starRating: actualStarRating,
                     accuracyBreakdown: accuracyBreakdownForJson
                 );

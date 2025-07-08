@@ -963,10 +963,10 @@ public class NeptuneApp : MonoBehaviour
                                 levelNumber = 1,
                                 attempts = 0,
                                 successes = 0,
-                                fails = 0,
+                                //fails = 0,
                                 maxScore = 0,
-                                isCorrect = false,
-                                averageAccuracy = 0.0f,
+                                //isCorrect = false,
+                                successRate = 0.0f,
                                 starRating = 0,
                                 accuracyBreakdown = new List<AccuracyBreakdownItem>()
                                 // Other fields (created with default values)
@@ -1034,12 +1034,12 @@ public class NeptuneApp : MonoBehaviour
                 }
                 
                 if (failsText != null) {
-                    if (level.fails > 0) {
-                        failsText.text = "" + level.fails.ToString();
-                        failsText.gameObject.SetActive(true);
-                    } else {
+                    // if (level.fails > 0) {
+                    //     failsText.text = "" + level.fails.ToString();
+                    //     failsText.gameObject.SetActive(true);
+                    // } else {
                         failsText.gameObject.SetActive(false);
-                    }
+                    //}
                 }
                 
                 if (maxScoreText != null) {
@@ -1052,8 +1052,8 @@ public class NeptuneApp : MonoBehaviour
                 }
                 
                 if (averageAccuracyText != null) {
-                    if (level.averageAccuracy > 0.0f) {
-                        averageAccuracyText.text = "%" + level.averageAccuracy.ToString("F1");
+                    if (level.successRate > 0.0f) {
+                        averageAccuracyText.text = "%" + level.successRate.ToString("F1");
                         averageAccuracyText.gameObject.SetActive(true);
                     } else {
                         averageAccuracyText.gameObject.SetActive(false);
@@ -1144,8 +1144,8 @@ public class NeptuneApp : MonoBehaviour
 
                 // Special logic for Check/False (check if isCorrect field exists)
                 // Note: It's difficult to check default values for bool fields in Unity, so we hide both if necessary
-                if (checkObj != null) checkObj.SetActive(level.isCorrect);
-                if (falseObj != null) falseObj.SetActive(!level.isCorrect);
+                if (checkObj != null) checkObj.SetActive(/*level.isCorrect*/ level.successes > 0);
+                if (falseObj != null) falseObj.SetActive(/*!level.isCorrect*/ level.successes < 1);
 
 
                 // Dynamic star creation

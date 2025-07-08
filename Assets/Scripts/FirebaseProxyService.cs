@@ -301,10 +301,10 @@ public class FirebaseProxyService : MonoBehaviour
                         }
                         else
                         {
-                            for (int x = 0; x <= 31; x++)
-                            {
-                                PlayerModel.CompleteLevel(x, i.ToString());
-                            }
+                            // for (int x = 0; x <= 31; x++)
+                            // {
+                            //     PlayerModel.CompleteLevel(x, i.ToString());
+                            // }
                         }
                     }
 
@@ -436,10 +436,10 @@ public class FirebaseProxyService : MonoBehaviour
                         + "\"level\":" + level.levelNumber + ","
                         + "\"attempts\":" + level.attempts + ","
                         + "\"successes\":" + level.successes + ","
-                        + "\"fails\":" + level.fails + ","
+                        //+ "\"fails\":" + level.fails + ","
                         + "\"maxScore\":" + level.maxScore + ","
-                        + "\"isCorrect\":" + level.isCorrect.ToString().ToLower() + ","
-                        + "\"averageAccuracy\":" + level.averageAccuracy + ","
+                        + "\"isCorrect\":" + (level.successes > 0 ? "true" : "false") + "," 
+                        + "\"successRate\":" + level.successRate + ","
                         + "\"starRating\":" + level.starRating
                         + "}";
                     first = false;
@@ -667,10 +667,10 @@ public class LevelInfo
     public int levelNumber;
     public int attempts;
     public int successes;
-    public int fails;
+    //public int fails;
     public int maxScore;
-    public bool isCorrect; // true = Show Check, false = Show False
-    public float averageAccuracy;
+    //public bool isCorrect; // true = Show Check, false = Show False
+    public float successRate;
     public int starRating;
     public List<AccuracyBreakdownItem> accuracyBreakdown;
 }

@@ -153,11 +153,14 @@ public class RhythmGameScoreController : ILevelScore
                 AccuracyBreakdown[HitAccuracy.Miss] += missingHitNotes;
         }
         
+        Debug.Log("noteCount: " + noteCount);
         
         var accuracyPercentage = new Dictionary<HitAccuracy, float>();
         foreach (var hit in AccuracyBreakdown.Keys)
         {
+            Debug.Log(hit + ": " + AccuracyBreakdown[hit]);
             accuracyPercentage[hit] = (float)AccuracyBreakdown[hit] / noteCount * 100;
+            Debug.Log(hit + ": " + accuracyPercentage[hit] + "%");
         }
         return accuracyPercentage;
     }
