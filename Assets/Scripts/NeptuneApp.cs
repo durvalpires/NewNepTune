@@ -35,10 +35,10 @@ public class NeptuneApp : MonoBehaviour
     public TMP_InputField TeacherLoginPasswordInput;
     public Button TeacherLoginButton;
 
-    [Header("Teacher_Popup_User_Info panelindeki öğretmen kodu texti")]
+    [Header("Teacher code text in Teacher_Popup_User_Info panel")]
     public TMP_Text TeacherIDText;
 
-    [Header("Teacher_Popup_User_Info panelindeki öğrenci ekleme UI'ları")]
+    [Header("Student adding UI elements in Teacher_Popup_User_Info panel")]
     public TMP_InputField StudentIDAddInput;
     public Button AddStudentButton;
 
@@ -52,7 +52,7 @@ public class NeptuneApp : MonoBehaviour
     public TMP_InputField StudentSigninPassword;
     public Button StudentSigninButton;
 
-    [Header("Teacher Lobby - Öğrenci Listesi UI")]
+    [Header("Teacher Lobby - Student List UI")]
     public Transform StudentListContent; 
     public GameObject StudentListItemPrefab; 
     public GameObject DetailedStudentInfoPrefab; 
@@ -62,7 +62,7 @@ public class NeptuneApp : MonoBehaviour
     public GameObject PopUpPanel;
     public GameObject PopUpMessageItems;
     
-    // SignUp Success panel için öğrenci falan objeleri sürükleyecem buradan.
+    // Student and other objects to be dragged from here for the SignUp Success panel.
     public GameObject StudentIDObject;
     public GameObject TeacherIDObject;
     public GameObject LoginSuccessObject;
@@ -70,12 +70,12 @@ public class NeptuneApp : MonoBehaviour
     public TMP_Text StudentIDPrivateCode;
     public TMP_Text TeacherIDPrivateCode;
 
-    [Header("Teacher Lobby - Öğretmen Kullanıcı Adı Gösterimi")]
+    [Header("Teacher Lobby - Teacher Username Display")]
     public TMP_Text TeacherUserNameText;
 
     [Header("Logout Buttons")]
-    public Button TeacherLogoutButton;  // Teacher panel'deki logout butonu
-    public Button StudentLogoutButton;  // Student panel'deki logout butonu
+    public Button TeacherLogoutButton;  // Logout button in Teacher panel
+    public Button StudentLogoutButton;  // Logout button in Student panel
 
     private FirebaseProxyService firebaseProxyService;
 
@@ -84,21 +84,21 @@ public class NeptuneApp : MonoBehaviour
     private bool _isAddingStudent = false; 
     private bool _isLoadingStudents = false; 
 
-    // Eklenen öğrencilerin listesi
+    // List of added students
     private List<StudentInfo> studentList = new List<StudentInfo>();
     
-    // Burayı o butondaki on clikce ekleyip ShowTeacherUserInfo 'yu işaretlememe lazım.
+    // Need to add this to the button's onClick and mark ShowTeacherUserInfo.
     public void ShowTeacherUserInfo()
     {
-        // Öğretmen kodunu göster
+        // Show teacher code
         if (TeacherIDText != null && firebaseProxyService != null)
         {
             TeacherIDText.text = firebaseProxyService.teacherPrivateCode;
-            Debug.Log("Öğretmen kodu gösteriliyor: " + firebaseProxyService.teacherPrivateCode);
+            Debug.Log("Teacher code being displayed: " + firebaseProxyService.teacherPrivateCode);
         }
         else
         {
-            Debug.LogWarning("TeacherIDText bileşeni atanmamış veya firebaseProxyService bulunamadı!");
+            Debug.LogWarning("TeacherIDText component not assigned or firebaseProxyService not found!");
         }
     }
     
@@ -110,25 +110,25 @@ public class NeptuneApp : MonoBehaviour
             PopUpMessageItems.transform.GetChild(i).gameObject.SetActive(i == x);
         }
         
-        // Login Success ikide bir çıkıyordu , login eklediğimde burayı açıcam ama diğerlerini kapatmam lazım o UNUTMA.
+        // Login Success was appearing repeatedly, I'll open this when I add login but need to close others - DON'T FORGET.
         if (LoginSuccessObject != null)
         {
             LoginSuccessObject.SetActive(false);
         }
     }
     
-    // Login Success popup'ını göstermek için yeni metot
+    // New method to show Login Success popup
     public void ShowLoginSuccess()
     {
         PopUpPanel.SetActive(true);
         
-        // Tüm panelleri kapat
+        // Close all panels
         for (int i = 0; i < PopUpMessageItems.transform.childCount; i++)
         {
             PopUpMessageItems.transform.GetChild(i).gameObject.SetActive(false);
         }
         
-        // Sadece LoginSuccess panelini aç
+        // Only open LoginSuccess panel
         if (LoginSuccessObject != null)
         {
             LoginSuccessObject.SetActive(true);
@@ -148,7 +148,7 @@ public class NeptuneApp : MonoBehaviour
         firebaseProxyService = FirebaseProxyService.Instance;
         if (firebaseProxyService == null)
         {
-            Debug.LogError("FirebaseProxyService instance bulunamadı! Sahneye eklediğinizden emin olun.");
+            Debug.LogError("FirebaseProxyService instance not found! Make sure you've added it to the scene.");
         }
 
         SelectPanel.SetActive(true);
@@ -161,52 +161,52 @@ public class NeptuneApp : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("TeacherLobbyPanel atanmamış! Öğretmen giriş yaptığında gösterilecek ekran eksik.");
+            Debug.LogWarning("TeacherLobbyPanel not assigned! The screen to be shown when teacher logs in is missing.");
         }
 
-        // Button listener'ları temizle ve sonrasında yendiden ekliyorum burda ki çiftlemenin önüne geçebileyim .
+        // Clear button listeners and then add them again to prevent duplication.
         if (TeacherSignUpButton != null)
         {
             TeacherSignUpButton.onClick.RemoveAllListeners(); 
             TeacherSignUpButton.onClick.AddListener(HandleTeacherSignUp);
-            Debug.Log("TeacherSignUpButton listener eklendi.");
+            Debug.Log("TeacherSignUpButton listener added.");
         }
         else
         {
-            Debug.LogError("TeacherSignUpButton referansı atanmamış!");
+            Debug.LogError("TeacherSignUpButton reference not assigned!");
         }
             
         if (TeacherLoginButton != null)
         {
             TeacherLoginButton.onClick.RemoveAllListeners(); 
             TeacherLoginButton.onClick.AddListener(HandleTeacherLogin);
-            Debug.Log("TeacherLoginButton listener eklendi.");
+            Debug.Log("TeacherLoginButton listener added.");
         }
         else
         {
-            Debug.LogWarning("TeacherLoginButton referansı atanmamış! Öğretmen giriş butonu çalışmayacak.");
+            Debug.LogWarning("TeacherLoginButton reference not assigned! Teacher login button will not work.");
         }
 
         if (StudentSignUpButton != null)
         {
             StudentSignUpButton.onClick.RemoveAllListeners(); 
             StudentSignUpButton.onClick.AddListener(HandleStudentSignUp);
-            Debug.Log("StudentSignUpButton listener eklendi.");
+            Debug.Log("StudentSignUpButton listener added.");
         }
         else
         {
-            Debug.LogError("StudentSignUpButton referansı atanmamış!");
+            Debug.LogError("StudentSignUpButton reference not assigned!");
         }
         
         if (StudentSigninButton != null)
         {
             StudentSigninButton.onClick.RemoveAllListeners();
             StudentSigninButton.onClick.AddListener(HandleStudentLogin);
-            Debug.Log("StudentSigninButton listener eklendi.");
+            Debug.Log("StudentSigninButton listener added.");
         }
         else
         {
-            Debug.LogWarning("StudentSigninButton referansı atanmamış! Öğrenci giriş butonu çalışmayacak.");
+            Debug.LogWarning("StudentSigninButton reference not assigned! Student login button will not work.");
         }
         
         
@@ -214,11 +214,11 @@ public class NeptuneApp : MonoBehaviour
         {
             AddStudentButton.onClick.RemoveAllListeners();
             AddStudentButton.onClick.AddListener(HandleAddStudent);
-            Debug.Log("AddStudentButton listener eklendi.");
+            Debug.Log("AddStudentButton listener added.");
         }
         else
         {
-            Debug.LogWarning("AddStudentButton referansı atanmamış! Öğrenci ekleme butonu çalışmayacak.");
+            Debug.LogWarning("AddStudentButton reference not assigned! Student addition button will not work.");
         }
         
         
@@ -226,7 +226,7 @@ public class NeptuneApp : MonoBehaviour
         {
             UpdateStudentInfoButton.onClick.RemoveAllListeners();
             UpdateStudentInfoButton.onClick.AddListener(HandleUpdateAllStudentInfo);
-            Debug.Log("UpdateStudentInfoButton listener eklendi.");
+            Debug.Log("UpdateStudentInfoButton listener added.");
         }
         
         // Logout Button Listeners
@@ -234,56 +234,56 @@ public class NeptuneApp : MonoBehaviour
         {
             TeacherLogoutButton.onClick.RemoveAllListeners();
             TeacherLogoutButton.onClick.AddListener(HandleLogout);
-            Debug.Log("TeacherLogoutButton listener eklendi.");
+            Debug.Log("TeacherLogoutButton listener added.");
         }
         else
         {
-            Debug.LogWarning("TeacherLogoutButton referansı atanmamış!");
+            Debug.LogWarning("TeacherLogoutButton reference not assigned!");
         }
         
         if (StudentLogoutButton != null)
         {
             StudentLogoutButton.onClick.RemoveAllListeners();
             StudentLogoutButton.onClick.AddListener(HandleLogout);
-            Debug.Log("StudentLogoutButton listener eklendi.");
+            Debug.Log("StudentLogoutButton listener added.");
         }
         else
         {
-            Debug.LogWarning("StudentLogoutButton referansı atanmamış!");
+            Debug.LogWarning("StudentLogoutButton reference not assigned!");
         }
     }
 
-    //öğreni ekleme yerini yani öğretmenin öğrenci ekleme yapmasını sağlayan kısım.
+    // Student addition part - the section that enables teachers to add students.
     public void HandleAddStudent()
     {
-        // Zaten öğrenci ekleme işlemi devam ediyorsa, yeni bir işlem başlatma
+        // If a student addition process is already in progress, don't start a new one
         if (_isAddingStudent)
         {
-            Debug.LogWarning("Zaten bir öğrenci ekleme işlemi devam ediyor, lütfen bekleyin.");
+            Debug.LogWarning("A student addition process is already in progress, please wait.");
             return;
         }
         
-        // Öğrenci ID'sini al
+        // Get the student ID
         string studentID = StudentIDAddInput.text.Trim();
         
         if (string.IsNullOrEmpty(studentID))
         {
-            Debug.LogError("Öğrenci ID alanı boş bırakılamaz.");
+            Debug.LogError("Student ID field cannot be left empty.");
             PopUpError(3); 
             return;
         }
         
-        // ID formatını kontrol et (STU- ile başlamalı) - STU ile başlamayan öğrenci kodunda hata almamız lazımdı.
+        // Check ID format (must start with STU-) - We should get an error for student codes that don't start with STU.
         if (!studentID.StartsWith("STU-"))
         {
-            Debug.LogError("Geçersiz öğrenci ID formatı. ID 'STU-' ile başlamalıdır.");
+            Debug.LogError("Invalid student ID format. ID must start with 'STU-'.");
             PopUpError(2); 
             return;
         }
         
-        Debug.Log($"Öğrenci ekleme işlemi başlatılıyor: StudentID: {studentID}");
+        Debug.Log($"Student addition process starting: StudentID: {studentID}");
         
-        // Öğrenci ekleme işlemini başlat
+        // Start the student addition process
         _isAddingStudent = true;
         
         if (firebaseProxyService != null)
@@ -297,7 +297,7 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             _isAddingStudent = false; 
-            Debug.LogError("FirebaseProxyService kullanılamıyor.");
+            Debug.LogError("FirebaseProxyService cannot be used.");
         }
     }
     
@@ -306,10 +306,10 @@ public class NeptuneApp : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log($"Öğrenci başarıyla eklendi! Mesaj: {message}");
+            Debug.Log($"Student successfully added! Message: {message}");
             
-            // Başarı mesajı göster
-            PopUpError(4); // Blue popup paneli (başarı mesajı için) - indeksi düzeltildi
+            // Show success message
+            PopUpError(4); // Blue popup panel (for success message) - index corrected
             
             
             if (StudentIDAddInput != null)
@@ -322,8 +322,8 @@ public class NeptuneApp : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Öğrenci ekleme başarısız! Hata: {message}");
-            PopUpError(0); // Hata popup'ını göster
+            Debug.LogError($"Student addition failed! Error: {message}");
+            PopUpError(0); // Show error popup
         }
     }
 
@@ -332,7 +332,7 @@ public class NeptuneApp : MonoBehaviour
         //SelectPanel.SetActive(false);
         TeacherPanel.SetActive(true);
         StudentPanel.SetActive(false);
-        Debug.Log("Öğretmen paneli seçildi.");
+        Debug.Log("Teacher panel selected.");
     }
 
     public void OnSelectStudent()
@@ -340,15 +340,15 @@ public class NeptuneApp : MonoBehaviour
         //SelectPanel.SetActive(false);
         TeacherPanel.SetActive(false);
         StudentPanel.SetActive(true);
-        Debug.Log("Öğrenci paneli seçildi.");
+        Debug.Log("Student panel selected.");
     }
 
     public void HandleTeacherSignUp()
     {
-        // Zaten kayıt işlemi devam ediyorsa, yeni bir kayıt başlatma
+        // If a registration process is already in progress, don't start a new one
         if (_isRegistering)
         {
-            Debug.LogWarning("Zaten bir kayıt işlemi devam ediyor, lütfen bekleyin.");
+            Debug.LogWarning("A registration process is already in progress, please wait.");
             return;
         }
         
@@ -357,7 +357,7 @@ public class NeptuneApp : MonoBehaviour
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            Debug.LogError("Email ve şifre alanları boş bırakılamaz.");
+            Debug.LogError("Email and password fields cannot be left empty.");
             PopUpError(2);
             return;
         }
@@ -367,9 +367,9 @@ public class NeptuneApp : MonoBehaviour
             { "userType", "teacher" }
         };
 
-        Debug.Log($"Öğretmen kaydı başlatılıyor: Email: {email}");
+        Debug.Log($"Teacher registration starting: Email: {email}");
         
-        // Kayıt işlemini başlat
+        // Start the registration process
         _isRegistering = true;
         
         if (firebaseProxyService != null)
@@ -382,18 +382,18 @@ public class NeptuneApp : MonoBehaviour
         }
         else
         {
-            _isRegistering = false; // FirebaseProxyService yoksa flag'i reset et
-            Debug.LogError("FirebaseProxyService kullanılamıyor.");
+            _isRegistering = false; // Reset flag if FirebaseProxyService doesn't exist
+            Debug.LogError("FirebaseProxyService cannot be used.");
         }
     }
     
-    // Öğretmen girişi için yeni metot
+    // New method for teacher login
     public void HandleTeacherLogin()
     {
-        // Zaten giriş işlemi devam ediyorsa, yeni bir giriş başlatma
+        // If a login process is already in progress, don't start a new one
         if (_isLoggingIn)
         {
-            Debug.LogWarning("Zaten bir giriş işlemi devam ediyor, lütfen bekleyin.");
+            Debug.LogWarning("A login process is already in progress, please wait.");
             return;
         }
         
@@ -402,12 +402,12 @@ public class NeptuneApp : MonoBehaviour
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            Debug.LogError("Email ve şifre alanları boş bırakılamaz.");
-            PopUpError(3); // EmptyError popup'ını göster (tutarlılık için)
+            Debug.LogError("Email and password fields cannot be left empty.");
+            PopUpError(3); // Show EmptyError popup (for consistency)
             return;
         }
 
-        Debug.Log($"Öğretmen girişi başlatılıyor: Email: {email}");
+        Debug.Log($"Teacher login starting: Email: {email}");
         
         
         _isLoggingIn = true;
@@ -423,115 +423,115 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             _isLoggingIn = false; 
-            Debug.LogError("FirebaseProxyService kullanılamıyor.");
+            Debug.LogError("FirebaseProxyService cannot be used.");
         }
     }
     
-    // Login callback metodu
+    // Login callback method
     private void OnLoginCompleted(bool success, string message)
     {
         if (success)
         {
-            Debug.Log($"Giriş başarılı! UserID: {message}");
+            Debug.Log($"Login successful! UserID: {message}");
             
-            // Login Success popup'ını göster
+            // Show Login Success popup
             ShowLoginSuccess();
             
-            // Kullanıcı tipine göre işlem yap
+            // Perform action based on user type
             if (firebaseProxyService.UserType == "teacher")
             {
-                // Öğretmen kullanıcı adını Teacher Lobby'de göster
+                // Show teacher username in Teacher Lobby
                 if (TeacherUserNameText != null && firebaseProxyService != null)
                 {
                     TeacherUserNameText.text = firebaseProxyService.teacherPrivateCode;
-                    Debug.Log("Öğretmen kullanıcı adı TeacherUserNameText'e atandı: " + firebaseProxyService.teacherPrivateCode);
+                    Debug.Log("Teacher username assigned to TeacherUserNameText: " + firebaseProxyService.teacherPrivateCode);
                 }
                 else
                 {
-                    Debug.LogWarning("TeacherUserNameText referansı atanmamış veya firebaseProxyService bulunamadı!");
+                    Debug.LogWarning("TeacherUserNameText reference not assigned or firebaseProxyService not found!");
                 }
                 
-                // Kısa bir süre sonra öğretmen paneline yönlendir
+                // Redirect to teacher panel after a short delay
                 StartCoroutine(ShowTeacherLobbyAfterDelay(2.0f));
             }
             else if (firebaseProxyService.UserType == "student")
             {
-                // İleride öğrenci paneline yönlendirme yapılabilir
-                Debug.Log("Öğrenci girişi yapıldı, öğrenci paneline yönlendirme eklenecek.");
+                // Student panel redirection can be added in the future
+                Debug.Log("Student login performed, student panel redirection will be added.");
             }
         }
         else
         {
-            Debug.LogError($"Giriş başarısız! Hata: {message}");
-            PopUpError(0); // Hata popup'ını göster
+            Debug.LogError($"Login failed! Error: {message}");
+            PopUpError(0); // Show error popup
         }
     }
     
-    // Öğrenci login callback metodu
+    // Student login callback method
     private void OnStudentLoginCompleted(bool success, string message)
     {
         if (success)
         {
-            Debug.Log($"Öğrenci girişi başarılı! UserID: {message}");
+            Debug.Log($"Student login successful! UserID: {message}");
             
-            // Login Success popup'ını göster
+            // Show Login Success popup
             ShowLoginSuccess();
             StartCoroutine(ShowStudentLobbyAfterDelay(2.0f));
 
-            // Kullanıcı tipini kontrol et
+            // Check user type
             if (firebaseProxyService.UserType == "student")
             {
-                Debug.Log("Öğrenci başarıyla giriş yaptı!");
-                Debug.Log("Öğrenci kodu: " + firebaseProxyService.privateCode);
+                Debug.Log("Student successfully logged in!");
+                Debug.Log("Student code: " + firebaseProxyService.privateCode);
                 Debug.Log("Current Level: " + firebaseProxyService.CurrentLevel);
                 Debug.Log("Current World: " + firebaseProxyService.CurrentWorld);
                 
-                // İleride öğrenci dashboard/panel'ine yönlendirme yapılabilir
+                // Student dashboard/panel redirection can be added in the future
                 // StartCoroutine(ShowStudentDashboardAfterDelay(2.0f));
             }
             else
             {
-                Debug.LogWarning("Kullanıcı tipi öğrenci değil, beklenmeyen durum!");
-                PopUpError(0); // Hata popup'ını göster
+                Debug.LogWarning("User type is not student, unexpected situation!");
+                PopUpError(0); // Show error popup
             }
         }
         else
         {
-            Debug.LogError($"Öğrenci girişi başarısız! Hata: {message}");
-            PopUpError(0); // Hata popup'ını göster
+            Debug.LogError($"Student login failed! Error: {message}");
+            PopUpError(0); // Show error popup
         }
     }
     
-    // Öğretmen panelini gecikmeli gösterme coroutine'i
+    // Coroutine for showing teacher panel with delay
     private IEnumerator ShowTeacherLobbyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         
-        // Tüm panelleri kapat
+        // Close all panels
         //SelectPanel.SetActive(false);
         TeacherPanel.SetActive(false);
         StudentPanel.SetActive(false);
         PopUpPanel.SetActive(false);
         
-        // Öğretmen lobisini göster
+        // Show teacher lobby
         if (TeacherLobbyPanel != null)
         {
             TeacherLobbyPanel.SetActive(true);
-            Debug.Log("Öğretmen lobisi gösteriliyor.");
+            Debug.Log("Teacher lobby is being shown.");
             
-            // Öğretmen kullanıcı adını bir kez daha kontrol et (backup)
+            // Check teacher username one more time (backup)
             if (TeacherUserNameText != null && firebaseProxyService != null && !string.IsNullOrEmpty(firebaseProxyService.teacherPrivateCode))
             {
                 TeacherUserNameText.text = firebaseProxyService.teacherPrivateCode;
-                Debug.Log("Öğretmen kullanıcı adı backup kontrolü: " + firebaseProxyService.teacherPrivateCode);
+                Debug.Log("Teacher username backup check: " + firebaseProxyService.teacherPrivateCode);
             }
             
-            // Öğrenci listesini yükle
+            // Load student list
             LoadStudentList();
         }
         else
         {
-            Debug.LogError("TeacherLobbyPanel atanmamış! Öğretmen lobisi gösterilemiyor.");
+            Debug.LogError("TeacherLobbyPanel not assigned! Teacher lobby cannot be shown.");
         }
     }
 
@@ -539,7 +539,7 @@ public class NeptuneApp : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // Tüm panelleri kapat
+        // Close all panels
         //SelectPanel.SetActive(false);
         TeacherPanel.SetActive(false);
         StudentPanel.SetActive(false);
@@ -550,10 +550,10 @@ public class NeptuneApp : MonoBehaviour
 
     public void HandleStudentSignUp()
     {
-        // Zaten kayıt işlemi devam ediyorsa, yeni bir kayıt başlatma
+        // If a registration process is already in progress, don't start a new one
         if (_isRegistering)
         {
-            Debug.LogWarning("Zaten bir kayıt işlemi devam ediyor, lütfen bekleyin.");
+            Debug.LogWarning("A registration process is already in progress, please wait.");
             return;
         }
         
@@ -562,8 +562,8 @@ public class NeptuneApp : MonoBehaviour
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            Debug.LogError("Email ve şifre alanları boş bırakılamaz.");
-            PopUpError(3); // EmptyError popup'ını göster (tutarlılık için)
+            Debug.LogError("Email and password fields cannot be left empty.");
+            PopUpError(3); // Show EmptyError popup (for consistency)
             return;
         }
 
@@ -572,33 +572,33 @@ public class NeptuneApp : MonoBehaviour
             { "userType", "student" }
         };
 
-        Debug.Log($"Öğrenci kaydı başlatılıyor: Email: {email}");
+        Debug.Log($"Student registration starting: Email: {email}");
         
-        // Kayıt işlemini başlat
+        // Start the registration process
         _isRegistering = true;
         
         if (firebaseProxyService != null)
         {
             firebaseProxyService.RegisterUserWithProfile(email, password, userProfile, (success, message) => {
-                // Kayıt işlemi tamamlandı, flag'i reset et
+                // Registration process completed, reset flag
                 _isRegistering = false;
                 OnSignUpCompleted(success, message);
             });
         }
         else
         {
-            _isRegistering = false; // FirebaseProxyService yoksa flag'i reset et
-            Debug.LogError("FirebaseProxyService kullanılamıyor.");
+            _isRegistering = false; // Reset flag if FirebaseProxyService doesn't exist
+            Debug.LogError("FirebaseProxyService cannot be used.");
         }
     }
     
-    // Öğrenci girişi için yeni metot
+    // New method for student login
     public void HandleStudentLogin()
     {
-        // Zaten giriş işlemi devam ediyorsa, yeni bir giriş başlatma
+        // If a login process is already in progress, don't start a new one
         if (_isLoggingIn)
         {
-            Debug.LogWarning("Zaten bir giriş işlemi devam ediyor, lütfen bekleyin.");
+            Debug.LogWarning("A login process is already in progress, please wait.");
             return;
         }
         
@@ -607,12 +607,12 @@ public class NeptuneApp : MonoBehaviour
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            Debug.LogError("Email ve şifre alanları boş bırakılamaz.");
-            PopUpError(3); // EmptyError popup'ını göster (tutarlılık için)
+            Debug.LogError("Email and password fields cannot be left empty.");
+            PopUpError(3); // Show EmptyError popup (for consistency)
             return;
         }
 
-        Debug.Log($"Öğrenci girişi başlatılıyor: Email: {email}");
+        Debug.Log($"Student login starting: Email: {email}");
         
         _isLoggingIn = true;
         
@@ -627,7 +627,7 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             _isLoggingIn = false; 
-            Debug.LogError("FirebaseProxyService kullanılamıyor.");
+            Debug.LogError("FirebaseProxyService cannot be used.");
         }
     }
 
@@ -635,17 +635,17 @@ public class NeptuneApp : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log($"Kayıt başarılı! Mesaj/UserID: {message}");
+            Debug.Log($"Registration successful! Message/UserID: {message}");
             
             
-            PopUpError(1); // SignUp Success Yazan popup bildirimi buradan gösteriyoruz ( 1. sırada olan o )
+            PopUpError(1); // Show SignUp Success popup notification from here (the one in 1st position)
             
-            // Öğrenci veya öğretmen oluşuna göre göster eğer Usertype a göre gösteriyorum burada. 
+            // Show based on whether they are student or teacher - I'm showing based on UserType here. 
             if (firebaseProxyService.UserType == "teacher")
             {
                 string teacherCode = firebaseProxyService.teacherPrivateCode;
                 
-                // TeacherID yi gösterme bölümü ancak öğretmesek eğer , öğrenciyi kapatıyoruz öğretmeni açıyorum burada.
+                // TeacherID display section, but if it's a teacher, close student and open teacher here.
                 if (TeacherIDObject != null) TeacherIDObject.SetActive(true);
                 if (StudentIDObject != null) StudentIDObject.SetActive(false);
                 
@@ -655,14 +655,14 @@ public class NeptuneApp : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("TeacherIDPrivateCode bileşeni atanmamış! Öğretmen kodu: " + teacherCode);
+                    Debug.LogWarning("TeacherIDPrivateCode component not assigned! Teacher code: " + teacherCode);
                 }
             }
             else if (firebaseProxyService.UserType == "student")
             {
                 string studentCode = firebaseProxyService.privateCode;
                 
-                // Burada da tam tersi öğrenciyi açıyorum.
+                // Here I'm doing the opposite, opening the student.
                 if (StudentIDObject != null) StudentIDObject.SetActive(true);
                 if (TeacherIDObject != null) TeacherIDObject.SetActive(false);
                 
@@ -672,14 +672,14 @@ public class NeptuneApp : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("StudentIDPrivateCode bileşeni atanmamış! Öğrenci kodu: " + studentCode);
+                    Debug.LogWarning("StudentIDPrivateCode component not assigned! Student code: " + studentCode);
                 }
             }
         }
         else
         {
-            Debug.LogError($"Kayıt başarısız! Hata: {message}");
-            PopUpError(2); // Burada da Hatayı gösteriyorum.
+            Debug.LogError($"Registration failed! Error: {message}");
+            PopUpError(2); // Show error here too.
         }
     }
 
@@ -690,12 +690,12 @@ public class NeptuneApp : MonoBehaviour
         SelectPanel.SetActive(true);
     }
 
-    // Öğrenci listesini yükleme metodu
+    // Method to load student list
     private void LoadStudentList()
     {
         if (_isLoadingStudents)
         {
-            Debug.LogWarning("Zaten bir öğrenci listesi yükleme işlemi devam ediyor, lütfen bekleyin.");
+            Debug.LogWarning("A student list loading process is already in progress, please wait.");
             return;
         }
         
@@ -703,7 +703,7 @@ public class NeptuneApp : MonoBehaviour
         
         if (firebaseProxyService != null)
         {
-            // Önce mevcut liste elemanlarını temizle
+            // First clear existing list elements
             ClearStudentList();
             
             firebaseProxyService.GetTeacherStudents((success, students) => {
@@ -711,20 +711,20 @@ public class NeptuneApp : MonoBehaviour
                 
                 if (success && students != null)
                 {
-                    Debug.Log($"Öğrenci listesi başarıyla yüklendi! Öğrenci sayısı: {students.Count}");
+                    Debug.Log($"Student list loaded successfully! Student count: {students.Count}");
                     DisplayStudentList(students);
                 }
                 else
                 {
-                    Debug.LogError("Öğrenci listesi yüklenemedi!");
-                    // Varsayılan olarak bir demo öğrenci göster
+                    Debug.LogError("Student list could not be loaded!");
+                    // Show a demo student by default
                     var demoStudents = new List<StudentInfo>
                     {
                         new StudentInfo { 
                             studentId = "STU-DEMO", 
                             currentLevel = 1, 
                             currentWorld = 1, 
-                            lastTimePlayed = "Henüz oynamadı", 
+                            lastTimePlayed = "Not played yet", 
                             totalTime = 0,
                             worldsData = new WorldsData { worlds = new List<WorldInfo>() }
                         }
@@ -736,34 +736,34 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             _isLoadingStudents = false;
-            Debug.LogError("FirebaseProxyService kullanılamıyor.");
+            Debug.LogError("FirebaseProxyService cannot be used.");
         }
     }
     
-    // Mevcut öğrenci listesini temizle
+    // Clear existing student list
     private void ClearStudentList()
     {
         if (StudentListContent == null)
         {
-            Debug.LogError("StudentListContent referansı atanmamış!");
+            Debug.LogError("StudentListContent reference not assigned!");
             return;
         }
         
-        // Öğrenci listesi, detay alanları ve eski ScrollRect'i temizle
+        // Clear student list, detail areas and old ScrollRect
         for (int i = StudentListContent.childCount - 1; i >= 0; i--)
         {
             Transform child = StudentListContent.GetChild(i);
-            // Öğrenci ana bilgilerini, DetailedScrollRect'leri ve eski ScrollRect'i sil
+            // Delete student main info, DetailedScrollRects and old ScrollRect
             if (child.name.Contains("student-main-info") || 
                 child.name.Contains("DetailedScrollRect-") || 
                 child.name == "ScrollRect")
             {
                 Destroy(child.gameObject);
-                Debug.Log($"Silindi: {child.name}");
+                Debug.Log($"Deleted: {child.name}");
             }
             else
             {
-                Debug.Log($"Korundu: {child.name}");
+                Debug.Log($"Preserved: {child.name}");
             }
         }
         
@@ -775,25 +775,25 @@ public class NeptuneApp : MonoBehaviour
     {
         if (StudentListContent == null)
         {
-            Debug.LogError("StudentListContent referansı atanmamış!");
+            Debug.LogError("StudentListContent reference not assigned!");
             return;
         }
         
         if (StudentListItemPrefab == null)
         {
-            Debug.LogError("StudentListItemPrefab referansı atanmamış!");
+            Debug.LogError("StudentListItemPrefab reference not assigned!");
             return;
         }
         
         studentList = students;
         
-        // Her öğrenci için bir satır oluştur
+        // Create a row for each student
         foreach (var student in students)
         {
-            // Prefabı instantiate et
+            // Instantiate the prefab
             GameObject listItem = Instantiate(StudentListItemPrefab, StudentListContent);
             
-            // Öğrenci bilgilerini ayarla
+            // Set student information
             var studentId = listItem.transform.Find("Added-Student-ID")?.GetComponent<TMP_Text>();
             var currentLevel = listItem.transform.Find("Current-level")?.GetComponent<TMP_Text>();
             var currentWorld = listItem.transform.Find("Current-world")?.GetComponent<TMP_Text>();
@@ -825,96 +825,96 @@ public class NeptuneApp : MonoBehaviour
                 totalTime.text = student.totalTime.ToString() + " dk";
             }
             
-            // Buton işlevselliği - her öğrenci için kendi detay alanını oluştur/göster
+            // Button functionality - create/show detail area for each student
             Button studentButton = listItem.GetComponent<Button>();
             if (studentButton == null)
             {
                 studentButton = listItem.AddComponent<Button>();
-                Debug.Log($"Button component eklendi: {student.studentId}");
+                Debug.Log($"Button component added: {student.studentId}");
             }
             
-            // Butona tıklama eventi ekle - yeni dinamik ScrollRect mantığı
+            // Add click event to button - new dynamic ScrollRect logic
             studentButton.onClick.RemoveAllListeners();
             studentButton.onClick.AddListener(() => {
-                Debug.Log($"Öğrenci butonuna tıklandı: {student.studentId}");
+                Debug.Log($"Student button clicked: {student.studentId}");
                 ToggleStudentDetailedInfo(student, listItem.transform);
             });
         }
     }
     
-    // Tüm öğrencilerin bilgilerini güncelleme metodu
+    // Method to update all student information
     public void HandleUpdateAllStudentInfo()
     {
-        Debug.Log("Öğrenci listesi yenileniyor...");
-        LoadStudentList(); // Sadece veri yenile, Firebase'e yazma
+        Debug.Log("Student list refreshing...");
+        LoadStudentList(); // Only refresh data, don't write to Firebase
     }
 
-    // Öğrenci detaylı bilgilerini aç/kapat
+    // Open/close student detailed information
     private void ToggleStudentDetailedInfo(StudentInfo student, Transform studentItemTransform)
     {
-        // O öğrencinin DetailedScrollRectPrefab'ı var mı kontrol et
+        // Check if that student's DetailedScrollRectPrefab exists
         string detailedScrollRectName = $"DetailedScrollRect-{student.studentId}";
         Transform existingDetailedScrollRect = StudentListContent.Find(detailedScrollRectName);
         
         if (existingDetailedScrollRect != null)
         {
-            // Varsa aç/kapat
+            // If it exists, open/close it
             bool isActive = existingDetailedScrollRect.gameObject.activeSelf;
             existingDetailedScrollRect.gameObject.SetActive(!isActive);
-            Debug.Log($"DetailedScrollRect {(isActive ? "kapatıldı" : "açıldı")}: {student.studentId}");
+            Debug.Log($"DetailedScrollRect {(isActive ? "closed" : "opened")}: {student.studentId}");
         }
         else
         {
-            // Yoksa oluştur ve öğrencinin hemen altına yerleştir
+            // If it doesn't exist, create it and place it right under the student
             CreateDetailedScrollRectForStudent(student, studentItemTransform);
         }
     }
     
-    // Öğrenci için dinamik DetailedScrollRect oluştur
+    // Create dynamic DetailedScrollRect for student
     private void CreateDetailedScrollRectForStudent(StudentInfo student, Transform studentItemTransform)
     {
         if (DetailedScrollRectPrefab == null)
         {
-            Debug.LogError("DetailedScrollRectPrefab atanmamış! Inspector'da atayın.");
+            Debug.LogError("DetailedScrollRectPrefab not assigned! Assign it in the Inspector.");
             return;
         }
         
-        // DetailedScrollRectPrefab'ı oluştur
+        // Create DetailedScrollRectPrefab
         GameObject detailedScrollRect = Instantiate(DetailedScrollRectPrefab, StudentListContent);
         detailedScrollRect.name = $"DetailedScrollRect-{student.studentId}";
         
-        // Öğrencinin hemen altına yerleştir
+        // Place it right under the student
         int studentIndex = studentItemTransform.GetSiblingIndex();
         detailedScrollRect.transform.SetSiblingIndex(studentIndex + 1);
         
-        Debug.Log($"DetailedScrollRect oluşturuldu ve yerleştirildi: {student.studentId}, Index: {studentIndex + 1}");
+        Debug.Log($"DetailedScrollRect created and placed: {student.studentId}, Index: {studentIndex + 1}");
         
-        // İçine detailed-info'ları ekle - prefab yapısına göre Content'i bul
+        // Add detailed-info inside - find Content according to prefab structure
         Transform content = null;
         
-        // Önce prefab'ın kendisinde ScrollRect component'i var mı kontrol et
+        // First check if prefab itself has ScrollRect component
         ScrollRect scrollRectComponent = detailedScrollRect.GetComponent<ScrollRect>();
         if (scrollRectComponent != null)
         {
-            // Prefab'ın kendisi ScrollRect ise, direkt Content'i al
+            // If prefab itself is ScrollRect, get Content directly
             content = detailedScrollRect.transform.Find("Content");
-            Debug.Log("ScrollRect component prefab'ın root'unda bulundu.");
+            Debug.Log("ScrollRect component found at prefab root.");
         }
         else
         {
-            // Prefab'ın içinde "ScrollRect" isimli child var mı kontrol et
+            // Check if there's a child named "ScrollRect" inside the prefab
             Transform scrollRectTransform = detailedScrollRect.transform.Find("ScrollRect");
             if (scrollRectTransform != null)
             {
                 content = scrollRectTransform.Find("Content");
-                Debug.Log("ScrollRect child olarak bulundu.");
+                Debug.Log("ScrollRect found as child.");
             }
         }
         
         if (content == null)
         {
-            Debug.LogError("DetailedScrollRectPrefab içinde 'Content' bulunamadı! Prefab yapısını kontrol edin.");
-            Debug.Log($"Prefab yapısı: {detailedScrollRect.name}");
+            Debug.LogError("'Content' not found inside DetailedScrollRectPrefab! Check prefab structure.");
+            Debug.Log($"Prefab structure: {detailedScrollRect.name}");
             for (int i = 0; i < detailedScrollRect.transform.childCount; i++)
             {
                 Debug.Log($"Child {i}: {detailedScrollRect.transform.GetChild(i).name}");
@@ -922,7 +922,7 @@ public class NeptuneApp : MonoBehaviour
             return;
         }
         
-        // Detaylı bilgileri yükle
+        // Load detailed information
         DisplayDetailedStudentInfoInContent(student, content);
     }
 
@@ -930,11 +930,11 @@ public class NeptuneApp : MonoBehaviour
     {
         if (DetailedStudentInfoPrefab == null)
         {
-            Debug.LogError("DetailedStudentInfoPrefab atanmamış! Inspector'da atayın.");
+            Debug.LogError("DetailedStudentInfoPrefab not assigned! Assign it in the Inspector.");
             return;
         }
         
-        // Mevcut detaylı bilgileri temizle
+        // Clear existing detailed information
         foreach (Transform child in content)
         {
             if (child.name.Contains("studen-detailed-info"))
@@ -943,12 +943,12 @@ public class NeptuneApp : MonoBehaviour
             }
         }
         
-        // Yeni hiyerarşik veri yapısını kontrol et
+        // Check new hierarchical data structure
         if (student.worldsData == null || student.worldsData.worlds == null || student.worldsData.worlds.Count == 0)
         {
-            Debug.Log($"Öğrenci {student.studentId} için detaylı bilgi yok, varsayılan veri oluşturuluyor.");
+            Debug.Log($"No detailed information for student {student.studentId}, creating default data.");
 
-            // Varsayılan veri oluştur ( burası işte neyi nasıl döndürdüğümüzle alakalı firebase'i de buna göre yapcam mapi falan )
+            // Create default data (this is about what and how we return, I'll make firebase accordingly with mapping etc.)
             student.worldsData = new WorldsData
             {
                 worlds = new List<WorldInfo>
@@ -969,7 +969,7 @@ public class NeptuneApp : MonoBehaviour
                                 averageAccuracy = 0.0f,
                                 starRating = 0,
                                 accuracyBreakdown = new List<AccuracyBreakdownItem>()
-                                // Diğer alanlar (varsayılan değerlerle oluşturuluyor)
+                                // Other fields (created with default values)
                             }
                         }
                     }
@@ -986,7 +986,7 @@ public class NeptuneApp : MonoBehaviour
                 GameObject detailItem = Instantiate(DetailedStudentInfoPrefab, content);
                 detailItem.SetActive(true);
                 
-                // Bilgileri atama yerimiz detailed içindeki yerleri atıyorum burada.
+                // Information assignment place - assigning detailed inner locations here.
                 var worldText = detailItem.transform.Find("World")?.GetComponent<TMP_Text>();
                 var levelText = detailItem.transform.Find("Level")?.GetComponent<TMP_Text>();
                 var attemptsText = detailItem.transform.Find("Attempts")?.GetComponent<TMP_Text>();
@@ -1010,11 +1010,11 @@ public class NeptuneApp : MonoBehaviour
                 var starsContainer = detailItem.transform.Find("Stars");
                 var starTemplate = starsContainer?.Find("Star");
 
-                // Zorunlu alanlar (her halükarda gösterdiğimiz yer burası)
+                // Required fields (what we show in any case)
                 if (worldText != null) worldText.text = "W: " + world.worldNumber;
                 if (levelText != null) levelText.text = "LV: " + level.levelNumber;
                 
-                // Dinamik alanlar (sadece mevcut olanları göster)
+                // Dynamic fields (only show existing ones)
                 if (attemptsText != null) {
                     if (level.attempts > 0) {
                         attemptsText.text = "" + level.attempts.ToString();
@@ -1110,11 +1110,11 @@ public class NeptuneApp : MonoBehaviour
                                 break;
                         }
                     }
-                    Debug.Log($"AccuracyBreakdown ayrı TextMeshPro'lara yazdırdık - Count: {level.accuracyBreakdown.Count}");
+                    Debug.Log($"Wrote AccuracyBreakdown to separate TextMeshPro objects - Count: {level.accuracyBreakdown.Count}");
                 }
                 else
                 {
-                    Debug.Log($"AccuracyBreakdown verisi yok - W:{world.worldNumber} LV:{level.levelNumber}");
+                    Debug.Log($"No AccuracyBreakdown data - W:{world.worldNumber} LV:{level.levelNumber}");
                 }
 
                 //if (accuracyBreakdownText != null)
@@ -1133,22 +1133,22 @@ public class NeptuneApp : MonoBehaviour
                 //        }
                 //        accuracyBreakdownText.text = breakdownText;
                 //        accuracyBreakdownText.gameObject.SetActive(true);
-                //        Debug.Log($"AccuracyBreakdown gösterildi: {breakdownText}");
+                //        Debug.Log($"AccuracyBreakdown displayed: {breakdownText}");
                 //    }
                 //    else
                 //    {
                 //        accuracyBreakdownText.gameObject.SetActive(false);
-                //        Debug.Log($"AccuracyBreakdown verisi yok - W:{world.worldNumber} LV:{level.levelNumber}");
+                //        Debug.Log($"No AccuracyBreakdown data - W:{world.worldNumber} LV:{level.levelNumber}");
                 //    }
                 //}
 
-                // Check/False için özel mantık (isCorrect alanı mevcut mu kontrol et)
-                // Not: Unity'de bool alanları varsayılan değer kontrol etmek zor, bu yüzden her ikisini de gizleriz eğer gerekirse
+                // Special logic for Check/False (check if isCorrect field exists)
+                // Note: It's difficult to check default values for bool fields in Unity, so we hide both if necessary
                 if (checkObj != null) checkObj.SetActive(level.isCorrect);
                 if (falseObj != null) falseObj.SetActive(!level.isCorrect);
 
 
-                // Dinamik star oluşturma
+                // Dynamic star creation
                 if (starsContainer != null && starTemplate != null)
                 {
 
@@ -1174,56 +1174,56 @@ public class NeptuneApp : MonoBehaviour
                         newStar.name = $"DynamicStar_{i}";
                         newStar.SetActive(true);
 
-                        Debug.Log($"Star {i + 1}/{starCount} oluşturuldu (Stars container içinde) - Level: W{level.levelNumber}");
+                        Debug.Log($"Star {i + 1}/{starCount} created (in Stars container) - Level: W{level.levelNumber}");
                     }
 
-                    Debug.Log($"Toplam {starCount} star oluşturuldu (Stars container içinde) - Level: W{level.levelNumber}");
+                    Debug.Log($"Total {starCount} stars created (in Stars container) - Level: W{level.levelNumber}");
                 }
                 else
                 {
-                    Debug.LogWarning($"Stars container veya Star template bulunamadı - Level: W{level.levelNumber}");
+                    Debug.LogWarning($"Stars container or Star template not found - Level: W{level.levelNumber}");
                 }
 
-                Debug.Log($"Level detayı eklendi: W:{world.worldNumber} LV:{level.levelNumber} Attempts:{level.attempts}");
+                Debug.Log($"Level detail added: W:{world.worldNumber} LV:{level.levelNumber} Attempts:{level.attempts}");
             }
         }
     }
 
-    // Logout işlemi - hem teacher hem student için
+    // Logout process - for both teacher and student
     public void HandleLogout()
     {
-        Debug.Log("Logout işlemi başlatılıyor...");
+        Debug.Log("Starting logout process...");
         
         if (firebaseProxyService == null)
         {
-            Debug.LogError("FirebaseProxyService kullanılamıyor!");
-            // Fallback: sadece UI'ı giriş ekranına çevir
+            Debug.LogError("FirebaseProxyService unavailable!");
+            // Fallback: just switch UI to login screen
             GoToSelectPanel();
             return;
         }
 
-        // Backend'e logout isteği gönder
+        // Send logout request to backend
         firebaseProxyService.LogoutWithBackend((success, message) => {
             if (success)
             {
-                Debug.Log("Logout başarılı: " + message);
+                Debug.Log("Logout successful: " + message);
                 ShowLogoutSuccess();
             }
             else
             {
-                Debug.LogWarning("Logout kısmen başarısız: " + message);
-                // Kısmen başarısız olsa bile UI'ı giriş ekranına çevir
+                Debug.LogWarning("Logout partially failed: " + message);
+                // Even if partially failed, switch UI to login screen
                 ShowLogoutSuccess();
             }
         });
     }
 
-    // Logout sonrası giriş ekranını göster
+    // Show login screen after logout
     private void ShowLogoutSuccess()
     {
-        Debug.Log("Logout tamamlandı, giriş ekranına dönülüyor...");
+        Debug.Log("Logout completed, returning to login screen...");
         
-        // Tüm panelleri kapat
+        // Close all panels
         TeacherPanel.SetActive(false);
         StudentPanel.SetActive(false);
         if (TeacherLobbyPanel != null)
@@ -1232,45 +1232,45 @@ public class NeptuneApp : MonoBehaviour
         }
         PopUpPanel.SetActive(false);
         
-        // Form alanlarını temizle (güvenlik için)
+        // Clear form fields (for security)
         ClearAllLoginFields();
         
-        // Giriş ekranını aç
+        // Open login screen
         SelectPanel.SetActive(true);
         
-        Debug.Log("Giriş ekranı gösteriliyor.");
+        Debug.Log("Login screen displayed.");
     }
 
-    // Tüm login form alanlarını temizle
+    // Clear all login form fields
     private void ClearAllLoginFields()
     {
-        // Teacher Login alanlarını temizle
+        // Clear Teacher Login fields
         if (TeacherLoginEmailInput != null)
         {
             TeacherLoginEmailInput.text = "";
-            Debug.Log("Teacher login email alanı temizlendi.");
+            Debug.Log("Teacher login email field cleared.");
         }
         
         if (TeacherLoginPasswordInput != null)
         {
             TeacherLoginPasswordInput.text = "";
-            Debug.Log("Teacher login password alanı temizlendi.");
+            Debug.Log("Teacher login password field cleared.");
         }
         
-        // Student Login alanlarını temizle
+        // Clear Student Login fields
         if (StudentSigninUsername != null)
         {
             StudentSigninUsername.text = "";
-            Debug.Log("Student login username alanı temizlendi.");
+            Debug.Log("Student login username field cleared.");
         }
         
         if (StudentSigninPassword != null)
         {
             StudentSigninPassword.text = "";
-            Debug.Log("Student login password alanı temizlendi.");
+            Debug.Log("Student login password field cleared.");
         }
         
-        // SignUp alanlarını da temizle (bonus güvenlik)
+        // Clear SignUp fields too (bonus security)
         if (TeacherMailInput != null)
         {
             TeacherMailInput.text = "";
@@ -1291,7 +1291,7 @@ public class NeptuneApp : MonoBehaviour
             StudentPassInput.text = "";
         }
         
-        Debug.Log("Tüm form alanları güvenlik için temizlendi.");
+        Debug.Log("All form fields cleared for security.");
     }
 
     void ToggleVisibility(PasswordTogglePair pair)
