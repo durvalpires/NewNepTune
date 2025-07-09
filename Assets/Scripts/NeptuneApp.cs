@@ -104,10 +104,28 @@ public class NeptuneApp : MonoBehaviour
     
     public void PopUpError(int x)
     {
+        Debug.Log($"PopUpError called with index: {x}");
+        Debug.Log($"PopUpMessageItems child count: {PopUpMessageItems.transform.childCount}");
+        
         PopUpPanel.SetActive(true);
+        
+        // Check if the requested index exists
+        if (x >= PopUpMessageItems.transform.childCount)
+        {
+            Debug.LogError($"Popup index {x} is out of range! Child count: {PopUpMessageItems.transform.childCount}");
+            return;
+        }
+        
         for (int i = 0; i < PopUpMessageItems.transform.childCount; i++)
         {
-            PopUpMessageItems.transform.GetChild(i).gameObject.SetActive(i == x);
+            GameObject childObj = PopUpMessageItems.transform.GetChild(i).gameObject;
+            bool shouldBeActive = (i == x);
+            childObj.SetActive(shouldBeActive);
+            
+            if (shouldBeActive)
+            {
+                Debug.Log($"Activated popup at index {i}: {childObj.name}");
+            }
         }
         
         // Login Success was appearing repeatedly, I'll open this when I add login but need to close others - DON'T FORGET.
@@ -266,10 +284,14 @@ public class NeptuneApp : MonoBehaviour
         // Get the student ID
         string studentID = StudentIDAddInput.text.Trim();
         
-        if (string.IsNullOrEmpty(studentID))
+        Debug.Log($"Student ID input: '{studentID}' (Length: {studentID.Length})");
+        
+        // Check if input is empty or contains only placeholder text
+        if (string.IsNullOrEmpty(studentID) || string.IsNullOrWhiteSpace(studentID) || 
+            studentID == "Student-ID" || studentID == "Student ID" || studentID == "Enter Student ID")
         {
             Debug.LogError("Student ID field cannot be left empty.");
-            PopUpError(3); 
+            PopUpError(8); 
             return;
         }
         
@@ -277,7 +299,7 @@ public class NeptuneApp : MonoBehaviour
         if (!studentID.StartsWith("STU-"))
         {
             Debug.LogError("Invalid student ID format. ID must start with 'STU-'.");
-            PopUpError(2); 
+            PopUpError(10); 
             return;
         }
         
@@ -323,7 +345,7 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Student addition failed! Error: {message}");
-            PopUpError(0); // Show error popup
+            PopUpError(9); // Show error popup for duplicate student
         }
     }
 
