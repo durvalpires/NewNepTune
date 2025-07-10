@@ -22,6 +22,7 @@ public class FirebaseProxyService : MonoBehaviour
     private string _userType;
     private string _privateCode;
     private string _teacherPrivateCode;
+    private string _username;
     private int _currentLevel;
     private int _currentWorld;
 
@@ -30,6 +31,7 @@ public class FirebaseProxyService : MonoBehaviour
     public string UserType => _userType;
     public string privateCode => _privateCode;
     public string teacherPrivateCode => _teacherPrivateCode;
+    public string Username => _username;
     public int CurrentLevel => _currentLevel;
     public int CurrentWorld => _currentWorld;
 
@@ -69,6 +71,7 @@ public class FirebaseProxyService : MonoBehaviour
         _userType = null;
         _privateCode = null;
         _teacherPrivateCode = null;
+        _username = null;
         _currentLevel = 0;
         _currentWorld = 0;
 
@@ -96,6 +99,7 @@ public class FirebaseProxyService : MonoBehaviour
         _userType = null;
         _privateCode = null;
         _teacherPrivateCode = null;
+        _username = null;
         _currentLevel = 0;
         _currentWorld = 0;
 
@@ -170,8 +174,9 @@ public class FirebaseProxyService : MonoBehaviour
                 _userType = response.userType;
                 _privateCode = response.privateCode;
                 _teacherPrivateCode = response.teacherPrivateCode;
+                _username = response.username;
 
-                Debug.Log("User successfully registered! User ID: " + _userId + ", User Type: " + _userType);
+                Debug.Log("User successfully registered! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
                 if (!string.IsNullOrEmpty(_privateCode))
                 {
                     Debug.Log("Student Private Code: " + _privateCode);
@@ -222,8 +227,9 @@ public class FirebaseProxyService : MonoBehaviour
                 _userType = response.userType;
                 _privateCode = response.privateCode;
                 _teacherPrivateCode = response.teacherPrivateCode;
+                _username = response.username;
 
-                Debug.Log("User successfully registered with profile data! User ID: " + _userId + ", User Type: " + _userType);
+                Debug.Log("User successfully registered with profile data! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
                 if (!string.IsNullOrEmpty(_privateCode))
                 {
                     Debug.Log("Student Private Code: " + _privateCode);
@@ -270,13 +276,14 @@ public class FirebaseProxyService : MonoBehaviour
                 _userType = response.userType;
                 _privateCode = response.privateCode;
                 _teacherPrivateCode = response.teacherPrivateCode;
+                _username = response.username;
                 _currentLevel = response.currentLevel;
                 _currentWorld = response.currentWorld;
 
                 LevelCompletObserver.lastLevel = response.currentLevel;
                 LevelCompletObserver.lastWorld = response.currentWorld;
 
-                Debug.Log("User successfully logged in! User ID: " + _userId + ", User Type: " + _userType);
+                Debug.Log("User successfully logged in! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
                 if (!string.IsNullOrEmpty(_privateCode))
                 {
                     Debug.Log("Student Private Code: " + _privateCode);
@@ -625,6 +632,7 @@ public class FirebaseProxyService : MonoBehaviour
         public string userType;
         public string privateCode;
         public string teacherPrivateCode;
+        public string username;
         public int currentLevel;
         public int currentWorld;
     }
@@ -641,6 +649,7 @@ public class FirebaseProxyService : MonoBehaviour
 public class StudentInfo
 {
     public string studentId;
+    public string username;
     public int currentLevel;
     public int currentWorld;
     public string lastTimePlayed;

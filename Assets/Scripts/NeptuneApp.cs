@@ -27,6 +27,7 @@ public class NeptuneApp : MonoBehaviour
 
     [Header("Teacher Panel UI")]
     public TMP_InputField TeacherMailInput;
+    public TMP_InputField TeacherUsernameInput;
     public TMP_InputField TeacherPassInput;
     public Button TeacherSignUpButton;
 
@@ -44,6 +45,7 @@ public class NeptuneApp : MonoBehaviour
 
     [Header("Student Panel UI")]
     public TMP_InputField StudentMailInput;
+    public TMP_InputField StudentUsernameInput;
     public TMP_InputField StudentPassInput;
     public Button StudentSignUpButton;
 
@@ -375,18 +377,20 @@ public class NeptuneApp : MonoBehaviour
         }
         
         string email = TeacherMailInput.text;
+        string username = TeacherUsernameInput.text;
         string password = TeacherPassInput.text;
 
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            Debug.LogError("Email and password fields cannot be left empty.");
+            Debug.LogError("Email, username and password fields cannot be left empty.");
             PopUpError(2);
             return;
         }
 
         var userProfile = new Dictionary<string, object>
         {
-            { "userType", "teacher" }
+            { "userType", "teacher" },
+            { "username", username }
         };
 
         Debug.Log($"Teacher registration starting: Email: {email}");
@@ -470,16 +474,20 @@ public class NeptuneApp : MonoBehaviour
             // Perform action based on user type
             if (firebaseProxyService.UserType == "teacher")
             {
-                // Show teacher username in Teacher Lobby
-                if (TeacherUserNameText != null && firebaseProxyService != null)
-                {
-                    TeacherUserNameText.text = firebaseProxyService.teacherPrivateCode;
-                    Debug.Log("Teacher username assigned to TeacherUserNameText: " + firebaseProxyService.teacherPrivateCode);
-                }
-                else
-                {
-                    Debug.LogWarning("TeacherUserNameText reference not assigned or firebaseProxyService not found!");
-                }
+                            // Show teacher username in Teacher Lobby
+            if (TeacherUserNameText != null && firebaseProxyService != null)
+            {
+                // Show username if available, otherwise fallback to teacher code
+                string displayName = !string.IsNullOrEmpty(firebaseProxyService.Username) ? 
+                                   firebaseProxyService.Username : 
+                                   firebaseProxyService.teacherPrivateCode;
+                TeacherUserNameText.text = displayName;
+                Debug.Log("Teacher username assigned to TeacherUserNameText: " + displayName);
+            }
+            else
+            {
+                Debug.LogWarning("TeacherUserNameText reference not assigned or firebaseProxyService not found!");
+            }
                 
                 // Redirect to teacher panel after a short delay
                 StartCoroutine(ShowTeacherLobbyAfterDelay(2.0f));
@@ -548,10 +556,17 @@ public class NeptuneApp : MonoBehaviour
             Debug.Log("Teacher lobby is being shown.");
             
             // Check teacher username one more time (backup)
-            if (TeacherUserNameText != null && firebaseProxyService != null && !string.IsNullOrEmpty(firebaseProxyService.teacherPrivateCode))
+            if (TeacherUserNameText != null && firebaseProxyService != null)
             {
-                TeacherUserNameText.text = firebaseProxyService.teacherPrivateCode;
-                Debug.Log("Teacher username backup check: " + firebaseProxyService.teacherPrivateCode);
+                // Show username if available, otherwise fallback to teacher code
+                string displayName = !string.IsNullOrEmpty(firebaseProxyService.Username) ? 
+                                   firebaseProxyService.Username : 
+                                   firebaseProxyService.teacherPrivateCode;
+                if (!string.IsNullOrEmpty(displayName))
+                {
+                    TeacherUserNameText.text = displayName;
+                    Debug.Log("Teacher username backup check: " + displayName);
+                }
             }
             
             // Load student list
@@ -586,18 +601,20 @@ public class NeptuneApp : MonoBehaviour
         }
         
         string email = StudentMailInput.text;
+        string username = StudentUsernameInput.text;
         string password = StudentPassInput.text;
 
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            Debug.LogError("Email and password fields cannot be left empty.");
+            Debug.LogError("Email, username and password fields cannot be left empty.");
             PopUpError(3); // Show EmptyError popup (for consistency)
             return;
         }
 
         var userProfile = new Dictionary<string, object>
         {
-            { "userType", "student" }
+            { "userType", "student" },
+            { "username", username }
         };
 
         Debug.Log($"Student registration starting: Email: {email}");
@@ -750,6 +767,7 @@ public class NeptuneApp : MonoBehaviour
                     {
                         new StudentInfo { 
                             studentId = "STU-DEMO", 
+                            username = "DemoStudent",
                             currentLevel = 1, 
                             currentWorld = 1, 
                             lastTimePlayed = "Not played yet", 
@@ -823,6 +841,7 @@ public class NeptuneApp : MonoBehaviour
             
             // Set student information
             var studentId = listItem.transform.Find("Added-Student-ID")?.GetComponent<TMP_Text>();
+            var playerName = listItem.transform.Find("PlayerName")?.GetComponent<TMP_Text>();
             var currentLevel = listItem.transform.Find("Current-level")?.GetComponent<TMP_Text>();
             var currentWorld = listItem.transform.Find("Current-world")?.GetComponent<TMP_Text>();
             var lastTimePlayed = listItem.transform.Find("Last-time-played")?.GetComponent<TMP_Text>();
@@ -830,7 +849,17 @@ public class NeptuneApp : MonoBehaviour
             
             if (studentId != null)
             {
-                studentId.text = student.studentId;
+                studentId.text = student.studentId; // Show private code (STU-1234)
+            }
+            
+            if (playerName != null)
+            {
+                // Show username if available, otherwise fallback to "No Username"
+                string displayUsername = !string.IsNullOrEmpty(student.username) ? 
+                                       student.username : 
+                                       "No Username";
+                playerName.text = displayUsername;
+                Debug.Log($"Player name: {displayUsername} (Username: {student.username}, ID: {student.studentId})");
             }
             
             if (currentLevel != null)
@@ -1304,6 +1333,11 @@ public class NeptuneApp : MonoBehaviour
             TeacherMailInput.text = "";
         }
         
+        if (TeacherUsernameInput != null)
+        {
+            TeacherUsernameInput.text = "";
+        }
+        
         if (TeacherPassInput != null)
         {
             TeacherPassInput.text = "";
@@ -1312,6 +1346,11 @@ public class NeptuneApp : MonoBehaviour
         if (StudentMailInput != null)
         {
             StudentMailInput.text = "";
+        }
+        
+        if (StudentUsernameInput != null)
+        {
+            StudentUsernameInput.text = "";
         }
         
         if (StudentPassInput != null)
