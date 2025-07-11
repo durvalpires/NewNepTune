@@ -57,7 +57,8 @@ public class LevelCompletObserver : MonoBehaviour
                 PlayerModelBase.LevelDataService.SetLevelUnlock(_openedWorldIndex, _openedLevel);
                 
                 //  Apply the custom score and star rating to actual data
-                PlayerModelBase.LevelDataService.SetLevelCompleted(_openedWorldIndex, _openedLevel);
+                //PlayerModelBase.LevelDataService.SetLevelCompleted(_openedWorldIndex, _openedLevel);
+                LevelComplete(levelscore);
                 
                 //  Save accuracy data to PlayerModelBase.LevelData
                 PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, rhythmController, _openedWorldIndex.ToString());
@@ -66,8 +67,16 @@ public class LevelCompletObserver : MonoBehaviour
                 Debug.Log($"AccuracyBreakdown count: {rhythmController.AccuracyBreakdown?.Count ?? 0}");
             }
         }
+        else
+        {
+            LevelComplete(levelscore);
+        }
         
-        LevelComplete(levelscore);
+        
+        if (_openedLevel != -1)
+        {
+            SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+        }
     }
 
     // To get the real score controller from EndOfLevelScreenController
@@ -93,10 +102,10 @@ public class LevelCompletObserver : MonoBehaviour
     {
         PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
 
-        if (_openedLevel != -1)
-        {
-            SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
-        }
+        // if (_openedLevel != -1)
+        // {
+        //     SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+        // }
 
         onLevelComplete?.Invoke();
 
