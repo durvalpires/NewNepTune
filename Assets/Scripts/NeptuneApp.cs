@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class NeptuneApp : MonoBehaviour
