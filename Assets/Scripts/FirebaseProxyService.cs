@@ -585,8 +585,7 @@ public class FirebaseProxyService : MonoBehaviour
     private IEnumerator ResetProgressCoroutine(Action<bool, string> callback)
     {
         string resetProgressJson = "{"
-           + "\"userId\":\"" + _userId + "\","
-           + "\"token\":\"" + _authToken + "\""
+           + "\"studentId\":\"" + _privateCode + "\""
            + "}";
         
         string proxyUrl = PROXY_BASE_URL + RESET_STUDENT_PROGRESS_ENDPOINT;
@@ -630,7 +629,6 @@ public class FirebaseProxyService : MonoBehaviour
                     }
                     else
                     {
-                        _userId = response.studentId;
                         _currentLevel = response.resetTo.currentLevel;
                         _currentWorld = response.resetTo.currentWorld;
 
@@ -665,7 +663,7 @@ public class FirebaseProxyService : MonoBehaviour
                                 // }
                             }
                         }
-                        
+                        callback?.Invoke(true, response.message);
                     }
                 }
                 catch (System.Exception e)
@@ -824,6 +822,7 @@ public class ProgressResetResponse
     public string studentId;
     public ResetToData resetTo;
 
+    [System.Serializable]
     public class ResetToData
     {
         public int currentLevel;
