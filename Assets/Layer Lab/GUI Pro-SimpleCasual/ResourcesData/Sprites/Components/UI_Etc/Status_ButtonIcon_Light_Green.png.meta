@@ -199,7 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Status_ButtonIcon_Light_Green_0: -3656801437659651318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

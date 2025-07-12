@@ -199,7 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Status_ButtonIcon_Light_RedNegative_0: 4763679630999671537
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -17,6 +17,7 @@ public class FirebaseProxyService : MonoBehaviour
     private const string REMOVE_STUDENT_ENDPOINT = "/teacher/removeStudent";
     private const string GET_TEACHER_STUDENTS_ENDPOINT = "/teacher/getStudents";
     private const string UPDATE_STUDENT_INFO_ENDPOINT = "/student/updateInfo";
+    private const string RESET_STUDENT_PROGRESS_ENDPOINT = "/student/resetProgress";
 
     private string _userId;
     private string _authToken;
@@ -91,6 +92,19 @@ public class FirebaseProxyService : MonoBehaviour
         }
 
         StartCoroutine(LogoutCoroutine(callback));
+    }
+
+    public void ResetProgress(Action<bool, string> callback = null)
+    {
+        if (string.IsNullOrEmpty(_userId) || string.IsNullOrEmpty(_authToken) || 
+            _userType != "student" )
+        {
+            Debug.LogWarning("You must be logged in as a student to reset progress.");
+            callback?.Invoke(true, "Not logged in (or not a student).");
+            return;
+        }
+
+        StartCoroutine(ResetProgressCoroutine(callback));
     }
 
     private void ClearLocalData()
@@ -568,6 +582,101 @@ public class FirebaseProxyService : MonoBehaviour
         }
     }
 
+    private IEnumerator ResetProgressCoroutine(Action<bool, string> callback)
+    {
+        string resetProgressJson = "{"
+           + "\"userId\":\"" + _userId + "\","
+           + "\"token\":\"" + _authToken + "\""
+           + "}";
+        
+        string proxyUrl = PROXY_BASE_URL + RESET_STUDENT_PROGRESS_ENDPOINT;
+        
+        Debug.Log("Sending reset progress request to proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + resetProgressJson);
+        
+        using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(resetProgressJson);
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            if (!string.IsNullOrEmpty(_authToken))
+            {
+                www.SetRequestHeader("Authorization", "Bearer " + _authToken);
+            }
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Reset progress request failed: " + www.error);
+                Debug.LogError("Response: " + www.downloadHandler.text);
+                
+                callback?.Invoke(false, "Logout request failed but local cleanup performed: " + www.error);
+            }
+            else
+            {
+                string responseJson = www.downloadHandler.text;
+                Debug.Log("Reset progress response: " + responseJson);
+
+                try
+                {
+                    ProgressResetResponse response = JsonUtility.FromJson<ProgressResetResponse>(responseJson);
+
+                    if (!string.IsNullOrEmpty(response.error))
+                    {
+                        Debug.LogError("Reset progress request failed due to backend error: " + response.error);
+                        callback?.Invoke(false, response.error);
+                    }
+                    else
+                    {
+                        _userId = response.studentId;
+                        _currentLevel = response.resetTo.currentLevel;
+                        _currentWorld = response.resetTo.currentWorld;
+
+                        LevelCompletObserver.lastLevel = _currentLevel;
+                        LevelCompletObserver.lastWorld = _currentWorld;
+
+                        Debug.Log("User progress successfully resetted! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
+                        Debug.Log("Current Level: " + _currentLevel + ", Current World: " + _currentWorld);
+
+                        //TEST
+                        PlayerModel.ClearData();
+
+                        for (int i = 0; i <= _currentWorld; i++)
+                        {
+                            if (i < _currentWorld)
+                            {
+                                PlayerModel.CompleteWorld(i.ToString());
+                            }
+
+                            if (_currentWorld == i)
+                            {
+                                for (int x = 0; x < _currentLevel; x++)
+                                {
+                                    PlayerModel.CompleteLevel(x, i.ToString());
+                                }
+                            }
+                            else
+                            {
+                                // for (int x = 0; x <= 31; x++)
+                                // {
+                                //     PlayerModel.CompleteLevel(x, i.ToString());
+                                // }
+                            }
+                        }
+                        
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError("Reset progress response parse error: " + e.Message);
+                    callback?.Invoke(false, "Reset progress response parse error");
+                }
+            }
+        }
+    }
+
     private IEnumerator LogoutCoroutine(Action<bool, string> callback)
     {
         string logoutJson = "{"
@@ -704,6 +813,23 @@ public class FirebaseProxyService : MonoBehaviour
     {
         public List<StudentInfo> students;
         public string error;
+    }
+}
+
+[System.Serializable]
+public class ProgressResetResponse
+{
+    public string message;
+    public string error;
+    public string studentId;
+    public ResetToData resetTo;
+
+    public class ResetToData
+    {
+        public int currentLevel;
+        public int currentWorld;
+        public int totalTime;
+        public string lastTimePlayed;
     }
 }
 

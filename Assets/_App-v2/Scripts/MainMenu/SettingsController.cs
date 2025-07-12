@@ -20,7 +20,8 @@ public class SettingsController : MonoBehaviour
 
     public void ResetProgress()
     {
-        PlayerModel.ClearData();
+        FirebaseProxyService.Instance.ResetProgress();
+        //PlayerModel.ClearData();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
