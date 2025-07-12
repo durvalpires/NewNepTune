@@ -14,6 +14,7 @@ public class FirebaseProxyService : MonoBehaviour
     private const string LOGIN_ENDPOINT = "/auth/login";
     private const string LOGOUT_ENDPOINT = "/auth/logout";
     private const string ADD_STUDENT_ENDPOINT = "/teacher/addStudent";
+    private const string REMOVE_STUDENT_ENDPOINT = "/teacher/removeStudent";
     private const string GET_TEACHER_STUDENTS_ENDPOINT = "/teacher/getStudents";
     private const string UPDATE_STUDENT_INFO_ENDPOINT = "/student/updateInfo";
 
@@ -116,6 +117,18 @@ public class FirebaseProxyService : MonoBehaviour
         }
 
         StartCoroutine(AddStudentToTeacherCoroutine(studentId, callback));
+    }
+
+    public void RemoveStudentFromTeacher(string studentId, Action<bool, string> callback = null)
+    {
+        if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
+        {
+            Debug.LogError("You must be logged in as a teacher to remove a student.");
+            callback?.Invoke(false, "You must be logged in as a teacher to remove a student.");
+            return;
+        }
+
+        StartCoroutine(RemoveStudentFromTeacherCoroutine(studentId, callback));
     }
 
     public void GetTeacherStudents(Action<bool, List<StudentInfo>> callback = null)
@@ -369,6 +382,55 @@ public class FirebaseProxyService : MonoBehaviour
                 else
                 {
                     Debug.Log("Student successfully added! Message: " + response.message);
+                    callback?.Invoke(true, response.message);
+                }
+            }
+        }
+    }
+
+    private IEnumerator RemoveStudentFromTeacherCoroutine(string studentId, Action<bool, string> callback)
+    {
+        string removeStudentJson = "{"
+            + "\"teacherId\":\"" + _teacherPrivateCode + "\","
+            + "\"studentId\":\"" + studentId + "\""
+            + "}";
+
+        string proxyUrl = PROXY_BASE_URL + REMOVE_STUDENT_ENDPOINT;
+
+        Debug.Log("Sending student removal request to proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + removeStudentJson);
+
+        using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(removeStudentJson);
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("Authorization", "Bearer " + _authToken);
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Student removal error: " + www.error);
+                Debug.LogError("Response: " + www.downloadHandler.text);
+                callback?.Invoke(false, "An error occurred while removing student: " + www.error);
+            }
+            else
+            {
+                string responseJson = www.downloadHandler.text;
+                Debug.Log("Proxy response: " + responseJson);
+
+                ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
+
+                if (!string.IsNullOrEmpty(response.error))
+                {
+                    Debug.LogError("Student removal error: " + response.error);
+                    callback?.Invoke(false, response.error);
+                }
+                else
+                {
+                    Debug.Log("Student successfully removed! Message: " + response.message);
                     callback?.Invoke(true, response.message);
                 }
             }

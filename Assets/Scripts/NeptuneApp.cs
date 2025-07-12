@@ -42,6 +42,10 @@ public class NeptuneApp : MonoBehaviour
     public TMP_InputField StudentIDAddInput;
     public Button AddStudentButton;
 
+    [Header("Student removing UI elements in Teacher_Popup_User_Info panel")]
+    public TMP_InputField StudentIDRemoveInput;
+    public Button RemoveStudentButton;
+
     [Header("Student Panel UI")]
     public TMP_InputField StudentMailInput;
     public TMP_InputField StudentUsernameInput;
@@ -83,6 +87,7 @@ public class NeptuneApp : MonoBehaviour
     private bool _isRegistering = false; 
     private bool _isLoggingIn = false; 
     private bool _isAddingStudent = false; 
+    private bool _isRemovingStudent = false; 
     private bool _isLoadingStudents = false; 
 
     // List of added students
@@ -240,6 +245,17 @@ public class NeptuneApp : MonoBehaviour
             Debug.LogWarning("AddStudentButton reference not assigned! Student addition button will not work.");
         }
         
+        if (RemoveStudentButton != null)
+        {
+            RemoveStudentButton.onClick.RemoveAllListeners();
+            RemoveStudentButton.onClick.AddListener(HandleRemoveStudent);
+            Debug.Log("RemoveStudentButton listener added.");
+        }
+        else
+        {
+            Debug.LogWarning("RemoveStudentButton reference not assigned! Student removal button will not work.");
+        }
+        
         
         if (UpdateStudentInfoButton != null)
         {
@@ -347,6 +363,83 @@ public class NeptuneApp : MonoBehaviour
         {
             Debug.LogError($"Student addition failed! Error: {message}");
             PopUpError(9); // Show error popup for duplicate student
+        }
+    }
+
+    // Student removal part - the section that enables teachers to remove students.
+    public void HandleRemoveStudent()
+    {
+        // If a student removal process is already in progress, don't start a new one
+        if (_isRemovingStudent)
+        {
+            Debug.LogWarning("A student removal process is already in progress, please wait.");
+            return;
+        }
+        
+        // Get the student ID
+        string studentID = StudentIDRemoveInput.text.Trim();
+        
+        Debug.Log($"Student ID input for removal: '{studentID}' (Length: {studentID.Length})");
+        
+        // Check if input is empty or contains only placeholder text
+        if (string.IsNullOrEmpty(studentID) || string.IsNullOrWhiteSpace(studentID) || 
+            studentID == "Student-ID" || studentID == "Student ID" || studentID == "Enter Student ID")
+        {
+            Debug.LogError("Student ID field cannot be left empty.");
+            PopUpError(8); 
+            return;
+        }
+        
+        // Check ID format (must start with STU-) - We should get an error for student codes that don't start with STU.
+        if (!studentID.StartsWith("STU-"))
+        {
+            Debug.LogError("Invalid student ID format. ID must start with 'STU-'.");
+            PopUpError(10); 
+            return;
+        }
+        
+        Debug.Log($"Student removal process starting: StudentID: {studentID}");
+        
+        // Start the student removal process
+        _isRemovingStudent = true;
+        
+        if (firebaseProxyService != null)
+        {
+            firebaseProxyService.RemoveStudentFromTeacher(studentID, (success, message) => {
+                
+                _isRemovingStudent = false;
+                OnRemoveStudentCompleted(success, message);
+            });
+        }
+        else
+        {
+            _isRemovingStudent = false; 
+            Debug.LogError("FirebaseProxyService cannot be used.");
+        }
+    }
+    
+    private void OnRemoveStudentCompleted(bool success, string message)
+    {
+        if (success)
+        {
+            Debug.Log($"Student successfully removed! Message: {message}");
+            
+            // Show success message
+            PopUpError(11); // Show student removal success popup
+            
+            
+            if (StudentIDRemoveInput != null)
+            {
+                StudentIDRemoveInput.text = "";
+            }
+            
+            
+            LoadStudentList();
+        }
+        else
+        {
+            Debug.LogError($"Student removal failed! Error: {message}");
+            PopUpError(9); // Show error popup for student not found or not in list
         }
     }
 
