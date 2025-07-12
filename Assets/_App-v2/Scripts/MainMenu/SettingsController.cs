@@ -32,6 +32,13 @@ public class SettingsController : MonoBehaviour
     
     public void Signout()
     {
-        SceneManager.LoadScene("NeptuneApp");
+        FirebaseProxyService.Instance.LogoutWithBackend((result, message) =>
+        {
+            if (!result)
+            {
+                Debug.LogError("Signout failed: " + message);
+            }
+            SceneManager.LoadScene("NeptuneApp");
+        });
     }
 }

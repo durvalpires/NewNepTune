@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Signout
+  m_text: Sign out
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8e4a712e73ba485da7573507328a497, type: 2}
   m_sharedMaterial: {fileID: 4302427867775222725, guid: c8e4a712e73ba485da7573507328a497,
