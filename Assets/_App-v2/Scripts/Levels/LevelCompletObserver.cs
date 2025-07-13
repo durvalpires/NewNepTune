@@ -277,7 +277,7 @@ public class LevelCompletObserver : MonoBehaviour
             //    Debug.LogWarning("Data not found in PlayerModelBase, using fallback - Level: " + currentLevel);
             //}
 
-            string studentId = FirebaseProxyService.Instance.privateCode;
+            string studentId = FirebaseProxyService.Instance.PrivateCode;
             if (string.IsNullOrEmpty(studentId))
             {
                 Debug.LogError("Student ID not found! Please login as a student first");

@@ -31,7 +31,7 @@ public class FirebaseProxyService : MonoBehaviour
     public string UserId => _userId;
     public string AuthToken => _authToken;
     public string UserType => _userType;
-    public string privateCode => _privateCode;
+    public string PrivateCode => _privateCode;
     public string teacherPrivateCode => _teacherPrivateCode;
     public string Username => _username;
     public int CurrentLevel => _currentLevel;

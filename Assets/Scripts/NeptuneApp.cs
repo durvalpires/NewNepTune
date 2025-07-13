@@ -615,7 +615,7 @@ public class NeptuneApp : MonoBehaviour
             if (firebaseProxyService.UserType == "student")
             {
                 Debug.Log("Student successfully logged in!");
-                Debug.Log("Student code: " + firebaseProxyService.privateCode);
+                Debug.Log("Student code: " + firebaseProxyService.PrivateCode);
                 Debug.Log("Current Level: " + firebaseProxyService.CurrentLevel);
                 Debug.Log("Current World: " + firebaseProxyService.CurrentWorld);
                 
@@ -797,7 +797,7 @@ public class NeptuneApp : MonoBehaviour
             }
             else if (firebaseProxyService.UserType == "student")
             {
-                string studentCode = firebaseProxyService.privateCode;
+                string studentCode = firebaseProxyService.PrivateCode;
                 
                 // Here I'm doing the opposite, opening the student.
                 if (StudentIDObject != null) StudentIDObject.SetActive(true);
