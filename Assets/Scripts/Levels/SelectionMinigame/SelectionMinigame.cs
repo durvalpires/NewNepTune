@@ -40,8 +40,8 @@ namespace Levels.SelectionMinigame
         [SerializeField] private AllGameScoringConfig gameScoringConfig;
 
         private SelectionScoringSettings _selectionSettings;
-        private int _score;
-        private int _pointsPerQuestion;
+        private float _score;
+        private float _pointsPerQuestion;
 
 
         private int _currentLevel;
@@ -49,7 +49,7 @@ namespace Levels.SelectionMinigame
         private void Start()
         {
             _selectionSettings = gameScoringConfig.selectionScoring;
-            _pointsPerQuestion = _selectionSettings.maxScore;
+            _pointsPerQuestion = (float)_selectionSettings.maxScore / gameLevels.Length;
             _score = 0;
 
             //Sprite[] answerSprites = Resources.LoadAll<Sprite>($"SelectionMinigame/Notes/");
@@ -220,6 +220,7 @@ namespace Levels.SelectionMinigame
 
         public void TrueAnswer()
         {
+            _score += _pointsPerQuestion;
             Debug.Log(_score);
             winPanel.SetActive(true);
             AudioManager.Instance.PlaySFX(SoundList.WinSound);
@@ -251,8 +252,8 @@ namespace Levels.SelectionMinigame
                 if (normalized >= _selectionSettings.threeStarThreshold) stars = 3;
                 else if (normalized >= _selectionSettings.twoStarThreshold) stars = 2;
                 else if (normalized >= _selectionSettings.oneStarThreshold) stars = 1;
-                _score = _score + _pointsPerQuestion;
-                int safeScore = _score < 0 ? 0 : _score;
+                //_score = _score + _pointsPerQuestion;
+                int safeScore = _score < 0 ? 0 : (int)_score;
                 PlayerModelBase.SetCustomScore(safeScore);
                 Debug.Log(safeScore);
                 PlayerModelBase.LevelDataService.SetCustomScore(safeScore);

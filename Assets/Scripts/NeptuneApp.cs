@@ -768,6 +768,50 @@ public class NeptuneApp : MonoBehaviour
         }
     }
 
+    public void PostSignUpStudentLogin()
+    {
+        PopUpPanel.GetComponent<ActiveStateWatcher>().OnBecameInactive.RemoveListener(PostSignUpStudentLogin);
+        
+        PopUpPanel.SetActive(false);
+        Debug.Log($"Student login starting: Email: {StudentMailInput.text}");
+        _isLoggingIn = true;
+        
+        if (firebaseProxyService != null)
+        {
+            firebaseProxyService.LoginUser(StudentMailInput.text, StudentPassInput.text, (success, message) => {
+                
+                _isLoggingIn = false;
+                OnStudentLoginCompleted(success, message);
+            });
+        }
+        else
+        {
+            _isLoggingIn = false; 
+            Debug.LogError("FirebaseProxyService cannot be used.");
+        }
+    }
+
+    private void PostSignUpTeacherLogin()
+    {
+        PopUpPanel.GetComponent<ActiveStateWatcher>().OnBecameInactive.RemoveListener(PostSignUpTeacherLogin);
+        
+        _isLoggingIn = true;
+        
+        if (firebaseProxyService != null)
+        {
+            firebaseProxyService.LoginUser(TeacherMailInput.text, TeacherPassInput.text, (success, message) => {
+                
+                _isLoggingIn = false;
+                OnLoginCompleted(success, message);
+            });
+        }
+        else
+        {
+            _isLoggingIn = false; 
+            Debug.LogError("FirebaseProxyService cannot be used.");
+        }
+    }
+
     private void OnSignUpCompleted(bool success, string message)
     {
         if (success)
@@ -780,6 +824,8 @@ public class NeptuneApp : MonoBehaviour
             // Show based on whether they are student or teacher - I'm showing based on UserType here. 
             if (firebaseProxyService.UserType == "teacher")
             {
+                PopUpPanel.GetComponent<ActiveStateWatcher>().OnBecameInactive.AddListener(PostSignUpTeacherLogin);
+
                 string teacherCode = firebaseProxyService.teacherPrivateCode;
                 
                 // TeacherID display section, but if it's a teacher, close student and open teacher here.
@@ -797,6 +843,8 @@ public class NeptuneApp : MonoBehaviour
             }
             else if (firebaseProxyService.UserType == "student")
             {
+                PopUpPanel.GetComponent<ActiveStateWatcher>().OnBecameInactive.AddListener(PostSignUpStudentLogin);
+                
                 string studentCode = firebaseProxyService.PrivateCode;
                 
                 // Here I'm doing the opposite, opening the student.

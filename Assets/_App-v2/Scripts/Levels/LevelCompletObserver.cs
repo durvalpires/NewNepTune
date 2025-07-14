@@ -62,12 +62,12 @@ public class LevelCompletObserver : MonoBehaviour
                 //  Ensure level exists before saving accuracy data
                 PlayerModelBase.LevelDataService.SetLevelUnlock(_openedWorldIndex, _openedLevel);
                 
+                //  Save accuracy data to PlayerModelBase.LevelData
+                PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, rhythmController, _openedWorldIndex.ToString());
+                
                 //  Apply the custom score and star rating to actual data
                 //PlayerModelBase.LevelDataService.SetLevelCompleted(_openedWorldIndex, _openedLevel);
                 LevelComplete(levelscore);
-                
-                //  Save accuracy data to PlayerModelBase.LevelData
-                PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, rhythmController, _openedWorldIndex.ToString());
                 
                 Debug.Log($"Piano game completed - Score: {rhythmController.PlayerScore}, Stars: {rhythmController.PlayerStars}");
                 Debug.Log($"AccuracyBreakdown count: {rhythmController.AccuracyBreakdown?.Count ?? 0}");
@@ -79,10 +79,10 @@ public class LevelCompletObserver : MonoBehaviour
         }
         
         
-        if (_openedLevel != -1)
-        {
-            SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
-        }
+        // if (_openedLevel != -1)
+        // {
+        //     SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+        // }
     }
 
     // To get the real score controller from EndOfLevelScreenController
