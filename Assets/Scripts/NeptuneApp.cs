@@ -1014,7 +1014,7 @@ public class NeptuneApp : MonoBehaviour
             
             if (lastTimePlayed != null)
             {
-                lastTimePlayed.text = student.lastTimePlayed;
+                lastTimePlayed.text = DateUtils.GetDaysAgoStringFromString(student.lastTimePlayed);
             }
             
             if (totalTime != null)
