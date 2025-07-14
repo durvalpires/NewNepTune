@@ -39,12 +39,18 @@ public class LevelCompletObserver : MonoBehaviour
 
     public void SetCurrentLevelComplete()
     {
+        Debug.Log("SetCurrentLevelComplete");
         //PlayerModelBase.LevelDataService.UpdateCounter(_openedWorldIndex, _openedLevel, CounterType.Success);
         LevelComplete();
+        // if (_openedLevel != -1)
+        // {
+        //     SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+        // }
     }
 
     public void SetCurrentLevelComplete(ILevelScore levelscore = null)
     {
+        Debug.Log("SetCurrentLevelCompleteWithScore");
         //  Check if this is a RhythmGameScoreController and handle AccuracyBreakdown
         if (levelscore is RhythmGameScoreController rhythmController)
         {
@@ -100,12 +106,14 @@ public class LevelCompletObserver : MonoBehaviour
 
     public static void LevelComplete(ILevelScore levelscore = null)
     {
+        Debug.Log("LevelComplete");
+        
         PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
 
-        // if (_openedLevel != -1)
-        // {
-        //     SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
-        // }
+        if (_openedLevel != -1)
+        {
+            SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+        }
 
         onLevelComplete?.Invoke();
 
