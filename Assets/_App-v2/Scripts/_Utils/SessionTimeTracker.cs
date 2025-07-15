@@ -16,6 +16,7 @@ public class SessionTimeTracker : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log("Update Session Duration");
         UpdateSessionDuration();
     }
 
@@ -43,6 +44,8 @@ public class SessionTimeTracker : MonoBehaviour
     {
         PlayerPrefs.SetFloat("TotalMinutesPlayed", (float)TotalMinutesPlayed);
         PlayerPrefs.Save();
+        
+        FirebaseProxyService.Instance.UpdateStudentTotalTime((int)TotalMinutesPlayed);
     }
 
     private void Awake()
@@ -72,9 +75,9 @@ public class SessionTimeTracker : MonoBehaviour
     public static string GetFormattedTimePlayed(double totalMinutesPlayed)
     {
         TimeSpan timePlayed = TimeSpan.FromMinutes(totalMinutesPlayed);
-        return string.Format("{0:D2}:{1:D2}:{2:D2}", 
-            timePlayed.Days * 24 + timePlayed.Hours, 
-            timePlayed.Minutes, 
+        return string.Format("{0:D2}H:{1:D2}M:{2:D2}S",
+            timePlayed.Days * 24 + timePlayed.Hours,
+            timePlayed.Minutes,
             timePlayed.Seconds);
     }
 }

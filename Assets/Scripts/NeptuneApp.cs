@@ -1019,7 +1019,7 @@ public class NeptuneApp : MonoBehaviour
             
             if (totalTime != null)
             {
-                totalTime.text = student.totalTime.ToString() + " dk";
+                totalTime.text = SessionTimeTracker.GetFormattedTimePlayed(student.totalTime);
             }
             
             // Button functionality - create/show detail area for each student

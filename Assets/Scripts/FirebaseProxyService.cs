@@ -18,7 +18,9 @@ public class FirebaseProxyService : MonoBehaviour
     private const string GET_TEACHER_STUDENTS_ENDPOINT = "/teacher/getStudents";
     private const string UPDATE_STUDENT_INFO_ENDPOINT = "/student/updateInfo";
     private const string RESET_STUDENT_PROGRESS_ENDPOINT = "/student/resetProgress";
+    private const string UPDATE_STUDENT_TOTAL_TIME_ENDPOINT = "/student/updateTotalTime";
 
+    
     private string _userId;
     private string _authToken;
     private string _userType;
@@ -167,6 +169,18 @@ public class FirebaseProxyService : MonoBehaviour
         }
 
         StartCoroutine(UpdateStudentInfoCoroutine(studentId, currentLevel, currentWorld, lastTimePlayed, totalTime, worldsData, callback));
+    }
+
+    public void UpdateStudentTotalTime(int totalTime, Action<bool, string> callback = null)
+    {
+        if (string.IsNullOrEmpty(_privateCode) || string.IsNullOrEmpty(_authToken))
+        {
+            Debug.LogError("Student must be logged in to update student total time.");
+            callback?.Invoke(false, "Student must be logged in to update student total time.");
+            return;
+        }
+
+        StartCoroutine(UpdateStudentTotalTimeCoroutine(_privateCode, totalTime, callback));
     }
 
     private IEnumerator RegisterUserCoroutine(string email, string password, Action<bool, string> callback)
@@ -576,6 +590,55 @@ public class FirebaseProxyService : MonoBehaviour
                 else
                 {
                     Debug.Log("Student information successfully updated! Message: " + response.message);
+                    callback?.Invoke(true, response.message);
+                }
+            }
+        }
+    }
+
+    private IEnumerator UpdateStudentTotalTimeCoroutine(string studentId, int totalTime, Action<bool, string> callback)
+    {
+        string updateStudentTotalTimeJson = "{"
+            + "\"studentId\":\"" + studentId + "\","
+            + "\"totalTime\":" + totalTime
+            + "}";
+
+        string proxyUrl = PROXY_BASE_URL + UPDATE_STUDENT_TOTAL_TIME_ENDPOINT;
+
+        Debug.Log("Sending student total time update request to proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + updateStudentTotalTimeJson);
+
+        using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(updateStudentTotalTimeJson);
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("Authorization", "Bearer " + _authToken);
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error updating student total time: " + www.error);
+                Debug.LogError("Response: " + www.downloadHandler.text);
+                callback?.Invoke(false, "An error occurred while updating student total time: " + www.error);
+            }
+            else
+            {
+                string responseJson = www.downloadHandler.text;
+                Debug.Log("Proxy response: " + responseJson);
+
+                ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
+
+                if (!string.IsNullOrEmpty(response.error))
+                {
+                    Debug.LogError("Error updating student total time: " + response.error);
+                    callback?.Invoke(false, response.error);
+                }
+                else
+                {
+                    Debug.Log("Student total time successfully updated! Message: " + response.message);
                     callback?.Invoke(true, response.message);
                 }
             }
