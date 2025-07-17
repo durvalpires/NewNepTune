@@ -585,7 +585,7 @@ public class NeptuneApp : MonoBehaviour
             if (firebaseProxyService.UserType != "teacher")
             {
                 Debug.LogError("Student account cannot login from teacher panel!");
-                PopUpError(0); // Show error popup
+                PopUpError(15); // Show sign in error popup
                 return; // Early return to prevent further processing
             }
             
@@ -617,7 +617,7 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Login failed! Error: {message}");
-            PopUpError(0); // Show error popup
+            PopUpError(15); // Show sign in error popup
         }
     }
     
@@ -632,7 +632,7 @@ public class NeptuneApp : MonoBehaviour
             if (firebaseProxyService.UserType != "student")
             {
                 Debug.LogError("Teacher account cannot login from student panel!");
-                PopUpError(0); // Show error popup
+                PopUpError(15); // Show sign in error popup
                 return; // Early return to prevent further processing
             }
             
@@ -655,7 +655,7 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Student login failed! Error: {message}");
-            PopUpError(0); // Show error popup
+            PopUpError(15); // Show sign in error popup
         }
     }
     
