@@ -123,7 +123,7 @@ public class FirebaseProxyService : MonoBehaviour
         Debug.Log("User data cleared.");
     }
 
-    public void AddStudentToTeacher(string studentId, Action<bool, string> callback = null)
+    public void AddStudentToTeacher(string studentIdentifier, Action<bool, string> callback = null)
     {
         if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
         {
@@ -132,10 +132,12 @@ public class FirebaseProxyService : MonoBehaviour
             return;
         }
 
-        StartCoroutine(AddStudentToTeacherCoroutine(studentId, callback));
+        // If the identifier starts with STU-, treat as code, else as username
+        bool isCode = !string.IsNullOrEmpty(studentIdentifier) && studentIdentifier.StartsWith("STU-");
+        StartCoroutine(AddStudentToTeacherCoroutine(studentIdentifier, isCode, callback));
     }
 
-    public void RemoveStudentFromTeacher(string studentId, Action<bool, string> callback = null)
+    public void RemoveStudentFromTeacher(string studentIdentifier, Action<bool, string> callback = null)
     {
         if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
         {
@@ -144,7 +146,9 @@ public class FirebaseProxyService : MonoBehaviour
             return;
         }
 
-        StartCoroutine(RemoveStudentFromTeacherCoroutine(studentId, callback));
+        // If the identifier starts with STU-, treat as code, else as username
+        bool isCode = !string.IsNullOrEmpty(studentIdentifier) && studentIdentifier.StartsWith("STU-");
+        StartCoroutine(RemoveStudentFromTeacherCoroutine(studentIdentifier, isCode, callback));
     }
 
     public void GetTeacherStudents(Action<bool, List<StudentInfo>> callback = null)
@@ -367,12 +371,27 @@ public class FirebaseProxyService : MonoBehaviour
         }
     }
 
-    private IEnumerator AddStudentToTeacherCoroutine(string studentId, Action<bool, string> callback)
+    // Updated coroutine to support both code and username
+    private IEnumerator AddStudentToTeacherCoroutine(string studentIdentifier, bool isCode, Action<bool, string> callback)
     {
-        string addStudentJson = "{"
-            + "\"teacherId\":\"" + _teacherPrivateCode + "\","
-            + "\"studentId\":\"" + studentId + "\""
-            + "}";
+        // Build JSON body with either studentId or studentUsername
+        string addStudentJson;
+        if (isCode)
+        {
+            addStudentJson = "{" +
+                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+                "\"studentId\":\"" + studentIdentifier + "\"" +
+                "}";
+            Debug.Log("Adding student by code: " + studentIdentifier);
+        }
+        else
+        {
+            addStudentJson = "{" +
+                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+                "\"studentUsername\":\"" + studentIdentifier + "\"" +
+                "}";
+            Debug.Log("Adding student by username: " + studentIdentifier);
+        }
 
         string proxyUrl = PROXY_BASE_URL + ADD_STUDENT_ENDPOINT;
 
@@ -393,7 +412,24 @@ public class FirebaseProxyService : MonoBehaviour
             {
                 Debug.LogError("Student addition error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "An error occurred while adding student: " + www.error);
+                
+                // Try to parse the actual error message from backend response
+                string actualErrorMessage = www.error; // Default to HTTP error
+                try
+                {
+                    ProxyResponse errorResponse = JsonUtility.FromJson<ProxyResponse>(www.downloadHandler.text);
+                    if (!string.IsNullOrEmpty(errorResponse.error))
+                    {
+                        actualErrorMessage = errorResponse.error;
+                        Debug.Log("Parsed backend error message: " + actualErrorMessage);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning("Could not parse backend error response: " + e.Message);
+                }
+                
+                callback?.Invoke(false, actualErrorMessage);
             }
             else
             {
@@ -416,12 +452,27 @@ public class FirebaseProxyService : MonoBehaviour
         }
     }
 
-    private IEnumerator RemoveStudentFromTeacherCoroutine(string studentId, Action<bool, string> callback)
+    // Updated coroutine to support both code and username
+    private IEnumerator RemoveStudentFromTeacherCoroutine(string studentIdentifier, bool isCode, Action<bool, string> callback)
     {
-        string removeStudentJson = "{"
-            + "\"teacherId\":\"" + _teacherPrivateCode + "\","
-            + "\"studentId\":\"" + studentId + "\""
-            + "}";
+        // Build JSON body with either studentId or studentUsername
+        string removeStudentJson;
+        if (isCode)
+        {
+            removeStudentJson = "{" +
+                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+                "\"studentId\":\"" + studentIdentifier + "\"" +
+                "}";
+            Debug.Log("Removing student by code: " + studentIdentifier);
+        }
+        else
+        {
+            removeStudentJson = "{" +
+                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+                "\"studentUsername\":\"" + studentIdentifier + "\"" +
+                "}";
+            Debug.Log("Removing student by username: " + studentIdentifier);
+        }
 
         string proxyUrl = PROXY_BASE_URL + REMOVE_STUDENT_ENDPOINT;
 
@@ -442,7 +493,24 @@ public class FirebaseProxyService : MonoBehaviour
             {
                 Debug.LogError("Student removal error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "An error occurred while removing student: " + www.error);
+                
+                // Try to parse the actual error message from backend response
+                string actualErrorMessage = www.error; // Default to HTTP error
+                try
+                {
+                    ProxyResponse errorResponse = JsonUtility.FromJson<ProxyResponse>(www.downloadHandler.text);
+                    if (!string.IsNullOrEmpty(errorResponse.error))
+                    {
+                        actualErrorMessage = errorResponse.error;
+                        Debug.Log("Parsed backend error message: " + actualErrorMessage);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning("Could not parse backend error response: " + e.Message);
+                }
+                
+                callback?.Invoke(false, actualErrorMessage);
             }
             else
             {
