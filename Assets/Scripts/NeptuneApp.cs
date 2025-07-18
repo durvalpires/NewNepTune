@@ -308,7 +308,7 @@ public class NeptuneApp : MonoBehaviour
         if (!studentIdentifier.StartsWith("STU-"))
         {
             Debug.LogError("Student code must start with STU-.");
-            PopUpError(8); // Hatalı kod popup
+            PopUpError(8); // popup error
             return;
         }
         Debug.Log($"Student addition process starting: Identifier: {studentIdentifier}");
@@ -382,7 +382,7 @@ public class NeptuneApp : MonoBehaviour
         if (!studentIdentifier.StartsWith("STU-"))
         {
             Debug.LogError("Student code must start with STU-.");
-            PopUpError(8); // Hatalı kod popup
+            PopUpError(8); // popup error
             return;
         }
         Debug.Log($"Student removal process starting: Identifier: {studentIdentifier}");
