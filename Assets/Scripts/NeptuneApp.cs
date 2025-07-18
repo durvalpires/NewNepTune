@@ -291,19 +291,13 @@ public class NeptuneApp : MonoBehaviour
     // Student addition part - the section that enables teachers to add students.
     public void HandleAddStudent()
     {
-        // If a student addition process is already in progress, don't start a new one
         if (_isAddingStudent)
         {
             Debug.LogWarning("A student addition process is already in progress, please wait.");
             return;
         }
-        
-        // Get the student identifier (could be code or username)
         string studentIdentifier = StudentIDAddInput.text.Trim();
-        
         Debug.Log($"Student identifier input: '{studentIdentifier}' (Length: {studentIdentifier.Length})");
-        
-        // Check if input is empty or contains only placeholder text
         if (string.IsNullOrEmpty(studentIdentifier) || string.IsNullOrWhiteSpace(studentIdentifier) || 
             studentIdentifier == "Student-ID" || studentIdentifier == "Student ID" || studentIdentifier == "Enter Student ID")
         {
@@ -311,27 +305,17 @@ public class NeptuneApp : MonoBehaviour
             PopUpError(8); 
             return;
         }
-        
-        // If input starts with STU-, treat as code, else as username
-        bool isCode = studentIdentifier.StartsWith("STU-");
-        if (!isCode)
+        if (!studentIdentifier.StartsWith("STU-"))
         {
-            Debug.Log($"Student identifier does not start with STU-, treating as username: {studentIdentifier}");
+            Debug.LogError("Student code must start with STU-.");
+            PopUpError(8); // Hatalı kod popup
+            return;
         }
-        else
-        {
-            Debug.Log($"Student identifier starts with STU-, treating as code: {studentIdentifier}");
-        }
-        
         Debug.Log($"Student addition process starting: Identifier: {studentIdentifier}");
-        
-        // Start the student addition process
         _isAddingStudent = true;
-        
         if (firebaseProxyService != null)
         {
             firebaseProxyService.AddStudentToTeacher(studentIdentifier, (success, message) => {
-                
                 _isAddingStudent = false;
                 OnAddStudentCompleted(success, message);
             });
@@ -381,19 +365,13 @@ public class NeptuneApp : MonoBehaviour
     // Student removal part - the section that enables teachers to remove students.
     public void HandleRemoveStudent()
     {
-        // If a student removal process is already in progress, don't start a new one
         if (_isRemovingStudent)
         {
             Debug.LogWarning("A student removal process is already in progress, please wait.");
             return;
         }
-        
-        // Get the student identifier (could be code or username)
         string studentIdentifier = StudentIDRemoveInput.text.Trim();
-        
         Debug.Log($"Student identifier input for removal: '{studentIdentifier}' (Length: {studentIdentifier.Length})");
-        
-        // Check if input is empty or contains only placeholder text
         if (string.IsNullOrEmpty(studentIdentifier) || string.IsNullOrWhiteSpace(studentIdentifier) || 
             studentIdentifier == "Student-ID" || studentIdentifier == "Student ID" || studentIdentifier == "Enter Student ID")
         {
@@ -401,27 +379,17 @@ public class NeptuneApp : MonoBehaviour
             PopUpError(8); 
             return;
         }
-        
-        // If input starts with STU-, treat as code, else as username
-        bool isCode = studentIdentifier.StartsWith("STU-");
-        if (!isCode)
+        if (!studentIdentifier.StartsWith("STU-"))
         {
-            Debug.Log($"Student identifier does not start with STU-, treating as username: {studentIdentifier}");
+            Debug.LogError("Student code must start with STU-.");
+            PopUpError(8); // Hatalı kod popup
+            return;
         }
-        else
-        {
-            Debug.Log($"Student identifier starts with STU-, treating as code: {studentIdentifier}");
-        }
-        
         Debug.Log($"Student removal process starting: Identifier: {studentIdentifier}");
-        
-        // Start the student removal process
         _isRemovingStudent = true;
-        
         if (firebaseProxyService != null)
         {
             firebaseProxyService.RemoveStudentFromTeacher(studentIdentifier, (success, message) => {
-                
                 _isRemovingStudent = false;
                 OnRemoveStudentCompleted(success, message);
             });

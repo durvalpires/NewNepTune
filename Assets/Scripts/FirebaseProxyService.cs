@@ -131,10 +131,13 @@ public class FirebaseProxyService : MonoBehaviour
             callback?.Invoke(false, "You must be logged in as a teacher to add a student.");
             return;
         }
-
-        // If the identifier starts with STU-, treat as code, else as username
-        bool isCode = !string.IsNullOrEmpty(studentIdentifier) && studentIdentifier.StartsWith("STU-");
-        StartCoroutine(AddStudentToTeacherCoroutine(studentIdentifier, isCode, callback));
+        if (string.IsNullOrEmpty(studentIdentifier) || !studentIdentifier.StartsWith("STU-"))
+        {
+            Debug.LogError("Student code must start with STU-.");
+            callback?.Invoke(false, "Student code must start with STU-.");
+            return;
+        }
+        StartCoroutine(AddStudentToTeacherCoroutine(studentIdentifier, callback));
     }
 
     public void RemoveStudentFromTeacher(string studentIdentifier, Action<bool, string> callback = null)
@@ -145,10 +148,13 @@ public class FirebaseProxyService : MonoBehaviour
             callback?.Invoke(false, "You must be logged in as a teacher to remove a student.");
             return;
         }
-
-        // If the identifier starts with STU-, treat as code, else as username
-        bool isCode = !string.IsNullOrEmpty(studentIdentifier) && studentIdentifier.StartsWith("STU-");
-        StartCoroutine(RemoveStudentFromTeacherCoroutine(studentIdentifier, isCode, callback));
+        if (string.IsNullOrEmpty(studentIdentifier) || !studentIdentifier.StartsWith("STU-"))
+        {
+            Debug.LogError("Student code must start with STU-.");
+            callback?.Invoke(false, "Student code must start with STU-.");
+            return;
+        }
+        StartCoroutine(RemoveStudentFromTeacherCoroutine(studentIdentifier, callback));
     }
 
     public void GetTeacherStudents(Action<bool, List<StudentInfo>> callback = null)
@@ -372,32 +378,16 @@ public class FirebaseProxyService : MonoBehaviour
     }
 
     // Updated coroutine to support both code and username
-    private IEnumerator AddStudentToTeacherCoroutine(string studentIdentifier, bool isCode, Action<bool, string> callback)
+    private IEnumerator AddStudentToTeacherCoroutine(string studentIdentifier, Action<bool, string> callback)
     {
-        // Build JSON body with either studentId or studentUsername
-        string addStudentJson;
-        if (isCode)
-        {
-            addStudentJson = "{" +
-                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
-                "\"studentId\":\"" + studentIdentifier + "\"" +
-                "}";
-            Debug.Log("Adding student by code: " + studentIdentifier);
-        }
-        else
-        {
-            addStudentJson = "{" +
-                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
-                "\"studentUsername\":\"" + studentIdentifier + "\"" +
-                "}";
-            Debug.Log("Adding student by username: " + studentIdentifier);
-        }
-
+        string addStudentJson = "{" +
+            "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+            "\"studentId\":\"" + studentIdentifier + "\"" +
+            "}";
+        Debug.Log("Adding student by code: " + studentIdentifier);
         string proxyUrl = PROXY_BASE_URL + ADD_STUDENT_ENDPOINT;
-
         Debug.Log("Sending student addition request to proxy server: " + proxyUrl);
         Debug.Log("Request content: " + addStudentJson);
-
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(addStudentJson);
@@ -405,16 +395,12 @@ public class FirebaseProxyService : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "application/json");
             www.SetRequestHeader("Authorization", "Bearer " + _authToken);
-
             yield return www.SendWebRequest();
-
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("Student addition error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                
-                // Try to parse the actual error message from backend response
-                string actualErrorMessage = www.error; // Default to HTTP error
+                string actualErrorMessage = www.error;
                 try
                 {
                     ProxyResponse errorResponse = JsonUtility.FromJson<ProxyResponse>(www.downloadHandler.text);
@@ -428,16 +414,13 @@ public class FirebaseProxyService : MonoBehaviour
                 {
                     Debug.LogWarning("Could not parse backend error response: " + e.Message);
                 }
-                
                 callback?.Invoke(false, actualErrorMessage);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
                 Debug.Log("Proxy response: " + responseJson);
-
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
-
                 if (!string.IsNullOrEmpty(response.error))
                 {
                     Debug.LogError("Student addition error: " + response.error);
@@ -453,32 +436,16 @@ public class FirebaseProxyService : MonoBehaviour
     }
 
     // Updated coroutine to support both code and username
-    private IEnumerator RemoveStudentFromTeacherCoroutine(string studentIdentifier, bool isCode, Action<bool, string> callback)
+    private IEnumerator RemoveStudentFromTeacherCoroutine(string studentIdentifier, Action<bool, string> callback)
     {
-        // Build JSON body with either studentId or studentUsername
-        string removeStudentJson;
-        if (isCode)
-        {
-            removeStudentJson = "{" +
-                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
-                "\"studentId\":\"" + studentIdentifier + "\"" +
-                "}";
-            Debug.Log("Removing student by code: " + studentIdentifier);
-        }
-        else
-        {
-            removeStudentJson = "{" +
-                "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
-                "\"studentUsername\":\"" + studentIdentifier + "\"" +
-                "}";
-            Debug.Log("Removing student by username: " + studentIdentifier);
-        }
-
+        string removeStudentJson = "{" +
+            "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+            "\"studentId\":\"" + studentIdentifier + "\"" +
+            "}";
+        Debug.Log("Removing student by code: " + studentIdentifier);
         string proxyUrl = PROXY_BASE_URL + REMOVE_STUDENT_ENDPOINT;
-
         Debug.Log("Sending student removal request to proxy server: " + proxyUrl);
         Debug.Log("Request content: " + removeStudentJson);
-
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(removeStudentJson);
@@ -486,16 +453,12 @@ public class FirebaseProxyService : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "application/json");
             www.SetRequestHeader("Authorization", "Bearer " + _authToken);
-
             yield return www.SendWebRequest();
-
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("Student removal error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                
-                // Try to parse the actual error message from backend response
-                string actualErrorMessage = www.error; // Default to HTTP error
+                string actualErrorMessage = www.error;
                 try
                 {
                     ProxyResponse errorResponse = JsonUtility.FromJson<ProxyResponse>(www.downloadHandler.text);
@@ -509,16 +472,13 @@ public class FirebaseProxyService : MonoBehaviour
                 {
                     Debug.LogWarning("Could not parse backend error response: " + e.Message);
                 }
-                
                 callback?.Invoke(false, actualErrorMessage);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
                 Debug.Log("Proxy response: " + responseJson);
-
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
-
                 if (!string.IsNullOrEmpty(response.error))
                 {
                     Debug.LogError("Student removal error: " + response.error);
