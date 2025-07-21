@@ -27,14 +27,14 @@ namespace Mediapipe {
             "CjdtZWRpYXBpcGUvY2FsY3VsYXRvcnMvdGVuc29yL2luZmVyZW5jZV9jYWxj",
             "dWxhdG9yLnByb3RvEgltZWRpYXBpcGUaJG1lZGlhcGlwZS9mcmFtZXdvcmsv",
             "Y2FsY3VsYXRvci5wcm90bxosbWVkaWFwaXBlL2ZyYW1ld29yay9jYWxjdWxh",
-            "dG9yX29wdGlvbnMucHJvdG8izhEKGkluZmVyZW5jZUNhbGN1bGF0b3JPcHRp",
+            "dG9yX29wdGlvbnMucHJvdG8i+BEKGkluZmVyZW5jZUNhbGN1bGF0b3JPcHRp",
             "b25zEhIKCm1vZGVsX3BhdGgYASABKAkSFgoOdHJ5X21tYXBfbW9kZWwYByAB",
             "KAgSGgoHdXNlX2dwdRgCIAEoCDoFZmFsc2VCAhgBEhwKCXVzZV9ubmFwaRgD",
             "IAEoCDoFZmFsc2VCAhgBEhoKDmNwdV9udW1fdGhyZWFkGAQgASgFOgItMRJA",
             "CghkZWxlZ2F0ZRgFIAEoCzIuLm1lZGlhcGlwZS5JbmZlcmVuY2VDYWxjdWxh",
             "dG9yT3B0aW9ucy5EZWxlZ2F0ZRJUChNpbnB1dF9vdXRwdXRfY29uZmlnGAgg",
             "ASgLMjcubWVkaWFwaXBlLkluZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25zLklu",
-            "cHV0T3V0cHV0Q29uZmlnGrQICghEZWxlZ2F0ZRJHCgZ0ZmxpdGUYASABKAsy",
+            "cHV0T3V0cHV0Q29uZmlnGt4ICghEZWxlZ2F0ZRJHCgZ0ZmxpdGUYASABKAsy",
             "NS5tZWRpYXBpcGUuSW5mZXJlbmNlQ2FsY3VsYXRvck9wdGlvbnMuRGVsZWdh",
             "dGUuVGZMaXRlSAASQQoDZ3B1GAIgASgLMjIubWVkaWFwaXBlLkluZmVyZW5j",
             "ZUNhbGN1bGF0b3JPcHRpb25zLkRlbGVnYXRlLkdwdUgAEkUKBW5uYXBpGAMg",
@@ -57,36 +57,36 @@ namespace Mediapipe {
             "ZW5jZVVzYWdlEg8KC1VOU1BFQ0lGSUVEEAASFgoSRkFTVF9TSU5HTEVfQU5T",
             "V0VSEAESEwoPU1VTVEFJTkVEX1NQRUVEEAIaSQoFTm5hcGkSEQoJY2FjaGVf",
             "ZGlyGAEgASgJEhMKC21vZGVsX3Rva2VuGAIgASgJEhgKEGFjY2VsZXJhdG9y",
-            "X25hbWUYAyABKAkaIgoHWG5ucGFjaxIXCgtudW1fdGhyZWFkcxgBIAEoBToC",
-            "LTFCCgoIZGVsZWdhdGUaiAYKEUlucHV0T3V0cHV0Q29uZmlnEmwKGGlucHV0",
-            "X3RlbnNvcl9pbmRpY2VzX21hcBgBIAEoCzJILm1lZGlhcGlwZS5JbmZlcmVu",
-            "Y2VDYWxjdWxhdG9yT3B0aW9ucy5JbnB1dE91dHB1dENvbmZpZy5UZW5zb3JJ",
-            "bmRpY2VzTWFwSAASaAoWaW5wdXRfdGVuc29yX25hbWVzX21hcBgDIAEoCzJG",
-            "Lm1lZGlhcGlwZS5JbmZlcmVuY2VDYWxjdWxhdG9yT3B0aW9ucy5JbnB1dE91",
-            "dHB1dENvbmZpZy5UZW5zb3JOYW1lc01hcEgAEm0KGW91dHB1dF90ZW5zb3Jf",
-            "aW5kaWNlc19tYXAYAiABKAsySC5tZWRpYXBpcGUuSW5mZXJlbmNlQ2FsY3Vs",
-            "YXRvck9wdGlvbnMuSW5wdXRPdXRwdXRDb25maWcuVGVuc29ySW5kaWNlc01h",
-            "cEgBEmkKF291dHB1dF90ZW5zb3JfbmFtZXNfbWFwGAQgASgLMkYubWVkaWFw",
-            "aXBlLkluZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25zLklucHV0T3V0cHV0Q29u",
-            "ZmlnLlRlbnNvck5hbWVzTWFwSAESaQoVZmVlZGJhY2tfdGVuc29yX2xpbmtz",
-            "GAUgAygLMkoubWVkaWFwaXBlLkluZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25z",
-            "LklucHV0T3V0cHV0Q29uZmlnLkZlZWRiYWNrVGVuc29yTGluaxo0ChBUZW5z",
-            "b3JJbmRpY2VzTWFwEiAKFG1vZGVsX3RlbnNvcl9pbmRpY2VzGAEgAygFQgIQ",
-            "ARomCg5UZW5zb3JOYW1lc01hcBIUCgx0ZW5zb3JfbmFtZXMYASADKAkaUwoS",
-            "RmVlZGJhY2tUZW5zb3JMaW5rEh8KF2Zyb21fb3V0cHV0X3RlbnNvcl9uYW1l",
-            "GAEgASgJEhwKFHRvX2lucHV0X3RlbnNvcl9uYW1lGAIgASgJQhAKDklucHV0",
-            "VGVuc29yTWFwQhEKD091dHB1dFRlbnNvck1hcDJUCgNleHQSHC5tZWRpYXBp",
-            "cGUuQ2FsY3VsYXRvck9wdGlvbnMY99PLoAEgASgLMiUubWVkaWFwaXBlLklu",
-            "ZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25zQkEKJWNvbS5nb29nbGUubWVkaWFw",
-            "aXBlLmNhbGN1bGF0b3IucHJvdG9CGEluZmVyZW5jZUNhbGN1bGF0b3JQcm90",
-            "bw=="));
+            "X25hbWUYAyABKAkaTAoHWG5ucGFjaxIXCgtudW1fdGhyZWFkcxgBIAEoBToC",
+            "LTESIgoaZW5hYmxlX3plcm9fY29weV90ZW5zb3JfaW8YByABKAhKBAgDEARC",
+            "CgoIZGVsZWdhdGUaiAYKEUlucHV0T3V0cHV0Q29uZmlnEmwKGGlucHV0X3Rl",
+            "bnNvcl9pbmRpY2VzX21hcBgBIAEoCzJILm1lZGlhcGlwZS5JbmZlcmVuY2VD",
+            "YWxjdWxhdG9yT3B0aW9ucy5JbnB1dE91dHB1dENvbmZpZy5UZW5zb3JJbmRp",
+            "Y2VzTWFwSAASaAoWaW5wdXRfdGVuc29yX25hbWVzX21hcBgDIAEoCzJGLm1l",
+            "ZGlhcGlwZS5JbmZlcmVuY2VDYWxjdWxhdG9yT3B0aW9ucy5JbnB1dE91dHB1",
+            "dENvbmZpZy5UZW5zb3JOYW1lc01hcEgAEm0KGW91dHB1dF90ZW5zb3JfaW5k",
+            "aWNlc19tYXAYAiABKAsySC5tZWRpYXBpcGUuSW5mZXJlbmNlQ2FsY3VsYXRv",
+            "ck9wdGlvbnMuSW5wdXRPdXRwdXRDb25maWcuVGVuc29ySW5kaWNlc01hcEgB",
+            "EmkKF291dHB1dF90ZW5zb3JfbmFtZXNfbWFwGAQgASgLMkYubWVkaWFwaXBl",
+            "LkluZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25zLklucHV0T3V0cHV0Q29uZmln",
+            "LlRlbnNvck5hbWVzTWFwSAESaQoVZmVlZGJhY2tfdGVuc29yX2xpbmtzGAUg",
+            "AygLMkoubWVkaWFwaXBlLkluZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25zLklu",
+            "cHV0T3V0cHV0Q29uZmlnLkZlZWRiYWNrVGVuc29yTGluaxo0ChBUZW5zb3JJ",
+            "bmRpY2VzTWFwEiAKFG1vZGVsX3RlbnNvcl9pbmRpY2VzGAEgAygFQgIQARom",
+            "Cg5UZW5zb3JOYW1lc01hcBIUCgx0ZW5zb3JfbmFtZXMYASADKAkaUwoSRmVl",
+            "ZGJhY2tUZW5zb3JMaW5rEh8KF2Zyb21fb3V0cHV0X3RlbnNvcl9uYW1lGAEg",
+            "ASgJEhwKFHRvX2lucHV0X3RlbnNvcl9uYW1lGAIgASgJQhAKDklucHV0VGVu",
+            "c29yTWFwQhEKD091dHB1dFRlbnNvck1hcDJUCgNleHQSHC5tZWRpYXBpcGUu",
+            "Q2FsY3VsYXRvck9wdGlvbnMY99PLoAEgASgLMiUubWVkaWFwaXBlLkluZmVy",
+            "ZW5jZUNhbGN1bGF0b3JPcHRpb25zQkEKJWNvbS5nb29nbGUubWVkaWFwaXBl",
+            "LmNhbGN1bGF0b3IucHJvdG9CGEluZmVyZW5jZUNhbGN1bGF0b3JQcm90bw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Mediapipe.CalculatorReflection.Descriptor, global::Mediapipe.CalculatorOptionsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions), global::Mediapipe.InferenceCalculatorOptions.Parser, new[]{ "ModelPath", "TryMmapModel", "UseGpu", "UseNnapi", "CpuNumThread", "Delegate", "InputOutputConfig" }, null, null, new pb::Extension[] { global::Mediapipe.InferenceCalculatorOptions.Extensions.Ext }, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Parser, new[]{ "Tflite", "Gpu", "Nnapi", "Xnnpack" }, new[]{ "Delegate" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.TfLite), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.TfLite.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Parser, new[]{ "UseAdvancedGpuApi", "Api", "AllowPrecisionLoss", "CachedKernelPath", "SerializedModelDir", "CacheWritingBehavior", "ModelToken", "Usage" }, null, new[]{ typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.Api), typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior), typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.InferenceUsage) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Nnapi), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Nnapi.Parser, new[]{ "CacheDir", "ModelToken", "AcceleratorName" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Xnnpack), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Xnnpack.Parser, new[]{ "NumThreads" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Xnnpack), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Xnnpack.Parser, new[]{ "NumThreads", "EnableZeroCopyTensorIo" }, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig), global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig.Parser, new[]{ "InputTensorIndicesMap", "InputTensorNamesMap", "OutputTensorIndicesMap", "OutputTensorNamesMap", "FeedbackTensorLinks" }, new[]{ "InputTensorMap", "OutputTensorMap" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig.Types.TensorIndicesMap), global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig.Types.TensorIndicesMap.Parser, new[]{ "ModelTensorIndices" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig.Types.TensorNamesMap), global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig.Types.TensorNamesMap.Parser, new[]{ "TensorNames" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig.Types.FeedbackTensorLink), global::Mediapipe.InferenceCalculatorOptions.Types.InputOutputConfig.Types.FeedbackTensorLink.Parser, new[]{ "FromOutputTensorName", "ToInputTensorName" }, null, null, null, null)})})
@@ -2243,6 +2243,7 @@ namespace Mediapipe {
             public Xnnpack(Xnnpack other) : this() {
               _hasBits0 = other._hasBits0;
               numThreads_ = other.numThreads_;
+              enableZeroCopyTensorIo_ = other.enableZeroCopyTensorIo_;
               _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
             }
 
@@ -2283,6 +2284,42 @@ namespace Mediapipe {
               _hasBits0 &= ~1;
             }
 
+            /// <summary>Field number for the "enable_zero_copy_tensor_io" field.</summary>
+            public const int EnableZeroCopyTensorIoFieldNumber = 7;
+            private readonly static bool EnableZeroCopyTensorIoDefaultValue = false;
+
+            private bool enableZeroCopyTensorIo_;
+            /// <summary>
+            /// Enables an experimental TfLite feature to directly access the MP input
+            /// tensors (and this way avoids copying the data). Note that this requires
+            /// *all* input tensors to be aligned to tflite::kDefaultTensorAlignment
+            /// bytes and that the model has no duplicate output tensors (tensors with
+            /// identical TfLite tensor indices) and no passthrough input->output
+            /// tensors (input and output tensors with identical TfLite tensor
+            /// indices).
+            /// </summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public bool EnableZeroCopyTensorIo {
+              get { if ((_hasBits0 & 2) != 0) { return enableZeroCopyTensorIo_; } else { return EnableZeroCopyTensorIoDefaultValue; } }
+              set {
+                _hasBits0 |= 2;
+                enableZeroCopyTensorIo_ = value;
+              }
+            }
+            /// <summary>Gets whether the "enable_zero_copy_tensor_io" field is set</summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public bool HasEnableZeroCopyTensorIo {
+              get { return (_hasBits0 & 2) != 0; }
+            }
+            /// <summary>Clears the value of the "enable_zero_copy_tensor_io" field</summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void ClearEnableZeroCopyTensorIo() {
+              _hasBits0 &= ~2;
+            }
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
             public override bool Equals(object other) {
@@ -2299,6 +2336,7 @@ namespace Mediapipe {
                 return true;
               }
               if (NumThreads != other.NumThreads) return false;
+              if (EnableZeroCopyTensorIo != other.EnableZeroCopyTensorIo) return false;
               return Equals(_unknownFields, other._unknownFields);
             }
 
@@ -2307,6 +2345,7 @@ namespace Mediapipe {
             public override int GetHashCode() {
               int hash = 1;
               if (HasNumThreads) hash ^= NumThreads.GetHashCode();
+              if (HasEnableZeroCopyTensorIo) hash ^= EnableZeroCopyTensorIo.GetHashCode();
               if (_unknownFields != null) {
                 hash ^= _unknownFields.GetHashCode();
               }
@@ -2329,6 +2368,10 @@ namespace Mediapipe {
                 output.WriteRawTag(8);
                 output.WriteInt32(NumThreads);
               }
+              if (HasEnableZeroCopyTensorIo) {
+                output.WriteRawTag(56);
+                output.WriteBool(EnableZeroCopyTensorIo);
+              }
               if (_unknownFields != null) {
                 _unknownFields.WriteTo(output);
               }
@@ -2343,6 +2386,10 @@ namespace Mediapipe {
                 output.WriteRawTag(8);
                 output.WriteInt32(NumThreads);
               }
+              if (HasEnableZeroCopyTensorIo) {
+                output.WriteRawTag(56);
+                output.WriteBool(EnableZeroCopyTensorIo);
+              }
               if (_unknownFields != null) {
                 _unknownFields.WriteTo(ref output);
               }
@@ -2355,6 +2402,9 @@ namespace Mediapipe {
               int size = 0;
               if (HasNumThreads) {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(NumThreads);
+              }
+              if (HasEnableZeroCopyTensorIo) {
+                size += 1 + 1;
               }
               if (_unknownFields != null) {
                 size += _unknownFields.CalculateSize();
@@ -2370,6 +2420,9 @@ namespace Mediapipe {
               }
               if (other.HasNumThreads) {
                 NumThreads = other.NumThreads;
+              }
+              if (other.HasEnableZeroCopyTensorIo) {
+                EnableZeroCopyTensorIo = other.EnableZeroCopyTensorIo;
               }
               _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
             }
@@ -2390,6 +2443,10 @@ namespace Mediapipe {
                     NumThreads = input.ReadInt32();
                     break;
                   }
+                  case 56: {
+                    EnableZeroCopyTensorIo = input.ReadBool();
+                    break;
+                  }
                 }
               }
             #endif
@@ -2407,6 +2464,10 @@ namespace Mediapipe {
                     break;
                   case 8: {
                     NumThreads = input.ReadInt32();
+                    break;
+                  }
+                  case 56: {
+                    EnableZeroCopyTensorIo = input.ReadBool();
                     break;
                   }
                 }
