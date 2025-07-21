@@ -862,7 +862,12 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Registration failed! Error: {message}");
-            PopUpError(2); // Show error here too.
+            if (message.Contains("email address is already in use"))
+            {
+                PopUpError(16); // Show popup for student is not in the teacher's list
+            }
+            else
+                PopUpError(0); // Show error here too.
         }
     }
 

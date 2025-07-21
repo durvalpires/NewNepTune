@@ -266,7 +266,7 @@ public class FirebaseProxyService : MonoBehaviour
             {
                 Debug.LogError("Proxy Authentication error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "An error occurred during registration: " + www.error);
+                callback?.Invoke(false, "An error occurred during registration: " + www.downloadHandler.text);
             }
             else
             {
