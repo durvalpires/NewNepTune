@@ -291,44 +291,31 @@ public class NeptuneApp : MonoBehaviour
     // Student addition part - the section that enables teachers to add students.
     public void HandleAddStudent()
     {
-        // If a student addition process is already in progress, don't start a new one
         if (_isAddingStudent)
         {
             Debug.LogWarning("A student addition process is already in progress, please wait.");
             return;
         }
-        
-        // Get the student ID
-        string studentID = StudentIDAddInput.text.Trim();
-        
-        Debug.Log($"Student ID input: '{studentID}' (Length: {studentID.Length})");
-        
-        // Check if input is empty or contains only placeholder text
-        if (string.IsNullOrEmpty(studentID) || string.IsNullOrWhiteSpace(studentID) || 
-            studentID == "Student-ID" || studentID == "Student ID" || studentID == "Enter Student ID")
+        string studentIdentifier = StudentIDAddInput.text.Trim();
+        Debug.Log($"Student identifier input: '{studentIdentifier}' (Length: {studentIdentifier.Length})");
+        if (string.IsNullOrEmpty(studentIdentifier) || string.IsNullOrWhiteSpace(studentIdentifier) || 
+            studentIdentifier == "Student-ID" || studentIdentifier == "Student ID" || studentIdentifier == "Enter Student ID")
         {
-            Debug.LogError("Student ID field cannot be left empty.");
+            Debug.LogError("Student identifier field cannot be left empty.");
             PopUpError(8); 
             return;
         }
-        
-        // Check ID format (must start with STU-) - We should get an error for student codes that don't start with STU.
-        if (!studentID.StartsWith("STU-"))
+        if (!studentIdentifier.StartsWith("STU-"))
         {
-            Debug.LogError("Invalid student ID format. ID must start with 'STU-'.");
-            PopUpError(10); 
+            Debug.LogError("Student code must start with STU-.");
+            PopUpError(8); // popup error
             return;
         }
-        
-        Debug.Log($"Student addition process starting: StudentID: {studentID}");
-        
-        // Start the student addition process
+        Debug.Log($"Student addition process starting: Identifier: {studentIdentifier}");
         _isAddingStudent = true;
-        
         if (firebaseProxyService != null)
         {
-            firebaseProxyService.AddStudentToTeacher(studentID, (success, message) => {
-                
+            firebaseProxyService.AddStudentToTeacher(studentIdentifier, (success, message) => {
                 _isAddingStudent = false;
                 OnAddStudentCompleted(success, message);
             });
@@ -362,51 +349,47 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Student addition failed! Error: {message}");
-            PopUpError(9); // Show error popup for duplicate student
+            
+            // Check error message to show appropriate popup
+            if (message.Contains("No student found") || message.Contains("No valid student found"))
+            {
+                PopUpError(12); // Show popup for student not found
+            }
+            else
+            {
+                PopUpError(9); // Show error popup for other errors (like duplicate student)
+            }
         }
     }
 
     // Student removal part - the section that enables teachers to remove students.
     public void HandleRemoveStudent()
     {
-        // If a student removal process is already in progress, don't start a new one
         if (_isRemovingStudent)
         {
             Debug.LogWarning("A student removal process is already in progress, please wait.");
             return;
         }
-        
-        // Get the student ID
-        string studentID = StudentIDRemoveInput.text.Trim();
-        
-        Debug.Log($"Student ID input for removal: '{studentID}' (Length: {studentID.Length})");
-        
-        // Check if input is empty or contains only placeholder text
-        if (string.IsNullOrEmpty(studentID) || string.IsNullOrWhiteSpace(studentID) || 
-            studentID == "Student-ID" || studentID == "Student ID" || studentID == "Enter Student ID")
+        string studentIdentifier = StudentIDRemoveInput.text.Trim();
+        Debug.Log($"Student identifier input for removal: '{studentIdentifier}' (Length: {studentIdentifier.Length})");
+        if (string.IsNullOrEmpty(studentIdentifier) || string.IsNullOrWhiteSpace(studentIdentifier) || 
+            studentIdentifier == "Student-ID" || studentIdentifier == "Student ID" || studentIdentifier == "Enter Student ID")
         {
-            Debug.LogError("Student ID field cannot be left empty.");
+            Debug.LogError("Student identifier field cannot be left empty.");
             PopUpError(8); 
             return;
         }
-        
-        // Check ID format (must start with STU-) - We should get an error for student codes that don't start with STU.
-        if (!studentID.StartsWith("STU-"))
+        if (!studentIdentifier.StartsWith("STU-"))
         {
-            Debug.LogError("Invalid student ID format. ID must start with 'STU-'.");
-            PopUpError(10); 
+            Debug.LogError("Student code must start with STU-.");
+            PopUpError(8); // popup error
             return;
         }
-        
-        Debug.Log($"Student removal process starting: StudentID: {studentID}");
-        
-        // Start the student removal process
+        Debug.Log($"Student removal process starting: Identifier: {studentIdentifier}");
         _isRemovingStudent = true;
-        
         if (firebaseProxyService != null)
         {
-            firebaseProxyService.RemoveStudentFromTeacher(studentID, (success, message) => {
-                
+            firebaseProxyService.RemoveStudentFromTeacher(studentIdentifier, (success, message) => {
                 _isRemovingStudent = false;
                 OnRemoveStudentCompleted(success, message);
             });
@@ -439,7 +422,20 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Student removal failed! Error: {message}");
-            PopUpError(9); // Show error popup for student not found or not in list
+            
+            // Check error message to show appropriate popup
+            if (message.Contains("not in the teacher's list"))
+            {
+                PopUpError(13); // Show popup for student is not in the teacher's list
+            }
+            else if (message.Contains("No student found") || message.Contains("No valid student found"))
+            {
+                PopUpError(12); // Show popup for student not found in backend
+            }
+            else
+            {
+                PopUpError(9); // Show error popup for other errors
+            }
         }
     }
 
@@ -472,10 +468,11 @@ public class NeptuneApp : MonoBehaviour
         string username = TeacherUsernameInput.text;
         string password = TeacherPassInput.text;
 
+        // Show popup 14 if any field is empty
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
             Debug.LogError("Email, username and password fields cannot be left empty.");
-            PopUpError(2);
+            PopUpError(14); // Show new popup for empty fields
             return;
         }
 
@@ -556,7 +553,7 @@ public class NeptuneApp : MonoBehaviour
             if (firebaseProxyService.UserType != "teacher")
             {
                 Debug.LogError("Student account cannot login from teacher panel!");
-                PopUpError(0); // Show error popup
+                PopUpError(15); // Show sign in error popup
                 return; // Early return to prevent further processing
             }
             
@@ -588,7 +585,7 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Login failed! Error: {message}");
-            PopUpError(0); // Show error popup
+            PopUpError(15); // Show sign in error popup
         }
     }
     
@@ -603,7 +600,7 @@ public class NeptuneApp : MonoBehaviour
             if (firebaseProxyService.UserType != "student")
             {
                 Debug.LogError("Teacher account cannot login from student panel!");
-                PopUpError(0); // Show error popup
+                PopUpError(15); // Show sign in error popup
                 return; // Early return to prevent further processing
             }
             
@@ -626,7 +623,7 @@ public class NeptuneApp : MonoBehaviour
         else
         {
             Debug.LogError($"Student login failed! Error: {message}");
-            PopUpError(0); // Show error popup
+            PopUpError(15); // Show sign in error popup
         }
     }
     
@@ -696,10 +693,11 @@ public class NeptuneApp : MonoBehaviour
         string username = StudentUsernameInput.text;
         string password = StudentPassInput.text;
 
+        // Show popup 14 if any field is empty
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
             Debug.LogError("Email, username and password fields cannot be left empty.");
-            PopUpError(3); // Show EmptyError popup (for consistency)
+            PopUpError(14); // Show new popup for empty fields
             return;
         }
 

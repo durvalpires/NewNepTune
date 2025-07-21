@@ -123,7 +123,7 @@ public class FirebaseProxyService : MonoBehaviour
         Debug.Log("User data cleared.");
     }
 
-    public void AddStudentToTeacher(string studentId, Action<bool, string> callback = null)
+    public void AddStudentToTeacher(string studentIdentifier, Action<bool, string> callback = null)
     {
         if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
         {
@@ -131,11 +131,16 @@ public class FirebaseProxyService : MonoBehaviour
             callback?.Invoke(false, "You must be logged in as a teacher to add a student.");
             return;
         }
-
-        StartCoroutine(AddStudentToTeacherCoroutine(studentId, callback));
+        if (string.IsNullOrEmpty(studentIdentifier) || !studentIdentifier.StartsWith("STU-"))
+        {
+            Debug.LogError("Student code must start with STU-.");
+            callback?.Invoke(false, "Student code must start with STU-.");
+            return;
+        }
+        StartCoroutine(AddStudentToTeacherCoroutine(studentIdentifier, callback));
     }
 
-    public void RemoveStudentFromTeacher(string studentId, Action<bool, string> callback = null)
+    public void RemoveStudentFromTeacher(string studentIdentifier, Action<bool, string> callback = null)
     {
         if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
         {
@@ -143,8 +148,13 @@ public class FirebaseProxyService : MonoBehaviour
             callback?.Invoke(false, "You must be logged in as a teacher to remove a student.");
             return;
         }
-
-        StartCoroutine(RemoveStudentFromTeacherCoroutine(studentId, callback));
+        if (string.IsNullOrEmpty(studentIdentifier) || !studentIdentifier.StartsWith("STU-"))
+        {
+            Debug.LogError("Student code must start with STU-.");
+            callback?.Invoke(false, "Student code must start with STU-.");
+            return;
+        }
+        StartCoroutine(RemoveStudentFromTeacherCoroutine(studentIdentifier, callback));
     }
 
     public void GetTeacherStudents(Action<bool, List<StudentInfo>> callback = null)
@@ -367,18 +377,17 @@ public class FirebaseProxyService : MonoBehaviour
         }
     }
 
-    private IEnumerator AddStudentToTeacherCoroutine(string studentId, Action<bool, string> callback)
+    // Updated coroutine to support both code and username
+    private IEnumerator AddStudentToTeacherCoroutine(string studentIdentifier, Action<bool, string> callback)
     {
-        string addStudentJson = "{"
-            + "\"teacherId\":\"" + _teacherPrivateCode + "\","
-            + "\"studentId\":\"" + studentId + "\""
-            + "}";
-
+        string addStudentJson = "{" +
+            "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+            "\"studentId\":\"" + studentIdentifier + "\"" +
+            "}";
+        Debug.Log("Adding student by code: " + studentIdentifier);
         string proxyUrl = PROXY_BASE_URL + ADD_STUDENT_ENDPOINT;
-
         Debug.Log("Sending student addition request to proxy server: " + proxyUrl);
         Debug.Log("Request content: " + addStudentJson);
-
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(addStudentJson);
@@ -386,22 +395,32 @@ public class FirebaseProxyService : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "application/json");
             www.SetRequestHeader("Authorization", "Bearer " + _authToken);
-
             yield return www.SendWebRequest();
-
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("Student addition error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "An error occurred while adding student: " + www.error);
+                string actualErrorMessage = www.error;
+                try
+                {
+                    ProxyResponse errorResponse = JsonUtility.FromJson<ProxyResponse>(www.downloadHandler.text);
+                    if (!string.IsNullOrEmpty(errorResponse.error))
+                    {
+                        actualErrorMessage = errorResponse.error;
+                        Debug.Log("Parsed backend error message: " + actualErrorMessage);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning("Could not parse backend error response: " + e.Message);
+                }
+                callback?.Invoke(false, actualErrorMessage);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
                 Debug.Log("Proxy response: " + responseJson);
-
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
-
                 if (!string.IsNullOrEmpty(response.error))
                 {
                     Debug.LogError("Student addition error: " + response.error);
@@ -416,18 +435,17 @@ public class FirebaseProxyService : MonoBehaviour
         }
     }
 
-    private IEnumerator RemoveStudentFromTeacherCoroutine(string studentId, Action<bool, string> callback)
+    // Updated coroutine to support both code and username
+    private IEnumerator RemoveStudentFromTeacherCoroutine(string studentIdentifier, Action<bool, string> callback)
     {
-        string removeStudentJson = "{"
-            + "\"teacherId\":\"" + _teacherPrivateCode + "\","
-            + "\"studentId\":\"" + studentId + "\""
-            + "}";
-
+        string removeStudentJson = "{" +
+            "\"teacherId\":\"" + _teacherPrivateCode + "\"," +
+            "\"studentId\":\"" + studentIdentifier + "\"" +
+            "}";
+        Debug.Log("Removing student by code: " + studentIdentifier);
         string proxyUrl = PROXY_BASE_URL + REMOVE_STUDENT_ENDPOINT;
-
         Debug.Log("Sending student removal request to proxy server: " + proxyUrl);
         Debug.Log("Request content: " + removeStudentJson);
-
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(removeStudentJson);
@@ -435,22 +453,32 @@ public class FirebaseProxyService : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "application/json");
             www.SetRequestHeader("Authorization", "Bearer " + _authToken);
-
             yield return www.SendWebRequest();
-
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("Student removal error: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
-                callback?.Invoke(false, "An error occurred while removing student: " + www.error);
+                string actualErrorMessage = www.error;
+                try
+                {
+                    ProxyResponse errorResponse = JsonUtility.FromJson<ProxyResponse>(www.downloadHandler.text);
+                    if (!string.IsNullOrEmpty(errorResponse.error))
+                    {
+                        actualErrorMessage = errorResponse.error;
+                        Debug.Log("Parsed backend error message: " + actualErrorMessage);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning("Could not parse backend error response: " + e.Message);
+                }
+                callback?.Invoke(false, actualErrorMessage);
             }
             else
             {
                 string responseJson = www.downloadHandler.text;
                 Debug.Log("Proxy response: " + responseJson);
-
                 ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
-
                 if (!string.IsNullOrEmpty(response.error))
                 {
                     Debug.LogError("Student removal error: " + response.error);
