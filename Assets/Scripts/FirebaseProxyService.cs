@@ -674,7 +674,7 @@ public class FirebaseProxyService : MonoBehaviour
                 Debug.LogError("Reset progress request failed: " + www.error);
                 Debug.LogError("Response: " + www.downloadHandler.text);
                 
-                callback?.Invoke(false, "Logout request failed but local cleanup performed: " + www.error);
+                callback?.Invoke(false, "Reset progress request failed: " + www.error);
             }
             else
             {
@@ -704,6 +704,7 @@ public class FirebaseProxyService : MonoBehaviour
                         //TEST
                         PlayerModel.ClearData();
 
+                        //TODO I THINK NEEDS SHOULD BE ERASED
                         for (int i = 0; i <= _currentWorld; i++)
                         {
                             if (i < _currentWorld)

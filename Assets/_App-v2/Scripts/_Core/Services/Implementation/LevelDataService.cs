@@ -154,6 +154,18 @@ public class LevelDataService : ILevelDataService
         SaveLevelData().Forget();
     }
 
+    public bool IsLevelCompleted(string worldIndex, int levelIndex)
+    {
+        if (LevelData == null || LevelData.levels == null)
+            return false;
+
+        string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
+        if (!LevelData.levels.ContainsKey(key))
+            return false;
+
+        return LevelData.levels[key].Successes > 0;
+    }
+    
     public void UpdateCounter(int worldIndex, int levelIndex, CounterType counterType)
     {
         if (LevelData == null || LevelData.levels == null)

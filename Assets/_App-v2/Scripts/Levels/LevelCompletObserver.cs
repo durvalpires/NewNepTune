@@ -291,11 +291,31 @@ public class LevelCompletObserver : MonoBehaviour
                 Debug.LogError("Student ID not found! Please login as a student first");
                 return;
             }
+            
+            //TODO WE SHOULD CHECK IF WE COMPLETED A PLANET
+            if(IsLastWorldCompleted())
+            {
+                Debug.LogWarning("Last world completed! Completing world...");
+                //TODO THIS IS COMMENTED SO THAT LEVELS INIT SHOWS THE SCREEN OF PLANET COMPLETION
+                //PlayerModel.CompleteWorld(worldId);
+                sendLevel = lastLevel = 0;
+                lastWorld++;
+                sendWorld = lastWorld;
+            }
+            else
+            {
+                if(sendLevel == lastLevel)
+                {
+                    lastLevel++;
+                }
+            }
+            
+            Debug.LogWarning("Send Last World: " + sendWorld + " Last Level: " + sendLevel);
 
             StudentUpdateEndpoint.Instance.UpdateStudentInfo(
                 studentId: studentId,
-                currentLevel: sendLevel,
-                currentWorld: sendWorld,
+                currentLevel: lastLevel,
+                currentWorld: lastWorld,
                 lastTimePlayed: lastTimePlayed,
                 totalTime: totalTime,
                 detailedLevelInfo: detailedLevelInfo,
@@ -340,6 +360,22 @@ public class LevelCompletObserver : MonoBehaviour
         {
             Debug.LogError($"Student update failed: {message}");
         }
+    }
+
+    public static bool IsLastWorldCompleted()
+    {
+        //TODO THIS SHOULD BE IMPROVED
+        var data = PlayerModel.AllWorlds.worldsConfigs[lastWorld-1];
+
+        for(int i = 0; i < data.levels.Length; i++)
+        {
+            var level = data.levels[i];
+            if (!PlayerModel.IsLevelCompleted(i, data.id))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     //private static bool IsHigherProgress(int newWorld, int newLevel, int lastWorld, int lastLevel)

@@ -82,11 +82,13 @@ using UnityEngine;
 
         public static bool IsLevelCompleted(int levelIndex, string worldId)
         {
-            return GetCustomData($"w_{worldId}:l_{levelIndex}") == "done";
+            return GetCustomData($"w_{worldId}:l_{levelIndex}") == "done" ||
+                (_levelDataService != null ? _levelDataService.IsLevelCompleted(worldId, levelIndex) : false);
         }
         public static void CompleteWorld(string worldId)
         {
             SetCustomData($"w_{worldId}", "done");
+            
         }
 
         private static AllWorldsSO _allWorlds;

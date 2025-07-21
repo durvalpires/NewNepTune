@@ -72,6 +72,21 @@ public class StudentUpdateEndpoint : MonoBehaviour
             detailedInfoJson += "]";
         }
         
+        // var nextLevelToBePlayed = currentLevel + 1;
+        //
+        // //TODO WE SHOULD CHECK IF WE COMPLETED A PLANET
+        // if(LevelCompletObserver.IsLastWorldCompleted())
+        // {
+        //     currentLevel = 0;
+        //     currentWorld++;
+        // }
+        // else
+        // {
+        //     currentLevel++;
+        // }
+        //
+        // Debug.LogWarning("currentLevel: " + currentLevel + ", nextLevelToBePlayed: " + nextLevelToBePlayed);
+        
         string updateStudentJson = "{"
             + "\"studentId\":\"" + studentId + "\","
             + "\"currentLevel\":" + currentLevel + ","
@@ -129,6 +144,7 @@ public class StudentUpdateEndpoint : MonoBehaviour
             }
         }
     }
+    
     
     private string ConvertAccuracyBreakdownToJson(Dictionary<string, float> accuracyBreakdown)
     {
