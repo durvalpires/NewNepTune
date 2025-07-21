@@ -26,7 +26,7 @@ namespace Mediapipe {
           string.Concat(
             "CjhtZWRpYXBpcGUvY2FsY3VsYXRvcnMvYXVkaW8vc3BlY3Ryb2dyYW1fY2Fs",
             "Y3VsYXRvci5wcm90bxIJbWVkaWFwaXBlGiRtZWRpYXBpcGUvZnJhbWV3b3Jr",
-            "L2NhbGN1bGF0b3IucHJvdG8ikwUKHFNwZWN0cm9ncmFtQ2FsY3VsYXRvck9w",
+            "L2NhbGN1bGF0b3IucHJvdG8isAYKHFNwZWN0cm9ncmFtQ2FsY3VsYXRvck9w",
             "dGlvbnMSHgoWZnJhbWVfZHVyYXRpb25fc2Vjb25kcxgBIAEoARIgChVmcmFt",
             "ZV9vdmVybGFwX3NlY29uZHMYAiABKAE6ATASHgoQcGFkX2ZpbmFsX3BhY2tl",
             "dBgDIAEoCDoEdHJ1ZRJaCgtvdXRwdXRfdHlwZRgEIAEoDjIyLm1lZGlhcGlw",
@@ -35,17 +35,20 @@ namespace Mediapipe {
             "IAEoCDoFZmFsc2USTQoLd2luZG93X3R5cGUYBiABKA4yMi5tZWRpYXBpcGUu",
             "U3BlY3Ryb2dyYW1DYWxjdWxhdG9yT3B0aW9ucy5XaW5kb3dUeXBlOgRIQU5O",
             "EhcKDG91dHB1dF9zY2FsZRgHIAEoAToBMRIiChN1c2VfbG9jYWxfdGltZXN0",
-            "YW1wGAggASgIOgVmYWxzZRITCghmZnRfc2l6ZRgJIAEoBToBMCJUCgpPdXRw",
-            "dXRUeXBlEhUKEVNRVUFSRURfTUFHTklUVURFEAASFAoQTElORUFSX01BR05J",
-            "VFVERRABEgwKCERFQ0lCRUxTEAISCwoHQ09NUExFWBADIj4KCldpbmRvd1R5",
-            "cGUSCAoESEFOThAAEgsKB0hBTU1JTkcQARIKCgZDT1NJTkUQAhINCglTUVJU",
-            "X0hBTk4QBDJVCgNleHQSHC5tZWRpYXBpcGUuQ2FsY3VsYXRvck9wdGlvbnMY",
-            "wIiqJCABKAsyJy5tZWRpYXBpcGUuU3BlY3Ryb2dyYW1DYWxjdWxhdG9yT3B0",
-            "aW9ucw=="));
+            "YW1wGAggASgIOgVmYWxzZRITCghmZnRfc2l6ZRgJIAEoBToBMBIWCgtpbnB1",
+            "dF9zY2FsZRgKIAEoAjoBMRJaChJzYW1wbGVfYnVmZmVyX21vZGUYCyABKA4y",
+            "OC5tZWRpYXBpcGUuU3BlY3Ryb2dyYW1DYWxjdWxhdG9yT3B0aW9ucy5TYW1w",
+            "bGVCdWZmZXJNb2RlOgROT05FIlQKCk91dHB1dFR5cGUSFQoRU1FVQVJFRF9N",
+            "QUdOSVRVREUQABIUChBMSU5FQVJfTUFHTklUVURFEAESDAoIREVDSUJFTFMQ",
+            "AhILCgdDT01QTEVYEAMiPgoKV2luZG93VHlwZRIICgRIQU5OEAASCwoHSEFN",
+            "TUlORxABEgoKBkNPU0lORRACEg0KCVNRUlRfSEFOThAEIicKEFNhbXBsZUJ1",
+            "ZmZlck1vZGUSCAoETk9ORRAAEgkKBVJFU0VUEAEyVQoDZXh0EhwubWVkaWFw",
+            "aXBlLkNhbGN1bGF0b3JPcHRpb25zGMCIqiQgASgLMicubWVkaWFwaXBlLlNw",
+            "ZWN0cm9ncmFtQ2FsY3VsYXRvck9wdGlvbnM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Mediapipe.CalculatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.SpectrogramCalculatorOptions), global::Mediapipe.SpectrogramCalculatorOptions.Parser, new[]{ "FrameDurationSeconds", "FrameOverlapSeconds", "PadFinalPacket", "OutputType", "AllowMultichannelInput", "WindowType", "OutputScale", "UseLocalTimestamp", "FftSize" }, null, new[]{ typeof(global::Mediapipe.SpectrogramCalculatorOptions.Types.OutputType), typeof(global::Mediapipe.SpectrogramCalculatorOptions.Types.WindowType) }, new pb::Extension[] { global::Mediapipe.SpectrogramCalculatorOptions.Extensions.Ext }, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.SpectrogramCalculatorOptions), global::Mediapipe.SpectrogramCalculatorOptions.Parser, new[]{ "FrameDurationSeconds", "FrameOverlapSeconds", "PadFinalPacket", "OutputType", "AllowMultichannelInput", "WindowType", "OutputScale", "UseLocalTimestamp", "FftSize", "InputScale", "SampleBufferMode" }, null, new[]{ typeof(global::Mediapipe.SpectrogramCalculatorOptions.Types.OutputType), typeof(global::Mediapipe.SpectrogramCalculatorOptions.Types.WindowType), typeof(global::Mediapipe.SpectrogramCalculatorOptions.Types.SampleBufferMode) }, new pb::Extension[] { global::Mediapipe.SpectrogramCalculatorOptions.Extensions.Ext }, null)
           }));
     }
     #endregion
@@ -97,6 +100,8 @@ namespace Mediapipe {
       outputScale_ = other.outputScale_;
       useLocalTimestamp_ = other.useLocalTimestamp_;
       fftSize_ = other.fftSize_;
+      inputScale_ = other.inputScale_;
+      sampleBufferMode_ = other.sampleBufferMode_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -388,6 +393,63 @@ namespace Mediapipe {
       _hasBits0 &= ~256;
     }
 
+    /// <summary>Field number for the "input_scale" field.</summary>
+    public const int InputScaleFieldNumber = 10;
+    private readonly static float InputScaleDefaultValue = 1F;
+
+    private float inputScale_;
+    /// <summary>
+    /// Support a fixed multiplicative scaling of the input.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float InputScale {
+      get { if ((_hasBits0 & 512) != 0) { return inputScale_; } else { return InputScaleDefaultValue; } }
+      set {
+        _hasBits0 |= 512;
+        inputScale_ = value;
+      }
+    }
+    /// <summary>Gets whether the "input_scale" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasInputScale {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "input_scale" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearInputScale() {
+      _hasBits0 &= ~512;
+    }
+
+    /// <summary>Field number for the "sample_buffer_mode" field.</summary>
+    public const int SampleBufferModeFieldNumber = 11;
+    private readonly static global::Mediapipe.SpectrogramCalculatorOptions.Types.SampleBufferMode SampleBufferModeDefaultValue = global::Mediapipe.SpectrogramCalculatorOptions.Types.SampleBufferMode.None;
+
+    private global::Mediapipe.SpectrogramCalculatorOptions.Types.SampleBufferMode sampleBufferMode_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Mediapipe.SpectrogramCalculatorOptions.Types.SampleBufferMode SampleBufferMode {
+      get { if ((_hasBits0 & 1024) != 0) { return sampleBufferMode_; } else { return SampleBufferModeDefaultValue; } }
+      set {
+        _hasBits0 |= 1024;
+        sampleBufferMode_ = value;
+      }
+    }
+    /// <summary>Gets whether the "sample_buffer_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSampleBufferMode {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "sample_buffer_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSampleBufferMode() {
+      _hasBits0 &= ~1024;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -412,6 +474,8 @@ namespace Mediapipe {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(OutputScale, other.OutputScale)) return false;
       if (UseLocalTimestamp != other.UseLocalTimestamp) return false;
       if (FftSize != other.FftSize) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(InputScale, other.InputScale)) return false;
+      if (SampleBufferMode != other.SampleBufferMode) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -428,6 +492,8 @@ namespace Mediapipe {
       if (HasOutputScale) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(OutputScale);
       if (HasUseLocalTimestamp) hash ^= UseLocalTimestamp.GetHashCode();
       if (HasFftSize) hash ^= FftSize.GetHashCode();
+      if (HasInputScale) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(InputScale);
+      if (HasSampleBufferMode) hash ^= SampleBufferMode.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -482,6 +548,14 @@ namespace Mediapipe {
         output.WriteRawTag(72);
         output.WriteInt32(FftSize);
       }
+      if (HasInputScale) {
+        output.WriteRawTag(85);
+        output.WriteFloat(InputScale);
+      }
+      if (HasSampleBufferMode) {
+        output.WriteRawTag(88);
+        output.WriteEnum((int) SampleBufferMode);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -528,6 +602,14 @@ namespace Mediapipe {
         output.WriteRawTag(72);
         output.WriteInt32(FftSize);
       }
+      if (HasInputScale) {
+        output.WriteRawTag(85);
+        output.WriteFloat(InputScale);
+      }
+      if (HasSampleBufferMode) {
+        output.WriteRawTag(88);
+        output.WriteEnum((int) SampleBufferMode);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -564,6 +646,12 @@ namespace Mediapipe {
       }
       if (HasFftSize) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(FftSize);
+      }
+      if (HasInputScale) {
+        size += 1 + 4;
+      }
+      if (HasSampleBufferMode) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) SampleBufferMode);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -603,6 +691,12 @@ namespace Mediapipe {
       }
       if (other.HasFftSize) {
         FftSize = other.FftSize;
+      }
+      if (other.HasInputScale) {
+        InputScale = other.InputScale;
+      }
+      if (other.HasSampleBufferMode) {
+        SampleBufferMode = other.SampleBufferMode;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -653,6 +747,14 @@ namespace Mediapipe {
           }
           case 72: {
             FftSize = input.ReadInt32();
+            break;
+          }
+          case 85: {
+            InputScale = input.ReadFloat();
+            break;
+          }
+          case 88: {
+            SampleBufferMode = (global::Mediapipe.SpectrogramCalculatorOptions.Types.SampleBufferMode) input.ReadEnum();
             break;
           }
         }
@@ -706,6 +808,14 @@ namespace Mediapipe {
             FftSize = input.ReadInt32();
             break;
           }
+          case 85: {
+            InputScale = input.ReadFloat();
+            break;
+          }
+          case 88: {
+            SampleBufferMode = (global::Mediapipe.SpectrogramCalculatorOptions.Types.SampleBufferMode) input.ReadEnum();
+            break;
+          }
         }
       }
     }
@@ -743,6 +853,25 @@ namespace Mediapipe {
         /// Alias of COSINE.
         /// </summary>
         [pbr::OriginalName("SQRT_HANN")] SqrtHann = 4,
+      }
+
+      /// <summary>
+      /// The SpectogramCalculator buffers incoming time domain signal to slice it up
+      /// into chunks of frame_duration_seconds. This parameter controls how to treat
+      /// leftover samples at the end of the signal that were not able to form a full
+      /// chunk.
+      /// </summary>
+      public enum SampleBufferMode {
+        /// <summary>
+        /// Leftover samples from previous call are buffered and used for the next
+        /// call.
+        /// </summary>
+        [pbr::OriginalName("NONE")] None = 0,
+        /// <summary>
+        /// Leftover samples from previous call are discarded, i.e. every new signal
+        /// is processed independently.
+        /// </summary>
+        [pbr::OriginalName("RESET")] Reset = 1,
       }
 
     }
