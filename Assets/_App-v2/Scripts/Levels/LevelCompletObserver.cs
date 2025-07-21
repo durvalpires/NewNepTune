@@ -199,8 +199,6 @@ public class LevelCompletObserver : MonoBehaviour
 
             string lastTimePlayed = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            int totalTime = 300;
-
             List<StudentUpdateEndpoint.DetailedLevelInfo> detailedLevelInfo = new List<StudentUpdateEndpoint.DetailedLevelInfo>();
 
             var levelData = PlayerModelBase.LevelData;
@@ -317,7 +315,7 @@ public class LevelCompletObserver : MonoBehaviour
                 currentLevel: lastLevel,
                 currentWorld: lastWorld,
                 lastTimePlayed: lastTimePlayed,
-                totalTime: totalTime,
+                totalTime: (int)SessionTimeTracker.TotalMinutesPlayed,
                 detailedLevelInfo: detailedLevelInfo,
                  callback: OnStudentUpdateCallback
             //callback: (success, message) => {
