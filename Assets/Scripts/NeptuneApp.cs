@@ -302,7 +302,7 @@ public class NeptuneApp : MonoBehaviour
             StudentSearchInput.onValueChanged.AddListener(OnStudentSearchChanged);
         }
         
-        // Dropdown event listener'larını ekle
+        // Add dropdown event listeners
         if (YearDropdown != null)
         {
             YearDropdown.onValueChanged.AddListener(OnYearDropdownChanged);
@@ -322,7 +322,7 @@ public class NeptuneApp : MonoBehaviour
     private void OnStudentSearchChanged(string searchText)
     {
         Debug.Log($"OnStudentSearchChanged: {searchText}");
-        ApplyFilters(); // Tüm filtreleri birlikte uygula
+        ApplyFilters(); // Apply all filters together
     }
 
     // Student addition part - the section that enables teachers to add students.
@@ -1599,7 +1599,7 @@ public class NeptuneApp : MonoBehaviour
         return teachers.OrderBy(t => t).ToList();
     }
 
-    // Dropdown event handler metodları
+    // Dropdown event handler methods
     private void OnYearDropdownChanged(int index)
     {
         Debug.Log($"Year dropdown changed to index: {index}");
@@ -1618,12 +1618,12 @@ public class NeptuneApp : MonoBehaviour
         ApplyFilters();
     }
 
-    // Tüm filtreleri uygula
+    // Apply all filters
     private void ApplyFilters()
     {
         var filteredList = studentList;
         
-        // Search text filtresi
+        // Search text filter
         if (StudentSearchInput != null && !string.IsNullOrEmpty(StudentSearchInput.text))
         {
             string searchText = StudentSearchInput.text;
@@ -1633,21 +1633,21 @@ public class NeptuneApp : MonoBehaviour
             );
         }
         
-        // Year filtresi
+        // Year filter
         if (YearDropdown != null && YearDropdown.value > 0)
         {
             string selectedYear = YearDropdown.options[YearDropdown.value].text;
             filteredList = filteredList.FindAll(s => s.year == selectedYear);
         }
         
-        // Class filtresi
+        // Class filter
         if (ClassDropdown != null && ClassDropdown.value > 0)
         {
             string selectedClass = ClassDropdown.options[ClassDropdown.value].text;
             filteredList = filteredList.FindAll(s => s.class_ == selectedClass);
         }
         
-        // Teacher filtresi
+        // Teacher filter
         if (TeacherDropdown != null && TeacherDropdown.value > 0)
         {
             string selectedTeacher = TeacherDropdown.options[TeacherDropdown.value].text;
