@@ -12,10 +12,9 @@ namespace Mediapipe.Unity.Sample.Holistic
 {
   public class HolisticTrackingSolution : LegacySolutionRunner<HolisticTrackingGraph>
   {
-    [SerializeField] private RectTransform _worldAnnotationArea;
+ 
     [SerializeField] private DetectionAnnotationController _poseDetectionAnnotationController;
     [SerializeField] private HolisticLandmarkListAnnotationController _holisticAnnotationController;
-    [SerializeField] private PoseWorldLandmarkListAnnotationController _poseWorldLandmarksAnnotationController;
     [SerializeField] private MaskAnnotationController _segmentationMaskAnnotationController;
     [SerializeField] private NormalizedRectAnnotationController _poseRoiAnnotationController;
 
@@ -89,7 +88,7 @@ namespace Mediapipe.Unity.Sample.Holistic
 
       // NOTE: The screen will be resized later, keeping the aspect ratio.
       screen.Initialize(imageSource);
-      _worldAnnotationArea.localEulerAngles = imageSource.rotation.Reverse().GetEulerAngles();
+   
 
       yield return graphInitRequest;
       if (graphInitRequest.isError)
@@ -105,14 +104,13 @@ namespace Mediapipe.Unity.Sample.Holistic
         graphRunner.OnPoseLandmarksOutput += OnPoseLandmarksOutput;
         graphRunner.OnLeftHandLandmarksOutput += OnLeftHandLandmarksOutput;
         graphRunner.OnRightHandLandmarksOutput += OnRightHandLandmarksOutput;
-        graphRunner.OnPoseWorldLandmarksOutput += OnPoseWorldLandmarksOutput;
         graphRunner.OnSegmentationMaskOutput += OnSegmentationMaskOutput;
         graphRunner.OnPoseRoiOutput += OnPoseRoiOutput;
       }
 
       SetupAnnotationController(_poseDetectionAnnotationController, imageSource);
       SetupAnnotationController(_holisticAnnotationController, imageSource);
-      SetupAnnotationController(_poseWorldLandmarksAnnotationController, imageSource);
+    
       SetupAnnotationController(_segmentationMaskAnnotationController, imageSource);
       _segmentationMaskAnnotationController.InitScreen(imageSource.textureWidth, imageSource.textureHeight);
       SetupAnnotationController(_poseRoiAnnotationController, imageSource);
@@ -170,7 +168,7 @@ namespace Mediapipe.Unity.Sample.Holistic
           var result = task.Result;
           _poseDetectionAnnotationController.DrawNow(result.poseDetection);
           _holisticAnnotationController.DrawNow(result.faceLandmarks, result.poseLandmarks, result.leftHandLandmarks, result.rightHandLandmarks);
-          _poseWorldLandmarksAnnotationController.DrawNow(result.poseWorldLandmarks);
+        
           _segmentationMaskAnnotationController.DrawNow(result.segmentationMask);
           _poseRoiAnnotationController.DrawNow(result.poseRoi);
 
@@ -214,12 +212,6 @@ namespace Mediapipe.Unity.Sample.Holistic
       _holisticAnnotationController.DrawRightHandLandmarkListLater(value);
     }
 
-    private void OnPoseWorldLandmarksOutput(object stream, OutputStream<LandmarkList>.OutputEventArgs eventArgs)
-    {
-      var packet = eventArgs.packet;
-      var value = packet == null ? default : packet.Get(LandmarkList.Parser);
-      _poseWorldLandmarksAnnotationController.DrawLater(value);
-    }
 
     private void OnSegmentationMaskOutput(object stream, OutputStream<ImageFrame>.OutputEventArgs eventArgs)
     {
