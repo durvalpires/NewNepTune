@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class NeptuneApp : MonoBehaviour
 {
@@ -81,6 +82,14 @@ public class NeptuneApp : MonoBehaviour
     [Header("Logout Buttons")]
     public Button TeacherLogoutButton;  // Logout button in Teacher panel
     public Button StudentLogoutButton;  // Logout button in Student panel
+
+    [Header("Student Search UI")]
+    public TMP_InputField StudentSearchInput;
+
+    [Header("Student Filter Dropdowns")]
+    public TMP_Dropdown YearDropdown;
+    public TMP_Dropdown ClassDropdown;
+    public TMP_Dropdown TeacherDropdown;
 
     private FirebaseProxyService firebaseProxyService;
 
@@ -286,6 +295,34 @@ public class NeptuneApp : MonoBehaviour
         {
             Debug.LogWarning("StudentLogoutButton reference not assigned!");
         }
+
+        if (StudentSearchInput != null)
+        {
+            StudentSearchInput.onValueChanged.RemoveAllListeners();
+            StudentSearchInput.onValueChanged.AddListener(OnStudentSearchChanged);
+        }
+        
+        // Dropdown event listener'larını ekle
+        if (YearDropdown != null)
+        {
+            YearDropdown.onValueChanged.AddListener(OnYearDropdownChanged);
+        }
+        
+        if (ClassDropdown != null)
+        {
+            ClassDropdown.onValueChanged.AddListener(OnClassDropdownChanged);
+        }
+        
+        if (TeacherDropdown != null)
+        {
+            TeacherDropdown.onValueChanged.AddListener(OnTeacherDropdownChanged);
+        }
+    }
+
+    private void OnStudentSearchChanged(string searchText)
+    {
+        Debug.Log($"OnStudentSearchChanged: {searchText}");
+        ApplyFilters(); // Tüm filtreleri birlikte uygula
     }
 
     // Student addition part - the section that enables teachers to add students.
@@ -900,7 +937,15 @@ public class NeptuneApp : MonoBehaviour
                 if (success && students != null)
                 {
                     Debug.Log($"Student list loaded successfully! Student count: {students.Count}");
+                    studentList = students; // ONLY updated here!
+                    // Debug: Print year, classValue, teacher fields for each student
+                    foreach (var student in studentList)
+                    {
+                        Debug.Log($"Student JSON: {JsonUtility.ToJson(student)}");
+                        Debug.Log($"Student: {student.username}, Year: {student.year}, Class: {student.class_}, Teacher: {student.teacher}");
+                    }
                     DisplayStudentList(students);
+                    UpdateFilterDropdowns(students); // <-- Update dropdowns
                 }
                 else
                 {
@@ -918,7 +963,9 @@ public class NeptuneApp : MonoBehaviour
                             worldsData = new WorldsData { worlds = new List<WorldInfo>() }
                         }
                     };
+                    studentList = demoStudents; // Update main list for demo
                     DisplayStudentList(demoStudents);
+                    UpdateFilterDropdowns(demoStudents); // <-- Update dropdowns
                 }
             });
         }
@@ -967,18 +1014,27 @@ public class NeptuneApp : MonoBehaviour
             Debug.LogError("StudentListContent reference not assigned!");
             return;
         }
-        
         if (StudentListItemPrefab == null)
         {
             Debug.LogError("StudentListItemPrefab reference not assigned!");
             return;
         }
-        
-        studentList = students;
-        
-        // Create a row for each student
+
+        // Only clear prefabs (do not clear main list!)
+        for (int i = StudentListContent.childCount - 1; i >= 0; i--)
+        {
+            Transform child = StudentListContent.GetChild(i);
+            if (child.name.Contains("student-main-info") || 
+                child.name.Contains("DetailedScrollRect-"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        // Log username of each student
         foreach (var student in students)
         {
+            Debug.Log($"DisplayStudentList - Student username: {student.username}");
             // Instantiate the prefab
             GameObject listItem = Instantiate(StudentListItemPrefab, StudentListContent);
             
@@ -1509,5 +1565,130 @@ public class NeptuneApp : MonoBehaviour
         pair.isVisible = !pair.isVisible;
         pair.inputField.contentType = pair.isVisible ? TMP_InputField.ContentType.Standard : TMP_InputField.ContentType.Password;
         pair.inputField.ForceLabelUpdate();
+    }
+
+    // Functions that collect unique Year, Class, Teacher values
+    private List<string> GetUniqueYears(List<StudentInfo> students)
+    {
+        HashSet<string> years = new HashSet<string>();
+        foreach (var s in students)
+        {
+            if (!string.IsNullOrEmpty(s.year))
+                years.Add(s.year);
+        }
+        return years.OrderBy(y => y).ToList();
+    }
+    private List<string> GetUniqueClasses(List<StudentInfo> students)
+    {
+        HashSet<string> classes = new HashSet<string>();
+        foreach (var s in students)
+        {
+            if (!string.IsNullOrEmpty(s.class_))
+                classes.Add(s.class_);
+        }
+        return classes.OrderBy(c => c).ToList();
+    }
+    private List<string> GetUniqueTeachers(List<StudentInfo> students)
+    {
+        HashSet<string> teachers = new HashSet<string>();
+        foreach (var s in students)
+        {
+            if (!string.IsNullOrEmpty(s.teacher))
+                teachers.Add(s.teacher);
+        }
+        return teachers.OrderBy(t => t).ToList();
+    }
+
+    // Dropdown event handler metodları
+    private void OnYearDropdownChanged(int index)
+    {
+        Debug.Log($"Year dropdown changed to index: {index}");
+        ApplyFilters();
+    }
+
+    private void OnClassDropdownChanged(int index)
+    {
+        Debug.Log($"Class dropdown changed to index: {index}");
+        ApplyFilters();
+    }
+
+    private void OnTeacherDropdownChanged(int index)
+    {
+        Debug.Log($"Teacher dropdown changed to index: {index}");
+        ApplyFilters();
+    }
+
+    // Tüm filtreleri uygula
+    private void ApplyFilters()
+    {
+        var filteredList = studentList;
+        
+        // Search text filtresi
+        if (StudentSearchInput != null && !string.IsNullOrEmpty(StudentSearchInput.text))
+        {
+            string searchText = StudentSearchInput.text;
+            filteredList = filteredList.FindAll(s =>
+                !string.IsNullOrEmpty(s.username) &&
+                s.username.StartsWith(searchText, System.StringComparison.OrdinalIgnoreCase)
+            );
+        }
+        
+        // Year filtresi
+        if (YearDropdown != null && YearDropdown.value > 0)
+        {
+            string selectedYear = YearDropdown.options[YearDropdown.value].text;
+            filteredList = filteredList.FindAll(s => s.year == selectedYear);
+        }
+        
+        // Class filtresi
+        if (ClassDropdown != null && ClassDropdown.value > 0)
+        {
+            string selectedClass = ClassDropdown.options[ClassDropdown.value].text;
+            filteredList = filteredList.FindAll(s => s.class_ == selectedClass);
+        }
+        
+        // Teacher filtresi
+        if (TeacherDropdown != null && TeacherDropdown.value > 0)
+        {
+            string selectedTeacher = TeacherDropdown.options[TeacherDropdown.value].text;
+            filteredList = filteredList.FindAll(s => s.teacher == selectedTeacher);
+        }
+        
+        Debug.Log($"Filtered student count: {filteredList.Count}");
+        DisplayStudentList(filteredList);
+    }
+
+    private void UpdateFilterDropdowns(List<StudentInfo> students)
+    {
+        // Year
+        if (YearDropdown != null)
+        {
+            var years = GetUniqueYears(students);
+            YearDropdown.ClearOptions();
+            List<string> yearOptions = new List<string> { "All" };
+            yearOptions.AddRange(years);
+            YearDropdown.AddOptions(yearOptions);
+            YearDropdown.value = 0;
+        }
+        // Class
+        if (ClassDropdown != null)
+        {
+            var classes = GetUniqueClasses(students);
+            ClassDropdown.ClearOptions();
+            List<string> classOptions = new List<string> { "All" };
+            classOptions.AddRange(classes);
+            ClassDropdown.AddOptions(classOptions);
+            ClassDropdown.value = 0;
+        }
+        // Teacher
+        if (TeacherDropdown != null)
+        {
+            var teachers = GetUniqueTeachers(students);
+            TeacherDropdown.ClearOptions();
+            List<string> teacherOptions = new List<string> { "All" };
+            teacherOptions.AddRange(teachers);
+            TeacherDropdown.AddOptions(teacherOptions);
+            TeacherDropdown.value = 0;
+        }
     }
 }

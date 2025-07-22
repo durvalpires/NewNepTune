@@ -934,6 +934,10 @@ public class StudentInfo
     public string lastTimePlayed;
     public int totalTime;
     public WorldsData worldsData;
+    // Edited: year, class_, teacher as string
+    public string year;
+    public string class_;
+    public string teacher;
 }
 
 [System.Serializable]
