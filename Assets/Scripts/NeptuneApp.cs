@@ -29,6 +29,7 @@ public class NeptuneApp : MonoBehaviour
     public TMP_InputField TeacherMailInput;
     public TMP_InputField TeacherUsernameInput;
     public TMP_InputField TeacherPassInput;
+    public TMP_InputField TeacherSchoolCodeInput;
     public Button TeacherSignUpButton;
 
     [Header("Teacher Login UI")]
@@ -504,11 +505,12 @@ public class NeptuneApp : MonoBehaviour
         string email = TeacherMailInput.text;
         string username = TeacherUsernameInput.text;
         string password = TeacherPassInput.text;
+        string schoolCode = TeacherSchoolCodeInput.text;
 
         // Show popup 14 if any field is empty
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(schoolCode))
         {
-            Debug.LogError("Email, username and password fields cannot be left empty.");
+            Debug.LogError("Email, username, password and school code fields cannot be left empty.");
             PopUpError(14); // Show new popup for empty fields
             return;
         }
@@ -516,7 +518,8 @@ public class NeptuneApp : MonoBehaviour
         var userProfile = new Dictionary<string, object>
         {
             { "userType", "teacher" },
-            { "username", username }
+            { "username", username },
+            { "schoolCode", schoolCode }
         };
 
         Debug.Log($"Teacher registration starting: Email: {email}");
