@@ -11596,6 +11596,7 @@ GameObject:
   - component: {fileID: 341065647}
   - component: {fileID: 341065646}
   - component: {fileID: 341065645}
+  - component: {fileID: 341065648}
   m_Layer: 0
   m_Name: InputField_StudentID_Add
   m_TagString: Untagged
@@ -11622,8 +11623,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250.6966, y: -40}
-  m_SizeDelta: {x: 311.3932, y: 72.5}
+  m_AnchoredPosition: {x: 245, y: -40}
+  m_SizeDelta: {x: 300, y: 72.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341065645
 MonoBehaviour:
@@ -11711,7 +11712,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.15294118, g: 0.8627451, b: 0.58431375, a: 1}
   m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.15294118, g: 0.8627451, b: 0.58431375, a: 0.7529412}
-  m_Text: Student Name
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 5
   m_ReadOnly: 0
@@ -11764,6 +11765,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341065643}
   m_CullTransparentMesh: 0
+--- !u!114 &341065648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341065643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 300
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &344400674
 GameObject:
   m_ObjectHideFlags: 0
@@ -21724,7 +21745,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694064348}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -21737,7 +21758,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Student Name
+  m_text: StudentName
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc2cc93475f76427c86a8262bee36b88, type: 2}
   m_sharedMaterial: {fileID: 2269793554123077917, guid: dc2cc93475f76427c86a8262bee36b88,
@@ -35233,7 +35254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Student Name\u200B"
+  m_text: "\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc2cc93475f76427c86a8262bee36b88, type: 2}
   m_sharedMaterial: {fileID: 2269793554123077917, guid: dc2cc93475f76427c86a8262bee36b88,
@@ -62478,8 +62499,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 208.1966, y: -40}
-  m_SizeDelta: {x: 416.3932, y: 80}
+  m_AnchoredPosition: {x: 202.5, y: -40}
+  m_SizeDelta: {x: 405, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895418024
 MonoBehaviour:
