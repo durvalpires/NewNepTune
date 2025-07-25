@@ -92,6 +92,13 @@ public class NeptuneApp : MonoBehaviour
     public TMP_Dropdown ClassDropdown;
     public TMP_Dropdown TeacherDropdown;
 
+    [Header("Search Student Panel UI")]
+    public GameObject SearchStudentPanel;
+    public Button SearchStudentPanelButton;
+    public Transform SearchStudentContent;
+    public GameObject StudentPrefab;
+    public TMP_InputField SearchStudentNameInput;
+
     private FirebaseProxyService firebaseProxyService;
 
     private bool _isRegistering = false; 
@@ -102,6 +109,10 @@ public class NeptuneApp : MonoBehaviour
 
     // List of added students
     private List<StudentInfo> studentList = new List<StudentInfo>();
+    
+    // List of available students (without school code)
+    private List<AvailableStudentInfo> availableStudentsList = new List<AvailableStudentInfo>();
+    private bool _isLoadingAvailableStudents = false;
     
     // Need to add this to the button's onClick and mark ShowTeacherUserInfo.
     public void ShowTeacherUserInfo()
@@ -317,6 +328,25 @@ public class NeptuneApp : MonoBehaviour
         if (TeacherDropdown != null)
         {
             TeacherDropdown.onValueChanged.AddListener(OnTeacherDropdownChanged);
+        }
+        
+        // Search Student Panel Button Listener
+        if (SearchStudentPanelButton != null)
+        {
+            SearchStudentPanelButton.onClick.RemoveAllListeners();
+            SearchStudentPanelButton.onClick.AddListener(HandleSearchStudentPanelButton);
+            Debug.Log("SearchStudentPanelButton listener added.");
+        }
+        else
+        {
+            Debug.LogWarning("SearchStudentPanelButton reference not assigned!");
+        }
+        
+        // Search Student Name Input Listener
+        if (SearchStudentNameInput != null)
+        {
+            SearchStudentNameInput.onValueChanged.RemoveAllListeners();
+            SearchStudentNameInput.onValueChanged.AddListener(OnSearchStudentNameChanged);
         }
     }
 
@@ -1693,5 +1723,220 @@ public class NeptuneApp : MonoBehaviour
             TeacherDropdown.AddOptions(teacherOptions);
             TeacherDropdown.value = 0;
         }
+    }
+    
+    // Search Student Panel Methods
+    public void HandleSearchStudentPanelButton()
+    {
+        if (SearchStudentPanel != null)
+        {
+            SearchStudentPanel.SetActive(true);
+            LoadAvailableStudents();
+        }
+        else
+        {
+            Debug.LogWarning("SearchStudentPanel reference not assigned!");
+        }
+    }
+    
+    private void LoadAvailableStudents()
+    {
+        if (_isLoadingAvailableStudents)
+        {
+            Debug.LogWarning("Available students loading process is already in progress, please wait.");
+            return;
+        }
+        
+        _isLoadingAvailableStudents = true;
+        
+        // Clear search input when loading new data
+        if (SearchStudentNameInput != null)
+        {
+            SearchStudentNameInput.text = "";
+        }
+        
+        if (firebaseProxyService != null)
+        {
+            // Clear existing list elements
+            ClearAvailableStudentsList();
+            
+            firebaseProxyService.GetAvailableStudents((success, students) => {
+                _isLoadingAvailableStudents = false;
+                
+                if (success && students != null)
+                {
+                    Debug.Log($"Available students loaded successfully! Student count: {students.Count}");
+                    availableStudentsList = students;
+                    DisplayAvailableStudents(students);
+                }
+                else
+                {
+                    Debug.LogError("Failed to load available students.");
+                }
+            });
+        }
+        else
+        {
+            _isLoadingAvailableStudents = false;
+            Debug.LogError("FirebaseProxyService cannot be used.");
+        }
+    }
+    
+    private void ClearAvailableStudentsList()
+    {
+        if (SearchStudentContent == null)
+        {
+            Debug.LogError("SearchStudentContent reference not assigned!");
+            return;
+        }
+        
+        // Clear all child objects
+        for (int i = SearchStudentContent.childCount - 1; i >= 0; i--)
+        {
+            Transform child = SearchStudentContent.GetChild(i);
+            Destroy(child.gameObject);
+        }
+    }
+    
+    private void DisplayAvailableStudents(List<AvailableStudentInfo> students)
+    {
+        if (SearchStudentContent == null)
+        {
+            Debug.LogError("SearchStudentContent reference not assigned!");
+            return;
+        }
+        if (StudentPrefab == null)
+        {
+            Debug.LogError("StudentPrefab reference not assigned!");
+            return;
+        }
+        
+        foreach (var student in students)
+        {
+            Debug.Log($"DisplayAvailableStudents - Student: {student.username}, ID: {student.studentId}");
+            
+            // Instantiate the prefab
+            GameObject listItem = Instantiate(StudentPrefab, SearchStudentContent);
+            
+            // Set student information
+            var studentIdText = listItem.transform.Find("StudentID")?.GetComponent<TMP_Text>();
+            var studentNameText = listItem.transform.Find("StudentName")?.GetComponent<TMP_Text>();
+            var addButton = listItem.transform.Find("AddStudentButton")?.GetComponent<Button>();
+            
+            if (studentIdText != null)
+            {
+                studentIdText.text = student.studentId; // Show private code (STU-1234)
+            }
+            
+            if (studentNameText != null)
+            {
+                string displayUsername = !string.IsNullOrEmpty(student.username) ? 
+                                       student.username : 
+                                       "No Username";
+                studentNameText.text = displayUsername;
+                Debug.Log($"Student name: {displayUsername} (Username: {student.username}, ID: {student.studentId})");
+            }
+            
+            if (addButton != null)
+            {
+                // Add click event to button
+                addButton.onClick.RemoveAllListeners();
+                addButton.onClick.AddListener(() => {
+                    Debug.Log($"Add student button clicked: {student.studentId}");
+                    AddStudentFromSearchPanel(student.studentId);
+                });
+            }
+        }
+    }
+    
+    private void AddStudentFromSearchPanel(string studentId)
+    {
+        if (_isAddingStudent)
+        {
+            Debug.LogWarning("A student addition process is already in progress, please wait.");
+            return;
+        }
+        
+        Debug.Log($"Adding student from search panel: {studentId}");
+        _isAddingStudent = true;
+        
+        if (firebaseProxyService != null)
+        {
+            firebaseProxyService.AddStudentToTeacher(studentId, (success, message) => {
+                _isAddingStudent = false;
+                OnAddStudentFromSearchPanelCompleted(success, message, studentId);
+            });
+        }
+        else
+        {
+            _isAddingStudent = false;
+            Debug.LogError("FirebaseProxyService cannot be used.");
+        }
+    }
+    
+    private void OnAddStudentFromSearchPanelCompleted(bool success, string message, string studentId)
+    {
+        if (success)
+        {
+            Debug.Log($"Student successfully added from search panel! Message: {message}");
+            
+            // Show success message
+            PopUpError(4); // Blue popup panel (for success message)
+            
+            // Refresh the teacher's student list
+            LoadStudentList();
+            
+            // Refresh available students list (remove the added student)
+            LoadAvailableStudents();
+            
+            // Close search panel
+            if (SearchStudentPanel != null)
+            {
+                SearchStudentPanel.SetActive(false);
+            }
+        }
+        else
+        {
+            Debug.LogError($"Student addition from search panel failed! Error: {message}");
+            
+            // Check error message to show appropriate popup
+            if (message.Contains("No student found") || message.Contains("No valid student found"))
+            {
+                PopUpError(12); // Show popup for student not found
+            }
+            else
+            {
+                PopUpError(9); // Show error popup for other errors (like duplicate student)
+            }
+        }
+    }
+    
+    // Search Student Name Input Change Handler
+    private void OnSearchStudentNameChanged(string searchText)
+    {
+        Debug.Log($"OnSearchStudentNameChanged: {searchText}");
+        ApplyAvailableStudentsFilter();
+    }
+    
+    // Apply filter to available students list
+    private void ApplyAvailableStudentsFilter()
+    {
+        var filteredList = availableStudentsList;
+        
+        // Search text filter
+        if (SearchStudentNameInput != null && !string.IsNullOrEmpty(SearchStudentNameInput.text))
+        {
+            string searchText = SearchStudentNameInput.text;
+            filteredList = filteredList.FindAll(s =>
+                !string.IsNullOrEmpty(s.username) &&
+                s.username.StartsWith(searchText, System.StringComparison.OrdinalIgnoreCase)
+            );
+        }
+        
+        Debug.Log($"Filtered available students count: {filteredList.Count}");
+        
+        // Clear and display filtered list
+        ClearAvailableStudentsList();
+        DisplayAvailableStudents(filteredList);
     }
 }

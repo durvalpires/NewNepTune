@@ -16,6 +16,7 @@ public class FirebaseProxyService : MonoBehaviour
     private const string ADD_STUDENT_ENDPOINT = "/teacher/addStudent";
     private const string REMOVE_STUDENT_ENDPOINT = "/teacher/removeStudent";
     private const string GET_TEACHER_STUDENTS_ENDPOINT = "/teacher/getStudents";
+    private const string GET_AVAILABLE_STUDENTS_ENDPOINT = "/teacher/getAvailableStudents";
     private const string UPDATE_STUDENT_INFO_ENDPOINT = "/student/updateInfo";
     private const string RESET_STUDENT_PROGRESS_ENDPOINT = "/student/resetProgress";
     private const string UPDATE_STUDENT_TOTAL_TIME_ENDPOINT = "/student/updateTotalTime";
@@ -167,6 +168,18 @@ public class FirebaseProxyService : MonoBehaviour
         }
 
         StartCoroutine(GetTeacherStudentsCoroutine(callback));
+    }
+
+    public void GetAvailableStudents(Action<bool, List<AvailableStudentInfo>> callback = null)
+    {
+        if (string.IsNullOrEmpty(_authToken) || _userType != "teacher")
+        {
+            Debug.LogError("You must be logged in as a teacher to get available students.");
+            callback?.Invoke(false, null);
+            return;
+        }
+
+        StartCoroutine(GetAvailableStudentsCoroutine(callback));
     }
 
     public void UpdateStudentInfo(string studentId, int currentLevel, int currentWorld, string lastTimePlayed, int totalTime, WorldsData worldsData = null, Action<bool, string> callback = null)
@@ -541,6 +554,45 @@ public class FirebaseProxyService : MonoBehaviour
         }
     }
 
+    private IEnumerator GetAvailableStudentsCoroutine(Action<bool, List<AvailableStudentInfo>> callback)
+    {
+        string proxyUrl = PROXY_BASE_URL + GET_AVAILABLE_STUDENTS_ENDPOINT;
+
+        Debug.Log("Sending available students request to proxy server: " + proxyUrl);
+
+        using (UnityWebRequest www = UnityWebRequest.Get(proxyUrl))
+        {
+            www.SetRequestHeader("Authorization", "Bearer " + _authToken);
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error getting available students: " + www.error);
+                Debug.LogError("Response: " + www.downloadHandler.text);
+                callback?.Invoke(false, null);
+            }
+            else
+            {
+                string responseJson = www.downloadHandler.text;
+                Debug.Log("Proxy response: " + responseJson);
+
+                AvailableStudentsResponse response = JsonUtility.FromJson<AvailableStudentsResponse>(responseJson);
+
+                if (!string.IsNullOrEmpty(response.error))
+                {
+                    Debug.LogError("Error getting available students: " + response.error);
+                    callback?.Invoke(false, null);
+                }
+                else
+                {
+                    Debug.Log("Available students successfully retrieved! Number of students: " + response.students.Count);
+                    callback?.Invoke(true, response.students);
+                }
+            }
+        }
+    }
+
     private IEnumerator UpdateStudentInfoCoroutine(string studentId, int currentLevel, int currentWorld, string lastTimePlayed, int totalTime, WorldsData worldsData, Action<bool, string> callback)
     {
         string detailedInfoJson = "null";
@@ -904,6 +956,13 @@ public class FirebaseProxyService : MonoBehaviour
         public List<StudentInfo> students;
         public string error;
     }
+
+    [System.Serializable]
+    private class AvailableStudentsResponse
+    {
+        public List<AvailableStudentInfo> students;
+        public string error;
+    }
 }
 
 [System.Serializable]
@@ -972,4 +1031,11 @@ public class AccuracyBreakdownItem
 {
     public string noteName;   // Perfect, great etc. will come from here
     public float percentage;  // Percentage value comes from here
+}
+
+[System.Serializable]
+public class AvailableStudentInfo
+{
+    public string studentId;
+    public string username;
 }
