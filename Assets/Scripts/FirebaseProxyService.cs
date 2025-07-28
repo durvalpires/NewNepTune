@@ -20,6 +20,7 @@ public class FirebaseProxyService : MonoBehaviour
     private const string UPDATE_STUDENT_INFO_ENDPOINT = "/student/updateInfo";
     private const string RESET_STUDENT_PROGRESS_ENDPOINT = "/student/resetProgress";
     private const string UPDATE_STUDENT_TOTAL_TIME_ENDPOINT = "/student/updateTotalTime";
+    private const string UPDATE_STUDENT_PROFILE_ENDPOINT = "/teacher/updateStudentProfile";
 
     
     private string _userId;
@@ -204,6 +205,25 @@ public class FirebaseProxyService : MonoBehaviour
         }
 
         StartCoroutine(UpdateStudentTotalTimeCoroutine(_privateCode, totalTime, callback));
+    }
+
+    public void UpdateStudentProfile(string studentId, string username, string year, string class_, Action<bool, string> callback = null)
+    {
+        if (string.IsNullOrEmpty(_authToken) || _userType != "teacher" || string.IsNullOrEmpty(_teacherPrivateCode))
+        {
+            Debug.LogError("You must be logged in as a teacher to update student profile.");
+            callback?.Invoke(false, "You must be logged in as a teacher to update student profile.");
+            return;
+        }
+        
+        if (string.IsNullOrEmpty(studentId) || !studentId.StartsWith("STU-"))
+        {
+            Debug.LogError("Student ID must start with STU-.");
+            callback?.Invoke(false, "Student ID must start with STU-.");
+            return;
+        }
+
+        StartCoroutine(UpdateStudentProfileCoroutine(studentId, username, year, class_, callback));
     }
 
     private IEnumerator RegisterUserCoroutine(string email, string password, Action<bool, string> callback)
@@ -814,6 +834,75 @@ public class FirebaseProxyService : MonoBehaviour
                 {
                     Debug.LogError("Reset progress response parse error: " + e.Message);
                     callback?.Invoke(false, "Reset progress response parse error");
+                }
+            }
+        }
+    }
+
+    private IEnumerator UpdateStudentProfileCoroutine(string studentId, string username, string year, string class_, Action<bool, string> callback)
+    {
+        string updateProfileJson = "{"
+            + "\"teacherId\":\"" + _teacherPrivateCode + "\","
+            + "\"studentId\":\"" + studentId + "\""
+            + (string.IsNullOrEmpty(username) ? "" : ",\"username\":\"" + username + "\"")
+            + (string.IsNullOrEmpty(year) ? "" : ",\"year\":\"" + year + "\"")
+            + (string.IsNullOrEmpty(class_) ? "" : ",\"class_\":\"" + class_ + "\"")
+            + "}";
+
+        string proxyUrl = PROXY_BASE_URL + UPDATE_STUDENT_PROFILE_ENDPOINT;
+
+        Debug.Log("Sending student profile update request to proxy server: " + proxyUrl);
+        Debug.Log("Request content: " + updateProfileJson);
+
+        using (UnityWebRequest www = UnityWebRequest.PostWwwForm(proxyUrl, ""))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(updateProfileJson);
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            if (!string.IsNullOrEmpty(_authToken))
+            {
+                www.SetRequestHeader("Authorization", "Bearer " + _authToken);
+            }
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error updating student profile: " + www.error);
+                Debug.LogError("Response: " + www.downloadHandler.text);
+                
+                string actualErrorMessage = "An error occurred while updating student profile: " + www.error;
+                try
+                {
+                    ProxyResponse errorResponse = JsonUtility.FromJson<ProxyResponse>(www.downloadHandler.text);
+                    if (!string.IsNullOrEmpty(errorResponse.error))
+                    {
+                        actualErrorMessage = errorResponse.error;
+                        Debug.Log("Parsed backend error message: " + actualErrorMessage);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning("Could not parse backend error response: " + e.Message);
+                }
+                callback?.Invoke(false, actualErrorMessage);
+            }
+            else
+            {
+                string responseJson = www.downloadHandler.text;
+                Debug.Log("Student profile update response: " + responseJson);
+
+                ProxyResponse response = JsonUtility.FromJson<ProxyResponse>(responseJson);
+                if (!string.IsNullOrEmpty(response.error))
+                {
+                    Debug.LogError("Student profile update error: " + response.error);
+                    callback?.Invoke(false, response.error);
+                }
+                else
+                {
+                    Debug.Log("Student profile successfully updated! Message: " + response.message);
+                    callback?.Invoke(true, response.message);
                 }
             }
         }

@@ -99,6 +99,14 @@ public class NeptuneApp : MonoBehaviour
     public GameObject StudentPrefab;
     public TMP_InputField SearchStudentNameInput;
 
+    [Header("Student Edit Panel UI")]
+    public GameObject StudentEditPanel;
+    public TMP_Text StudentPrivateCodeText;
+    public TMP_InputField EditUsernameInput;
+    public TMP_InputField EditYearInput;
+    public TMP_InputField EditClassInput;
+    public Button SaveStudentProfileButton;
+
     private FirebaseProxyService firebaseProxyService;
 
     private bool _isRegistering = false; 
@@ -113,6 +121,10 @@ public class NeptuneApp : MonoBehaviour
     // List of available students (without school code)
     private List<AvailableStudentInfo> availableStudentsList = new List<AvailableStudentInfo>();
     private bool _isLoadingAvailableStudents = false;
+    
+    // Student edit panel variables
+    private StudentInfo _selectedStudentForEdit = null;
+    private bool _isUpdatingStudentProfile = false;
     
     // Need to add this to the button's onClick and mark ShowTeacherUserInfo.
     public void ShowTeacherUserInfo()
@@ -347,6 +359,24 @@ public class NeptuneApp : MonoBehaviour
         {
             SearchStudentNameInput.onValueChanged.RemoveAllListeners();
             SearchStudentNameInput.onValueChanged.AddListener(OnSearchStudentNameChanged);
+        }
+        
+        // Student Edit Panel Button Listeners
+        if (SaveStudentProfileButton != null)
+        {
+            SaveStudentProfileButton.onClick.RemoveAllListeners();
+            SaveStudentProfileButton.onClick.AddListener(HandleSaveStudentProfile);
+            Debug.Log("SaveStudentProfileButton listener added.");
+        }
+        else
+        {
+            Debug.LogWarning("SaveStudentProfileButton reference not assigned!");
+        }
+        
+        // Initially hide StudentEditPanel
+        if (StudentEditPanel != null)
+        {
+            StudentEditPanel.SetActive(false);
         }
     }
 
@@ -1112,6 +1142,22 @@ public class NeptuneApp : MonoBehaviour
             if (totalTime != null)
             {
                 totalTime.text = SessionTimeTracker.GetFormattedTimePlayed(student.totalTime);
+            }
+            
+            // Find and setup EditProfile button
+            var editProfileButton = listItem.transform.Find("EditProfile")?.GetComponent<Button>();
+            if (editProfileButton != null)
+            {
+                editProfileButton.onClick.RemoveAllListeners();
+                editProfileButton.onClick.AddListener(() => {
+                    Debug.Log($"EditProfile button clicked for student: {student.studentId}");
+                    OpenStudentEditPanel(student);
+                });
+                Debug.Log($"EditProfile button listener added for student: {student.studentId}");
+            }
+            else
+            {
+                Debug.LogWarning($"EditProfile button not found in student item: {student.studentId}");
             }
             
             // Button functionality - create/show detail area for each student
@@ -1938,5 +1984,154 @@ public class NeptuneApp : MonoBehaviour
         // Clear and display filtered list
         ClearAvailableStudentsList();
         DisplayAvailableStudents(filteredList);
+    }
+    
+    // Student Edit Panel Methods
+    public void OpenStudentEditPanel(StudentInfo student)
+    {
+        if (student == null)
+        {
+            Debug.LogError("Cannot open edit panel: student is null");
+            return;
+        }
+        
+        _selectedStudentForEdit = student;
+        
+        // Populate input fields with current student data
+        if (EditUsernameInput != null)
+        {
+            EditUsernameInput.text = student.username ?? "";
+        }
+        
+        if (EditYearInput != null)
+        {
+            EditYearInput.text = student.year ?? "";
+        }
+        
+        if (EditClassInput != null)
+        {
+            EditClassInput.text = student.class_ ?? "";
+        }
+        
+        // Display student private code
+        if (StudentPrivateCodeText != null)
+        {
+            StudentPrivateCodeText.text = student.studentId ?? "";
+        }
+        
+        // Show the edit panel
+        if (StudentEditPanel != null)
+        {
+            StudentEditPanel.SetActive(true);
+        }
+        
+        Debug.Log($"Opened edit panel for student: {student.username} (ID: {student.studentId})");
+    }
+    
+    private void HandleSaveStudentProfile()
+    {
+        if (_isUpdatingStudentProfile)
+        {
+            Debug.LogWarning("Student profile update is already in progress, please wait.");
+            return;
+        }
+        
+        if (_selectedStudentForEdit == null)
+        {
+            Debug.LogError("No student selected for editing");
+            return;
+        }
+        
+        // Get updated values from input fields
+        string newUsername = EditUsernameInput?.text?.Trim() ?? "";
+        string newYear = EditYearInput?.text?.Trim() ?? "";
+        string newClass = EditClassInput?.text?.Trim() ?? "";
+        
+        // Validate input
+        if (string.IsNullOrEmpty(newUsername))
+        {
+            Debug.LogError("Username cannot be empty");
+            PopUpError(8); // Show error popup
+            return;
+        }
+        
+        _isUpdatingStudentProfile = true;
+        
+        if (firebaseProxyService != null)
+        {
+            firebaseProxyService.UpdateStudentProfile(
+                _selectedStudentForEdit.studentId,
+                newUsername,
+                newYear,
+                newClass,
+                (success, message) => {
+                    _isUpdatingStudentProfile = false;
+                    OnUpdateStudentProfileCompleted(success, message);
+                }
+            );
+        }
+        else
+        {
+            _isUpdatingStudentProfile = false;
+            Debug.LogError("FirebaseProxyService cannot be used.");
+        }
+    }
+    
+    private void OnUpdateStudentProfileCompleted(bool success, string message)
+    {
+        if (success)
+        {
+            Debug.Log($"Student profile updated successfully! Message: {message}");
+            
+            // Show success message
+            PopUpError(17); // Show index 17 popup for successful student profile update
+            
+            // Close edit panel
+            CloseStudentEditPanel();
+            
+            // Refresh student list to show updated information
+            LoadStudentList();
+        }
+        else
+        {
+            Debug.LogError($"Student profile update failed! Error: {message}");
+            PopUpError(9); // Show error popup
+        }
+    }
+    
+    private void CloseStudentEditPanel()
+    {
+        // Clear selected student
+        _selectedStudentForEdit = null;
+        
+        // Clear input fields
+        if (EditUsernameInput != null)
+        {
+            EditUsernameInput.text = "";
+        }
+        
+        if (EditYearInput != null)
+        {
+            EditYearInput.text = "";
+        }
+        
+        if (EditClassInput != null)
+        {
+            EditClassInput.text = "";
+        }
+        
+        // Clear student private code text
+        if (StudentPrivateCodeText != null)
+        {
+            StudentPrivateCodeText.text = "";
+        }
+        
+        // Hide edit panel
+        if (StudentEditPanel != null)
+        {
+            StudentEditPanel.SetActive(false);
+        }
+        
+        Debug.Log("Student edit panel closed");
     }
 }
