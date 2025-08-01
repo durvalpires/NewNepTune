@@ -1127,4 +1127,7 @@ public class AvailableStudentInfo
 {
     public string studentId;
     public string username;
+    public string year;
+    public string class_;
+    public int currentWorld;
 }

@@ -16,6 +16,41 @@ public class NeptuneApp : MonoBehaviour
 
         [HideInInspector] public bool isVisible = false;
     }
+    
+    // Update Search Student Panel Filter Dropdowns
+    private void UpdateSearchFilterDropdowns(List<AvailableStudentInfo> students)
+    {
+        // Year
+        if (YearDropdownSearch != null)
+        {
+            var years = GetUniqueYearsFromAvailable(students);
+            YearDropdownSearch.ClearOptions();
+            List<string> yearOptions = new List<string> { "All" };
+            yearOptions.AddRange(years);
+            YearDropdownSearch.AddOptions(yearOptions);
+            YearDropdownSearch.value = 0;
+        }
+        // Class
+        if (ClassDropdownSearch != null)
+        {
+            var classes = GetUniqueClassesFromAvailable(students);
+            ClassDropdownSearch.ClearOptions();
+            List<string> classOptions = new List<string> { "All" };
+            classOptions.AddRange(classes);
+            ClassDropdownSearch.AddOptions(classOptions);
+            ClassDropdownSearch.value = 0;
+        }
+        // Process (World)
+        if (ProcessDropdownSearch != null)
+        {
+            var worlds = GetUniqueWorldsFromAvailable(students);
+            ProcessDropdownSearch.ClearOptions();
+            List<string> processOptions = new List<string> { "All" };
+            processOptions.AddRange(worlds);
+            ProcessDropdownSearch.AddOptions(processOptions);
+            ProcessDropdownSearch.value = 0;
+        }
+    }
 
     public List<PasswordTogglePair> togglePairs;
 
@@ -91,6 +126,7 @@ public class NeptuneApp : MonoBehaviour
     public TMP_Dropdown YearDropdown;
     public TMP_Dropdown ClassDropdown;
     public TMP_Dropdown TeacherDropdown;
+    public TMP_Dropdown ProcessDropdown;
 
     [Header("Search Student Panel UI")]
     public GameObject SearchStudentPanel;
@@ -98,6 +134,11 @@ public class NeptuneApp : MonoBehaviour
     public Transform SearchStudentContent;
     public GameObject StudentPrefab;
     public TMP_InputField SearchStudentNameInput;
+    
+    [Header("Search Student Filter Dropdowns")]
+    public TMP_Dropdown YearDropdownSearch;
+    public TMP_Dropdown ClassDropdownSearch;
+    public TMP_Dropdown ProcessDropdownSearch;
 
     [Header("Student Edit Panel UI")]
     public GameObject StudentEditPanel;
@@ -340,6 +381,27 @@ public class NeptuneApp : MonoBehaviour
         if (TeacherDropdown != null)
         {
             TeacherDropdown.onValueChanged.AddListener(OnTeacherDropdownChanged);
+        }
+        
+        if (ProcessDropdown != null)
+        {
+            ProcessDropdown.onValueChanged.AddListener(OnProcessDropdownChanged);
+        }
+        
+        // Add Search Student Panel dropdown event listeners
+        if (YearDropdownSearch != null)
+        {
+            YearDropdownSearch.onValueChanged.AddListener(OnYearDropdownSearchChanged);
+        }
+        
+        if (ClassDropdownSearch != null)
+        {
+            ClassDropdownSearch.onValueChanged.AddListener(OnClassDropdownSearchChanged);
+        }
+        
+        if (ProcessDropdownSearch != null)
+        {
+            ProcessDropdownSearch.onValueChanged.AddListener(OnProcessDropdownSearchChanged);
         }
         
         // Search Student Panel Button Listener
@@ -1677,6 +1739,51 @@ public class NeptuneApp : MonoBehaviour
         }
         return teachers.OrderBy(t => t).ToList();
     }
+    
+    private List<string> GetUniqueWorlds(List<StudentInfo> students)
+    {
+        HashSet<int> worlds = new HashSet<int>();
+        foreach (var s in students)
+        {
+            if (s.currentWorld > 0)
+                worlds.Add(s.currentWorld);
+        }
+        return worlds.OrderBy(w => w).Select(w => w.ToString()).ToList();
+    }
+    
+    // Functions for Available Students (SearchStudentPanel)
+    private List<string> GetUniqueYearsFromAvailable(List<AvailableStudentInfo> students)
+    {
+        HashSet<string> years = new HashSet<string>();
+        foreach (var s in students)
+        {
+            if (!string.IsNullOrEmpty(s.year))
+                years.Add(s.year);
+        }
+        return years.OrderBy(y => y).ToList();
+    }
+    
+    private List<string> GetUniqueClassesFromAvailable(List<AvailableStudentInfo> students)
+    {
+        HashSet<string> classes = new HashSet<string>();
+        foreach (var s in students)
+        {
+            if (!string.IsNullOrEmpty(s.class_))
+                classes.Add(s.class_);
+        }
+        return classes.OrderBy(c => c).ToList();
+    }
+    
+    private List<string> GetUniqueWorldsFromAvailable(List<AvailableStudentInfo> students)
+    {
+        HashSet<int> worlds = new HashSet<int>();
+        foreach (var s in students)
+        {
+            if (s.currentWorld > 0)
+                worlds.Add(s.currentWorld);
+        }
+        return worlds.OrderBy(w => w).Select(w => w.ToString()).ToList();
+    }
 
     // Dropdown event handler methods
     private void OnYearDropdownChanged(int index)
@@ -1695,6 +1802,31 @@ public class NeptuneApp : MonoBehaviour
     {
         Debug.Log($"Teacher dropdown changed to index: {index}");
         ApplyFilters();
+    }
+
+    private void OnProcessDropdownChanged(int index)
+    {
+        Debug.Log($"Process dropdown changed to index: {index}");
+        ApplyFilters();
+    }
+    
+    // Search Student Panel Dropdown event handler methods
+    private void OnYearDropdownSearchChanged(int index)
+    {
+        Debug.Log($"Search Year dropdown changed to index: {index}");
+        ApplyAvailableStudentsFilter();
+    }
+
+    private void OnClassDropdownSearchChanged(int index)
+    {
+        Debug.Log($"Search Class dropdown changed to index: {index}");
+        ApplyAvailableStudentsFilter();
+    }
+
+    private void OnProcessDropdownSearchChanged(int index)
+    {
+        Debug.Log($"Search Process dropdown changed to index: {index}");
+        ApplyAvailableStudentsFilter();
     }
 
     // Apply all filters
@@ -1733,6 +1865,17 @@ public class NeptuneApp : MonoBehaviour
             filteredList = filteredList.FindAll(s => s.teacher == selectedTeacher);
         }
         
+        // Process filter (currentWorld filter)
+        if (ProcessDropdown != null && ProcessDropdown.value > 0)
+        {
+            string selectedWorldText = ProcessDropdown.options[ProcessDropdown.value].text;
+            if (int.TryParse(selectedWorldText, out int selectedWorld))
+            {
+                // Show students who have completed the selected world (currentWorld > selectedWorld)
+                filteredList = filteredList.FindAll(s => s.currentWorld > selectedWorld);
+            }
+        }
+        
         Debug.Log($"Filtered student count: {filteredList.Count}");
         DisplayStudentList(filteredList);
     }
@@ -1768,6 +1911,16 @@ public class NeptuneApp : MonoBehaviour
             teacherOptions.AddRange(teachers);
             TeacherDropdown.AddOptions(teacherOptions);
             TeacherDropdown.value = 0;
+        }
+        // Process (World)
+        if (ProcessDropdown != null)
+        {
+            var worlds = GetUniqueWorlds(students);
+            ProcessDropdown.ClearOptions();
+            List<string> processOptions = new List<string> { "All" };
+            processOptions.AddRange(worlds);
+            ProcessDropdown.AddOptions(processOptions);
+            ProcessDropdown.value = 0;
         }
     }
     
@@ -1813,6 +1966,7 @@ public class NeptuneApp : MonoBehaviour
                 {
                     Debug.Log($"Available students loaded successfully! Student count: {students.Count}");
                     availableStudentsList = students;
+                    UpdateSearchFilterDropdowns(students); // Update dropdowns
                     DisplayAvailableStudents(students);
                 }
                 else
@@ -1977,6 +2131,31 @@ public class NeptuneApp : MonoBehaviour
                 !string.IsNullOrEmpty(s.username) &&
                 s.username.StartsWith(searchText, System.StringComparison.OrdinalIgnoreCase)
             );
+        }
+        
+        // Year filter
+        if (YearDropdownSearch != null && YearDropdownSearch.value > 0)
+        {
+            string selectedYear = YearDropdownSearch.options[YearDropdownSearch.value].text;
+            filteredList = filteredList.FindAll(s => s.year == selectedYear);
+        }
+        
+        // Class filter
+        if (ClassDropdownSearch != null && ClassDropdownSearch.value > 0)
+        {
+            string selectedClass = ClassDropdownSearch.options[ClassDropdownSearch.value].text;
+            filteredList = filteredList.FindAll(s => s.class_ == selectedClass);
+        }
+        
+        // Process filter (currentWorld filter)
+        if (ProcessDropdownSearch != null && ProcessDropdownSearch.value > 0)
+        {
+            string selectedWorldText = ProcessDropdownSearch.options[ProcessDropdownSearch.value].text;
+            if (int.TryParse(selectedWorldText, out int selectedWorld))
+            {
+                // Show students who have completed the selected world (currentWorld > selectedWorld)
+                filteredList = filteredList.FindAll(s => s.currentWorld > selectedWorld);
+            }
         }
         
         Debug.Log($"Filtered available students count: {filteredList.Count}");
