@@ -48,7 +48,7 @@ public class EndOfLevelScreenController : MonoBehaviour
         else
         {
             // MAYBE WE NEED AN EQUIVALENT FOR WHEN THE PLAYER LOSES
-            
+            GetComponent<LevelCompletObserver>().SetCurrentLevelComplete(scoreController);
             levelResultText.text = "Almost! Try again!";
         }
         

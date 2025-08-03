@@ -123,10 +123,11 @@ public class LevelDataService : ILevelDataService
                 MaxScore = finalScore,
                 //Repetition = 1,
                 StarRating = starRating,
-                Successes = 1,
+                Successes = starRating > 0 ? 1 : 0,
                 HitAccuracy = new Dictionary<HitAccuracy, float>()
             };
-            LevelData.NumberOfLevel++;
+            
+            if(starRating > 0) LevelData.NumberOfLevel++;
         }
         else
         {
@@ -135,7 +136,7 @@ public class LevelDataService : ILevelDataService
             levelData.MaxScore = finalScore > levelData.MaxScore ? finalScore : levelData.MaxScore;  
             //levelData.Repetition++;
             levelData.StarRating = starRating > levelData.StarRating ? starRating : levelData.StarRating; //THIS WAS ATTEMPTS BEFORE, NOT SURE IF SHOULD BE ATTEMPTS OR SUCCESSa
-            levelData.Successes++;
+            if(starRating > 0) levelData.Successes++;
         }
 
         int totalScore = 0;
@@ -158,6 +159,10 @@ public class LevelDataService : ILevelDataService
     {
         if (LevelData == null || LevelData.levels == null)
             return false;
+        
+        //AT LEAST WHILE WE ASSUME PROGRESS IS LINEAR (AS IN, YOU HAVE TO COMPLETE A LEVEL TO ACCESS THE FOLLOWING)
+        if (int.Parse(worldIndex) < LevelCompletObserver.lastWorld)
+            return true;
 
         string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
         if (!LevelData.levels.ContainsKey(key))

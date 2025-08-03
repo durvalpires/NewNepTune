@@ -13,7 +13,9 @@ namespace _App_v2.Scripts.Levels.Score
         public RhythmStats rhythmStats;
         public QuizStats quizStats;
         public CardMatchStats cardStats;
-        
+
+        public int PlayerStars { get; }
+
         public Dictionary<HitAccuracy, float> GetAccuracyPercentage()
         {
             throw new System.NotImplementedException();

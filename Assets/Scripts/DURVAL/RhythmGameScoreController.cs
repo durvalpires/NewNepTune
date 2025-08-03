@@ -17,9 +17,9 @@ public class RhythmGameScoreController : ILevelScore
     private bool star1Active = false;
     private bool star2Active = false;
     private bool star3Active = false;
-    public int PlayerStars { get; private set; }
+    
     private float incrementPerNote;
-    public Action OnStarAchieved; 
+    public Action OnStarAchieved;
 
     public RhythmGameScoreController(RhythmGameSettings rhythmGameSettings, int noteCount = 0)
     {
@@ -134,6 +134,8 @@ public class RhythmGameScoreController : ILevelScore
         throw new NotImplementedException();
     }
     
+    public int PlayerStars { get; private set; }
+
     public Dictionary<HitAccuracy, float> GetAccuracyPercentage()
     {
         // UPDATE HIT ACCURACY WITH MISSING NOTES

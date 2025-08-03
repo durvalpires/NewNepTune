@@ -85,6 +85,38 @@ public class LevelCompletObserver : MonoBehaviour
         // }
     }
 
+    public void SetCurrentLevelFailed(ILevelScore levelScore = null)
+    {
+        Debug.Log("Set Current Level Failed With Score");
+
+        if (levelScore is RhythmGameScoreController rhythmController)
+        {
+            //  I DONT THINK WE NEED THIS VERIFICATION, BUT PUT IT BACK IF EVERYTHING GETS EFFD UP
+            // if (rhythmController.PlayerScore > 0)
+            // {
+            PlayerModelBase.SetCustomScore(rhythmController.PlayerScore);
+            PlayerModelBase.LevelDataService.SetCustomStarRating(rhythmController.PlayerStars);
+            
+            //  Ensure level exists before saving accuracy data
+            PlayerModelBase.LevelDataService.SetLevelUnlock(_openedWorldIndex, _openedLevel);
+            
+            //  Save accuracy data to PlayerModelBase.LevelData
+            PlayerModelBase.LevelDataService.SetLevelScoreData(_openedLevel, rhythmController, _openedWorldIndex.ToString());
+            
+            //  Apply the custom score and star rating to actual data
+            //PlayerModelBase.LevelDataService.SetLevelCompleted(_openedWorldIndex, _openedLevel);
+            LevelComplete(levelScore);
+            
+            Debug.Log($"Piano game completed - Score: {rhythmController.PlayerScore}, Stars: {rhythmController.PlayerStars}");
+            Debug.Log($"AccuracyBreakdown count: {rhythmController.AccuracyBreakdown?.Count ?? 0}");
+            //}
+        }
+        else
+        {
+            LevelComplete(levelScore);
+        }
+    }
+
     // To get the real score controller from EndOfLevelScreenController
     public void SetCurrentLevelCompleteWithScore(RhythmGameScoreController scoreController)
     {
@@ -103,6 +135,20 @@ public class LevelCompletObserver : MonoBehaviour
         }
         LevelComplete();
     }
+
+    // public static void LevelFailed(ILevelScore levelscore = null)
+    // {
+    //     Debug.Log("Level Failed");
+    //
+    //     PlayerModel.FailLevel(_openedLevel, _openedWorldIndex.ToString());
+    //
+    //     if (_openedLevel != -1)
+    //     {
+    //         SendStudentUpdate(_openedLevel, _openedWorldIndex.ToString(), levelscore);
+    //     }
+    //
+    //     onLevelComplete?.Invoke();
+    // }
 
     public static void LevelComplete(ILevelScore levelscore = null)
     {

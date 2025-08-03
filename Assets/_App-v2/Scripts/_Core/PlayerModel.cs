@@ -72,6 +72,12 @@ using UnityEngine;
             SetCustomData($"w_{worldId}:l_{levelIndex}", "done");
             SetLevelCompleted(levelIndex);
         }
+        
+        // public static void FailLevel(int levelIndex, string worldId)
+        // {
+        //     SetCustomData($"w_{worldId}:l_{levelIndex}", "failed");
+        //     SetLevelFailed(levelIndex);
+        // }
 
         public static void SetLevelScoreData(int levelIndex, ILevelScore levelScore, string worldId = "-1")
         {
