@@ -458,7 +458,7 @@ MonoBehaviour:
   fillDuration: 0.8
   displayDuration: 2
   unfillDuration: 0.2
-  nextSceneName: MainLevelSelect
+  nextSceneName: NeptuneApp
 --- !u!4 &1058172164
 Transform:
   m_ObjectHideFlags: 0
