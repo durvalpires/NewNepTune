@@ -103,6 +103,7 @@ public class PostureRuleApplier : MonoBehaviour
     {
         if (_poseLm == null) return;
 
+        CheckNeckDx(_poseLm);
         bool neckOk = CheckNeckTilt(_poseLm) && CheckNeckDx(_poseLm);
         _neckStatus = neckOk ? "Neck OK" : "Neck Bad";
 
@@ -122,12 +123,27 @@ public class PostureRuleApplier : MonoBehaviour
 
     private bool CheckNeckTilt(NormalizedLandmarkList L)
     {
-        var p0 = L.Landmark[0];
-        var p11 = L.Landmark[11];
-        var p12 = L.Landmark[12];
-        Vector3 mid = new Vector3((float)(p11.X + p12.X) * 0.5f, (float)(p11.Y + p12.Y) * 0.5f, 0f);
-        Vector3 v = new Vector3((float)p0.X, (float)p0.Y, 0f) - mid;
+        var p0 = L.Landmark[0];   // Nose
+        var p11 = L.Landmark[11]; // Left shoulder
+        var p12 = L.Landmark[12]; // Right shoulder
+
+        // Flip Y because MediaPipe's Y increases downward
+        float y0 = 1f - (float)p0.Y;
+        float y11 = 1f - (float)p11.Y;
+        float y12 = 1f - (float)p12.Y;
+
+        Vector3 nose = new Vector3((float)p0.X, y0, 0f);
+        Vector3 leftShoulder = new Vector3((float)p11.X, y11, 0f);
+        Vector3 rightShoulder = new Vector3((float)p12.X, y12, 0f);
+        Vector3 mid = (leftShoulder + rightShoulder) * 0.5f;
+
+        // Vector from shoulders to nose
+        Vector3 v = nose - mid;
+
+        // Now this will behave correctly because Y is flipped
         float ang = Vector3.Angle(v, Vector3.up);
+        Debug.Log($"Neck angle: {ang}");
+
         return ang >= 10f && ang <= 25f;
     }
 
@@ -138,6 +154,7 @@ public class PostureRuleApplier : MonoBehaviour
         var p12 = L.Landmark[12];
         float w = Mathf.Abs((float)p11.X - (float)p12.X);
         float dx = ((float)p0.X - ((float)p11.X + (float)p12.X) * 0.5f) / w;
+        Debug.Log($"Neck direction: {dx}");
         return dx >= -0.41f && dx <= -0.01f;
     }
 
@@ -146,6 +163,7 @@ public class PostureRuleApplier : MonoBehaviour
         Vector3 a = ToV(H.Landmark[14]) - ToV(H.Landmark[16]);
         Vector3 b = ToV(H.Landmark[20]) - ToV(H.Landmark[16]);
         float ang = Vector3.Angle(a, b);
+        Debug.Log($"Wrist angle: {ang}");
         return ang >= 152.84f && ang <= 207.85f;
     }
 
@@ -157,6 +175,7 @@ public class PostureRuleApplier : MonoBehaviour
         Vector3 pip = ToV(H.Landmark[14]);
         Vector3 tip = ToV(H.Landmark[16]);
         float yOffset = (tip.y - pip.y) / torso;
+        Debug.Log($"Wrist Y offset: {yOffset}");
         return yOffset >= -0.61f && yOffset <= 0.39f;
     }
 
