@@ -1748,7 +1748,7 @@ public class NeptuneApp : MonoBehaviour
             if (s.currentWorld > 0)
                 worlds.Add(s.currentWorld);
         }
-        return worlds.OrderBy(w => w).Select(w => w.ToString()).ToList();
+        return worlds.OrderBy(w => w).Select(w => "World " + w.ToString()).ToList();
     }
     
     // Functions for Available Students (SearchStudentPanel)
@@ -1782,7 +1782,7 @@ public class NeptuneApp : MonoBehaviour
             if (s.currentWorld > 0)
                 worlds.Add(s.currentWorld);
         }
-        return worlds.OrderBy(w => w).Select(w => w.ToString()).ToList();
+        return worlds.OrderBy(w => w).Select(w => "World " + w.ToString()).ToList();
     }
 
     // Dropdown event handler methods
@@ -1869,7 +1869,9 @@ public class NeptuneApp : MonoBehaviour
         if (ProcessDropdown != null && ProcessDropdown.value > 0)
         {
             string selectedWorldText = ProcessDropdown.options[ProcessDropdown.value].text;
-            if (int.TryParse(selectedWorldText, out int selectedWorld))
+            // Remove "World " prefix if present
+            string worldNumberText = selectedWorldText.Replace("World ", "");
+            if (int.TryParse(worldNumberText, out int selectedWorld))
             {
                 // Show students who have completed the selected world (currentWorld > selectedWorld)
                 filteredList = filteredList.FindAll(s => s.currentWorld > selectedWorld);
@@ -2151,7 +2153,9 @@ public class NeptuneApp : MonoBehaviour
         if (ProcessDropdownSearch != null && ProcessDropdownSearch.value > 0)
         {
             string selectedWorldText = ProcessDropdownSearch.options[ProcessDropdownSearch.value].text;
-            if (int.TryParse(selectedWorldText, out int selectedWorld))
+            // Remove "World " prefix if present
+            string worldNumberText = selectedWorldText.Replace("World ", "");
+            if (int.TryParse(worldNumberText, out int selectedWorld))
             {
                 // Show students who have completed the selected world (currentWorld > selectedWorld)
                 filteredList = filteredList.FindAll(s => s.currentWorld > selectedWorld);
