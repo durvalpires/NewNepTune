@@ -12,6 +12,7 @@ public class PostureRuleApplier : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI neckText;
     [SerializeField] private TextMeshProUGUI wristText;
+    [SerializeField] private TextMeshProUGUI fingerText;
 
     private HolisticTrackingSolution _solution;
     private HolisticTrackingGraph _runner;
@@ -22,6 +23,7 @@ public class PostureRuleApplier : MonoBehaviour
    
     private string _neckStatus = "";
     private string _wristStatus = "";
+    private string _fingerStatus = "";
     private volatile bool _feedbackAvailable = false;
 
     private void Awake()
@@ -76,6 +78,7 @@ public class PostureRuleApplier : MonoBehaviour
         {
             neckText.text = _neckStatus;
             wristText.text = _wristStatus;
+            fingerText.text = _fingerStatus;
             _feedbackAvailable = false;
         }
     }
@@ -103,25 +106,27 @@ public class PostureRuleApplier : MonoBehaviour
     {
         if (_poseLm == null) return;
 
-        CheckNeckDx(_poseLm);
-        bool neckOk = CheckNeckTilt(_poseLm) && CheckNeckDx(_poseLm);
+        bool neckOk = CheckNeck(_poseLm);
         _neckStatus = neckOk ? "Neck OK" : "Neck Bad";
 
         var hand = _lhLm ?? _rhLm;
         if (hand == null)
         {
             _wristStatus = "No hand";
+            _fingerStatus = "No Fingers";
         }
         else
         {
             bool wristOk = CheckWristAngle(hand) && CheckWristYOffset(hand, _poseLm);
             _wristStatus = wristOk ? "Wrist OK" : "Wrist Bad";
+            bool fingerOk = CheckFingerDIP(hand);
+            _fingerStatus = fingerOk ? "Fingers OK" : "Fingers Bad";
         }
 
         _feedbackAvailable = true;
     }
 
-    private bool CheckNeckTilt(NormalizedLandmarkList L)
+    private bool CheckNeck(NormalizedLandmarkList L)
     {
         var p0 = L.Landmark[0];   // Nose
         var p11 = L.Landmark[11]; // Left shoulder
@@ -139,23 +144,15 @@ public class PostureRuleApplier : MonoBehaviour
 
         // Vector from shoulders to nose
         Vector3 v = nose - mid;
+        float angle = Vector3.Angle(v, Vector3.up);
 
         // Now this will behave correctly because Y is flipped
-        float ang = Vector3.Angle(v, Vector3.up);
-        Debug.Log($"Neck angle: {ang}");
+        float width = Mathf.Abs((float)p11.X - (float)p12.X);
+        float dx = ((float)p0.X - ((float)p11.X + (float)p12.X) * 0.5f) / width;
 
-        return ang >= 10f && ang <= 25f;
-    }
-
-    private bool CheckNeckDx(NormalizedLandmarkList L)
-    {
-        var p0 = L.Landmark[0];
-        var p11 = L.Landmark[11];
-        var p12 = L.Landmark[12];
-        float w = Mathf.Abs((float)p11.X - (float)p12.X);
-        float dx = ((float)p0.X - ((float)p11.X + (float)p12.X) * 0.5f) / w;
         Debug.Log($"Neck direction: {dx}");
-        return dx >= -0.41f && dx <= -0.01f;
+        if (dx > 0) dx = -dx;
+        return angle >= 5f && angle <= 35f && dx >= -0.6f && dx <= -0.05f;
     }
 
     private bool CheckWristAngle(NormalizedLandmarkList H)
@@ -164,7 +161,7 @@ public class PostureRuleApplier : MonoBehaviour
         Vector3 b = ToV(H.Landmark[20]) - ToV(H.Landmark[16]);
         float ang = Vector3.Angle(a, b);
         Debug.Log($"Wrist angle: {ang}");
-        return ang >= 152.84f && ang <= 207.85f;
+        return ang >= 130f && ang <= 210f;
     }
 
     private bool CheckWristYOffset(NormalizedLandmarkList H, NormalizedLandmarkList P)
@@ -176,7 +173,24 @@ public class PostureRuleApplier : MonoBehaviour
         Vector3 tip = ToV(H.Landmark[16]);
         float yOffset = (tip.y - pip.y) / torso;
         Debug.Log($"Wrist Y offset: {yOffset}");
-        return yOffset >= -0.61f && yOffset <= 0.39f;
+        return yOffset >= -0.6f && yOffset <= 0.4f;
+    }
+
+    private bool CheckFingerDIP(NormalizedLandmarkList H)
+    {
+        int[] index = { 6, 7, 8 };
+        int[] middle = { 10, 11, 12 };
+        float indexAngle = GetJointAngle(H, index);
+        float middleAngle = GetJointAngle(H, middle);
+        return indexAngle < 150f || middleAngle < 150f;
+    }
+
+    private float GetJointAngle(NormalizedLandmarkList H, int[] j)
+    {
+        Vector2 a = new Vector2((float)H.Landmark[j[0]].X, (float)H.Landmark[j[0]].Y);
+        Vector2 b = new Vector2((float)H.Landmark[j[1]].X, (float)H.Landmark[j[1]].Y);
+        Vector2 c = new Vector2((float)H.Landmark[j[2]].X, (float)H.Landmark[j[2]].Y);
+        return Vector2.Angle(a - b, c - b);
     }
 
     private Vector3 ToV(NormalizedLandmark l) => new Vector3((float)l.X, (float)l.Y, 0f);
