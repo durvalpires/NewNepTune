@@ -154,7 +154,7 @@ public class LevelCompletObserver : MonoBehaviour
     {
         Debug.Log("LevelComplete");
         
-        PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString());
+        PlayerModel.CompleteLevel(_openedLevel, _openedWorldIndex.ToString(), levelscore);
 
         if (_openedLevel != -1)
         {
@@ -184,8 +184,8 @@ public class LevelCompletObserver : MonoBehaviour
     public static int sendWorld;
     public static int sendLevel;
 
-    public static int lastWorld;
-    public static int lastLevel;
+    public static int currentWorld;
+    public static int currentLevel;
 
     public static void SendStudentUpdate(int levelIndex, string worldId, ILevelScore levelscore)
     {
@@ -203,45 +203,48 @@ public class LevelCompletObserver : MonoBehaviour
             return;
         }
 
+        bool passed = levelscore.PlayerStars > 0;
+
         try
         {
-            int currentLevel = levelIndex;
-            int currentWorld = int.TryParse(worldId, out int world) ? world : 1;
+            int playedLevel = levelIndex;
+            int playedWorld = int.TryParse(worldId, out int world) ? world : 1;
 
             // Initial log
-            Debug.Log($"TEST[CHECK] current: W{currentWorld} L{currentLevel} | last: W{lastWorld} L{lastLevel}");
+            Debug.Log($"TEST[CHECK] current: W{playedWorld} L{playedLevel} | last: W{currentWorld} L{currentLevel}");
 
-            if (currentWorld > lastWorld)
+            sendWorld = currentWorld;
+            sendLevel = currentLevel;
+
+            if (passed)
             {
-                // Bigger world → definite progress
-                sendWorld = currentWorld;
-                sendLevel = currentLevel;
+                if (playedWorld > currentWorld)
+                {
+                    // Bigger world → definite progress
+                    sendWorld = currentWorld = playedWorld;
+                    sendLevel = currentLevel = playedLevel;
 
-                lastWorld = currentWorld;
-                lastLevel = currentLevel;
-
-                Debug.Log($"TEST[NEW WORLD] Progress detected. New record: World {sendWorld}, Level {sendLevel}");
-            }
-            else if (currentWorld == lastWorld && currentLevel > lastLevel)
-            {
-                // Same world but higher level → progress
-                sendWorld = currentWorld;
-                sendLevel = currentLevel;
-
-                lastWorld = currentWorld;
-                lastLevel = currentLevel;
-
-                Debug.Log($"TEST[NEW LEVEL] Same world. New record: World {sendWorld}, Level {sendLevel}");
-            }
-            else
-            {
-                // Lower world or level → no progress, but keep current position
-                sendWorld = currentWorld;
-                sendLevel = currentLevel;
-                
+                    Debug.Log($"TEST[NEW WORLD] Progress detected. New record: World {sendWorld}, Level {sendLevel}");
+                }
+                else if (playedWorld == currentWorld && playedLevel >= currentLevel)
+                {
+                    if(IsLastWorldCompleted())
+                    {
+                        Debug.LogWarning("Last world completed! Completing world...");
+                        //TODO THIS IS COMMENTED SO THAT LEVELS INIT SHOWS THE SCREEN OF PLANET COMPLETION
+                        //PlayerModel.CompleteWorld(worldId);
+                        sendLevel = currentLevel = 0;
+                        sendWorld = ++currentWorld;
+                    }
+                    else
+                    {
+                        // Same world but higher level → progress
+                        sendLevel = currentLevel = ++playedLevel;
+                    }
+                    Debug.Log($"TEST[NEW LEVEL] Same world. New record: World {sendWorld}, Level {sendLevel}");
+                }
                 Debug.Log($"TEST[NO PROGRESS] Same level played again. Current position maintained: World {sendWorld}, Level {sendLevel}");
             }
-
 
             string lastTimePlayed = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -249,12 +252,12 @@ public class LevelCompletObserver : MonoBehaviour
 
             var levelData = PlayerModelBase.LevelData;
 
-            string levelKey = LevelKeyUtil.LevelKey(currentWorld, currentLevel);
+            string levelKey = LevelKeyUtil.LevelKey(playedWorld, playedLevel);
 
-            foreach (var key in levelData.levels.Keys)
-            {
-                Debug.Log($"[DEBUG] Current level key: {key}");
-            }
+            // foreach (var key in levelData.levels.Keys)
+            // {
+            //     Debug.Log($"[DEBUG] Current level key: {key}");
+            // }
 
             if (levelData?.levels != null && levelData.levels.ContainsKey(levelKey))
             {
@@ -291,8 +294,8 @@ public class LevelCompletObserver : MonoBehaviour
                 }
 
                 var detailedInfo = new StudentUpdateEndpoint.DetailedLevelInfo(
-                    world: currentWorld,
-                    level: currentLevel,
+                    world: playedWorld,
+                    level: playedLevel,
                     attempts: level.Attempts,
                     successes: level.Successes,
                     //fails: level.Fails,
@@ -304,7 +307,7 @@ public class LevelCompletObserver : MonoBehaviour
                 );
 
                 detailedLevelInfo.Add(detailedInfo);
-                Debug.Log($"PlayerModelBase data used - Level: {currentLevel}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Successes}, Stars: {level.StarRating}");
+                Debug.Log($"PlayerModelBase data used - Level: {playedLevel}, Score: {level.MaxScore}, Attempts: {level.Attempts}, Success: {level.Successes}, Stars: {level.StarRating}");
             }
             else
             {
@@ -337,29 +340,29 @@ public class LevelCompletObserver : MonoBehaviour
             }
             
             //TODO WE SHOULD CHECK IF WE COMPLETED A PLANET
-            if(IsLastWorldCompleted())
-            {
-                Debug.LogWarning("Last world completed! Completing world...");
-                //TODO THIS IS COMMENTED SO THAT LEVELS INIT SHOWS THE SCREEN OF PLANET COMPLETION
-                //PlayerModel.CompleteWorld(worldId);
-                sendLevel = lastLevel = 0;
-                lastWorld++;
-                sendWorld = lastWorld;
-            }
-            else
-            {
-                if(sendLevel == lastLevel)
-                {
-                    lastLevel++;
-                }
-            }
+            // if(IsLastWorldCompleted())
+            // {
+            //     Debug.LogWarning("Last world completed! Completing world...");
+            //     //TODO THIS IS COMMENTED SO THAT LEVELS INIT SHOWS THE SCREEN OF PLANET COMPLETION
+            //     //PlayerModel.CompleteWorld(worldId);
+            //     sendLevel = currentLevel = 0;
+            //     currentWorld++;
+            //     sendWorld = currentWorld;
+            // }
+            // else
+            // {
+            //     if(playedWorld == currentWorld && sendLevel == currentLevel)
+            //     {
+            //         currentLevel++;
+            //     }
+            // }
             
             Debug.LogWarning("Send Last World: " + sendWorld + " Last Level: " + sendLevel);
 
             StudentUpdateEndpoint.Instance.UpdateStudentInfo(
                 studentId: studentId,
-                currentLevel: lastLevel,
-                currentWorld: lastWorld,
+                currentLevel: sendLevel,
+                currentWorld: sendWorld,
                 lastTimePlayed: lastTimePlayed,
                 totalTime: (int)SessionTimeTracker.TotalMinutesPlayed,
                 detailedLevelInfo: detailedLevelInfo,
@@ -374,7 +377,7 @@ public class LevelCompletObserver : MonoBehaviour
             //}
             );
 
-            Debug.Log($"Student update sent - Level: {currentLevel}, World: {currentWorld}");
+            Debug.Log($"Student update sent - Level: {playedLevel}, World: {playedWorld}");
         }
         catch (System.Exception e)
         {
@@ -409,7 +412,7 @@ public class LevelCompletObserver : MonoBehaviour
     public static bool IsLastWorldCompleted()
     {
         //TODO THIS SHOULD BE IMPROVED
-        var data = PlayerModel.AllWorlds.worldsConfigs[lastWorld-1];
+        var data = PlayerModel.AllWorlds.worldsConfigs[currentWorld-1];
 
         for(int i = 0; i < data.levels.Length; i++)
         {
@@ -422,13 +425,13 @@ public class LevelCompletObserver : MonoBehaviour
         return true;
     }
 
-    //private static bool IsHigherProgress(int newWorld, int newLevel, int lastWorld, int lastLevel)
+    //private static bool IsHigherProgress(int newWorld, int newLevel, int currentWorld, int currentLevel)
     //{
     //    // Compare world first
-    //    if (newWorld > lastWorld) return true;
-    //    if (newWorld < lastWorld) return false;
+    //    if (newWorld > currentWorld) return true;
+    //    if (newWorld < currentWorld) return false;
 
     //    // If worlds are equal, compare levels - priority is world first, then level
-    //    return newLevel > lastLevel;
+    //    return newLevel > currentLevel;
     //}
 }

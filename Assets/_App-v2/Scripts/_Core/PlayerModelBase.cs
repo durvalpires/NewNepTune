@@ -227,6 +227,13 @@ public class PlayerModelBase
             _levelDataService.SaveLevelData().Forget();
     }
     
+    public static void SetLevelCompleted(int levelIndex, LevelInfo levelInfo)
+    {
+        _levelDataService?.SetLevelCompleted(_currentWorldIndex, levelInfo);
+        if (_levelDataService != null)
+            _levelDataService.SaveLevelData().Forget();
+    }
+    
     // public static void SetLevelFailed(int levelIndex)
     // {
     //     _levelDataService?.SetLevelCompleted(_currentWorldIndex, levelIndex, false);

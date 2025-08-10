@@ -67,10 +67,16 @@ using UnityEngine;
         {
             await PlayerModel.LoadData();
         }
-        public static void CompleteLevel(int levelIndex, string worldId)
+        public static void CompleteLevel(int levelIndex, string worldId, ILevelScore levelscore = null)
         {
-            SetCustomData($"w_{worldId}:l_{levelIndex}", "done");
+            SetCustomData($"w_{worldId}:l_{levelIndex}", levelscore != null && levelscore.PlayerStars > 0 ? "done" : "failed");
             SetLevelCompleted(levelIndex);
+        }
+        
+        public static void CompleteLevel(int levelIndex, string worldId, LevelInfo levelInfo)
+        {
+            SetCustomData($"w_{worldId}:l_{levelIndex}", (levelInfo != null && levelInfo.successes > 0) ? "done" : "failed");
+            SetLevelCompleted(levelIndex, levelInfo);
         }
         
         // public static void FailLevel(int levelIndex, string worldId)

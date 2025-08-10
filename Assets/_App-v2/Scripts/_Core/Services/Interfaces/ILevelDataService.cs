@@ -17,6 +17,7 @@ public interface ILevelDataService
 
     void SetLevelUnlock(int worldIndex, int levelIndex);
     void SetLevelCompleted(int worldIndex, int levelIndex);
+    void SetLevelCompleted(int worldIndex, LevelInfo worldInfo);
     bool IsLevelCompleted(string worldIndex, int levelIndex);
     void UpdateCounter(int worldIndex, int levelIndex, CounterType counterType);
     void SetCustomScore(int customScore);

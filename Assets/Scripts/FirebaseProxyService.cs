@@ -31,6 +31,7 @@ public class FirebaseProxyService : MonoBehaviour
     private string _username;
     private int _currentLevel;
     private int _currentWorld;
+    private WorldsData _worldsData;
 
     public string UserId => _userId;
     public string AuthToken => _authToken;
@@ -363,9 +364,10 @@ public class FirebaseProxyService : MonoBehaviour
                 _username = response.username;
                 _currentLevel = response.currentLevel;
                 _currentWorld = response.currentWorld;
+                _worldsData = response.worldsData;
 
-                LevelCompletObserver.lastLevel = response.currentLevel;
-                LevelCompletObserver.lastWorld = response.currentWorld;
+                LevelCompletObserver.currentLevel = response.currentLevel;
+                LevelCompletObserver.currentWorld = response.currentWorld;
 
                 Debug.Log("User successfully logged in! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
                 if (!string.IsNullOrEmpty(_privateCode))
@@ -376,8 +378,15 @@ public class FirebaseProxyService : MonoBehaviour
                     //TEST
                     PlayerModel.ClearData();
 
-                    for (int i = 0; i <= _currentWorld; i++)
+                    for (int i = 0; i < _currentWorld; i++)
                     {
+                        WorldInfo worldToLoad = null;
+                        if(_worldsData != null && _worldsData.worlds != null && _worldsData.worlds.Count > 0 && _worldsData.worlds[i] != null)
+                        {
+                            Debug.Log("World data found for world index: " + i);
+                            worldToLoad = _worldsData.worlds[i];
+                        }
+                        
                         if (i < _currentWorld)
                         {
                             PlayerModel.CompleteWorld(i.ToString());
@@ -387,15 +396,45 @@ public class FirebaseProxyService : MonoBehaviour
                         {
                             for (int x = 0; x < _currentLevel; x++)
                             {
-                                PlayerModel.CompleteLevel(x, i.ToString());
+                                if(worldToLoad != null && worldToLoad.levels != null && worldToLoad.levels.Count > 0 && worldToLoad.levels[x] != null)
+                                {
+                                    // if(worldToLoad.levels[x].successes > 0)
+                                    // {
+                                    //PlayerModel.CompleteLevel(x, i.ToString());
+                                    PlayerModel.CompleteLevel(x, i.ToString(), worldToLoad.levels[x]);
+                                    // }
+                                    // else
+                                    // {
+                                    //     PlayerModel.FailLevel(x, i.ToString());
+                                    // }
+                                }
+                                else
+                                {
+                                    PlayerModel.CompleteLevel(x, i.ToString());
+                                }
+                                //PlayerModel.CompleteLevel(x, i.ToString());
                             }
                         }
                         else
                         {
-                            // for (int x = 0; x <= 31; x++)
-                            // {
-                            //     PlayerModel.CompleteLevel(x, i.ToString());
-                            // }
+                            for (int x = 0; x < PlayerModel.AllWorlds.worldsConfigs[i].levels.Length; x++)
+                            {
+                                if(worldToLoad != null && worldToLoad.levels != null && worldToLoad.levels.Count > 0 && worldToLoad.levels[x] != null)
+                                {
+                                    // if(worldToLoad.levels[x].successes > 0)
+                                    // {
+                                    PlayerModel.CompleteLevel(x, i.ToString(), worldToLoad.levels[x]);
+                                    // }
+                                    // else
+                                    // {
+                                    //     PlayerModel.FailLevel(x, i.ToString());
+                                    // }
+                                }
+                                else
+                                {
+                                    PlayerModel.CompleteLevel(x, i.ToString());
+                                }
+                            }
                         }
                     }
 
@@ -795,8 +834,8 @@ public class FirebaseProxyService : MonoBehaviour
                         _currentLevel = response.resetTo.currentLevel;
                         _currentWorld = response.resetTo.currentWorld;
 
-                        LevelCompletObserver.lastLevel = _currentLevel;
-                        LevelCompletObserver.lastWorld = _currentWorld;
+                        LevelCompletObserver.currentLevel = _currentLevel;
+                        LevelCompletObserver.currentWorld = _currentWorld;
 
                         Debug.Log("User progress successfully resetted! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
                         Debug.Log("Current Level: " + _currentLevel + ", Current World: " + _currentWorld);
@@ -1037,6 +1076,7 @@ public class FirebaseProxyService : MonoBehaviour
         public string username;
         public int currentLevel;
         public int currentWorld;
+        public WorldsData worldsData;
     }
 
     [System.Serializable]

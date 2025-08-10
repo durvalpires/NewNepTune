@@ -155,13 +155,87 @@ public class LevelDataService : ILevelDataService
         SaveLevelData().Forget();
     }
 
+    public void SetLevelCompleted(int worldIndex, WorldInfo worldInfo)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetLevelCompleted(int worldIndex, LevelInfo levelInfo)
+    {
+        if (LevelData == null)
+            return;
+
+        if (LevelData.levels == null)
+            LevelData.levels = new Dictionary<string, LevelFirebaseData>();
+
+        string key = LevelKeyUtil.LevelKey(worldIndex, levelInfo.levelNumber);
+    
+        if (!LevelData.levels.ContainsKey(key))
+        {
+            LevelData.levels[key] = new LevelFirebaseData
+            {
+                Attempts = levelInfo.attempts,
+                MaxScore = levelInfo.maxScore,
+                StarRating = levelInfo.starRating,
+                Successes = levelInfo.successes,
+                HitAccuracy = levelInfo.accuracyBreakdown != null 
+                    ? ConvertAccuracyBreakdown(levelInfo.accuracyBreakdown) 
+                    : new Dictionary<HitAccuracy, float>()
+            };
+
+            if (levelInfo.starRating > 0) 
+                LevelData.NumberOfLevel++;
+        }
+        else
+        {
+            var levelData = LevelData.levels[key];
+            levelData.Attempts = Math.Max(levelData.Attempts, levelInfo.attempts);
+            levelData.MaxScore = Math.Max(levelData.MaxScore, levelInfo.maxScore);
+            levelData.StarRating = Math.Max(levelData.StarRating.Value, levelInfo.starRating);
+            levelData.Successes = Math.Max(levelData.Successes, levelInfo.successes);
+
+            if (levelInfo.accuracyBreakdown != null && levelInfo.accuracyBreakdown.Count > 0)
+            {
+                // foreach (var acc in ConvertAccuracyBreakdown(levelInfo.accuracyBreakdown))
+                // {
+                //     levelData.HitAccuracy[acc.Key] = acc.Value;
+                // }
+                levelData.HitAccuracy = ConvertAccuracyBreakdown(levelInfo.accuracyBreakdown);
+            }
+        }
+
+        // Recalculate average score
+        int totalScore = 0;
+        foreach (var level in LevelData.levels.Values)
+        {
+            totalScore += level.MaxScore;
+        }
+
+        LevelData.AverageScore = LevelData.NumberOfLevel > 0
+            ? totalScore / LevelData.NumberOfLevel
+            : 0;
+    }
+    
+    private Dictionary<HitAccuracy, float> ConvertAccuracyBreakdown(List<AccuracyBreakdownItem> breakdownList)
+    {
+        var dict = new Dictionary<HitAccuracy, float>();
+        foreach (var item in breakdownList)
+        {
+            if (Enum.TryParse(item.noteName, out HitAccuracy accuracyType))
+            {
+                dict[accuracyType] = item.percentage;
+            }
+        }
+        return dict;
+    }
+
     public bool IsLevelCompleted(string worldIndex, int levelIndex)
     {
         if (LevelData == null || LevelData.levels == null)
             return false;
         
         //AT LEAST WHILE WE ASSUME PROGRESS IS LINEAR (AS IN, YOU HAVE TO COMPLETE A LEVEL TO ACCESS THE FOLLOWING)
-        if (int.Parse(worldIndex) < LevelCompletObserver.lastWorld)
+        if (int.Parse(worldIndex) < LevelCompletObserver.currentWorld)
             return true;
 
         string key = LevelKeyUtil.LevelKey(worldIndex, levelIndex);
