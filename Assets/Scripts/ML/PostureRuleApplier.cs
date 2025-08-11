@@ -6,6 +6,7 @@ using TMPro;
 using Mediapipe.Unity.Sample.Holistic;
 using Mediapipe.Unity;
 using Mediapipe;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(HolisticTrackingSolution))]
 public class PostureRuleApplier : MonoBehaviour
@@ -21,7 +22,9 @@ public class PostureRuleApplier : MonoBehaviour
     private NormalizedLandmarkList _lhLm;
     private NormalizedLandmarkList _rhLm;
 
-   
+    private Queue<string> _ttsQueue = new Queue<string>();
+    private bool _isSpeaking = false;
+
     private int _neckStableCount, _wristStableCount, _fingerStableCount;
     private const int StabilityFrames = 5;
     private string _stableNeckStatus = "Neck Good", _stableWristStatus = "Wrist Good", _stableFingerStatus = "Fingers Good";
@@ -86,6 +89,11 @@ public class PostureRuleApplier : MonoBehaviour
             fingerText.text = _fingerStatus;
             _feedbackAvailable = false;
         }
+
+        //if (!_isSpeaking && _ttsQueue.Count > 0)
+        //{
+        //    SpeakNext();
+        //}
     }
 
     private void OnPoseLandmarks(object _, OutputStream<NormalizedLandmarkList>.OutputEventArgs e)
@@ -189,7 +197,49 @@ public class PostureRuleApplier : MonoBehaviour
         _wristStatus = _stableWristStatus;
         _fingerStatus = _stableFingerStatus;
         _feedbackAvailable = true;
+        //EnqueueFeedback(_stableNeckStatus, _stableWristStatus, _stableFingerStatus);
     }
+//    private void EnqueueFeedback(params string[] lines)
+//    {
+//        _ttsQueue.Clear();
+//        foreach (var line in lines)
+//            if (line.Contains("Bad"))
+//                _ttsQueue.Enqueue(line);
+       
+//    }
 
+//    private void SpeakNext()
+//    {
+//        if (_isSpeaking || _ttsQueue.Count == 0) return;
+//        var msg = _ttsQueue.Dequeue();
+//        _isSpeaking = true;
+
+//#if UNITY_ANDROID && !UNITY_EDITOR
+//        NeptuneTTS.Speak(msg);
+//        // your Android plugin must call:
+//        //   UnityPlayer.UnitySendMessage("PostureRuleApplier","OnTtsDone","");
+
+//#elif UNITY_IOS || UNITY_STANDALONE_OSX
+//        AppleTTS.Speak(msg);
+//        // your iOS/macOS native plugin should call UnitySendMessage("PostureRuleApplier","OnTtsDone","");
+
+//#elif UNITY_EDITOR
+//        // Editor (macOS or Windows): use our AppleTTS shim which shells out to 'say' or powershell
+//        AppleTTS.Speak(msg);
+//        // schedule the callback after an estimated duration
+//        var delay = Mathf.Clamp(msg.Length * 0.05f, 0.5f, 3f);
+//        Invoke(nameof(OnTtsDone), delay);
+
+//#else
+//        // fallback immediately
+//        OnTtsDone();
+//#endif
+//    }
+
+//    public void OnTtsDone()
+//    {
+//        _isSpeaking = false;
+//        SpeakNext();
+//    }
     private Vector3 ToV(NormalizedLandmark l) => new Vector3((float)l.X, (float)l.Y, 0f);
 }
