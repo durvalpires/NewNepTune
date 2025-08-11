@@ -203,7 +203,7 @@ public class LevelCompletObserver : MonoBehaviour
             return;
         }
 
-        bool passed = levelscore.PlayerStars > 0;
+        bool passed = (levelscore != null && levelscore.PlayerStars > 0);
 
         try
         {

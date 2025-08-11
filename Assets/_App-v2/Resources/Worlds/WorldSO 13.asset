@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: WorldSO 13
   m_EditorClassIdentifier: 
   title: World 13
-  id: 13
+  id: 12
   worldSprite: {fileID: 21300000, guid: 7d93f491c1ee447158759b110ac0ccf4, type: 3}
-  galaxy: 2
   levels:
   - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: b30a2f6ce419546f684eaffce8e0e675, type: 2}
