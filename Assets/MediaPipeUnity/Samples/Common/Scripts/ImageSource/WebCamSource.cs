@@ -130,11 +130,21 @@ namespace Mediapipe.Unity
 
       availableSources = WebCamTexture.devices;
 
-      if (availableSources != null && availableSources.Length > 0)
-      {
-        webCamDevice = availableSources[0];
-      }
-    }
+            if (availableSources != null && availableSources.Length > 0)
+            {
+              
+                var frontCam = availableSources.FirstOrDefault(device => device.isFrontFacing);
+                if (!string.IsNullOrEmpty(frontCam.name))
+                {
+                    webCamDevice = frontCam;
+                }
+                else
+                {
+                   
+                    webCamDevice = availableSources[0];
+                }
+            }
+        }
 
     private IEnumerator GetPermission()
     {
