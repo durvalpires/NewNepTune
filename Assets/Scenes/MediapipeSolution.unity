@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &93315743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 93315745}
+  m_Layer: 0
+  m_Name: AudioPitchEstimator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &93315745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93315743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &638479256
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +420,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: MediapipeGameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 805501438829330159, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805501438829330159, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805501438829330159, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030785064028293787, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030785064028293787, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030785064028293787, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030785064028293787, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5106805822326436309, guid: 2ccfd1049adf54ba4bddd63697e23374,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -439,6 +505,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5955437335550457297, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955437335550457297, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955437335550457297, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955437335550457297, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373530523713384772, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: _fitMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883278832455286501, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883278832455286501, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9182399762493703220, guid: 2ccfd1049adf54ba4bddd63697e23374,
         type: 3}
       propertyPath: m_Camera
@@ -457,3 +558,4 @@ SceneRoots:
   - {fileID: 638479258}
   - {fileID: 1223870916}
   - {fileID: 7771530148535981349}
+  - {fileID: 93315745}
