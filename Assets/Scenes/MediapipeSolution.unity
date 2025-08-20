@@ -169,15 +169,15 @@ MonoBehaviour:
   smoothingWidth: 500
   thresholdSRH: 7
   EstimateRate: 30
-  targetSource: {fileID: 0}
+  StableNoteText: {fileID: 1710562000}
+  waitForVideoSeconds: 3
+  updateHz: 30
   windowMs: 300
   dominanceRatio: 0.6
   consecutiveToLock: 5
   vibratoSmoothFrames: 6
   centsSnapTolerance: 35
   ignoreOctave: 1
-  updateHz: 30
-  neckText: {fileID: 1710562000}
 --- !u!1 &638479256
 GameObject:
   m_ObjectHideFlags: 0

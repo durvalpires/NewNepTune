@@ -10,7 +10,7 @@ using UnityEngine.Video;
 public class AudioPitchEstimator : MonoBehaviour
 {
     [Tooltip("Lowest frequency that can be estimated [Hz]")]
-    [Range(40, 150)]
+    [Range(40, 200)]
     public int frequencyMin = 40;
 
     [Tooltip("Highest frequency that can be estimated [Hz]")]
@@ -40,7 +40,6 @@ public class AudioPitchEstimator : MonoBehaviour
     [SerializeField]
     private float EstimateRate = 30;
     
-    [SerializeField]
     private AudioSource targetSource;
     
     private void Start()
