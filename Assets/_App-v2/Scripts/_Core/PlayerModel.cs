@@ -69,14 +69,20 @@ using UnityEngine;
         }
         public static void CompleteLevel(int levelIndex, string worldId, ILevelScore levelscore = null)
         {
-            SetCustomData($"w_{worldId}:l_{levelIndex}", levelscore != null && levelscore.PlayerStars > 0 ? "done" : "failed");
-            SetLevelCompleted(levelIndex);
+            SetCustomData($"w_{worldId}:l_{levelIndex}", (levelscore != null && levelscore.PlayerStars > 0) || levelscore == null ? "done" : "failed");
+            SetLevelCompleted(levelIndex, 0);
         }
         
-        public static void CompleteLevel(int levelIndex, string worldId, LevelInfo levelInfo)
+        public static void CompleteUnfinishedLevel(int levelIndex, int worldId, LevelInfo levelInfo)
         {
-            SetCustomData($"w_{worldId}:l_{levelIndex}", (levelInfo != null && levelInfo.successes > 0) ? "done" : "failed");
-            SetLevelCompleted(levelIndex, levelInfo);
+            //SetCustomData($"w_{worldId}:l_{levelIndex}", (levelInfo != null && levelInfo.successes > 0) ? "done" : "failed");
+            SetLevelCompleted(levelIndex, levelInfo, worldId);
+        }
+        
+        public static void CompleteLevel(int levelIndex, int worldId, LevelInfo levelInfo, bool bypassSuccesses = false)
+        {
+            SetCustomData($"w_{worldId}:l_{levelIndex}", (bypassSuccesses || (levelInfo != null && levelInfo.successes > 0)) ? "done" : "failed");
+            SetLevelCompleted(levelIndex, levelInfo, worldId);
         }
         
         // public static void FailLevel(int levelIndex, string worldId)
@@ -100,7 +106,6 @@ using UnityEngine;
         public static void CompleteWorld(string worldId)
         {
             SetCustomData($"w_{worldId}", "done");
-            
         }
 
         private static AllWorldsSO _allWorlds;

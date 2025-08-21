@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -32,6 +33,7 @@ public class FirebaseProxyService : MonoBehaviour
     private int _currentLevel;
     private int _currentWorld;
     private WorldsData _worldsData;
+    private double _totalTime;
 
     public string UserId => _userId;
     public string AuthToken => _authToken;
@@ -364,10 +366,12 @@ public class FirebaseProxyService : MonoBehaviour
                 _username = response.username;
                 _currentLevel = response.currentLevel;
                 _currentWorld = response.currentWorld;
-                _worldsData = response.worldsData;
-
+                _worldsData = response.detailedScores;
+                _totalTime = response.totalTime;
+                
                 LevelCompletObserver.currentLevel = response.currentLevel;
                 LevelCompletObserver.currentWorld = response.currentWorld;
+                SessionTimeTracker.SetTotalMinutesPlayed((double)response.totalTime);
 
                 Debug.Log("User successfully logged in! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
                 if (!string.IsNullOrEmpty(_privateCode))
@@ -378,10 +382,11 @@ public class FirebaseProxyService : MonoBehaviour
                     //TEST
                     PlayerModel.ClearData();
 
-                    for (int i = 0; i < _currentWorld; i++)
+                    for (int i = 0; i <= _currentWorld; i++)
                     {
                         WorldInfo worldToLoad = null;
-                        if(_worldsData != null && _worldsData.worlds != null && _worldsData.worlds.Count > 0 && _worldsData.worlds[i] != null)
+                        if(_worldsData != null && _worldsData.worlds != null && 
+                           _worldsData.worlds.Count > i && _worldsData.worlds[i] != null)
                         {
                             Debug.Log("World data found for world index: " + i);
                             worldToLoad = _worldsData.worlds[i];
@@ -394,21 +399,28 @@ public class FirebaseProxyService : MonoBehaviour
 
                         if (_currentWorld == i)
                         {
-                            for (int x = 0; x < _currentLevel; x++)
+                            for (int x = 0; x <= _currentLevel; x++)
                             {
-                                if(worldToLoad != null && worldToLoad.levels != null && worldToLoad.levels.Count > 0 && worldToLoad.levels[x] != null)
+                                if(worldToLoad != null && worldToLoad.levels != null && worldToLoad.levels.Count > 0)
                                 {
-                                    // if(worldToLoad.levels[x].successes > 0)
-                                    // {
-                                    //PlayerModel.CompleteLevel(x, i.ToString());
-                                    PlayerModel.CompleteLevel(x, i.ToString(), worldToLoad.levels[x]);
-                                    // }
-                                    // else
-                                    // {
-                                    //     PlayerModel.FailLevel(x, i.ToString());
-                                    // }
+                                    var levelToLoad = worldToLoad.levels.FirstOrDefault(level => level.levelNumber == x);
+                                    if (levelToLoad != null)
+                                    {
+                                        if(x < _currentLevel)
+                                        {
+                                            PlayerModel.CompleteLevel(levelToLoad.levelNumber, i, levelToLoad, true);
+                                        }
+                                        else
+                                        {
+                                            PlayerModel.CompleteUnfinishedLevel(levelToLoad.levelNumber, i, levelToLoad);
+                                        }
+                                    }
+                                    else if(x < _currentLevel)
+                                    {
+                                        PlayerModel.CompleteLevel(x, i.ToString());
+                                    }
                                 }
-                                else
+                                else if(x < _currentLevel)
                                 {
                                     PlayerModel.CompleteLevel(x, i.ToString());
                                 }
@@ -419,26 +431,30 @@ public class FirebaseProxyService : MonoBehaviour
                         {
                             for (int x = 0; x < PlayerModel.AllWorlds.worldsConfigs[i].levels.Length; x++)
                             {
-                                if(worldToLoad != null && worldToLoad.levels != null && worldToLoad.levels.Count > 0 && worldToLoad.levels[x] != null)
+                                if(worldToLoad != null && worldToLoad.levels != null && worldToLoad.levels.Count > 0)
                                 {
-                                    // if(worldToLoad.levels[x].successes > 0)
-                                    // {
-                                    PlayerModel.CompleteLevel(x, i.ToString(), worldToLoad.levels[x]);
-                                    // }
-                                    // else
-                                    // {
-                                    //     PlayerModel.FailLevel(x, i.ToString());
-                                    // }
+                                    var levelToLoad = worldToLoad.levels.FirstOrDefault(level => level.levelNumber == x);
+                                    if (levelToLoad != null)
+                                    {
+                                        Debug.LogWarning("Level data found for level index: " + x);
+                                        PlayerModel.CompleteLevel(levelToLoad.levelNumber, i, levelToLoad);
+                                    }
+                                    else
+                                    {
+                                        Debug.LogWarning("Level data not found for level index: " + x);
+                                        PlayerModel.CompleteLevel(x, i.ToString());
+                                    }
                                 }
                                 else
                                 {
+                                    Debug.LogWarning("World data not found for world index: " + i);
                                     PlayerModel.CompleteLevel(x, i.ToString());
                                 }
                             }
                         }
+                        PlayerModelBase.LevelDataService.PrintAllPlayerLevelData();
                     }
 
-                    //TEST
                 }
                 if (!string.IsNullOrEmpty(_teacherPrivateCode))
                 {
@@ -1076,7 +1092,8 @@ public class FirebaseProxyService : MonoBehaviour
         public string username;
         public int currentLevel;
         public int currentWorld;
-        public WorldsData worldsData;
+        public WorldsData detailedScores;
+        public double totalTime;
     }
 
     [System.Serializable]

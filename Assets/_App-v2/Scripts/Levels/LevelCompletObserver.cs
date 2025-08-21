@@ -203,7 +203,7 @@ public class LevelCompletObserver : MonoBehaviour
             return;
         }
 
-        bool passed = (levelscore != null && levelscore.PlayerStars > 0);
+        bool passed = (levelscore != null && levelscore.PlayerStars > 0) || levelscore == null;
 
         try
         {
@@ -239,7 +239,7 @@ public class LevelCompletObserver : MonoBehaviour
                     else
                     {
                         // Same world but higher level → progress
-                        sendLevel = currentLevel = ++playedLevel;
+                        sendLevel = currentLevel = playedLevel + 1;
                     }
                     Debug.Log($"TEST[NEW LEVEL] Same world. New record: World {sendWorld}, Level {sendLevel}");
                 }
@@ -412,7 +412,7 @@ public class LevelCompletObserver : MonoBehaviour
     public static bool IsLastWorldCompleted()
     {
         //TODO THIS SHOULD BE IMPROVED
-        var data = PlayerModel.AllWorlds.worldsConfigs[currentWorld-1];
+        var data = PlayerModel.AllWorlds.worldsConfigs[currentWorld];
 
         for(int i = 0; i < data.levels.Length; i++)
         {

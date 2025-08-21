@@ -115,7 +115,7 @@ public class PlayerModelBase
 
     public static void SetCurrentWorld(int worldIndex)
     {
-        _currentWorldIndex = Mathf.Max(1, worldIndex);   
+        _currentWorldIndex = Mathf.Max(0, worldIndex);   
     }
 
     public static void SetPlayerName(string name)
@@ -220,16 +220,16 @@ public class PlayerModelBase
         SetLevelUnlocked(levelIndex);
     }
 
-    public static void SetLevelCompleted(int levelIndex)
+    public static void SetLevelCompleted(int levelIndex, int worldIndex = -1)
     {
-        _levelDataService?.SetLevelCompleted(_currentWorldIndex, levelIndex);
+        _levelDataService?.SetLevelCompleted(worldIndex == -1 ? _currentWorldIndex : worldIndex, levelIndex);
         if (_levelDataService != null)
             _levelDataService.SaveLevelData().Forget();
     }
     
-    public static void SetLevelCompleted(int levelIndex, LevelInfo levelInfo)
+    public static void SetLevelCompleted(int levelIndex, LevelInfo levelInfo, int worldIndex)
     {
-        _levelDataService?.SetLevelCompleted(_currentWorldIndex, levelInfo);
+        _levelDataService?.SetLevelCompleted(worldIndex, levelInfo);
         if (_levelDataService != null)
             _levelDataService.SaveLevelData().Forget();
     }

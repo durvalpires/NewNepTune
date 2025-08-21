@@ -2265,6 +2265,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SessionTimeTracker
       objectReference: {fileID: 0}
+    - target: {fileID: 4490196304738246271, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
         type: 3}
       propertyPath: m_LocalPosition.x

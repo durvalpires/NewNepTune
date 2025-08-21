@@ -42,8 +42,8 @@ public class SessionTimeTracker : MonoBehaviour
 
     private void SaveTotalPlayTime()
     {
-        PlayerPrefs.SetFloat("TotalMinutesPlayed", (float)TotalMinutesPlayed);
-        PlayerPrefs.Save();
+        // PlayerPrefs.SetFloat("TotalMinutesPlayed", (float)TotalMinutesPlayed);
+        // PlayerPrefs.Save();i
         
         FirebaseProxyService.Instance.UpdateStudentTotalTime((int)TotalMinutesPlayed);
     }
@@ -51,7 +51,7 @@ public class SessionTimeTracker : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        TotalMinutesPlayed = PlayerPrefs.GetFloat("TotalMinutesPlayed", 0f);
+        //TotalMinutesPlayed = PlayerPrefs.GetFloat("TotalMinutesPlayed", 0f);
         Debug.Log("TotalMinutesPlayed: " + TotalMinutesPlayed);
     }
     
@@ -79,5 +79,11 @@ public class SessionTimeTracker : MonoBehaviour
             timePlayed.Days * 24 + timePlayed.Hours,
             timePlayed.Minutes,
             timePlayed.Seconds);
+    }
+    
+    //  To be used after loading the student data from Firebase on login
+    public static void SetTotalMinutesPlayed(double totalMinutesPlayed)
+    {
+        TotalMinutesPlayed = totalMinutesPlayed;
     }
 }

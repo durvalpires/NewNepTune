@@ -61,13 +61,29 @@ public class LevelDataService : ILevelDataService
         //     result[kvp.Key] = (kvp.Value.MaxScore, kvp.Value.Repetition);
 
         return result;
+        
+        
     }
 
     public void PrintAllPlayerLevelData()
     {
-        var levels = GetAllPlayerLevelData();
-        foreach (var kvp in levels)
-            Debug.Log("Level " + kvp.Key + " => Score: " + kvp.Value.Score + ", Repetition: " + kvp.Value.Repetition);
+        // var levels = GetAllPlayerLevelData();
+        // foreach (var kvp in levels)
+        //     Debug.Log("Level " + kvp.Key + " => Score: " + kvp.Value.Score + ", Repetition: " + kvp.Value.Repetition);
+        if (LevelData?.levels == null)
+        {
+            Debug.Log("No level data available");
+            return;
+        }
+
+        Debug.Log($"=== Player Level Data ({LevelData.levels.Count} levels) ===");
+        foreach (var kvp in LevelData.levels)
+        {
+            var level = kvp.Value;
+            Debug.Log($"Level {kvp.Key} => Score: {level.MaxScore}, Attempts: {level.Attempts}, " +
+                      $"Successes: {level.Successes}, StarRating: {level.StarRating}, " +
+                      $"TimeSpent: {level.TimeSpent}, HitAccuracy: {(level.HitAccuracy?.Count ?? 0)} entries");
+        }
     }
 
     public void SetLevelUnlock(int worldIndex, int levelIndex)
