@@ -2,7 +2,7 @@ Shader "MediaPipe/TransparentMask" {
   Properties {
     _MainTex ("CameraTex", 2D) = "white" {}
     _MaskTex ("MaskTex", 2D) = "white" {}
-    _FadeAmount ("Background Fade", Range(0,1)) = 0.5
+    _FadeAmount ("Background Fade", Range(0,1)) = 1
   }
   SubShader {
     Tags { "Queue"="Overlay" "RenderType"="Transparent" }
