@@ -164,12 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frequencyMin: 40
-  frequencyMax: 600
-  harmonicsToUse: 5
-  smoothingWidth: 500
+  frequencyMax: 2300
+  harmonicsToUse: 6
+  smoothingWidth: 2300
   thresholdSRH: 7
   EstimateRate: 30
-  StableNoteText: {fileID: 1710562000}
   waitForVideoSeconds: 3
   updateHz: 30
   windowMs: 300
@@ -177,7 +176,8 @@ MonoBehaviour:
   consecutiveToLock: 5
   vibratoSmoothFrames: 6
   centsSnapTolerance: 35
-  ignoreOctave: 1
+  ignoreOctave: 0
+  StableNoteText: {fileID: 1710562000}
 --- !u!1 &638479256
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ PrefabInstance:
     - target: {fileID: 8627227469354641057, guid: 2ccfd1049adf54ba4bddd63697e23374,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -940.04175
+      value: -940.0418
       objectReference: {fileID: 0}
     - target: {fileID: 8627227469354641057, guid: 2ccfd1049adf54ba4bddd63697e23374,
         type: 3}

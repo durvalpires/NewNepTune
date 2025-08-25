@@ -6,7 +6,7 @@ using TMPro;
 
 public class AudioPitchHUD : AudioPitchEstimator
 {
-    [SerializeField] TextMeshProUGUI StableNoteText;
+   
   
     [SerializeField] public float waitForVideoSeconds = 3f;
     [SerializeField] public float updateHz = 30f;
@@ -18,6 +18,7 @@ public class AudioPitchHUD : AudioPitchEstimator
     [SerializeField] public float centsSnapTolerance = 35f;
     [SerializeField] public bool ignoreOctave = true;
 
+     [SerializeField] TextMeshProUGUI StableNoteText;
 
     const int SpectrumSize = 1024;
     const int OutputResolution = 200;
@@ -122,7 +123,7 @@ public class AudioPitchHUD : AudioPitchEstimator
                     var name = ignoreOctave ? note.noteName : note.noteName + note.octave.ToString();
                     var centsAbs = Mathf.Abs(note.cents).ToString("0");
                     var sign = note.cents >= 0 ? "+" : "-";
-                    StableNoteText.text = name + " " + sign + centsAbs + "c";
+                    StableNoteText.text = name;// + " " + sign + centsAbs + "c";
                 }
                 else
                 {
@@ -305,6 +306,7 @@ public class AudioPitchHUD : AudioPitchEstimator
             confidence = Mathf.Clamp01(leaderRatio)
         };
     }
+
 
     int FreqToMidi(float freq)
     {
