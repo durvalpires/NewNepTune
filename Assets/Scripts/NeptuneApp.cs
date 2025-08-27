@@ -1422,7 +1422,7 @@ public class NeptuneApp : MonoBehaviour
                 }
                 
                 if (successesText != null) {
-                    if (level.successes > 0) {
+                    if (level.successes >= 0) {
                         successesText.text = "" + level.successes.ToString();
                         successesText.gameObject.SetActive(true);
                     } else {
@@ -1449,7 +1449,7 @@ public class NeptuneApp : MonoBehaviour
                 }
                 
                 if (averageAccuracyText != null) {
-                    if (level.successRate > 0.0f) {
+                    if (level.successRate >= 0.0f) {
                         averageAccuracyText.text = "%" + level.successRate.ToString("F1");
                         averageAccuracyText.gameObject.SetActive(true);
                     } else {
