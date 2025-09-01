@@ -6,18 +6,10 @@ using UnityEngine.UI;
 
 public class VirtualPianoController : MonoBehaviour
 {
-    [SerializeField]
-    private UnityEvent<string, bool> onPianoKeyTriggered;
-
-    [SerializeField]
-    private VirtualPianoKeyController[] mainPianoKeys;
-    
-    [SerializeField]
-    private VirtualPianoKeyController[] blackPianoKeys;
-
-    [SerializeField]
-    private RhythmGameSettings rhythmGameSettings;
-
+    [SerializeField] private UnityEvent<string, bool> onPianoKeyTriggered;
+    [SerializeField] private VirtualPianoKeyController[] mainPianoKeys;
+    [SerializeField] private VirtualPianoKeyController[] blackPianoKeys;
+    [SerializeField] private RhythmGameSettings rhythmGameSettings;
     [SerializeField] private PianoAudio pianoAudio;
 
     private void Start()
@@ -27,6 +19,7 @@ public class VirtualPianoController : MonoBehaviour
             key.SetKeyColor(rhythmGameSettings.ColorSettings.
                 GetNoteColor(key.GetNote())); // new Color(0.5f, 0.5f, 0.5f, 1.0f); // <>
         }
+
         foreach (var blackKey in blackPianoKeys)
         {
             blackKey.SetKeyColor(rhythmGameSettings.ColorSettings.
@@ -37,20 +30,12 @@ public class VirtualPianoController : MonoBehaviour
     public void EnableKeys(List<string> keys)
     {
         foreach (var key in mainPianoKeys)
-        {
             if (keys.Contains(key.GetNote()))
-            {
                 key.GetComponent<Button>().interactable = true;
-            }
-        }
-        
+
         foreach (var blackKey in blackPianoKeys)
-        {
             if (keys.Contains(blackKey.GetNote()))
-            {
                 blackKey.GetComponent<Button>().interactable = true;
-            }
-        }
     }
 
 //     #region KeyboardInput
@@ -120,33 +105,46 @@ public class VirtualPianoController : MonoBehaviour
 
     #region Key Events
     
+    #region UI Path
     public void OnKeyDown(BaseEventData eventData)
     {
         if (eventData.selectedObject == null) return;
         var pianoKeyController = eventData.selectedObject.GetComponent<VirtualPianoKeyController>();
+        if (!pianoKeyController) return;
         Debug.Log("KeyDown: " + pianoKeyController.GetNote());
         onPianoKeyTriggered?.Invoke(pianoKeyController.GetNote(), true);
     }
-    
+
     public void OnKeyUp(BaseEventData eventData)
     {
         if (eventData.selectedObject == null) return;
         var pianoKeyController = eventData.selectedObject.GetComponent<VirtualPianoKeyController>();
+        if (!pianoKeyController) return;
         Debug.Log("KeyUp: " + pianoKeyController.GetNote());
         onPianoKeyTriggered?.Invoke(pianoKeyController.GetNote(), false);
     }
+    #endregion
 
-    public VirtualPianoKeyController[] GetMainPianoKeys()
+    #region Programmatic API
+    public void TriggerKey(string step, bool isDown)
     {
-        return mainPianoKeys;
+        var k = FindKey(step);
+        if (k == null)
+        {
+            Debug.LogWarning($"[VirtualPianoController] No key found for '{step}'.");
+            return;
+        }
+
+        Debug.Log((isDown ? "KeyDown (code): " : "KeyUp (code): ") + step);
+        onPianoKeyTriggered?.Invoke(step, isDown);
+
+        var btn = k.GetComponent<Button>();
+        if (btn && btn.image)
+        {
+            var colors = btn.colors;
+            btn.image.color = isDown ? Color.green : colors.normalColor;
+        }
     }
-
-    public VirtualPianoKeyController[] GetBlackPianoKeys()
-    {
-        return blackPianoKeys;
-    }
-
-
 
     // public void OnCKeyDown()
     // {
@@ -281,9 +279,18 @@ public class VirtualPianoController : MonoBehaviour
     //     onPianoKeyTriggered?.Invoke("B", false);
     // }
     #endregion
+    public void PressKey(string step) => TriggerKey(step, true);
+    public void ReleaseKey(string step) => TriggerKey(step, false);
 
-    public void SetMainOctave(int mostUsedOctave)
+    private VirtualPianoKeyController FindKey(string step)
     {
-        pianoAudio.SetMainOctave(mostUsedOctave);
+        foreach (var k in mainPianoKeys) if (k && k.GetNote() == step) return k;
+        foreach (var k in blackPianoKeys) if (k && k.GetNote() == step) return k;
+        return null;
     }
+    #endregion
+
+    public VirtualPianoKeyController[] GetMainPianoKeys() => mainPianoKeys;
+    public VirtualPianoKeyController[] GetBlackPianoKeys() => blackPianoKeys;
+    public void SetMainOctave(int mostUsedOctave) => pianoAudio.SetMainOctave(mostUsedOctave);
 }

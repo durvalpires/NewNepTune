@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Video;
 
 // Fundamental frequency estimation using Summation of Residual Harmonics (SRH)
 // T. Drugman and A. Alwan: "Joint Robust Voicing Detection and Pitch Estimation Based on Residual Harmonics", Interspeech'11, 2011.
@@ -9,11 +10,11 @@ using UnityEngine;
 public class AudioPitchEstimator : MonoBehaviour
 {
     [Tooltip("Lowest frequency that can be estimated [Hz]")]
-    [Range(40, 150)]
+    [Range(40, 200)]
     public int frequencyMin = 40;
 
     [Tooltip("Highest frequency that can be estimated [Hz]")]
-    [Range(300, 1200)]
+    [Range(300, 2300)]
     public int frequencyMax = 600;
 
     [Tooltip("Number of overtones to use for estimation")]
@@ -39,14 +40,68 @@ public class AudioPitchEstimator : MonoBehaviour
     [SerializeField]
     private float EstimateRate = 30;
     
-    [SerializeField]
     private AudioSource targetSource;
     
     private void Start()
     {
-        Debug.Log("STAAAART");
-        InvokeRepeating("Estimate", 0, 1.0f / EstimateRate);
+        StartCoroutine(BootstrapAudioInput());
     }
+    private IEnumerator BootstrapAudioInput()
+    {
+        CancelInvoke(nameof(Estimate)); 
+
+      
+        var vp = FindObjectOfType<VideoPlayer>();
+        if (vp != null)
+        {
+           
+            targetSource = gameObject.AddComponent<AudioSource>();
+            targetSource.playOnAwake = false;
+            targetSource.loop = false;
+
+          
+            vp.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            vp.EnableAudioTrack(0, true);
+            vp.SetTargetAudioSource(0, targetSource);
+
+          
+            if (!vp.isPrepared)
+            {
+                vp.Prepare();
+                while (!vp.isPrepared) yield return null;
+            }
+
+            vp.Play();
+
+            
+            targetSource.Play();
+
+            InvokeRepeating(nameof(Estimate), 0f, 1f / EstimateRate);
+            yield break;
+        }
+
+      
+        if (Microphone.devices == null || Microphone.devices.Length == 0)
+        {
+            Debug.LogWarning("AudioPitchEstimator: No VideoPlayer found and no microphone available.");
+            yield break;
+        }
+
+        string dev = Microphone.devices[0];
+        int sr = AudioSettings.outputSampleRate;
+
+        targetSource = gameObject.AddComponent<AudioSource>();
+        targetSource.loop = true;
+        targetSource.clip = Microphone.Start(dev, true, 1, sr);
+
+      
+        while (Microphone.GetPosition(dev) <= 0)
+            yield return null;
+
+        targetSource.Play();
+        InvokeRepeating(nameof(Estimate), 0f, 1f / EstimateRate);
+    }
+
 
     /// <summary>
     /// Estimates the fundamental frequency
