@@ -16,6 +16,7 @@ public class EndOfLevelScreenController : MonoBehaviour
     [SerializeField] private float scoreAnimationInSec = 1;
     [SerializeField] private TextMeshProUGUI levelName;
     [SerializeField] private TextMeshProUGUI levelResultText;
+    [SerializeField] RhythmPitchGate pitchGate;
 
     void Awake()
     {
@@ -29,7 +30,11 @@ public class EndOfLevelScreenController : MonoBehaviour
             levelName.text = data.levelTitle;
         }
     }
-    
+    private void OnEnable()
+    {
+        pitchGate?.OnGameEnded();
+    }
+
     public void Activate(RhythmGameScoreController scoreController){
         this.gameObject.SetActive(true);
         AudioManager.Instance.PlaySFX(Enums.SoundList.EndOfRhythmLevel);
@@ -89,5 +94,5 @@ public class EndOfLevelScreenController : MonoBehaviour
             })
         );
     }
-    
+   
 }

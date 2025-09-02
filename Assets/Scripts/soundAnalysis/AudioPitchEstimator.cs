@@ -15,7 +15,7 @@ public class AudioPitchEstimator : MonoBehaviour
 
     [Tooltip("Highest frequency that can be estimated [Hz]")]
     [Range(300, 2300)]
-    public int frequencyMax = 600;
+    public int frequencyMax = 2300;
 
     [Tooltip("Number of overtones to use for estimation")]
     [Range(1, 8)]

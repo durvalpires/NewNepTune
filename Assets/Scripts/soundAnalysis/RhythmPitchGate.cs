@@ -1,24 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using Audio;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class RhythmPitchGate : MonoBehaviour
 {
-   
+
     [SerializeField] private RhythmGameManager gameManager;
     [SerializeField] private AudioPitchHUD pitchHUD;
     [SerializeField] private VirtualPianoController piano;
+    private AudioPitchHUD _hud;
 
-   
+
     [SerializeField] private bool pitchControlEnabled = true;
-    [SerializeField] private AudioSourcesMuter extraMute;
     [SerializeField] private bool normalizeEnharmonics = true;
 
-   
+
     [SerializeField] private float minHoldTime = 0.06f;
+    [SerializeField] private bool retriggerOnSameNote = true;
+    [SerializeField] private float retriggerGap = 0.05f;
 
-    private string expectedStep;  
-    private string pressedStep;    
+    [SerializeField] private bool controlAudioListener = true;
+    [SerializeField] private float mutedListenerVolume = 1f;
+    [SerializeField] private float normalListenerVolume = 1f;
+    [SerializeField] private List<AudioSource> sourcesToControl = new List<AudioSource>();
+
+    
+    private float prevListenerVolume;
+    private bool listenerVolumeSaved;
+    private float rearmAtTime = 0f;
+    private string expectedStep;
+    private string pressedStep;
     private float matchSince = -1f;
+    private bool toggle;
 
+    [System.Obsolete]
     private void Awake()
     {
         if (!gameManager) gameManager = FindObjectOfType<RhythmGameManager>();
@@ -28,38 +46,43 @@ public class RhythmPitchGate : MonoBehaviour
 
     private void OnEnable()
     {
+        OnGameStarted();
         if (gameManager && gameManager.OnNextNoteUpdated != null)
             gameManager.OnNextNoteUpdated.AddListener(HandleNextNoteUpdated);
-
-        if (extraMute)
-        {
-            extraMute.SetMuted(pitchControlEnabled);
-        }
-        else
-        {
-            Debug.LogWarning("[RhythmPitchGate] extraMute not assigned, nothing to mute.");
-        }
     }
 
     private void OnDisable()
     {
         if (gameManager && gameManager.OnNextNoteUpdated != null)
             gameManager.OnNextNoteUpdated.RemoveListener(HandleNextNoteUpdated);
-        if (extraMute) extraMute.SetMuted(false);
+        OnGameEnded();
         ReleaseIfPressed();
     }
 
-   
+
     private void HandleNextNoteUpdated(NoteView nextNote, double _, double __, double ___)
     {
-      
         if (nextNote.isRest)
         {
             SetExpectedStep(null);
             return;
         }
 
-        SetExpectedStep(nextNote.Pitch.Step);
+
+        var step = nextNote.Pitch.Step;
+        if (normalizeEnharmonics && !string.IsNullOrEmpty(step))
+            step = ToSharp(step);
+
+
+        if (retriggerOnSameNote)
+        {
+            ReleaseIfPressed();
+            matchSince = -1f;
+            rearmAtTime = Time.unscaledTime + retriggerGap;
+        }
+
+
+        SetExpectedStep(step);
     }
 
     private void SetExpectedStep(string step)
@@ -69,7 +92,7 @@ public class RhythmPitchGate : MonoBehaviour
 
         if (!string.IsNullOrEmpty(pressedStep) && pressedStep != step)
         {
-         
+
             piano.ReleaseKey(pressedStep);
             pressedStep = null;
             matchSince = -1f;
@@ -80,6 +103,8 @@ public class RhythmPitchGate : MonoBehaviour
     private void Update()
     {
         if (!pitchControlEnabled || pitchHUD == null || piano == null) return;
+
+        if (Time.unscaledTime < rearmAtTime) return;
 
         if (string.IsNullOrEmpty(expectedStep))
         {
@@ -94,12 +119,12 @@ public class RhythmPitchGate : MonoBehaviour
             return;
         }
 
-       
         var micStep = normalizeEnharmonics ? ToSharp(stable.noteName) : stable.noteName;
 
         if (micStep == expectedStep)
         {
-            if (pressedStep == expectedStep) return; 
+
+            if (pressedStep == expectedStep) return;
 
             if (matchSince < 0f) matchSince = Time.unscaledTime;
             if (Time.unscaledTime - matchSince >= minHoldTime)
@@ -124,7 +149,7 @@ public class RhythmPitchGate : MonoBehaviour
         }
     }
 
-   
+
     private static string ToSharp(string step)
     {
         switch (step)
@@ -141,7 +166,50 @@ public class RhythmPitchGate : MonoBehaviour
     public void SetPitchControlEnabled(bool enabled)
     {
         pitchControlEnabled = enabled;
-        if (extraMute) extraMute.SetMuted(enabled);
-       
+        if (enabled)
+        {
+            if (!_hud) _hud = gameObject.AddComponent<AudioPitchHUD>();
+            if (HasMethod(_hud, "StartMic")) _hud.SendMessage("StartMic", SendMessageOptions.DontRequireReceiver);
+            var mic = _hud.GetComponent<AudioSource>(); if (mic) mic.mute = false;
+        }
+        else
+        {
+            if (_hud)
+            {
+                if (HasMethod(_hud, "StopMic")) _hud.SendMessage("StopMic", SendMessageOptions.DontRequireReceiver);
+                Destroy(_hud); 
+                _hud = null;
+            }
+        }
+    }
+    private bool HasMethod(Object obj, string method)
+    {
+        return obj && obj.GetType().GetMethod(method,
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic) != null;
+    }
+
+    public void OnGameStarted()
+    {
+        if (!pitchControlEnabled) return;
+        SetMute(true);
+        SetPitchControlEnabled(true);
+    }
+
+    public void OnGameEnded()
+    {
+        SetMute(false);
+        SetPitchControlEnabled(false);
+        ReleaseIfPressed();
+      
+    }
+
+    public void SetMute(bool mute)
+    {
+        AudioManager.Instance.sfxSource.mute = mute;
+        foreach (var s in sourcesToControl)
+        {
+            if (!s) continue;
+            s.mute = mute;
+        }
     }
 }

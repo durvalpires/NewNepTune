@@ -11,14 +11,14 @@ public class AudioPitchHUD : AudioPitchEstimator
     [SerializeField] public float waitForVideoSeconds = 3f;
     [SerializeField] public float updateHz = 30f;
 
-    [SerializeField] public float windowMs = 300f;
+    [SerializeField] public float windowMs = 2300f;
     [SerializeField] public float dominanceRatio = 0.6f;
     [SerializeField] public int consecutiveToLock = 5;
     [SerializeField] public int vibratoSmoothFrames = 6;
     [SerializeField] public float centsSnapTolerance = 35f;
     [SerializeField] public bool ignoreOctave = true;
 
-     //[SerializeField] TextMeshProUGUI StableNoteText;
+    [SerializeField] private AudioSource micSource;
 
     const int SpectrumSize = 1024;
     const int OutputResolution = 200;
@@ -38,7 +38,6 @@ public class AudioPitchHUD : AudioPitchEstimator
     public StableNote LastStable { get; private set; }
 
     private VideoPlayer videoPlayer;
-    private AudioSource micSource;
     private bool useVideo;
 
     [System.Obsolete]
@@ -95,12 +94,20 @@ public class AudioPitchHUD : AudioPitchEstimator
         if (Microphone.devices == null || Microphone.devices.Length == 0) yield break;
         string dev = Microphone.devices[0];
         int sr = AudioSettings.outputSampleRate;
-        micSource = gameObject.AddComponent<AudioSource>();
+
+        if (!micSource) micSource = gameObject.AddComponent<AudioSource>();
+
         micSource.loop = true;
         micSource.spatialBlend = 0f;
+        micSource.ignoreListenerVolume = true;
+        micSource.bypassEffects = true;
+        micSource.bypassListenerEffects = true;
+        micSource.bypassReverbZones = true;
+
         micSource.clip = Microphone.Start(dev, true, 1, sr);
         while (Microphone.GetPosition(dev) <= 0) yield return null;
         micSource.Play();
+
         useVideo = false;
         StartCoroutine(Loop());
     }
