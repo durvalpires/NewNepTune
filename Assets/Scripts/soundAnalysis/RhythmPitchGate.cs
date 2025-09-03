@@ -11,7 +11,6 @@ public class RhythmPitchGate : MonoBehaviour
     [SerializeField] private RhythmGameManager gameManager;
     [SerializeField] private AudioPitchHUD pitchHUD;
     [SerializeField] private VirtualPianoController piano;
-    private AudioPitchHUD _hud;
 
 
     [SerializeField] private bool pitchControlEnabled = true;
@@ -166,26 +165,6 @@ public class RhythmPitchGate : MonoBehaviour
     public void SetPitchControlEnabled(bool enabled)
     {
         pitchControlEnabled = enabled;
-        if (enabled)
-        {
-            if (!_hud) _hud = gameObject.AddComponent<AudioPitchHUD>();
-            if (HasMethod(_hud, "StartMic")) _hud.SendMessage("StartMic", SendMessageOptions.DontRequireReceiver);
-            var mic = _hud.GetComponent<AudioSource>(); if (mic) mic.mute = false;
-        }
-        else
-        {
-            if (_hud)
-            {
-                if (HasMethod(_hud, "StopMic")) _hud.SendMessage("StopMic", SendMessageOptions.DontRequireReceiver);
-                Destroy(_hud); 
-                _hud = null;
-            }
-        }
-    }
-    private bool HasMethod(Object obj, string method)
-    {
-        return obj && obj.GetType().GetMethod(method,
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic) != null;
     }
 
     public void OnGameStarted()

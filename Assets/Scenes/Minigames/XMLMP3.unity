@@ -145,7 +145,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12810793}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 290d114faca2b481da8f22fa118e3a4c, type: 3}
   m_Name: 
@@ -157,10 +157,10 @@ MonoBehaviour:
   thresholdSRH: 7
   EstimateRate: 30
   waitForVideoSeconds: 3
-  updateHz: 30
-  windowMs: 300
+  updateHz: 60
+  windowMs: 100
   dominanceRatio: 0.6
-  consecutiveToLock: 5
+  consecutiveToLock: 2
   vibratoSmoothFrames: 6
   centsSnapTolerance: 35
   ignoreOctave: 1
@@ -197,9 +197,9 @@ MonoBehaviour:
   piano: {fileID: 784735300}
   pitchControlEnabled: 1
   normalizeEnharmonics: 1
-  minHoldTime: 0.05
+  minHoldTime: 0.02
   retriggerOnSameNote: 1
-  retriggerGap: 0.05
+  retriggerGap: 0.02
   controlAudioListener: 1
   mutedListenerVolume: 0
   normalListenerVolume: 1
