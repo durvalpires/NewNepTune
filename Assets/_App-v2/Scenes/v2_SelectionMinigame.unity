@@ -3495,6 +3495,7 @@ MonoBehaviour:
   levelToReturn: v2_Levels
   backButton: {fileID: 1199337051}
   finishedBackButton: {fileID: 1652253522}
+  gameScoringConfig: {fileID: 11400000, guid: 22821607c4c6640bba1e81d5bf66e61f, type: 2}
 --- !u!1 &1793378906
 GameObject:
   m_ObjectHideFlags: 0

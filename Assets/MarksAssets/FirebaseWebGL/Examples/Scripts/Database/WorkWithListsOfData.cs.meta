@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 12bf2844cee30484ab40907a871b95b4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 272421
+  packageName: Firebase WebGL
+  packageVersion: 10.7.1
+  assetPath: Assets/MarksAssets/FirebaseWebGL/Examples/Scripts/Database/WorkWithListsOfData.cs
+  uploadId: 636675

@@ -1839,6 +1839,7 @@ MonoBehaviour:
   scoreLabel: {fileID: 278780448}
   finishPanel: {fileID: 0}
   backButton: {fileID: 0}
+  gameScoringConfig: {fileID: 0}
 --- !u!1 &1031672302
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,6 +3110,7 @@ MonoBehaviour:
   scoreLabel: {fileID: 278780448}
   finishPanel: {fileID: 1630900153}
   backButton: {fileID: 1387534733}
+  gameScoringConfig: {fileID: 11400000, guid: 22821607c4c6640bba1e81d5bf66e61f, type: 2}
 --- !u!1 &2115970661
 GameObject:
   m_ObjectHideFlags: 0
