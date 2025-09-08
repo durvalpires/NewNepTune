@@ -45,7 +45,7 @@ public class InstrumentGuessLevelManager : InstrumentGuess
     protected override void Start()
     {
         InitCorrectAnswers();
-
+        base.Start();
         character.GetComponent<Animator>().Play($"BoyAst{_correctAnswerSprites[_currentLevel].name}");
           
         if (levelToReturn == "") Debug.LogError("Level to return is not set!");

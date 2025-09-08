@@ -1,0 +1,39 @@
+fileFormatVersion: 2
+guid: dd981279182024704a7f1bd453b4a442
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints: []
+  isPreloaded: 0
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+  - first:
+      Any: 
+    second:
+      enabled: 0
+      settings: {}
+  - first:
+      Editor: Editor
+    second:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  - first:
+      WebGL: WebGL
+    second:
+      enabled: 1
+      settings: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 272421
+  packageName: Firebase WebGL
+  packageVersion: 10.7.1
+  assetPath: Assets/MarksAssets/FirebaseWebGL/Plugins/Performance/FirebaseWebGL_performance.jslib
+  uploadId: 636675

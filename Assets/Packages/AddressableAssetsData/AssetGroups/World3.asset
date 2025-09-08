@@ -43,12 +43,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 382b4fe4ad4e448928c26b74b7bb0b75
-    m_Address: MIDDLE E EXERCISE 7 (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 43c277ff4266044aa8bc714673bc9aeb
     m_Address: MIDDLE E EXERCISE 4
     m_ReadOnly: 0
@@ -85,12 +79,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5a780991bae66460f9f846817234eaab
-    m_Address: MIDDLE E EXERCISE 12 (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c9707ff40ad64e5e83bc2c4c5f5ae82
     m_Address: Middle E Exercise 4
     m_ReadOnly: 0
@@ -113,30 +101,6 @@ MonoBehaviour:
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERCISE 4_DIV1.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6853c520b0aa34365ab67805263b3a34
-    m_Address: MIDDLE E EXERCISE 4
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 69f2e54d4347f4e9288ecf2009eb386b
-    m_Address: MIDDLE E - Exersize 1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7957d3ea8d09445328aa4fdae0160c24
-    m_Address: MIDDLE E EXERCISE 8  (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 79a02f97bad0f413da05c57e5a2fcbc7
-    m_Address: 'MIDDLE E exercise 2 '
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 855f45d57f0c5491bbd315544b983682
     m_Address: Middle E Exercise 7
@@ -173,18 +137,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a9dcfadef66c34f249f4719beb44b50e
-    m_Address: MIDDLE E EXERCISE 6  (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b2d49605150394003a3fdb0ae198f00a
-    m_Address: MIDDLE E EXERCISE 10  (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4bda004b14d046668b8bfbb9ffc90d4
     m_Address: Middle E Exercise 5
     m_ReadOnly: 0
@@ -202,12 +154,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b8d1c9d9bc6d24e699e6f4d338dc67e2
-    m_Address: MIDDLE E EXERCISE 9 (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c30b6df67e9b642a89f92a1803f05438
     m_Address: Assets/VPContent/Middle E/MIDDLE E EXERICISE 6_DIV1.xml
     m_ReadOnly: 0
@@ -219,26 +165,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d02b80019cbcb4af5a07aef25f0ac488
-    m_Address: MIDDLE E EXERCISE 3  (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dca80a05cc9624c6d83f276c4babce66
-    m_Address: MIDDLE E EXERCISE 5  (1)
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dec30870bf99c44e680d98bffa21f83b
     m_Address: Middle E Exercise 6
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e67d1a1a6ffec4147bb829d78b6f49f0
-    m_Address: MIDDLE E EXERCISE 12  (1)
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
@@ -250,12 +178,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4e145dca9cec4185a45bd834688b336
     m_Address: Middle E Exercise 3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f5860561249874fa7bfce1a58f244637
-    m_Address: MIDDLE E EXERCISE 11 (1)
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

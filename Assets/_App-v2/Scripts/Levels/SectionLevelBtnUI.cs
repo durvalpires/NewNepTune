@@ -29,6 +29,7 @@ public class SectionLevelBtnUI : MonoBehaviour
         if(force) onForceUnlock.Invoke();
         else onUnlock.Invoke();
         _isLocked = false;
+        PlayerModelBase.SetLevelUnlock(levelIndex);
     }
 
     public void Done()

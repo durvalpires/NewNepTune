@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Middle E Piano 1
   levelType: 5
+  galaxy: 0
   songXml:
     m_AssetGUID: 1e6ee193e204649d79ba46b1b4bc6e9f
     m_SubObjectName: 
@@ -21,7 +22,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   songClip:
-    m_AssetGUID: 69f2e54d4347f4e9288ecf2009eb386b
+    m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
@@ -33,3 +34,5 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   isTutorial: 0
+  introBeats: 2
+  handType: 1
