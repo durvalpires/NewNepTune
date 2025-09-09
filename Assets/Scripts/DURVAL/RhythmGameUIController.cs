@@ -27,17 +27,17 @@ public class RhythmGameUIController : MonoBehaviour
             ShowGetReadyPopup();
         }
     }
-    // void OnEnable()
-    // {
-    //     if (musicScoreRender != null)
-    //         musicScoreRender.OnClefChanged += HandleClefChange;
-    // }
-    //
-    // void OnDisable()
-    // {
-    //     if (musicScoreRender != null)
-    //         musicScoreRender.OnClefChanged -= HandleClefChange;
-    // }
+    void OnEnable()
+    {
+        if (musicScoreRender != null)
+            musicScoreRender.OnClefChanged += HandleClefChange;
+    }
+
+    void OnDisable()
+    {
+        if (musicScoreRender != null)
+            musicScoreRender.OnClefChanged -= HandleClefChange;
+    }
     private void ShowGetReadyPopup()
     {
         getReadyPopup.gameObject.SetActive(true);
@@ -113,12 +113,12 @@ public class RhythmGameUIController : MonoBehaviour
     {
         comboText.text = newValue;
     }
-    public void HandleClefChange(LevelHandType handType)
+    private void HandleClefChange(HandType handType)
     {
         HandImage.sprite = rhythmGameSettings.GetHandSprite(handType);
         HandImage.enabled = true;
         Vector3 scale = HandImage.transform.localScale;
-        HandImage.transform.localScale = handType == LevelHandType.Left
+        HandImage.transform.localScale = handType == HandType.Right
             ? new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z)
             : new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
     }

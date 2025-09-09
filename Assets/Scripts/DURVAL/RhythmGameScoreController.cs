@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using _App_v2.Scripts.Levels.Score;
 using UnityEngine;
 
-public class RhythmGameScoreController : ILevelScore
+public class RhythmGameScoreController
 {
     private RhythmGameSettings gameSettings;
     public int PlayerScore { get; private set; }
@@ -17,9 +16,9 @@ public class RhythmGameScoreController : ILevelScore
     private bool star1Active = false;
     private bool star2Active = false;
     private bool star3Active = false;
-    
+    public int PlayerStars { get; private set; }
     private float incrementPerNote;
-    public Action OnStarAchieved;
+    public Action OnStarAchieved; 
 
     public RhythmGameScoreController(RhythmGameSettings rhythmGameSettings, int noteCount = 0)
     {
@@ -132,38 +131,5 @@ public class RhythmGameScoreController : ILevelScore
     private void UpdateComboUI()
     {
         throw new NotImplementedException();
-    }
-    
-    public int PlayerStars { get; private set; }
-
-    public Dictionary<HitAccuracy, float> GetAccuracyPercentage()
-    {
-        // UPDATE HIT ACCURACY WITH MISSING NOTES
-        var registeredNotes = 0;
-        var missingHitNotes = 0;
-        foreach (var hit in AccuracyBreakdown.Keys)
-        {
-            registeredNotes += AccuracyBreakdown[hit];
-        }
-        missingHitNotes = noteCount - registeredNotes;
-        
-        if (missingHitNotes > 0)
-        {
-            if (!AccuracyBreakdown.ContainsKey(HitAccuracy.Miss))
-                AccuracyBreakdown.Add(HitAccuracy.Miss, missingHitNotes);
-            else
-                AccuracyBreakdown[HitAccuracy.Miss] += missingHitNotes;
-        }
-        
-        Debug.Log("noteCount: " + noteCount);
-        
-        var accuracyPercentage = new Dictionary<HitAccuracy, float>();
-        foreach (var hit in AccuracyBreakdown.Keys)
-        {
-            Debug.Log(hit + ": " + AccuracyBreakdown[hit]);
-            accuracyPercentage[hit] = (float)AccuracyBreakdown[hit] / noteCount * 100;
-            Debug.Log(hit + ": " + accuracyPercentage[hit] + "%");
-        }
-        return accuracyPercentage;
     }
 }

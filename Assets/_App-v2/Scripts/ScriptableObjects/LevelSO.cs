@@ -23,7 +23,6 @@ public class LevelSO : ScriptableObject
         LearningInstrument,
         LearningRhythm
     }
-    
 #if UNITY_EDITOR
     [ContextMenu("SaveMe")]
     public void SaveMe()

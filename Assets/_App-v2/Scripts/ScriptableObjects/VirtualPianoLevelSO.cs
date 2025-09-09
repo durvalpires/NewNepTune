@@ -9,12 +9,12 @@ public class VirtualPianoLevelSO : LevelSO
     public AssetReference backgroundClip;
     public bool isTutorial;
     public int introBeats = 2;
-    public LevelHandType handType = LevelHandType.Left;
+    public LevelHandType handType = LevelHandType.LeftHand;
 }
 
 public enum LevelHandType
 {
-    Left = 1,
-    Right = 2,
+    LeftHand = 1,
+    RightHand = 2,
     Both = 3
 }

@@ -21,6 +21,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09355375144a34fd8959cee8db9e576a
+    m_Address: MIDDLE F EXERCISE 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10c8d86edc20044bbaeac31a7261927d
+    m_Address: MIDDLE F- 1st exercise
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 183ee408176d14324af734feb99d019f
     m_Address: 'MIDDLE F EXERCISE 9 '
     m_ReadOnly: 0
@@ -44,6 +56,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25a70b1ffbadf4454a5dba4136136ddb
+    m_Address: 'MIDDLE F EXERCISE 8 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 27abf425c7405489aa1b797f6197ee00
     m_Address: MIDDLE F EXERCISE 4
     m_ReadOnly: 0
@@ -54,6 +72,18 @@ MonoBehaviour:
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 12_DIV1.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 315b610a8da3d4ea48518667cddee929
+    m_Address: MIDDLE F EXERCISE 11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3430dd1cca1f44c5eb96c4e83fb2ebf0
+    m_Address: MIDDLE F- 1st exercise. mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36bd7b890e8b246f1a1a5808705138e8
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 4_DIV1.xml
@@ -80,6 +110,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 533cc805ee0494529b58f3b3dc477fae
     m_Address: Middle F Exercise 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 560e47f44dc034e49ac9d6ff7857a2a9
+    m_Address: MIDDLE F EXERCISE 3
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
@@ -113,8 +149,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7886160a9b68d48588080f26c73c45a0
+    m_Address: 'MIDDLE F - 2ND EXERCISE '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8dbdde138534848cb954fb02f987b7a1
+    m_Address: MIDDLE F EXERCISE 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ddbc6b362ff34e06aeee9141524aaec
     m_Address: Middle F Exercise 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98470c9d567cc4ad59257f439eff0d11
+    m_Address: 'MIDDLE F EXERCISE 9 '
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
@@ -137,6 +191,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7ae6d57daf904a73a85fc1c45adf0f2
+    m_Address: MIDDLE F EXERCISE 12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: afcfd36719df2434b9b2ede247ef9255
     m_Address: 'MIDDLE F EXERCISE 5 '
     m_ReadOnly: 0
@@ -151,6 +211,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9254308ea18f40cf9a5d69ab2036550
     m_Address: Middle F Exercise 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd46cb4a335a54760a02c00a6f1f63d1
+    m_Address: 'MIDDLE F EXERCISE 5 '
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
@@ -178,10 +244,22 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dba19c13d00f04ddd8891f4809bc5d0f
+    m_Address: MIDDLE F EXERCISE 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e77008b098e3c40488826afef86ea44c
     m_Address: Assets/VPContent/Middle F/MIDDLE F EXERCISE 6_DIV1.xml
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed7c8d365e71b4981a03b456f0aa4bc4
+    m_Address: MIDDLE F EXERISE 10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee5ae0cd2070d485a9568257d5b8ec33
     m_Address: Middle F Exercise 4

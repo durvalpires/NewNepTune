@@ -2,27 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using _App_v2.Scripts.Levels.Score;
-using Cysharp.Threading.Tasks;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
     public class PlayerModel : PlayerModelBase
     {
         public static event Action onCurrencyChanged;
         private static IResourceProvider _resourceProvider;
+#if UNITY_WEBGL && !UNITY_EDITOR
+    [DllImport("__Internal")]
+    private static extern void ClearAllFromLocalStorage();
+#endif
+    // public static float AudioVolume
+    // {
+    //     get => (float)Data.audioVolume;
+    //     set
+    //     {
+    //         Data.audioVolume = value;
+    //     }
+    // }
 
-        // public static float AudioVolume
-        // {
-        //     get => (float)Data.audioVolume;
-        //     set
-        //     {
-        //         Data.audioVolume = value;
-        //     }
-        // }
-
-        /*
-        private static List<string> _levelProgress;// = new List<string>();
-        public static List<string> LevelProgress
+    /*
+    private static List<string> _levelProgress;// = new List<string>();
+    public static List<string> LevelProgress
     {
         get
         {
@@ -62,46 +64,25 @@ using UnityEngine;
     //     get => Data.lastCompleteLevelIndex;
     //     set => Data.lastCompleteLevelIndex = value;
     // }
-
-        private async void Awake()
+        public static void ClearData()
         {
-            await PlayerModel.LoadData();
-        }
-        public static void CompleteLevel(int levelIndex, string worldId, ILevelScore levelscore = null)
-        {
-            SetCustomData($"w_{worldId}:l_{levelIndex}", (levelscore != null && levelscore.PlayerStars > 0) || levelscore == null ? "done" : "failed");
-            SetLevelCompleted(levelIndex, 0);
-        }
-        
-        public static void CompleteUnfinishedLevel(int levelIndex, int worldId, LevelInfo levelInfo)
-        {
-            //SetCustomData($"w_{worldId}:l_{levelIndex}", (levelInfo != null && levelInfo.successes > 0) ? "done" : "failed");
-            SetLevelCompleted(levelIndex, levelInfo, worldId);
+            _player = null;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            ClearAllFromLocalStorage();
+#else
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+#endif
         }
         
-        public static void CompleteLevel(int levelIndex, int worldId, LevelInfo levelInfo, bool bypassSuccesses = false)
+        public static void CompleteLevel(int levelIndex, string worldId)
         {
-            SetCustomData($"w_{worldId}:l_{levelIndex}", (bypassSuccesses || (levelInfo != null && levelInfo.successes > 0)) ? "done" : "failed");
-            SetLevelCompleted(levelIndex, levelInfo, worldId);
-        }
-        
-        // public static void FailLevel(int levelIndex, string worldId)
-        // {
-        //     SetCustomData($"w_{worldId}:l_{levelIndex}", "failed");
-        //     SetLevelFailed(levelIndex);
-        // }
-
-        public static void SetLevelScoreData(int levelIndex, ILevelScore levelScore, string worldId = "-1")
-        {
-            _levelDataService?.SetLevelScoreData(levelIndex, levelScore, worldId);
-            if (_levelDataService != null)
-                _levelDataService.SaveLevelData().Forget();
+            SetCustomData($"w_{worldId}:l_{levelIndex}", "done");
         }
 
         public static bool IsLevelCompleted(int levelIndex, string worldId)
         {
-            return GetCustomData($"w_{worldId}:l_{levelIndex}") == "done" ||
-                (_levelDataService != null ? _levelDataService.IsLevelCompleted(worldId, levelIndex) : false);
+            return GetCustomData($"w_{worldId}:l_{levelIndex}") == "done";
         }
         public static void CompleteWorld(string worldId)
         {

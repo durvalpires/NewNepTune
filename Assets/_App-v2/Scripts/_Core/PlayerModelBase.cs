@@ -1,293 +1,110 @@
 using System;
 using System.Collections.Generic;
-using _App_v2.Scripts._Core.Firebase;
-#if UNITY_WEBGL
-using _App_v2.Scripts._Core.Firebase.Config;
-#endif
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerModelBase
-{
-    protected static IPlayerDataService _playerDataService;
-    protected static ILevelDataService _levelDataService;
-    protected static IDataPersistence _dataPersistence;
-    protected static string _currentSubProfileName = "Default";
-
-    public static AccountDataDB Data => _playerDataService?.AccountData;
-    public static PlayerLevelData LevelData => _levelDataService?.LevelData;
-    public static ILevelDataService LevelDataService => _levelDataService;
-    private static int _currentWorldIndex = 1;
-
-    static PlayerModelBase()
+    public class PlayerModelBase
     {
-        InitializeServices();
-    }
-
-    private static void InitializeServices()
-    {
-        InitializePersistenceLayer();
-        _playerDataService = new PlayerDataService(_dataPersistence);
-        _levelDataService = new LevelDataService(_dataPersistence);
-    }
-
-    private static void InitializePersistenceLayer()
-    {
-        
-        
-#if UNITY_WEBGL
-        // var config = FirebaseConfigService.Instance.CurrentConfig;
-        // var emulatorConfig = FirebaseConfigService.Instance.CurrentEmulatorConfig;
-        // _dataPersistence = new FirebaseWebGLDataPersistence(config, emulatorConfig);
-        _dataPersistence = new LocalDataPersistence();
-#elif !UNITY_WEBGL
-        var fire = FireService.Instance;
-        if (fire.DB.IsConnected)
+        protected static PlayerData _player;
+        protected static string _currentProfileKey = "";
+        protected static PlayerData Data
         {
-            _dataPersistence = new FirebaseDataPersistence();
-        }
-        else
-        {
-            _dataPersistence = new LocalDataPersistence();
-        }
+            get
+            {
+                if (_player == null)
+                {
+                    _currentProfileKey = ProfilesController.CurrentProfileKey;
+                    Debug.LogWarning("CurrentProfileKey: " + _currentProfileKey);
+#if UNITY_WEBGL && !UNITY_EDITOR
+                    var userData = LocalStorageManager.LoadData(_currentProfileKey);
+                    if(userData == null || !userData.Contains(":")) 
+                        {
+                            Debug.LogWarning("Creating new player data although it has found currentProfileKey");
+                            return _player = new PlayerData();
+                        }
+                        
+                    _player = JsonUtility.FromJson<PlayerData>(userData);
 #else
-        _dataPersistence = new LocalDataPersistence();
+                    if(PlayerPrefs.HasKey(_currentProfileKey))
+                    {
+                        var userData= PlayerPrefs.GetString(_currentProfileKey, "");
+                        if(!userData.Contains(":")) 
+                        {
+                            Debug.LogWarning("Creating new player data although it has found currentProfileKey");
+                            return _player = new PlayerData();
+                        }
+                        _player = JsonUtility.FromJson<PlayerData>(userData);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Creating new player data");
+                        _player = new PlayerData();
+                    }
 #endif
-    }
-
-    public static void UpdateUserId(string userId)
-    {
-        #if UNITY_WEBGL
-        if (_dataPersistence is FirebaseWebGLDataPersistence webGLPersistence)
-        {
-            webGLPersistence.SetUserId(userId);
+                    
+                }
+                return _player;
+            }
         }
-        #endif
-    }
 
-    public static void SwitchToCurrentProfile()
-    {
-        SaveData();
-        InitializeServices();
-    }
-
-    public static void SaveData()
-    {
-        if (_playerDataService != null)
-            _playerDataService.SavePlayerData().Forget();
-
-        if (_levelDataService != null)
-            _levelDataService.SaveLevelData().Forget();
-    }
-
-    public static void ClearData()
-    {
-        InitializeServices();
-
-        string profileKey = ProfilesController.CurrentProfileKey;
-        string fullKey = $"{profileKey}_{_currentSubProfileName}_PlayerData";
-        PlayerPrefs.DeleteKey(fullKey);
-    }
-
-    public static async UniTask LoadData()
-    {
-        if (_playerDataService == null || _levelDataService == null)
-            InitializeServices();
-
-        await _playerDataService.LoadPlayerData();
-        await _levelDataService.LoadLevelData(_currentSubProfileName);
-    }
-
-    public static UniTask Initialize()
-    {
-        return UniTask.WhenAll(
-            _playerDataService.LoadPlayerData(),
-            _levelDataService.LoadLevelData(_currentSubProfileName)
-        );
-    }
-
-    #region Player Data Methods
-    public static string GetPlayerName()
-    {
-        return _playerDataService?.AccountData?.playerName;
-    }
-
-    public static void SetCurrentWorld(int worldIndex)
-    {
-        _currentWorldIndex = Mathf.Max(0, worldIndex);   
-    }
-
-    public static void SetPlayerName(string name)
-    {
-        if (_playerDataService?.AccountData != null)
+        public static void SwitchToCurrentProfile()
         {
-            _playerDataService.AccountData.playerName = name;
-            UpdatePlayerNameInFirebase();
+            SaveData();
+            _player = null;
+        }
+        
+        public static void SaveData()
+        {
+            var data = Json.Serialize(Data);
+            if(string.IsNullOrEmpty(data)) return;
+            Debug.Log("[SAVE] Data Saved:" + data.Substring(0,Mathf.Min(data.Length,100)));
+#if UNITY_WEBGL && !UNITY_EDITOR
+            LocalStorageManager.SaveData(_currentProfileKey, data);
+#else
+            PlayerPrefs.SetString(_currentProfileKey, data);
+            PlayerPrefs.Save();
+#endif
+            
+        }
+
+        public static string GetCustomData(string key, string defaultValue = "")
+        {
+            Dictionary<string, object> dataDict = AllCustomData;
+            if (dataDict.ContainsKey(key)) 
+                return dataDict[key].ToString();
+            return defaultValue;
+        }
+        
+        private static Dictionary<string, object> AllCustomData
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Data.customUserData)) return new Dictionary<string, object>();
+                Dictionary<string, object> dataDictFromJson = Json.Deserialize(Data.customUserData) as  Dictionary<string, object>;
+                return dataDictFromJson;
+            }
+        }
+        
+        public static void SetCustomData(string key, string value)
+        {
+            Dictionary<string, object> dataDict = AllCustomData;
+
+            if (dataDict.ContainsKey(key)) 
+                dataDict[key] = value;
+            else
+                dataDict.Add(key, value);
+            Data.customUserData = Json.Serialize(dataDict);
+            SaveData();
+        }
+        
+        
+        
+        protected class PlayerData
+        {
+            public string profileId = ""; // could use for switching profiles in future - creating of ProfileController is needed
+            public string playerName = "";
+            public bool IsSoundOn = true;
+            public bool IsMusicOn = true;
+            public string customUserData = "";
         }
     }
-
-    public static void UpdatePlayerNameInFirebase()
-    {
-        _playerDataService?.UpdatePlayerNameInFirebase();
-    }
-
-    public static bool GetSoundState()
-    {
-        return _playerDataService?.AccountData?.IsSoundOn ?? true;
-    }
-
-    public static void SetSoundState(bool state)
-    {
-        if (_playerDataService?.AccountData != null)
-        {
-            _playerDataService.AccountData.IsSoundOn = state;
-            _playerDataService.SavePlayerData().Forget();
-        }
-    }
-
-    public static bool GetMusicState()
-    {
-        return _playerDataService?.AccountData?.IsMusicOn ?? true;
-    }
-
-    public static void SetMusicState(bool state)
-    {
-        if (_playerDataService?.AccountData != null)
-        {
-            _playerDataService.AccountData.IsMusicOn = state;
-            _playerDataService.SavePlayerData().Forget();
-        }
-    }
-
-    public static string GetCustomData(string key, string defaultValue = "")
-    {
-        if (_levelDataService == null || _levelDataService.LevelData == null || 
-            String.IsNullOrEmpty(_levelDataService.LevelData.customLevelData))
-                LoadData().Forget();
-
-        return _levelDataService?.GetCustomData(key, defaultValue) ?? defaultValue;
-    }
-
-    public static void SetCustomData(string key, string value)
-    {
-        _levelDataService?.SetCustomData(key, value);
-        if (_levelDataService != null)
-            _levelDataService.SaveLevelData().Forget();
-    }
-
-    public static Dictionary<string, object> GetAllCustomData()
-    {
-        return _levelDataService?.GetAllCustomData() ?? new Dictionary<string, object>();
-    }
-    #endregion
-
-    #region Level Data Methods
-    public static int GetNumberOfLevel()
-    {
-        return _levelDataService?.GetNumberOfLevel() ?? 0;
-    }
-
-    public static int GetNumberOfAttempts()
-    {
-        return _levelDataService?.GetNumberOfAttempts() ?? 0;
-    }
-
-    public static int GetAverageScore()
-    {
-        return _levelDataService?.GetAverageScore() ?? 0;
-    }
-
-    public static Dictionary<int, (int Score, int Repetition)> GetAllPlayerLevelData()
-    {
-        return _levelDataService?.GetAllPlayerLevelData() ?? new Dictionary<int, (int, int)>();
-    }
-
-    public static void PrintAllPlayerLevelData()
-    {
-        _levelDataService?.PrintAllPlayerLevelData();
-    }
-
-    public static void SetLevelUnlocked(int levelIndex)
-    {
-        _levelDataService?.SetLevelUnlock(_currentWorldIndex, levelIndex);
-        if (_levelDataService != null)
-            _levelDataService.SaveLevelData().Forget();
-    }
-
-    public static void SetLevelUnlock(int levelIndex)
-    {
-        SetLevelUnlocked(levelIndex);
-    }
-
-    public static void SetLevelCompleted(int levelIndex, int worldIndex = -1)
-    {
-        _levelDataService?.SetLevelCompleted(worldIndex == -1 ? _currentWorldIndex : worldIndex, levelIndex);
-        if (_levelDataService != null)
-            _levelDataService.SaveLevelData().Forget();
-    }
-    
-    public static void SetLevelCompleted(int levelIndex, LevelInfo levelInfo, int worldIndex)
-    {
-        _levelDataService?.SetLevelCompleted(worldIndex, levelInfo);
-        if (_levelDataService != null)
-            _levelDataService.SaveLevelData().Forget();
-    }
-    
-    // public static void SetLevelFailed(int levelIndex)
-    // {
-    //     _levelDataService?.SetLevelCompleted(_currentWorldIndex, levelIndex, false);
-    //     if (_levelDataService != null)
-    //         _levelDataService.SaveLevelData().Forget();
-    // }
-    
-
-    public static void UpdateCounter(int levelIndex, CounterType counterType)
-    {
-        _levelDataService?.UpdateCounter(_currentWorldIndex, levelIndex, counterType);
-        if (_levelDataService != null)
-            _levelDataService.SaveLevelData().Forget();
-    }
-
-    public static void SetCustomScore(int customScore)
-    {
-        _levelDataService?.SetCustomScore(customScore);
-        if (_levelDataService != null)
-            _levelDataService.SaveLevelData().Forget();
-    }
-
-    public static async UniTask CreateSubProfile(string subProfileName)
-    {
-        if (_levelDataService != null)
-            await _levelDataService.CreateSubProfile(subProfileName);
-    }
-
-    public static async UniTask<List<string>> GetAllSubProfiles()
-    {
-        return _levelDataService != null ? await _levelDataService.GetAllSubProfiles() : new List<string>();
-    }
-
-    public static async UniTask SwitchSubProfile(string subProfileName)
-    {
-        await SwitchSubProfileByName(subProfileName);
-    }
-
-    public static async UniTask SwitchSubProfileByName(string subProfileName)
-    {
-        _currentSubProfileName = subProfileName;
-        if (_levelDataService != null)
-            await _levelDataService.SwitchSubProfileByName(subProfileName);
-    }
-
-    private static Dictionary<string, object> AllLevelCustomData
-    {
-        get
-        {
-            if (string.IsNullOrEmpty(_levelDataService?.LevelData?.customLevelData))
-                return new Dictionary<string, object>();
-            var dataDictFromJson = Json.Deserialize(_levelDataService.LevelData.customLevelData) as Dictionary<string, object>;
-            return dataDictFromJson ?? new Dictionary<string, object>();
-        }
-    }
-    #endregion
-}

@@ -6,7 +6,6 @@ using DG.Tweening;
 using Levels.SelectionMinigame;
 using Minigames;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -37,7 +36,6 @@ public class SectionLevelsUI : MonoBehaviour
     {
         _data = data;
         worldId = data.id;
-        PlayerModelBase.SetCurrentWorld(int.TryParse(worldId, out int world) ? world : 0);
         if (TempDataStorage.ContainsKey("worldIndex"))
         {
             worldIndex = TempDataStorage.GetData<int>("worldIndex");

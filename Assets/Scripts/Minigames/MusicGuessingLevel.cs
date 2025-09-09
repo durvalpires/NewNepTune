@@ -3,7 +3,6 @@ using Audio;
 using Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 namespace Minigames
@@ -30,10 +29,6 @@ namespace Minigames
       [SerializeField] protected Button ReloadButton;
       [SerializeField] protected Button finishedBackButton;
       [SerializeField] protected string levelToReturn;
-      
-      [SerializeField] protected AllGameScoringConfig gameScoringConfig;
-      protected GuessScoringSettings _guessScoringSettings;
-      protected int score;
 
         //TODO : get rid of character var and first line of start method
         protected GameObject _character;
@@ -42,10 +37,9 @@ namespace Minigames
       {
          _character = GameObject.Find("karakter");
          _character.GetComponent<Animator>().Play("RedGirlPiano");
-
-        
-
-            if (levelToReturn == "") Debug.LogError("Level to return is not set!");
+         
+         
+         if (levelToReturn == "") Debug.LogError("Level to return is not set!");
 
          backButton.GetComponent<Button>().onClick.AddListener(() =>
          {
@@ -79,17 +73,12 @@ namespace Minigames
       
       public void TrueAnswer()
       {
-        
-         Debug.Log("Score: " + score);
-         
          AudioManager.Instance.PlaySFX(SoundList.WinSound);
          gameLevels[_currentLevel].gameObject.SetActive(false);
 
          if (_currentLevel+1 == gameLevels.Length)
          {
             finishPanel.SetActive(true);
-            score = score + _guessScoringSettings.maxScore;
-            NextLevelButton();
          }
          else
          {
@@ -99,9 +88,6 @@ namespace Minigames
 
       public void FalseAnswer()
       {
-         score -= _guessScoringSettings.wrongAnswerPenalty;
-         Debug.Log("Score: " + score);
-         
          losePanel.SetActive(true);
          gameLevels[_currentLevel].gameObject.SetActive(false);
          AudioManager.Instance.PlaySFX(SoundList.LoseSound);
@@ -109,9 +95,6 @@ namespace Minigames
 
       protected void SetUpLevel(int levelToSet)
       {
-
-         score = 0;
-
          GameObject topButton = gameLevels[levelToSet].transform.GetChild(0).gameObject;
          GameObject bottomButton = gameLevels[levelToSet].transform.GetChild(1).gameObject;
 
@@ -164,20 +147,9 @@ namespace Minigames
          else if (_currentLevel <= gameLevels.Length)
          {
             winPanel.SetActive(false);
-            float normalized = (float)score / _guessScoringSettings.maxScore;
-            int stars = 0;
-            if (normalized >= _guessScoringSettings.threeStarThreshold) stars = 3;
-            else if (normalized >= _guessScoringSettings.twoStarThreshold) stars = 2;
-            else if (normalized >= _guessScoringSettings.oneStarThreshold) stars = 1;
-
-            int safeScore = score < 0 ? 0 : score;
-            PlayerModelBase.SetCustomScore(safeScore);
-            Debug.Log(safeScore);
-            PlayerModelBase.LevelDataService.SetCustomScore(safeScore);
-            PlayerModelBase.LevelDataService.SetCustomStarRating(stars);
             finishPanel.SetActive(true);
          }
-        }
+      }
 
       public void Restart()
       {

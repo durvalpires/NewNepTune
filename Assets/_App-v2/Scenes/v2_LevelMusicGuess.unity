@@ -1592,7 +1592,7 @@ MonoBehaviour:
   ReloadButton: {fileID: 1322995476}
   finishedBackButton: {fileID: 511831487}
   levelToReturn: v2_Levels
-  gameScoringConfig: {fileID: 11400000, guid: 22821607c4c6640bba1e81d5bf66e61f, type: 2}
+  ReloadCurrent: v2_LevelMusicGuess
 --- !u!4 &971912768
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,6 @@ using UnityEngine;
 
         private void OnDestroy()
         {
-          //  PlayerModelBase.SaveData();
+            PlayerModelBase.SaveData();
         }
     }

@@ -13,7 +13,6 @@ using UnityEngine.UI;
 public class RhythmGameManager : MonoBehaviour
 {
     public UnityEvent<double, int> OnTempoChanged;
-    public UnityEvent<LevelHandType> OnLevelHandDetected;
     public UnityEvent<float, int, int> OnMetronomeDataLoaded;
     public UnityEvent<int> OnNotesAmountCalculated;
     public UnityEvent<RhythmGameScoreController> OnLevelEnded;
@@ -22,7 +21,7 @@ public class RhythmGameManager : MonoBehaviour
     private double speedXPerSec;
     
     private AsyncOperationHandle<TextAsset> songXmlHandle;
-    //private AsyncOperationHandle<AudioClip> songClipHandle;
+    private AsyncOperationHandle<AudioClip> songClipHandle;
     private AsyncOperationHandle<AudioClip> backgroundClipHandle;
 
     // [SerializeField] private GameObject notePrefab;
@@ -48,7 +47,7 @@ public class RhythmGameManager : MonoBehaviour
 
     private RhythmGameScoreController scoreController;
 
-    //[SerializeField] private AudioSource challengeAudioSource;
+    [SerializeField] private AudioSource challengeAudioSource;
     [SerializeField] private AudioSource backgroundAudioSource;
 
     // Assuming you have tempo in BPM
@@ -129,8 +128,7 @@ public class RhythmGameManager : MonoBehaviour
     void Update()
     {
         if(isPlaying){
-            //BEFORE IT WAS CHALLENGE. CHECK IF SOME BUG APPEAR !
-            if(!backgroundAudioSource.isPlaying){
+            if(!challengeAudioSource.isPlaying){
                 StartCoroutine(CloseLevel());
             }
         }
@@ -164,7 +162,7 @@ public class RhythmGameManager : MonoBehaviour
         isPlaying = true;
         //backgroundAudioSource.Play();
         //OnNextNoteUpdated?.Invoke(noteViewList[notesCrossed], 1,secondsPerBeat);
-        //challengeAudioSource.Play();
+        challengeAudioSource.Play();
     }
     
     public void StartBackTrack()
@@ -188,22 +186,17 @@ public class RhythmGameManager : MonoBehaviour
     
     private void LoadLevelAssets(VirtualPianoLevelSO levelConfig)
     {
-        if (levelConfig == null) Debug.LogError("Level config is null");
-
-        OnLevelHandDetected?.Invoke(levelConfig.handType);
-        
-        
         // Load text asset
         //levelConfig.songXml.LoadAssetAsync<TextAsset>().Completed += OnTextAssetLoaded;
         songXmlHandle = Addressables.LoadAssetAsync<TextAsset>(levelConfig.songXml);
         songXmlHandle.Completed += OnTextAssetLoaded;
         
         // Load first audio clip
-        // songClipHandle = Addressables.LoadAssetAsync<AudioClip>(levelConfig.songClip);
-        // songClipHandle.Completed += handle =>
-        // {
-        //     challengeAudioSource.clip = handle.Result;
-        // };
+        songClipHandle = Addressables.LoadAssetAsync<AudioClip>(levelConfig.songClip);
+        songClipHandle.Completed += handle =>
+        {
+            challengeAudioSource.clip = handle.Result;
+        };
         // levelConfig.songClip.LoadAssetAsync<AudioClip>().Completed += handle =>
         // {
         //     challengeAudioSource.clip = handle.Result;
@@ -233,12 +226,12 @@ public class RhythmGameManager : MonoBehaviour
         //AudioClip backgroundClip = null;
 
         
-        // if (challengeAudioSource != null)
-        // {
-        //     challengeAudioSource.Stop();
-        //     //songClip = challengeAudioSource.clip;
-        //     challengeAudioSource.clip = null;
-        // }
+        if (challengeAudioSource != null)
+        {
+            challengeAudioSource.Stop();
+            //songClip = challengeAudioSource.clip;
+            challengeAudioSource.clip = null;
+        }
         var textAsset = songXmlAsset;
 
         
@@ -256,7 +249,7 @@ public class RhythmGameManager : MonoBehaviour
         
         
         if (songXmlHandle.IsValid()) Addressables.Release(songXmlHandle);
-        //if (songClipHandle.IsValid()) Addressables.Release(songClipHandle);
+        if (songClipHandle.IsValid()) Addressables.Release(songClipHandle);
         if (backgroundClipHandle.IsValid()) Addressables.Release(backgroundClipHandle);
     }
 

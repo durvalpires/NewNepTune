@@ -21,8 +21,44 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 069edbffefeab4c15aea7739de0ecb41
+    m_Address: 'MIDDLE G EXERCISE 9 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0f256322b0a344744b82deb7b0767a17
     m_Address: Middle G Exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 127d8f541afbb4e20b41563a8a6dcaf4
+    m_Address: MIDDLE G EXERCISE 12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1488cad3221804994910874ce25a4361
+    m_Address: MIDDLE G EXERCISE 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19192ca949f9349de8f8f3b562909d8b
+    m_Address: 'MIDDLE G EXERCISE 10 '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f2e9520beb844b50b4e55418062d1ab
+    m_Address: MIDDLE G EXERCISE 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2add2f7769b1f4edf958c280c272460c
+    m_Address: MIDDLE G EXERCISE 11
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
@@ -32,6 +68,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ffddeb9606d746fea9ccf2680535e91
+    m_Address: MIDDLE G EXERCISE 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41eada7e3615a4cfab3624f623798e38
     m_Address: MIDDLE G EXERCISE 7
     m_ReadOnly: 0
@@ -40,6 +82,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 44c46c706b7f942ac9bc34688cf2f1be
     m_Address: Middle G Exercise 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51bac7c8eed4745a5a4a0854ede20414
+    m_Address: 'MIDDLE G EXERCISE 8 '
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
@@ -58,6 +106,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fb771ef40bda44c49205cc7f872cee4
     m_Address: MIDDLE G EXERCISE 11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 619e920f89e5e41d0b2d17f21a13708f
+    m_Address: 'MIDDLE G - 2nd Exercise '
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
@@ -131,6 +185,24 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a351c4c1ef55f4e688f4899d92c3c156
     m_Address: 'MIDDLE G - 1st Exercise '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7f87753c4e644c5ea285121caa6afa7
+    m_Address: MIDDLE G EXERCISE 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9f3b239250374072b9d68e09aa9b578
+    m_Address: 'MIDDLE G- 1st Exercise '
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b484cc43b378a41c4bd77a6b08dde5a3
+    m_Address: MIDDLE G EXERCISE 3
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

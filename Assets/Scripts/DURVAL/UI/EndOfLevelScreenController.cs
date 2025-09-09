@@ -47,13 +47,11 @@ public class EndOfLevelScreenController : MonoBehaviour
 
         if (scoreController.PlayerStars > 0)
         {
-            GetComponent<LevelCompletObserver>().SetCurrentLevelComplete(scoreController);
+            GetComponent<LevelCompletObserver>().SetCurrentLevelComplete();
             levelResultText.text = "Level Complete!";
         }
         else
         {
-            // MAYBE WE NEED AN EQUIVALENT FOR WHEN THE PLAYER LOSES
-            GetComponent<LevelCompletObserver>().SetCurrentLevelComplete(scoreController);
             levelResultText.text = "Almost! Try again!";
         }
         

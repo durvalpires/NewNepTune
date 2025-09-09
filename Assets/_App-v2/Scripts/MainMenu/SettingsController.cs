@@ -20,25 +20,9 @@ public class SettingsController : MonoBehaviour
 
     public void ResetProgress()
     {
-        FirebaseProxyService.Instance.ResetProgress((result, message) =>
-            {
-                if (result)
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        );
-        //PlayerModel.ClearData();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerModel.ClearData();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     
-    public void Signout()
-    {
-        FirebaseProxyService.Instance.LogoutWithBackend((result, message) =>
-        {
-            if (!result)
-            {
-                Debug.LogError("Signout failed: " + message);
-            }
-            SceneManager.LoadScene("NeptuneApp");
-        });
-    }
 }
