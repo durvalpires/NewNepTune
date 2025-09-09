@@ -163,21 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda4eb56269b84d21918531ca23563d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequencyMin: 40
-  frequencyMax: 2300
-  harmonicsToUse: 6
-  smoothingWidth: 2300
-  thresholdSRH: 7
-  EstimateRate: 30
-  waitForVideoSeconds: 3
-  updateHz: 30
-  windowMs: 300
-  dominanceRatio: 0.6
-  consecutiveToLock: 5
-  vibratoSmoothFrames: 6
-  centsSnapTolerance: 35
-  ignoreOctave: 0
-  StableNoteText: {fileID: 1710562000}
 --- !u!1 &638479256
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,18 +420,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1710562000 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2550364849459583763, guid: 2ccfd1049adf54ba4bddd63697e23374,
-    type: 3}
-  m_PrefabInstance: {fileID: 7771530148535981349}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7771530148535981349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -800,6 +773,11 @@ PrefabInstance:
       propertyPath: _fitMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7669781799007891023, guid: 2ccfd1049adf54ba4bddd63697e23374,
+        type: 3}
+      propertyPath: _maskShader
+      value: 
+      objectReference: {fileID: 4800000, guid: c68f7e58604ad423caee95f582bca1ba, type: 3}
     - target: {fileID: 7784866280423206159, guid: 2ccfd1049adf54ba4bddd63697e23374,
         type: 3}
       propertyPath: m_fontSize

@@ -86,7 +86,20 @@ public class RhythmGameSettings : ScriptableObject
     [Header("Player Feedback Settings")]
     public bool enableVibrationOnHit;
     public float feedbackIntensity;
-    
+
+
+    [Header("Play live")]
+    public bool pitchControlEnabled;
+
+    public event Action<bool> OnPitchControlChanged;
+
+    public void SetPitchControlEnabled(bool enabled)
+    {
+        if (pitchControlEnabled == enabled) return;
+        pitchControlEnabled = enabled;
+        OnPitchControlChanged?.Invoke(enabled);
+    }
+
     public int GetScoreForAccuracy(HitAccuracy accuracy)
     {
         foreach(var score in BaseScorePerAccuracy)

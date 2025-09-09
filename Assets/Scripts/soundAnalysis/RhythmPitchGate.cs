@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Threading;
 using Audio;
 using UnityEngine;
@@ -25,8 +26,8 @@ public class RhythmPitchGate : MonoBehaviour
     [SerializeField] private float mutedListenerVolume = 1f;
     [SerializeField] private float normalListenerVolume = 1f;
     [SerializeField] private List<AudioSource> sourcesToControl = new List<AudioSource>();
+    [SerializeField] private RhythmGameSettings gameSettings;
 
-    
     private float prevListenerVolume;
     private bool listenerVolumeSaved;
     private float rearmAtTime = 0f;
@@ -45,16 +46,34 @@ public class RhythmPitchGate : MonoBehaviour
 
     private void OnEnable()
     {
-        OnGameStarted();
+        if (gameSettings != null)
+        {
+            gameSettings.OnPitchControlChanged += ApplyPitchControlToggle; 
+            ApplyPitchControlToggle(gameSettings.pitchControlEnabled);     
+        }
+        else
+        {
+        
+            ApplyPitchControlToggle(pitchControlEnabled);
+        }
+
         if (gameManager && gameManager.OnNextNoteUpdated != null)
             gameManager.OnNextNoteUpdated.AddListener(HandleNextNoteUpdated);
+    }
+
+    private void Start()
+    {
+        ApplyPitchControlToggle(pitchControlEnabled);
     }
 
     private void OnDisable()
     {
         if (gameManager && gameManager.OnNextNoteUpdated != null)
             gameManager.OnNextNoteUpdated.RemoveListener(HandleNextNoteUpdated);
-        OnGameEnded();
+
+        if (gameSettings != null)
+            gameSettings.OnPitchControlChanged -= ApplyPitchControlToggle;
+        if (pitchControlEnabled) OnGameEnded();
         ReleaseIfPressed();
     }
 
@@ -162,24 +181,33 @@ public class RhythmPitchGate : MonoBehaviour
         }
     }
 
+    private void ApplyPitchControlToggle(bool enabled)
+    {
+        if (pitchControlEnabled == enabled) return; 
+        pitchControlEnabled = enabled;
+
+        if (enabled) OnGameStarted();
+        else OnGameEnded();
+    }
     public void SetPitchControlEnabled(bool enabled)
     {
-        pitchControlEnabled = enabled;
+        ApplyPitchControlToggle(enabled);
     }
 
     public void OnGameStarted()
     {
-        if (!pitchControlEnabled) return;
+        if (!pitchControlEnabled) return; 
         SetMute(true);
-        SetPitchControlEnabled(true);
     }
 
     public void OnGameEnded()
     {
-        SetMute(false);
-        SetPitchControlEnabled(false);
-        ReleaseIfPressed();
       
+        SetMute(false);
+        ReleaseIfPressed();
+        matchSince = -1f;
+        expectedStep = null;
+        rearmAtTime = 0f;
     }
 
     public void SetMute(bool mute)
