@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 12810793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290d114faca2b481da8f22fa118e3a4c, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3dab2296f484ff28a53b7b6c50b07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   frequencyMin: 40
@@ -159,7 +159,7 @@ MonoBehaviour:
   waitForVideoSeconds: 3
   updateHz: 60
   windowMs: 100
-  dominanceRatio: 0.6
+  dominanceRatio: 0.2
   consecutiveToLock: 2
   vibratoSmoothFrames: 6
   centsSnapTolerance: 35
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 12810793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f348fb48491e488587e2efe094f5043, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ad133e840caa43ec9191e8cacd457a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1782108897}
@@ -201,11 +201,12 @@ MonoBehaviour:
   retriggerOnSameNote: 1
   retriggerGap: 0.02
   controlAudioListener: 1
-  mutedListenerVolume: 0
+  mutedListenerVolume: 1
   normalListenerVolume: 1
   sourcesToControl:
   - {fileID: 1228623090}
   - {fileID: 1550666168}
+  - {fileID: 1711215467}
   - {fileID: 2071334915}
 --- !u!82 &12810797
 AudioSource:
