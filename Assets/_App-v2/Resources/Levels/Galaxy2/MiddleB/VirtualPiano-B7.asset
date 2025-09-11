@@ -16,23 +16,23 @@ MonoBehaviour:
   levelType: 5
   galaxy: 1
   songXml:
-    m_AssetGUID: 5e4a409e0b8db4a32962e4c441f9e50b
+    m_AssetGUID: 4b98db6f2aa3c4097ab97ac6681c91c1
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   songClip:
     m_AssetGUID: 
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   backgroundClip:
-    m_AssetGUID: 08969b216fe3246028d14879ac406a0f
+    m_AssetGUID: db2f289dd049c4ac59094ac75d084127
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   isTutorial: 0
-  introBeats: 2
+  introBeats: 4
   handType: 1

@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: World15
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: World15
+  m_GUID: 798f3a7ad785541229478103bd3d9e25
+  m_SerializeEntries:
+  - m_GUID: 1310ecc352b044dc7a82409438e3a125
+    m_Address: Mixed Notes exercise 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16d3996559ce34c348d27eba6d343602
+    m_Address: Mixed Notes Right Hand - Exercise 9.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d5e64e72ce23402fa1cdb9545e32723
+    m_Address: Mixed Note exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f9e2f6655f7b4fa2939ed97c9a36540
+    m_Address: Mixed Notes Right Hand - Exercise 6.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 411d58cb734084ba88a29d116ec98d1d
+    m_Address: Mixed Notes Right Hand - Exercise 5.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 432f751df64254a2b9ef7647d3d0dd6a
+    m_Address: Mixed Notes Right Hand - Exercise 8.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45d8a77cfca8645e785d9f9ec61c8f10
+    m_Address: Mixed Notes exercise 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 467642123f10d4aa3a4bb827ae0106d2
+    m_Address: Mixed Notes Right Hand - Exercise 9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4aa0b30c4818548ec8bbbd1fbbd6067c
+    m_Address: Mixed Notes exercise 10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4df807fcdd5e44ddab052fe2737a5d0e
+    m_Address: Mixed Notes Right Hand - Exercise 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50e7b9df825984a6cb457e7e510483ff
+    m_Address: Mixed Notes exercise 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 582131b8122af4636b1d0ea1a4f94154
+    m_Address: Mixed Notes Right Hand - Exercise 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 606e9bdfcb04745fdbe15fc344152f9c
+    m_Address: Mixed Notes Right Hand - Exercise 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ba9d497b67c747e4933fb9c09c8a847
+    m_Address: Mixed Notes Right Hand - Exercise 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6bb00582a674f4497a8c0c061af0f352
+    m_Address: Mixed Notes exercise 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e742dc7d02ce4a1c9bcbb182e201256
+    m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
+      - Exercise 9.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7035ef06bbffe47db8e53f92a2bae01d
+    m_Address: Mixed Notes Right Hand - Exercise 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75e7909c0ea3440acba80011eefbba7f
+    m_Address: Mixed Notes exercise 7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77f12b33b27c14b1783d3174c04775a0
+    m_Address: Mixed Notes Right Hand - Exercise 1.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8438db4a8567d4c4981bdc019b42e6fc
+    m_Address: Mixed Notes exercise 8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85087e681d98c49e8b6fdc7a726ccf59
+    m_Address: Mixed Notes Right Hand - Exercise 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ac6dbe1f03684ed991d928e7f9a9bb9
+    m_Address: Mixed Notes Right Hand - Exercise 10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d2d14cf59b7749fd956db7e166e1155
+    m_Address: Mixed Notes exercise 6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9094449ca992e4026adfa39d50314218
+    m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
+      - Exercise 10.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90e4083e695bb433a817008d93bd57dd
+    m_Address: Mixed Notes exercise 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97e4e5e7978f543968bb2d8e1c172539
+    m_Address: Mixed Notes Right Hand - Exercise 7.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aac28f2c78aee43c3882ab3be9759b51
+    m_Address: Mixed Notes Right Hand - Exercise 3.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b55036519a6ed4e15a852e165186e0f6
+    m_Address: Mixed Notes Right Hand - Exercise 4.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c25d8117c0539406ea8eb8d4ec7c46dd
+    m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
+      - Exercise 8.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d498ea11138ff4da8b4fff65727dde04
+    m_Address: Mixed Notes Right Hand - Exercise 2.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d521fe8c9bb144091b9f54a3cd058fb5
+    m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
+      - Exercise 7.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da1a4d87a09db47c6aa4bc172faee84c
+    m_Address: Mixed Notes Right Hand - Exercise 8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: efadce48a882a4a21a085b74a1e9388e
+    m_Address: Assets/VPContent/MixedNotes/RightHand/Yari/Mixed Notes Right Hand
+      - Exercise 6.musicxml_DIV1.xml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f45891615fa4745afb556406d24296e8
+    m_Address: Mixed Notes Right Hand - Exercise 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdf55e516325d4a1eb1a7c2df9f6fedf
+    m_Address: Mixed Notes Right Hand - Exercise 10.musicxml
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 80b7c80ed552169479232e5555310256, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1b56451a8e6904ab19840bce19dd3136, type: 2}
+    - {fileID: 11400000, guid: 1e7e301f8330d4687a2eff1f16e0da8f, type: 2}

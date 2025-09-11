@@ -289,6 +289,20 @@ public class NoteController : MonoBehaviour
                         beamBottomSprite.sprite = gameSettings.beamSprite;
                     }
                 }
+                else if(note.BeamList[i].Type == "begin"){
+                    if(i == 0){
+                        beamTopSprite.transform.localScale = new Vector3((float)note.Duration * -durationX, 
+                            transform.localScale.y, transform.localScale.z);
+                        beamTopSprite.gameObject.SetActive(true);
+                        beamTopSprite.sprite = gameSettings.beamSprite;
+                    }
+                    else if(i == 1){
+                        beamBottomSprite.transform.localScale = new Vector3((float)note.Duration * -durationX, 
+                            transform.localScale.y, transform.localScale.z);
+                        beamBottomSprite.gameObject.SetActive(true);
+                        beamBottomSprite.sprite = gameSettings.beamSprite;
+                    }
+                }
             }
         }
         

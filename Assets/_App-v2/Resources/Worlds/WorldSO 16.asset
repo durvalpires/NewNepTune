@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a8d42aabbb7456e81c5b6b527951ba, type: 3}
+  m_Name: WorldSO 16
+  m_EditorClassIdentifier: 
+  title: World 16
+  id: 16
+  worldSprite: {fileID: 21300000, guid: 07ef7a242585f451f9c9ab4384daad99, type: 3}
+  levels:
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: b4492aea346214db0b6933fcf0a3d29e, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: e9681bfe53a354aad948fd908a73cf9b, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 3982f5eb8307d4bae8adfd5a6d800f7a, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: bb9bfd152b8694c30a66f370ec51d163, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 717e4b8e2f1694956a623202e90af284, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 458e118a04c204f409a5e80865389ff1, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 9a98a94059dda45d1b416991a6f1a074, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 910fffc28447a4162971b2ed7abf1d85, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 2fc9099180e5741e09af3dd344fd1e7c, type: 2}
+  - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
+    level: {fileID: 11400000, guid: 4513a661585f24908a5781a339bb284f, type: 2}

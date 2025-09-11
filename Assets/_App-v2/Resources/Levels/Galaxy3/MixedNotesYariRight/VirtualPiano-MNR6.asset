@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f13b2502c2534cb198ca33735a7a662, type: 3}
+  m_Name: VirtualPiano-MNR6
+  m_EditorClassIdentifier: 
+  levelTitle: Mixed Notes Right Piano 6
+  levelType: 5
+  galaxy: 3
+  songXml:
+    m_AssetGUID: efadce48a882a4a21a085b74a1e9388e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  songClip:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  backgroundClip:
+    m_AssetGUID: 606e9bdfcb04745fdbe15fc344152f9c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  isTutorial: 0
+  introBeats: 0
+  handType: 2

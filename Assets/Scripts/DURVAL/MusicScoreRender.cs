@@ -55,10 +55,21 @@ public class MusicScoreRender : MonoBehaviour {
     {
         distanceBetweenScoreLines = scoreLines[1].position.y - scoreLines[0].position.y;
         OneNoteY = distanceBetweenScoreLines / 2;
+
+        // Debug: Check the note list counts
+        Debug.Log($"[Octave Debug] Pitch.NoteListMain.Count: {Pitch.NoteListMain.Count}");
+        Debug.Log($"[Octave Debug] Pitch.NoteList.Count: {Pitch.NoteList.Count}");
+        Debug.Log($"[Octave Debug] OneNoteY: {OneNoteY}");
+
         distanceBetweenOctave = OneNoteY * Pitch.NoteListMain.Count;
-        notesContainer.transform.localPosition = new Vector3(notesContainer.transform.localPosition.x, 
+        Debug.Log($"[Octave Debug] distanceBetweenOctave (using NoteListMain): {distanceBetweenOctave}");
+
+        // POTENTIAL FIX: Use 12 semitones for a proper octave instead of 7 natural notes
+        // distanceBetweenOctave = OneNoteY * 12; // 12 semitones in an octave
+
+        notesContainer.transform.localPosition = new Vector3(notesContainer.transform.localPosition.x,
             notesContainer.transform.localPosition.y - distanceBetweenScoreLines /*+ (4-3)*distanceBetweenOctave*/, notesContainer.transform.localPosition.z);
-        
+
         //YOfC4 = OneNoteY * Pitch.NoteList.Count * 5;
         YOfC4 = OneNoteY * Pitch.NoteListMain.Count * 5;
     }
@@ -201,11 +212,11 @@ public class MusicScoreRender : MonoBehaviour {
                 if (gameSettings.showLinePerBeat)
                 {
                     var spawnXCoordinate = xCursor; 
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 40; i++)
                     {
                         Instantiate(beatMarkerPrefab, notesContainer.transform).transform.position = 
                             new Vector3((float)spawnXCoordinate, 1, 0);
-                        spawnXCoordinate += this._durationOneX;
+                        spawnXCoordinate += this._durationOneX/4;
                     }
                     
                 }
@@ -220,15 +231,37 @@ public class MusicScoreRender : MonoBehaviour {
                         // y
                         if (note.Pitch != null)
                         {
-                            y = Pitch.NoteListMain.IndexOf(note.Pitch.Value.Step) * OneNoteY +
-                                (note.Pitch.Value.Octave - (4 + (isRightHand ? 0 : -1))) * distanceBetweenOctave;
-                            
-                            if (!isRightHand) y += OneNoteY * 5f; //5 is the amount of notes that C go 'upwards' between G and F clef
+                            // Debug logs for note Y position calculation
+                            int stepIndex = Pitch.NoteListMain.IndexOf(note.Pitch.Value.Step);
+                            int octave = note.Pitch.Value.Octave;
+                            int octaveOffset = 4 + (isRightHand ? 0 : -1);
+                            int octaveDifference = octave - octaveOffset;
+
+                            Debug.Log($"[Y Calculation] Note: {note.Pitch.Value.Step}{octave}");
+                            Debug.Log($"[Y Calculation] Step Index: {stepIndex}, OneNoteY: {OneNoteY}");
+                            Debug.Log($"[Y Calculation] Octave: {octave}, Octave Offset: {octaveOffset}, Difference: {octaveDifference}");
+                            Debug.Log($"[Y Calculation] Distance Between Octave: {distanceBetweenOctave}");
+                            Debug.Log($"[Y Calculation] Is Right Hand: {isRightHand}");
+
+                            y = stepIndex * OneNoteY + octaveDifference * distanceBetweenOctave;
+                            Debug.Log($"[Y Calculation] Base Y calculation: {stepIndex} * {OneNoteY} + {octaveDifference} * {distanceBetweenOctave} = {y}");
+
+                            if (!isRightHand)
+                            {
+                                float leftHandAdjustment = OneNoteY * 5f;
+                                y += leftHandAdjustment; //5 is the amount of notes that C go 'upwards' between G and F clef
+                                Debug.Log($"[Y Calculation] Left hand adjustment: +{leftHandAdjustment}, New Y: {y}");
+                            }
 
                             if (note.Pitch.Value.Step == "C" && note.Pitch.Value.Octave == 4)
                             {
-                                y += OneNoteY / 4 * 3;
+                                float c4Adjustment = OneNoteY / 4 * 3;
+                                y += c4Adjustment;
+                                Debug.Log($"[Y Calculation] C4 special adjustment: +{c4Adjustment}, Final Y: {y}");
                             }
+
+                            Debug.Log($"[Y Calculation] Final Y position for {note.Pitch.Value.Step}{octave}: {y}");
+                            Debug.Log("----------------------------------------");
                         }
 
                         // x

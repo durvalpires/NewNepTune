@@ -39,5 +39,6 @@ public class LevelSO : ScriptableObject
     {
         LeftHand = 1,
         RightHand = 2,
+        MixedNotes = 3
     }
 }
