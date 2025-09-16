@@ -8,14 +8,14 @@ public class SettingsController : MonoBehaviour
 
     [SerializeField] public GameObject settingsPanel;
     [SerializeField] private Toggle pitchToggle;
-    [SerializeField] private RhythmGameSettings gameSettings; 
 
     void Start()
     {
         if (pitchToggle)
         {
-            pitchToggle.isOn = gameSettings.pitchControlEnabled;
+            pitchToggle.SetIsOnWithoutNotify(LivePitchSettings.PitchControlEnabled);
             pitchToggle.onValueChanged.AddListener(OnPitchToggleChanged);
+            OnPitchToggleChanged(pitchToggle.isOn);
         }
     }
 
@@ -26,7 +26,7 @@ public class SettingsController : MonoBehaviour
 
     void OnPitchToggleChanged(bool on)
     {
-        gameSettings.SetPitchControlEnabled(on);
+        LivePitchSettings.PitchControlEnabled = on;
         Debug.Log("PitchControl (SO) = " + on);
     }
 

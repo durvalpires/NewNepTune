@@ -26,8 +26,6 @@ public class RhythmPitchGate : MonoBehaviour
     [SerializeField] private float mutedListenerVolume = 1f;
     [SerializeField] private float normalListenerVolume = 1f;
     [SerializeField] private List<AudioSource> sourcesToControl = new List<AudioSource>();
-    [SerializeField] private RhythmGameSettings gameSettings;
-
     private float prevListenerVolume;
     private bool listenerVolumeSaved;
     private float rearmAtTime = 0f;
@@ -46,24 +44,10 @@ public class RhythmPitchGate : MonoBehaviour
 
     private void OnEnable()
     {
-        if (gameSettings != null)
-        {
-            gameSettings.OnPitchControlChanged += ApplyPitchControlToggle; 
-            ApplyPitchControlToggle(gameSettings.pitchControlEnabled);     
-        }
-        else
-        {
-        
-            ApplyPitchControlToggle(pitchControlEnabled);
-        }
+        ApplyPitchControlToggle(LivePitchSettings.PitchControlEnabled);
 
         if (gameManager && gameManager.OnNextNoteUpdated != null)
             gameManager.OnNextNoteUpdated.AddListener(HandleNextNoteUpdated);
-    }
-
-    private void Start()
-    {
-        ApplyPitchControlToggle(pitchControlEnabled);
     }
 
     private void OnDisable()
@@ -71,8 +55,6 @@ public class RhythmPitchGate : MonoBehaviour
         if (gameManager && gameManager.OnNextNoteUpdated != null)
             gameManager.OnNextNoteUpdated.RemoveListener(HandleNextNoteUpdated);
 
-        if (gameSettings != null)
-            gameSettings.OnPitchControlChanged -= ApplyPitchControlToggle;
         if (pitchControlEnabled) OnGameEnded();
         ReleaseIfPressed();
     }
@@ -183,11 +165,12 @@ public class RhythmPitchGate : MonoBehaviour
 
     private void ApplyPitchControlToggle(bool enabled)
     {
-        if (pitchControlEnabled == enabled) return; 
         pitchControlEnabled = enabled;
 
-        if (enabled) OnGameStarted();
-        else OnGameEnded();
+        if (enabled)
+            OnGameStarted();
+        else
+            OnGameEnded();
     }
     public void SetPitchControlEnabled(bool enabled)
     {

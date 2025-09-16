@@ -144,7 +144,7 @@ public class MusicScoreRender : MonoBehaviour {
     {
         // var score = MusicXMLParser.GetScorePartwise(musicXMLText);
         var notesSortedByScore = new List<NoteView>();
-
+        var parent = notesContainer.transform;
         currentDivisions = musicScore.CurrentDivisions.Value;
         double currentBeat = 1;
         bool noNeedToDisplayForTie = false;
@@ -187,27 +187,33 @@ public class MusicScoreRender : MonoBehaviour {
                  
                 // Adjust if you have a different time signature
                 barLength = (speedXPerSec * secondsPerBeat * beatsPerBar);
-                
-                beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
-                var durationMinus1Offset = (minDurationValue < 1) ?((minDurationValue/2)*(float)this._durationOneX) : 0;
-                beatMarker.transform.position = 
-                     new Vector3(initialNoteSpawningPoint.position.x + (float)(initialNoteSpawningOffsetX - 
-                                 (this._durationOneX/2)) +  durationMinus1Offset + barLinesToDraw++ * (float)barLength,
-                                    1, 0);
-                 
-                lastLineXPosition = beatMarker.transform.position.x; 
-                    
+
+                beatMarker = Instantiate(beatMarkerPrefab, parent);
+
+                float durationMinus1Offset = (minDurationValue < 1) ? ((minDurationValue / 2f) * (float)_durationOneX) : 0f;
+                float baseLocalX = initialNoteSpawningPoint.localPosition.x
+                                   + (float)(initialNoteSpawningOffsetX - (_durationOneX / 2f))
+                                   + durationMinus1Offset;
+
+                float localX = baseLocalX + barLinesToDraw++ * (float)barLength;
+
+                beatMarker.transform.localPosition = new Vector3(localX, 1f, 0f);
+                // optional hygiene:
+                beatMarker.transform.localRotation = Quaternion.identity;
+
+                lastLineXPosition = localX;
+
                 // }
                 if (gameSettings.showLinePerBeat)
                 {
-                    var spawnXCoordinate = xCursor; 
+                    float spawnXLocal = (float)xCursor;
                     for (int i = 0; i < 20; i++)
                     {
-                        Instantiate(beatMarkerPrefab, notesContainer.transform).transform.position = 
-                            new Vector3((float)spawnXCoordinate, 1, 0);
-                        spawnXCoordinate += this._durationOneX;
+                        var bm = Instantiate(beatMarkerPrefab, parent);
+                        bm.transform.localPosition = new Vector3(spawnXLocal, 1f, 0f);
+                        bm.transform.localRotation = Quaternion.identity;
+                        spawnXLocal += (float)_durationOneX;
                     }
-                    
                 }
 
                 foreach (IMeasureChild child in measure.Children)
@@ -288,13 +294,15 @@ public class MusicScoreRender : MonoBehaviour {
                     }
                 }
             }
-            
-            beatMarker = Instantiate(beatMarkerPrefab, notesContainer.transform);
-            beatMarker.transform.position = new Vector3(lastLineXPosition + gameSettings.LastBarLineHorizontalDistance, 
-                1, 0);
-            beatMarker.transform.localScale = new Vector3(beatMarker.transform.localScale.x * 
-                                                          gameSettings.LastBarLineThickness,
-                beatMarker.transform.localScale.y, beatMarker.transform.localScale.z);
+
+            beatMarker = Instantiate(beatMarkerPrefab, parent);
+            beatMarker.transform.localPosition = new Vector3(
+                lastLineXPosition + gameSettings.LastBarLineHorizontalDistance, 1f, 0f);
+            beatMarker.transform.localRotation = Quaternion.identity; 
+
+            var ls = beatMarker.transform.localScale;
+            ls.x *= gameSettings.LastBarLineThickness;
+            beatMarker.transform.localScale = ls;
         }
 
         return notesSortedByScore;
