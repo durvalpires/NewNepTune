@@ -77,7 +77,7 @@ public class SectionLevelsUI : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR || UNITY_WEBGL
+#if UNITY_EDITOR || UNITY_WEBGL || UNITY_STANDALONE || UNITY_STANDALONE_OSX
         float delta = holdScrollSpeed * Time.deltaTime;
         if (Input.GetKey(KeyCode.RightArrow))
         {

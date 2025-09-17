@@ -380,7 +380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 817688778}
   pitchToggle: {fileID: 176106807}
-  gameSettings: {fileID: 11400000, guid: 1535ad944d1eecd488f06cec074b5af6, type: 2}
 --- !u!114 &92668814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,7 +801,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -13.800003, y: 10}
-  m_SizeDelta: {x: 160, y: 20}
+  m_SizeDelta: {x: 21.93, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &176106807
 MonoBehaviour:
@@ -1682,8 +1681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -368}
-  m_SizeDelta: {x: 250, y: 50}
+  m_AnchoredPosition: {x: -23.3, y: -368}
+  m_SizeDelta: {x: 195, y: 39.4}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1336610146
 MonoBehaviour:
@@ -1733,7 +1732,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.7
+  m_fontSize: 28.1
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
