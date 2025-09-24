@@ -136,7 +136,7 @@ MonoBehaviour:
   MusicalScoreLineDistance: 0.5
   LastBarLineHorizontalDistance: 0.25
   LastBarLineThickness: 5
-  showLinePerBeat: 1
+  showLinePerBeat: 0
   backgroundMusic: {fileID: 0}
   hitSoundEffect: {fileID: 0}
   missSoundEffect: {fileID: 0}

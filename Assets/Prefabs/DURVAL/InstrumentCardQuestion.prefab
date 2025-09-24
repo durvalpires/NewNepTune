@@ -51,8 +51,20 @@ PrefabInstance:
     - target: {fileID: 5825140531932675958, guid: dd7d44e08bca44583a0c44fbdf2305e1,
         type: 3}
       propertyPath: m_Name
-      value: InstrumentCard
+      value: InstrumentCardQuestion
       objectReference: {fileID: 0}
+    - target: {fileID: 6863140636360894851, guid: dd7d44e08bca44583a0c44fbdf2305e1,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
+    - target: {fileID: 6863140636360894851, guid: dd7d44e08bca44583a0c44fbdf2305e1,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
     - target: {fileID: 9009276478794184502, guid: dd7d44e08bca44583a0c44fbdf2305e1,
         type: 3}
       propertyPath: m_IsActive

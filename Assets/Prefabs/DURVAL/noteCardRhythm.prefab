@@ -20,9 +20,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6863140636360894851, guid: dd7d44e08bca44583a0c44fbdf2305e1,
         type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
+    - target: {fileID: 6863140636360894851, guid: dd7d44e08bca44583a0c44fbdf2305e1,
+        type: 3}
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863140636360894851, guid: dd7d44e08bca44583a0c44fbdf2305e1,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
     - target: {fileID: 7977860951245088252, guid: dd7d44e08bca44583a0c44fbdf2305e1,
         type: 3}
       propertyPath: m_RaycastTarget

@@ -9,6 +9,7 @@ public class PlanetBtn : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private BoolUnityEvent onLocked;
     [SerializeField] private BoolUnityEvent onComplete;
+    [SerializeField] private UITextPresenter titleTextPresenter;
     private bool isLocked = false;
     private WorldSO _data;
     private int _index = -1;
@@ -18,6 +19,7 @@ public class PlanetBtn : MonoBehaviour
         _index = index;
         image.sprite = data.worldSprite;
         _data = data;
+        titleTextPresenter.UpdateView(data.title);
         if (PlayerModel.IsWorldCompleted(data.id))
         {
             onComplete.Invoke(true);

@@ -3,87 +3,173 @@ using UnityEngine;
 
 public class SessionTimeTracker : MonoBehaviour
 {
+    public enum SaveMode
+    {
+        AutoSave,   // periodically saves based on interval
+        ManualSave  // only saves when SaveNow() is called
+    }
+
+    private static SessionTimeTracker instance;
+
+    [Header("Session Tracking Settings")]
+    [SerializeField] private SaveMode saveMode = SaveMode.AutoSave;
+    [SerializeField] private float autoSaveIntervalSeconds = 60f;
+
     private DateTime sessionStartTime;
     private TimeSpan sessionDuration;
+    private float autoSaveTimer;
+    private bool trackingActive = false; // ✅ NEW: only true after login
 
     public static double TotalMinutesPlayed { get; private set; }
-    
+
+    private void Awake()
+    {
+        // ✅ Singleton guard
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        Debug.Log("[SessionTimeTracker] Initialized. Waiting for login...");
+    }
 
     private void OnEnable()
     {
-        sessionStartTime = DateTime.UtcNow;
+        autoSaveTimer = 0f;
+    }
+
+    private void Update()
+    {
+        if (!trackingActive) return; // ✅ Skip if not logged in
+
+        if (saveMode == SaveMode.AutoSave)
+        {
+            autoSaveTimer += Time.unscaledDeltaTime;
+            if (autoSaveTimer >= autoSaveIntervalSeconds)
+            {
+                autoSaveTimer = 0f;
+                UpdateSessionDuration();
+            }
+        }
     }
 
     private void OnDisable()
     {
-        Debug.Log("Update Session Duration");
-        UpdateSessionDuration();
+        if (!trackingActive) return;
+        Debug.Log("[SessionTimeTracker] OnDisable: Updating session duration");
+        UpdateSessionDuration(saveMode == SaveMode.AutoSave);
     }
 
     private void OnApplicationPause(bool pause)
     {
+        if (!trackingActive) return;
+
         if (pause)
-            UpdateSessionDuration();
+        {
+            Debug.Log("[SessionTimeTracker] App paused: Updating session duration");
+            UpdateSessionDuration(saveMode == SaveMode.AutoSave);
+        }
         else
+        {
             sessionStartTime = DateTime.UtcNow;
+        }
     }
 
     private void OnApplicationQuit()
     {
-        UpdateSessionDuration();
+        if (!trackingActive) return;
+        Debug.Log("[SessionTimeTracker] App quit: Updating session duration");
+        UpdateSessionDuration(saveMode == SaveMode.AutoSave);
     }
 
-    private void UpdateSessionDuration()
+    /// <summary>
+    /// Called after login to start tracking and set initial play time.
+    /// </summary>
+    public static void StartTracking(double minutesFromBackend)
+    {
+        if (instance == null)
+        {
+            Debug.LogWarning("[SessionTimeTracker] StartTracking() called but no instance exists.");
+            return;
+        }
+
+        TotalMinutesPlayed = minutesFromBackend;
+        instance.sessionStartTime = DateTime.UtcNow;
+        instance.trackingActive = true;
+
+        Debug.Log($"[SessionTimeTracker] Tracking started. Loaded total play time: {TotalMinutesPlayed} minutes");
+    }
+
+    /// <summary>
+    /// Stops tracking (e.g., on logout)
+    /// </summary>
+    public static void StopTracking(bool saveBeforeStop = true)
+    {
+        if (instance == null) return;
+
+        if (saveBeforeStop)
+            instance.UpdateSessionDuration(true);
+
+        instance.trackingActive = false;
+        Debug.Log("[SessionTimeTracker] Tracking stopped.");
+    }
+
+    /// <summary>
+    /// Updates session time and optionally saves to Firebase
+    /// </summary>
+    private void UpdateSessionDuration(bool saveToFirebase = true)
     {
         sessionDuration = DateTime.UtcNow - sessionStartTime;
-        TotalMinutesPlayed += Math.Round(sessionDuration.TotalMinutes, 1);
-        SaveTotalPlayTime();
+
+        if (sessionDuration.TotalSeconds > 1)
+        {
+            TotalMinutesPlayed += sessionDuration.TotalMinutes;
+            if (saveToFirebase) SaveTotalPlayTime();
+        }
+
+        sessionStartTime = DateTime.UtcNow;
     }
 
     private void SaveTotalPlayTime()
     {
-        // PlayerPrefs.SetFloat("TotalMinutesPlayed", (float)TotalMinutesPlayed);
-        // PlayerPrefs.Save();i
-        
-        FirebaseProxyService.Instance.UpdateStudentTotalTime((int)TotalMinutesPlayed);
+        int roundedMinutes = Mathf.RoundToInt((float)TotalMinutesPlayed);
+        Debug.Log($"[SessionTimeTracker] Saving TotalMinutesPlayed = {roundedMinutes}");
+        FirebaseProxyService.Instance.UpdateStudentTotalTime(roundedMinutes);
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-        //TotalMinutesPlayed = PlayerPrefs.GetFloat("TotalMinutesPlayed", 0f);
-        Debug.Log("TotalMinutesPlayed: " + TotalMinutesPlayed);
-    }
-    
     /// <summary>
-    /// Gets the total time played formatted as HH:MM:SS
+    /// Forces a save (used in ManualSave mode or when player finishes a level)
     /// </summary>
-    /// <returns>Formatted time string in HH:MM:SS format</returns>
+    public static void SaveNow()
+    {
+        if (instance == null || !instance.trackingActive)
+        {
+            Debug.LogWarning("[SessionTimeTracker] SaveNow() called but tracking is not active.");
+            return;
+        }
+
+        instance.UpdateSessionDuration(true);
+    }
+
     public static string GetFormattedTimePlayed()
     {
         TimeSpan timePlayed = TimeSpan.FromMinutes(TotalMinutesPlayed);
-        return string.Format("{0:D2}:{1:D2}:{2:D2}", 
-            timePlayed.Days * 24 + timePlayed.Hours, 
-            timePlayed.Minutes, 
-            timePlayed.Seconds);
-    }
-    
-    /// <summary>
-    /// Gets the total time played formatted as HH:MM:SS
-    /// </summary>
-    /// <returns>Formatted time string in HH:MM:SS format</returns>
-    public static string GetFormattedTimePlayed(double totalMinutesPlayed)
-    {
-        TimeSpan timePlayed = TimeSpan.FromMinutes(totalMinutesPlayed);
-        return string.Format("{0:D2}H:{1:D2}M:{2:D2}S",
+        return string.Format("{0:D2}:{1:D2}:{2:D2}",
             timePlayed.Days * 24 + timePlayed.Hours,
             timePlayed.Minutes,
             timePlayed.Seconds);
     }
-    
-    //  To be used after loading the student data from Firebase on login
-    public static void SetTotalMinutesPlayed(double totalMinutesPlayed)
+
+    public static string GetFormattedTimePlayed(double totalMinutesPlayed)
     {
-        TotalMinutesPlayed = totalMinutesPlayed;
+        TimeSpan timePlayed = TimeSpan.FromMinutes(totalMinutesPlayed);
+        return string.Format("{0:D2}:{1:D2}:{2:D2}",
+            timePlayed.Days * 24 + timePlayed.Hours,
+            timePlayed.Minutes,
+            timePlayed.Seconds);
     }
 }

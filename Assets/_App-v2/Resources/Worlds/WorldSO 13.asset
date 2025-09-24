@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a8d42aabbb7456e81c5b6b527951ba, type: 3}
   m_Name: WorldSO 13
   m_EditorClassIdentifier: 
-  title: World 13
+  title: "Bass A\u2019s Alarm Tower "
   id: 12
-  worldSprite: {fileID: 21300000, guid: 7d93f491c1ee447158759b110ac0ccf4, type: 3}
+  worldSprite: {fileID: 21300000, guid: bcbf191051f5d49bd8a4dab16d6b32b6, type: 3}
   levels:
   - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: b30a2f6ce419546f684eaffce8e0e675, type: 2}

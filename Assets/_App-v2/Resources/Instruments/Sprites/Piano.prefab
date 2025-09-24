@@ -124,6 +124,18 @@ PrefabInstance:
       propertyPath: m_text
       value: PIANO
       objectReference: {fileID: 0}
+    - target: {fileID: 7071795243815159025, guid: 410d8a7959b054c41b6524ed76629ae2,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
+    - target: {fileID: 7071795243815159025, guid: 410d8a7959b054c41b6524ed76629ae2,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
     - target: {fileID: 7912217850333565444, guid: 410d8a7959b054c41b6524ed76629ae2,
         type: 3}
       propertyPath: m_Name

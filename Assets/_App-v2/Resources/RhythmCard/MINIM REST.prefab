@@ -129,6 +129,18 @@ PrefabInstance:
       propertyPath: m_text
       value: MINIM REST
       objectReference: {fileID: 0}
+    - target: {fileID: 3007906047885693575, guid: 0940977068cc94626b9e1fff921c5ac0,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
+    - target: {fileID: 3007906047885693575, guid: 0940977068cc94626b9e1fff921c5ac0,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
     - target: {fileID: 3556487076240642811, guid: 0940977068cc94626b9e1fff921c5ac0,
         type: 3}
       propertyPath: m_Pivot.y

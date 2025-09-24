@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a8d42aabbb7456e81c5b6b527951ba, type: 3}
   m_Name: WorldSO 14
   m_EditorClassIdentifier: 
-  title: World 14
+  title: "Bass B\u2019s Band School "
   id: 13
-  worldSprite: {fileID: 21300000, guid: 07ef7a242585f451f9c9ab4384daad99, type: 3}
+  worldSprite: {fileID: 21300000, guid: dd3f688675c8042d99d60bb7e67004d2, type: 3}
   levels:
   - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 85ac583d704114461bc2cc2bf0ccdca3, type: 2}

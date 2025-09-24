@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: level world 8
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 68368647f105741a4a845baf6535ca8d, type: 2}
-  m_sharedMaterial: {fileID: 7755566242375721104, guid: 68368647f105741a4a845baf6535ca8d,
+  m_fontAsset: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464, type: 2}
+  m_sharedMaterial: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a8d42aabbb7456e81c5b6b527951ba, type: 3}
   m_Name: WorldSO 12
   m_EditorClassIdentifier: 
-  title: World 12
+  title: "Bass G\u2019s City Park "
   id: 11
-  worldSprite: {fileID: 21300000, guid: 344dacdf96d2644089d1d585f689de2b, type: 3}
+  worldSprite: {fileID: 21300000, guid: 7b2fe2c3ea05844c38ec0e652f75ea08, type: 3}
   levels:
   - image: {fileID: 21300000, guid: d454bc5192c8b4adb9f2907a49a0227e, type: 3}
     level: {fileID: 11400000, guid: 71bbec41b0eaa4be6ab1bc550c238160, type: 2}

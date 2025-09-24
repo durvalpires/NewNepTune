@@ -117,13 +117,25 @@ PrefabInstance:
     - target: {fileID: 3709210381129582781, guid: da5ccabe93dc5428baa983399f8e4c68,
         type: 3}
       propertyPath: m_Name
-      value: noteCard F
+      value: F
       objectReference: {fileID: 0}
     - target: {fileID: 4364000446162853448, guid: da5ccabe93dc5428baa983399f8e4c68,
         type: 3}
       propertyPath: m_text
       value: F
       objectReference: {fileID: 0}
+    - target: {fileID: 4364000446162853448, guid: da5ccabe93dc5428baa983399f8e4c68,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
+    - target: {fileID: 4364000446162853448, guid: da5ccabe93dc5428baa983399f8e4c68,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

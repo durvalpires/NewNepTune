@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// Copyright 2025 Cyber Chaos Games. All Rights Reserved.
+
+using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
@@ -6,21 +8,21 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using BgTools.Utils;
-using BgTools.Dialogs;
+using CCG.Utils;
+using CCG.Dialogs;
 
 #if (UNITY_EDITOR_LINUX || UNITY_EDITOR_OSX)
 using System.Text;
 using System.Globalization;
 #endif
 
-namespace BgTools.PlayerPrefsEditor
+namespace CCG.PlayerPrefsEditor
 {
     public class PreferencesEditorWindow : EditorWindow
     {
 #region ErrorValues
         private readonly int ERROR_VALUE_INT = int.MinValue;
-        private readonly string ERROR_VALUE_STR = "<bgTool_error_24072017>";
+        private readonly string ERROR_VALUE_STR = "<ccgTools_error_24072017>";
         #endregion //ErrorValues
 
         private enum PreferencesEntrySortOrder
@@ -72,7 +74,7 @@ namespace BgTools.PlayerPrefsEditor
 #elif UNITY_EDITOR_OSX
         private readonly char[] invalidFilenameChars = { '$', '%', '&', '\\', '/', ':', '<', '>', '|', '~' };
 #endif
-        [MenuItem("Tools/BG Tools/PlayerPrefs Editor", false, 1)]
+        [MenuItem("Tools/CCG-Tools/PlayerPrefs Editor", false, 1)]
         static void ShowWindow()
         {
             PreferencesEditorWindow window = EditorWindow.GetWindow<PreferencesEditorWindow>(false, "Prefs Editor");
@@ -101,11 +103,11 @@ namespace BgTools.PlayerPrefsEditor
 #endif
             entryAccessor.PrefEntryChangedDelegate = () => { updateView = true; };
 
-            monitoring = EditorPrefs.GetBool("BGTools.PlayerPrefsEditor.WatchingForChanges", true);
+            monitoring = EditorPrefs.GetBool("CCG.PlayerPrefsEditor.WatchingForChanges", true);
             if(monitoring)
                 entryAccessor.StartMonitoring();
 
-            sortOrder = (PreferencesEntrySortOrder) EditorPrefs.GetInt("BGTools.PlayerPrefsEditor.SortOrder", 0);
+            sortOrder = (PreferencesEntrySortOrder) EditorPrefs.GetInt("CCG.PlayerPrefsEditor.SortOrder", 0);
             searchfield = new MySearchField();
             searchfield.DropdownSelectionDelegate = () => { PrepareData(); };
 
@@ -142,236 +144,211 @@ namespace BgTools.PlayerPrefsEditor
         }
 
         private void InitReorderedList()
-{
-    if (prefEntryHolder == null)
-    {
-        var tmp = Resources.FindObjectsOfTypeAll<PreferenceEntryHolder>();
-        if (tmp.Length > 0)
         {
-            prefEntryHolder = tmp[0];
-        }
-        else
-        {
-            prefEntryHolder = ScriptableObject.CreateInstance<PreferenceEntryHolder>();
-        }
-    }
-
-    if (serializedObject == null)
-    {
-        serializedObject = new SerializedObject(prefEntryHolder);
-    }
-
-    userDefList = new ReorderableList(serializedObject, serializedObject.FindProperty("userDefList"), false, true, true, true);
-    unityDefList = new ReorderableList(serializedObject, serializedObject.FindProperty("unityDefList"), false, true, false, false);
-
-    relSpliterPos = EditorPrefs.GetFloat("BGTools.PlayerPrefsEditor.RelativeSpliterPosition", 100 / position.width);
-
-    userDefList.drawHeaderCallback = rect =>
-    {
-        EditorGUI.LabelField(rect, "User defined");
-    };
-
-    userDefList.elementHeightCallback = index =>
-    {
-        SerializedProperty element = GetUserDefListElementAtIndex(index, userDefList.serializedProperty);
-        SerializedProperty type = element.FindPropertyRelative("m_typeSelection");
-
-        if ((PreferenceEntry.PrefTypes)type.enumValueIndex == PreferenceEntry.PrefTypes.String)
-        {
-            SerializedProperty strVal = element.FindPropertyRelative("m_strValue");
-            float width = EditorGUIUtility.currentViewWidth - relSpliterPos * EditorGUIUtility.currentViewWidth - 80;
-            float textHeight = EditorStyles.textArea.CalcHeight(new GUIContent(strVal.stringValue), width);
-            return Mathf.Max(EditorGUIUtility.singleLineHeight * 3, textHeight + 12);
-        }
-
-        return EditorGUIUtility.singleLineHeight * 2.5f;
-    };
-
-    userDefList.drawElementBackgroundCallback = OnDrawElementBackgroundCallback;
-
-    userDefList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
-    {
-        SerializedProperty element = GetUserDefListElementAtIndex(index, userDefList.serializedProperty);
-        SerializedProperty key = element.FindPropertyRelative("m_key");
-        SerializedProperty type = element.FindPropertyRelative("m_typeSelection");
-
-        SerializedProperty value;
-
-        switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
-        {
-            case PreferenceEntry.PrefTypes.Float:
-                value = element.FindPropertyRelative("m_floatValue");
-                break;
-            case PreferenceEntry.PrefTypes.Int:
-                value = element.FindPropertyRelative("m_intValue");
-                break;
-            case PreferenceEntry.PrefTypes.String:
-                value = element.FindPropertyRelative("m_strValue");
-                break;
-            default:
-                value = element.FindPropertyRelative("This should never happen");
-                break;
-        }
-
-        float spliterPos = relSpliterPos * rect.width;
-        rect.y += 2;
-        rect.height -= 4;
-
-        EditorGUI.BeginChangeCheck();
-        string prefKeyName = key.stringValue;
-        EditorGUI.LabelField(new Rect(rect.x, rect.y, spliterPos - 1, EditorGUIUtility.singleLineHeight), new GUIContent(prefKeyName, prefKeyName));
-        GUI.enabled = false;
-        EditorGUI.EnumPopup(new Rect(rect.x + spliterPos + 1, rect.y, 60, EditorGUIUtility.singleLineHeight), (PreferenceEntry.PrefTypes)type.enumValueIndex);
-        GUI.enabled = !showLoadingIndicatorOverlay;
-
-        float fieldX = rect.x + spliterPos + 62;
-        float fieldWidth = rect.width - spliterPos - 64;
-        
-        var wrapStyle = new GUIStyle(EditorStyles.textArea)
-        {
-            wordWrap = true
-        };
-
-        switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
-        {
-            case PreferenceEntry.PrefTypes.Float:
-                EditorGUI.DelayedFloatField(new Rect(fieldX, rect.y, fieldWidth, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
-                break;
-            case PreferenceEntry.PrefTypes.Int:
-                EditorGUI.DelayedIntField(new Rect(fieldX, rect.y, fieldWidth, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
-                break;
-            case PreferenceEntry.PrefTypes.String:
-                value.stringValue = EditorGUI.TextArea(new Rect(fieldX, rect.y, fieldWidth, rect.height), value.stringValue, wrapStyle);
-                break;
-        }
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            entryAccessor.IgnoreNextChange();
-
-            switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
+            if (prefEntryHolder == null)
             {
-                case PreferenceEntry.PrefTypes.Float:
-                    PlayerPrefs.SetFloat(key.stringValue, value.floatValue);
-                    break;
-                case PreferenceEntry.PrefTypes.Int:
-                    PlayerPrefs.SetInt(key.stringValue, value.intValue);
-                    break;
-                case PreferenceEntry.PrefTypes.String:
-                    PlayerPrefs.SetString(key.stringValue, value.stringValue);
-                    break;
+                var tmp = Resources.FindObjectsOfTypeAll<PreferenceEntryHolder>();
+                if (tmp.Length > 0)
+                {
+                    prefEntryHolder = tmp[0];
+                }
+                else
+                {
+                    prefEntryHolder = ScriptableObject.CreateInstance<PreferenceEntryHolder>();
+                }
             }
 
-            PlayerPrefs.Save();
-        }
-    };
-
-    userDefList.onRemoveCallback = l =>
-    {
-        userDefList.ReleaseKeyboardFocus();
-        unityDefList.ReleaseKeyboardFocus();
-
-        string prefKey = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("m_key").stringValue;
-        if (EditorUtility.DisplayDialog("Warning!", $"Are you sure you want to delete this entry from PlayerPrefs?\n\nEntry: {prefKey}", "Yes", "No"))
-        {
-            entryAccessor.IgnoreNextChange();
-            PlayerPrefs.DeleteKey(prefKey);
-            PlayerPrefs.Save();
-
-            ReorderableList.defaultBehaviours.DoRemoveButton(l);
-            PrepareData();
-            GUIUtility.ExitGUI();
-        }
-    };
-
-    userDefList.onAddDropdownCallback = (Rect buttonRect, ReorderableList l) =>
-    {
-        var menu = new GenericMenu();
-        foreach (PreferenceEntry.PrefTypes type in Enum.GetValues(typeof(PreferenceEntry.PrefTypes)))
-        {
-            menu.AddItem(new GUIContent(type.ToString()), false, () =>
+            if (serializedObject == null)
             {
-                TextFieldDialog.OpenDialog("Create new property", "Key for the new property:", prefKeyValidatorList, (key) =>
+                serializedObject = new SerializedObject(prefEntryHolder);
+            }
+
+            userDefList = new ReorderableList(serializedObject, serializedObject.FindProperty("userDefList"), false, true, true, true);
+            unityDefList = new ReorderableList(serializedObject, serializedObject.FindProperty("unityDefList"), false, true, false, false);
+
+            relSpliterPos = EditorPrefs.GetFloat("CCG.PlayerPrefsEditor.RelativeSpliterPosition", 100 / position.width);
+
+            userDefList.drawHeaderCallback = (Rect rect) =>
+            {
+                EditorGUI.LabelField(rect, "User defined");
+            };
+            userDefList.drawElementBackgroundCallback = OnDrawElementBackgroundCallback;
+            userDefList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+            {
+                SerializedProperty element = GetUserDefListElementAtIndex(index, userDefList.serializedProperty);
+
+                SerializedProperty key = element.FindPropertyRelative("m_key");
+                SerializedProperty type = element.FindPropertyRelative("m_typeSelection");
+
+                SerializedProperty value;
+
+                // Load only necessary type
+                switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
+                {
+                    case PreferenceEntry.PrefTypes.Float:
+                        value = element.FindPropertyRelative("m_floatValue");
+                        break;
+                    case PreferenceEntry.PrefTypes.Int:
+                        value = element.FindPropertyRelative("m_intValue");
+                        break;
+                    case PreferenceEntry.PrefTypes.String:
+                        value = element.FindPropertyRelative("m_strValue");
+                        break;
+                    default:
+                        value = element.FindPropertyRelative("This should never happen");
+                        break;
+                }
+
+                float spliterPos = relSpliterPos * rect.width;
+                rect.y += 2;
+
+                EditorGUI.BeginChangeCheck();
+                string prefKeyName = key.stringValue;
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, spliterPos - 1, EditorGUIUtility.singleLineHeight), new GUIContent(prefKeyName, prefKeyName));
+                GUI.enabled = false;
+                EditorGUI.EnumPopup(new Rect(rect.x + spliterPos + 1, rect.y, 60, EditorGUIUtility.singleLineHeight), (PreferenceEntry.PrefTypes)type.enumValueIndex);
+                GUI.enabled = !showLoadingIndicatorOverlay;
+                switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
+                {
+                    case PreferenceEntry.PrefTypes.Float:
+                        EditorGUI.DelayedFloatField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
+                        break;
+                    case PreferenceEntry.PrefTypes.Int:
+                        EditorGUI.DelayedIntField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
+                        break;
+                    case PreferenceEntry.PrefTypes.String:
+                        EditorGUI.DelayedTextField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
+                        break;
+                }
+                if (EditorGUI.EndChangeCheck())
                 {
                     entryAccessor.IgnoreNextChange();
 
-                    switch (type)
+                    switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
                     {
                         case PreferenceEntry.PrefTypes.Float:
-                            PlayerPrefs.SetFloat(key, 0.0f);
+                            PlayerPrefs.SetFloat(key.stringValue, value.floatValue);
                             break;
                         case PreferenceEntry.PrefTypes.Int:
-                            PlayerPrefs.SetInt(key, 0);
+                            PlayerPrefs.SetInt(key.stringValue, value.intValue);
                             break;
                         case PreferenceEntry.PrefTypes.String:
-                            PlayerPrefs.SetString(key, string.Empty);
+                            PlayerPrefs.SetString(key.stringValue, value.stringValue);
                             break;
                     }
 
                     PlayerPrefs.Save();
+                }
+            };
+            userDefList.onRemoveCallback = (ReorderableList l) =>
+            {
+                userDefList.ReleaseKeyboardFocus();
+                unityDefList.ReleaseKeyboardFocus();
+
+                string prefKey = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("m_key").stringValue;
+                if (EditorUtility.DisplayDialog("Warning!", $"Are you sure you want to delete this entry from PlayerPrefs?\n\nEntry: {prefKey}", "Yes", "No"))
+                {
+                    entryAccessor.IgnoreNextChange();
+
+                    PlayerPrefs.DeleteKey(prefKey);
+                    PlayerPrefs.Save();
+
+                    ReorderableList.defaultBehaviours.DoRemoveButton(l);
                     PrepareData();
-                    Focus();
-                }, this);
-            });
+                    GUIUtility.ExitGUI();
+                }
+            };
+            userDefList.onAddDropdownCallback = (Rect buttonRect, ReorderableList l) =>
+            {
+                var menu = new GenericMenu();
+                foreach (PreferenceEntry.PrefTypes type in Enum.GetValues(typeof(PreferenceEntry.PrefTypes)))
+                {
+                    menu.AddItem(new GUIContent(type.ToString()), false, () =>
+                    {
+                        TextFieldDialog.OpenDialog("Create new property", "Key for the new property:", prefKeyValidatorList, (key) => {
+
+                            entryAccessor.IgnoreNextChange();
+
+                            switch (type)
+                            {
+                                case PreferenceEntry.PrefTypes.Float:
+                                    PlayerPrefs.SetFloat(key, 0.0f);
+
+                                    break;
+                                case PreferenceEntry.PrefTypes.Int:
+                                    PlayerPrefs.SetInt(key, 0);
+
+                                    break;
+                                case PreferenceEntry.PrefTypes.String:
+                                    PlayerPrefs.SetString(key, string.Empty);
+
+                                    break;
+                            }
+                            PlayerPrefs.Save();
+
+                            PrepareData();
+
+                            Focus();
+                        }, this);
+
+                    });
+                }
+                menu.ShowAsContext();
+            };
+
+            unityDefList.drawElementBackgroundCallback = OnDrawElementBackgroundCallback;
+            unityDefList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+            {
+                var element = unityDefList.serializedProperty.GetArrayElementAtIndex(index);
+                SerializedProperty key = element.FindPropertyRelative("m_key");
+                SerializedProperty type = element.FindPropertyRelative("m_typeSelection");
+
+                SerializedProperty value;
+
+                // Load only necessary type
+                switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
+                {
+                    case PreferenceEntry.PrefTypes.Float:
+                        value = element.FindPropertyRelative("m_floatValue");
+                        break;
+                    case PreferenceEntry.PrefTypes.Int:
+                        value = element.FindPropertyRelative("m_intValue");
+                        break;
+                    case PreferenceEntry.PrefTypes.String:
+                        value = element.FindPropertyRelative("m_strValue");
+                        break;
+                    default:
+                        value = element.FindPropertyRelative("This should never happen");
+                        break;
+                }
+
+                float spliterPos = relSpliterPos * rect.width;
+                rect.y += 2;
+
+                GUI.enabled = false;
+                string prefKeyName = key.stringValue;
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, spliterPos - 1, EditorGUIUtility.singleLineHeight), new GUIContent(prefKeyName, prefKeyName));
+                EditorGUI.EnumPopup(new Rect(rect.x + spliterPos + 1, rect.y, 60, EditorGUIUtility.singleLineHeight), (PreferenceEntry.PrefTypes)type.enumValueIndex);
+
+                switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
+                {
+                    case PreferenceEntry.PrefTypes.Float:
+                        EditorGUI.DelayedFloatField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
+                        break;
+                    case PreferenceEntry.PrefTypes.Int:
+                        EditorGUI.DelayedIntField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
+                        break;
+                    case PreferenceEntry.PrefTypes.String:
+                        EditorGUI.DelayedTextField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
+                        break;
+                }
+                GUI.enabled = !showLoadingIndicatorOverlay;
+            };
+            unityDefList.drawHeaderCallback = (Rect rect) =>
+            {
+                EditorGUI.LabelField(rect, "Unity defined");
+            };
         }
-        menu.ShowAsContext();
-    };
-
-    // Unity-defined list
-    unityDefList.drawHeaderCallback = rect =>
-    {
-        EditorGUI.LabelField(rect, "Unity defined");
-    };
-
-    unityDefList.drawElementBackgroundCallback = OnDrawElementBackgroundCallback;
-
-    unityDefList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
-    {
-        var element = unityDefList.serializedProperty.GetArrayElementAtIndex(index);
-        SerializedProperty key = element.FindPropertyRelative("m_key");
-        SerializedProperty type = element.FindPropertyRelative("m_typeSelection");
-
-        SerializedProperty value;
-
-        switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
-        {
-            case PreferenceEntry.PrefTypes.Float:
-                value = element.FindPropertyRelative("m_floatValue");
-                break;
-            case PreferenceEntry.PrefTypes.Int:
-                value = element.FindPropertyRelative("m_intValue");
-                break;
-            case PreferenceEntry.PrefTypes.String:
-                value = element.FindPropertyRelative("m_strValue");
-                break;
-            default:
-                value = element.FindPropertyRelative("This should never happen");
-                break;
-        }
-
-        float spliterPos = relSpliterPos * rect.width;
-        rect.y += 2;
-
-        GUI.enabled = false;
-        string prefKeyName = key.stringValue;
-        EditorGUI.LabelField(new Rect(rect.x, rect.y, spliterPos - 1, EditorGUIUtility.singleLineHeight), new GUIContent(prefKeyName, prefKeyName));
-        EditorGUI.EnumPopup(new Rect(rect.x + spliterPos + 1, rect.y, 60, EditorGUIUtility.singleLineHeight), (PreferenceEntry.PrefTypes)type.enumValueIndex);
-
-        switch ((PreferenceEntry.PrefTypes)type.enumValueIndex)
-        {
-            case PreferenceEntry.PrefTypes.Float:
-                EditorGUI.DelayedFloatField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
-                break;
-            case PreferenceEntry.PrefTypes.Int:
-                EditorGUI.DelayedIntField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
-                break;
-            case PreferenceEntry.PrefTypes.String:
-                EditorGUI.DelayedTextField(new Rect(rect.x + spliterPos + 62, rect.y, rect.width - spliterPos - 60, EditorGUIUtility.singleLineHeight), value, GUIContent.none);
-                break;
-        }
-        GUI.enabled = !showLoadingIndicatorOverlay;
-    };
-}
 
         private void OnDrawElementBackgroundCallback(Rect rect, int index, bool isActive, bool isFocused)
         {
@@ -397,7 +374,7 @@ namespace BgTools.PlayerPrefsEditor
             if (Event.current.type == EventType.MouseUp)
             {
                 moveSplitterPos = false;
-                EditorPrefs.SetFloat("BGTools.PlayerPrefsEditor.RelativeSpliterPosition", relSpliterPos);
+                EditorPrefs.SetFloat("CCG.PlayerPrefsEditor.RelativeSpliterPosition", relSpliterPos);
             }
         }
 
@@ -455,7 +432,7 @@ namespace BgTools.PlayerPrefsEditor
                     {
                         sortOrder = 0;
                     }
-                    EditorPrefs.SetInt("BGTools.PlayerPrefsEditor.SortOrder", (int) sortOrder);
+                    EditorPrefs.SetInt("CCG.PlayerPrefsEditor.SortOrder", (int) sortOrder);
                     PrepareData(false);
                 }
 
@@ -464,7 +441,7 @@ namespace BgTools.PlayerPrefsEditor
                 {
                     monitoring = !monitoring;
 
-                    EditorPrefs.SetBool("BGTools.PlayerPrefsEditor.WatchingForChanges", monitoring);
+                    EditorPrefs.SetBool("CCG.PlayerPrefsEditor.WatchingForChanges", monitoring);
 
                     if (monitoring)
                         entryAccessor.StartMonitoring();

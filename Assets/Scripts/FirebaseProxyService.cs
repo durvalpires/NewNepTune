@@ -371,7 +371,7 @@ public class FirebaseProxyService : MonoBehaviour
                 
                 LevelCompletObserver.currentLevel = response.currentLevel;
                 LevelCompletObserver.currentWorld = response.currentWorld;
-                SessionTimeTracker.SetTotalMinutesPlayed((double)response.totalTime);
+                SessionTimeTracker.StartTracking(_totalTime);
 
                 Debug.Log("User successfully logged in! User ID: " + _userId + ", User Type: " + _userType + ", Username: " + _username);
                 if (!string.IsNullOrEmpty(_privateCode))
@@ -1018,6 +1018,7 @@ public class FirebaseProxyService : MonoBehaviour
                         Debug.Log("Logout successful! Message: " + response.message);
                         // Perform local cleanup after successful logout
                         ClearLocalData();
+                        SessionTimeTracker.StopTracking();
                         callback?.Invoke(true, response.message);
                     }
                 }

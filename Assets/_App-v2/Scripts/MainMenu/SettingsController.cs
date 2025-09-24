@@ -38,6 +38,7 @@ public class SettingsController : MonoBehaviour
             {
                 Debug.LogError("Signout failed: " + message);
             }
+            
             SceneManager.LoadScene("NeptuneApp");
         });
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DURVAL;
 using TMPro;
@@ -221,56 +222,63 @@ public class MusicScoreRender : MonoBehaviour {
                     
                 }
 
-                foreach (IMeasureChild child in measure.Children)
+                IMeasureChild child;
+                IMeasureChild followingChild;
+                
+                for (int i = 0; i < ((ICollection)measure.Children).Count; i++)
                 {
+                    child = measure.Children[i];
+                    // followingChild = null;
+                    // if (i + 1 >= ((ICollection)measure.Children).Count)
+                    //     followingChild = measure.Children[i+1];
+
                     if (child is ScoreNote)
                     {
                         var note = (ScoreNote)child;
+                        // var nextNote = (ScoreNote)followingChild;
 
                         double y = scoreLines[3].transform.position.y;
+
                         // y
                         if (note.Pitch != null)
                         {
-                            // Debug logs for note Y position calculation
                             int stepIndex = Pitch.NoteListMain.IndexOf(note.Pitch.Value.Step);
                             int octave = note.Pitch.Value.Octave;
                             int octaveOffset = 4 + (isRightHand ? 0 : -1);
                             int octaveDifference = octave - octaveOffset;
 
-                            Debug.Log($"[Y Calculation] Note: {note.Pitch.Value.Step}{octave}");
-                            Debug.Log($"[Y Calculation] Step Index: {stepIndex}, OneNoteY: {OneNoteY}");
-                            Debug.Log($"[Y Calculation] Octave: {octave}, Octave Offset: {octaveOffset}, Difference: {octaveDifference}");
-                            Debug.Log($"[Y Calculation] Distance Between Octave: {distanceBetweenOctave}");
-                            Debug.Log($"[Y Calculation] Is Right Hand: {isRightHand}");
+                            // Debug.Log($"[Y Calculation] Note: {note.Pitch.Value.Step}{octave}");
+                            // Debug.Log($"[Y Calculation] Step Index: {stepIndex}, OneNoteY: {OneNoteY}");
+                            // Debug.Log($"[Y Calculation] Octave: {octave}, Octave Offset: {octaveOffset}, Difference: {octaveDifference}");
+                            // Debug.Log($"[Y Calculation] Distance Between Octave: {distanceBetweenOctave}");
+                            // Debug.Log($"[Y Calculation] Is Right Hand: {isRightHand}");
 
                             y = stepIndex * OneNoteY + octaveDifference * distanceBetweenOctave;
-                            Debug.Log($"[Y Calculation] Base Y calculation: {stepIndex} * {OneNoteY} + {octaveDifference} * {distanceBetweenOctave} = {y}");
+                            //Debug.Log($"[Y Calculation] Base Y calculation: {stepIndex} * {OneNoteY} + {octaveDifference} * {distanceBetweenOctave} = {y}");
 
                             if (!isRightHand)
                             {
                                 float leftHandAdjustment = OneNoteY * 5f;
-                                y += leftHandAdjustment; //5 is the amount of notes that C go 'upwards' between G and F clef
-                                Debug.Log($"[Y Calculation] Left hand adjustment: +{leftHandAdjustment}, New Y: {y}");
+                                y += leftHandAdjustment;
+                                //Debug.Log($"[Y Calculation] Left hand adjustment: +{leftHandAdjustment}, New Y: {y}");
                             }
 
                             if (note.Pitch.Value.Step == "C" && note.Pitch.Value.Octave == 4)
                             {
                                 float c4Adjustment = OneNoteY / 4 * 3;
                                 y += c4Adjustment;
-                                Debug.Log($"[Y Calculation] C4 special adjustment: +{c4Adjustment}, Final Y: {y}");
+                                //Debug.Log($"[Y Calculation] C4 special adjustment: +{c4Adjustment}, Final Y: {y}");
                             }
 
-                            Debug.Log($"[Y Calculation] Final Y position for {note.Pitch.Value.Step}{octave}: {y}");
-                            Debug.Log("----------------------------------------");
+                            // Debug.Log($"[Y Calculation] Final Y position for {note.Pitch.Value.Step}{octave}: {y}");
+                            // Debug.Log("----------------------------------------");
                         }
 
                         // x
-                        
                         double willConsumedTimeUnit = note.Duration * this._durationOneX;
 
                         if (note.IsChord)
                         {
-                            // 開始位置は、前の音と同じ位置
                             xCursor = notesSortedByScore[Math.Max(notesSortedByScore.Count - 1, 0)].X;
                         }
 
@@ -278,28 +286,44 @@ public class MusicScoreRender : MonoBehaviour {
                         if (note.Pitch != null && !noNeedToDisplayForTie || note.IsRest)
                         {
                             var noteObj = InstantiateNote(xCursor, y, willConsumedTimeUnit, note);
-                            var noteView = new NoteView() { GameObject = noteObj, X = xCursor, Pitch = note.IsRest ? new Pitch() : note.Pitch.Value,
-                                beatNumber = currentBeat, noteTimeInSeconds = currentBeat / Bpm * 60, lastNote = false, isRest = note.IsRest};
+                            var noteView = new NoteView()
+                            {
+                                GameObject = noteObj,
+                                X = xCursor,
+                                Pitch = note.IsRest ? new Pitch() : note.Pitch.Value,
+                                beatNumber = currentBeat,
+                                noteTimeInSeconds = currentBeat / Bpm * 60,
+                                lastNote = false,
+                                isRest = note.IsRest
+                            };
                             notesSortedByScore.Add(noteView);
-
-                            //if (note.Staff != 1 && _onlyFirstStaff)
-                            //{
-                            //    noteObj.SetActive(false);
-                            //}
                         }
+                        
+                        var noteController = notesSortedByScore[notesSortedByScore.Count - 1].GameObject.GetComponent<NoteController>();
+                        
+                        //BEAM LOGIC
+                        if (note.BeamList != null && note.BeamList.Count > 0)
+                        {
+                            for (int j = 0; j < note.BeamList.Count; j++)
+                            {
+                                if (note.BeamList[j].Type != "begin")
+                                {
+                                    var previousNoteController = notesSortedByScore[notesSortedByScore.Count - 2].GameObject.GetComponent<NoteController>();
+                                    
+                                    ConnectBeam(noteController, previousNoteController, j);
+                                }
+                            }
+                        }
+
                         if (note.Pitch != null && noNeedToDisplayForTie)
                         {
-                            // 1つ前のNoteに長さを加える
-                            var noteController = notesSortedByScore[notesSortedByScore.Count - 1].GameObject.GetComponent<NoteController>();
-
+                            
                             noteController.AddWidth(willConsumedTimeUnit);
                         }
 
                         currentBeat += note.Duration / (double)currentDivisions;
                         xCursor += willConsumedTimeUnit;
-                        
 
-                        // If both start and stop are present, noNeedToDisplayForTie should be true.
                         if (note.TieList != null && note.TieList.Exists(x => x.Type == "stop"))
                         {
                             noNeedToDisplayForTie = false;
@@ -309,14 +333,17 @@ public class MusicScoreRender : MonoBehaviour {
                             noNeedToDisplayForTie = true;
                         }
 
+                        // Optional: Access the next element if you need it
+                        // if (i + 1 < measure.Children.Count)
+                        // {
+                        //     IMeasureChild next = measure.Children[i + 1];
+                        //     // Do something with next...
+                        // }
                     }
                     else if (child is Backup)
                     {
-                        // backup は、x のCursorを元に戻す
                         var backup = (Backup)child;
-                        // どのくらい x を戻るか
                         double backupUnit = backup.Duration * this._durationOneX;
-
                         xCursor -= backupUnit;
                     }
                 }
@@ -331,6 +358,38 @@ public class MusicScoreRender : MonoBehaviour {
         }
 
         return notesSortedByScore;
+    }
+    
+    private void ConnectBeam(NoteController noteController, NoteController previousNoteController, int beamIndex)
+    {
+        Debug.Log($"Connecting beam {beamIndex}");
+        Vector3 start = beamIndex == 0 ? noteController.BeamTopSprite.transform.position : noteController.BeamBottomSprite.transform.position;
+        Vector3 end = beamIndex == 0 ? previousNoteController.BeamTopSprite.transform.position : previousNoteController.BeamBottomSprite.transform.position;
+        var beamSprite = beamIndex == 0 ? noteController.BeamTopSprite : noteController.BeamBottomSprite;
+
+        // Calculate distance
+        // float distance = Vector3.Distance(start, end);
+        // beamSprite.transform.localScale = new Vector3(-distance, beamSprite.transform.localScale.y, 1);
+        //
+        // // Calculate angle
+        // Vector3 direction = end - start;
+        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // beamSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
+        
+        Vector3 direction = end - start;
+        float distance = direction.magnitude;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        
+        var beamChild = beamSprite.transform.GetChild(0);
+
+        //beamSprite.transform.position = (start + end) * 0.5f;
+        beamChild.transform.rotation = Quaternion.Euler(0, 0, -angle);
+
+        // Scale uniformly (avoid skew)
+        beamSprite.localScale = new Vector3(-distance, 1/*thickness*/, 1);
+        
+        beamSprite.gameObject.SetActive(true);
+        beamChild.GetComponentInChildren<SpriteRenderer>().sprite = gameSettings.beamSprite;
     }
 
     GameObject InstantiateNote(double positionX, double positionY, double willConsumedTimeUnit, ScoreNote note)

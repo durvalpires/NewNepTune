@@ -24,6 +24,18 @@ PrefabInstance:
       propertyPath: m_text
       value: D
       objectReference: {fileID: 0}
+    - target: {fileID: 1825768301851861520, guid: 9625d9bc57092458d9c12a1149be9a3f,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
+    - target: {fileID: 1825768301851861520, guid: 9625d9bc57092458d9c12a1149be9a3f,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
     - target: {fileID: 4090709293851575581, guid: 9625d9bc57092458d9c12a1149be9a3f,
         type: 3}
       propertyPath: m_Pivot.x

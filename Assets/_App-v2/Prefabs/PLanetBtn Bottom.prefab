@@ -16,6 +16,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2458869688420117663, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2458869688420117663, guid: e4c42383a8a4e41c48bfa6327978238e,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -200
       objectReference: {fileID: 0}
@@ -37,7 +42,7 @@ PrefabInstance:
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
@@ -47,7 +52,7 @@ PrefabInstance:
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
@@ -97,12 +102,12 @@ PrefabInstance:
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 533.87
       objectReference: {fileID: 0}
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -166.7
       objectReference: {fileID: 0}
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
@@ -124,6 +129,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLanetBtn Bottom
       objectReference: {fileID: 0}
+    - target: {fileID: 8648562263758123649, guid: e4c42383a8a4e41c48bfa6327978238e,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
+    - target: {fileID: 8648562263758123649, guid: e4c42383a8a4e41c48bfa6327978238e,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2989109191331679795, guid: 4259278a94e804895a793c82ba2fc464,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

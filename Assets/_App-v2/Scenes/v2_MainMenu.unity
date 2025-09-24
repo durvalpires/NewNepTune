@@ -356,12 +356,12 @@ PrefabInstance:
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 359.93994
+      value: 338.54993
       objectReference: {fileID: 0}
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -166.7
+      value: -316.49
       objectReference: {fileID: 0}
     - target: {fileID: 3247274322348233571, guid: e4c42383a8a4e41c48bfa6327978238e,
         type: 3}
@@ -464,14 +464,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9019608, g: 0.95686275, b: 0.94509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6bfcd1ba78b77e04e9103d756e9fba85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a58f5069a59d1644b55a5aadc5dd58b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2252,79 +2252,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817688778}
   m_CullTransparentMesh: 1
---- !u!1001 &1215765238
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4490196304738246271, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_Name
-      value: SessionTimeTracker
-      objectReference: {fileID: 0}
-    - target: {fileID: 4490196304738246271, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1686.0605
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1739.5311
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777420822532184799, guid: 9f6f1fef5dafa4fc385e5bc45073162d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f6f1fef5dafa4fc385e5bc45073162d, type: 3}
 --- !u!1 &1227092462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,7 +2880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d00f6938d92c4412689c30b10a266944, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 260e67a81fc314488a333ccd487c89c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3345,14 +3272,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.14117648, b: 0.4862745, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 187799b9476a947fa97501c4b55b30e8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3630,12 +3557,12 @@ PrefabInstance:
     - target: {fileID: 2044376488368086046, guid: 835bb0375e13d41548d2c98849ca3e88,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 533.87
+      value: 338.54993
       objectReference: {fileID: 0}
     - target: {fileID: 2044376488368086046, guid: 835bb0375e13d41548d2c98849ca3e88,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -166.7
+      value: -316.49
       objectReference: {fileID: 0}
     - target: {fileID: 2044376488368086046, guid: 835bb0375e13d41548d2c98849ca3e88,
         type: 3}
@@ -4502,4 +4429,3 @@ SceneRoots:
   - {fileID: 224038931}
   - {fileID: 465516022}
   - {fileID: 1331992686}
-  - {fileID: 1215765238}
