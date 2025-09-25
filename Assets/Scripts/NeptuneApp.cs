@@ -1742,13 +1742,36 @@ public class NeptuneApp : MonoBehaviour
     
     private List<string> GetUniqueWorlds(List<StudentInfo> students)
     {
-        HashSet<int> worlds = new HashSet<int>();
-        foreach (var s in students)
+        // Option 1: Use AllWorldsSO if available
+        //int maxWorld = PlayerModel.AllWorlds.worldsConfigs.Length - 1; // Assuming 0-based indexing
+        int maxWorld = 0;
+        // Option 2: Or find max from student data as fallback
+        if (maxWorld <= 0 && students != null && students.Count > 0)
         {
-            if (s.currentWorld > 0)
-                worlds.Add(s.currentWorld);
+            foreach (var s in students)
+            {
+                Debug.LogWarning(s.currentWorld + " " + maxWorld);
+                if (s.currentWorld > maxWorld)
+                    maxWorld = s.currentWorld;
+            }
         }
-        return worlds.OrderBy(w => w).Select(w => "World " + w.ToString()).ToList();
+    
+        // Create range from 0 to maxWorld
+        List<string> worldOptions = new List<string>();
+        for (int i = 0; i < maxWorld; i++)
+        {
+            worldOptions.Add("World " + i.ToString());
+        }
+    
+        return worldOptions;
+        //
+        // HashSet<int> worlds = new HashSet<int>();
+        // foreach (var s in students)
+        // {
+        //     if (s.currentWorld > 0)
+        //         worlds.Add(s.currentWorld);
+        // }
+        // return worlds.OrderBy(w => w).Select(w => "World " + w.ToString()).ToList();
     }
     
     // Functions for Available Students (SearchStudentPanel)
@@ -1776,13 +1799,25 @@ public class NeptuneApp : MonoBehaviour
     
     private List<string> GetUniqueWorldsFromAvailable(List<AvailableStudentInfo> students)
     {
-        HashSet<int> worlds = new HashSet<int>();
+        if (students == null || students.Count == 0)
+            return new List<string>();
+        
+        // Find the maximum world number
+        int maxWorld = 0;
         foreach (var s in students)
         {
-            if (s.currentWorld > 0)
-                worlds.Add(s.currentWorld);
+            if (s.currentWorld > maxWorld)
+                maxWorld = s.currentWorld;
         }
-        return worlds.OrderBy(w => w).Select(w => "World " + w.ToString()).ToList();
+    
+        // Create a range from 0 to maxWorld
+        List<string> worldOptions = new List<string>();
+        for (int i = 0; i < maxWorld; i++)
+        {
+            worldOptions.Add("World " + i.ToString());
+        }
+    
+        return worldOptions;
     }
 
     // Dropdown event handler methods
