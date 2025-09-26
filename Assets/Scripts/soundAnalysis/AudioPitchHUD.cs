@@ -37,96 +37,54 @@ public class AudioPitchHUD : AudioPitchEstimator
     public struct StableNote { public bool hasNote; public string noteName; public int midi; public int octave; public float frequency; public float cents; public float confidence; }
     public StableNote LastStable { get; private set; }
 
-    private VideoPlayer videoPlayer;
-    private bool useVideo;
+
 
     [System.Obsolete]
-    public void Start()
-    {
+    public void Start() => StartCoroutine(Bootstrap());
 
-        StartCoroutine(Bootstrap());
-    }
 
     [System.Obsolete]
     public IEnumerator Bootstrap()
     {
+        // Ask for mic permission if needed
+        if (!Application.HasUserAuthorization(UserAuthorization.Microphone))
+            yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
 
         if (!Application.HasUserAuthorization(UserAuthorization.Microphone))
         {
-            yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
-        }
-        if (!Application.HasUserAuthorization(UserAuthorization.Microphone))    
-        {
             Debug.LogWarning("Microphone permission denied.");
-            yield break; 
-        }
-
-        float t = 0f;
-        if (videoPlayer == null)
-        {
-            while (t < waitForVideoSeconds && videoPlayer == null)
-            {
-                var vps = FindObjectsOfType<VideoPlayer>(true);
-                for (int i = 0; i < vps.Length; i++)
-                {
-                    if (vps[i].gameObject.activeInHierarchy && vps[i].audioTrackCount > 0)
-                    {
-                        videoPlayer = vps[i];
-                        break;
-                    }
-                }
-                if (videoPlayer != null) break;
-                t += Time.unscaledDeltaTime;
-                yield return null;
-            }
-        }
-
-        if (videoPlayer != null)
-        {
-            ForceRouteVideoToAudioSource(videoPlayer);
-            if (!videoPlayer.isPrepared) { videoPlayer.Prepare(); while (!videoPlayer.isPrepared) yield return null; }
-            videoPlayer.Play();
-            useVideo = true;
-            StartCoroutine(Loop());
             yield break;
         }
 
-        if (Microphone.devices == null || Microphone.devices.Length == 0) yield break;
+    
+        if (Microphone.devices == null || Microphone.devices.Length == 0)
+        {
+            Debug.LogError("No microphone devices found.");
+            yield break;
+        }
         string dev = Microphone.devices[0];
         int sr = AudioSettings.outputSampleRate;
 
+       
         if (!micSource) micSource = gameObject.AddComponent<AudioSource>();
 
+       
         micSource.loop = true;
         micSource.spatialBlend = 0f;
         micSource.ignoreListenerVolume = true;
         micSource.bypassEffects = true;
         micSource.bypassListenerEffects = true;
         micSource.bypassReverbZones = true;
+        micSource.mute = false;     
+        micSource.volume = 1f;     
 
+     
         micSource.clip = Microphone.Start(dev, true, 1, sr);
         while (Microphone.GetPosition(dev) <= 0) yield return null;
         micSource.Play();
 
-        useVideo = false;
+       
         StartCoroutine(Loop());
-    }
-
-    void ForceRouteVideoToAudioSource(VideoPlayer vp)
-    {
-        var src = vp.GetTargetAudioSource(0);
-        if (src == null)
-        {
-            src = vp.gameObject.GetComponent<AudioSource>();
-            if (src == null) src = vp.gameObject.AddComponent<AudioSource>();
-        }
-        src.playOnAwake = false;
-        src.loop = false;
-        src.spatialBlend = 0f;
-        src.volume = 1f;
-        vp.audioOutputMode = VideoAudioOutputMode.AudioSource;
-        vp.EnableAudioTrack(0, true);
-        vp.SetTargetAudioSource(0, src);
     }
 
     IEnumerator Loop()
@@ -156,8 +114,8 @@ public class AudioPitchHUD : AudioPitchEstimator
 
     public StableNote UpdateAndGetStableNote()
     {
-        float f0 = useVideo ? EstimateF0FromListener() : EstimateF0FromSource(micSource);
-        float confidence = useVideo ? EstimateLoudnessFromListener() : EstimateLoudnessFromSource(micSource);
+        float f0 = EstimateF0FromSource(micSource);
+        float confidence = EstimateLoudnessFromSource(micSource);
 
         if (float.IsNaN(f0) || confidence < 0.02f)
         {
@@ -196,7 +154,15 @@ public class AudioPitchHUD : AudioPitchEstimator
 
     float EstimateF0FromSource(AudioSource src)
     {
-        if (src == null || !src.isPlaying) return float.NaN;
+        if (src == null) return float.NaN;
+
+        bool micActive = false;
+#if !UNITY_WEBGL
+        micActive = Microphone.IsRecording(null); 
+#endif
+
+        if (!src.isPlaying && !micActive) return float.NaN;
+
         src.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
         return RunSRHOnSpectrum();
     }

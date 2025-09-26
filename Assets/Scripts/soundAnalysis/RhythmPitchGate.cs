@@ -25,9 +25,12 @@ public class RhythmPitchGate : MonoBehaviour
     [SerializeField] private bool controlAudioListener = true;
     [SerializeField] private float mutedListenerVolume = 1f;
     [SerializeField] private float normalListenerVolume = 1f;
-    [SerializeField] private List<AudioSource> sourcesToControl = new List<AudioSource>();
-    private float prevListenerVolume;
-    private bool listenerVolumeSaved;
+
+    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private string musicDuckParam = "MusicDuck_dB";
+    [SerializeField] private float duckVolume = -40f;   
+    [SerializeField] private float normalVolume = 0f;   
+
     private float rearmAtTime = 0f;
     private string expectedStep;
     private string pressedStep;
@@ -41,11 +44,11 @@ public class RhythmPitchGate : MonoBehaviour
         if (!pitchHUD) pitchHUD = FindObjectOfType<AudioPitchHUD>();
         if (!piano) piano = FindObjectOfType<VirtualPianoController>();
     }
-
+  
     private void OnEnable()
     {
         ApplyPitchControlToggle(LivePitchSettings.PitchControlEnabled);
-
+     
         if (gameManager && gameManager.OnNextNoteUpdated != null)
             gameManager.OnNextNoteUpdated.AddListener(HandleNextNoteUpdated);
     }
@@ -179,27 +182,18 @@ public class RhythmPitchGate : MonoBehaviour
 
     public void OnGameStarted()
     {
-        if (!pitchControlEnabled) return; 
-        SetMute(true);
+        if (!pitchControlEnabled) return;
+        if (mixer) mixer.SetFloat(musicDuckParam, duckVolume);
     }
 
     public void OnGameEnded()
     {
-      
-        SetMute(false);
+        if (mixer) mixer.SetFloat(musicDuckParam, normalVolume);
         ReleaseIfPressed();
         matchSince = -1f;
         expectedStep = null;
         rearmAtTime = 0f;
     }
 
-    public void SetMute(bool mute)
-    {
-        AudioManager.Instance.sfxSource.mute = mute;
-        foreach (var s in sourcesToControl)
-        {
-            if (!s) continue;
-            s.mute = mute;
-        }
-    }
+  
 }
