@@ -286,7 +286,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Neptune Locations_The City Hall_0: -982388495157247145
+      Neptune Locations_The City Hall_1: -6869462205331913891
+      Neptune Locations_The City Hall_2: -4292660470385253206
+      Neptune Locations_The City Hall_3: -1367922054328631469
+      Neptune Locations_The City Hall_4: 2671102856746887587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

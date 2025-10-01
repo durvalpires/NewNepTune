@@ -211,7 +211,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Neptune Logo_Neptune-symbol-whie_0: 5943908421652355854
+      Neptune Logo_Neptune-symbol-whie_1: -910625013924785969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

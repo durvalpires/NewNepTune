@@ -261,7 +261,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Neptune Locations_Bed and Breakfast_0: -8192503550304155413
+      Neptune Locations_Bed and Breakfast_1: 1808834319750050059
+      Neptune Locations_Bed and Breakfast_2: -8821400816568853853
+      Neptune Locations_Bed and Breakfast_3: 5761219245516876233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

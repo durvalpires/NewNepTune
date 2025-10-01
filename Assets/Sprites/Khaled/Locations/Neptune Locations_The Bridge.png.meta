@@ -236,7 +236,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Neptune Locations_The Bridge_0: 4740536391830026097
+      Neptune Locations_The Bridge_1: -2050004443480390998
+      Neptune Locations_The Bridge_2: -1005558941844338861
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

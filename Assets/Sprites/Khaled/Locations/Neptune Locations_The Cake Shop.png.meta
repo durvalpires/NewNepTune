@@ -261,7 +261,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Neptune Locations_The Cake Shop_0: 8377093543603868515
+      Neptune Locations_The Cake Shop_1: -665793488821630296
+      Neptune Locations_The Cake Shop_2: -3988939784742473182
+      Neptune Locations_The Cake Shop_3: 8442919771118612166
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Neptune Locations_The Clock Tower_0: 6555483606161286909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

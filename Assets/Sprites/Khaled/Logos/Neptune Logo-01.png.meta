@@ -361,7 +361,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Neptune Logo-01_0: -3146539314652899221
+      Neptune Logo-01_1: -744509121685600617
+      Neptune Logo-01_2: 8809000571286659885
+      Neptune Logo-01_3: 1566490215715176328
+      Neptune Logo-01_4: 3487137249742663122
+      Neptune Logo-01_5: 6551758962159452717
+      Neptune Logo-01_6: -1821930946680342181
+      Neptune Logo-01_7: 8806739033465892720
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
