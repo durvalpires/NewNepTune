@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTitle: Middle E Piano 2
   levelType: 5
-  galaxy: 0
+  galaxy: 2
   songXml:
     m_AssetGUID: 5da9384a038e6460e8c9177d599cd620
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   songClip:
     m_AssetGUID: 
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   backgroundClip:
     m_AssetGUID: 57076007d4a374b5d8e775ca8a093ea0
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   isTutorial: 0
   introBeats: 2
-  handType: 1
+  handType: 2
