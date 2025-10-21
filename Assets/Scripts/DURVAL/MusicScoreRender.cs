@@ -37,7 +37,7 @@ public class MusicScoreRender : MonoBehaviour {
     private RhythmGameSettings gameSettings;
 
     private Score musicScore;
-    public float Bpm => musicScore.Tempo ?? 120;
+    public float Bpm => musicScore.Tempo ?? 80;
     public int BeatsPerBar = 4;
 
     //private int _currentMeasureDivision = 4;
@@ -177,7 +177,7 @@ public class MusicScoreRender : MonoBehaviour {
         
         double initialNoteSpawningOffsetX = (gameSettings.delayBeforeLevelStart * beatsPerSecond + 
                                              gameSettings.beatsBeforeStart) * this._durationOneX * currentDivisions -
-                                            gameSettings.GetMainCircleWidth() / 1.5;
+                                            gameSettings.GetMainCircleWidth();
         
         double xCursor = initialNoteSpawningOffsetX;
         
@@ -217,7 +217,7 @@ public class MusicScoreRender : MonoBehaviour {
                     {
                         Instantiate(beatMarkerPrefab, notesContainer.transform).transform.position = 
                             new Vector3((float)spawnXCoordinate, 1, 0);
-                        spawnXCoordinate += this._durationOneX/4;
+                        spawnXCoordinate += this._durationOneX;
                     }
                     
                 }

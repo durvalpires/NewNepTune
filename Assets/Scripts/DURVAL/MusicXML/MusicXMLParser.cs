@@ -37,7 +37,7 @@ public static class MusicXMLParser
         if (directionElements == null || directionElements.Count == 0)
         {
             Debug.LogWarning("No direction elements found, defaulting to 120 BPM");
-            return 120;
+            return 80;
         }
 
         foreach (XmlNode directionNode in directionElements)
