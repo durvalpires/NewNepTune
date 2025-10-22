@@ -69,8 +69,12 @@ public class BulkStudentRegisterWindow : EditorWindow
             // 🧠 Auto-generate email if missing
             if (string.IsNullOrEmpty(email))
             {
-                // Convert spaces to dots or underscores and lower-case for clean format
-                string safeName = name.ToLower().Replace(" ", ".");
+                // 🧹 Normalize spacing: replace multiple spaces with one
+                string normalizedName = System.Text.RegularExpressions.Regex.Replace(name.Trim(), @"\s+", " ");
+
+                // 🧠 Then replace single spaces with dots and make lowercase
+                string safeName = normalizedName.ToLower().Replace(" ", ".");
+
                 email = $"{safeName}@gmail.com";
             }
 
