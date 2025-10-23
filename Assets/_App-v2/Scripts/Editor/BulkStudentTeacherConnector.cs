@@ -72,9 +72,21 @@ public class BulkStudentTeacherConnector : EditorWindow
             string name = values[0].Trim();
             string email = values.Length > 1 ? values[1].Trim() : "";
 
+            // if (string.IsNullOrEmpty(email))
+            // {
+            //     string safeName = name.ToLower().Replace(" ", ".");
+            //     email = $"{safeName}@gmail.com";
+            // }
+            
+            // 🧠 Auto-generate email if missing
             if (string.IsNullOrEmpty(email))
             {
-                string safeName = name.ToLower().Replace(" ", ".");
+                // 🧹 Normalize spacing: replace multiple spaces with one
+                string normalizedName = System.Text.RegularExpressions.Regex.Replace(name.Trim(), @"\s+", " ");
+
+                // 🧠 Then replace single spaces with dots and make lowercase
+                string safeName = normalizedName.ToLower().Replace(" ", ".");
+
                 email = $"{safeName}@gmail.com";
             }
 
