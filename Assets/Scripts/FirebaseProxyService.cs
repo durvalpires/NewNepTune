@@ -22,6 +22,8 @@ public class FirebaseProxyService : MonoBehaviour
     private const string RESET_STUDENT_PROGRESS_ENDPOINT = "/student/resetProgress";
     private const string UPDATE_STUDENT_TOTAL_TIME_ENDPOINT = "/student/updateTotalTime";
     private const string UPDATE_STUDENT_PROFILE_ENDPOINT = "/teacher/updateStudentProfile";
+    private const string GET_USER_BY_EMAIL_ENDPOINT = "/getUserByEmail";
+
 
     
     private string _userId;
@@ -227,6 +229,18 @@ public class FirebaseProxyService : MonoBehaviour
         }
 
         StartCoroutine(UpdateStudentProfileCoroutine(studentId, username, year, class_, callback));
+    }
+
+    public void AdminGetUserByEmail(string email, Action<bool, AdminUserSearchResult> callback = null)
+    {
+        if (string.IsNullOrEmpty(email))
+        {
+            Debug.LogError("Email is required for search.");
+            callback?.Invoke(false, null);
+            return;
+        }
+
+        StartCoroutine(AdminGetUserByEmailCoroutine(email, callback));
     }
 
     private IEnumerator RegisterUserCoroutine(string email, string password, Action<bool, string> callback)
@@ -1033,6 +1047,52 @@ public class FirebaseProxyService : MonoBehaviour
         }
     }
 
+    private IEnumerator AdminGetUserByEmailCoroutine(string email, Action<bool, AdminUserSearchResult> callback)
+    {
+        string proxyUrl = PROXY_BASE_URL + GET_USER_BY_EMAIL_ENDPOINT + "?email=" + UnityWebRequest.EscapeURL(email);
+
+        Debug.Log("Admin searching for user by email: " + email);
+        Debug.Log("Request URL: " + proxyUrl);
+
+        using (UnityWebRequest www = UnityWebRequest.Get(proxyUrl))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Admin search error: " + www.error);
+                Debug.LogError("Response: " + www.downloadHandler.text);
+                callback?.Invoke(false, null);
+            }
+            else
+            {
+                string responseJson = www.downloadHandler.text;
+                Debug.Log("Admin search response: " + responseJson);
+
+                try
+                {
+                    AdminUserSearchResult result = JsonUtility.FromJson<AdminUserSearchResult>(responseJson);
+
+                    if (!string.IsNullOrEmpty(result.error))
+                    {
+                        Debug.LogError("Admin search error: " + result.error);
+                        callback?.Invoke(false, null);
+                    }
+                    else
+                    {
+                        Debug.Log("User found: " + result.username + " (" + result.userType + ")");
+                        callback?.Invoke(true, result);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError("Failed to parse admin search response: " + e.Message);
+                    callback?.Invoke(false, null);
+                }
+            }
+        }
+    }
+
     private string JsonConvert(Dictionary<string, object> dict)
     {
         StringBuilder json = new StringBuilder();
@@ -1188,4 +1248,17 @@ public class AvailableStudentInfo
     public string year;
     public string class_;
     public int currentWorld;
+}
+
+[System.Serializable]
+public class AdminUserSearchResult
+{
+    public string userId;
+    public string email;
+    public string username;
+    public string userType;
+    public string privateCode;
+    public string teacherPrivateCode;
+    public string schoolCode;
+    public string error;
 }

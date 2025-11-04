@@ -59,6 +59,7 @@ public class NeptuneApp : MonoBehaviour
     public GameObject TeacherPanel;
     public GameObject StudentPanel;
     public GameObject TeacherLobbyPanel;
+    public GameObject AdminPanel;
 
     [Header("Teacher Panel UI")]
     public TMP_InputField TeacherMailInput;
@@ -93,6 +94,36 @@ public class NeptuneApp : MonoBehaviour
     public TMP_InputField StudentSigninUsername;
     public TMP_InputField StudentSigninPassword;
     public Button StudentSigninButton;
+
+    [Header("Admin Panel UI")]
+    public GameObject AdminLoginPanel;
+    public TMP_InputField AdminKeyInput;
+    public Button AdminLoginButton;
+    public TextMeshProUGUI AdminLoginErrorText;
+    public GameObject AdminDashboardPanel;
+    public TMP_InputField AdminEmailSearchInput;
+    public Button AdminSearchButton;
+    public Button AdminLogoutButton;
+
+    [Header("Admin Student Display")]
+    public GameObject AdminStudentContainer;
+    public TextMeshProUGUI AdminStudentHeaderText;
+    public TextMeshProUGUI AdminStudentUsernameText;
+    public TextMeshProUGUI AdminStudentEmailText;
+    public TextMeshProUGUI AdminStudentCodeText;
+    public TextMeshProUGUI AdminStudentUserIDText;
+    public TextMeshProUGUI AdminStudentSchoolCodeText;
+    public TextMeshProUGUI AdminStudentUserTypeText;
+
+
+    [Header("Admin Teacher Display")]
+    public GameObject AdminTeacherContainer;
+    public TextMeshProUGUI AdminTeacherHeaderText;
+    public TextMeshProUGUI AdminTeacherUsernameText;
+    public TextMeshProUGUI AdminTeacherEmailText;
+    public TextMeshProUGUI AdminTeacherCodeText;
+    public TextMeshProUGUI AdminTeacherUserIDText;
+    public TextMeshProUGUI AdminTeacherUserTypeText;
 
     [Header("Teacher Lobby - Student List UI")]
     public Transform StudentListContent; 
@@ -161,6 +192,11 @@ public class NeptuneApp : MonoBehaviour
     
     // List of available students (without school code)
     private List<AvailableStudentInfo> availableStudentsList = new List<AvailableStudentInfo>();
+
+    // Admin functionality
+    private const string ADMIN_KEY = "neptune002";
+    private bool isAdminLoggedIn = false;
+    private AdminUserSearchResult currentAdminSearchResult;
     private bool _isLoadingAvailableStudents = false;
     
     // Student edit panel variables
@@ -440,6 +476,49 @@ public class NeptuneApp : MonoBehaviour
         {
             StudentEditPanel.SetActive(false);
         }
+
+        // Admin Panel Initialization
+        if (AdminPanel != null)
+        {
+            AdminPanel.SetActive(false);
+        }
+        if (AdminLoginPanel != null)
+        {
+            AdminLoginPanel.SetActive(false);
+        }
+        if (AdminDashboardPanel != null)
+        {
+            AdminDashboardPanel.SetActive(false);
+        }
+
+        // Admin Button Listeners
+        if (AdminLoginButton != null)
+        {
+            AdminLoginButton.onClick.RemoveAllListeners();
+            AdminLoginButton.onClick.AddListener(HandleAdminLogin);
+            Debug.Log("AdminLoginButton listener added.");
+        }
+
+        if (AdminSearchButton != null)
+        {
+            AdminSearchButton.onClick.RemoveAllListeners();
+            AdminSearchButton.onClick.AddListener(HandleAdminSearch);
+            Debug.Log("AdminSearchButton listener added.");
+        }
+
+        if (AdminLogoutButton != null)
+        {
+            AdminLogoutButton.onClick.RemoveAllListeners();
+            AdminLogoutButton.onClick.AddListener(HandleAdminLogout);
+            Debug.Log("AdminLogoutButton listener added.");
+        }
+
+
+
+        if (AdminLoginErrorText != null)
+        {
+            AdminLoginErrorText.text = "";
+        }
     }
 
     private void OnStudentSearchChanged(string searchText)
@@ -613,6 +692,16 @@ public class NeptuneApp : MonoBehaviour
         TeacherPanel.SetActive(false);
         StudentPanel.SetActive(true);
         Debug.Log("Student panel selected.");
+    }
+
+    public void OnSelectAdmin()
+    {
+        TeacherPanel.SetActive(false);
+        StudentPanel.SetActive(false);
+        AdminPanel.SetActive(true);
+        AdminLoginPanel.SetActive(true);
+        AdminDashboardPanel.SetActive(false);
+        Debug.Log("Admin panel selected.");
     }
 
     public void HandleTeacherSignUp()
@@ -2352,4 +2441,169 @@ public class NeptuneApp : MonoBehaviour
         
         Debug.Log("Student edit panel closed");
     }
+
+
+    private void HandleAdminLogin()
+    {
+        string enteredKey = AdminKeyInput.text.Trim();
+
+        if (string.IsNullOrEmpty(enteredKey))
+        {
+            PopUpError(15);
+            return;
+        }
+
+        if (enteredKey == ADMIN_KEY)
+        {
+            isAdminLoggedIn = true;
+            Debug.Log("Admin logged in successfully");
+            ShowAdminDashboard();
+        }
+        else
+        {
+            PopUpError(15);
+        }
+    }
+
+    private void ShowAdminDashboard()
+    {
+        AdminPanel.SetActive(true);
+        AdminLoginPanel.SetActive(false);
+        AdminDashboardPanel.SetActive(true);
+    }
+
+    private void HandleAdminSearch()
+    {
+        if (!isAdminLoggedIn)
+        {
+            Debug.LogError("Not logged in as admin");
+            return;
+        }
+
+        string email = AdminEmailSearchInput.text.Trim();
+
+        if (string.IsNullOrEmpty(email))
+        {
+            return;
+        }
+
+        // Call Firebase Proxy Service
+        if (firebaseProxyService != null)
+        {
+            firebaseProxyService.AdminGetUserByEmail(email, OnAdminSearchComplete);
+        }
+        else
+        {
+            Debug.LogError("FirebaseProxyService not found!");
+
+        }
+    }
+
+    private void OnAdminSearchComplete(bool success, AdminUserSearchResult result)
+    {
+        if (!success || result == null)
+        {
+            PopUpError(18);
+            return;
+        }
+
+        currentAdminSearchResult = result;
+
+        if (result.userType == "student")
+        {
+
+            if (AdminStudentContainer != null)
+                AdminStudentContainer.SetActive(true);
+            if (AdminTeacherContainer != null)
+                AdminTeacherContainer.SetActive(false);
+
+            if (AdminStudentUserTypeText != null)
+                AdminStudentUserTypeText.text = result.userType;
+
+            if (AdminStudentUsernameText != null)
+                AdminStudentUsernameText.text = result.username;
+
+            if (AdminStudentEmailText != null)
+                AdminStudentEmailText.text = result.email;
+
+            if (AdminStudentCodeText != null)
+                AdminStudentCodeText.text = result.privateCode;
+
+            if (AdminStudentUserIDText != null)
+                AdminStudentUserIDText.text = result.userId;
+
+            Debug.Log($"[Admin] Found STUDENT: {result.username} ({result.privateCode})");
+        }
+        else if (result.userType == "teacher")
+        {
+            if (AdminStudentContainer != null)
+                AdminStudentContainer.SetActive(false);
+            if (AdminTeacherContainer != null)
+                AdminTeacherContainer.SetActive(true);
+
+            if (AdminTeacherUsernameText != null)
+                AdminTeacherUsernameText.text = result.username;
+
+            if (AdminTeacherEmailText != null)
+                AdminTeacherEmailText.text = result.email;
+
+            if (AdminTeacherCodeText != null)
+                AdminTeacherCodeText.text = result.teacherPrivateCode;
+
+            if (AdminTeacherUserIDText != null)
+                AdminTeacherUserIDText.text = result.userId;
+
+            if (AdminTeacherUserTypeText != null)
+                AdminTeacherUserTypeText.text = result.userType;
+
+            Debug.Log($"[Admin] Found TEACHER: {result.username} ({result.teacherPrivateCode})");
+        }
+        else
+        {
+            if (AdminStudentContainer != null)
+                AdminStudentContainer.SetActive(false);
+            if (AdminTeacherContainer != null)
+                AdminTeacherContainer.SetActive(false);
+
+            Debug.LogWarning($"[Admin] Unknown user type: {result.userType}");
+        }
+    }
+
+    private void HandleAdminLogout()
+    {
+        isAdminLoggedIn = false;
+        currentAdminSearchResult = null;
+
+        if (AdminKeyInput != null)
+        {
+            AdminKeyInput.text = "";
+        }
+        if (AdminEmailSearchInput != null)
+        {
+            AdminEmailSearchInput.text = "";
+        }
+        if (AdminDashboardPanel != null)
+        {
+            AdminDashboardPanel.SetActive(false);
+        }
+        if (SelectPanel != null)
+        {
+            SelectPanel.SetActive(true);
+        }
+        if (AdminPanel != null)
+        {
+            AdminPanel.SetActive(false);
+        }
+        if (AdminStudentContainer != null)
+        {
+            AdminStudentContainer.SetActive(false);
+        }
+        if (AdminTeacherContainer != null)
+        {
+            AdminTeacherContainer.SetActive(false);
+        }
+
+        Debug.Log("Admin logged out");
+    }
+
 }
