@@ -11,17 +11,9 @@ namespace _App_v2.Scripts._Core.Firebase.Analytics.Providers.Debug
         public override bool IsInitialized => true;
         public override IAnalyticsHelper AnalyticsHelper => null;
 
-        public override void SetUserProperty(IUserProperty property)
-        {
-            UnityEngine.Debug.Log($"[DebugProvider] SetUserProperty called");
-            UnityEngine.Debug.Log(PropertyToLog(property));
-        }
+        public override void SetUserProperty(IUserProperty property) => UnityEngine.Debug.Log(PropertyToLog(property));
 
-        public override void SendEvent(IAnalyticsEvent analyticsEvent)
-        {
-            UnityEngine.Debug.Log($"[DebugProvider] SendEvent called for: {analyticsEvent?.Name}");
-            UnityEngine.Debug.Log(EventToLog(analyticsEvent));
-        }
+        public override void SendEvent(IAnalyticsEvent analyticsEvent) => UnityEngine.Debug.Log(EventToLog(analyticsEvent));
 
         private static string PropertyToLog(IUserProperty property) => $"[USER PROPERTY: {property.Name}] {property.Value}";
 

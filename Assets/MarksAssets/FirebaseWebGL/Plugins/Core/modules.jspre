@@ -4,10 +4,10 @@
 		window["FirebaseWebGL"] = {
 			root: `https://www.gstatic.com/firebasejs/${currentVersion}`,
 			enableProducts : {
-				analytics:     true,
+				analytics:     false,
 				appCheck:      false,
-				auth:		   true,
-				database:      true,
+				auth:		   false,
+				database:      false,
 				firestore:	   false,
 				firestoreLite: false,
 				functions:     false,

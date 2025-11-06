@@ -5,11 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Linq;
-using _App_v2.Scripts._Core.Firebase.Analytics;
-using _App_v2.Scripts._Core.Firebase.Analytics.Data.Events;
 
-
-public class NeptuneApp : BaseAnalyticsModuleMono
+public class NeptuneApp : MonoBehaviour
 {
     [System.Serializable]
     public class PasswordTogglePair
@@ -1069,9 +1066,8 @@ public class NeptuneApp : BaseAnalyticsModuleMono
         if (success)
         {
             Debug.Log($"Registration successful! Message/UserID: {message}");
-        
-            SendEvent(AnalyticsEvents.SignUp("Email", firebaseProxyService.UserType));   // Sign Up Event Called For Teacher/Student
-
+            
+            
             PopUpError(1); // Show SignUp Success popup notification from here (the one in 1st position)
             
             // Show based on whether they are student or teacher - I'm showing based on UserType here. 

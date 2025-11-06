@@ -10,14 +10,11 @@ namespace _App_v2.Scripts._Core.Firebase.Analytics
 
         void IAnalyticsService.AddProvider(IAnalyticsProvider provider)
         {
+            
             if (_analyticsProviders.Contains(provider))
-            {
-                Debug.LogWarning($"[AnalyticsService] Provider {provider?.ProviderName} already added");
                 return;
-            }
-
+            
             _analyticsProviders.Add(provider);
-            Debug.Log($"[AnalyticsService] Provider added: {provider?.ProviderName}. Total providers: {_analyticsProviders.Count}");
         }
 
         void IAnalyticsService.Initialize() => InitializeProviders();
@@ -43,27 +40,15 @@ namespace _App_v2.Scripts._Core.Firebase.Analytics
         {
             if (analyticsEvent == null)
             {
-                Debug.LogError("[AnalyticsService] Analytics event is null");
+                Debug.LogError("Analytics event is null");
                 return;
             }
-
-            Debug.Log($"[AnalyticsService] SendEvent called: {analyticsEvent.Name}. Provider count: {_analyticsProviders.Count}");
-
+            
             foreach (var provider in _analyticsProviders)
             {
-                if (provider == null)
-                {
-                    Debug.LogWarning("[AnalyticsService] Skipping null provider");
+                if (provider == null || !provider.IsInitialized)
                     continue;
-                }
-
-                if (!provider.IsInitialized)
-                {
-                    Debug.LogWarning($"[AnalyticsService] Provider {provider.ProviderName} is not initialized, skipping");
-                    continue;
-                }
-
-                Debug.Log($"[AnalyticsService] Sending event to provider: {provider.ProviderName}");
+                
                 provider.SendEvent(analyticsEvent);
             }
         }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68645aa0f996340e4b91b5d153046b8e, type: 3}
   m_Name: Firebase Config
   m_EditorClassIdentifier: 
-  apiKey: AIzaSyATmqs3mCJubFyCU3FcA5In2G_G7u9IzZQ
-  authDomain: neptune-fe02f.firebaseapp.com
-  projectId: neptune-fe02f
-  storageBucket: neptune-fe02f.firebasestorage.app
-  messagingSenderId: 638255034444
-  appId: 1:638255034444:web:4f6764b8933b5b424044e9
-  databaseURL: https://neptune-fe02f-default-rtdb.europe-west1.firebasedatabase.app
+  apiKey: 
+  authDomain: 
+  projectId: 
+  storageBucket: 
+  messagingSenderId: 
+  appId: 
+  databaseURL: 

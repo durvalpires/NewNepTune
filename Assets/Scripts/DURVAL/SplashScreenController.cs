@@ -5,7 +5,6 @@ using Audio;
 using Enums;
 using UnityEngine.SceneManagement;
 using System.Runtime.InteropServices; // ✅ Needed for DllImport
-using _App_v2.Scripts._Core.Firebase; 
 
 public class SplashScreenController : MonoBehaviour
 {
@@ -22,11 +21,6 @@ public class SplashScreenController : MonoBehaviour
 
     private void Start()
     {
-        // Initializing FireService early so Firebase is ready before the main app loads
-        Debug.Log("[SplashScreen] Triggering FireService initialization...");
-        var fireService = FireService.Instance;
-        Debug.Log($"[SplashScreen] FireService instance created: {fireService != null}");
-
         if (splashImage == null)
         {
             Debug.LogError("Splash Image reference is missing!");
