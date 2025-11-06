@@ -4,6 +4,8 @@ using UnityEngine;
 using _App_v2.Scripts._Core.Firebase.Analytics.Interfaces;
 #if !UNITY_WEBGL
 using Firebase.Analytics;
+#else
+using An = MarksAssets.FirebaseWebGL.Analytics.Analytics;
 #endif
 
 namespace _App_v2.Scripts._Core.Firebase.Analytics.Providers.Firebase
@@ -27,24 +29,72 @@ namespace _App_v2.Scripts._Core.Firebase.Analytics.Providers.Firebase
             base.Initialize();
         }
 
-        
-        public override void SendEvent(IAnalyticsEvent analyticsEvent) =>
-            #if !UNITY_WEBGL
+
+        public override void SendEvent(IAnalyticsEvent analyticsEvent)
+        {
+#if !UNITY_WEBGL
             FirebaseAnalytics.LogEvent(analyticsEvent.Name, ConvertToParameters(analyticsEvent.Parameters));
             #else
-            // TEMPORARY
-            _isInitialized = _isInitialized;
+            // Use Firebase WebGL Analytics SDK
+            try
+            {
+                var fireService = FireService.Instance;
+                if (fireService == null || fireService.WebGLFirebaseApp == null)
+                {
+                    UnityEngine.Debug.LogWarning("[FirebaseAnalyticsProvider] FireService or WebGLFirebaseApp not initialized yet");
+                    return;
+                }
+                
+                var analytics = An.getAnalytics(fireService.WebGLFirebaseApp);
+
+                var parameters = new Dictionary<string, object>();
+                foreach (var param in analyticsEvent.Parameters)
+                {
+                    parameters[param.Key] = param.Value;
+                }
+
+                // Development Mode 
+                #if DEVELOPMENT_BUILD
+                parameters["debug_mode"] = 1;
+                #endif
+
+                An.logEvent(analytics, analyticsEvent.Name, parameters);
+                UnityEngine.Debug.Log($"[FirebaseAnalyticsProvider] Successfully sent event '{analyticsEvent.Name}' to Firebase Analytics");
+            }
+            catch (System.Exception ex)
+            {
+                UnityEngine.Debug.LogError($"[FirebaseAnalyticsProvider] Error sending event: {ex.Message}");
+            }
             #endif
+        }
 
 
-        public override void SetUserProperty(IUserProperty property) => 
-#if !UNITY_WEBGL
+        public override void SetUserProperty(IUserProperty property)
+        {
+            #if !UNITY_WEBGL
             FirebaseAnalytics.SetUserProperty(property.Name, property.Value);
-#else
-            // TEMPORARY
-            _isInitialized = _isInitialized;
-#endif
-        
+            #else
+            // Use Firebase WebGL Analytics SDK
+            try
+            {
+                var fireService = FireService.Instance;
+                if (fireService == null || fireService.WebGLFirebaseApp == null)
+                {
+                    UnityEngine.Debug.LogWarning("[FirebaseAnalyticsProvider] FireService or WebGLFirebaseApp not initialized yet");
+                    return;
+                }
+
+                var analytics = An.getAnalytics(fireService.WebGLFirebaseApp);
+                An.setUserProperties(analytics, new Dictionary<string, object> { [property.Name] = property.Value });
+                UnityEngine.Debug.Log($"[FirebaseAnalyticsProvider] Successfully set user property '{property.Name}'");
+            }
+            catch (System.Exception ex)
+            {
+                UnityEngine.Debug.LogError($"[FirebaseAnalyticsProvider] Error setting user property: {ex.Message}");
+            }
+            #endif
+        }
+
 
 
         #if !UNITY_WEBGL

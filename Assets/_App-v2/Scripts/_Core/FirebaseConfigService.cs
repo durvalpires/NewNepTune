@@ -45,6 +45,9 @@ namespace _App_v2.Scripts._Core.Firebase.Config
         protected override void Awake()
         {
             base.Awake();
+
+            DontDestroyOnLoad(gameObject);
+
             ValidateConfiguration();
         }
 
