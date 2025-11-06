@@ -41,47 +41,104 @@ namespace _App_v2.Scripts._Core.Firebase
         private AnalyticsServiceWebGL analyticsServiceWebGL;
 
         public IDBService DB { get; private set; }
+        public bool IsFullyInitialized { get; private set; } = false;
+        protected override void Awake()
+        {
+            base.Awake();
+
+            DontDestroyOnLoad(gameObject);
+
+            Debug.Log("[FireService] Awake - Initializing AnalyticsService synchronously");
+
+            // Initialize AnalyticsService
+            AnalyticsService = new AnalyticsService();
+            AnalyticsService.AddProvider(new DebugProvider());
+            AnalyticsService.Initialize();
+
+            Debug.Log("[FireService] AnalyticsService initialized in Awake - ready for immediate use");
+        }
 
         private async void Start()
         {
             Debug.Log("Start Async FireService Initiated");
-#if UNITY_WEBGL
-            var config = FirebaseConfigService.Instance.CurrentConfig;
-            var emulatorConfig = FirebaseConfigService.Instance.CurrentEmulatorConfig;
-            await Ap.modulesLoaded();
-             WebGLFirebaseApp = await Ap.initializeAppTask(new FirebaseOptions
-             {
-                 apiKey = config.apiKey,
-                 appId = config.appId,
-                 authDomain = config.authDomain,
-                 projectId = config.projectId,
-                 storageBucket = config.storageBucket,
-                 messagingSenderId = config.messagingSenderId,
-                 databaseURL = config.databaseURL
-             });
-            Debug.Log("Firebase initialized: " + WebGLFirebaseApp.name + WebGLFirebaseApp!=null);
-            Debug.Log(config.databaseURL);
-#endif
 
             // authServicesFactory = new AuthServicesFactory();
             // Debug.Log("AuthServicesFactory created");
             // Auth = authServicesFactory.Create();
-            
-#if UNITY_WEBGL
 
-            analyticsServiceWebGL = new AnalyticsServiceWebGL();
-            await analyticsServiceWebGL.InitializeAsync(config, emulatorConfig);
-            analyticsServiceWebGL.LogEvent("app_started");
-            Debug.Log($"FireService Instance id = {GetInstanceID()}");
-            Auth.OnAuthStateChanged += HandleAuth;
-            DB = new FirebaseWebGLDataPersistence(config, emulatorConfig);
-            HandleAuth();
+#if UNITY_WEBGL && !UNITY_EDITOR
+            Debug.Log("[FireService] Initializing for WEBGL build");
+
+            try
+            {
+                var config = FirebaseConfigService.Instance.CurrentConfig;
+                var emulatorConfig = FirebaseConfigService.Instance.CurrentEmulatorConfig;
+
+                Debug.Log("[FireService] Waiting for modules to load...");
+                await Ap.modulesLoaded();
+                Debug.Log("[FireService] Modules loaded successfully");
+
+                Debug.Log("[FireService] Initializing Firebase app...");
+                WebGLFirebaseApp = Ap.initializeApp(new FirebaseOptions
+                {
+                    apiKey = config.apiKey,
+                    appId = config.appId,
+                    authDomain = config.authDomain,
+                    projectId = config.projectId,
+                    storageBucket = config.storageBucket,
+                    messagingSenderId = config.messagingSenderId,
+                    databaseURL = config.databaseURL
+                });
+                Debug.Log("Firebase initialized: " + WebGLFirebaseApp.name + WebGLFirebaseApp!=null);
+                Debug.Log(config.databaseURL);
+
+
+                AnalyticsService.AddProvider(new FirebaseAnalyticsProvider());
+                AnalyticsService.Initialize();
+                Debug.Log("[FireService] FirebaseAnalyticsProvider added for WebGL");
+
+                analyticsServiceWebGL = new AnalyticsServiceWebGL();
+                await analyticsServiceWebGL.InitializeAsync(config, emulatorConfig);
+                analyticsServiceWebGL.LogEvent("app_started");
+                Debug.Log($"FireService Instance id = {GetInstanceID()}");
+
+                // Check if Auth is initialized before subscribing
+                if (Auth != null)
+                {
+                    Auth.OnAuthStateChanged += HandleAuth;
+                    HandleAuth();
+                }
+                else
+                {
+                    Debug.LogWarning("[FireService] Auth is not initialized for WEBGL");
+                }
+
+                DB = new FirebaseWebGLDataPersistence(config, emulatorConfig);
+                Debug.Log("[FireService] Initialization complete!");
+
+                IsFullyInitialized = true;
+                Debug.Log("[FireService] IsFullyInitialized set to TRUE");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[FireService] CRITICAL ERROR during initialization: {ex.Message}");
+                Debug.LogError($"[FireService] Stack trace: {ex.StackTrace}");
+                Debug.LogError($"[FireService] Exception type: {ex.GetType().Name}");
+            }
 
 #else
+            Debug.Log("[FireService] Initializing for non-WebGL or Editor mode");
+
+            #if !UNITY_WEBGL
             _crashlytics = new CrashlyticsService();
-            AnalyticsService = new AnalyticsService();
             DB = new DBService();
+            #endif
+
+            // AnalyticsService already initialized in Awake()
+
+            #if !UNITY_WEBGL
             FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(HandleDependenciesResult);
+            #endif
 #endif
         }
 
@@ -109,9 +166,14 @@ namespace _App_v2.Scripts._Core.Firebase
                 _crashlytics.Initialize();
                 Auth.OnAuthStateChanged += HandleAuth;
 
-                AnalyticsService.AddProvider(new DebugProvider());
+                // Add FirebaseAnalyticsProvider (DebugProvider was already added in Awake)
                 AnalyticsService.AddProvider(new FirebaseAnalyticsProvider());
                 AnalyticsService.Initialize();
+                Debug.Log("[FireService] FirebaseAnalyticsProvider added in Initialize()");
+
+                // Mark as fully initialized
+                IsFullyInitialized = true;
+                Debug.Log("[FireService] IsFullyInitialized set to TRUE");
             }
             catch (System.Exception e)
             {
