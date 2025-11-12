@@ -5,7 +5,8 @@ using Audio;
 using Enums;
 using UnityEngine.SceneManagement;
 using System.Runtime.InteropServices; // ✅ Needed for DllImport
-using _App_v2.Scripts._Core.Firebase; 
+using _App_v2.Scripts._Core.Firebase;
+using UnityEngine.AddressableAssets;
 
 public class SplashScreenController : MonoBehaviour
 {
@@ -59,8 +60,8 @@ public class SplashScreenController : MonoBehaviour
                 PlayLogoIfUnlocked(SoundList.SplashScreenUnfill);
 #endif
             })
-            .AppendInterval(0.2f)
-            .OnComplete(LoadNextScene);
+            .AppendInterval(0.2f);
+        //.OnComplete(LoadNextScene);
     }
 
     private void PlayFillSoundIfUnlocked() => PlayLogoIfUnlocked(SoundList.SplashScreenFill);
@@ -82,6 +83,19 @@ public class SplashScreenController : MonoBehaviour
     {
         Debug.Log($"Playing logo sound: {soundToPlay}");
         AudioManager.Instance.PlaySFX(soundToPlay);
+    }
+    
+    public void OnAddressablesInitialized(bool success)
+    {
+        if (success)
+        {
+            Debug.Log("[SplashScreen] Addressables initialized successfully!");
+            LoadNextScene();
+        }
+        else
+        {
+            Debug.LogError("[SplashScreen] Failed to initialize Addressables!");
+        }
     }
 
     private void LoadNextScene()
