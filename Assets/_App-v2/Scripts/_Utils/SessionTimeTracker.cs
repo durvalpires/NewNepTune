@@ -1,8 +1,12 @@
 using System;
 using UnityEngine;
+#if UNITY_WEBGL && !UNITY_EDITOR
+using System.Runtime.InteropServices;
+#endif
 
 public class SessionTimeTracker : MonoBehaviour
 {
+
     public enum SaveMode
     {
         AutoSave,   // periodically saves based on interval
@@ -22,6 +26,16 @@ public class SessionTimeTracker : MonoBehaviour
 
     public static double TotalMinutesPlayed { get; private set; }
 
+#if UNITY_WEBGL && !UNITY_EDITOR
+    // import JavaScript function from VisibilityTracker.jslib
+    [DllImport("__Internal")]
+    private static extern void RegisterVisibilityCallback(string gameObjectName);
+#endif
+    [Header("Hidden Tab Tracking")]
+    private bool isTimerPaused = false;
+    private DateTime pauseTime;
+    private TimeSpan accumulatedPausedTime;
+
     private void Awake()
     {
         // ✅ Singleton guard
@@ -37,6 +51,15 @@ public class SessionTimeTracker : MonoBehaviour
         Debug.Log("[SessionTimeTracker] Initialized. Waiting for login...");
     }
 
+    private void Start()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        // register JavaScript callbacks for browser tab visibility changes
+        RegisterVisibilityCallback(gameObject.name);
+        Debug.Log("[SessionTimeTracker] WebGL visibility callbacks registered for: " + gameObject.name);
+#endif
+    }
+
     private void OnEnable()
     {
         autoSaveTimer = 0f;
@@ -45,6 +68,7 @@ public class SessionTimeTracker : MonoBehaviour
     private void Update()
     {
         if (!trackingActive) return; // ✅ Skip if not logged in
+        if (isTimerPaused) return; // skip if timer is paused
 
         if (saveMode == SaveMode.AutoSave)
         {
@@ -100,6 +124,10 @@ public class SessionTimeTracker : MonoBehaviour
         TotalMinutesPlayed = minutesFromBackend;
         instance.sessionStartTime = DateTime.UtcNow;
         instance.trackingActive = true;
+
+        // reset webgl pause tracking for new session
+        instance.isTimerPaused = false;
+        instance.accumulatedPausedTime = TimeSpan.Zero;
 
         Debug.Log($"[SessionTimeTracker] Tracking started. Loaded total play time: {TotalMinutesPlayed} minutes");
     }
@@ -172,4 +200,60 @@ public class SessionTimeTracker : MonoBehaviour
             timePlayed.Minutes,
             timePlayed.Seconds);
     }
+
+    #region WebGL Browser Visibility Callbacks
+
+    private void OnBrowserTabHidden()
+    {
+        if (!trackingActive) return;
+
+        Debug.Log("[SessionTimeTracker] Browser tab HIDDEN - Pausing timer and saving session");
+        PauseTimer();
+        UpdateSessionDuration(saveToFirebase: true);
+    }
+
+    private void OnBrowserTabVisible()
+    {
+        if (!trackingActive) return;
+
+        Debug.Log("[SessionTimeTracker] Browser tab VISIBLE - Resuming timer");
+        ResumeTimer();
+    }
+
+    private void OnBrowserClosing()
+    {
+        if (!trackingActive) return;
+
+        Debug.Log("[SessionTimeTracker] Browser CLOSING - Emergency save");
+        UpdateSessionDuration(saveToFirebase: true);
+    }
+
+    private void PauseTimer()
+    {
+        if (isTimerPaused) return; 
+
+        pauseTime = DateTime.UtcNow;
+        isTimerPaused = true;
+
+        Debug.Log($"[SessionTimeTracker] Timer PAUSED at {pauseTime:HH:mm:ss}");
+    }
+
+    private void ResumeTimer()
+    {
+        if (!isTimerPaused) return; 
+
+        // calculate how long we were paused
+        TimeSpan pausedDuration = DateTime.UtcNow - pauseTime;
+        accumulatedPausedTime += pausedDuration;
+
+        // adjust session start time to account for paused period
+        // counting only active time
+        sessionStartTime = sessionStartTime.Add(pausedDuration);
+
+        isTimerPaused = false;
+
+        Debug.Log($"[SessionTimeTracker] Timer RESUMED after {pausedDuration.TotalSeconds:F1} seconds paused. Total paused time: {accumulatedPausedTime.TotalMinutes:F2} minutes");
+    }
+
+    #endregion
 }
